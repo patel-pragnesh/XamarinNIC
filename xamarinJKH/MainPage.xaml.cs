@@ -43,7 +43,6 @@ namespace xamarinJKH
                 }
             };
             ImageClosePass.GestureRecognizers.Add(forgetPasswordVisible);
-
             EntryLogin.Text = "";
             EntryPass.Text = "";
         }

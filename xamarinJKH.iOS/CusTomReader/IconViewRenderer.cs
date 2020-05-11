@@ -70,7 +70,11 @@ namespace xamarinJKH.iOS
         {
             if (previous == null && !string.IsNullOrWhiteSpace(Element.Source))
             {
-                var uiImage = new UIImage(Element.Source);
+                var uiImage = UIImage.FromBundle(Element.Source);
+                if (Element.Source == "icon_login")
+                {
+                    uiImage = UIImage.FromBundle("icon_login");
+                }
                 uiImage = uiImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
                 Control.TintColor = Element.Foreground.ToUIColor();
                 Control.Image = uiImage;
