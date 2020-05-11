@@ -8,11 +8,13 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-        public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // Адрес сервера
+        public const string SERVER_ADDR = "https://api.sm-center.ru/stroim-bud"; // Адрес сервера
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
         public const string REQUEST_CODE = "auth/RequestAccessCode"; // Запрос кода подтверждения
+        public const string REQUEST_CHECK_CODE = "auth/CheckAccessCode"; // Подтверждение кода подтверждения
         public const string REGISTR_BY_PHONE = "auth/RegisterByPhone"; // Регистрация по телефону
+        public const string GET_MOBILE_SETTINGS = "Config/MobileAppSettings "; // Регистрация по телефону
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -128,6 +130,61 @@ namespace xamarinJKH.Server
                 };
             }
 
+            return response.Data;
+        }
+
+        /// <summary>
+        /// Подтверждение кода доступа
+        /// </summary>
+        /// <param name="phone">Номер телефона</param>
+        /// <param name="code">Код подтверждения</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CheckResult> RequestChechCode(string phone, string code)
+        {
+            Console.WriteLine("Запрос кода подтверждения");
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(REQUEST_CHECK_CODE, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddBody(new
+            {
+                phone,
+                code
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CheckResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CheckResult()
+                {
+                    IsCorrect = false
+                };
+            }
+            return response.Data;
+        } 
+        /// <summary>
+        /// Получение настроек приложения
+        /// </summary>
+        /// <param name="appVersion">Версия приложения</param>
+        /// <param name="dontCheckAppBlocking">Проверка версии</param>
+        /// <returns>MobileSettings</returns>
+        public async Task<MobileSettings> MobileAppSettings (string appVersion, string dontCheckAppBlocking)
+        {
+            Console.WriteLine("Запрос кода подтверждения");
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_MOBILE_SETTINGS, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddParameter("appVersion", appVersion);
+            restRequest.AddParameter("dontCheckAppBlocking", dontCheckAppBlocking);
+        
+            var response = await restClientMp.ExecuteTaskAsync<MobileSettings>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new MobileSettings()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
             return response.Data;
         }
     }

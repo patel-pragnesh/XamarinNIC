@@ -10,6 +10,7 @@ using xamarinJKH.Server.RequestModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.PlatformConfiguration;
+using xamarinJKH.Utils;
 
 namespace xamarinJKH
 {
@@ -18,11 +19,14 @@ namespace xamarinJKH
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        private RestClientMP server = new RestClientMP();
+
         public MainPage()
         {
             InitializeComponent();
+            getSettings();
             var startRegForm = new TapGestureRecognizer();
-            startRegForm.Tapped += async (s, e) => { await Navigation.PushModalAsync(new RegistrForm()); };
+            startRegForm.Tapped += async (s, e) => { await Navigation.PushModalAsync(new RegistrForm(this)); };
             RegistLabel.GestureRecognizers.Add(startRegForm);
 
             var forgetPasswordVisible = new TapGestureRecognizer();
@@ -31,11 +35,11 @@ namespace xamarinJKH
                 EntryPass.IsPassword = !EntryPass.IsPassword;
                 if (EntryPass.IsPassword)
                 {
-                    ImageClosePass.Foreground = Color.Red;
+                    ImageClosePass.Foreground = Color.FromHex(Settings.MobileSettings.color);
                 }
                 else
                 {
-                    ImageClosePass.Foreground = Color.DarkGray;
+                    ImageClosePass.Foreground = Color.DarkSlateGray;
                 }
             };
             ImageClosePass.GestureRecognizers.Add(forgetPasswordVisible);
@@ -44,41 +48,72 @@ namespace xamarinJKH
             EntryPass.Text = "";
         }
 
+        private async void getSettings()
+        {
+            Settings.MobileSettings = await server.MobileAppSettings("2.203", "1");
+
+            UkName.Text = Settings.MobileSettings.main_name;
+            
+            IconViewNameUk.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            IconViewLogin.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            IconViewPass.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            ImageClosePass.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            
+            FrameBtnLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            LabelseparatorPass.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            LabelseparatorLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            SwitchLogin.OnColor = Color.FromHex(Settings.MobileSettings.color);
+            SwitchLogin.ThumbColor = Color.White;
+            RegistLabel.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            progress.Color = Color.FromHex(Settings.MobileSettings.color);
+            
+
+        }
+
         private async void ButtonClick(object sender, EventArgs e)
+        {
+            Login(EntryLogin.Text, EntryPass.Text);
+        }
+
+        public async void Login(string loginAuth, string pass)
         {
             progress.IsVisible = true;
             FrameBtnLogin.IsVisible = false;
 
-            RestClientMP server = new RestClientMP();
-            var replace = EntryLogin.Text
+            var replace = loginAuth
                 .Replace("+", "")
                 .Replace(" ", "")
                 .Replace("(", "")
                 .Replace(")", "")
                 .Replace("-", "");
-            var entryPassText = EntryPass.Text.ToString();
-            if (!replace.Equals("") && !entryPassText.Equals(""))
+            if (!replace.Equals("") && !pass.Equals(""))
             {
-                LoginResult login = await server.Login(replace, entryPassText);
-                await DisplayAlert("Успешно", login.ToString(), "OK");
+                LoginResult login = await server.Login(replace, pass);
+                if (login.Error == null)
+                {
+                    await DisplayAlert("Успешно", login.ToString(), "OK");
+                    Settings.Person = login;
+                }
+                else
+                {
+                    if (login.Error.ToLower().Contains("unauthorized"))
+                    {
+                        await DisplayAlert("Ошибка", "Пользователь не найден", "OK");
+                    }
+                    else
+                    {
+                        await DisplayAlert("Ошибка", login.Error, "OK");
+                    }
+                }
+
             }
             else
             {
                 await DisplayAlert("Ошибка", "Заполните пустые поля", "OK");
             }
+
             progress.IsVisible = false;
             FrameBtnLogin.IsVisible = true;
-        }
-
-        // private async Task ButtonClick(object sender, EventArgs e)
-        // {
-        //     BtnLogin.Text = "Войдено";
-        //     await Navigation.PushModalAsync(new RegistrForm());
-        // }
-
-        private static async Task StartRegistrForm()
-        {
-            await NavigationService.NavigateToAsync(new RegistrForm());
         }
     }
 }

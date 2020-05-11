@@ -63,6 +63,9 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CusTomReader\CustomEntryRenderer.cs" />
+    <Compile Include="CusTomReader\IconViewRenderer.cs" />
+    <Compile Include="CusTomReader\MessageIOS.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />

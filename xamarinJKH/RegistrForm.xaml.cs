@@ -10,6 +10,7 @@ using xamarinJKH.Server.RequestModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms.PlatformConfiguration;
+using xamarinJKH.Utils;
 
 namespace xamarinJKH
 {
@@ -18,22 +19,67 @@ namespace xamarinJKH
     {
         private LoginResult Person = new LoginResult();
         private RestClientMP _server = new RestClientMP();
+        public string LoginAuth { get; set; }
+        public string passAuth { get; set; }
 
-        public RegistrForm()
+        private MainPage _mainPage;
+
+        public RegistrForm(MainPage mainPage)
         {
             InitializeComponent();
+            setColors();
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { await Navigation.PopModalAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
-            
+            _mainPage = mainPage;
             var passwordVisible = new TapGestureRecognizer();
-            passwordVisible.Tapped += async (s, e) => { EntryPassNew.IsPassword = !EntryPassNew.IsPassword; };
+            passwordVisible.Tapped += async (s, e) =>
+            {
+                EntryPassNew.IsPassword = !EntryPassNew.IsPassword;
+                if (EntryPassNew.IsPassword)
+                {
+                    ImageClosePass.Foreground = Color.FromHex(Settings.MobileSettings.color);
+                }
+                else
+                {
+                    ImageClosePass.Foreground = Color.DarkSlateGray;
+                }
+            };
             ImageClosePass.GestureRecognizers.Add(passwordVisible);
         }
 
         private void NextReg(object sender, EventArgs e)
         {
             FirstStepReg();
+        }
+
+        private void setColors()
+        {
+            UkName.Text = Settings.MobileSettings.main_name;
+
+            IconViewNameUk.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            IconViewLogin.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            IconViewFio.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            IconViewCode.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            IconViewPassNew.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            ImageClosePass.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            IconViewConfirmPass.Foreground = Color.FromHex(Settings.MobileSettings.color);
+
+            SwitchConsent.OnColor = Color.FromHex(Settings.MobileSettings.color);
+            FrameBtnLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            FrameBtnReg.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            FrameBtnNextTwo.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            FrameBtnRegFinal.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            FrameTech.BorderColor = Color.FromHex(Settings.MobileSettings.color);
+            SwitchConsent.ThumbColor = Color.White;
+            BtnTech.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            progress.Color = Color.FromHex(Settings.MobileSettings.color);
+            
+            LabelseparatorPassConfirm.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            LabelseparatorPass.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            LabelseparatorCode.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            LabelseparatorPhone.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            LabelseparatorFio.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
         }
 
         private async void FirstStepReg()
@@ -72,12 +118,22 @@ namespace xamarinJKH
         }
 
 
-        private void NextTwoReg(object sender, EventArgs e)
+        private async void NextTwoReg(object sender, EventArgs e)
         {
-            StepsImage.Source = ImageSource.FromFile("ic_steps_three");
-            RegistrationFrameStep2.IsVisible = false;
-            RegistrationFrameStep3.IsVisible = true;
-            LabelSteps.Text = "Шаг 3";
+            var entryCodeText = EntryCode.Text;
+            CheckResult result = await _server.RequestChechCode(Person.Phone, entryCodeText);
+            if (result.IsCorrect)
+            {
+                StepsImage.Source = ImageSource.FromFile("ic_steps_three");
+                RegistrationFrameStep2.IsVisible = false;
+                RegistrationFrameStep3.IsVisible = true;
+                LabelSteps.Text = "Шаг 3";
+                Person.Code = entryCodeText;
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Неверный код доступа", "OK");
+            }
         }
 
         private void EntryCode_OnTextChanged(object sender, TextChangedEventArgs e)
@@ -109,6 +165,39 @@ namespace xamarinJKH
                 FrameBtnReg.IsVisible = true;
                 progress.IsVisible = false;
                 DependencyService.Get<IMessage>().ShortAlert(result.Error);
+            }
+        }
+
+        private async void ButtonReg(object sender, EventArgs e)
+        {
+            string pass = EntryPassNew.Text;
+            string passConfirm = EntryPassCommit.Text;
+            if (pass.Equals(""))
+            {
+                await DisplayAlert("Ошибка", "Заполните поле пароль", "OK");
+            }
+            else if (passConfirm.Equals(""))
+            {
+                await DisplayAlert("Ошибка", "Заполните поле подтвердите пароль", "OK");
+            }
+            else if (!pass.Equals(passConfirm))
+            {
+                await DisplayAlert("Ошибка", "Пароли не совпадают", "OK");
+            }
+            else
+            {
+                CommonResult result = await _server.RegisterByPhone(Person.FIO, Person.Phone, pass, Person.Code);
+                if (result.Error == null)
+                {
+                    LoginAuth = "79237173372";
+                    passAuth = "qw";
+                    await Navigation.PopModalAsync();
+                    _mainPage.Login(Person.Phone, pass);
+                }
+                else
+                {
+                    await DisplayAlert("Ошибка", result.Error, "OK");
+                }
             }
         }
     }

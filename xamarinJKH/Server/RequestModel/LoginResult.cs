@@ -15,7 +15,8 @@ namespace xamarinJKH.Server.RequestModel
 
         public List<AccountInfo> Accounts { get; set; }
         public string Error { get; set; }
-
+        
+        public string Code { get; set; }
         public override string ToString()
         {
             return FIO + " " + Login;

@@ -5,6 +5,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
+             xmlns:android="clr-namespace:xamarinJKH.Android;assembly=xamarinJKH"
              x:Class="xamarinJKH.RegistrForm">
     <ContentPage.Content>
 
@@ -32,14 +33,16 @@
                 Margin="20, 20, 0, 0"
                 TextColor="White"
                 HorizontalOptions="Start" />
-            
+
             <ScrollView
                 Padding="0,0,0,20">
                 <StackLayout>
-                    <Image Source="icon_login"
-                           Margin="0, 70, 0, 0"
-                           HeightRequest="60"
-                           HorizontalOptions="Center" />
+                    <android:IconView x:Name="IconViewNameUk"
+                                      Source="icon_login"
+                                      Margin="0, 70, 0, 0"
+                                      Foreground="Red"
+                                      HeightRequest="60"
+                                      HorizontalOptions="Center" />
 
                     <Label x:Name="UkName"
                            Text="Название"
@@ -62,13 +65,15 @@
                                 Margin="5, 10, 5, 10">
                                 <StackLayout
                                     Orientation="Horizontal">
-                                    <Image Source="ic_phone_login"
-                                           HeightRequest="25"
-                                           VerticalOptions="Center" />
+                                    <android:IconView x:Name="IconViewLogin"
+                                                      Source="ic_phone_login"
+                                                      HeightRequest="25"
+                                                      Foreground="Red"
+                                                      VerticalOptions="Center" />
                                     <Label Text="Телефон"
-                                           FontSize="18"
+                                           FontSize="16"
                                            TextColor="Black"
-                                           Margin="5, 0, 0, 0"
+                                           Margin="-5, 0, 0, 0"
                                            VerticalOptions="Center" />
 
                                     <Entry x:Name="EntryPhone"
@@ -86,21 +91,38 @@
                                     </Entry>
                                 </StackLayout>
 
-                                <Image Source="ic_separator"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="FillAndExpand" />
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <!-- <Image Source="ic_separator" -->
+                                    <!--        VerticalOptions="Start" -->
+                                    <!--        HorizontalOptions="FillAndExpand" /> -->
+                                    <Label
+                                        HeightRequest="2"
+                                        BackgroundColor="#DEDEDE" 
+                                        WidthRequest="110"
+                                    />
+                                    <Label
+                                        x:Name="LabelseparatorPhone"
+                                        HeightRequest="2"
+                                        Margin="-10, 0, 0, 0"
+                                        BackgroundColor="Red"
+                                        HorizontalOptions="FillAndExpand" />
+
+                                </StackLayout>
 
                                 <StackLayout
                                     Margin="0, 20, 0, 0"
                                     Orientation="Horizontal">
-                                    <Image Source="ic_fio_reg"
-                                           HeightRequest="25"
-                                           VerticalOptions="Center" />
+                                    <android:IconView x:Name="IconViewFio"
+                                                      Source="ic_fio_reg"
+                                                      HeightRequest="25"
+                                                      Foreground="Red"
+                                                      VerticalOptions="Center" />
 
                                     <Label Text="ФИО  "
-                                           FontSize="18"
+                                           FontSize="16"
                                            TextColor="Black"
-                                           Margin="5, 0, 0, 5"
+                                           Margin="-5, 0, 15, 5"
                                            VerticalOptions="Center" />
 
                                     <Entry x:Name="EntryFio"
@@ -111,9 +133,24 @@
                                            HorizontalTextAlignment="Center"
                                            HorizontalOptions="FillAndExpand" />
                                 </StackLayout>
-                                <Image Source="ic_separator"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="FillAndExpand" />
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <!-- <Image Source="ic_separator" -->
+                                    <!--        VerticalOptions="Start" -->
+                                    <!--        HorizontalOptions="FillAndExpand" /> -->
+                                    <Label
+                                        HeightRequest="2"
+                                        BackgroundColor="#DEDEDE" 
+                                        WidthRequest="110"
+                                    />
+                                    <Label
+                                        x:Name="LabelseparatorFio"
+                                        HeightRequest="2"
+                                        Margin="-10, 0, 0, 0"
+                                        BackgroundColor="Red"
+                                        HorizontalOptions="FillAndExpand" />
+
+                                </StackLayout>
 
                             </StackLayout>
                             <StackLayout
@@ -161,13 +198,16 @@
                                 Margin="5, 10, 5, 10">
                                 <StackLayout
                                     Orientation="Horizontal">
-                                    <Image Source="ic_phone_login"
-                                           HeightRequest="25"
-                                           VerticalOptions="Center" />
+                                    <android:IconView x:Name="IconViewCode"
+                                                      Source="ic_phone_login"
+                                                      HeightRequest="25"
+                                                      Foreground="Red"
+                                                      Margin="-10, 0, 0, 0"
+                                                      VerticalOptions="Center" />
                                     <Label Text="Код доступа"
                                            FontSize="15"
                                            TextColor="Black"
-                                           Margin="0, 0, 0, 0"
+                                           Margin="-10, 0, 0, 0"
                                            VerticalOptions="Center" />
 
                                     <Entry x:Name="EntryCode"
@@ -181,9 +221,24 @@
                                            HorizontalOptions="FillAndExpand" />
                                 </StackLayout>
 
-                                <Image Source="ic_separator"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="FillAndExpand" />
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <!-- <Image Source="ic_separator" -->
+                                    <!--        VerticalOptions="Start" -->
+                                    <!--        HorizontalOptions="FillAndExpand" /> -->
+                                    <Label
+                                        HeightRequest="2"
+                                        BackgroundColor="#DEDEDE" 
+                                        WidthRequest="110"
+                                    />
+                                    <Label
+                                        x:Name="LabelseparatorCode"
+                                        HeightRequest="2"
+                                        Margin="-10, 0, 0, 0"
+                                        BackgroundColor="Red"
+                                        HorizontalOptions="FillAndExpand" />
+
+                                </StackLayout>
                                 <Label x:Name="LabelTitleRequestCode"
                                        Text="Чтобы получить код доступа нажмите «Запросить звонок с кодом». Вам позвонит робот на номер +79237173372 и сообщит код"
                                        FontSize="13"
@@ -204,12 +259,12 @@
                                        BackgroundColor="Red"
                                        Margin="0, 10, 0, 0"
                                        Padding="0">
-                                       <Button x:Name="BtnRegCode"
-                                               Text="Запросить звонок с кодом"
-                                               TextColor="White"
-                                               FontAttributes="Bold"
-                                               Clicked="RegCodeRequest"
-                                               BackgroundColor="Transparent" />
+                                    <Button x:Name="BtnRegCode"
+                                            Text="Запросить звонок с кодом"
+                                            TextColor="White"
+                                            FontAttributes="Bold"
+                                            Clicked="RegCodeRequest"
+                                            BackgroundColor="Transparent" />
                                 </Frame>
 
                                 <StackLayout
@@ -224,7 +279,8 @@
                                            WidthRequest="80"
                                            Margin="-60, 0, 0, 0"
                                            HorizontalOptions="Center" />
-                                    <Frame CornerRadius="15"
+                                    <Frame x:Name="FrameTech"
+                                           CornerRadius="15"
                                            HorizontalOptions="FillAndExpand"
                                            BorderColor="Red"
                                            HeightRequest="40"
@@ -273,62 +329,98 @@
                                 Margin="5, 10, 5, 10">
                                 <StackLayout
                                     Orientation="Horizontal">
-                                    <Image Source="ic_password_login"
-                                           HeightRequest="25"
-                                           VerticalOptions="Center" />
+                                    <android:IconView x:Name="IconViewPassNew"
+                                                      Source="ic_password_login"
+                                                      HeightRequest="25"
+                                                      Foreground="Red"
+                                                      VerticalOptions="Center" />
                                     <Label Text="Создайте пароль    "
                                            FontSize="15"
                                            TextColor="Black"
-                                           Margin="5, 0, 0, 0"
+                                           Margin="-10, 0, 20, 0"
                                            VerticalOptions="Center" />
 
                                     <Entry x:Name="EntryPassNew"
                                            FontSize="18"
                                            VerticalOptions="End"
                                            IsPassword="True"
+                                           Text=""
                                            HorizontalTextAlignment="Center"
                                            TextColor="#A2A2A2"
                                            HorizontalOptions="FillAndExpand" />
-                                    <Image x:Name="ImageClosePass"
-                                           Source="ic_close_password"
-                                           HeightRequest="15"
-                                           VerticalOptions="Center" />
+                                    <android:IconView x:Name="ImageClosePass"
+                                                      Source="ic_close_password"
+                                                      HeightRequest="15"
+                                                      VerticalOptions="Center" />
                                 </StackLayout>
 
-                                <Image Source="ic_reg_separrator"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="FillAndExpand" />
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <!-- <Image Source="ic_separator" -->
+                                    <!--        VerticalOptions="Start" -->
+                                    <!--        HorizontalOptions="FillAndExpand" /> -->
+                                    <Label
+                                        HeightRequest="2"
+                                        BackgroundColor="#DEDEDE" 
+                                        WidthRequest="180"
+                                    />
+                                    <Label
+                                        x:Name="LabelseparatorPass"
+                                        HeightRequest="2"
+                                        Margin="-10, 0, 0, 0"
+                                        BackgroundColor="Red"
+                                        HorizontalOptions="FillAndExpand" />
+
+                                </StackLayout>
 
                                 <StackLayout
                                     Margin="0, 20, 0, 0"
                                     Orientation="Horizontal">
-                                    <Image Source="ic_password_login"
-                                           HeightRequest="25"
-                                           VerticalOptions="Center" />
+                                    <android:IconView x:Name="IconViewConfirmPass"
+                                        Source="ic_password_login"
+                                                      HeightRequest="25"
+                                                      VerticalOptions="Center" />
 
                                     <Label Text="Подтвердите пароль"
                                            FontSize="15"
                                            TextColor="Black"
-                                           Margin="5, 0, 0, 5"
+                                           Margin="-10, 0, 15, 0"
                                            VerticalOptions="Center" />
 
                                     <Entry x:Name="EntryPassCommit"
                                            FontSize="18"
                                            IsPassword="True"
                                            TextColor="#A2A2A2"
+                                           Text=""
                                            BackgroundColor="Transparent"
                                            HorizontalTextAlignment="Center"
                                            HorizontalOptions="FillAndExpand" />
 
                                 </StackLayout>
-                                <Image Source="ic_reg_separrator"
-                                       VerticalOptions="Start"
-                                       HorizontalOptions="FillAndExpand" />
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <!-- <Image Source="ic_separator" -->
+                                    <!--        VerticalOptions="Start" -->
+                                    <!--        HorizontalOptions="FillAndExpand" /> -->
+                                    <Label
+                                        HeightRequest="2"
+                                        BackgroundColor="#DEDEDE" 
+                                        WidthRequest="180"
+                                    />
+                                    <Label
+                                        x:Name="LabelseparatorPassConfirm"
+                                        HeightRequest="2"
+                                        Margin="-10, 0, 0, 0"
+                                        BackgroundColor="Red"
+                                        HorizontalOptions="FillAndExpand" />
+
+                                </StackLayout>
 
                             </StackLayout>
 
 
-                            <Frame CornerRadius="15"
+                            <Frame  x:Name="FrameBtnRegFinal"
+                                CornerRadius="15"
                                    BackgroundColor="Red"
                                    Margin="0, 10, 0, 0"
                                    Padding="0">
@@ -336,7 +428,7 @@
                                         Text="Зарегистрироваться"
                                         TextColor="White"
                                         FontAttributes="Bold"
-                                        Clicked="NextReg"
+                                        Clicked="ButtonReg"
                                         BackgroundColor="Transparent" />
                             </Frame>
 
