@@ -29,7 +29,7 @@ namespace xamarinJKH
             InitializeComponent();
             setColors();
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { await Navigation.PopModalAsync(); };
+            backClick.Tapped += async (s, e) => { _ = await Navigation.PopModalAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
             _mainPage = mainPage;
             var passwordVisible = new TapGestureRecognizer();
@@ -156,7 +156,14 @@ namespace xamarinJKH
             if (result.Error == null)
             {
                 Console.WriteLine("Отправлено");
-                DependencyService.Get<IMessage>().ShortAlert("Запрос с кодом доступа отправлен");
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+                    await DisplayAlert("", "Запрос с кодом доступа отправлен", "OK");
+                }
+                else
+                {
+                    DependencyService.Get<IMessage>().ShortAlert("Запрос с кодом доступа отправлен");
+                }                
                 FrameBtnReg.IsVisible = true;
                 progress.IsVisible = false;
             }
@@ -164,7 +171,14 @@ namespace xamarinJKH
             {
                 FrameBtnReg.IsVisible = true;
                 progress.IsVisible = false;
-                DependencyService.Get<IMessage>().ShortAlert(result.Error);
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+                    await DisplayAlert("", result.Error, "OK");
+                }
+                else
+                {
+                    DependencyService.Get<IMessage>().ShortAlert(result.Error);
+                }
             }
         }
 
