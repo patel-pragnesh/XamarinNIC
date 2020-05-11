@@ -16,4 +16,52 @@
     <PackageReference Include="SimpleJson" Version="0.38.0" />
     <PackageReference Include="RestSharp" Version="106.11.2" />
   </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Main\BottomNavigationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Main\EventsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Main\PaysPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Main\CountersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Main\AppsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Main\ProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Main\BottomNavigationPage.xaml.cs">
+      <DependentUpon>BottomNavigationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Main\EventsPage.xaml.cs">
+      <DependentUpon>EventsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Main\PaysPage.xaml.cs">
+      <DependentUpon>PaysPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Main\CountersPage.xaml.cs">
+      <DependentUpon>CountersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Main\AppsPage.xaml.cs">
+      <DependentUpon>AppsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Main\ProfilePage.xaml.cs">
+      <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

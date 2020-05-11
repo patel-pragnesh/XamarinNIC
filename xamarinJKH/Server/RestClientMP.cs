@@ -8,7 +8,7 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-        public const string SERVER_ADDR = "https://api.sm-center.ru/stroim-bud"; // Адрес сервера
+        public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // Адрес сервера
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
         public const string REQUEST_CODE = "auth/RequestAccessCode"; // Запрос кода подтверждения

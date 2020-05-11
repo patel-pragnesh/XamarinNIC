@@ -10,6 +10,7 @@ using xamarinJKH.Server.RequestModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.PlatformConfiguration;
+using xamarinJKH.Main;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH
@@ -92,6 +93,7 @@ namespace xamarinJKH
                 {
                     await DisplayAlert("Успешно", login.ToString(), "OK");
                     Settings.Person = login;
+                    await Navigation.PushModalAsync(new BottomNavigationPage()); 
                 }
                 else
                 {
