@@ -73,63 +73,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets1.xcassets\AppIcons.appiconset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_apps.imageset\ic_apps.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_counters.imageset\ic_counters.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_diskont.imageset\ic_diskont.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_events.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_events.imageset\ic_events.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_news.imageset\ic_news.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_notification.imageset\ic_notification.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_pays.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_pays.imageset\ic_pays.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_counters.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_profile.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_profile.imageset\ic_profile.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_apps.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_diskont.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_news.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_notification.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_questions.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets1.xcassets\ic_questions.imageset\ic_questions.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
@@ -263,6 +206,28 @@
     <ImageAsset Include="Assets.xcassets\icon_login.imageset\icon_login.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_apps.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_apps.imageset\ic_apps.png" />
+    <ImageAsset Include="Assets.xcassets\ic_arrow_forward.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_arrow_forward.imageset\ic_arrow_forward.png" />
+    <ImageAsset Include="Assets.xcassets\ic_counters.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_counters.imageset\ic_counters.png" />
+    <ImageAsset Include="Assets.xcassets\ic_diskont.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_diskont.imageset\ic_diskont.png" />
+    <ImageAsset Include="Assets.xcassets\ic_events.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_events.imageset\ic_events.png" />
+    <ImageAsset Include="Assets.xcassets\ic_news.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_news.imageset\ic_news.png" />
+    <ImageAsset Include="Assets.xcassets\ic_notification.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_notification.imageset\ic_notification.png" />
+    <ImageAsset Include="Assets.xcassets\ic_pays.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_pays.imageset\ic_pays.png" />
+    <ImageAsset Include="Assets.xcassets\ic_profile.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_profile.imageset\ic_profile.png" />
+    <ImageAsset Include="Assets.xcassets\ic_questions2.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_questions2.imageset\ic_questions2.png" />
+    <ImageAsset Include="Assets.xcassets\ic_tech.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_tech.imageset\ic_tech.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -305,5 +270,16 @@
     <Folder Include="Assets.xcassets\ic_steps_three.imageset\" />
     <Folder Include="Assets.xcassets\ic_steps_two.imageset\" />
     <Folder Include="Assets.xcassets\top_fon_login.imageset\" />
+    <Folder Include="Assets.xcassets\ic_apps.imageset\" />
+    <Folder Include="Assets.xcassets\ic_arrow_forward.imageset\" />
+    <Folder Include="Assets.xcassets\ic_counters.imageset\" />
+    <Folder Include="Assets.xcassets\ic_diskont.imageset\" />
+    <Folder Include="Assets.xcassets\ic_events.imageset\" />
+    <Folder Include="Assets.xcassets\ic_news.imageset\" />
+    <Folder Include="Assets.xcassets\ic_notification.imageset\" />
+    <Folder Include="Assets.xcassets\ic_pays.imageset\" />
+    <Folder Include="Assets.xcassets\ic_profile.imageset\" />
+    <Folder Include="Assets.xcassets\ic_questions2.imageset\" />
+    <Folder Include="Assets.xcassets\ic_tech.imageset\" />
   </ItemGroup>
 </Project>
