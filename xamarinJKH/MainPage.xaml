@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:xamarinJKH"
+             xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
+             xmlns:android="clr-namespace:xamarinJKH.Android;assembly=xamarinJKH"
+             BackgroundColor="#F3F3F3"
+             mc:Ignorable="d"
+             x:Class="xamarinJKH.MainPage">
+    <ScrollView>
+        <StackLayout>
+            <!-- Place new controls here -->
+            <Image Source="top_fon_login"
+                   HorizontalOptions="Center" />
+
+            <android:IconView Source="icon_login"
+                              Foreground="Red"
+                              HeightRequest="60"
+                              HorizontalOptions="Center"
+                              VerticalOptions="Center" />
+
+            <Label x:Name="UkName"
+                   Text="Название"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   TextColor="Black"
+                   HorizontalOptions="Center" />
+
+            <Frame CornerRadius="30"
+                   Margin="20, 15, 20, 15"
+                   BackgroundColor="White"
+                   Padding="0">
+
+                <StackLayout
+                    Margin="10, 20, 10, 10">
+
+                    <StackLayout
+                        Orientation="Horizontal">
+
+                        <Switch
+                            OnColor="Red"
+                            IsToggled="true"
+                            x:Name="SwitchLogin" />
+
+                        <Label Text="Вход по номеру телефона"
+                               FontAttributes="Bold"
+                               FontSize="20"
+                               TextColor="Black"
+                               HorizontalOptions="Center" />
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Margin="5, 10, 5, 10">
+
+                        <StackLayout
+                            Orientation="Horizontal">
+                            <Image Source="ic_phone_login"
+                                   HeightRequest="25"
+                                   VerticalOptions="Center" />
+                            <Label Text="Телефон"
+                                   FontSize="18"
+                                   TextColor="Black"
+                                   Margin="5, 0, 0, 0"
+                                   VerticalOptions="Center" />
+
+                            <Entry x:Name="EntryLogin"
+                                   FontSize="18"
+                                   VerticalOptions="End"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="#A2A2A2"
+                                   HorizontalOptions="FillAndExpand"
+                                   Keyboard="Numeric">
+                                <Entry.Behaviors>
+                                    <mask:MaskedBehavior Mask="+7 (XXX) XXX-XXXX" />
+                                </Entry.Behaviors>
+                            </Entry>
+                        </StackLayout>
+
+                        <Image Source="ic_separator"
+                               VerticalOptions="Start"
+                               HorizontalOptions="FillAndExpand" />
+
+                        <StackLayout
+                            Margin="0, 20, 0, 0"
+                            Orientation="Horizontal">
+                            <Image Source="ic_password_login"
+                                   HeightRequest="25"
+                                   VerticalOptions="Center" />
+
+                            <Label Text="Пароль  "
+                                   FontSize="18"
+                                   TextColor="Black"
+                                   Margin="5, 0, 0, 5"
+                                   VerticalOptions="Center" />
+
+                            <Entry x:Name="EntryPass"
+                                   FontSize="18"
+                                   IsPassword="True"
+                                   TextColor="#A2A2A2"
+                                   BackgroundColor="Transparent"
+                                   HorizontalTextAlignment="Center"
+                                   HorizontalOptions="FillAndExpand" />
+
+                            <android:IconView x:Name="ImageClosePass"
+                                              Source="ic_close_password"
+                                              Foreground="Red"
+                                              HeightRequest="15"
+                                              HorizontalOptions="Center"
+                                              VerticalOptions="Center" />
+
+                        </StackLayout>
+                        <Image Source="ic_separator"
+                               VerticalOptions="Start"
+                               HorizontalOptions="FillAndExpand" />
+
+                    </StackLayout>
+                    <ActivityIndicator x:Name="progress"
+                                       IsRunning="true"
+                                       IsVisible="False"
+                                       Color="Red" />
+                    <Frame CornerRadius="15"
+                           BackgroundColor="Red"
+                           Margin="0, 10, 0, 0"
+                           x:Name="FrameBtnLogin"
+                           Padding="0">
+                        <Button x:Name="BtnLogin"
+                                Text="Войти"
+                                TextColor="White"
+                                FontAttributes="Bold"
+                                BackgroundColor="Transparent"
+                                Clicked="ButtonClick" />
+                    </Frame>
+                    <StackLayout
+                        Margin="0, 15, 0, 15"
+                        Orientation="Horizontal">
+                        <Label
+                            Text="Забыли Пароль?"
+                            FontSize="15"
+                            TextColor="Black"
+                            TextDecorations="Underline"
+                            VerticalOptions="Center"
+                            HorizontalOptions="StartAndExpand" />
+
+                        <Label x:Name="RegistLabel"
+                               Text="Зарегистрироваться"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               TextColor="Red"
+                               TextDecorations="Underline"
+                               HorizontalOptions="EndAndExpand"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+
+                </StackLayout>
+            </Frame>
+
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

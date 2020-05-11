@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
+             x:Class="xamarinJKH.RegistrForm">
+    <ContentPage.Content>
+
+        <StackLayout>
+            <Image Source="top_fon_login"
+                   HorizontalOptions="Center" />
+            <StackLayout
+                x:Name="BackStackLayout"
+                Orientation="Horizontal"
+                Margin="10, -150, 0, 0"
+                HorizontalOptions="Start">
+                <Image Source="ic_arrow_back"
+                       HeightRequest="15"
+                       HorizontalOptions="Center" />
+                <Label
+                    Text="Назад "
+                    FontSize="15"
+                    TextColor="White"
+                    HorizontalOptions="Start" />
+            </StackLayout>
+            <Label
+                Text="Регистрация"
+                FontAttributes="Bold"
+                FontSize="30"
+                Margin="20, 20, 0, 0"
+                TextColor="White"
+                HorizontalOptions="Start" />
+            
+            <ScrollView
+                Padding="0,0,0,20">
+                <StackLayout>
+                    <Image Source="icon_login"
+                           Margin="0, 70, 0, 0"
+                           HeightRequest="60"
+                           HorizontalOptions="Center" />
+
+                    <Label x:Name="UkName"
+                           Text="Название"
+                           FontAttributes="Bold"
+                           FontSize="20"
+                           TextColor="Black"
+                           HorizontalOptions="Center" />
+                    <!-- Первый шаг регистрации -->
+                    <Frame x:Name="RegistrationFrameStep1"
+                           CornerRadius="30"
+                           Margin="20, 15, 20, 15"
+                           BackgroundColor="White"
+                           Padding="0">
+
+                        <StackLayout
+                            Margin="10, 20, 10, 10">
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Margin="5, 10, 5, 10">
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <Image Source="ic_phone_login"
+                                           HeightRequest="25"
+                                           VerticalOptions="Center" />
+                                    <Label Text="Телефон"
+                                           FontSize="18"
+                                           TextColor="Black"
+                                           Margin="5, 0, 0, 0"
+                                           VerticalOptions="Center" />
+
+                                    <Entry x:Name="EntryPhone"
+                                           FontSize="18"
+                                           VerticalOptions="End"
+                                           HorizontalTextAlignment="Center"
+                                           TextColor="#A2A2A2"
+                                           Text=""
+                                           Keyboard="Numeric"
+                                           HorizontalOptions="FillAndExpand">
+
+                                        <Entry.Behaviors>
+                                            <mask:MaskedBehavior Mask="+7 (XXX) XXX-XXXX" />
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </StackLayout>
+
+                                <Image Source="ic_separator"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="FillAndExpand" />
+
+                                <StackLayout
+                                    Margin="0, 20, 0, 0"
+                                    Orientation="Horizontal">
+                                    <Image Source="ic_fio_reg"
+                                           HeightRequest="25"
+                                           VerticalOptions="Center" />
+
+                                    <Label Text="ФИО  "
+                                           FontSize="18"
+                                           TextColor="Black"
+                                           Margin="5, 0, 0, 5"
+                                           VerticalOptions="Center" />
+
+                                    <Entry x:Name="EntryFio"
+                                           FontSize="18"
+                                           TextColor="#A2A2A2"
+                                           Text=""
+                                           BackgroundColor="Transparent"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="FillAndExpand" />
+                                </StackLayout>
+                                <Image Source="ic_separator"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="FillAndExpand" />
+
+                            </StackLayout>
+                            <StackLayout
+                                Orientation="Horizontal"
+                                HorizontalOptions="End">
+                                <Label Text="Согласие на обработку персональных данных"
+                                       FontSize="13"
+                                       Margin="0, 15, 0, 15"
+                                       TextColor="Black"
+                                       HorizontalOptions="Center" />
+                                <Switch
+                                    OnColor="Red"
+                                    IsToggled="false"
+                                    x:Name="SwitchConsent" />
+                            </StackLayout>
+
+                            <Frame CornerRadius="15"
+                                   BackgroundColor="Red"
+                                   Margin="0, 10, 0, 0"
+                                   x:Name="FrameBtnLogin"
+                                   Padding="0">
+                                <Button x:Name="BtnLogin"
+                                        Text="Далее"
+                                        TextColor="White"
+                                        FontAttributes="Bold"
+                                        Clicked="NextReg"
+                                        BackgroundColor="Transparent" />
+                            </Frame>
+
+                        </StackLayout>
+                    </Frame>
+                    <!-- Второй шаг регистрации -->
+                    <Frame x:Name="RegistrationFrameStep2"
+                           CornerRadius="30"
+                           IsVisible="False"
+                           Margin="20, 15, 20, 15"
+                           BackgroundColor="White"
+                           Padding="0">
+
+                        <StackLayout
+                            Margin="10, 20, 10, 10">
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Margin="5, 10, 5, 10">
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <Image Source="ic_phone_login"
+                                           HeightRequest="25"
+                                           VerticalOptions="Center" />
+                                    <Label Text="Код доступа"
+                                           FontSize="15"
+                                           TextColor="Black"
+                                           Margin="0, 0, 0, 0"
+                                           VerticalOptions="Center" />
+
+                                    <Entry x:Name="EntryCode"
+                                           FontSize="18"
+                                           VerticalOptions="End"
+                                           HorizontalTextAlignment="Center"
+                                           Text=""
+                                           Keyboard="Numeric"
+                                           TextChanged="EntryCode_OnTextChanged"
+                                           TextColor="#A2A2A2"
+                                           HorizontalOptions="FillAndExpand" />
+                                </StackLayout>
+
+                                <Image Source="ic_separator"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="FillAndExpand" />
+                                <Label x:Name="LabelTitleRequestCode"
+                                       Text="Чтобы получить код доступа нажмите «Запросить звонок с кодом». Вам позвонит робот на номер +79237173372 и сообщит код"
+                                       FontSize="13"
+                                       TextColor="#A2A2A2"
+                                       HorizontalOptions="Center" />
+                                <!-- <Label Text="" -->
+                                <!--        FontSize="13" -->
+                                <!--        TextColor="#A2A2A2" -->
+                                <!--         -->
+                                <!--        HorizontalOptions="Center" /> -->
+
+                                <ActivityIndicator x:Name="progress"
+                                                   IsRunning="true"
+                                                   IsVisible="False"
+                                                   Color="Red" />
+                                <Frame x:Name="FrameBtnReg"
+                                       CornerRadius="15"
+                                       BackgroundColor="Red"
+                                       Margin="0, 10, 0, 0"
+                                       Padding="0">
+                                       <Button x:Name="BtnRegCode"
+                                               Text="Запросить звонок с кодом"
+                                               TextColor="White"
+                                               FontAttributes="Bold"
+                                               Clicked="RegCodeRequest"
+                                               BackgroundColor="Transparent" />
+                                </Frame>
+
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <Label Text="Не поступил звонок? Напишите в тех. поддержку, поможем зарегист"
+                                           FontSize="13"
+                                           TextColor="#A2A2A2"
+                                           WidthRequest="180"
+                                           HorizontalOptions="Center" />
+                                    <Image Source="ic_arrow_tech"
+                                           VerticalOptions="End"
+                                           WidthRequest="80"
+                                           Margin="-60, 0, 0, 0"
+                                           HorizontalOptions="Center" />
+                                    <Frame CornerRadius="15"
+                                           HorizontalOptions="FillAndExpand"
+                                           BorderColor="Red"
+                                           HeightRequest="40"
+                                           VerticalOptions="End"
+                                           Padding="0">
+                                        <Button x:Name="BtnTech"
+                                                Text="Написать в тех. поддержку"
+                                                TextColor="Red"
+                                                FontSize="10"
+                                                Clicked="NextReg"
+                                                BackgroundColor="Transparent" />
+                                    </Frame>
+                                </StackLayout>
+
+                            </StackLayout>
+
+                            <Frame CornerRadius="15"
+                                   BackgroundColor="Red"
+                                   Margin="0, 10, 0, 0"
+                                   x:Name="FrameBtnNextTwo"
+                                   IsVisible="False"
+                                   Padding="0">
+                                <Button x:Name="BtnNextTwo"
+                                        Text="Далее"
+                                        TextColor="White"
+                                        FontAttributes="Bold"
+                                        Clicked="NextTwoReg"
+                                        BackgroundColor="Transparent" />
+                            </Frame>
+
+                        </StackLayout>
+                    </Frame>
+                    <!-- Третий шаг регистрации -->
+                    <Frame x:Name="RegistrationFrameStep3"
+                           CornerRadius="30"
+                           IsVisible="False"
+                           Margin="20, 15, 20, 15"
+                           BackgroundColor="White"
+                           Padding="0">
+
+                        <StackLayout
+                            Margin="10, 20, 10, 10">
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Margin="5, 10, 5, 10">
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <Image Source="ic_password_login"
+                                           HeightRequest="25"
+                                           VerticalOptions="Center" />
+                                    <Label Text="Создайте пароль    "
+                                           FontSize="15"
+                                           TextColor="Black"
+                                           Margin="5, 0, 0, 0"
+                                           VerticalOptions="Center" />
+
+                                    <Entry x:Name="EntryPassNew"
+                                           FontSize="18"
+                                           VerticalOptions="End"
+                                           IsPassword="True"
+                                           HorizontalTextAlignment="Center"
+                                           TextColor="#A2A2A2"
+                                           HorizontalOptions="FillAndExpand" />
+                                    <Image x:Name="ImageClosePass"
+                                           Source="ic_close_password"
+                                           HeightRequest="15"
+                                           VerticalOptions="Center" />
+                                </StackLayout>
+
+                                <Image Source="ic_reg_separrator"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="FillAndExpand" />
+
+                                <StackLayout
+                                    Margin="0, 20, 0, 0"
+                                    Orientation="Horizontal">
+                                    <Image Source="ic_password_login"
+                                           HeightRequest="25"
+                                           VerticalOptions="Center" />
+
+                                    <Label Text="Подтвердите пароль"
+                                           FontSize="15"
+                                           TextColor="Black"
+                                           Margin="5, 0, 0, 5"
+                                           VerticalOptions="Center" />
+
+                                    <Entry x:Name="EntryPassCommit"
+                                           FontSize="18"
+                                           IsPassword="True"
+                                           TextColor="#A2A2A2"
+                                           BackgroundColor="Transparent"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="FillAndExpand" />
+
+                                </StackLayout>
+                                <Image Source="ic_reg_separrator"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="FillAndExpand" />
+
+                            </StackLayout>
+
+
+                            <Frame CornerRadius="15"
+                                   BackgroundColor="Red"
+                                   Margin="0, 10, 0, 0"
+                                   Padding="0">
+                                <Button x:Name="BtnRegFinalStep"
+                                        Text="Зарегистрироваться"
+                                        TextColor="White"
+                                        FontAttributes="Bold"
+                                        Clicked="NextReg"
+                                        BackgroundColor="Transparent" />
+                            </Frame>
+
+                        </StackLayout>
+                    </Frame>
+                    <StackLayout Margin="0,0,0, 20">
+                        <Image x:Name="StepsImage"
+                               Source="ic_steps_one"
+                               VerticalOptions="Center"
+                               Margin="0, 15, 0, 0"
+                               HorizontalOptions="FillAndExpand" />
+                        <Label x:Name="LabelSteps"
+                               Text="Шаг 1"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               Margin="0, 10, 0, 15"
+                               TextColor="Black"
+                               HorizontalOptions="Center" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

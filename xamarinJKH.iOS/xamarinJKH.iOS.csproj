@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F3C57893-F084-4007-9192-5D9225A7642F}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{6143fdea-f3c2-4a09-aafa-6e230626515e}</TemplateGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>xamarinJKH.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>xamarinJKH.iOS</AssemblyName>
+    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <ProvisioningType>automatic</ProvisioningType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>None</MtouchLink>
+    <MtouchInterpreter>-all</MtouchInterpreter>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <None Include="Entitlements.plist" />
+    <None Include="Info.plist" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_close_password.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_close_password.imageset\ic_close_password.png" />
+    <ImageAsset Include="Assets.xcassets\ic_phone_login.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_phone_login.imageset\ic_phone_login.png" />
+    <ImageAsset Include="Assets.xcassets\ic_password_login.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_password_login.imageset\ic_password_login.png" />
+    <ImageAsset Include="Assets.xcassets\top_fon_login.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\top_fon_login.imageset\top_fon_login.png" />
+    <ImageAsset Include="Assets.xcassets\ic_arrow_back.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_arrow_back.imageset\ic_arrow_back.png" />
+    <ImageAsset Include="Assets.xcassets\ic_arrow_tech.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_arrow_tech.imageset\ic_arrow_tech.png" />
+    <ImageAsset Include="Assets.xcassets\ic_bottom_login.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_bottom_login.imageset\ic_bottom_login.png" />
+    <ImageAsset Include="Assets.xcassets\ic_fio_reg.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_fio_reg.imageset\ic_fio_reg.png" />
+    <ImageAsset Include="Assets.xcassets\ic_questions.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_questions.imageset\ic_questions.png" />
+    <ImageAsset Include="Assets.xcassets\ic_reg_separrator.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_reg_separrator.imageset\ic_reg_separrator.png" />
+    <ImageAsset Include="Assets.xcassets\ic_separator.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_separator.imageset\ic_separator.png" />
+    <ImageAsset Include="Assets.xcassets\ic_steps_one.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_steps_one.imageset\ic_steps_one.png" />
+    <ImageAsset Include="Assets.xcassets\ic_steps_two.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_steps_two.imageset\ic_steps_two.png" />
+    <ImageAsset Include="Assets.xcassets\ic_steps_three.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_steps_three.imageset\ic_steps_three.png" />
+    <ImageAsset Include="Assets.xcassets\icon_login.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\icon_login.imageset\icon_login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="RestSharp">
+      <Version>106.11.2</Version>
+    </PackageReference>
+    <PackageReference Include="SimpleJson">
+      <Version>0.38.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\xamarinJKH\xamarinJKH.csproj">
+      <Project>{DD0A8A0D-15EA-4EC1-BCAC-D0BEE24EB249}</Project>
+      <Name>xamarinJKH</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\ic_close_password.imageset\" />
+    <Folder Include="Assets.xcassets\ic_phone_login.imageset\" />
+    <Folder Include="Assets.xcassets\ic_password_login.imageset\" />
+    <Folder Include="Assets.xcassets\top_fon_login.imageset\" />
+    <Folder Include="Assets.xcassets\ic_arrow_back.imageset\" />
+    <Folder Include="Assets.xcassets\ic_arrow_tech.imageset\" />
+    <Folder Include="Assets.xcassets\ic_bottom_login.imageset\" />
+    <Folder Include="Assets.xcassets\ic_fio_reg.imageset\" />
+    <Folder Include="Assets.xcassets\ic_questions.imageset\" />
+    <Folder Include="Assets.xcassets\ic_reg_separrator.imageset\" />
+    <Folder Include="Assets.xcassets\ic_separator.imageset\" />
+    <Folder Include="Assets.xcassets\ic_steps_one.imageset\" />
+    <Folder Include="Assets.xcassets\ic_steps_two.imageset\" />
+    <Folder Include="Assets.xcassets\ic_steps_three.imageset\" />
+    <Folder Include="Assets.xcassets\icon_login.imageset\" />
+  </ItemGroup>
+</Project>
