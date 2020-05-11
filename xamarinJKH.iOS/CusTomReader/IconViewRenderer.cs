@@ -3,7 +3,7 @@ using CoreGraphics;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
- using xamarinJKH.Android;
+ using xamarinJKH;
  using xamarinJKH.iOS;
 
  [assembly: ExportRenderer(typeof(IconView), typeof(IconViewRenderer))]

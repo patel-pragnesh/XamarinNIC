@@ -5,6 +5,7 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+ using xamarinJKH;
  using xamarinJKH.Android;
 
  [assembly: ExportRendererAttribute(typeof(IconView), typeof(IconViewRenderer))]

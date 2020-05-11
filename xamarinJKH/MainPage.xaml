@@ -6,7 +6,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:xamarinJKH"
              xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
-             xmlns:android="clr-namespace:xamarinJKH.Android;assembly=xamarinJKH"
              BackgroundColor="#F3F3F3"
              mc:Ignorable="d"
              x:Class="xamarinJKH.MainPage">
@@ -16,7 +15,7 @@
             <Image Source="top_fon_login"
                    HorizontalOptions="Center" />
 
-            <android:IconView x:Name="IconViewNameUk"
+            <local:IconView x:Name="IconViewNameUk"
                               Source="icon_login"
                               HeightRequest="60"
                               HorizontalOptions="Center"
@@ -58,7 +57,7 @@
 
                         <StackLayout
                             Orientation="Horizontal">
-                            <android:IconView x:Name="IconViewLogin"
+                            <local:IconView x:Name="IconViewLogin"
                                               Source="ic_phone_login"
                                               HeightRequest="25"
                                               HorizontalOptions="Start"
@@ -104,7 +103,7 @@
                         <StackLayout
                             Margin="0, 20, 0, 0"
                             Orientation="Horizontal">
-                            <android:IconView x:Name="IconViewPass"
+                            <local:IconView x:Name="IconViewPass"
                                               Source="ic_password_login"
                                               HeightRequest="25"
 
@@ -124,7 +123,7 @@
                                    HorizontalTextAlignment="Center"
                                    HorizontalOptions="FillAndExpand" />
 
-                            <android:IconView x:Name="ImageClosePass"
+                            <local:IconView x:Name="ImageClosePass"
                                               Source="ic_close_password"
 
                                               HeightRequest="15"

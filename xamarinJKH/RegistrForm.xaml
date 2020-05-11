@@ -5,7 +5,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
-             xmlns:android="clr-namespace:xamarinJKH.Android;assembly=xamarinJKH"
+             xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              x:Class="xamarinJKH.RegistrForm">
     <ContentPage.Content>
 
@@ -37,7 +37,7 @@
             <ScrollView
                 Padding="0,0,0,20">
                 <StackLayout>
-                    <android:IconView x:Name="IconViewNameUk"
+                    <xamarinJkh:IconView x:Name="IconViewNameUk"
                                       Source="icon_login"
                                       Margin="0, 70, 0, 0"
                                       Foreground="Red"
@@ -65,7 +65,7 @@
                                 Margin="5, 10, 5, 10">
                                 <StackLayout
                                     Orientation="Horizontal">
-                                    <android:IconView x:Name="IconViewLogin"
+                                    <xamarinJkh:IconView x:Name="IconViewLogin"
                                                       Source="ic_phone_login"
                                                       HeightRequest="25"
                                                       Foreground="Red"
@@ -113,7 +113,7 @@
                                 <StackLayout
                                     Margin="0, 20, 0, 0"
                                     Orientation="Horizontal">
-                                    <android:IconView x:Name="IconViewFio"
+                                    <xamarinJkh:IconView x:Name="IconViewFio"
                                                       Source="ic_fio_reg"
                                                       HeightRequest="25"
                                                       Foreground="Red"
@@ -198,7 +198,7 @@
                                 Margin="5, 10, 5, 10">
                                 <StackLayout
                                     Orientation="Horizontal">
-                                    <android:IconView x:Name="IconViewCode"
+                                    <xamarinJkh:IconView x:Name="IconViewCode"
                                                       Source="ic_phone_login"
                                                       HeightRequest="25"
                                                       Foreground="Red"
@@ -329,7 +329,7 @@
                                 Margin="5, 10, 5, 10">
                                 <StackLayout
                                     Orientation="Horizontal">
-                                    <android:IconView x:Name="IconViewPassNew"
+                                    <xamarinJkh:IconView x:Name="IconViewPassNew"
                                                       Source="ic_password_login"
                                                       HeightRequest="25"
                                                       Foreground="Red"
@@ -348,7 +348,7 @@
                                            HorizontalTextAlignment="Center"
                                            TextColor="#A2A2A2"
                                            HorizontalOptions="FillAndExpand" />
-                                    <android:IconView x:Name="ImageClosePass"
+                                    <xamarinJkh:IconView x:Name="ImageClosePass"
                                                       Source="ic_close_password"
                                                       HeightRequest="15"
                                                       VerticalOptions="Center" />
@@ -376,7 +376,7 @@
                                 <StackLayout
                                     Margin="0, 20, 0, 0"
                                     Orientation="Horizontal">
-                                    <android:IconView x:Name="IconViewConfirmPass"
+                                    <xamarinJkh:IconView x:Name="IconViewConfirmPass"
                                         Source="ic_password_login"
                                                       HeightRequest="25"
                                                       VerticalOptions="Center" />

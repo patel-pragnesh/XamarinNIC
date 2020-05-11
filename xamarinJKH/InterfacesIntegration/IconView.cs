@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using System.ComponentModel;
 
-namespace xamarinJKH.Android
+namespace xamarinJKH
 {
     public class IconView: View
     {
