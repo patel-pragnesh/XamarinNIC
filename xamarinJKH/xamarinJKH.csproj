@@ -42,6 +42,10 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Additional\AdditionalPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -62,6 +66,9 @@
     </Compile>
     <Compile Update="Main\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Additional\AdditionalPage.xaml.cs">
+      <DependentUpon>AdditionalPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

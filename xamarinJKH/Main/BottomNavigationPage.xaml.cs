@@ -14,7 +14,11 @@ namespace xamarinJKH.Main
     {
         public BottomNavigationPage()
         {
+
             InitializeComponent ();
+            SelectedTabColor = Color.FromHex(Utils.Settings.MobileSettings.color);
+            UnselectedTabColor = Color.Gray;
+           
         }
     }
 }

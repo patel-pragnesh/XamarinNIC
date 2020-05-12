@@ -46,28 +46,29 @@ namespace xamarinJKH
             ImageClosePass.GestureRecognizers.Add(forgetPasswordVisible);
             EntryLogin.Text = "";
             EntryPass.Text = "";
+            // Login("79237173372", "123");
         }
 
         private async void getSettings()
         {
             Settings.MobileSettings = await server.MobileAppSettings("2.203", "1");
+            if (Settings.MobileSettings.Error == null)
+            {
+                UkName.Text = Settings.MobileSettings.main_name;
 
-            UkName.Text = Settings.MobileSettings.main_name;
-            
-            IconViewNameUk.Foreground = Color.FromHex(Settings.MobileSettings.color);
-            IconViewLogin.Foreground = Color.FromHex(Settings.MobileSettings.color);
-            IconViewPass.Foreground = Color.FromHex(Settings.MobileSettings.color);
-            ImageClosePass.Foreground = Color.FromHex(Settings.MobileSettings.color);
-            
-            FrameBtnLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            LabelseparatorPass.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            LabelseparatorLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            SwitchLogin.OnColor = Color.FromHex(Settings.MobileSettings.color);
-            SwitchLogin.ThumbColor = Color.White;
-            RegistLabel.TextColor = Color.FromHex(Settings.MobileSettings.color);
-            progress.Color = Color.FromHex(Settings.MobileSettings.color);
-            
+                IconViewNameUk.Foreground = Color.FromHex(Settings.MobileSettings.color);
+                IconViewLogin.Foreground = Color.FromHex(Settings.MobileSettings.color);
+                IconViewPass.Foreground = Color.FromHex(Settings.MobileSettings.color);
+                ImageClosePass.Foreground = Color.FromHex(Settings.MobileSettings.color);
 
+                FrameBtnLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+                LabelseparatorPass.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+                LabelseparatorLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+                SwitchLogin.OnColor = Color.FromHex(Settings.MobileSettings.color);
+                SwitchLogin.ThumbColor = Color.White;
+                RegistLabel.TextColor = Color.FromHex(Settings.MobileSettings.color);
+                progress.Color = Color.FromHex(Settings.MobileSettings.color);
+            }
         }
 
         private async void ButtonClick(object sender, EventArgs e)
@@ -91,9 +92,10 @@ namespace xamarinJKH
                 LoginResult login = await server.Login(replace, pass);
                 if (login.Error == null)
                 {
-                    await DisplayAlert("Успешно", login.ToString(), "OK");
+                    // await DisplayAlert("Успешно", login.ToString(), "OK");
                     Settings.Person = login;
-                    await Navigation.PushModalAsync(new BottomNavigationPage()); 
+                    Settings.EventBlockData = await server.GetEventBlockData();
+                    await Navigation.PushModalAsync(new BottomNavigationPage());
                 }
                 else
                 {
@@ -106,7 +108,6 @@ namespace xamarinJKH
                         await DisplayAlert("Ошибка", login.Error, "OK");
                     }
                 }
-
             }
             else
             {

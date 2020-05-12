@@ -6,5 +6,6 @@ namespace xamarinJKH.Utils
     {
         public static MobileSettings MobileSettings = new MobileSettings();
         public static LoginResult Person = new LoginResult();
+        public static EventBlockData EventBlockData = new EventBlockData();
     }
 }

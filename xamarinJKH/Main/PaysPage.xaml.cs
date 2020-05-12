@@ -15,6 +15,7 @@ namespace xamarinJKH.Main
         public PaysPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

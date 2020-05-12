@@ -15,6 +15,7 @@ namespace xamarinJKH.Main
         public CountersPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

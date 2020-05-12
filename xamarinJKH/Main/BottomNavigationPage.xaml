@@ -4,12 +4,32 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:local="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+
             android:TabbedPage.ToolbarPlacement="Bottom"
             x:Class="xamarinJKH.Main.BottomNavigationPage">
-
-    <local:EventsPage Title="События" IconImageSource="icon_login" />
-    <local:PaysPage Title="Оплата" IconImageSource="ic_questions" />
-    <local:CountersPage Title="Показания" IconImageSource="ic_fio_reg"/>
-    <local:AppsPage Title="Заявки" IconImageSource="icon_login"/>
-    <local:ProfilePage Title="Профиль" IconImageSource="icon_login" />
+    <NavigationPage HasNavigationBar="False" Title="События" IconImageSource="ic_events">
+        <x:Arguments>
+            <local:EventsPage Title="События" IconImageSource="ic_events" />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Оплата" IconImageSource="ic_pays">
+        <x:Arguments>
+            <local:PaysPage Title="Оплата" IconImageSource="ic_pays" />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Показания" IconImageSource="ic_counters">
+        <x:Arguments>
+            <local:CountersPage Title="Показания" IconImageSource="ic_counters" />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Показания" IconImageSource="ic_counters">
+        <x:Arguments>
+            <local:AppsPage Title="Заявки" IconImageSource="ic_apps" />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Профиль" IconImageSource="ic_profile">
+        <x:Arguments>
+            <local:ProfilePage Title="Профиль" IconImageSource="ic_profile" />
+        </x:Arguments>
+    </NavigationPage>
 </TabbedPage>

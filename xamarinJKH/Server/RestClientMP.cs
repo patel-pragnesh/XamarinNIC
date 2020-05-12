@@ -3,6 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using xamarinJKH.Server.RequestModel;
 using RestSharp;
+using xamarinJKH.Utils;
 
 namespace xamarinJKH.Server
 {
@@ -15,6 +16,7 @@ namespace xamarinJKH.Server
         public const string REQUEST_CHECK_CODE = "auth/CheckAccessCode"; // Подтверждение кода подтверждения
         public const string REGISTR_BY_PHONE = "auth/RegisterByPhone"; // Регистрация по телефону
         public const string GET_MOBILE_SETTINGS = "Config/MobileAppSettings "; // Регистрация по телефону
+        public const string GET_EVENT_BLOCK_DATA = "Common/EventBlockData "; // Блок события
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -187,5 +189,29 @@ namespace xamarinJKH.Server
             }
             return response.Data;
         }
+        /// <summary>
+        /// Возвращает данные для болка события мообильного приложения: новости, объявления, опросы, доп. услуги.
+        /// </summary>
+        /// <returns>EventBlockData</returns>
+        public async Task<EventBlockData> GetEventBlockData()
+        {
+            Console.WriteLine("Запрос кода подтверждения");
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_EVENT_BLOCK_DATA, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+
+            var response = await restClientMp.ExecuteTaskAsync<EventBlockData>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new EventBlockData()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+            return response.Data;
+        }
     }
+   
 }
