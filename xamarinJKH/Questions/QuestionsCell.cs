@@ -1,0 +1,156 @@
+﻿using Xamarin.Forms;
+using xamarinJKH.Utils;
+
+namespace xamarinJKH.Questions
+{
+    public class QuestionsCell : ViewCell
+    {
+        private Label title = new Label();
+        private Label date = new Label();
+        private Label countQuestTitle = new Label();
+        private Label countQuest = new Label();
+        private Label countAnsweredTitle = new Label();
+        private Label countAnswered = new Label();
+
+
+        public QuestionsCell()
+        {
+            Frame frame = new Frame();
+            frame.HorizontalOptions = LayoutOptions.FillAndExpand;
+            frame.VerticalOptions = LayoutOptions.Start;
+            frame.BackgroundColor = Color.White;
+            frame.Margin = new Thickness(0, 0, 0, 10);
+            frame.Padding = new Thickness(10, 10, 10, 10);
+            frame.CornerRadius = 30;
+
+            StackLayout container = new StackLayout();
+            container.Orientation = StackOrientation.Vertical;
+
+            title.TextColor = Color.Black;
+            title.FontAttributes = FontAttributes.Bold;
+            title.FontSize = 20;
+
+            container.Children.Add(title);
+
+            date.HorizontalOptions = LayoutOptions.Start;
+            date.TextColor = Color.Black;
+            StackLayout containerCount = new StackLayout();
+            containerCount.Orientation = StackOrientation.Horizontal;
+            StackLayout containerOne = new StackLayout();
+            containerOne.Orientation = StackOrientation.Horizontal;
+            StackLayout containerTwo = new StackLayout();
+            containerTwo.Orientation = StackOrientation.Horizontal;
+
+            countQuestTitle.Text = "Количество вопросов:";
+            countQuestTitle.HorizontalOptions = LayoutOptions.Start;
+            countQuestTitle.TextColor = Color.Black;
+
+            countQuest.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            countQuest.HorizontalOptions = LayoutOptions.Start;
+            countQuest.FontAttributes = FontAttributes.Bold;
+
+            containerOne.Children.Add(countQuestTitle);
+            containerOne.Children.Add(countQuest);
+
+            countAnsweredTitle.Text = "Количество отвеченных:";
+            countAnsweredTitle.TextColor = Color.Black;
+            countAnsweredTitle.HorizontalOptions = LayoutOptions.Start;
+
+            countAnswered.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            countAnswered.HorizontalOptions = LayoutOptions.Start;
+            countAnswered.FontAttributes = FontAttributes.Bold;
+            containerTwo.Children.Add(countAnsweredTitle);
+            containerTwo.Children.Add(countAnswered);
+
+            containerCount.Children.Add(containerOne);
+            containerCount.Children.Add(containerTwo);
+
+
+            container.Children.Add(date);
+            container.Children.Add(containerCount);
+
+            Frame frameBtn = new Frame();
+            frameBtn.HorizontalOptions = LayoutOptions.FillAndExpand;
+            frameBtn.VerticalOptions = LayoutOptions.Start;
+            frameBtn.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            frameBtn.Margin = new Thickness(0, 10, 0, 10);
+            frameBtn.CornerRadius = 15;
+
+            StackLayout containerBtn = new StackLayout();
+            containerBtn.Orientation = StackOrientation.Horizontal;
+            containerBtn.HorizontalOptions = LayoutOptions.CenterAndExpand;
+            
+            IconView image = new IconView();
+            image.Source = "ic_questions2";
+            image.Foreground = Color.White;
+            image.Margin = new Thickness(-40, 0, 0, 0);
+            image.HeightRequest = 15;
+
+            Label btn = new Label();
+            btn.Margin = new Thickness(-15, 0, 0, 0);
+            btn.TextColor = Color.White;
+            btn.FontAttributes = FontAttributes.Bold;
+            btn.Text = "Пройти опрос";
+
+            containerBtn.Children.Add(image);
+            containerBtn.Children.Add(btn);
+
+            frameBtn.Content = containerBtn;
+
+            container.Children.Add(frameBtn);
+
+            frame.Content = container;
+
+            View = frame;
+        }
+
+        public static readonly BindableProperty CountQuestProperty =
+            BindableProperty.Create("CountQuest", typeof(string), typeof(NotificationCell), "");
+
+        public static readonly BindableProperty CountAnswProperty =
+            BindableProperty.Create("CountAnsw", typeof(string), typeof(NotificationCell), "");
+
+        public static readonly BindableProperty DateQuestProperty =
+            BindableProperty.Create("DateQuest", typeof(string), typeof(NotificationCell), "");
+
+        public static readonly BindableProperty TitleQuestProperty =
+            BindableProperty.Create("TitleQuest", typeof(string), typeof(NotificationCell), "");
+
+        public string CountQuest
+        {
+            get { return (string) GetValue(CountQuestProperty); }
+            set { SetValue(CountQuestProperty, value); }
+        }
+
+        public string CountAnsw
+        {
+            get { return (string) GetValue(CountAnswProperty); }
+            set { SetValue(CountAnswProperty, value); }
+        }
+
+        public string DateQuest
+        {
+            get { return (string) GetValue(DateQuestProperty); }
+            set { SetValue(DateQuestProperty, value); }
+        }
+
+        public string TitleQuest
+        {
+            get { return (string) GetValue(TitleQuestProperty); }
+            set { SetValue(TitleQuestProperty, value); }
+        }
+
+        protected override async void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+
+            if (BindingContext != null)
+            {
+                countAnswered.Text = CountAnsw;
+                date.Text = DateQuest;
+                title.Text = TitleQuest;
+                countQuest.Text = CountQuest;
+            }
+        }
+    }
+}

@@ -4,13 +4,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:additional="clr-namespace:xamarinJKH.Additional;assembly=xamarinJKH"
+             xmlns:questions="clr-namespace:xamarinJKH.Questions;assembly=xamarinJKH"
              BackgroundColor="#F3F3F3"
-             x:Class="xamarinJKH.Additional.AdditionalPage">
+             x:Class="xamarinJKH.Questions.QuestionsPage">
     <ContentPage.Content>
         <StackLayout>
-            <RelativeLayout HorizontalOptions="CenterAndExpand"
-                            Margin="0,0,0,-120"
-                            VerticalOptions="Start">
+            <RelativeLayout
+                Margin="0,0,0,-120"
+                HorizontalOptions="FillAndExpand">
                 <Image x:Name="ImageTop"
                        Source="ic_top_event"
                        VerticalOptions="StartAndExpand"
@@ -32,7 +33,7 @@
                              Property=Height,
                              Factor=0,
                              Constant=0}"
-                       Source="ic_additional_top"
+                       Source="ic_questions_top"
                        VerticalOptions="Fill"
                        HorizontalOptions="Fill" />
 
@@ -121,19 +122,43 @@
                           VerticalScrollBarVisibility="Never"
                           SelectionMode="None"
                           ItemTapped="OnItemTapped"
-                          ItemsSource="{Binding Additional}">
+                          ItemsSource="{Binding Quest}">
+                    <ListView.Header>
+
+                    </ListView.Header>
                     <ListView.ItemTemplate>
 
                         <DataTemplate>
 
-                            <additional:AdditionalCell
-                                ImageWidth="45"
-                                ImageHeight="160"
-                                Detail="{Binding ID}" />
+                            <questions:QuestionsCell
+                                CountQuest="{Binding Questions.Count}"
+                                CountAnsw="0"
+                                DateQuest="25.05.2020"
+                                TitleQuest="{Binding Name}" />
                         </DataTemplate>
 
                     </ListView.ItemTemplate>
                 </ListView>
+                <StackLayout
+                        >
+
+                        <StackLayout
+                            HorizontalOptions="Center"
+                            Margin="0, 0, 0, 10"
+                            Orientation="Horizontal">
+
+                            <Switch
+                                OnColor="White"
+                                IsToggled="false"
+                                x:Name="SwitchQuest" />
+
+                            <Label Text="Показать пройденные опросы"
+                                   FontAttributes="Bold"
+                                   FontSize="20"
+                                   TextColor="Black"
+                                   HorizontalOptions="Center" />
+                        </StackLayout>
+                    </StackLayout>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -16,7 +16,8 @@ namespace xamarinJKH.Server
         public const string REQUEST_CHECK_CODE = "auth/CheckAccessCode"; // Подтверждение кода подтверждения
         public const string REGISTR_BY_PHONE = "auth/RegisterByPhone"; // Регистрация по телефону
         public const string GET_MOBILE_SETTINGS = "Config/MobileAppSettings "; // Регистрация по телефону
-        public const string GET_EVENT_BLOCK_DATA = "Common/EventBlockData "; // Блок события
+        public const string GET_EVENT_BLOCK_DATA = "Common/EventBlockData"; // Блок события
+        public const string GET_PHOTO_ADDITIONAL = "AdditionalServices/logo"; // Картинка доп услуги
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -46,6 +47,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         /// <summary>
         /// Аунтификация пользователя по номеру телефона
         /// </summary>
@@ -74,6 +76,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         /// <summary>
         /// Запрос кода доступа
         /// </summary>
@@ -98,6 +101,7 @@ namespace xamarinJKH.Server
                     Error = $"Ошибка {response.StatusDescription}"
                 };
             }
+
             Console.WriteLine(response.Data.Error);
             return response.Data;
         }
@@ -161,15 +165,17 @@ namespace xamarinJKH.Server
                     IsCorrect = false
                 };
             }
+
             return response.Data;
-        } 
+        }
+
         /// <summary>
         /// Получение настроек приложения
         /// </summary>
         /// <param name="appVersion">Версия приложения</param>
         /// <param name="dontCheckAppBlocking">Проверка версии</param>
         /// <returns>MobileSettings</returns>
-        public async Task<MobileSettings> MobileAppSettings (string appVersion, string dontCheckAppBlocking)
+        public async Task<MobileSettings> MobileAppSettings(string appVersion, string dontCheckAppBlocking)
         {
             Console.WriteLine("Запрос кода подтверждения");
             RestClient restClientMp = new RestClient(SERVER_ADDR);
@@ -177,7 +183,7 @@ namespace xamarinJKH.Server
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddParameter("appVersion", appVersion);
             restRequest.AddParameter("dontCheckAppBlocking", dontCheckAppBlocking);
-        
+
             var response = await restClientMp.ExecuteTaskAsync<MobileSettings>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
@@ -187,8 +193,10 @@ namespace xamarinJKH.Server
                     Error = $"Ошибка {response.StatusDescription}"
                 };
             }
+
             return response.Data;
         }
+
         /// <summary>
         /// Возвращает данные для болка события мообильного приложения: новости, объявления, опросы, доп. услуги.
         /// </summary>
@@ -210,8 +218,29 @@ namespace xamarinJKH.Server
                     Error = $"Ошибка {response.StatusDescription}"
                 };
             }
+
             return response.Data;
         }
+        /// <summary>
+        /// Получение картинки доп услуги
+        /// </summary>
+        /// <param name="id">id доп услуги</param>
+        /// <returns>Массив байтотв изображения</returns>
+        public async Task<byte[]> GetPhotoAdditional(String id)
+        {
+            Console.WriteLine("Запрос кода подтверждения");
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_PHOTO_ADDITIONAL + "/" + id, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = restClientMp.Execute(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return null;
+            }
+
+            return response.RawBytes;
+        }
     }
-   
 }

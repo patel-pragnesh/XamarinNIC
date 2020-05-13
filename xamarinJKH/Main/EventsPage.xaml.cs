@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Additional;
+using xamarinJKH.Questions;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Main
@@ -50,7 +51,9 @@ namespace xamarinJKH.Main
 
         private void StartQuestions()
         {
-            
+            var startQuest = new TapGestureRecognizer();
+            startQuest.Tapped += async (s, e) => { await Navigation.PushAsync (new QuestionsPage()); };
+            FrameQuestions.GestureRecognizers.Add(startQuest);
         }
 
         private async void StartOffers()
@@ -62,7 +65,9 @@ namespace xamarinJKH.Main
 
         private void StartNotification()
         {
-            
+            var startNotif = new TapGestureRecognizer();
+            startNotif.Tapped += async (s, e) => { await Navigation.PushAsync (new NotificationsPage()); };
+            FrameNotification.GestureRecognizers.Add(startNotif);
         }
 
         void SetText()
