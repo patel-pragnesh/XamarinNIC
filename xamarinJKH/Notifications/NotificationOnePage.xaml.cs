@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Additional;
+using xamarinJKH.Questions;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
@@ -66,8 +67,7 @@ namespace xamarinJKH.Notifications
 
         private async void ButtonClick(object sender, EventArgs e)
         {
-            await DisplayAlert("Пройти опрос?", _polls.Name, "OK");
-            ;
+            await Navigation.PushAsync(new PollsPage(_polls));
         }
     }
 }
