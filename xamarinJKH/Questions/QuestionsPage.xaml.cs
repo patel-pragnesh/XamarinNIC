@@ -9,13 +9,13 @@ using Xamarin.Forms.Xaml;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 
-namespace xamarinJKH.Additional
+namespace xamarinJKH.Questions
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AdditionalPage : ContentPage
+    public partial class QuestionsPage : ContentPage
     {
-        public List<AdditionalService> Additional { get; set; }
-        public AdditionalPage()
+        public List<PollInfo> Quest { get; set; }
+        public QuestionsPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
@@ -23,32 +23,20 @@ namespace xamarinJKH.Additional
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
             SetText();
-            SetAdditional();
+            Quest = Settings.EventBlockData.Polls;
             this.BindingContext = this;
         }
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.Phone;
-            
-        }
-
-        void SetAdditional()
-        {
-            Additional = new List<AdditionalService>();
-            foreach (var each in Settings.EventBlockData.AdditionalServices)
-            {
-                if (each.HasLogo)
-                {
-                    Additional.Add(each);
-                }
-            }
+            SwitchQuest.ThumbColor =  Color.FromHex(Settings.MobileSettings.color);
         }
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            AdditionalService select = e.Item as AdditionalService;
-            await Navigation.PushAsync(new AdditionalOnePage(select));
+            PollInfo select = e.Item as PollInfo;
+            await Navigation.PushAsync(new PollsPage(select));
         }
     }
 }

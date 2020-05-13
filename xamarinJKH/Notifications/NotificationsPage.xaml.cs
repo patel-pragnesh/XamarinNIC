@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.Notifications;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 
-namespace xamarinJKH.Additional
+namespace xamarinJKH
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AdditionalPage : ContentPage
+    public partial class NotificationsPage : ContentPage
     {
-        public List<AdditionalService> Additional { get; set; }
-        public AdditionalPage()
+        public List<AnnouncementInfo> Notifications { get; set; }
+        public NotificationsPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
@@ -23,32 +24,19 @@ namespace xamarinJKH.Additional
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
             SetText();
-            SetAdditional();
+            Notifications = Settings.EventBlockData.Announcements;
             this.BindingContext = this;
         }
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.Phone;
-            
-        }
-
-        void SetAdditional()
-        {
-            Additional = new List<AdditionalService>();
-            foreach (var each in Settings.EventBlockData.AdditionalServices)
-            {
-                if (each.HasLogo)
-                {
-                    Additional.Add(each);
-                }
-            }
         }
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            AdditionalService select = e.Item as AdditionalService;
-            await Navigation.PushAsync(new AdditionalOnePage(select));
+            AnnouncementInfo select = e.Item as AnnouncementInfo;
+            await Navigation.PushAsync(new NotificationOnePage(select));
         }
     }
 }

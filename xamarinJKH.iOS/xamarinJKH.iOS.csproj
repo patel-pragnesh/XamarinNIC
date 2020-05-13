@@ -116,26 +116,66 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\ic_pays.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\ic_pays.imageset\ic_pays.png" />
-    <ImageAsset Include="Assets.xcassets\ic_pays.imageset\ic_pays%402.png" />
-    <ImageAsset Include="Assets.xcassets\ic_pays.imageset\ic_pays%403.png" />
-    <ImageAsset Include="Assets.xcassets\ic_counters.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\ic_counters.imageset\ic_counters.png" />
-    <ImageAsset Include="Assets.xcassets\ic_counters.imageset\ic_counters%403.png" />
-    <ImageAsset Include="Assets.xcassets\ic_counters.imageset\ic_counters%402.png" />
-    <ImageAsset Include="Assets.xcassets\ic_profile.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\ic_profile.imageset\ic_profile.png" />
-    <ImageAsset Include="Assets.xcassets\ic_profile.imageset\ic_profile%402.png" />
-    <ImageAsset Include="Assets.xcassets\ic_profile.imageset\ic_profile%403.png" />
-    <ImageAsset Include="Assets.xcassets\ic_apps.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\ic_apps.imageset\ic_apps.png" />
-    <ImageAsset Include="Assets.xcassets\ic_apps.imageset\ic_apps%402.png" />
-    <ImageAsset Include="Assets.xcassets\ic_apps.imageset\ic_apps%403.png" />
-    <ImageAsset Include="Assets.xcassets\ic_events.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\ic_events.imageset\ic_events.png" />
-    <ImageAsset Include="Assets.xcassets\ic_events.imageset\ic_events 2.png" />
-    <ImageAsset Include="Assets.xcassets\ic_events.imageset\ic_events%403.png" />
+    <ImageAsset Include="Assets.xcassets\ic_pays.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_pays.imageset\ic_pays.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_pays.imageset\ic_pays%402.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_pays.imageset\ic_pays%403.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_counters.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_counters.imageset\ic_counters.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_counters.imageset\ic_counters%403.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_counters.imageset\ic_counters%402.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_profile.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_profile.imageset\ic_profile.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_profile.imageset\ic_profile%402.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_profile.imageset\ic_profile%403.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_apps.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_apps.imageset\ic_apps.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_apps.imageset\ic_apps%402.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_apps.imageset\ic_apps%403.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_events.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_events.imageset\ic_events.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_events.imageset\ic_events 2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_events.imageset\ic_events%403.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -146,7 +186,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="RestSharp">
       <Version>106.11.2</Version>
@@ -214,11 +254,13 @@
     <BundleResource Include="Resources\ic_fio_reg.png" />
     <BundleResource Include="Resources\ic_news.png" />
     <BundleResource Include="Resources\ic_notification.png" />
+    <BundleResource Include="Resources\ic_notification_top.png" />
     <BundleResource Include="Resources\ic_password_login.png" />
     <BundleResource Include="Resources\ic_phone_login.png" />
     <BundleResource Include="Resources\ic_phone.png" />
     <BundleResource Include="Resources\ic_questions.png" />
     <BundleResource Include="Resources\ic_questions2.png" />
+    <BundleResource Include="Resources\ic_questions_top.png" />
     <BundleResource Include="Resources\ic_reg_separrator.png" />
     <BundleResource Include="Resources\ic_separator.png" />
     <BundleResource Include="Resources\ic_steps_one.png" />

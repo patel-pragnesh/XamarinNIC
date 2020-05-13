@@ -45,6 +45,7 @@ namespace xamarinJKH.Server.RequestModel
         public int QuestionGroupID { get; set; }
         public int AdditionalServiceId { get; set; }
         public bool IsReaded { get; set; }
+        public string Header { get; set; }
     }
 
     public class NewsInfo
@@ -53,6 +54,14 @@ namespace xamarinJKH.Server.RequestModel
         public string Header { get; set; }
         public string ShortContent { get; set; }
         public string Created { get; set; }
+        public bool HasImage { get; set; }
+    }
+    public class NewsInfoFull
+    {
+        public int ID { get; set; }
+        public string Created { get; set; }
+        public string Header { get; set; }
+        public string Text { get; set; }
         public bool HasImage { get; set; }
     }
 

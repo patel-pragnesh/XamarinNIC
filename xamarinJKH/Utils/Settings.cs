@@ -1,4 +1,5 @@
-﻿using xamarinJKH.Server.RequestModel;
+﻿using System;
+using xamarinJKH.Server.RequestModel;
 
 namespace xamarinJKH.Utils
 {
@@ -7,5 +8,42 @@ namespace xamarinJKH.Utils
         public static MobileSettings MobileSettings = new MobileSettings();
         public static LoginResult Person = new LoginResult();
         public static EventBlockData EventBlockData = new EventBlockData();
+
+        public static AnnouncementInfo getNotif(String id)
+        {
+            foreach (var each in EventBlockData.Announcements)
+            {
+                if (each.ID.Equals(id))
+                {
+                    return each;
+                }
+            }
+
+            return null;
+        }
+        public static AdditionalService GetAdditionalService(int id)
+        {
+            foreach (var each in EventBlockData.AdditionalServices)
+            {
+                if (each.ID == id)
+                {
+                    return each;
+                }
+            }
+
+            return null;
+        } 
+        public static PollInfo GetPollInfo(int id)
+        {
+            foreach (var each in EventBlockData.Polls)
+            {
+                if (each.ID == id)
+                {
+                    return each;
+                }
+            }
+
+            return null;
+        }
     }
 }

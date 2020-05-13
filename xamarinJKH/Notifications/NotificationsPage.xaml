@@ -5,12 +5,12 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:additional="clr-namespace:xamarinJKH.Additional;assembly=xamarinJKH"
              BackgroundColor="#F3F3F3"
-             x:Class="xamarinJKH.Additional.AdditionalPage">
+             x:Class="xamarinJKH.NotificationsPage">
     <ContentPage.Content>
         <StackLayout>
-            <RelativeLayout HorizontalOptions="CenterAndExpand"
-                            Margin="0,0,0,-120"
-                            VerticalOptions="Start">
+            <RelativeLayout 
+                Margin="0,0,0,-120"
+                HorizontalOptions="FillAndExpand">
                 <Image x:Name="ImageTop"
                        Source="ic_top_event"
                        VerticalOptions="StartAndExpand"
@@ -32,7 +32,7 @@
                              Property=Height,
                              Factor=0,
                              Constant=0}"
-                       Source="ic_additional_top"
+                       Source="ic_notification_top"
                        VerticalOptions="Fill"
                        HorizontalOptions="Fill" />
 
@@ -114,27 +114,28 @@
             </RelativeLayout>
             <StackLayout
                 VerticalOptions="StartAndExpand">
-                <ListView x:Name="additionalList"
+                <ListView x:Name="NotificationList"
                           HasUnevenRows="True"
                           Margin="20, 0, 20, 0"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
                           SelectionMode="None"
                           ItemTapped="OnItemTapped"
-                          ItemsSource="{Binding Additional}">
+                          ItemsSource="{Binding Notifications}">
                     <ListView.ItemTemplate>
 
                         <DataTemplate>
 
-                            <additional:AdditionalCell
-                                ImageWidth="45"
-                                ImageHeight="160"
-                                Detail="{Binding ID}" />
+                            <xamarinJkh:NotificationCell
+                                TextNotif="{Binding Text}"
+                                DateNotif = "{Binding Created}"
+                                TitleNotif = "{Binding Header}"/>
                         </DataTemplate>
 
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>
