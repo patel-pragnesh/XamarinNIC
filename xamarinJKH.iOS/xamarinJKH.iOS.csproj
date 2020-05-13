@@ -229,5 +229,6 @@
     <BundleResource Include="Resources\ic_top_event.png" />
     <BundleResource Include="Resources\icon_login.png" />
     <BundleResource Include="Resources\top_fon_login.png" />
+    <BundleResource Include="Resources\ic_background_pay.png" />
   </ItemGroup>
 </Project>
