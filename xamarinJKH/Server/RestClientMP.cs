@@ -23,6 +23,7 @@ namespace xamarinJKH.Server
         public const string GET_PHOTO_ADDITIONAL = "AdditionalServices/logo"; // Картинка доп услуги
         public const string GET_ACCOUNTING_INFO = "Accounting/Info"; // инфомация о начислениях
         public const string GET_FILE_BILLS = "Bills/Download"; // Получить квитанцию
+        public const string UPDATE_PROFILE= "user/updateProfile"; // Получить квитанцию
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -286,6 +287,35 @@ namespace xamarinJKH.Server
             }
 
             return new MemoryStream(response.RawBytes);
+        }
+        
+        /// <summary>
+        /// Обновление информации по профилю
+        /// </summary>
+        /// <param name="email">E-mail</param>
+        /// <param name="fio">ФИО</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> UpdatreProfile(string email, string fio)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(UPDATE_PROFILE, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddBody(new
+            {
+                email,
+                fio
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
         }
     }
 }
