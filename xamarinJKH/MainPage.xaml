@@ -15,7 +15,7 @@
             <Image Source="top_fon_login"
                    HorizontalOptions="Center" />
 
-            <local:IconView x:Name="IconViewNameUk"
+            <Image x:Name="IconViewNameUk"
                               Source="icon_login"
                               HeightRequest="60"
                               HorizontalOptions="Center"

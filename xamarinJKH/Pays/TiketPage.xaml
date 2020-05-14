@@ -3,38 +3,25 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
-             xmlns:additional="clr-namespace:xamarinJKH.Additional;assembly=xamarinJKH"
-             BackgroundColor="#F3F3F3"
-             x:Class="xamarinJKH.NotificationsPage">
+             x:Class="xamarinJKH.Pays.TiketPage">
     <ContentPage.Content>
         <StackLayout>
-            <RelativeLayout 
-                Margin="0,0,0,-120"
-                HorizontalOptions="FillAndExpand">
+             <RelativeLayout HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Start">
                 <Image x:Name="ImageTop"
                        Source="ic_top_event"
-                       VerticalOptions="StartAndExpand"
-                       HorizontalOptions="CenterAndExpand"
-                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0,
-                             Constant=0}"
-                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Height,
-                             Factor=0,
-                             Constant=-26}" />
-                <Image Margin="0, -26, 0 ,0"
-                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0,
-                             Constant=0}"
-                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Height,
-                             Factor=0,
-                             Constant=0}"
-                       Source="ic_notification_top"
                        VerticalOptions="Fill"
-                       HorizontalOptions="Fill" />
+                       HorizontalOptions="FillAndExpand"
+                       Margin="0, -26, 0 ,0"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Width,
+                             Factor=0,
+                             Constant=0}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Height,
+                             Factor=0,
+                             Constant=0}" />
+
 
                 <StackLayout
                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
@@ -89,13 +76,14 @@
                         Orientation="Horizontal"
                         Margin="0, 40, 0, 0"
                         HorizontalOptions="Start">
-                        <Image Source="ic_arrow_back"
-                               HeightRequest="15"
-                               HorizontalOptions="Center" />
+                        <xamarinJkh:IconView Source="ic_arrow_back"
+                                             HeightRequest="15"
+                                             Foreground="Black"
+                                             HorizontalOptions="Center" />
                         <Label
                             Text="Назад "
                             FontSize="15"
-                            TextColor="White"
+                            TextColor="Black"
                             HorizontalOptions="Start" />
                     </StackLayout>
                 </StackLayout>
@@ -111,30 +99,7 @@
                              Factor=0,
                              Constant=25}" />
             </RelativeLayout>
-            <StackLayout
-                VerticalOptions="StartAndExpand">
-                <ListView x:Name="NotificationList"
-                          HasUnevenRows="True"
-                          Margin="20, 0, 20, 0"
-                          SeparatorVisibility="None"
-                          VerticalScrollBarVisibility="Never"
-                          SelectionMode="None"
-                          ItemTapped="OnItemTapped"
-                          ItemsSource="{Binding Notifications}">
-                    <ListView.ItemTemplate>
-
-                        <DataTemplate>
-
-                            <xamarinJkh:NotificationCell
-                                TextNotif="{Binding Text}"
-                                DateNotif = "{Binding Created}"
-                                TitleNotif = "{Binding Header}"/>
-                        </DataTemplate>
-
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
+            <WebView x:Name="WebViewPdf"></WebView>
         </StackLayout>
-        
     </ContentPage.Content>
 </ContentPage>

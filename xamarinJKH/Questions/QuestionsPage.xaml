@@ -100,18 +100,17 @@
                             HorizontalOptions="Start" />
                     </StackLayout>
                 </StackLayout>
-                <xamarinJkh:IconView x:Name="IconViewNameUk"
-                                     Source="icon_login"
-                                     HeightRequest="60"
-                                     Foreground="Red"
-                                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                <Image x:Name="IconViewNameUk"
+                       Source="icon_login"
+                       HeightRequest="70"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
-                             Factor=0.71,
-                             Constant=-5}"
-                                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Factor=0.75,
+                             Constant=10}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Height,
                              Factor=0,
-                             Constant=30}" />
+                             Constant=25}" />
             </RelativeLayout>
             <StackLayout
                 VerticalOptions="StartAndExpand">
@@ -129,7 +128,6 @@
                     <ListView.ItemTemplate>
 
                         <DataTemplate>
-
                             <questions:QuestionsCell
                                 CountQuest="{Binding Questions.Count}"
                                 CountAnsw="0"

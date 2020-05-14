@@ -57,7 +57,6 @@ namespace xamarinJKH
         {
             UkName.Text = Settings.MobileSettings.main_name;
 
-            IconViewNameUk.Foreground = Color.FromHex(Settings.MobileSettings.color);
             IconViewLogin.Foreground = Color.FromHex(Settings.MobileSettings.color);
             IconViewFio.Foreground = Color.FromHex(Settings.MobileSettings.color);
             IconViewCode.Foreground = Color.FromHex(Settings.MobileSettings.color);

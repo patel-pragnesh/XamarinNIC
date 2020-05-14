@@ -37,10 +37,9 @@
             <ScrollView
                 Padding="0,0,0,20">
                 <StackLayout>
-                    <xamarinJkh:IconView x:Name="IconViewNameUk"
+                    <Image x:Name="IconViewNameUk"
                                       Source="icon_login"
                                       Margin="0, 70, 0, 0"
-                                      Foreground="Red"
                                       HeightRequest="60"
                                       HorizontalOptions="Center" />
 
