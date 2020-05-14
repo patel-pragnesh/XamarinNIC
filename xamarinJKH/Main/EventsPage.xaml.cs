@@ -18,6 +18,20 @@ namespace xamarinJKH.Main
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    ImageTop.Margin = new Thickness(0, 0, 0, 0);
+                    ImageFon.Margin = new Thickness(0, 0, 0, 0);
+                    StackLayout.Margin = new Thickness(0, 26, 0, 0);
+                    IconViewNameUk.Margin = new Thickness(0, 26, 0, 0);
+                    break;
+                case Device.Android:
+                default:
+                    ImageTop.Margin = new Thickness();
+                    ImageFon.Margin = new Thickness();
+                    break;
+            }
             SetText();
             SetColor();
             SetVisibleControls();

@@ -95,14 +95,6 @@
                              Factor=0,
                              Constant=30}" />
             </RelativeLayout>
-            <TableView Intent="Settings">
-                <TableRoot>
-                    <TableSection Title="Ring">
-                        <SwitchCell Text="New Voice Mail" />
-                        <SwitchCell Text="New Mail" On="true" />
-                    </TableSection>
-                </TableRoot>
-            </TableView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
