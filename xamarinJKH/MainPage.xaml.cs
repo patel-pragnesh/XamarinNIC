@@ -51,12 +51,11 @@ namespace xamarinJKH
 
         private async void getSettings()
         {
-            Settings.MobileSettings = await server.MobileAppSettings("2.203", "1");
+            Settings.MobileSettings = await server.MobileAppSettings("2.303", "1");
             if (Settings.MobileSettings.Error == null)
             {
                 UkName.Text = Settings.MobileSettings.main_name;
 
-                IconViewNameUk.Foreground = Color.FromHex(Settings.MobileSettings.color);
                 IconViewLogin.Foreground = Color.FromHex(Settings.MobileSettings.color);
                 IconViewPass.Foreground = Color.FromHex(Settings.MobileSettings.color);
                 ImageClosePass.Foreground = Color.FromHex(Settings.MobileSettings.color);
@@ -68,6 +67,11 @@ namespace xamarinJKH
                 SwitchLogin.ThumbColor = Color.White;
                 RegistLabel.TextColor = Color.FromHex(Settings.MobileSettings.color);
                 progress.Color = Color.FromHex(Settings.MobileSettings.color);
+            }
+            else
+            {
+                await DisplayAlert("Ошибка",Settings.MobileSettings.Error , "OK");
+                BtnLogin.IsEnabled = false;
             }
         }
 

@@ -105,16 +105,16 @@ namespace xamarinJKH.Questions
         }
 
         public static readonly BindableProperty CountQuestProperty =
-            BindableProperty.Create("CountQuest", typeof(string), typeof(NotificationCell), "");
+            BindableProperty.Create("CountQuest", typeof(string), typeof(QuestionsCell), "");
 
         public static readonly BindableProperty CountAnswProperty =
-            BindableProperty.Create("CountAnsw", typeof(string), typeof(NotificationCell), "");
+            BindableProperty.Create("CountAnsw", typeof(string), typeof(QuestionsCell), "");
 
         public static readonly BindableProperty DateQuestProperty =
-            BindableProperty.Create("DateQuest", typeof(string), typeof(NotificationCell), "");
+            BindableProperty.Create("DateQuest", typeof(string), typeof(QuestionsCell), "");
 
         public static readonly BindableProperty TitleQuestProperty =
-            BindableProperty.Create("TitleQuest", typeof(string), typeof(NotificationCell), "");
+            BindableProperty.Create("TitleQuest", typeof(string), typeof(QuestionsCell), "");
 
         public string CountQuest
         {

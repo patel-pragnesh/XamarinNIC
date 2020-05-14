@@ -3,12 +3,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
-             xmlns:additional="clr-namespace:xamarinJKH.Additional;assembly=xamarinJKH"
-             BackgroundColor="#F3F3F3"
-             x:Class="xamarinJKH.NotificationsPage">
+             xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
+             xmlns:pays="clr-namespace:xamarinJKH.Pays;assembly=xamarinJKH"
+             x:Class="xamarinJKH.Pays.SaldosPage">
     <ContentPage.Content>
         <StackLayout>
-            <RelativeLayout 
+            <RelativeLayout
                 Margin="0,0,0,-120"
                 HorizontalOptions="FillAndExpand">
                 <Image x:Name="ImageTop"
@@ -32,7 +32,7 @@
                              Property=Height,
                              Factor=0,
                              Constant=0}"
-                       Source="ic_notification_top"
+                       Source="ic_saldos_top"
                        VerticalOptions="Fill"
                        HorizontalOptions="Fill" />
 
@@ -111,30 +111,83 @@
                              Factor=0,
                              Constant=25}" />
             </RelativeLayout>
-            <StackLayout
-                VerticalOptions="StartAndExpand">
-                <ListView x:Name="NotificationList"
-                          HasUnevenRows="True"
-                          Margin="20, 0, 20, 0"
-                          SeparatorVisibility="None"
-                          VerticalScrollBarVisibility="Never"
-                          SelectionMode="None"
-                          ItemTapped="OnItemTapped"
-                          ItemsSource="{Binding Notifications}">
-                    <ListView.ItemTemplate>
+            <Frame CornerRadius="30"
+                   Margin="20, 15, 20, 15"
+                   BackgroundColor="White"
+                   Padding="15">
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            Text="Квитанции"
+                            TextColor="Black"
+                            FontAttributes="Bold"
+                            HorizontalOptions="FillAndExpand"
+                            FontSize="20" />
+                        <StackLayout
+                            x:Name="StackLayoutSortDate"
+                            Orientation="Horizontal"
+                            HorizontalOptions="End">
+                            <xamarinJkh:IconView
+                                x:Name="IconViewSortDate"
+                                Source="ic_arrow_down"
+                                Foreground="Red"
+                                Margin="0,0,-2,0"
+                                HeightRequest="10"
+                                WidthRequest="10"
+                                HorizontalOptions="Center" />
+                            <Label
+                                Text="По дате "
+                                FontSize="15"
+                                TextColor="Red"
+                                TextDecorations="Underline"
+                                HorizontalOptions="Start" />
+                        </StackLayout>
+                        <StackLayout
+                            x:Name="StackLayoutSortIdent"
+                            Orientation="Horizontal"
+                            HorizontalOptions="End">
+                            <xamarinJkh:IconView
+                                x:Name="IconViewSortIdent"
+                                Foreground="Gray"
+                                Source="ic_arrow_up"
+                                Margin="0,0,-2,0"
+                                HeightRequest="10"
+                                WidthRequest="10"
+                                HorizontalOptions="Center" />
+                            <Label
+                                Text="По л/сч "
+                                FontSize="15"
+                                TextDecorations="Underline"
+                                TextColor="Gray"
+                                HorizontalOptions="Start" />
+                        </StackLayout>
+                    </StackLayout>
+                    <ListView x:Name="additionalList"
+                              HasUnevenRows="True"
+                              SeparatorVisibility="None"
+                              VerticalScrollBarVisibility="Never"
+                              SelectionMode="None"
+                              ItemTapped="OnItemTapped"
+                              ItemsSource="{Binding BillInfos}">
+                        <ListView.Header>
 
-                        <DataTemplate>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
 
-                            <xamarinJkh:NotificationCell
-                                TextNotif="{Binding Text}"
-                                DateNotif = "{Binding Created}"
-                                TitleNotif = "{Binding Header}"/>
-                        </DataTemplate>
+                            <DataTemplate>
+                                <pays:SaldosCell
+                                    Ident="{Binding Ident}"
+                                    HasImage="{Binding HasFile}"
+                                    DateIdent="{Binding Period}"
+                                    SumPay="{Binding Total}" />
+                            </DataTemplate>
 
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+            </Frame>
         </StackLayout>
-        
+
     </ContentPage.Content>
 </ContentPage>

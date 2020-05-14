@@ -186,6 +186,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="PCLStorage" Version="1.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="RestSharp">
@@ -242,26 +243,37 @@
     <Folder Include="Assets.xcassets\ic_events.imageset\" />
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="Resources\icon_login.png" />
     <BundleResource Include="Resources\ic_additional_top.png" />
     <BundleResource Include="Resources\ic_arrow_back.png" />
+    <BundleResource Include="Resources\ic_arrow_down.png" />
     <BundleResource Include="Resources\ic_arrow_forward.png" />
     <BundleResource Include="Resources\ic_arrow_tech.png" />
+    <BundleResource Include="Resources\ic_arrow_up.png" />
     <BundleResource Include="Resources\ic_background_event.png" />
     <BundleResource Include="Resources\ic_background.png" />
     <BundleResource Include="Resources\ic_bottom_login.png" />
+    <BundleResource Include="Resources\ic_close.png" />
     <BundleResource Include="Resources\ic_close_password.png" />
     <BundleResource Include="Resources\ic_diskont.png" />
+    <BundleResource Include="Resources\ic_file.png" />
     <BundleResource Include="Resources\ic_fio_reg.png" />
+    <BundleResource Include="Resources\ic_history_pay.png" />
+    <BundleResource Include="Resources\ic_home.png" />
     <BundleResource Include="Resources\ic_news.png" />
     <BundleResource Include="Resources\ic_notification.png" />
     <BundleResource Include="Resources\ic_notification_top.png" />
     <BundleResource Include="Resources\ic_password_login.png" />
+    <BundleResource Include="Resources\ic_payed_ident.png" />
+    <BundleResource Include="Resources\ic_pays_top.png" />
     <BundleResource Include="Resources\ic_phone_login.png" />
     <BundleResource Include="Resources\ic_phone.png" />
     <BundleResource Include="Resources\ic_questions.png" />
     <BundleResource Include="Resources\ic_questions2.png" />
     <BundleResource Include="Resources\ic_questions_top.png" />
     <BundleResource Include="Resources\ic_reg_separrator.png" />
+    <BundleResource Include="Resources\ic_saldos.png" />
+    <BundleResource Include="Resources\ic_saldos_top.png" />
     <BundleResource Include="Resources\ic_separator.png" />
     <BundleResource Include="Resources\ic_steps_one.png" />
     <BundleResource Include="Resources\ic_steps_three.png" />
@@ -269,7 +281,6 @@
     <BundleResource Include="Resources\ic_tech.png" />
     <BundleResource Include="Resources\ic_top_event_back.png" />
     <BundleResource Include="Resources\ic_top_event.png" />
-    <BundleResource Include="Resources\icon_login.png" />
     <BundleResource Include="Resources\top_fon_login.png" />
   </ItemGroup>
 </Project>

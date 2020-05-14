@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using xamarinJKH.Server.RequestModel;
@@ -9,7 +11,8 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-        public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // Адрес сервера
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // Адрес сервера
+        public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
         public const string REQUEST_CODE = "auth/RequestAccessCode"; // Запрос кода подтверждения
@@ -18,6 +21,8 @@ namespace xamarinJKH.Server
         public const string GET_MOBILE_SETTINGS = "Config/MobileAppSettings "; // Регистрация по телефону
         public const string GET_EVENT_BLOCK_DATA = "Common/EventBlockData"; // Блок события
         public const string GET_PHOTO_ADDITIONAL = "AdditionalServices/logo"; // Картинка доп услуги
+        public const string GET_ACCOUNTING_INFO = "Accounting/Info"; // инфомация о начислениях
+        public const string GET_FILE_BILLS = "Bills/Download"; // Получить квитанцию
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -221,14 +226,38 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+        
+        /// <summary>
+        /// Получение данных о начислениях
+        /// </summary>
+        /// <returns>AccountAccountingInfo</returns>
+        public async Task<ItemsList<AccountAccountingInfo>> GetAccountingInfo()
+        {
+          
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_ACCOUNTING_INFO, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            
+            var response = await restClientMp.ExecuteTaskAsync<ItemsList<AccountAccountingInfo>>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new ItemsList<AccountAccountingInfo>()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
         /// <summary>
         /// Получение картинки доп услуги
         /// </summary>
         /// <param name="id">id доп услуги</param>
         /// <returns>Массив байтотв изображения</returns>
-        public async Task<byte[]> GetPhotoAdditional(String id)
+        public async Task<byte[]> GetPhotoAdditional(string id)
         {
-            Console.WriteLine("Запрос кода подтверждения");
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(GET_PHOTO_ADDITIONAL + "/" + id, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
@@ -241,6 +270,22 @@ namespace xamarinJKH.Server
             }
 
             return response.RawBytes;
+        }
+
+        public async Task<MemoryStream> DownloadFileAsync(string id)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_FILE_BILLS + "/" + id, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = restClientMp.Execute(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return null;
+            }
+
+            return new MemoryStream(response.RawBytes);
         }
     }
 }
