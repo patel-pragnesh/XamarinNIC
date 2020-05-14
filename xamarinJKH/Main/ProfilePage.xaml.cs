@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.InterfacesIntegration;
+using xamarinJKH.Server;
+using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Main
@@ -13,17 +16,25 @@ namespace xamarinJKH.Main
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfilePage : ContentPage
     {
+        private LoginResult Person = new LoginResult();
+        private RestClientMP _server = new RestClientMP();
         public ProfilePage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            var exitClick = new TapGestureRecognizer();
+            exitClick.Tapped += async (s, e) => { ButtonExitClick(FrameBtnExit, null); };
+            FrameBtnExit.GestureRecognizers.Add(exitClick);
+            var saveClick = new TapGestureRecognizer();
+            saveClick.Tapped += async (s, e) => { ButtonClick(FrameBtnLogin, null); };
+            FrameBtnLogin.GestureRecognizers.Add(saveClick);
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    ImageTop.Margin = new Thickness(0, 0, 0, 0);
-                    ImageFon.Margin = new Thickness(0, 0, 0, 0);
-                    StackLayout.Margin = new Thickness(0, 26, 0, 0);
-                    IconViewNameUk.Margin = new Thickness(0, 26, 0, 0);
+                    ImageTop.Margin = new Thickness(0, 7, 0, 0);
+                    ImageFon.Margin = new Thickness(0, 7, 0, 0);
+                    StackLayout.Margin = new Thickness(0, 33, 0, 0);
+                    IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
                 default:
@@ -33,6 +44,8 @@ namespace xamarinJKH.Main
             }
             SetText();
             SetColor();
+            EntryFio.Text = Settings.Person.FIO;
+            EntryEmail.Text = Settings.Person.Email;
         }
         
         private async void ButtonClick(object sender, EventArgs e)
@@ -40,39 +53,59 @@ namespace xamarinJKH.Main
             SaveInfoAccount(EntryFio.Text, EntryEmail.Text);
         }
         
+        private async void ButtonExitClick(object sender, EventArgs e)
+        {
+            await DisplayAlert("ВЫХОД", "", "OK");
+        }
+        
         public async void SaveInfoAccount(string fio, string email)
         {
-            progress.IsVisible = true;
-            FrameBtnLogin.IsVisible = false;
-            // if (!fio.Equals("") && !email.Equals(""))
-            // {
-            //     LoginResult login = await server.Login(replace, pass);
-            //     if (login.Error == null)
-            //     {
-            //         // await DisplayAlert("Успешно", login.ToString(), "OK");
-            //         Settings.Person = login;
-            //         Settings.EventBlockData = await server.GetEventBlockData();
-            //         await Navigation.PushModalAsync(new BottomNavigationPage());
-            //     }
-            //     else
-            //     {
-            //         if (login.Error.ToLower().Contains("unauthorized"))
-            //         {
-            //             await DisplayAlert("Ошибка", "Пользователь не найден", "OK");
-            //         }
-            //         else
-            //         {
-            //             await DisplayAlert("Ошибка", login.Error, "OK");
-            //         }
-            //     }
-            // }
-            // else
-            // {
-            //     await DisplayAlert("Ошибка", "Заполните пустые поля", "OK");
-            // }
+            if (fio != "" && email != "")
+            {
+                progress.IsVisible = true;
+                FrameBtnLogin.IsVisible = false;
+                progress.IsVisible = true;
+                CommonResult result = await _server.UpdateProfile(email, fio);
+                if (result.Error == null)
+                {
+                    Console.WriteLine(result.ToString());
+                    Console.WriteLine("Отправлено");
+                    await DisplayAlert("", "Ваши данные успешно сохранены", "OK");             
+                    FrameBtnLogin.IsVisible = true;
+                    progress.IsVisible = false;
+                }
+                else
+                {
+                    Console.WriteLine("---ОШИБКА---");
+                    Console.WriteLine(result.ToString());
+                    FrameBtnLogin.IsVisible = true;
+                    progress.IsVisible = false;
+                    if (Device.RuntimePlatform == Device.iOS)
+                    {
+                        await DisplayAlert("ОШИБКА", result.Error, "OK");
+                    }
+                    else
+                    {
+                        DependencyService.Get<IMessage>().ShortAlert(result.Error);
+                    }
+                }
 
-            progress.IsVisible = false;
-            FrameBtnLogin.IsVisible = true;
+                progress.IsVisible = false;
+                FrameBtnLogin.IsVisible = true;
+            }
+            else
+            {
+                if (fio == "" && email == "")
+                {
+                    await DisplayAlert("", "Заполните поля ФИО и E-mail", "OK");
+                }else if (fio == "")
+                {
+                    await DisplayAlert("", "Заполните поле ФИО", "OK");
+                }else if (email == "")
+                {
+                    await DisplayAlert("", "Заполните поле E-mail", "OK");
+                }
+            }
         }
         
         void SetText()
@@ -85,8 +118,8 @@ namespace xamarinJKH.Main
         {
             Color hexColor = Color.FromHex(Settings.MobileSettings.color);
             UkName.Text = Settings.MobileSettings.main_name;
-
-            IconViewNameUk.Foreground = hexColor;
+            IconViewSave.Foreground = Color.White;
+            // IconViewNameUk.Foreground = hexColor;
             IconViewFio.Foreground = hexColor;
             IconViewEmail.Foreground = hexColor;
             IconViewExit.Foreground = hexColor;

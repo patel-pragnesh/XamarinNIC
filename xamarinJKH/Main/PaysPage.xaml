@@ -13,6 +13,7 @@
                 HorizontalOptions="FillAndExpand">
                 <Image x:Name="ImageTop"
                        Source="ic_top_event"
+                       Margin="0, -26, 0 ,0"
                        VerticalOptions="StartAndExpand"
                        HorizontalOptions="CenterAndExpand"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
@@ -22,8 +23,9 @@
                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Height,
                              Factor=0,
-                             Constant=-26}" />
-                <Image Margin="0, -26, 0 ,0"
+                             Constant=0}" />
+                <Image x:Name="ImageFon"
+                       Margin="0, -26, 0 ,0"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
@@ -37,6 +39,7 @@
                        HorizontalOptions="Fill" />
 
                 <StackLayout
+                    x:Name="StackLayout"
                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,

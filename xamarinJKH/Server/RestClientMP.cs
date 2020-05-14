@@ -23,7 +23,7 @@ namespace xamarinJKH.Server
         public const string GET_PHOTO_ADDITIONAL = "AdditionalServices/logo"; // Картинка доп услуги
         public const string GET_ACCOUNTING_INFO = "Accounting/Info"; // инфомация о начислениях
         public const string GET_FILE_BILLS = "Bills/Download"; // Получить квитанцию
-        public const string UPDATE_PROFILE= "user/updateProfile"; // Получить квитанцию
+        public const string UPDATE_PROFILE= "user/updateProfile"; // Обновить данные профиля
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -295,11 +295,12 @@ namespace xamarinJKH.Server
         /// <param name="email">E-mail</param>
         /// <param name="fio">ФИО</param>
         /// <returns>CommonResult</returns>
-        public async Task<CommonResult> UpdatreProfile(string email, string fio)
+        public async Task<CommonResult> UpdateProfile(string email, string fio)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(UPDATE_PROFILE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
                 email,
