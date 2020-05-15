@@ -245,11 +245,15 @@
   <ItemGroup>
     <BundleResource Include="Resources\icon_login.png" />
     <BundleResource Include="Resources\ic_additional_top.png" />
+    <BundleResource Include="Resources\ic_add_file.png" />
+    <BundleResource Include="Resources\ic_app_top.png" />
+    <BundleResource Include="Resources\ic_app_top_in.png" />
     <BundleResource Include="Resources\ic_arrow_back.png" />
     <BundleResource Include="Resources\ic_arrow_down.png" />
     <BundleResource Include="Resources\ic_arrow_forward.png" />
     <BundleResource Include="Resources\ic_arrow_tech.png" />
     <BundleResource Include="Resources\ic_arrow_up.png" />
+    <BundleResource Include="Resources\ic_author.png" />
     <BundleResource Include="Resources\ic_background_event.png" />
     <BundleResource Include="Resources\ic_background.png" />
     <BundleResource Include="Resources\ic_bottom_login.png" />
@@ -263,6 +267,7 @@
     <BundleResource Include="Resources\ic_news.png" />
     <BundleResource Include="Resources\ic_notification.png" />
     <BundleResource Include="Resources\ic_notification_top.png" />
+    <BundleResource Include="Resources\ic_not_author.png" />
     <BundleResource Include="Resources\ic_password_login.png" />
     <BundleResource Include="Resources\ic_payed_ident.png" />
     <BundleResource Include="Resources\ic_pays_top.png" />
@@ -274,7 +279,11 @@
     <BundleResource Include="Resources\ic_reg_separrator.png" />
     <BundleResource Include="Resources\ic_saldos.png" />
     <BundleResource Include="Resources\ic_saldos_top.png" />
+    <BundleResource Include="Resources\ic_send_mess.png" />
     <BundleResource Include="Resources\ic_separator.png" />
+    <BundleResource Include="Resources\ic_status_done.png" />
+    <BundleResource Include="Resources\ic_status_new.png" />
+    <BundleResource Include="Resources\ic_status_wait.png" />
     <BundleResource Include="Resources\ic_steps_one.png" />
     <BundleResource Include="Resources\ic_steps_three.png" />
     <BundleResource Include="Resources\ic_steps_two.png" />

@@ -9,7 +9,8 @@
     <ContentPage.Content>
         <StackLayout>
             <RelativeLayout
-                Margin="0,0,0,-140"
+                Margin="0,0,0,-150"
+                VerticalOptions="Start"
                 HorizontalOptions="FillAndExpand">
                 <Image x:Name="ImageFon"
                        Margin="0, -26, 0 ,0"
@@ -88,7 +89,20 @@
                              Constant=25}" />
             </RelativeLayout>
             <StackLayout
-                VerticalOptions="StartAndExpand">
+                VerticalOptions="FillAndExpand">
+                <Frame CornerRadius="40"
+                       Margin="20, 0, 20, -60"
+                       VerticalOptions="Start"
+                       BackgroundColor="#494949"
+                       Padding="20,20,20,60">
+                    <Label
+                        Text="+ Подключить лицевой счет"
+                        TextDecorations="Underline"
+                        FontAttributes="Bold"
+                        HorizontalOptions="CenterAndExpand"
+                        TextColor="White"
+                        FontSize="15" />
+                </Frame>
                 <ListView x:Name="additionalList"
                           HasUnevenRows="True"
                           Margin="20, 0, 20, 0"
@@ -116,51 +130,43 @@
 
                     <StackLayout
                         HorizontalOptions="Center"
-                        Margin="0, 0, 0, 10"
+                        Margin="20, 0, 20, 10"
+                        Spacing="20"
                         Orientation="Horizontal">
-                        <Frame CornerRadius="15"
-                               Margin="0, 10, 0, 0"
+                        <Frame CornerRadius="10"
                                x:Name="FrameBtnHistory"
-                               Padding="0, 20, 20, 20">
+                               Padding="0"
+                               MinimumWidthRequest="250"
+                               HorizontalOptions="FillAndExpand">
                             <StackLayout
                                 Orientation="Horizontal"
                                 VerticalOptions="CenterAndExpand"
                                 HorizontalOptions="CenterAndExpand">
-                                <xamarinJkh:IconView
-                                    x:Name="IconViewHistory"
-                                    Source="ic_history_pay"
-                                    HeightRequest="15"
-                                    HorizontalOptions="Center" />
-                                <Label
-                                    x:Name="LabelHistory"
-                                    Text="История платежей "
-                                    FontSize="15"
-                                    TextColor="White"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="Start" />
+                                <Button x:Name="LabelHistory"
+                                        Text="История платежей"
+                                        TextColor="White"
+                                        FontAttributes="Bold"
+                                        FontSize="12"
+                                        BackgroundColor="Transparent" />
                             </StackLayout>
                         </Frame>
 
-                        <Frame CornerRadius="15"
-                               Margin="0, 10, 0, 0"
+                        <Frame CornerRadius="10"
                                x:Name="FrameBtnSaldos"
-                               Padding="0, 20, 20, 20">
+                               Padding="0"
+                               MinimumWidthRequest="250"
+                               HorizontalOptions="FillAndExpand">
                             <StackLayout
                                 Orientation="Horizontal"
                                 VerticalOptions="CenterAndExpand"
                                 HorizontalOptions="CenterAndExpand">
-                                <xamarinJkh:IconView
-                                    x:Name="IconViewSaldos"
-                                    Source="ic_saldos"
-                                    HeightRequest="15"
-                                    HorizontalOptions="Center" />
-                                <Label
-                                    x:Name="LabelSaldos"
-                                    Text="Квитанции "
-                                    FontSize="15"
-                                    FontAttributes="Bold"
-                                    TextColor="White"
-                                    HorizontalOptions="Start" />
+                                <Button x:Name="LabelSaldos"
+                                        Text="          Квитанции          "
+                                        FontSize="12"
+                                        FontAttributes="Bold"
+                                        TextColor="White"
+                                        Clicked="openSaldo"
+                                        BackgroundColor="Transparent" />
                             </StackLayout>
                         </Frame>
                     </StackLayout>

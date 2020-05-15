@@ -9,7 +9,8 @@
     <ContentPage.Content>
         <StackLayout>
             <RelativeLayout
-                Margin="0,0,0,-120"
+                Margin="0,0,0,-150"
+                VerticalOptions="Start"
                 HorizontalOptions="FillAndExpand">
                 <Image x:Name="ImageTop"
                        Source="ic_top_event"
@@ -115,7 +116,7 @@
                    Margin="20, 15, 20, 15"
                    BackgroundColor="White"
                    Padding="15">
-                <StackLayout>
+                <StackLayout VerticalOptions="FillAndExpand">
                     <StackLayout Orientation="Horizontal">
                         <Label
                             Text="Квитанции"

@@ -46,8 +46,6 @@ namespace xamarinJKH.Main
             LabelPhone.Text = "+" + Settings.Person.Phone;
             FrameBtnHistory.BorderColor = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnSaldos.BorderColor = Color.FromHex(Settings.MobileSettings.color);
-            IconViewHistory.Foreground = Color.FromHex(Settings.MobileSettings.color);
-            IconViewSaldos.Foreground = Color.FromHex(Settings.MobileSettings.color);
             LabelSaldos.TextColor = Color.FromHex(Settings.MobileSettings.color);
             LabelHistory.TextColor = Color.FromHex(Settings.MobileSettings.color);
         }
@@ -70,6 +68,11 @@ namespace xamarinJKH.Main
         {
             AccountAccountingInfo select = e.Item as AccountAccountingInfo;
             await Navigation.PushAsync(new CostPage(select, _accountingInfo));
+        }
+
+        private async void openSaldo(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SaldosPage(_accountingInfo)); 
         }
     }
 }

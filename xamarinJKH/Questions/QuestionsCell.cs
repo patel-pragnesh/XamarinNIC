@@ -74,7 +74,8 @@ namespace xamarinJKH.Questions
             frameBtn.VerticalOptions = LayoutOptions.Start;
             frameBtn.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             frameBtn.Margin = new Thickness(0, 10, 0, 10);
-            frameBtn.CornerRadius = 15;
+            frameBtn.Padding = 0;
+            frameBtn.CornerRadius = 10;
 
             StackLayout containerBtn = new StackLayout();
             containerBtn.Orientation = StackOrientation.Horizontal;
@@ -86,13 +87,23 @@ namespace xamarinJKH.Questions
             image.Margin = new Thickness(-40, 0, 0, 0);
             image.HeightRequest = 15;
 
+            // Label btn = new Label();
+            // btn.Margin = new Thickness(-15, 0, 0, 0);
+            // btn.TextColor = Color.White;
+            // btn.FontAttributes = FontAttributes.Bold;
+            // btn.Text = "Пройти опрос";
+            
             Label btn = new Label();
-            btn.Margin = new Thickness(-15, 0, 0, 0);
+            // btn.Margin = new Thickness(-30, 0, 0, 0);
             btn.TextColor = Color.White;
+            btn.BackgroundColor = Color.Transparent;
+            btn.HorizontalOptions  = LayoutOptions.Center;
+            btn.Margin = 10;
             btn.FontAttributes = FontAttributes.Bold;
+            btn.FontSize = 15;
             btn.Text = "Пройти опрос";
 
-            containerBtn.Children.Add(image);
+            // containerBtn.Children.Add(image);
             containerBtn.Children.Add(btn);
 
             frameBtn.Content = containerBtn;

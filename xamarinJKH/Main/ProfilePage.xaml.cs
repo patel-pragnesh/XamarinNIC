@@ -23,7 +23,11 @@ namespace xamarinJKH.Main
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             var exitClick = new TapGestureRecognizer();
-            exitClick.Tapped += async (s, e) => { ButtonExitClick(FrameBtnExit, null); };
+            exitClick.Tapped += async (s, e) =>
+            {
+                _ = await Navigation.PopModalAsync();
+                // ButtonExitClick(FrameBtnExit, null);
+            };
             FrameBtnExit.GestureRecognizers.Add(exitClick);
             var saveClick = new TapGestureRecognizer();
             saveClick.Tapped += async (s, e) => { ButtonClick(FrameBtnLogin, null); };
@@ -52,7 +56,8 @@ namespace xamarinJKH.Main
         
         private async void ButtonExitClick(object sender, EventArgs e)
         {
-            System.Environment.Exit(0);
+            // System.Environment.Exit(0);
+            await Navigation.PopAsync();
             // var closer = DependencyService.Get<ICloseApplication>();
             // closer?.closeApplication();
         }

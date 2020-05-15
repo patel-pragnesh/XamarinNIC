@@ -24,6 +24,8 @@ namespace xamarinJKH.Server
         public const string GET_ACCOUNTING_INFO = "Accounting/Info"; // инфомация о начислениях
         public const string GET_FILE_BILLS = "Bills/Download"; // Получить квитанцию
         public const string UPDATE_PROFILE= "user/updateProfile"; // Обновить данные профиля
+        public const string REQUEST_LIST= "Requests/List"; // Заявки
+        public const string REQUEST_DETAIL_LIST= "Requests/Details"; // Заявки
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -245,6 +247,47 @@ namespace xamarinJKH.Server
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 return new ItemsList<AccountAccountingInfo>()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        /// <summary>
+        /// Запрос списка заявок без сообщений и файлов
+        /// </summary>
+        /// <returns>RequestList</returns>
+        public async Task<RequestList> GetRequestsList()
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(REQUEST_LIST, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            
+            var response = await restClientMp.ExecuteTaskAsync<RequestList>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new RequestList()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        } 
+        public async Task<RequestContent > GetRequestsDetailList(string id)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(REQUEST_DETAIL_LIST + "/" + id, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = await restClientMp.ExecuteTaskAsync<RequestContent >(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new RequestContent ()
                 {
                     Error = $"Ошибка {response.StatusDescription}"
                 };

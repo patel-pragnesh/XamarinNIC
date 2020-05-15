@@ -79,6 +79,10 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Apps\AppPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -127,6 +131,9 @@
     </Compile>
     <Compile Update="Pays\TiketPage.xaml.cs">
       <DependentUpon>TiketPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Apps\AppPage.xaml.cs">
+      <DependentUpon>AppPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>
