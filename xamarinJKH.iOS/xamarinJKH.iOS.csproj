@@ -287,5 +287,6 @@
     <BundleResource Include="Resources\ic_profile_email.png" />
     <BundleResource Include="Resources\ic_check_mark.png" />
     <BundleResource Include="Resources\ic_exit.png" />
+    <BundleResource Include="Resources\ic_background_counter.png" />
   </ItemGroup>
 </Project>

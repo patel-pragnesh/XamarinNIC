@@ -23,7 +23,8 @@ namespace xamarinJKH.Server
         public const string GET_PHOTO_ADDITIONAL = "AdditionalServices/logo"; // Картинка доп услуги
         public const string GET_ACCOUNTING_INFO = "Accounting/Info"; // инфомация о начислениях
         public const string GET_FILE_BILLS = "Bills/Download"; // Получить квитанцию
-        public const string UPDATE_PROFILE= "user/updateProfile"; // Обновить данные профиля
+        public const string UPDATE_PROFILE = "user/updateProfile"; // Обновить данные профиля
+        public const string GET_METERS_THREE = "Meters/List"; // Получить последние 3 показания по приборам
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -287,6 +288,31 @@ namespace xamarinJKH.Server
             }
 
             return new MemoryStream(response.RawBytes);
+        }
+        
+        /// <summary>
+        /// Получение 3 последних показаний по приборам
+        /// </summary>
+        /// <returns>AccountAccountingInfo</returns>
+        public async Task<ItemsList<MeterInfo>> GetThreeMeters()
+        {
+          
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_METERS_THREE, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            
+            var response = await restClientMp.ExecuteTaskAsync<ItemsList<MeterInfo>>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new ItemsList<MeterInfo>()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
         }
         
         /// <summary>

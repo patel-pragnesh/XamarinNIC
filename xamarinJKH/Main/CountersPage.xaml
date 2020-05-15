@@ -2,11 +2,9 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:xamarinJKH"
-             xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             xmlns:questions="clr-namespace:xamarinJKH.Questions;assembly=xamarinJKH"
+             xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.Main.CountersPage">
     <ContentPage.Content>
@@ -35,7 +33,7 @@
                              Property=Height,
                              Factor=0,
                              Constant=0}"
-                       Source="ic_background_profile"
+                       Source="ic_background_counter"
                        VerticalOptions="Fill"
                        HorizontalOptions="Fill" />
 
@@ -101,6 +99,34 @@
                              Factor=0,
                              Constant=25}" />
             </RelativeLayout>
+            <StackLayout
+                VerticalOptions="StartAndExpand">
+                <ListView x:Name="additionalList"
+                          HasUnevenRows="True"
+                          Margin="20, 0, 20, 0"
+                          SeparatorVisibility="None"
+                          VerticalScrollBarVisibility="Never"
+                          SelectionMode="None"
+                          ItemTapped="OnItemTapped"
+                          ItemsSource="{Binding _meterInfo}">
+                    <ListView.Header>
+
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+
+                        <DataTemplate>
+                            <main:MetersThreeCell
+                                Resource="{Binding Resource}"
+                                Address="{Binding Address}"
+                                UniqueNum="{Binding FactoryNumber}"
+                                CheckupDate="{Binding LastCheckupDate}"
+                                RecheckInterval="{Binding RecheckInterval}"
+                                Values="{Binding Values}"/>
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
