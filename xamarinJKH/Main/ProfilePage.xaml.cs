@@ -55,7 +55,14 @@ namespace xamarinJKH.Main
         
         private async void ButtonExitClick(object sender, EventArgs e)
         {
-            await DisplayAlert("ВЫХОД", "", "OK");
+            System.Environment.Exit(0);
+            // var closer = DependencyService.Get<ICloseApplication>();
+            // closer?.closeApplication();
+        }
+        
+        public interface ICloseApplication
+        {
+            void closeApplication();
         }
         
         public async void SaveInfoAccount(string fio, string email)

@@ -137,7 +137,9 @@
                                                       HorizontalOptions="Start"
                                                       VerticalOptions="Center" />
                                     <Label x:Name="LabelPhone2" 
-                                        Text="ФИО"
+                                           Text="ФИО"
+                                           MinimumWidthRequest="50"
+                                           MaxLines="1"
                                            FontSize="16"
                                            TextColor="Black"
                                            Margin="-5, 0, 0, 0"
@@ -182,6 +184,8 @@
                                                       VerticalOptions="Center" />
 
                                     <Label Text="E-mail"
+                                           MinimumWidthRequest="50"
+                                           MaxLines="1"
                                            FontSize="16"
                                            TextColor="Black"
                                            Margin="-5, 0, 0, 5"
