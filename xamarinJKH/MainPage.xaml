@@ -17,7 +17,7 @@
 
             <Image x:Name="IconViewNameUk"
                               Source="icon_login"
-                              HeightRequest="60"
+                              HeightRequest="100"
                               HorizontalOptions="Center"
                               VerticalOptions="Center" />
 
@@ -37,6 +37,7 @@
                     Margin="10, 20, 10, 10">
 
                     <StackLayout
+                        IsVisible="False"
                         Orientation="Horizontal">
 
                         <Switch

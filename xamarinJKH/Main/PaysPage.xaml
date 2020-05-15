@@ -11,19 +11,6 @@
             <RelativeLayout
                 Margin="0,0,0,-140"
                 HorizontalOptions="FillAndExpand">
-                <Image x:Name="ImageTop"
-                       Source="ic_top_event"
-                       Margin="0, -26, 0 ,0"
-                       VerticalOptions="StartAndExpand"
-                       HorizontalOptions="CenterAndExpand"
-                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0,
-                             Constant=0}"
-                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Height,
-                             Factor=0,
-                             Constant=0}" />
                 <Image x:Name="ImageFon"
                        Margin="0, -26, 0 ,0"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
@@ -120,7 +107,7 @@
                                 Ident="{Binding Ident}"
                                 AdressIdent="{Binding Address}"
                                 DateIdent="{Binding DebtActualDate}"
-                                SumPay="{Binding SumFine}" />
+                                SumPay="{Binding Sum}" />
                         </DataTemplate>
 
                     </ListView.ItemTemplate>
