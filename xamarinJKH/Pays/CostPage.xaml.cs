@@ -45,12 +45,18 @@ namespace xamarinJKH.Pays
             IconViewUslugi.Foreground = Color.FromHex(Settings.MobileSettings.color);
             Labelseparator.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            IconViewHistory.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            IconViewSaldos.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            LabelSaldos.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            LabelHistory.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            FrameBtnHistory.BorderColor = Color.FromHex(Settings.MobileSettings.color);
+            FrameBtnSaldos.BorderColor = Color.FromHex(Settings.MobileSettings.color);
             SetPays();
         }
 
         void SetPays()
         {
-            EntrySum.Text = account.SumFine.ToString();
+            EntrySum.Text = account.Sum.ToString();
             FormattedString formatted = new FormattedString();
 
             formatted.Spans.Add(new Span
@@ -90,11 +96,13 @@ namespace xamarinJKH.Pays
                 FontAttributes = FontAttributes.Bold
             });
             LabelMonth.FormattedText = formatted;
+            Picker.Title = account.Ident;
         }
 
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
             account = Accounts[Picker.SelectedIndex];
+            SetPays();
         }
 
         private void Entry_Completed(object sender, EventArgs e)

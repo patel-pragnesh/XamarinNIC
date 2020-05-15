@@ -22,7 +22,7 @@
             <local:CountersPage Title="Показания" IconImageSource="ic_counters" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Показания" IconImageSource="ic_counters">
+    <NavigationPage Title="Заявки" IconImageSource="ic_apps">
         <x:Arguments>
             <local:AppsPage Title="Заявки" IconImageSource="ic_apps" />
         </x:Arguments>

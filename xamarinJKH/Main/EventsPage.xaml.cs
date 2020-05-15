@@ -21,15 +21,12 @@ namespace xamarinJKH.Main
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    ImageTop.Margin = new Thickness(0, 7, 0, 0);
                     ImageFon.Margin = new Thickness(0, 7, 0, 0);
                     StackLayout.Margin = new Thickness(0, 33, 0, 0);
                     IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
                 default:
-                    ImageTop.Margin = new Thickness();
-                    ImageFon.Margin = new Thickness();
                     break;
             }
             SetText();
@@ -39,7 +36,8 @@ namespace xamarinJKH.Main
 
         void SetVisibleControls()
         {
-            setVisible(Settings.EventBlockData.News.Count == 0, StartNews, FrameNews);
+            // setVisible(Settings.EventBlockData.News.Count == 0, StartNews, FrameNews);
+            setVisible(true, StartNews, FrameNews);
             setVisible(Settings.EventBlockData.Polls.Count == 0, StartQuestions, FrameQuestions);
             setVisible(Settings.EventBlockData.Announcements.Count == 0, StartNotification, FrameNotification);
             setVisible(Settings.EventBlockData.AdditionalServices.Count == 0, StartOffers, FrameOffers);
