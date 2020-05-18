@@ -101,12 +101,15 @@
             </RelativeLayout>
             <StackLayout
                 VerticalOptions="StartAndExpand">
-                <ListView x:Name="additionalList"
+                <ListView x:Name="countersList"
                           HasUnevenRows="True"
                           Margin="20, 0, 20, 0"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
                           SelectionMode="None"
+                          IsPullToRefreshEnabled="True"
+                          RefreshCommand="{Binding RefreshCommand}"
+                          IsRefreshing="{Binding IsRefreshing}"
                           ItemTapped="OnItemTapped"
                           ItemsSource="{Binding _meterInfo}">
                     <ListView.Header>
