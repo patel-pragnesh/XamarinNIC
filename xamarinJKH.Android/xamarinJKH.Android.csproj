@@ -39,6 +39,7 @@
     <AndroidPackageFormat>apk</AndroidPackageFormat>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,6 +49,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -80,8 +82,12 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon_login.png" />
     <AndroidResource Include="Resources\drawable\ic_additional_top.png" />
+    <AndroidResource Include="Resources\drawable\ic_add_file.png" />
+    <AndroidResource Include="Resources\drawable\ic_app_top.png" />
+    <AndroidResource Include="Resources\drawable\ic_app_top_in.png" />
     <AndroidResource Include="Resources\drawable\ic_arrow_down.png" />
     <AndroidResource Include="Resources\drawable\ic_arrow_up.png" />
+    <AndroidResource Include="Resources\drawable\ic_author.png" />
     <AndroidResource Include="Resources\drawable\ic_background.png" />
     <AndroidResource Include="Resources\drawable\ic_background_event.png" />
     <AndroidResource Include="Resources\drawable\ic_close.png" />
@@ -89,12 +95,17 @@
     <AndroidResource Include="Resources\drawable\ic_history_pay.png" />
     <AndroidResource Include="Resources\drawable\ic_home.png" />
     <AndroidResource Include="Resources\drawable\ic_notification_top.png" />
+    <AndroidResource Include="Resources\drawable\ic_not_author.png" />
     <AndroidResource Include="Resources\drawable\ic_payed_ident.png" />
     <AndroidResource Include="Resources\drawable\ic_pays_top.png" />
     <AndroidResource Include="Resources\drawable\ic_phone.png" />
     <AndroidResource Include="Resources\drawable\ic_questions_top.png" />
     <AndroidResource Include="Resources\drawable\ic_saldos.png" />
     <AndroidResource Include="Resources\drawable\ic_saldos_top.png" />
+    <AndroidResource Include="Resources\drawable\ic_send_mess.png" />
+    <AndroidResource Include="Resources\drawable\ic_status_done.png" />
+    <AndroidResource Include="Resources\drawable\ic_status_new.png" />
+    <AndroidResource Include="Resources\drawable\ic_status_wait.png" />
     <AndroidResource Include="Resources\drawable\ic_top_event_back.png" />
     <AndroidResource Include="Resources\layout\Tabbar.xml" />
     <AndroidResource Include="Resources\layout\Toolbar.xml" />

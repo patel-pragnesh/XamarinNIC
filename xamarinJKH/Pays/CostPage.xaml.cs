@@ -40,13 +40,12 @@ namespace xamarinJKH.Pays
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.Phone;
             Picker.Title = account.Ident;
+            Picker.FontSize = 15;
             Picker.TextColor = Color.FromHex(Settings.MobileSettings.color);
             Picker.TitleColor = Color.FromHex(Settings.MobileSettings.color);
             IconViewUslugi.Foreground = Color.FromHex(Settings.MobileSettings.color);
             Labelseparator.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            IconViewHistory.Foreground = Color.FromHex(Settings.MobileSettings.color);
-            IconViewSaldos.Foreground = Color.FromHex(Settings.MobileSettings.color);
             LabelSaldos.TextColor = Color.FromHex(Settings.MobileSettings.color);
             LabelHistory.TextColor = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnHistory.BorderColor = Color.FromHex(Settings.MobileSettings.color);
@@ -62,13 +61,13 @@ namespace xamarinJKH.Pays
             formatted.Spans.Add(new Span
             {
                 Text = "Итого: ",
-                FontSize = 20,
+                FontSize = 15,
                 TextColor = Color.Black
             });
             formatted.Spans.Add(new Span
             {
                 Text = EntrySum.Text,
-                FontSize = 25,
+                FontSize = 20,
                 TextColor = Color.FromHex(Settings.MobileSettings.color),
                 FontAttributes = FontAttributes.Bold
             });
@@ -134,6 +133,10 @@ namespace xamarinJKH.Pays
                 TextColor = Color.Gray
             });
             LabelTotal.FormattedText = formatted;
+        }
+        private async void openSaldo(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SaldosPage(Accounts)); 
         }
     }
 }

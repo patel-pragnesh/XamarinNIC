@@ -7,20 +7,9 @@
     <ContentPage.Content>
         <StackLayout>
             <RelativeLayout
-                Margin="0,0,0,-120"
+                Margin="0,0,0,-130"
+                VerticalOptions="Start"
                 HorizontalOptions="FillAndExpand">
-                <Image x:Name="ImageTop"
-                       Source="ic_top_event"
-                       VerticalOptions="StartAndExpand"
-                       HorizontalOptions="CenterAndExpand"
-                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0,
-                             Constant=0}"
-                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Height,
-                             Factor=0,
-                             Constant=-26}" />
                 <Image Margin="0, -26, 0 ,0"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
@@ -109,179 +98,173 @@
                              Factor=0,
                              Constant=25}" />
             </RelativeLayout>
-            <ScrollView>
-            <Frame CornerRadius="30"
-                   Margin="20, -10, 20, 15"
-                   BackgroundColor="White"
-                   Padding="0">
-
-                <StackLayout
-                    Margin="10, 20, 10, 10">
-
-                    <StackLayout
-                        HorizontalOptions="Center"
-                        Orientation="Horizontal">
-
-                        <Label
-                            TextColor="Black"
-                            Text="Лицевой счет: "
-                            VerticalOptions="Center"
-                            FontAttributes="Bold"
-                            FontSize="20" />
-                        <Picker x:Name="Picker" Title="Выбор"
-                                TitleColor="Red"
-                                VerticalOptions="Start"
-                                SelectedIndexChanged="picker_SelectedIndexChanged"
-                                ItemsSource="{Binding AllAcc}"
-                                ItemDisplayBinding="{Binding Ident}"
-                                SelectedItem="{Binding SelectedAcc}" />
-                    </StackLayout>
-                    <Label
-                        x:Name="LabelMonth"
-                        TextColor="Black"
-                        Text="Оплата производится по квитанции за Март 2020"
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        FontSize="15" />
-                    <StackLayout
-                        Orientation="Vertical"
-                        Margin="0, 10, 5, 10">
-                        <StackLayout
-                            Orientation="Horizontal">
-                            <xamarinJkh:IconView
-                                x:Name="IconViewUslugi"
-                                Source="ic_home"
-                                HeightRequest="25"
-                                Margin="-10,0,0,0"
-                                HorizontalOptions="Start"
-                                VerticalOptions="Center" />
-                            <Label
-                                Text="Услуги ЖКУ"
-                                FontSize="16"
-                                TextColor="Black"
-                                Margin="-10, 0, 0, 0"
-                                VerticalOptions="Center" />
-
-                            <Entry x:Name="EntrySum"
-                                   FontSize="18"
-                                   VerticalOptions="End"
-                                   FontAttributes="Bold"
-                                   Completed="Entry_Completed"
-                                   TextChanged="EntrySum_OnTextChanged"
-                                   HorizontalTextAlignment="Center"
-                                   TextColor="Black"
-                                   Keyboard="Numeric"
-                                   HorizontalOptions="FillAndExpand"
-                                   />
-                            <Label
-                                Text="руб."
-                                FontSize="16"
-                                TextColor="Gray"
-                                Margin="-5, 0, 0, 0"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-
-                        <StackLayout
-                            Orientation="Horizontal">
-                            <Label
-                                HeightRequest="2"
-                                BackgroundColor="#DEDEDE"
-                                WidthRequest="150" />
-                            <Label
-                                x:Name="Labelseparator"
-                                HeightRequest="2"
-                                Margin="-10, 0, 0, 0"
-                                BackgroundColor="Red"
-                                HorizontalOptions="FillAndExpand" />
-
-                        </StackLayout>
-
-                        <Label
-                            HeightRequest="1"
-                            Margin="-10, 0, 0, 0"
-                            BackgroundColor="Gray"
-                            HorizontalOptions="CenterAndExpand" />
-                        
-                        <Label
-                            x:Name="LabelTotal"
-                            Margin="-10, 0, 0, 0"
-                            HorizontalOptions="Center" />
-                        
-                        <Label
-                            x:Name="LabelCommision"
-                            Margin="-10, 0, 0, 0"
-                            TextColor="Gray"
-                            Text="*Комиссия не взимается"
-                            HorizontalOptions="Center" />
-
-                    </StackLayout>
-                    <Frame CornerRadius="15"
-                           BackgroundColor="Red"
-                           Margin="0, 10, 0, 0"
-                           x:Name="FrameBtnLogin"
-                           Padding="0">
-                        <Button x:Name="BtnLogin"
-                                Text="Оплатить"
-                                TextColor="White"
-                                FontAttributes="Bold"
-                                BackgroundColor="Transparent" />
-                    </Frame>
-
-
-                </StackLayout>
-            </Frame>
-            </ScrollView>
-
             <StackLayout
-                HorizontalOptions="Center"
-                Margin="0, 0, 0, 10"
-                Orientation="Horizontal">
-                <Frame CornerRadius="15"
-                       Margin="0, 10, 0, 0"
-                       x:Name="FrameBtnHistory"
-                       Padding="0, 20, 20, 20">
-                    <StackLayout
-                        Orientation="Horizontal"
-                        VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="CenterAndExpand">
-                        <xamarinJkh:IconView
-                            x:Name="IconViewHistory"
-                            Source="ic_history_pay"
-                            HeightRequest="15"
-                            HorizontalOptions="Center" />
-                        <Label
-                            x:Name="LabelHistory"
-                            Text="История платежей "
-                            FontSize="15"
-                            TextColor="White"
-                            FontAttributes="Bold"
-                            HorizontalOptions="Start" />
-                    </StackLayout>
-                </Frame>
+                VerticalOptions="FillAndExpand">
+                <ScrollView VerticalOptions="Start">
+                    <Frame CornerRadius="30"
+                           Margin="20, 0, 20, 15"
+                           VerticalOptions="Start"
+                           BackgroundColor="White"
+                           Padding="0">
 
-                <Frame CornerRadius="15"
-                       Margin="0, 10, 0, 0"
-                       x:Name="FrameBtnSaldos"
-                       Padding="0, 20, 20, 20">
-                    <StackLayout
-                        Orientation="Horizontal"
-                        VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="CenterAndExpand">
-                        <xamarinJkh:IconView
-                            x:Name="IconViewSaldos"
-                            Source="ic_saldos"
-                            HeightRequest="15"
-                            HorizontalOptions="Center" />
-                        <Label
-                            x:Name="LabelSaldos"
-                            Text="Квитанции "
-                            FontSize="15"
-                            FontAttributes="Bold"
-                            TextColor="White"
-                            HorizontalOptions="Start" />
-                    </StackLayout>
-                </Frame>
+                        <StackLayout
+                            Margin="10, 10, 10, 10">
+                            <StackLayout
+                                HorizontalOptions="Center"
+                                Orientation="Horizontal">
+
+                                <Label
+                                    TextColor="Black"
+                                    Text="Лицевой счет: "
+                                    VerticalOptions="Center"
+                                    FontAttributes="Bold"
+                                    FontSize="15" />
+                                <Picker x:Name="Picker" Title="Выбор"
+                                        TitleColor="Red"
+                                        VerticalOptions="Start"
+                                        SelectedIndexChanged="picker_SelectedIndexChanged"
+                                        ItemsSource="{Binding AllAcc}"
+                                        ItemDisplayBinding="{Binding Ident}"
+                                        SelectedItem="{Binding SelectedAcc}" />
+                            </StackLayout>
+                            <Label
+                                x:Name="LabelMonth"
+                                TextColor="Black"
+                                Text="Оплата производится по квитанции за Март 2020"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                FontSize="15" />
+                            <StackLayout
+                                Orientation="Vertical"
+                                Margin="0, 10, 5, 10">
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <xamarinJkh:IconView
+                                        x:Name="IconViewUslugi"
+                                        Source="ic_home"
+                                        HeightRequest="25"
+                                        Margin="-10,0,0,0"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Text="Услуги ЖКУ"
+                                        FontSize="15"
+                                        TextColor="Black"
+                                        Margin="-10, 0, 0, 0"
+                                        VerticalOptions="Center" />
+
+                                    <Entry x:Name="EntrySum"
+                                           FontSize="15"
+                                           VerticalOptions="End"
+                                           FontAttributes="Bold"
+                                           Completed="Entry_Completed"
+                                           TextChanged="EntrySum_OnTextChanged"
+                                           HorizontalTextAlignment="Center"
+                                           TextColor="Black"
+                                           Keyboard="Numeric"
+                                           HorizontalOptions="FillAndExpand" />
+                                    <Label
+                                        Text="руб."
+                                        FontSize="12"
+                                        TextColor="Gray"
+                                        Margin="-5, 0, 0, 0"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <Label
+                                        HeightRequest="2"
+                                        BackgroundColor="#DEDEDE"
+                                        WidthRequest="150" />
+                                    <Label
+                                        x:Name="Labelseparator"
+                                        HeightRequest="2"
+                                        Margin="-10, 0, 0, 0"
+                                        BackgroundColor="Red"
+                                        HorizontalOptions="FillAndExpand" />
+
+                                </StackLayout>
+
+                                <Label
+                                    HeightRequest="1"
+                                    Margin="-10, 0, 0, 0"
+                                    BackgroundColor="Gray"
+                                    HorizontalOptions="CenterAndExpand" />
+
+                                <Label
+                                    x:Name="LabelTotal"
+                                    Margin="-10, 0, 0, 0"
+                                    HorizontalOptions="Center" />
+
+                                <Label
+                                    x:Name="LabelCommision"
+                                    Margin="-10, 0, 0, 0"
+                                    TextColor="Gray"
+                                    Text="*Комиссия не взимается"
+                                    HorizontalOptions="Center" />
+
+                            </StackLayout>
+                            <Frame CornerRadius="15"
+                                   BackgroundColor="Red"
+                                   Margin="20, 10, 20, 20"
+                                   x:Name="FrameBtnLogin"
+                                   Padding="0">
+                                <Button x:Name="BtnLogin"
+                                        Text="Оплатить"
+                                        TextColor="White"
+                                        FontAttributes="Bold"
+                                        BackgroundColor="Transparent" />
+                            </Frame>
+
+                        </StackLayout>
+                    </Frame>
+                  
+                </ScrollView>
+                 
             </StackLayout>
+             <StackLayout
+                        HorizontalOptions="Center"
+                        Margin="20, 0, 20, 10"
+                        Spacing="20"
+                        Orientation="Horizontal">
+                        <Frame CornerRadius="10"
+                               x:Name="FrameBtnHistory"
+                               Padding="0"
+                               MinimumWidthRequest="250"
+                               HorizontalOptions="FillAndExpand">
+                            <StackLayout
+                                Orientation="Horizontal"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand">
+                                <Button x:Name="LabelHistory"
+                                        Text="История платежей"
+                                        TextColor="White"
+                                        FontAttributes="Bold"
+                                        FontSize="12"
+                                        BackgroundColor="Transparent" />
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame CornerRadius="10"
+                               x:Name="FrameBtnSaldos"
+                               Padding="0"
+                               MinimumWidthRequest="250"
+                               HorizontalOptions="FillAndExpand">
+                            <StackLayout
+                                Orientation="Horizontal"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="CenterAndExpand">
+                                <Button x:Name="LabelSaldos"
+                                        Text="          Квитанции          "
+                                        FontSize="12"
+                                        FontAttributes="Bold"
+                                        Clicked="openSaldo"
+                                        TextColor="White"
+                                        BackgroundColor="Transparent" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

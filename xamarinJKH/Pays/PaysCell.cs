@@ -35,6 +35,7 @@ namespace xamarinJKH.Main
             ident.TextColor = Color.Black;
             adress.FontSize = 15;
             adress.TextColor = Color.Gray;
+            adress.FontFamily = "Roboto";
 
             identAdress.Children.Add(ident);
             identAdress.Children.Add(adress);
@@ -93,8 +94,9 @@ namespace xamarinJKH.Main
             Frame frameBtn = new Frame();
             frameBtn.HorizontalOptions = LayoutOptions.FillAndExpand;
             frameBtn.VerticalOptions = LayoutOptions.Start;
+            frameBtn.Padding = 0;
             frameBtn.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            frameBtn.CornerRadius = 15;
+            frameBtn.CornerRadius = 10;
 
             StackLayout containerBtn = new StackLayout();
             containerBtn.Orientation = StackOrientation.Horizontal;
@@ -107,16 +109,19 @@ namespace xamarinJKH.Main
             image.HeightRequest = 15;
 
             Label btn = new Label();
-            btn.Margin = new Thickness(-15, 0, 0, 0);
+            // btn.Margin = new Thickness(-30, 0, 0, 0);
             btn.TextColor = Color.White;
+            btn.BackgroundColor = Color.Transparent;
+            btn.HorizontalOptions  = LayoutOptions.Center;
+            btn.Margin = 10;
             btn.FontAttributes = FontAttributes.Bold;
             btn.FontSize = 15;
             btn.Text = "Оплатить";
 
-            containerBtn.Children.Add(image);
-            containerBtn.Children.Add(btn);
+            // containerBtn.Children.Add(image);
+            // containerBtn.Children.Add(btn);
 
-            frameBtn.Content = containerBtn;
+            frameBtn.Content = btn;
 
             container.Children.Add(frameBtn);
 
@@ -208,7 +213,7 @@ namespace xamarinJKH.Main
                     Text = "№ " + Ident,
                     TextColor = Color.Black,
                     FontAttributes = FontAttributes.Bold,
-                    FontSize = 20
+                    FontSize = 15
                 });
                 ident.FormattedText = formattedIdent;
                 FormattedString formattedPayDate = new FormattedString();
@@ -217,13 +222,13 @@ namespace xamarinJKH.Main
                 {
                     Text = "Сумма к оплате\n",
                     TextColor = Color.Gray,
-                    FontSize = 20
+                    FontSize = 15
                 });
                 formattedPayDate.Spans.Add(new Span
                 {
                     Text = "на " + DateIdent,
                     TextColor = Color.Black,
-                    FontSize = 20
+                    FontSize = 15
                 });
                 adress.Text = AdressIdent;
                 sumPayDate.FormattedText = formattedPayDate;
@@ -232,7 +237,8 @@ namespace xamarinJKH.Main
                 {
                     Text = SumPay,
                     TextColor = Color.FromHex(Settings.MobileSettings.color),
-                    FontSize = 30
+                    FontAttributes = FontAttributes.Bold,
+                    FontSize = 20
                 });
                 formattedPay.Spans.Add(new Span
                 {
