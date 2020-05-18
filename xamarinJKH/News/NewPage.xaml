@@ -3,15 +3,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
-             xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
-             xmlns:apps="clr-namespace:xamarinJKH.Apps;assembly=xamarinJKH"
-             BackgroundColor="#F3F3F3"
-             x:Class="xamarinJKH.Main.AppsPage">
+             x:Class="xamarinJKH.News.NewPage">
     <ContentPage.Content>
         <StackLayout>
-            <RelativeLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand">
-                <Image x:Name="ImageFon"
-                       Margin="0, -26, 0 ,-150"
+            <RelativeLayout HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Start">
+                <Image x:Name="ImageTop"
+                       Source="ic_top_event"
+                       VerticalOptions="Fill"
+                       HorizontalOptions="FillAndExpand"
+                       Margin="0, -26, 0 ,0"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
@@ -19,13 +20,10 @@
                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Height,
                              Factor=0,
-                             Constant=0}"
-                       Source="ic_app_top"
-                       VerticalOptions="Fill"
-                       HorizontalOptions="Fill" />
+                             Constant=0}" />
+
 
                 <StackLayout
-                    x:Name="StackLayout"
                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
@@ -46,7 +44,6 @@
                                              Source="ic_phone"
                                              HeightRequest="15"
                                              Foreground="White"
-                                             IsVisible="False"
                                              Margin="-10, 0,0,0"
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
@@ -74,6 +71,21 @@
                                Margin="-10, 10, 0, 0"
                                VerticalOptions="Center" />
                     </StackLayout>
+                    <StackLayout
+                        x:Name="BackStackLayout"
+                        Orientation="Horizontal"
+                        Margin="0, 40, 0, 0"
+                        HorizontalOptions="Start">
+                        <xamarinJkh:IconView Source="ic_arrow_back"
+                                             HeightRequest="15"
+                                             Foreground="Black"
+                                             HorizontalOptions="Center" />
+                        <Label
+                            Text="Назад "
+                            FontSize="15"
+                            TextColor="Black"
+                            HorizontalOptions="Start" />
+                    </StackLayout>
                 </StackLayout>
                 <Image x:Name="IconViewNameUk"
                        Source="icon_login"
@@ -87,76 +99,40 @@
                              Factor=0,
                              Constant=25}" />
             </RelativeLayout>
-            <StackLayout VerticalOptions="FillAndExpand">
-                <ListView x:Name="additionalList"
-                          HasUnevenRows="True"
-                          Margin="20, 0, 20, 0"
-                          SeparatorVisibility="None"
-                          VerticalScrollBarVisibility="Never"
-                          IsPullToRefreshEnabled="True"
-                          RefreshCommand="{Binding RefreshCommand}"
-                          IsRefreshing="{Binding IsRefreshing}"
-                          SelectionMode="None"
-                          ItemTapped="OnItemTapped"
-                          ItemsSource="{Binding RequestInfos}">
-                    <ListView.Header>
 
-                    </ListView.Header>
-                    <ListView.ItemTemplate>
-
-                        <DataTemplate>
-                            <apps:AppCell
-                                Number="{Binding RequestNumber}"
-                                Status="{Binding Status}"
-                                DateApp="{Binding Added}"
-                                TextApp="{Binding Name}" />
-                        </DataTemplate>
-
-                    </ListView.ItemTemplate>
-                </ListView>
-                <StackLayout>
-
+            <ScrollView Orientation="Vertical"
+                        Margin="0, 0, 0, 0">
+                <StackLayout
+                    VerticalOptions="StartAndExpand">
                     <StackLayout
-                        HorizontalOptions="Center"
-                        Margin="20, 0, 20, 10"
-                        Spacing="20"
-                        Orientation="Horizontal">
-                        <StackLayout
-                            Orientation="Horizontal">
-                            <Switch
-                                OnColor="Red"
-                                IsToggled="False"
-                                x:Name="SwitchApp" />
-
-                            <Label Text="Показать прочитанные"
-                                   x:Name="LabelSwitch"
-                                   FontAttributes="Bold"
-                                   FontSize="15"
-                                   TextColor="Red"
-                                   HorizontalOptions="Center" />
-                        </StackLayout>
-
-                        <Frame CornerRadius="10"
-                               x:Name="FrameBtnAdd"
-                               Padding="0"
-                               MinimumWidthRequest="250"
-                               BackgroundColor="Red"
-                               HorizontalOptions="FillAndExpand">
-                            <StackLayout
-                                Orientation="Horizontal"
-                                VerticalOptions="CenterAndExpand"
-                                HorizontalOptions="CenterAndExpand">
-                                <Button x:Name="LabelSaldos"
-                                        Text="          Добавить          "
-                                        FontSize="12"
-                                        FontAttributes="Bold"
-                                        TextColor="White"
-                                        BackgroundColor="Transparent" />
-                            </StackLayout>
-                        </Frame>
+                        Margin="20">
+                        <Label x:Name="LabelTitle"
+                               FontAttributes="Bold"
+                               FontSize="25"
+                               HorizontalOptions="CenterAndExpand"
+                               TextColor="Black"
+                               Text="Заголовок" />
+                        <Label x:Name="LabelDate"
+                               HorizontalOptions="Start"
+                               TextColor="Black"
+                               FontSize="20"
+                               Text="23.05.2020" />
+                        <Label x:Name="LabelText"
+                               HorizontalOptions="Start"
+                               TextType="Html"
+                               Margin="0, 20, 0, 0"
+                               FontSize="20"
+                               TextColor="Black"
+                               Text="Большой текст">
+                        </Label>
                     </StackLayout>
+                    <Image x:Name="ImageAdd"
+                           IsVisible="False"
+                           HeightRequest="200"
+                           Aspect="Fill"
+                           Source="ic_background_event" />
                 </StackLayout>
-            </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

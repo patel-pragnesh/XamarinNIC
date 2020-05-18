@@ -3,15 +3,25 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
-             xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
-             xmlns:apps="clr-namespace:xamarinJKH.Apps;assembly=xamarinJKH"
-             BackgroundColor="#F3F3F3"
-             x:Class="xamarinJKH.Main.AppsPage">
+             x:Class="xamarinJKH.News.NewsPage">
     <ContentPage.Content>
-        <StackLayout>
-            <RelativeLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand">
-                <Image x:Name="ImageFon"
-                       Margin="0, -26, 0 ,-150"
+         <StackLayout>
+            <RelativeLayout 
+                Margin="0,0,0,-120"
+                HorizontalOptions="FillAndExpand">
+                <Image x:Name="ImageTop"
+                       Source="ic_top_event"
+                       VerticalOptions="StartAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Width,
+                             Factor=0,
+                             Constant=0}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Height,
+                             Factor=0,
+                             Constant=-26}" />
+                <Image Margin="0, -26, 0 ,0"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
@@ -20,12 +30,11 @@
                              Property=Height,
                              Factor=0,
                              Constant=0}"
-                       Source="ic_app_top"
+                       Source="ic_news_top"
                        VerticalOptions="Fill"
                        HorizontalOptions="Fill" />
 
                 <StackLayout
-                    x:Name="StackLayout"
                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
@@ -46,7 +55,6 @@
                                              Source="ic_phone"
                                              HeightRequest="15"
                                              Foreground="White"
-                                             IsVisible="False"
                                              Margin="-10, 0,0,0"
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
@@ -74,6 +82,20 @@
                                Margin="-10, 10, 0, 0"
                                VerticalOptions="Center" />
                     </StackLayout>
+                    <StackLayout
+                        x:Name="BackStackLayout"
+                        Orientation="Horizontal"
+                        Margin="0, 40, 0, 0"
+                        HorizontalOptions="Start">
+                        <Image Source="ic_arrow_back"
+                               HeightRequest="15"
+                               HorizontalOptions="Center" />
+                        <Label
+                            Text="Назад "
+                            FontSize="15"
+                            TextColor="White"
+                            HorizontalOptions="Start" />
+                    </StackLayout>
                 </StackLayout>
                 <Image x:Name="IconViewNameUk"
                        Source="icon_login"
@@ -87,75 +109,31 @@
                              Factor=0,
                              Constant=25}" />
             </RelativeLayout>
-            <StackLayout VerticalOptions="FillAndExpand">
-                <ListView x:Name="additionalList"
+            <StackLayout
+                VerticalOptions="StartAndExpand">
+                <ListView x:Name="NotificationList"
                           HasUnevenRows="True"
                           Margin="20, 0, 20, 0"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
+                          SelectionMode="None"
                           IsPullToRefreshEnabled="True"
                           RefreshCommand="{Binding RefreshCommand}"
                           IsRefreshing="{Binding IsRefreshing}"
-                          SelectionMode="None"
                           ItemTapped="OnItemTapped"
-                          ItemsSource="{Binding RequestInfos}">
-                    <ListView.Header>
-
-                    </ListView.Header>
+                          ItemsSource="{Binding NewsInfos}">
                     <ListView.ItemTemplate>
 
                         <DataTemplate>
-                            <apps:AppCell
-                                Number="{Binding RequestNumber}"
-                                Status="{Binding Status}"
-                                DateApp="{Binding Added}"
-                                TextApp="{Binding Name}" />
+
+                            <xamarinJkh:NotificationCell
+                                TextNotif="{Binding ShortContent}"
+                                DateNotif = "{Binding Created}"
+                                TitleNotif = "{Binding Header}"/>
                         </DataTemplate>
 
                     </ListView.ItemTemplate>
                 </ListView>
-                <StackLayout>
-
-                    <StackLayout
-                        HorizontalOptions="Center"
-                        Margin="20, 0, 20, 10"
-                        Spacing="20"
-                        Orientation="Horizontal">
-                        <StackLayout
-                            Orientation="Horizontal">
-                            <Switch
-                                OnColor="Red"
-                                IsToggled="False"
-                                x:Name="SwitchApp" />
-
-                            <Label Text="Показать прочитанные"
-                                   x:Name="LabelSwitch"
-                                   FontAttributes="Bold"
-                                   FontSize="15"
-                                   TextColor="Red"
-                                   HorizontalOptions="Center" />
-                        </StackLayout>
-
-                        <Frame CornerRadius="10"
-                               x:Name="FrameBtnAdd"
-                               Padding="0"
-                               MinimumWidthRequest="250"
-                               BackgroundColor="Red"
-                               HorizontalOptions="FillAndExpand">
-                            <StackLayout
-                                Orientation="Horizontal"
-                                VerticalOptions="CenterAndExpand"
-                                HorizontalOptions="CenterAndExpand">
-                                <Button x:Name="LabelSaldos"
-                                        Text="          Добавить          "
-                                        FontSize="12"
-                                        FontAttributes="Bold"
-                                        TextColor="White"
-                                        BackgroundColor="Transparent" />
-                            </StackLayout>
-                        </Frame>
-                    </StackLayout>
-                </StackLayout>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

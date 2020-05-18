@@ -83,6 +83,14 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="News\NewsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="News\NewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -134,6 +142,12 @@
     </Compile>
     <Compile Update="Apps\AppPage.xaml.cs">
       <DependentUpon>AppPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="News\NewsPage.xaml.cs">
+      <DependentUpon>NewsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="News\NewPage.xaml.cs">
+      <DependentUpon>NewPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

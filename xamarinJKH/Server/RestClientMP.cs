@@ -11,8 +11,8 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // Адрес сервера
-        public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
+        public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // Адрес сервера
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
         public const string REQUEST_CODE = "auth/RequestAccessCode"; // Запрос кода подтверждения
@@ -23,10 +23,14 @@ namespace xamarinJKH.Server
         public const string GET_PHOTO_ADDITIONAL = "AdditionalServices/logo"; // Картинка доп услуги
         public const string GET_ACCOUNTING_INFO = "Accounting/Info"; // инфомация о начислениях
         public const string GET_FILE_BILLS = "Bills/Download"; // Получить квитанцию
-        public const string REQUEST_LIST= "Requests/List"; // Заявки
-        public const string REQUEST_DETAIL_LIST= "Requests/Details"; // Заявки
+        public const string REQUEST_LIST = "Requests/List"; // Заявки
+        public const string REQUEST_DETAIL_LIST = "Requests/Details"; // Заявки
+        public const string REQUEST_UPDATES = "Requests/GetUpdates"; // Обновление заявок
+        public const string ADD_MESSAGE = "Requests/AddMessage"; // Отправка сообщения
         public const string UPDATE_PROFILE = "user/updateProfile"; // Обновить данные профиля
         public const string GET_METERS_THREE = "Meters/List"; // Получить последние 3 показания по приборам
+        public const string GET_NEWS_FULL = "News/Content"; // Получить полную инфу по новости
+        public const string GET_NEWS_IMAGE = "News/Image"; // Получить полную инфу по новости
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -230,19 +234,18 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
-        
+
         /// <summary>
         /// Получение данных о начислениях
         /// </summary>
         /// <returns>AccountAccountingInfo</returns>
         public async Task<ItemsList<AccountAccountingInfo>> GetAccountingInfo()
         {
-          
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(GET_ACCOUNTING_INFO, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
-            
+
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<AccountAccountingInfo>>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
@@ -255,6 +258,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         /// <summary>
         /// Запрос списка заявок без сообщений и файлов
         /// </summary>
@@ -265,7 +269,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(REQUEST_LIST, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
-            
+
             var response = await restClientMp.ExecuteTaskAsync<RequestList>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
@@ -277,18 +281,24 @@ namespace xamarinJKH.Server
             }
 
             return response.Data;
-        } 
-        public async Task<RequestContent > GetRequestsDetailList(string id)
+        }
+
+        /// <summary>
+        /// Получение полной инфы по заявке
+        /// </summary>
+        /// <param name="id">id заявки</param>
+        /// <returns>RequestContent</returns>
+        public async Task<RequestContent> GetRequestsDetailList(string id)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(REQUEST_DETAIL_LIST + "/" + id, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
-            var response = await restClientMp.ExecuteTaskAsync<RequestContent >(restRequest);
+            var response = await restClientMp.ExecuteTaskAsync<RequestContent>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                return new RequestContent ()
+                return new RequestContent()
                 {
                     Error = $"Ошибка {response.StatusDescription}"
                 };
@@ -296,6 +306,92 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+        /// <summary>
+        /// Запрос об изменении заявок
+        /// </summary>
+        /// <param name="updateKey">ключ обновления</param>
+        /// <param name="currentRequestId">id заявки (не обязательно)</param>
+        /// <returns>RequestsUpdate</returns>
+        public async Task<RequestsUpdate> GetRequestsUpdates(string updateKey, string currentRequestId  )
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(REQUEST_UPDATES, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                updateKey,
+                currentRequestId
+            });
+            var response = await restClientMp.ExecuteTaskAsync<RequestsUpdate>(restRequest);
+            
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new RequestsUpdate()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        
+        /// <summary>
+        /// Отправка сообщения по заявке
+        /// </summary>
+        /// <param name="text">текст сообщения</param>
+        /// <param name="requestId">id заявки</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> AddMessage(string text , string requestId)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(ADD_MESSAGE, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                text,
+                requestId
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
+        /// <summary>
+        /// Получение полной инфы по новостям
+        /// </summary>
+        /// <param name="id">id новости</param>
+        /// <returns>NewsInfoFull</returns>
+        public async Task<NewsInfoFull> GetNewsFull(string id)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_NEWS_FULL + "/" + id, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = await restClientMp.ExecuteTaskAsync<NewsInfoFull>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new NewsInfoFull()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
         /// <summary>
         /// Получение картинки доп услуги
         /// </summary>
@@ -316,6 +412,26 @@ namespace xamarinJKH.Server
 
             return response.RawBytes;
         }
+        /// <summary>
+        /// Получение картинки новости
+        /// </summary>
+        /// <param name="id">id новости</param>
+        /// <returns>Картинка в байтах</returns>
+        public async Task<MemoryStream> GetNewsImage(string id)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_NEWS_IMAGE + "/" + id, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = restClientMp.Execute(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return null;
+            }
+
+            return new MemoryStream(response.RawBytes);
+        }
 
         public async Task<MemoryStream> DownloadFileAsync(string id)
         {
@@ -332,19 +448,18 @@ namespace xamarinJKH.Server
 
             return new MemoryStream(response.RawBytes);
         }
-        
+
         /// <summary>
         /// Получение 3 последних показаний по приборам
         /// </summary>
         /// <returns>AccountAccountingInfo</returns>
         public async Task<ItemsList<MeterInfo>> GetThreeMeters()
         {
-          
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(GET_METERS_THREE, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
-            
+
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<MeterInfo>>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
@@ -357,7 +472,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
-        
+
         /// <summary>
         /// Обновление информации по профилю
         /// </summary>

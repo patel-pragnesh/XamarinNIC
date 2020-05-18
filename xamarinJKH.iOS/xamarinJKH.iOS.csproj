@@ -265,6 +265,7 @@
     <BundleResource Include="Resources\ic_history_pay.png" />
     <BundleResource Include="Resources\ic_home.png" />
     <BundleResource Include="Resources\ic_news.png" />
+    <BundleResource Include="Resources\ic_news_top.png" />
     <BundleResource Include="Resources\ic_notification.png" />
     <BundleResource Include="Resources\ic_notification_top.png" />
     <BundleResource Include="Resources\ic_not_author.png" />
