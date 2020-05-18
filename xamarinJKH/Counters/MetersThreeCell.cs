@@ -203,7 +203,7 @@ namespace xamarinJKH.Main
             containerBtn.HorizontalOptions = LayoutOptions.CenterAndExpand;
 
             Label btn = new Label();
-            btn.Margin = new Thickness(-15, 0, 0, 0);
+            btn.Margin = new Thickness(0, 0, 0, 0);
             btn.TextColor = Color.White;
             btn.FontAttributes = FontAttributes.Bold;
             btn.FontSize = 15;

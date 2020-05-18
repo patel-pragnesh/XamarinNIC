@@ -11,7 +11,7 @@
         <StackLayout>
             <RelativeLayout HorizontalOptions="FillAndExpand">
                 <Image x:Name="ImageFon"
-                       Margin="0, -26, 0 ,0"
+                       Margin="0, -26, 0 ,-150"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
