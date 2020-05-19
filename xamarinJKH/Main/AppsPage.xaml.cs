@@ -20,7 +20,7 @@ namespace xamarinJKH.Main
         private RequestList _requestList;
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
-
+        public Color hex { get; set; }
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -46,7 +46,7 @@ namespace xamarinJKH.Main
             }
         }
 
-        private async Task RefreshData()
+        public async Task RefreshData()
         {
             getApps();
             additionalList.ItemsSource = null;
@@ -57,6 +57,7 @@ namespace xamarinJKH.Main
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            hex = Color.FromHex(Settings.MobileSettings.color);
             SetText();
             getApps();
         }
@@ -65,7 +66,6 @@ namespace xamarinJKH.Main
         {
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "Добрый день";
-            Color hex = Color.FromHex(Settings.MobileSettings.color);
             SwitchApp.OnColor = hex;
             LabelSwitch.TextColor = hex;
             FrameBtnAdd.BackgroundColor = hex;
@@ -90,6 +90,18 @@ namespace xamarinJKH.Main
         {
             RequestInfo select = e.Item as RequestInfo;
             await Navigation.PushAsync(new AppPage(select));
+        }
+
+        private async void startNewApp(object sender, EventArgs e)
+        {
+            if (Settings.Person.Accounts.Count > 0)
+            {
+                await Navigation.PushAsync(new NewAppPage(this));
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Лицевые счета не подключены", "OK");
+            }
         }
     }
 }

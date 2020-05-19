@@ -46,7 +46,7 @@ namespace xamarinJKH
             ImageClosePass.GestureRecognizers.Add(forgetPasswordVisible);
             EntryLogin.Text = "";
             EntryPass.Text = "";
-            Login("79237173372", "123");
+            // Login("79237173372", "123");
             // Login("79831727567", "123");
         }
 
@@ -71,7 +71,7 @@ namespace xamarinJKH
             }
             else
             {
-                await DisplayAlert("Ошибка",Settings.MobileSettings.Error , "OK");
+                await DisplayAlert("Ошибка", Settings.MobileSettings.Error, "OK");
                 BtnLogin.IsEnabled = false;
             }
         }
@@ -100,6 +100,8 @@ namespace xamarinJKH
                     // await DisplayAlert("Успешно", login.ToString(), "OK");
                     Settings.Person = login;
                     Settings.EventBlockData = await server.GetEventBlockData();
+                    ItemsList<NamedValue> result = await server.GetRequestsTypes();
+                    Settings.TypeApp = result.Data;
                     await Navigation.PushModalAsync(new BottomNavigationPage());
                 }
                 else

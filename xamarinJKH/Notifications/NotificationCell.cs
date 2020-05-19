@@ -36,6 +36,7 @@ namespace xamarinJKH
             more.FontSize = 11;
             more.TextColor = Color.FromHex(Settings.MobileSettings.color);
             more.WidthRequest = 190;
+           
             titleContainer.Children.Add(title);
             titleContainer.Children.Add(more);
             container.Children.Add(titleContainer);
@@ -45,6 +46,7 @@ namespace xamarinJKH
             text.HorizontalOptions = LayoutOptions.FillAndExpand;
             text.VerticalOptions = LayoutOptions.FillAndExpand;
             text.TextColor = Color.Black;
+            text.TextType = TextType.Html;
             container.Children.Add(text);
             frame.Content = container;
             View = frame;
