@@ -124,7 +124,7 @@
                         <StackLayout
                             Orientation="Horizontal">
                             <Switch
-                                OnColor="Red"
+                                OnColor="{Binding hex}"
                                 IsToggled="False"
                                 x:Name="SwitchApp" />
 
@@ -132,7 +132,7 @@
                                    x:Name="LabelSwitch"
                                    FontAttributes="Bold"
                                    FontSize="15"
-                                   TextColor="Red"
+                                   TextColor="{Binding hex}"
                                    HorizontalOptions="Center" />
                         </StackLayout>
 
@@ -140,7 +140,7 @@
                                x:Name="FrameBtnAdd"
                                Padding="0"
                                MinimumWidthRequest="250"
-                               BackgroundColor="Red"
+                               BackgroundColor="{Binding hex}"
                                HorizontalOptions="FillAndExpand">
                             <StackLayout
                                 Orientation="Horizontal"
@@ -151,6 +151,7 @@
                                         FontSize="12"
                                         FontAttributes="Bold"
                                         TextColor="White"
+                                        Clicked="startNewApp"
                                         BackgroundColor="Transparent" />
                             </StackLayout>
                         </Frame>

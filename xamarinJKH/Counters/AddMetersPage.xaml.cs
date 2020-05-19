@@ -98,7 +98,14 @@ namespace xamarinJKH.Counters
                 FontSize = 15
             });
             RecheckLbl.FormattedText = formattedRecheckup;
-            PredCount.Text = meter.Values[0].Value.ToString(CultureInfo.InvariantCulture);
+            try
+            {
+                PredCount.Text = meter.Values[0].Value.ToString(CultureInfo.InvariantCulture);
+            }
+            catch (Exception ex)
+            {
+                
+            }
         }
     }
 }

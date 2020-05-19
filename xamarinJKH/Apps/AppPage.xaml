@@ -126,7 +126,7 @@
                         
                         <CheckBox 
                             HorizontalOptions="Center"
-                            Color="Red" />
+                            Color="{Binding hex}" />
                         <Label
                             FontSize="10"
                             TextColor="Black"

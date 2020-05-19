@@ -32,4 +32,7 @@ namespace xamarinJKH.Server.RequestModel
         public string Company { get; set; }
 
     }
+    
+   
+    
 }

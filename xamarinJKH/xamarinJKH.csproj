@@ -16,6 +16,7 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="SimpleJson" Version="0.38.0" />
     <PackageReference Include="RestSharp" Version="106.11.2" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.34" />
   </ItemGroup>
 
   <ItemGroup>
@@ -91,6 +92,10 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Apps\NewAppPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -148,6 +153,9 @@
     </Compile>
     <Compile Update="News\NewPage.xaml.cs">
       <DependentUpon>NewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Apps\NewAppPage.xaml.cs">
+      <DependentUpon>NewAppPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

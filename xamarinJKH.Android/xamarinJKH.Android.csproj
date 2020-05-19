@@ -93,6 +93,7 @@
     <AndroidResource Include="Resources\drawable\ic_history_pay.png" />
     <AndroidResource Include="Resources\drawable\ic_home.png" />
     <AndroidResource Include="Resources\drawable\ic_news_top.png" />
+    <AndroidResource Include="Resources\drawable\ic_new_app_top.png" />
     <AndroidResource Include="Resources\drawable\ic_notification_top.png" />
     <AndroidResource Include="Resources\drawable\ic_not_author.png" />
     <AndroidResource Include="Resources\drawable\ic_payed_ident.png" />
