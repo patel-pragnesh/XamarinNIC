@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:xamarinJKH"
+             xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
+             xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
+             xmlns:counters="clr-namespace:xamarinJKH.Counters;assembly=xamarinJKH"
+             x:Class="xamarinJKH.Counters.AddMetersPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <RelativeLayout
+                Margin="0,0,0,-130"
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand">
+                <Image x:Name="ImageFon"
+                       Margin="0, -26, 0 ,0"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Width,
+                             Factor=0,
+                             Constant=0}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Height,
+                             Factor=0,
+                             Constant=0}"
+                       Source="ic_background_addCounter"
+                       VerticalOptions="Fill"
+                       HorizontalOptions="Fill" />
+
+                <StackLayout
+                    x:Name="StackLayout"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Width,
+                             Factor=0,
+                             Constant=15}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Height,
+                             Factor=0,
+                             Constant=10}"
+                    Orientation="Vertical">
+                    <Label x:Name="UkName"
+                           Text="Название"
+                           FontAttributes="Bold"
+                           FontSize="20"
+                           TextColor="White" />
+                    <StackLayout
+                        Orientation="Horizontal">
+                        <xamarinJkh:IconView x:Name="IconViewLogin"
+                                             Source="ic_phone"
+                                             HeightRequest="15"
+                                             Foreground="White"
+                                             Margin="-10, 0,0,0"
+                                             HorizontalOptions="Start"
+                                             VerticalOptions="Center" />
+                        <Label x:Name="LabelPhone"
+                               Text="Телефон"
+                               FontSize="16"
+                               TextColor="White"
+                               Margin="-5, 0, 0, 0"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout
+                        Orientation="Horizontal">
+                        <xamarinJkh:IconView x:Name="IconViewTech"
+                                             Source="ic_tech"
+                                             HeightRequest="20"
+                                             Foreground="White"
+                                             Margin="0, 10,0,0"
+                                             HorizontalOptions="Start"
+                                             VerticalOptions="Center" />
+                        <Label x:Name="LabelTech"
+                               Text="Написать в тех.поддержку"
+                               FontSize="16"
+                               TextDecorations="Underline"
+                               TextColor="White"
+                               Margin="-10, 10, 0, 0"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout
+                        x:Name="BackStackLayout"
+                        Orientation="Horizontal"
+                        Margin="0, 40, 0, 0"
+                        HorizontalOptions="Start">
+                        <Image Source="ic_arrow_back"
+                               HeightRequest="15"
+                               HorizontalOptions="Center" />
+                        <Label
+                            Text="Назад "
+                            FontSize="15"
+                            TextColor="White"
+                            HorizontalOptions="Start" />
+                    </StackLayout>
+                </StackLayout>
+                <Image x:Name="IconViewNameUk"
+                       Source="icon_login"
+                       HeightRequest="70"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Width,
+                             Factor=0.75,
+                             Constant=10}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Height,
+                             Factor=0,
+                             Constant=25}" />
+            </RelativeLayout>
+            <StackLayout
+                VerticalOptions="StartAndExpand">
+                <Frame CornerRadius="40"
+                       Margin="20, 0, 20, -60"
+                       VerticalOptions="Start"
+                       BackgroundColor="#494949"
+                       Padding="20,20,20,60">
+                    <StackLayout Orientation="Vertical"
+                                 HorizontalOptions="CenterAndExpand">
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="CenterAndExpand">
+                            <Label x:Name="NameLbl"
+                                Text="Лицевой счет: "
+                                HeightRequest="20"
+                                FontAttributes="Bold"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="CenterAndExpand"
+                                TextColor="White"
+                                FontSize="18" />
+                        </StackLayout>
+                        <Label x:Name="UniqNumLbl"
+                            Text="Заводской №: 123657"
+                            HeightRequest="20"
+                            VerticalTextAlignment="Center"
+                            HorizontalOptions="CenterAndExpand"
+                            TextColor="White"
+                            FontSize="15" />
+                        <Label x:Name="CheckupLbl"
+                            Text="Последняя поверка: 12.01.2020"
+                            HeightRequest="20"
+                            VerticalTextAlignment="Center"
+                            HorizontalOptions="CenterAndExpand"
+                            TextColor="White"
+                            FontSize="15" />
+                        <Label x:Name="RecheckLbl"
+                            Text="Межповерочный интервал: 6 лет"
+                            HeightRequest="20"
+                            VerticalTextAlignment="Center"
+                            HorizontalOptions="CenterAndExpand"
+                            TextColor="White"
+                            FontSize="15" />
+                    </StackLayout>
+                    
+                </Frame>
+                <Frame CornerRadius="30"
+                           Margin="20, 10, 20, 15"
+                           BackgroundColor="White"
+                           Padding="0">
+
+                        <StackLayout
+                            Margin="10, 20, 10, 10">
+
+                            <Label Text="Новые показания"
+                                   Margin="0, 0, 0, 0"
+                                   FontAttributes="Bold"
+                                   FontSize="20"
+                                   TextColor="Black"
+                                   HorizontalTextAlignment="Center"/>
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Margin="5, 10, 5, 10">
+
+                                <StackLayout
+                                    Orientation="Horizontal">
+
+                                    <Entry x:Name="EntryCount"
+                                           Margin="20, 0, 20, 0"
+                                           FontSize="26"
+                                           FontAttributes="Bold"
+                                           VerticalOptions="End"
+                                           HorizontalTextAlignment="Center"
+                                           TextColor="Black"
+                                           HorizontalOptions="FillAndExpand"
+                                           Placeholder="0,00"
+                                           Keyboard="Numeric">
+                                    </Entry>
+                                </StackLayout>
+
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <Label
+                                        x:Name="LabelseparatorFio"
+                                        HeightRequest="2"
+                                        Margin="20, 0, 20, 0"
+                                        BackgroundColor="Red"
+                                        HorizontalOptions="FillAndExpand" />
+
+                                </StackLayout>
+                                <StackLayout
+                                    Margin="0, 0, 0, 0"
+                                    Orientation="Horizontal">
+                                    <Label x:Name="PredCount"
+                                           Text="0,00"
+                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="FillAndExpand"
+                                           MaxLines="1"
+                                           FontSize="16"
+                                           TextColor="#A2A2A2"
+                                           Margin="20, 0, 20, 0" />
+                                </StackLayout>
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <Label
+                                        Text="Предыдущие показания"
+                                        FontSize="14"
+                                        TextColor="#A2A2A2"
+                                        HeightRequest="20"
+                                        Margin="0, 0, 0, 0"
+                                        HorizontalTextAlignment="Center"
+                                        HorizontalOptions="FillAndExpand" />
+
+                                </StackLayout>
+
+                            </StackLayout>
+                            <ActivityIndicator x:Name="progress"
+                                               IsRunning="true"
+                                               IsVisible="False"
+                                               Color="Red" />
+                            <Frame CornerRadius="15"
+                                   BackgroundColor="Red"
+                                   Margin="0, 10, 0, 10"
+                                   x:Name="FrameBtnLogin"
+                                   Padding="0">
+                                <StackLayout
+                                    x:Name="SaveStackLayout"
+                                    Orientation="Horizontal"
+                                    Margin="-80, 0, 0, 0"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="FillAndExpand">
+                                    <local:IconView x:Name="IconViewSave"
+                                                    Margin="0, 10, 0, 10"
+                                                    Source="ic_check_mark"
+                                                    HeightRequest="25"
+                                                    HorizontalOptions="Start"
+                                                    VerticalOptions="Center" />
+                                    <Label x:Name="BtnSave"
+                                           Text="Передать показания"
+                                           Margin="0, 0, 0, 0"
+                                           FontAttributes="Bold"
+                                           FontSize="15"
+                                           TextColor="White"
+                                           HorizontalOptions="FillAndExpand" 
+                                           VerticalOptions="Center"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.Counters;
+using xamarinJKH.Main;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
@@ -16,6 +18,9 @@ namespace xamarinJKH.Main
     public partial class CountersPage : ContentPage
     {
         public List<MeterInfo> _meterInfo { get; set; }
+        public List<MeterInfo> _meterInfoAll { get; set; }
+        private string account = "";
+        public List<string> Accounts = new List<string>();
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
         
@@ -44,7 +49,23 @@ namespace xamarinJKH.Main
         private async Task RefreshData()
         {
             ItemsList<MeterInfo> info = await _server.GetThreeMeters();
-            _meterInfo = info.Data;
+            _meterInfoAll = info.Data;
+            if (account == "Все")
+            {
+                _meterInfo = _meterInfoAll;
+            }
+            else
+            {
+                List<MeterInfo> meters = new List<MeterInfo>();
+                foreach (var meterInfo in _meterInfoAll)
+                {
+                    if (meterInfo.Ident == account)
+                    {
+                        meters.Add(meterInfo);
+                    }
+                }
+                _meterInfo = meters;
+            }
             countersList.ItemsSource = null;
             countersList.ItemsSource = _meterInfo;
         }
@@ -66,6 +87,73 @@ namespace xamarinJKH.Main
             }
             SetTextAndColor();
             getInfo();
+            FormattedString formattedResource = new FormattedString();
+            formattedResource.Spans.Add(new Span
+            {
+                Text = "Возможность передавать показания доступна с ",
+                TextColor = Color.White,
+                FontAttributes = FontAttributes.None,
+                FontSize = 15
+            });
+            formattedResource.Spans.Add(new Span
+            {
+                Text = "15 по 25 числа ",
+                TextColor = Color.White,
+                FontAttributes = FontAttributes.Bold,
+                FontSize = 15
+            });
+            formattedResource.Spans.Add(new Span
+            {
+                Text = "текущего месяца!",
+                TextColor = Color.White,
+                FontAttributes = FontAttributes.None,
+                FontSize = 15
+            });
+            PeriodSendLbl.FormattedText = formattedResource;
+            countersList.BackgroundColor = Color.Transparent;
+        }
+        
+        private void picker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Accounts != null)
+            {
+                if (Accounts.Count > 0)
+                {
+                    account = Accounts[Picker.SelectedIndex];
+                    SetIdents();
+                }
+            }
+        }
+        
+        void SetIdents()
+        {
+            Picker.TextColor = Color.White;
+            Picker.TitleColor = Color.White;
+            Picker.Title = account;
+            _meterInfo = null;
+            if (account == "Все")
+            {
+                _meterInfo = _meterInfoAll;
+            }
+            else
+            {
+                List<MeterInfo> meters = new List<MeterInfo>();
+                foreach (var meterInfo in _meterInfoAll)
+                {
+                    if (meterInfo.Ident == account)
+                    {
+                        meters.Add(meterInfo);
+                    }
+                }
+                _meterInfo = meters;
+            }
+            countersList.ItemsSource = null;
+            countersList.ItemsSource = _meterInfo;
+        }
+        
+        private async void ButtonClick(object sender, EventArgs e)
+        {
+            
         }
         
         void SetTextAndColor()
@@ -79,9 +167,31 @@ namespace xamarinJKH.Main
             ItemsList<MeterInfo> info = await _server.GetThreeMeters();
             if (info.Error == null)
             {
-                Console.WriteLine(info.Data.Count);
                 _meterInfo = info.Data;
+                _meterInfoAll = info.Data;
                 this.BindingContext = this;
+                if (_meterInfo != null)
+                {
+                    account = "Все";
+                    Accounts.Add("Все");
+                    foreach (var meterInfo in _meterInfo)
+                    {
+                        Boolean k = false;
+                        foreach (var s in Accounts)
+                        {
+                            if (s == meterInfo.Ident)
+                            {
+                                k = true;
+                            }
+                        }
+                        if (k == false)
+                        {
+                            Accounts.Add(meterInfo.Ident);
+                        }
+                    }
+                    Picker.ItemsSource = Accounts;
+                    Picker.Title = account;
+                }
             }
             else
             {
@@ -92,7 +202,7 @@ namespace xamarinJKH.Main
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             MeterInfo select = e.Item as MeterInfo;
-            // await Navigation.PushAsync(new CostPage(select, _accountingInfo));
+            await Navigation.PushAsync(new AddMetersPage(select, _meterInfo));
         }
     }
 }

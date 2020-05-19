@@ -292,7 +292,7 @@ namespace xamarinJKH.Main
                 adress.Text = Address;
                 number.Text = UniqueNum;
                 checkup_date.Text = CheckupDate;
-                recheckup.Text = RecheckInterval;
+                recheckup.Text = RecheckInterval + " лет";
                 if (Values.Count == 1)
                 {
                     counterDate1.Text = Values[0].Period;

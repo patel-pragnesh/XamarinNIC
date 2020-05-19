@@ -3,13 +3,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
-             xmlns:questions="clr-namespace:xamarinJKH.Questions;assembly=xamarinJKH"
              xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.Main.CountersPage">
     <ContentPage.Content>
         <StackLayout>
-            <RelativeLayout HorizontalOptions="FillAndExpand">
+            <RelativeLayout 
+                Margin="0,0,0,-150"
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand">
                 <Image x:Name="ImageFon"
                        Margin="0, -26, 0 ,-150"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
@@ -88,6 +90,41 @@
             </RelativeLayout>
             <StackLayout
                 VerticalOptions="StartAndExpand">
+                <Frame CornerRadius="40"
+                       Margin="20, 0, 20, -60"
+                       VerticalOptions="Start"
+                       BackgroundColor="#494949"
+                       Padding="20,20,20,60">
+                    <StackLayout Orientation="Vertical"
+                                 HorizontalOptions="CenterAndExpand">
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="CenterAndExpand">
+                            <Label
+                                Text="Лицевой счет: "
+                                HeightRequest="20"
+                                FontAttributes="Bold"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="CenterAndExpand"
+                                TextColor="White"
+                                FontSize="15" />
+                            <Picker x:Name="Picker" Title="Выбор"
+                                    TitleColor="White"
+                                    TextColor="White"
+                                    BackgroundColor="#494949"
+                                    VerticalOptions="Start"
+                                    SelectedIndexChanged="picker_SelectedIndexChanged"/>
+                        </StackLayout>
+                        <Label x:Name="PeriodSendLbl"
+                            Text="Возможность передавать показания доступна с 15 по 25 число текущего месяца!"
+                            TextDecorations="Underline"
+                            FontAttributes="Bold"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            TextColor="White"
+                            FontSize="15" />
+                    </StackLayout>
+                    
+                </Frame>
                 <ListView x:Name="countersList"
                           HasUnevenRows="True"
                           Margin="20, 0, 20, 0"
@@ -103,7 +140,6 @@
 
                     </ListView.Header>
                     <ListView.ItemTemplate>
-
                         <DataTemplate>
                             <main:MetersThreeCell
                                 Resource="{Binding Resource}"
