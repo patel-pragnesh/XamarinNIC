@@ -7,6 +7,8 @@ namespace xamarinJKH.Utils
     {
         public static MobileSettings MobileSettings = new MobileSettings();
         public static LoginResult Person = new LoginResult();
+        public static string UpdateKey = "";
+        public static string DateUniq = "";
         public static EventBlockData EventBlockData = new EventBlockData();
         public static string[] months = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
         public static AnnouncementInfo getNotif(String id)

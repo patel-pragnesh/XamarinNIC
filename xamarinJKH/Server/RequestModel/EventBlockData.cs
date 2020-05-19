@@ -63,6 +63,7 @@ namespace xamarinJKH.Server.RequestModel
         public string Header { get; set; }
         public string Text { get; set; }
         public bool HasImage { get; set; }
+        public string Error { get; set; }
     }
 
     public class AdditionalService

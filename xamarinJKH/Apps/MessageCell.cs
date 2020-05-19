@@ -1,5 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
+using xamarinJKH.Utils;
 
 namespace xamarinJKH.Apps
 {
@@ -11,13 +12,16 @@ namespace xamarinJKH.Apps
         private Label LabeltimeA = new Label();
         private Label LabelTextA = new Label();
         private Label LabelDateA = new Label();
-
+        Frame frameDateA = new Frame();
         private StackLayout Container = new StackLayout();
         private Image ImagePerson = new Image();
         private Label LabelName = new Label();
         private Label Labeltime = new Label();
         private Label LabelText = new Label();
         private Label LabelDate = new Label();
+        Frame frameDate = new Frame();
+        
+
 
         public MessageCell()
         {
@@ -86,7 +90,7 @@ namespace xamarinJKH.Apps
 
             frameText.Content = LabelText;
 
-            Frame frameDate = new Frame();
+            
             frameDate.HorizontalOptions = LayoutOptions.Center;
             frameDate.VerticalOptions = LayoutOptions.Start;
             frameDate.BackgroundColor = Color.FromHex("#E2E2E2");
@@ -140,8 +144,7 @@ namespace xamarinJKH.Apps
             LabelTextA.HorizontalOptions = LayoutOptions.End;
 
             frameTextA.Content = LabelTextA;
-
-            Frame frameDateA = new Frame();
+            
             frameDateA.HorizontalOptions = LayoutOptions.Center;
             frameDateA.VerticalOptions = LayoutOptions.Start;
             frameDateA.BackgroundColor = Color.FromHex("#E2E2E2");
@@ -234,10 +237,12 @@ namespace xamarinJKH.Apps
                 }
 
                 var strings = DateApp.Split(' ');
-                LabelDate.Text = LabelDateA.Text = strings[0];
+                var dateMess = strings[0];
+                LabelDate.Text = LabelDateA.Text = dateMess;
                 LabelName.Text = LabelNameA.Text = Name;
                 LabelText.Text = LabelTextA.Text = TextApp;
                 Labeltime.Text = LabeltimeA.Text = strings[1].Substring(0,5);
+                
             }
         }
     }

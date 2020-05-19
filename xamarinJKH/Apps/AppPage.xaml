@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:apps="clr-namespace:xamarinJKH.Apps;assembly=xamarinJKH"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             
              x:Class="xamarinJKH.Apps.AppPage">
     <ContentPage.Content>
         <StackLayout>
@@ -62,6 +63,9 @@
                           Margin="20, 0, 20, 0"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
+                          IsPullToRefreshEnabled="True"
+                          RefreshCommand="{Binding RefreshCommand}"
+                          IsRefreshing="{Binding IsRefreshing}"
                           SelectionMode="None"
                           ItemTapped="OnItemTapped"
                           ItemsSource="{Binding messages}">
@@ -85,28 +89,37 @@
             <Frame CornerRadius="30"
                    Margin="20, -30, 20, 15"
                    BackgroundColor="White"
-                   BorderColor="Red"
+                   BorderColor="{Binding hex}"
                    Padding="10">
                 <StackLayout
                     Spacing="10"
                     Orientation="Horizontal">
                     <xamarinJkh:IconView
+                        x:Name="IconViewAddFile"
                         Source="ic_add_file"
-                        Foreground="Red"
-                        HeightRequest="15"
-                        WidthRequest="15" />
+                        Foreground="{Binding hex}"
+                        HeightRequest="20"
+                        WidthRequest="20" />
                     <Editor x:Name="EntryMess"
                             FontSize="18"
                             VerticalOptions="Center"
+                            Text=""
                             AutoSize="Disabled"
                             Placeholder="Введите сообщение..."
                             TextColor="#A2A2A2"
                             HorizontalOptions="FillAndExpand" />
                     <xamarinJkh:IconView
+                        x:Name="IconViewSend"
                         Source="ic_send_mess"
-                        Foreground="Red"
-                        HeightRequest="15"
-                        WidthRequest="15" />
+                        Foreground="{Binding hex}"
+                        HeightRequest="20"
+                        WidthRequest="20" />
+                    <ActivityIndicator x:Name="progress"
+                                       IsRunning="true"
+                                       HeightRequest="20"
+                                       WidthRequest="20" 
+                                       IsVisible="False"
+                                       Color="{Binding hex}" />
                     <StackLayout
                         IsVisible="False"
                         Spacing="-5">

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Additional;
+using xamarinJKH.News;
 using xamarinJKH.Questions;
 using xamarinJKH.Utils;
 
@@ -36,8 +37,7 @@ namespace xamarinJKH.Main
 
         void SetVisibleControls()
         {
-            // setVisible(Settings.EventBlockData.News.Count == 0, StartNews, FrameNews);
-            setVisible(true, StartNews, FrameNews);
+            setVisible(Settings.EventBlockData.News.Count == 0, StartNews, FrameNews);
             setVisible(Settings.EventBlockData.Polls.Count == 0, StartQuestions, FrameQuestions);
             setVisible(Settings.EventBlockData.Announcements.Count == 0, StartNotification, FrameNotification);
             setVisible(Settings.EventBlockData.AdditionalServices.Count == 0, StartOffers, FrameOffers);
@@ -58,7 +58,9 @@ namespace xamarinJKH.Main
 
         private void StartNews()
         {
-            
+            var startNews = new TapGestureRecognizer();
+            startNews.Tapped += async (s, e) => { await Navigation.PushAsync (new NewsPage()); };
+            FrameNews.GestureRecognizers.Add(startNews);
         }
 
         private void StartQuestions()

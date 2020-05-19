@@ -119,6 +119,9 @@
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
                           SelectionMode="None"
+                          IsPullToRefreshEnabled="True"
+                          RefreshCommand="{Binding RefreshCommand}"
+                          IsRefreshing="{Binding IsRefreshing}"
                           ItemTapped="OnItemTapped"
                           ItemsSource="{Binding Notifications}">
                     <ListView.ItemTemplate>

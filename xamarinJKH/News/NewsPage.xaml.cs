@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using xamarinJKH.Notifications;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 
-namespace xamarinJKH
+namespace xamarinJKH.News
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NotificationsPage : ContentPage
+    public partial class NewsPage : ContentPage
     {
-        public List<AnnouncementInfo> Notifications { get; set; }
+        public List<NewsInfo> NewsInfos { get; set; }
         private bool _isRefreshing = false;
         private RestClientMP server = new RestClientMP();
 
@@ -50,17 +49,16 @@ namespace xamarinJKH
             Settings.EventBlockData = await server.GetEventBlockData();
             if (Settings.EventBlockData.Error == null)
             {
-                Notifications = Settings.EventBlockData.Announcements;
+                NewsInfos = Settings.EventBlockData.News;
                 NotificationList.ItemsSource = null;
-                NotificationList.ItemsSource = Notifications;
-            }
-            else
+                NotificationList.ItemsSource = NewsInfos;
+            }else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию о уведомлениях", "OK");
+                await DisplayAlert("Ошибка", "Не удалось получить информацию о новостях", "OK");
             }
         }
 
-        public NotificationsPage()
+        public NewsPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
@@ -68,7 +66,7 @@ namespace xamarinJKH
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
             SetText();
-            Notifications = Settings.EventBlockData.Announcements;
+            NewsInfos = Settings.EventBlockData.News;
             this.BindingContext = this;
         }
 
@@ -80,8 +78,8 @@ namespace xamarinJKH
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            AnnouncementInfo select = e.Item as AnnouncementInfo;
-            await Navigation.PushAsync(new NotificationOnePage(select));
+            NewsInfo select = e.Item as NewsInfo;
+            await Navigation.PushAsync(new NewPage(select));
         }
     }
 }

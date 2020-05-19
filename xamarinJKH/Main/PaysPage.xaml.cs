@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Pays;
@@ -18,6 +18,41 @@ namespace xamarinJKH.Main
     {
         public List<AccountAccountingInfo> _accountingInfo { get; set; }
         private RestClientMP _server = new RestClientMP();
+        private bool _isRefreshing = false;
+        private RestClientMP server = new RestClientMP();
+
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    IsRefreshing = true;
+
+                    await RefreshData();
+
+                    IsRefreshing = false;
+                });
+            }
+        }
+
+        private async Task RefreshData()
+        {
+
+            getInfo();
+            additionalList.ItemsSource = null;
+            additionalList.ItemsSource = _accountingInfo;
+        }
         public PaysPage()
         {
             InitializeComponent();

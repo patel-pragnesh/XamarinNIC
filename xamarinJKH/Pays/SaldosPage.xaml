@@ -167,6 +167,9 @@
                               HasUnevenRows="True"
                               SeparatorVisibility="None"
                               VerticalScrollBarVisibility="Never"
+                              IsPullToRefreshEnabled="True"
+                              RefreshCommand="{Binding RefreshCommand}"
+                              IsRefreshing="{Binding IsRefreshing}"
                               SelectionMode="None"
                               ItemTapped="OnItemTapped"
                               ItemsSource="{Binding BillInfos}">
