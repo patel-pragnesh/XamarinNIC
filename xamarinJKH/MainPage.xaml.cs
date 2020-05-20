@@ -46,8 +46,10 @@ namespace xamarinJKH
             ImageClosePass.GestureRecognizers.Add(forgetPasswordVisible);
             EntryLogin.Text = "";
             EntryPass.Text = "";
-            // Login("79237173372", "123");
+            Login("79237173372", "123");
             // Login("79831727567", "123");
+            // Login("79261270258", "19871987");
+            // Login("79261937745", "123");
         }
 
         private async void getSettings()
@@ -68,11 +70,15 @@ namespace xamarinJKH
                 SwitchLogin.ThumbColor = Color.White;
                 RegistLabel.TextColor = Color.FromHex(Settings.MobileSettings.color);
                 progress.Color = Color.FromHex(Settings.MobileSettings.color);
+
+                StackLayoutContent.IsVisible = true;
+                progress2.IsVisible = false;
             }
             else
             {
                 await DisplayAlert("Ошибка", Settings.MobileSettings.Error, "OK");
-                BtnLogin.IsEnabled = false;
+                getSettings();
+                // BtnLogin.IsEnabled = false;
             }
         }
 

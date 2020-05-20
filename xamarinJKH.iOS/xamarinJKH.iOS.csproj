@@ -250,7 +250,6 @@
     <BundleResource Include="Resources\ic_app_top_in.png" />
     <BundleResource Include="Resources\ic_arrow_back.png" />
     <BundleResource Include="Resources\ic_arrow_down.png" />
-    <BundleResource Include="Resources\ic_arrow_forward.png" />
     <BundleResource Include="Resources\ic_arrow_tech.png" />
     <BundleResource Include="Resources\ic_arrow_up.png" />
     <BundleResource Include="Resources\ic_author.png" />
@@ -263,9 +262,11 @@
     <BundleResource Include="Resources\ic_file.png" />
     <BundleResource Include="Resources\ic_fio_reg.png" />
     <BundleResource Include="Resources\ic_history_pay.png" />
+    <BundleResource Include="Resources\ic_history_pay_top.png" />
     <BundleResource Include="Resources\ic_home.png" />
     <BundleResource Include="Resources\ic_news.png" />
     <BundleResource Include="Resources\ic_news_top.png" />
+    <BundleResource Include="Resources\ic_new_app_top.png" />
     <BundleResource Include="Resources\ic_notification.png" />
     <BundleResource Include="Resources\ic_notification_top.png" />
     <BundleResource Include="Resources\ic_not_author.png" />
@@ -299,5 +300,11 @@
     <BundleResource Include="Resources\ic_exit.png" />
     <BundleResource Include="Resources\ic_background_counter.png" />
     <BundleResource Include="Resources\ic_background_addCounter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\ic_arrow_forward.png">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
   </ItemGroup>
 </Project>

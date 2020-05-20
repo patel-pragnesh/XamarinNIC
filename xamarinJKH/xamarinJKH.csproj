@@ -96,6 +96,10 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pays\HistoryPayedPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -156,6 +160,9 @@
     </Compile>
     <Compile Update="Apps\NewAppPage.xaml.cs">
       <DependentUpon>NewAppPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pays\HistoryPayedPage.xaml.cs">
+      <DependentUpon>HistoryPayedPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

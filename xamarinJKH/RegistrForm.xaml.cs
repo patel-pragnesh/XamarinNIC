@@ -70,7 +70,7 @@ namespace xamarinJKH
             FrameBtnNextTwo.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnRegFinal.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             FrameTech.BorderColor = Color.FromHex(Settings.MobileSettings.color);
-            SwitchConsent.ThumbColor = Color.White;
+            SwitchConsent.ThumbColor = Color.Black;
             BtnTech.TextColor = Color.FromHex(Settings.MobileSettings.color);
             progress.Color = Color.FromHex(Settings.MobileSettings.color);
             

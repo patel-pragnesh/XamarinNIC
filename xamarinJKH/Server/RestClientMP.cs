@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -12,8 +12,9 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // Адрес сервера
-        public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
+        public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // Адрес сервера
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
         public const string REQUEST_CODE = "auth/RequestAccessCode"; // Запрос кода подтверждения
@@ -31,6 +32,7 @@ namespace xamarinJKH.Server
         public const string ADD_FILE = "Requests/AddFile "; // Отправка файла
         public const string NEW_APP = "Requests/New"; // Добавление заявки
         public const string GET_TYPE = "Requests/RequestTypes"; // Получение типов заявок
+        public const string GET_FILE_APP = "Requests/File"; // Получение типов заявок
         public const string UPDATE_PROFILE = "user/updateProfile"; // Обновить данные профиля
         public const string GET_METERS_THREE = "Meters/List"; // Получить последние 3 показания по приборам
         public const string SAVE_METER_VALUE = "Meters/SaveMeterValue"; // Получить полную инфу по новости
@@ -333,7 +335,7 @@ namespace xamarinJKH.Server
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 return new ItemsList<NamedValue>()
-                {
+                    {
                     Error = $"Ошибка {response.StatusDescription}"
                 };
             }
@@ -447,7 +449,21 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+        public async Task<MemoryStream> GetFileAPP(string id)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_FILE_APP + "/" + id, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = restClientMp.Execute(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return null;
+            }
 
+            return new MemoryStream(response.RawBytes);
+        }
         /// <summary>
         /// Получение полной инфы по новостям
         /// </summary>

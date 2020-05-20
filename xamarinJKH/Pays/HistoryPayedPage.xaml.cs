@@ -10,14 +10,17 @@ using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 
-namespace xamarinJKH.Questions
+namespace xamarinJKH.Pays
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class QuestionsPage : ContentPage
+    public partial class HistoryPayedPage : ContentPage
     {
-        public List<PollInfo> Quest { get; set; }
+        public List<AccountAccountingInfo> Accounts { get; set; }
+        public List<PaymentInfo> Payments { get; set; }
+        public AccountAccountingInfo SelectedAcc { get; set; }
+
+        private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
-        private RestClientMP server = new RestClientMP();
 
         public bool IsRefreshing
         {
@@ -46,43 +49,47 @@ namespace xamarinJKH.Questions
 
         private async Task RefreshData()
         {
-            if (Settings.EventBlockData.Error == null)
+            ItemsList<AccountAccountingInfo> info = await _server.GetAccountingInfo();
+            if (info.Error == null)
             {
-                Settings.EventBlockData = await server.GetEventBlockData();
-                Quest = Settings.EventBlockData.Polls;
+                Accounts = info.Data;
                 additionalList.ItemsSource = null;
-                additionalList.ItemsSource = Quest;
+                additionalList.ItemsSource = Accounts[Picker.SelectedIndex].Payments;
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию об опросах", "OK");
+                await DisplayAlert("Ошибка", "Не удалось получить информацию об оплатах", "OK");
             }
         }
 
-        public QuestionsPage()
+        public HistoryPayedPage(List<AccountAccountingInfo> accounts)
         {
+            this.Accounts = accounts;
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
             SetText();
-            Quest = Settings.EventBlockData.Polls;
-            this.BindingContext = this;
+            Payments = Accounts[0].Payments;
+            SelectedAcc = Accounts[0];
+            BindingContext = this;
         }
 
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.Phone;
-            SwitchQuest.ThumbColor = Color.Black;
-            SwitchQuest.OnColor = Color.FromHex(Settings.MobileSettings.color);
         }
 
-        private async void OnItemTapped(object sender, ItemTappedEventArgs e)
+        private void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PollInfo select = e.Item as PollInfo;
-            await Navigation.PushAsync(new PollsPage(select));
+            additionalList.ItemsSource = null;
+            additionalList.ItemsSource = Accounts[Picker.SelectedIndex].Payments;
+        }
+
+        private void OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
         }
     }
 }

@@ -149,6 +149,7 @@
                                         Text="История платежей"
                                         TextColor="White"
                                         FontAttributes="Bold"
+                                        Clicked="OpenHistory"
                                         FontSize="12"
                                         BackgroundColor="Transparent" />
                             </StackLayout>

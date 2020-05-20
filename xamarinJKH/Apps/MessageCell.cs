@@ -1,11 +1,14 @@
 ﻿using System;
+using System.IO;
 using Xamarin.Forms;
+using xamarinJKH.Server;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Apps
 {
     public class MessageCell : ViewCell
     {
+        RestClientMP server = new RestClientMP();
         private StackLayout ConteinerA = new StackLayout();
         private Image ImagePersonA = new Image();
         private Label LabelNameA = new Label();
@@ -20,8 +23,8 @@ namespace xamarinJKH.Apps
         private Label LabelText = new Label();
         private Label LabelDate = new Label();
         Frame frameDate = new Frame();
-        
-
+        Image imageA = new Image();
+        Image image = new Image();
 
         public MessageCell()
         {
@@ -32,6 +35,7 @@ namespace xamarinJKH.Apps
             frame.Margin = new Thickness(0, 0, 0, 0);
             frame.Padding = 5;
             frame.CornerRadius = 30;
+            
 
             ImagePerson.Source = ImageSource.FromFile("ic_not_author");
             ImagePerson.HeightRequest = 15;
@@ -82,15 +86,23 @@ namespace xamarinJKH.Apps
             frameText.Padding = new Thickness(15, 15, 15, 15);
             frameText.CornerRadius = 10;
 
+            StackLayout stackLayoutContent = new StackLayout();
+
+            image.IsVisible = false;
+            image.HorizontalOptions = LayoutOptions.CenterAndExpand;
+          
+
             LabelText.TextColor = Color.Black;
             LabelText.FontSize = 15;
             LabelText.HorizontalTextAlignment = TextAlignment.Start;
             LabelTextA.HorizontalTextAlignment = TextAlignment.Start;
             LabelText.HorizontalOptions = LayoutOptions.Start;
 
-            frameText.Content = LabelText;
+            stackLayoutContent.Children.Add(LabelText);
+            stackLayoutContent.Children.Add(image);
+            frameText.Content = stackLayoutContent;
 
-            
+
             frameDate.HorizontalOptions = LayoutOptions.Center;
             frameDate.VerticalOptions = LayoutOptions.Start;
             frameDate.BackgroundColor = Color.FromHex("#E2E2E2");
@@ -134,17 +146,24 @@ namespace xamarinJKH.Apps
             Frame frameTextA = new Frame();
             frameTextA.HorizontalOptions = LayoutOptions.FillAndExpand;
             frameTextA.VerticalOptions = LayoutOptions.StartAndExpand;
-            frameTextA.BackgroundColor = Color.FromHex("#E2E2E2");
+            frameTextA.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            ;
             frameTextA.Margin = new Thickness(0, 0, 0, 10);
             frameTextA.Padding = new Thickness(15, 15, 15, 15);
             frameTextA.CornerRadius = 10;
 
-            LabelTextA.TextColor = Color.Black;
+            imageA.IsVisible = false;
+            imageA.HorizontalOptions = LayoutOptions.CenterAndExpand;
+            StackLayout stackLayoutContentA = new StackLayout();
+
+            LabelTextA.TextColor = Color.White;
             LabelTextA.FontSize = 15;
             LabelTextA.HorizontalOptions = LayoutOptions.End;
 
-            frameTextA.Content = LabelTextA;
-            
+            stackLayoutContentA.Children.Add(LabelTextA);
+            stackLayoutContentA.Children.Add(imageA);
+            frameTextA.Content = stackLayoutContentA;
+
             frameDateA.HorizontalOptions = LayoutOptions.Center;
             frameDateA.VerticalOptions = LayoutOptions.Start;
             frameDateA.BackgroundColor = Color.FromHex("#E2E2E2");
@@ -176,6 +195,9 @@ namespace xamarinJKH.Apps
         public static readonly BindableProperty NameProperty =
             BindableProperty.Create("Name", typeof(string), typeof(MessageCell), "");
 
+        public static readonly BindableProperty FileIDProperty =
+            BindableProperty.Create("FileID", typeof(string), typeof(MessageCell), "");
+
         public static readonly BindableProperty TimeProperty =
             BindableProperty.Create("Time", typeof(string), typeof(MessageCell), "");
 
@@ -192,6 +214,12 @@ namespace xamarinJKH.Apps
         {
             get { return (string) GetValue(NameProperty); }
             set { SetValue(NameProperty, value); }
+        }
+
+        public string FileID
+        {
+            get { return (string) GetValue(FileIDProperty); }
+            set { SetValue(FileIDProperty, value); }
         }
 
         public string Time
@@ -241,8 +269,20 @@ namespace xamarinJKH.Apps
                 LabelDate.Text = LabelDateA.Text = dateMess;
                 LabelName.Text = LabelNameA.Text = Name;
                 LabelText.Text = LabelTextA.Text = TextApp;
-                Labeltime.Text = LabeltimeA.Text = strings[1].Substring(0,5);
-                
+                Labeltime.Text = LabeltimeA.Text = strings[1].Substring(0, 5);
+                if (!FileID.Equals("-1"))
+                {
+                    if (TextApp.Contains("png") || TextApp.Contains("jpg"))
+                    {
+                        MemoryStream memoryStream = await server.GetFileAPP(FileID);
+                        if (memoryStream != null)
+                        {
+                            image.Source = imageA.Source =
+                                ImageSource.FromStream(() => { return memoryStream; });
+                            image.IsVisible = imageA.IsVisible = true;
+                        }
+                    }
+                }
             }
         }
     }

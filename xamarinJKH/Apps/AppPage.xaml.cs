@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Plugin.FilePicker;
+using Plugin.FilePicker.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.InterfacesIntegration;
@@ -92,6 +94,9 @@ namespace xamarinJKH.Apps
             var sendMess = new TapGestureRecognizer();
             sendMess.Tapped += async (s, e) => { sendMessage(); };
             IconViewSend.GestureRecognizers.Add(sendMess);
+            var addFile = new TapGestureRecognizer();
+            addFile.Tapped += async (s, e) => { addFileApp(); };
+            IconViewAddFile.GestureRecognizers.Add(addFile);
             hex = Color.FromHex(Settings.MobileSettings.color);
             setText();
             getMessage();
@@ -101,6 +106,44 @@ namespace xamarinJKH.Apps
         {
         }
 
+        async void addFileApp()
+        {
+            PickAndShowFile(null);
+        }
+        private async Task PickAndShowFile(string[] fileTypes)
+        {
+            try
+            {
+                IconViewAddFile.IsVisible = false;
+                progressFile.IsVisible = true;
+                FileData pickedFile = await CrossFilePicker.Current.PickFile(fileTypes);
+
+                if (pickedFile != null)
+                {
+                    // UkName.Text = pickedFile.FileName;
+                    // LabelPhone.Text = pickedFile.FilePath;
+                    if (pickedFile.DataArray.Length > 10000000)
+                    {
+                        await DisplayAlert("Ошибка", "Размер файла превышает 10мб" , "OK");
+                        return;
+                    }
+                    CommonResult commonResult = await _server.AddFileApps(_requestInfo.ID.ToString(), pickedFile.FileName, pickedFile.DataArray,
+                        pickedFile.FilePath);
+                    if (commonResult == null)
+                    {
+                        await ShowToast("Файл отправлен");
+                        await RefreshData();
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Ошибка", ex.ToString(), "OK");
+            }
+            IconViewAddFile.IsVisible = true;
+            progressFile.IsVisible = false;
+        }
         async void sendMessage()
         {
             string message = EntryMess.Text;
