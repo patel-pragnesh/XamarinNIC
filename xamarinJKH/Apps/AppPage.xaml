@@ -80,6 +80,7 @@
                                 Time="{Binding Status}"
                                 DateApp="{Binding Added}"
                                 TextApp="{Binding Text}"
+                                FileID="{Binding FileID}"
                                 IsSelf="{Binding IsSelf}" />
                         </DataTemplate>
 
@@ -94,6 +95,12 @@
                 <StackLayout
                     Spacing="10"
                     Orientation="Horizontal">
+                    <ActivityIndicator x:Name="progressFile"
+                                       IsRunning="true"
+                                       HeightRequest="25"
+                                       WidthRequest="25"
+                                       IsVisible="False"
+                                       Color="{Binding hex}" />
                     <xamarinJkh:IconView
                         x:Name="IconViewAddFile"
                         Source="ic_add_file"

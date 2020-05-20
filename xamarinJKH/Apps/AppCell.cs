@@ -33,6 +33,7 @@ namespace xamarinJKH.Apps
             Color hex = Color.FromHex(Settings.MobileSettings.color);
             arrow.Foreground = hex;
             arrow.HeightRequest = 20;
+            arrow.WidthRequest = 20;
             arrow.VerticalOptions = LayoutOptions.Center;
             arrow.HorizontalOptions = LayoutOptions.End;
 

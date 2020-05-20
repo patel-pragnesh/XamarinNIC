@@ -48,11 +48,11 @@ namespace xamarinJKH.Main
 
         private async Task RefreshData()
         {
-
             getInfo();
             additionalList.ItemsSource = null;
             additionalList.ItemsSource = _accountingInfo;
         }
+
         public PaysPage()
         {
             InitializeComponent();
@@ -68,13 +68,14 @@ namespace xamarinJKH.Main
                 default:
                     break;
             }
+
             SetTextAndColor();
             getInfo();
             var openSaldos = new TapGestureRecognizer();
             openSaldos.Tapped += async (s, e) => { await Navigation.PushAsync(new SaldosPage(_accountingInfo)); };
             FrameBtnSaldos.GestureRecognizers.Add(openSaldos);
         }
-        
+
         void SetTextAndColor()
         {
             UkName.Text = Settings.MobileSettings.main_name;
@@ -107,7 +108,26 @@ namespace xamarinJKH.Main
 
         private async void openSaldo(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SaldosPage(_accountingInfo)); 
+            if (_accountingInfo.Count > 0)
+            {
+                await Navigation.PushAsync(new SaldosPage(_accountingInfo));
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Лицевые счета не подключены", "OK");
+            }
+        }
+
+        private async void OpenHistory(object sender, EventArgs e)
+        {
+            if (_accountingInfo.Count > 0)
+            {
+                await Navigation.PushAsync(new HistoryPayedPage(_accountingInfo));
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Лицевые счета не подключены", "OK");
+            }
         }
     }
 }

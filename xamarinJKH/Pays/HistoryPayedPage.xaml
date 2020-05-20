@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             xmlns:pays="clr-namespace:xamarinJKH.Pays;assembly=xamarinJKH"
+             x:Class="xamarinJKH.Pays.HistoryPayedPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <RelativeLayout
+                Margin="0,0,0,-150"
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand">
+                <Image x:Name="ImageTop"
+                       Source="ic_top_event"
+                       VerticalOptions="StartAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Width,
+                             Factor=0,
+                             Constant=0}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Height,
+                             Factor=0,
+                             Constant=-26}" />
+                <Image Margin="0, -26, 0 ,0"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Width,
+                             Factor=0,
+                             Constant=0}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Height,
+                             Factor=0,
+                             Constant=0}"
+                       Source="ic_history_pay_top"
+                       VerticalOptions="Fill"
+                       HorizontalOptions="Fill" />
+
+                <StackLayout
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Width,
+                             Factor=0,
+                             Constant=15}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Height,
+                             Factor=0,
+                             Constant=10}"
+                    Orientation="Vertical">
+                    <Label x:Name="UkName"
+                           Text="Название"
+                           FontAttributes="Bold"
+                           FontSize="20"
+                           TextColor="White" />
+                    <StackLayout
+                        Orientation="Horizontal">
+                        <xamarinJkh:IconView x:Name="IconViewLogin"
+                                             Source="ic_phone"
+                                             HeightRequest="15"
+                                             Foreground="White"
+                                             Margin="-10, 0,0,0"
+                                             HorizontalOptions="Start"
+                                             VerticalOptions="Center" />
+                        <Label x:Name="LabelPhone"
+                               Text="Телефон"
+                               FontSize="16"
+                               TextColor="White"
+                               Margin="-5, 0, 0, 0"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout
+                        Orientation="Horizontal">
+                        <xamarinJkh:IconView x:Name="IconViewTech"
+                                             Source="ic_tech"
+                                             HeightRequest="20"
+                                             Foreground="White"
+                                             Margin="0, 10,0,0"
+                                             HorizontalOptions="Start"
+                                             VerticalOptions="Center" />
+                        <Label x:Name="LabelTech"
+                               Text="Написать в тех.поддержку"
+                               FontSize="16"
+                               TextDecorations="Underline"
+                               TextColor="White"
+                               Margin="-10, 10, 0, 0"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout
+                        x:Name="BackStackLayout"
+                        Orientation="Horizontal"
+                        Margin="0, 40, 0, 0"
+                        HorizontalOptions="Start">
+                        <Image Source="ic_arrow_back"
+                               HeightRequest="15"
+                               HorizontalOptions="Center" />
+                        <Label
+                            Text="Назад "
+                            FontSize="15"
+                            TextColor="White"
+                            HorizontalOptions="Start" />
+                    </StackLayout>
+                </StackLayout>
+                <Image x:Name="IconViewNameUk"
+                       Source="icon_login"
+                       HeightRequest="70"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Width,
+                             Factor=0.75,
+                             Constant=10}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Height,
+                             Factor=0,
+                             Constant=25}" />
+            </RelativeLayout>
+            <StackLayout
+                VerticalOptions="FillAndExpand">
+                <Frame CornerRadius="40"
+                       Margin="20, 0, 20, -60"
+                       VerticalOptions="Start"
+                       BackgroundColor="#494949"
+                       Padding="20,20,20,60">
+                    <StackLayout
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal">
+
+                        <Label
+                            TextColor="White"
+                            Text="Лицевой счет: "
+                            VerticalOptions="Center"
+                            FontAttributes="Bold"
+                            FontSize="15" />
+                        <Picker x:Name="Picker" Title="Выбор"
+                                TitleColor="Black"
+                                TextColor="White"
+                                VerticalOptions="Start"
+                                SelectedIndexChanged="picker_SelectedIndexChanged"
+                                ItemsSource="{Binding Accounts}"
+                                ItemDisplayBinding="{Binding Ident}"
+                                SelectedItem="{Binding SelectedAcc}" />
+                    </StackLayout>
+                </Frame>
+                <Frame CornerRadius="30"
+                       Margin="20, 0, 20, 15"
+                       BackgroundColor="White"
+                       Padding="15">
+                    <StackLayout VerticalOptions="FillAndExpand" 
+                                 >
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand">
+                            <Label Text="Дата"
+                                   TextColor="Black"
+                                   HorizontalOptions="StartAndExpand"
+                                   FontSize="15"
+                                   ></Label>
+                            <Label Text="Период"
+                                   TextColor="Black"
+                                   HorizontalOptions="CenterAndExpand"
+                                   FontSize="15"
+                                   ></Label>
+                            <Label Text="Сумма"
+                                   TextColor="Black"
+                                   HorizontalOptions="EndAndExpand"
+                                   FontSize="15"
+                                   FontAttributes="Bold"></Label>
+                        </StackLayout>
+                        <Label
+                               BackgroundColor="#878787"
+                               HeightRequest="1"
+                               HorizontalOptions="FillAndExpand"
+                               FontAttributes="Bold"></Label>
+                        <ListView x:Name="additionalList"
+                                  HasUnevenRows="True"
+                                  SeparatorVisibility="None"
+                                  VerticalScrollBarVisibility="Never"
+                                  IsPullToRefreshEnabled="True"
+                                  RefreshCommand="{Binding RefreshCommand}"
+                                  IsRefreshing="{Binding IsRefreshing}"
+                                  SelectionMode="None"
+                                  ItemTapped="OnItemTapped"
+                                  ItemsSource="{Binding Payments}">
+                            <ListView.Header>
+                            </ListView.Header>
+                            <ListView.ItemTemplate>
+
+                                <DataTemplate>
+                                    <pays:HistoryPaysCell
+                                        Period="{Binding Period}"
+                                        DatePay="{Binding Date}"
+                                        SumPay="{Binding Sum}" />
+                                </DataTemplate>
+
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
