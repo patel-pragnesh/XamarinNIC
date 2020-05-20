@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Counters;
 using xamarinJKH.Main;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
@@ -18,12 +19,15 @@ namespace xamarinJKH.Counters
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddMetersPage : ContentPage
     {
+        private RestClientMP _server = new RestClientMP();
         private MeterInfo meter = new MeterInfo();
         private List<MeterInfo> meters = new List<MeterInfo>();
-        public AddMetersPage(MeterInfo meter, List<MeterInfo> meters)
+        private CountersPage _countersPage;
+        public AddMetersPage(MeterInfo meter, List<MeterInfo> meters, CountersPage countersPage)
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            _countersPage = countersPage;
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -40,7 +44,16 @@ namespace xamarinJKH.Counters
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
+            
+            var saveClick = new TapGestureRecognizer();
+            saveClick.Tapped += async (s, e) => { ButtonClick(FrameBtnLogin, null); };
+            FrameBtnLogin.GestureRecognizers.Add(saveClick);
             SetTextAndColor();
+        }
+        
+        private async void ButtonClick(object sender, EventArgs e)
+        {
+            SaveInfoAccount(EntryCount.Text);
         }
         
         void SetTextAndColor()
@@ -98,13 +111,52 @@ namespace xamarinJKH.Counters
                 FontSize = 15
             });
             RecheckLbl.FormattedText = formattedRecheckup;
-            try
+            if (meter.Values.Count != 0)
             {
                 PredCount.Text = meter.Values[0].Value.ToString(CultureInfo.InvariantCulture);
             }
-            catch (Exception ex)
+        }
+        
+        public async void SaveInfoAccount(string count)
+        {
+            if (count != "")
             {
-                
+                progress.IsVisible = true;
+                FrameBtnLogin.IsVisible = false;
+                progress.IsVisible = true;
+                CommonResult result = await _server.SaveMeterValue(meter.ID.ToString(), count.Replace(",", "."), "", "");
+                if (result.Error == null)
+                {
+                    Console.WriteLine(result.ToString());
+                    Console.WriteLine("Отправлено");
+                    await DisplayAlert("", "Показания успешно переданы", "OK");
+                    FrameBtnLogin.IsVisible = true;
+                    progress.IsVisible = false;
+                    await Navigation.PopAsync();
+                    _countersPage.RefreshCountersData();
+                }
+                else
+                {
+                    Console.WriteLine("---ОШИБКА---");
+                    Console.WriteLine(result.ToString());
+                    FrameBtnLogin.IsVisible = true;
+                    progress.IsVisible = false;
+                    if (Device.RuntimePlatform == Device.iOS)
+                    {
+                        await DisplayAlert("ОШИБКА", result.Error, "OK");
+                    }
+                    else
+                    {
+                        DependencyService.Get<IMessage>().ShortAlert(result.Error);
+                    }
+                }
+
+                progress.IsVisible = false;
+                FrameBtnLogin.IsVisible = true;
+            }
+            else
+            {
+                await DisplayAlert("Введите показания", "", "OK");
             }
         }
     }

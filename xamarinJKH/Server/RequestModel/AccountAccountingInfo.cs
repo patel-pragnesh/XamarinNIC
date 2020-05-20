@@ -9,9 +9,6 @@ namespace xamarinJKH.Server.RequestModel
         public decimal SumFine { get; set; }
         public string Address { get; set; }
         public string INN { get; set; }
-        public int MetersStartDay { get; set; }
-        public int MetersEndDay { get; set; }
-        public bool MetersAccessFlag { get; set; }
         public string DebtActualDate { get; set; }
         public decimal InsuranceSum { get; set; }
         public int? HouseId { get; set; }

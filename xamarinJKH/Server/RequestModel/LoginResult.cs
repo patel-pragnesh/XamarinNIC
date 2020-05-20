@@ -30,6 +30,9 @@ namespace xamarinJKH.Server.RequestModel
         public string FIO { get; set; }
         public string Address { get; set; }
         public string Company { get; set; }
+        public int MetersStartDay { get; set; }
+        public int MetersEndDay { get; set; }
+        public bool MetersAccessFlag { get; set; }
 
     }
     

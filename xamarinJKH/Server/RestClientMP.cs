@@ -12,8 +12,8 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-        public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // Адрес сервера
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // Адрес сервера
+        public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
         public const string REQUEST_CODE = "auth/RequestAccessCode"; // Запрос кода подтверждения
@@ -33,6 +33,7 @@ namespace xamarinJKH.Server
         public const string GET_TYPE = "Requests/RequestTypes"; // Получение типов заявок
         public const string UPDATE_PROFILE = "user/updateProfile"; // Обновить данные профиля
         public const string GET_METERS_THREE = "Meters/List"; // Получить последние 3 показания по приборам
+        public const string SAVE_METER_VALUE = "Meters/SaveMeterValue"; // Получить полную инфу по новости
         public const string GET_NEWS_FULL = "News/Content"; // Получить полную инфу по новости
         public const string GET_NEWS_IMAGE = "News/Image"; // Получить полную инфу по новости
 
@@ -568,6 +569,38 @@ namespace xamarinJKH.Server
             {
                 email,
                 fio
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        
+        /// <summary>
+        /// Сохранение показаний счетчика
+        /// </summary>
+        /// <param name="email">E-mail</param>
+        /// <param name="fio">ФИО</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> SaveMeterValue(string MeterId, string Value, string ValueT2, string ValueT3)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(SAVE_METER_VALUE, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                MeterId,
+                Value,
+                ValueT2,
+                ValueT3
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус

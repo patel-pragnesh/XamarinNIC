@@ -40,13 +40,13 @@ namespace xamarinJKH.Main
                 return new Command(async () =>
                 {
                     IsRefreshing = true;
-                    await RefreshData();
+                    await RefreshCountersData();
                     IsRefreshing = false;
                 });
             }
         }
 
-        private async Task RefreshData()
+        public async Task RefreshCountersData()
         {
             ItemsList<MeterInfo> info = await _server.GetThreeMeters();
             _meterInfoAll = info.Data;
@@ -97,7 +97,7 @@ namespace xamarinJKH.Main
             });
             formattedResource.Spans.Add(new Span
             {
-                Text = "15 по 25 числа ",
+                Text = Settings.Person.Accounts[0].MetersStartDay + " по " + Settings.Person.Accounts[0].MetersEndDay + " числа ",
                 TextColor = Color.White,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = 15
@@ -202,7 +202,7 @@ namespace xamarinJKH.Main
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             MeterInfo select = e.Item as MeterInfo;
-            await Navigation.PushAsync(new AddMetersPage(select, _meterInfo));
+            await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this));
         }
     }
 }

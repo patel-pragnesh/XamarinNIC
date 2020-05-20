@@ -26,7 +26,6 @@ namespace xamarinJKH.Main
             exitClick.Tapped += async (s, e) =>
             {
                 _ = await Navigation.PopModalAsync();
-                // ButtonExitClick(FrameBtnExit, null);
             };
             FrameBtnExit.GestureRecognizers.Add(exitClick);
             var saveClick = new TapGestureRecognizer();
@@ -52,14 +51,6 @@ namespace xamarinJKH.Main
         private async void ButtonClick(object sender, EventArgs e)
         {
             SaveInfoAccount(EntryFio.Text, EntryEmail.Text);
-        }
-        
-        private async void ButtonExitClick(object sender, EventArgs e)
-        {
-            // System.Environment.Exit(0);
-            await Navigation.PopAsync();
-            // var closer = DependencyService.Get<ICloseApplication>();
-            // closer?.closeApplication();
         }
         
         public interface ICloseApplication

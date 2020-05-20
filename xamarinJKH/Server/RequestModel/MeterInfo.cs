@@ -6,6 +6,8 @@ namespace xamarinJKH.Server.RequestModel
     {
         // Номер лицевого счета
         public string Ident { get; set; }
+        // ID прибора
+        public int ID { get; set; }
         // Заводской номер
         public string FactoryNumber { get; set; }
         // Дата последней поверки
