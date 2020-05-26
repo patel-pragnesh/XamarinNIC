@@ -106,8 +106,8 @@ namespace xamarinJKH.Shop
                 }
             }
 
-            stringBuilder.Append("Итого: ").Append(LabelPriceBuscket.Text).Append(" ").Append(LabelWeightBuscket.Text);
-            stringBuilder.Append("\n Безналичный расчет.");
+            stringBuilder.Append("Итого: ").Append(LabelPriceBuscket.Text.Replace("\u20BD", "Р")).Append(" ").Append(LabelWeightBuscket.Text);
+            stringBuilder.Append("\nБезналичный расчет.");
 
             return stringBuilder.ToString();
         }
