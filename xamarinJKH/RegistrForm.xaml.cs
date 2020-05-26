@@ -23,11 +23,15 @@ namespace xamarinJKH
         public string passAuth { get; set; }
 
         private MainPage _mainPage;
+        
+        public Color hex { get; set; }
 
         public RegistrForm(MainPage mainPage)
         {
             InitializeComponent();
             setColors();
+            hex = Color.FromHex(Settings.MobileSettings.color);
+            this.BindingContext = this;
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopModalAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
@@ -79,12 +83,14 @@ namespace xamarinJKH
             LabelseparatorCode.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             LabelseparatorPhone.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             LabelseparatorFio.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            
         }
 
         private async void FirstStepReg()
         {
             string phone = EntryPhone.Text;
             string fio = EntryFio.Text;
+            string date = DatePicker.Date.ToString("dd.MM.yyyy");
 
             if (phone.Equals(""))
             {
@@ -106,6 +112,7 @@ namespace xamarinJKH
                     .Replace(")", "")
                     .Replace("-", "");
                 Person.FIO = fio;
+                Person.Birthday = date;
                 LabelTitleRequestCode.Text = string.Format(
                     "Чтобы получить код доступа нажмите «Запросить звонок с кодом».{0}Вам позвонит робот на номер {1} и сообщит код",
                     Environment.NewLine, phone);
@@ -199,7 +206,7 @@ namespace xamarinJKH
             }
             else
             {
-                CommonResult result = await _server.RegisterByPhone(Person.FIO, Person.Phone, pass, Person.Code);
+                CommonResult result = await _server.RegisterByPhone(Person.FIO, Person.Phone, pass, Person.Code, Person.Birthday);
                 if (result.Error == null)
                 {
                     LoginAuth = "79237173372";
@@ -212,6 +219,11 @@ namespace xamarinJKH
                     await DisplayAlert("Ошибка", result.Error, "OK");
                 }
             }
+        }
+
+        private void datePicker_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            
         }
     }
 }

@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Shop;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Additional
@@ -91,7 +92,14 @@ namespace xamarinJKH.Additional
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             AdditionalService select = e.Item as AdditionalService;
-            await Navigation.PushAsync(new AdditionalOnePage(select));
+            if (select.ShopID == null)
+            {
+                await Navigation.PushAsync(new AdditionalOnePage(select));
+            }
+            else
+            {
+                await Navigation.PushAsync (new ShopPage(select));
+            }
         }
     }
 }

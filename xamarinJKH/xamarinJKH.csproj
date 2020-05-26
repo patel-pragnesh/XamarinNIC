@@ -100,6 +100,18 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Shop\ShopPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Shop\BasketPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Shop\PayShopPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -163,6 +175,15 @@
     </Compile>
     <Compile Update="Pays\HistoryPayedPage.xaml.cs">
       <DependentUpon>HistoryPayedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Shop\ShopPage.xaml.cs">
+      <DependentUpon>ShopPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Shop\BasketPage.xaml.cs">
+      <DependentUpon>BasketPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Shop\PayShopPage.xaml.cs">
+      <DependentUpon>PayShopPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

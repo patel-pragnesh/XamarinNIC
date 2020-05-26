@@ -82,13 +82,26 @@ namespace xamarinJKH.Apps
         public List<RequestMessage> messages { get; set; }
         public Color hex { get; set; }
 
-        public AppPage(RequestInfo requestInfo)
+        public bool close = false;
+
+        public AppPage(RequestInfo requestInfo, bool closeAll = false)
         {
+            close = closeAll;
             _requestInfo = requestInfo;
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) =>
+            {
+                if (close)
+                {
+                    await Navigation.PopToRootAsync();
+                }
+                else
+                {
+                    _ = await Navigation.PopAsync();
+                }
+            };
             BackStackLayout.GestureRecognizers.Add(backClick);
 
             var sendMess = new TapGestureRecognizer();
@@ -102,6 +115,19 @@ namespace xamarinJKH.Apps
             getMessage();
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            if (close)
+            {
+                Navigation.PopToRootAsync();
+                return true;
+            }
+            else
+            {
+                return base.OnBackButtonPressed();
+            }
+        }
+
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
         }
@@ -110,6 +136,7 @@ namespace xamarinJKH.Apps
         {
             PickAndShowFile(null);
         }
+
         private async Task PickAndShowFile(string[] fileTypes)
         {
             try
@@ -124,26 +151,29 @@ namespace xamarinJKH.Apps
                     // LabelPhone.Text = pickedFile.FilePath;
                     if (pickedFile.DataArray.Length > 10000000)
                     {
-                        await DisplayAlert("Ошибка", "Размер файла превышает 10мб" , "OK");
+                        await DisplayAlert("Ошибка", "Размер файла превышает 10мб", "OK");
                         return;
                     }
-                    CommonResult commonResult = await _server.AddFileApps(_requestInfo.ID.ToString(), pickedFile.FileName, pickedFile.DataArray,
+
+                    CommonResult commonResult = await _server.AddFileApps(_requestInfo.ID.ToString(),
+                        pickedFile.FileName, pickedFile.DataArray,
                         pickedFile.FilePath);
                     if (commonResult == null)
                     {
                         await ShowToast("Файл отправлен");
                         await RefreshData();
                     }
-                    
                 }
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Ошибка", ex.ToString(), "OK");
             }
+
             IconViewAddFile.IsVisible = true;
             progressFile.IsVisible = false;
         }
+
         async void sendMessage()
         {
             string message = EntryMess.Text;
@@ -187,6 +217,7 @@ namespace xamarinJKH.Apps
             {
                 Settings.DateUniq = "";
                 messages = request.Messages;
+                LabelNumber.Text = "№ " + request.RequestNumber;
                 this.BindingContext = this;
                 additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
             }
@@ -198,7 +229,14 @@ namespace xamarinJKH.Apps
 
         void setText()
         {
-            LabelNumber.Text = "№ " + _requestInfo.RequestNumber;
+            try
+            {
+                LabelNumber.Text = "№ " + _requestInfo.RequestNumber;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }

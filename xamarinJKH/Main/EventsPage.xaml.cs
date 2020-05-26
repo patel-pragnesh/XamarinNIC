@@ -8,6 +8,7 @@ using Xamarin.Forms.Xaml;
 using xamarinJKH.Additional;
 using xamarinJKH.News;
 using xamarinJKH.Questions;
+using xamarinJKH.Shop;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Main
@@ -41,6 +42,7 @@ namespace xamarinJKH.Main
             setVisible(Settings.EventBlockData.Polls.Count == 0, StartQuestions, FrameQuestions);
             setVisible(Settings.EventBlockData.Announcements.Count == 0, StartNotification, FrameNotification);
             setVisible(Settings.EventBlockData.AdditionalServices.Count == 0, StartOffers, FrameOffers);
+            setVisible(false, StartShop, FrameShop);
         }
 
         void setVisible(bool visible, Action funk, VisualElement frame)
@@ -83,6 +85,10 @@ namespace xamarinJKH.Main
             startNotif.Tapped += async (s, e) => { await Navigation.PushAsync (new NotificationsPage()); };
             FrameNotification.GestureRecognizers.Add(startNotif);
         }
+        private void StartShop()
+        {
+            
+        }
 
         void SetText()
         {
@@ -96,6 +102,8 @@ namespace xamarinJKH.Main
             // IconViewLogin.Foreground = hexColor;
             // IconViewTech.Foreground = hexColor;
             IconViewNotification.Foreground = hexColor;
+            IconViewShop.Foreground = hexColor;
+            IconViewForvardShop.Foreground = hexColor;
             IconViewForvardNotification.Foreground = hexColor;
             IconViewNews.Foreground = hexColor;
             IconViewForvardNews.Foreground = hexColor;

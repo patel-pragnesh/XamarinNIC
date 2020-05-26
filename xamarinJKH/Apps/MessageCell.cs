@@ -270,19 +270,19 @@ namespace xamarinJKH.Apps
                 LabelName.Text = LabelNameA.Text = Name;
                 LabelText.Text = LabelTextA.Text = TextApp;
                 Labeltime.Text = LabeltimeA.Text = strings[1].Substring(0, 5);
-                if (!FileID.Equals("-1"))
-                {
-                    if (TextApp.Contains("png") || TextApp.Contains("jpg"))
-                    {
-                        MemoryStream memoryStream = await server.GetFileAPP(FileID);
-                        if (memoryStream != null)
-                        {
-                            image.Source = imageA.Source =
-                                ImageSource.FromStream(() => { return memoryStream; });
-                            image.IsVisible = imageA.IsVisible = true;
-                        }
-                    }
-                }
+                // if (!FileID.Equals("-1"))
+                // {
+                //     if (TextApp.Contains("png") || TextApp.Contains("jpg"))
+                //     {
+                //         MemoryStream memoryStream = await server.GetFileAPP(FileID);
+                //         if (memoryStream != null)
+                //         {
+                //             image.Source = imageA.Source =
+                //                 ImageSource.FromStream(() => { return memoryStream; });
+                //             image.IsVisible = imageA.IsVisible = true;
+                //         }
+                //     }
+                // }
             }
         }
     }

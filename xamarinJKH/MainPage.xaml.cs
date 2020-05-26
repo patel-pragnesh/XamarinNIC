@@ -70,9 +70,11 @@ namespace xamarinJKH
                 SwitchLogin.ThumbColor = Color.White;
                 RegistLabel.TextColor = Color.FromHex(Settings.MobileSettings.color);
                 progress.Color = Color.FromHex(Settings.MobileSettings.color);
+                Color.SetAccent(Color.FromHex(Settings.MobileSettings.color));
 
                 StackLayoutContent.IsVisible = true;
                 progress2.IsVisible = false;
+                IconViewNameUkLoad.IsVisible = false;
             }
             else
             {

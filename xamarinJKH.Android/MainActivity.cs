@@ -6,6 +6,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Xamarin.Forms;
+using xamarinJKH.Utils;
 
 namespace xamarinJKH.Droid
 {
@@ -21,6 +23,8 @@ namespace xamarinJKH.Droid
             global::Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+          
+
         }
     }
 }
