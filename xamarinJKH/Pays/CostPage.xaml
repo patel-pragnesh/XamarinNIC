@@ -10,7 +10,7 @@
                 Margin="0,0,0,-130"
                 VerticalOptions="Start"
                 HorizontalOptions="FillAndExpand">
-                <Image Margin="0, -26, 0 ,0"
+                <Image x:Name="ImageTop" Margin="0, -26, 0 ,0"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
@@ -23,7 +23,7 @@
                        VerticalOptions="Fill"
                        HorizontalOptions="Fill" />
 
-                <StackLayout
+                <StackLayout x:Name="StackLayout"
                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
@@ -238,7 +238,7 @@
                                 VerticalOptions="CenterAndExpand"
                                 HorizontalOptions="CenterAndExpand">
                                 <Button x:Name="LabelHistory"
-                                        Text="История платежей"
+                                        Text="      История платежей      "
                                         TextColor="White"
                                         FontAttributes="Bold"
                                         FontSize="12"

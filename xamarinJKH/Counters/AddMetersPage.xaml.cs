@@ -61,6 +61,9 @@ namespace xamarinJKH.Counters
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.Phone;
             NameLbl.Text = meter.Resource;
+            LabelseparatorFio.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            progress.Color = Color.FromHex(Settings.MobileSettings.color);
+            FrameBtnLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             FormattedString formattedUniq = new FormattedString();
             formattedUniq.Spans.Add(new Span
             {

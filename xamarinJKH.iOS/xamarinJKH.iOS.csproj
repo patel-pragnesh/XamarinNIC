@@ -27,6 +27,8 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <CodesignKey>Apple Development: Evgeny Yurtaykin (W7QP3Z4ZW5)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -36,6 +38,8 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <CodesignKey>Apple Development: Evgeny Yurtaykin (W7QP3Z4ZW5)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,11 +50,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: Evgeny Yurtaykin (W7QP3Z4ZW5)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
     <MtouchInterpreter>-all</MtouchInterpreter>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -59,8 +65,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: Evgeny Yurtaykin (W7QP3Z4ZW5)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CusTomReader\CustomEntryRenderer.cs" />
@@ -75,45 +84,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\ic_pays.imageset\Contents.json">
@@ -176,6 +146,24 @@
     <ImageAsset Include="Assets.xcassets\ic_events.imageset\ic_events%403.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin20x20%402.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin20x20%403.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin29x29%402.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin29x29%403.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin40x40%402.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin40x40%403.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin60x60%402.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin60x60%403.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin20x20.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin20x20%402 2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin29x29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin29x29%402 2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin40x40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin40x40%402 2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin76x76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin76x76%402.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin83.5%402.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin1024.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -204,38 +192,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets.xcassets\icon_login.imageset\" />
     <Folder Include="Assets.xcassets\ic_apps.imageset\" />
-    <Folder Include="Assets.xcassets\ic_arrow_back.imageset\" />
-    <Folder Include="Assets.xcassets\ic_arrow_forward.imageset\" />
-    <Folder Include="Assets.xcassets\ic_arrow_tech.imageset\" />
-    <Folder Include="Assets.xcassets\ic_bottom_login.imageset\" />
-    <Folder Include="Assets.xcassets\ic_close_password.imageset\" />
     <Folder Include="Assets.xcassets\ic_counters.imageset\" />
-    <Folder Include="Assets.xcassets\ic_diskont.imageset\" />
     <Folder Include="Assets.xcassets\ic_events.imageset\" />
-    <Folder Include="Assets.xcassets\ic_fio_reg.imageset\" />
-    <Folder Include="Assets.xcassets\ic_news.imageset\" />
-    <Folder Include="Assets.xcassets\ic_notification.imageset\" />
-    <Folder Include="Assets.xcassets\ic_password_login.imageset\" />
     <Folder Include="Assets.xcassets\ic_pays.imageset\" />
-    <Folder Include="Assets.xcassets\ic_phone_login.imageset\" />
     <Folder Include="Assets.xcassets\ic_profile.imageset\" />
-    <Folder Include="Assets.xcassets\ic_questions.imageset\" />
-    <Folder Include="Assets.xcassets\ic_questions2.imageset\" />
-    <Folder Include="Assets.xcassets\ic_reg_separrator.imageset\" />
-    <Folder Include="Assets.xcassets\ic_separator.imageset\" />
-    <Folder Include="Assets.xcassets\ic_steps_one.imageset\" />
-    <Folder Include="Assets.xcassets\ic_steps_three.imageset\" />
-    <Folder Include="Assets.xcassets\ic_steps_two.imageset\" />
-    <Folder Include="Assets.xcassets\ic_tech.imageset\" />
-    <Folder Include="Assets.xcassets\top_fon_login.imageset\" />
-    <Folder Include="Assets.xcassets\ic_top_event_back.imageset\" />
-    <Folder Include="Assets.xcassets\ic_top_event.imageset\" />
-    <Folder Include="Assets.xcassets\ic_phone.imageset\" />
-    <Folder Include="Assets.xcassets\ic_background_event.imageset\" />
-    <Folder Include="Assets.xcassets\ic_background.imageset\" />
-    <Folder Include="Assets.xcassets\ic_additional_top.imageset\" />
     <Folder Include="Assets.xcassets\ic_pays.imageset\" />
     <Folder Include="Assets.xcassets\ic_counters.imageset\" />
     <Folder Include="Assets.xcassets\ic_profile.imageset\" />
@@ -313,5 +274,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
 </Project>

@@ -105,7 +105,7 @@
                 </Frame>
                 <ListView x:Name="additionalList"
                           HasUnevenRows="True"
-                          Margin="20, 0, 20, 0"
+                          Margin="10, 0, 10, 0"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
                           IsPullToRefreshEnabled="True"
@@ -146,7 +146,7 @@
                                 VerticalOptions="CenterAndExpand"
                                 HorizontalOptions="CenterAndExpand">
                                 <Button x:Name="LabelHistory"
-                                        Text="История платежей"
+                                        Text="      История платежей      "
                                         TextColor="White"
                                         FontAttributes="Bold"
                                         Clicked="OpenHistory"

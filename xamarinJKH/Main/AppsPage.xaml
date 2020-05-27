@@ -9,9 +9,9 @@
              x:Class="xamarinJKH.Main.AppsPage">
     <ContentPage.Content>
         <StackLayout>
-            <RelativeLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+            <RelativeLayout Margin="0,0,0,-150" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
                 <Image x:Name="ImageFon"
-                       Margin="0, -26, 0 ,-150"
+                       Margin="0, -26, 0 , 0"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
@@ -90,7 +90,7 @@
             <StackLayout VerticalOptions="FillAndExpand">
                 <ListView x:Name="additionalList"
                           HasUnevenRows="True"
-                          Margin="20, 0, 20, 0"
+                          Margin="10, 0, 10, 0"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
                           IsPullToRefreshEnabled="True"

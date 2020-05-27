@@ -25,7 +25,7 @@
                              Constant=0}" />
 
 
-                <StackLayout
+                <StackLayout x:Name="StackLayout"
                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
@@ -106,7 +106,7 @@
                 VerticalOptions="FillAndExpand">
                 <StackLayout>
                     <Frame CornerRadius="15"
-                           Margin="10, 0, 10, 5"
+                           Margin="10, 10, 10, 5"
                            VerticalOptions="Start"
                            BackgroundColor="White"
                            Padding="15">

@@ -64,12 +64,24 @@ namespace xamarinJKH
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    ImageTop.Margin = new Thickness(0, 7, 0, 0);
+                    StackLayout.Margin = new Thickness(0, 33, 0, 0);
+                    IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
+                    break;
+                case Device.Android:
+                default:
+                    break;
+            }
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
             SetText();
             Notifications = Settings.EventBlockData.Announcements;
             this.BindingContext = this;
+            NotificationList.BackgroundColor = Color.Transparent;
         }
 
         void SetText()

@@ -19,7 +19,7 @@ namespace xamarinJKH.Main
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;
-            frame.Margin = new Thickness(0, 0, 0, 10);
+            frame.Margin = new Thickness(10, 0, 10, 10);
             frame.Padding = new Thickness(15, 15, 15, 15);
             frame.CornerRadius = 30;
 
@@ -132,23 +132,23 @@ namespace xamarinJKH.Main
             formatted.Spans.Add(new Span
             {
                 Text = "Платеж обрабатывается",
-                FontSize = 15
+                FontSize = 12
             });
             formatted.Spans.Add(new Span
             {
                 Text = " 2-3 ",
-                FontSize = 15,
+                FontSize = 12,
                 FontAttributes = FontAttributes.Bold
             });
             formatted.Spans.Add(new Span
             {
                 Text = "рабочих дня",
-                FontSize = 15
+                FontSize = 12
             });
 
             payPeriod.FormattedText = formatted;
             payPeriod.TextColor = Color.FromHex(Settings.MobileSettings.color);
-            payPeriod.FontSize = 15;
+            payPeriod.FontSize = 12;
             payPeriod.HorizontalOptions = LayoutOptions.CenterAndExpand;
 
             container.Children.Add(payPeriod);

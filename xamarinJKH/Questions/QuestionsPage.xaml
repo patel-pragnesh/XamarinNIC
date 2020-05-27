@@ -12,19 +12,19 @@
             <RelativeLayout
                 Margin="0,0,0,-120"
                 HorizontalOptions="FillAndExpand">
-                <Image x:Name="ImageTop"
-                       Source="ic_top_event"
-                       VerticalOptions="StartAndExpand"
-                       HorizontalOptions="CenterAndExpand"
-                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0,
-                             Constant=0}"
-                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Height,
-                             Factor=0,
-                             Constant=-26}" />
-                <Image Margin="0, -26, 0 ,0"
+                <!-- <Image x:Name="ImageTop" -->
+                <!--        Source="ic_top_event" -->
+                <!--        VerticalOptions="StartAndExpand" -->
+                <!--        HorizontalOptions="CenterAndExpand" -->
+                <!--        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, -->
+                <!--              Property=Width, -->
+                <!--              Factor=0, -->
+                <!--              Constant=0}" -->
+                <!--        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, -->
+                <!--              Property=Height, -->
+                <!--              Factor=0, -->
+                <!--              Constant=-26}" /> -->
+                <Image x:Name="ImageTop" Margin="0, -26, 0 ,0"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
@@ -37,7 +37,7 @@
                        VerticalOptions="Fill"
                        HorizontalOptions="Fill" />
 
-                <StackLayout
+                <StackLayout x:Name="StackLayout"
                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
@@ -116,7 +116,7 @@
                 VerticalOptions="StartAndExpand">
                 <ListView x:Name="additionalList"
                           HasUnevenRows="True"
-                          Margin="20, 0, 20, 0"
+                          Margin="10, 0, 10, 0"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
                           IsPullToRefreshEnabled="True"

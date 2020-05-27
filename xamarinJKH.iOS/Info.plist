@@ -10,8 +10,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -25,9 +23,9 @@
 	<key>CFBundleDisplayName</key>
 	<string>xamarinJKH</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.sm-center.xamarinJKH</string>
+	<string>com.xamarinJKH.testApps</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.6</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
@@ -40,5 +38,7 @@
 	<false/>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
 </dict>
 </plist>

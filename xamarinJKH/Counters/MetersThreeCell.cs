@@ -35,7 +35,7 @@ namespace xamarinJKH.Main
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;
-            frame.Margin = new Thickness(0, 0, 0, 10);
+            frame.Margin = new Thickness(10, 0, 10, 10);
             frame.Padding = new Thickness(15, 15, 15, 15);
             frame.CornerRadius = 30;
 

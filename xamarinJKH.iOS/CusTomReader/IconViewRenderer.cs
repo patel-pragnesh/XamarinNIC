@@ -1,4 +1,5 @@
-﻿﻿using System.ComponentModel;
+﻿﻿using System;
+ using System.ComponentModel;
 using CoreGraphics;
 using UIKit;
 using Xamarin.Forms;
@@ -71,16 +72,19 @@ namespace xamarinJKH.iOS
             if (previous == null && !string.IsNullOrWhiteSpace(Element.Source))
             {
                 var uiImage = UIImage.FromBundle(Element.Source);
-                if (Element.Source == "icon_login")
+                if (uiImage != null)
                 {
-                    uiImage = UIImage.FromBundle("icon_login");
-                }
-                uiImage = uiImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
-                Control.TintColor = Element.Foreground.ToUIColor();
-                Control.Image = uiImage;
-                if (!_isDisposed)
-                {
-                    ((IVisualElementController)Element).NativeSizeChanged();
+                    // if (Element.Source == "icon_login")
+                    // {
+                    //     uiImage = UIImage.FromBundle("icon_login");
+                    // }
+                    uiImage = uiImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
+                    Control.TintColor = Element.Foreground.ToUIColor();
+                    Control.Image = uiImage;
+                    if (!_isDisposed)
+                    {
+                        ((IVisualElementController)Element).NativeSizeChanged();
+                    }
                 }
             }
         }

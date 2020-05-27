@@ -41,6 +41,17 @@ namespace xamarinJKH.Shop
         {
             _Additional = additional;
             InitializeComponent();
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    ImageTop.Margin = new Thickness(0, 7, 0, 0);
+                    StackLayout.Margin = new Thickness(0, 33, 0, 0);
+                    IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
+                    break;
+                case Device.Android:
+                default:
+                    break;
+            }
             try
             {
                 Settings.AppPAge.Remove(this);
