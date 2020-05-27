@@ -23,7 +23,7 @@
                              Constant=0}" />
 
 
-                <StackLayout
+                <StackLayout x:Name="StackLayout"
                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,

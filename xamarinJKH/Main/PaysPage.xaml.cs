@@ -71,6 +71,7 @@ namespace xamarinJKH.Main
 
             SetTextAndColor();
             getInfo();
+            additionalList.BackgroundColor = Color.Transparent;
             var openSaldos = new TapGestureRecognizer();
             openSaldos.Tapped += async (s, e) => { await Navigation.PushAsync(new SaldosPage(_accountingInfo)); };
             FrameBtnSaldos.GestureRecognizers.Add(openSaldos);

@@ -89,6 +89,17 @@ namespace xamarinJKH.Apps
             close = closeAll;
             _requestInfo = requestInfo;
             InitializeComponent();
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    ImageTop.Margin = new Thickness(0, 33, 0, 0);
+                    StackLayout.Margin = new Thickness(0, 33, 0, 0);
+                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
+                    break;
+                case Device.Android:
+                default:
+                    break;
+            }
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) =>
