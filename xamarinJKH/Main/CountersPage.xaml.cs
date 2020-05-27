@@ -88,27 +88,40 @@ namespace xamarinJKH.Main
             SetTextAndColor();
             getInfo();
             FormattedString formattedResource = new FormattedString();
-            formattedResource.Spans.Add(new Span
+            
+            if (Settings.Person.Accounts.Count > 0){
+                formattedResource.Spans.Add(new Span
+                {
+                    Text = "Возможность передавать показания доступна с ",
+                    TextColor = Color.White,
+                    FontAttributes = FontAttributes.None,
+                    FontSize = 15
+                });
+                formattedResource.Spans.Add(new Span
+                {
+                    Text = Settings.Person.Accounts[0].MetersStartDay + " по " + Settings.Person.Accounts[0].MetersEndDay + " числа ",
+                    TextColor = Color.White,
+                    FontAttributes = FontAttributes.Bold,
+                    FontSize = 15
+                });
+                formattedResource.Spans.Add(new Span
+                {
+                    Text = "текущего месяца!",
+                    TextColor = Color.White,
+                    FontAttributes = FontAttributes.None,
+                    FontSize = 15
+                });
+            }
+            else
             {
-                Text = "Возможность передавать показания доступна с ",
-                TextColor = Color.White,
-                FontAttributes = FontAttributes.None,
-                FontSize = 15
-            });
-            formattedResource.Spans.Add(new Span
-            {
-                Text = Settings.Person.Accounts[0].MetersStartDay + " по " + Settings.Person.Accounts[0].MetersEndDay + " числа ",
-                TextColor = Color.White,
-                FontAttributes = FontAttributes.Bold,
-                FontSize = 15
-            });
-            formattedResource.Spans.Add(new Span
-            {
-                Text = "текущего месяца!",
-                TextColor = Color.White,
-                FontAttributes = FontAttributes.None,
-                FontSize = 15
-            });
+                formattedResource.Spans.Add(new Span
+                {
+                    Text = " ",
+                    TextColor = Color.White,
+                    FontAttributes = FontAttributes.Bold,
+                    FontSize = 15
+                });
+            }
             PeriodSendLbl.FormattedText = formattedResource;
             countersList.BackgroundColor = Color.Transparent;
         }
