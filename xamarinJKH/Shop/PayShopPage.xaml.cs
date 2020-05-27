@@ -55,8 +55,8 @@ namespace xamarinJKH.Shop
             StackLayouPay.IsVisible = false;
             if (Settings.Person.Accounts.Count > 0)
             {
-                IDResult result = await _server.newApp(Settings.Person.Accounts[0].Ident,
-                    _Additional.id_RequestType.ToString(), getBuscketStr());
+                IDResult result = await _server.newAppPay(Settings.Person.Accounts[0].Ident,
+                    _Additional.id_RequestType.ToString(), getBuscketStr(), true,SetPriceAndWeight() , "Покупка в магазине " + _Additional.ShopName);
 
                 if (result.Error == null)
                 {
@@ -82,6 +82,10 @@ namespace xamarinJKH.Shop
                 {
                     await DisplayAlert("Ошибка", result.Error, "OK");
                 }
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Подключите лицевой счет", "OK");
             }
 
             progress.IsVisible = false;
@@ -118,7 +122,7 @@ namespace xamarinJKH.Shop
             LabelPhone.Text = "+" + Settings.Person.Phone;
         }
 
-        void SetPriceAndWeight()
+        decimal SetPriceAndWeight()
         {
             decimal sumBasket = 0;
             decimal sumWeightBasket = 0;
@@ -130,6 +134,8 @@ namespace xamarinJKH.Shop
 
             LabelPriceBuscket.Text = sumBasket.ToString() + " \u20BD";
             LabelWeightBuscket.Text = (sumWeightBasket / 1000).ToString() + "кг.";
+
+            return sumBasket;
         }
     }
 }

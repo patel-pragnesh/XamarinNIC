@@ -301,6 +301,43 @@ namespace xamarinJKH.Server
             return response.Data;
         }
         /// <summary>
+        /// Добавление платной заявки
+        /// </summary>
+        /// <param name="ident">Лицевой счет</param>
+        /// <param name="typeID">Тип заявки</param>
+        /// <param name="Text">Текст заявки</param>
+        /// <param name="isPaid">Платная заявка</param>
+        /// <param name="paidSum">Сумма оплаты</param>
+        /// <param name="paidServiceText">Текст для оплаты</param>
+        /// <returns>id новой заявки</returns>
+        public async Task<IDResult> newAppPay(string ident , string typeID , string Text, bool isPaid, decimal paidSum, string paidServiceText )
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(NEW_APP, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                ident,
+                typeID,
+                Text,
+                isPaid,
+                paidSum,
+                paidServiceText
+            });
+            var response = await restClientMp.ExecuteTaskAsync<IDResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new IDResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        /// <summary>
         /// Запрос списка заявок без сообщений и файлов
         /// </summary>
         /// <returns>RequestList</returns>

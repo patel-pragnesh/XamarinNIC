@@ -131,6 +131,15 @@
                            Aspect="Fill"
                            Source="ic_background_event"
                     />
+                    <ActivityIndicator x:Name="progress"
+                                       IsRunning="true"
+                                       HeightRequest="40"
+                                       WidthRequest="40"
+                                       Margin="0,0,0,15"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       IsVisible="False"
+                                       Color="{Binding hex}" />
                     <Frame CornerRadius="15"
                            BackgroundColor="Red"
                            Margin="40, 10, 40, 30"

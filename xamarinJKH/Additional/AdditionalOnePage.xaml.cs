@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.Apps;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
@@ -74,8 +75,39 @@ namespace xamarinJKH.Additional
 
         private async void ButtonClick(object sender, EventArgs e)
         {
-            await DisplayAlert("Заказать?", additionalService.Name, "OK");
-            ;
+            FrameBtnQuest.IsVisible = false;
+            progress.IsVisible = true;
+            if (Settings.Person.Accounts.Count > 0)
+            {
+                IDResult result = await _server.newApp(Settings.Person.Accounts[0].Ident,
+                    additionalService.id_RequestType.ToString(),
+                    "Ваш заказ принят. В ближайшее время сотрудник свяжется с Вами для уточнения деталей\n" +
+                    additionalService.Description);
+                if (result.Error == null)
+                {
+                    RequestsUpdate requestsUpdate =
+                        await _server.GetRequestsUpdates(Settings.UpdateKey, result.ID.ToString());
+                    if (requestsUpdate.Error == null)
+                    {
+                        Settings.UpdateKey = requestsUpdate.NewUpdateKey;
+                    }
+
+                    await DisplayAlert("Успешно", "Заказ успешно оформлен", "OK");
+                    RequestInfo requestInfo = new RequestInfo();
+                    requestInfo.ID = result.ID;
+                    await Navigation.PushAsync(new AppPage(requestInfo, true));
+                }
+                else
+                {
+                    await DisplayAlert("Ошибка", result.Error, "OK");
+                }
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Подключите лицевой счет", "OK");
+            }
+            FrameBtnQuest.IsVisible = true;
+            progress.IsVisible = false;
         }
     }
 }
