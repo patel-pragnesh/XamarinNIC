@@ -21,6 +21,7 @@ namespace xamarinJKH
     public partial class MainPage : ContentPage
     {
         private RestClientMP server = new RestClientMP();
+        public Color hex { get; set; }
 
         public MainPage()
         {
@@ -46,8 +47,8 @@ namespace xamarinJKH
             ImageClosePass.GestureRecognizers.Add(forgetPasswordVisible);
             EntryLogin.Text = "";
             EntryPass.Text = "";
-            Login("79237173372", "123");
-            // Login("79831727567", "123");
+            // Login("79237173372", "123");
+            Login("79831727567", "123");
             // Login("79261270258", "19871987");
             // Login("79261937745", "123");
         }
@@ -59,22 +60,40 @@ namespace xamarinJKH
             {
                 UkName.Text = Settings.MobileSettings.main_name;
 
-                IconViewLogin.Foreground = Color.FromHex(Settings.MobileSettings.color);
-                IconViewPass.Foreground = Color.FromHex(Settings.MobileSettings.color);
-                ImageClosePass.Foreground = Color.FromHex(Settings.MobileSettings.color);
+                hex = Color.FromHex(Settings.MobileSettings.color);
+                IconViewLogin.Foreground = hex;
+                IconViewPass.Foreground = hex;
+                ImageClosePass.Foreground = hex;
 
-                FrameBtnLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-                LabelseparatorPass.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-                LabelseparatorLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-                SwitchLogin.OnColor = Color.FromHex(Settings.MobileSettings.color);
+                FrameBtnLogin.BackgroundColor = hex;
+                LabelseparatorPass.BackgroundColor = hex;
+                LabelseparatorLogin.BackgroundColor = hex;
+                SwitchLogin.OnColor = hex;
                 SwitchLogin.ThumbColor = Color.White;
-                RegistLabel.TextColor = Color.FromHex(Settings.MobileSettings.color);
-                progress.Color = Color.FromHex(Settings.MobileSettings.color);
-                Color.SetAccent(Color.FromHex(Settings.MobileSettings.color));
+                RegistLabel.TextColor = hex;
+                progress.Color = hex;
+                Color.SetAccent(hex);
 
                 StackLayoutContent.IsVisible = true;
                 progress2.IsVisible = false;
                 IconViewNameUkLoad.IsVisible = false;
+                FormattedString formatted = new FormattedString();
+                formatted.Spans.Add(new Span
+                {
+                    Text = "Возникли проблемы? ",
+                    TextColor = Color.Black,
+                    FontAttributes = FontAttributes.Bold,
+                    FontSize = 13
+                });
+                formatted.Spans.Add(new Span
+                {
+                    Text = "Напиши нам.",
+                    TextColor = hex,
+                    FontSize = 13,
+                    TextDecorations = TextDecorations.Underline
+                });
+                LabelTech.FormattedText = formatted;
+                BindingContext = this;
             }
             else
             {

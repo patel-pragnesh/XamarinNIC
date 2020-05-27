@@ -51,13 +51,13 @@
                            HorizontalOptions="Center" />
                     <!-- Первый шаг регистрации -->
                     <Frame x:Name="RegistrationFrameStep1"
-                           CornerRadius="30"
+                           CornerRadius="50"
                            Margin="20, 15, 20, 15"
                            BackgroundColor="White"
-                           Padding="0">
+                           Padding="10">
 
                         <StackLayout
-                            Margin="10, 20, 10, 10">
+                            Margin="10, 10, 10, 10">
 
                             <StackLayout
                                 Orientation="Vertical"
@@ -70,13 +70,13 @@
                                                          Foreground="Red"
                                                          VerticalOptions="Center" />
                                     <Label Text="Телефон"
-                                           FontSize="16"
+                                           FontSize="15"
                                            TextColor="Black"
                                            Margin="-5, 0, 0, 0"
                                            VerticalOptions="Center" />
 
                                     <Entry x:Name="EntryPhone"
-                                           FontSize="18"
+                                           FontSize="15"
                                            VerticalOptions="End"
                                            HorizontalTextAlignment="Center"
                                            TextColor="#A2A2A2"
@@ -98,7 +98,7 @@
                                     <Label
                                         HeightRequest="2"
                                         BackgroundColor="#DEDEDE"
-                                        WidthRequest="110" />
+                                        WidthRequest="120" />
                                     <Label
                                         x:Name="LabelseparatorPhone"
                                         HeightRequest="2"
@@ -118,13 +118,13 @@
                                                          VerticalOptions="Center" />
 
                                     <Label Text="ФИО  "
-                                           FontSize="16"
+                                           FontSize="15"
                                            TextColor="Black"
                                            Margin="-5, 0, 15, 5"
                                            VerticalOptions="Center" />
 
                                     <Entry x:Name="EntryFio"
-                                           FontSize="18"
+                                           FontSize="15"
                                            TextColor="#A2A2A2"
                                            Text=""
                                            BackgroundColor="Transparent"
@@ -139,7 +139,7 @@
                                     <Label
                                         HeightRequest="2"
                                         BackgroundColor="#DEDEDE"
-                                        WidthRequest="110" />
+                                        WidthRequest="120" />
                                     <Label
                                         x:Name="LabelseparatorFio"
                                         HeightRequest="2"
@@ -159,7 +159,7 @@
                                                          VerticalOptions="Center" />
 
                                     <Label Text="Дата рождения"
-                                           FontSize="16"
+                                           FontSize="15"
                                            TextColor="Black"
                                            Margin="-5, 0, 15, 5"
                                            VerticalOptions="Center" />
@@ -224,11 +224,11 @@
                     </Frame>
                     <!-- Второй шаг регистрации -->
                     <Frame x:Name="RegistrationFrameStep2"
-                           CornerRadius="30"
+                           CornerRadius="50"
                            IsVisible="False"
                            Margin="20, 15, 20, 15"
                            BackgroundColor="White"
-                           Padding="0">
+                           Padding="10">
 
                         <StackLayout
                             Margin="10, 20, 10, 10">
@@ -251,7 +251,7 @@
                                            VerticalOptions="Center" />
 
                                     <Entry x:Name="EntryCode"
-                                           FontSize="18"
+                                           FontSize="15"
                                            VerticalOptions="End"
                                            HorizontalTextAlignment="Center"
                                            Text=""
@@ -269,7 +269,7 @@
                                     <Label
                                         HeightRequest="2"
                                         BackgroundColor="#DEDEDE"
-                                        WidthRequest="110" />
+                                        WidthRequest="120" />
                                     <Label
                                         x:Name="LabelseparatorCode"
                                         HeightRequest="2"
@@ -354,11 +354,11 @@
                     </Frame>
                     <!-- Третий шаг регистрации -->
                     <Frame x:Name="RegistrationFrameStep3"
-                           CornerRadius="30"
+                           CornerRadius="50"
                            IsVisible="False"
                            Margin="20, 15, 20, 15"
                            BackgroundColor="White"
-                           Padding="0">
+                           Padding="10">
 
                         <StackLayout
                             Margin="10, 20, 10, 10">

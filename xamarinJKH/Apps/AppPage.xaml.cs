@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.InterfacesIntegration;
@@ -166,6 +168,9 @@ namespace xamarinJKH.Apps
                         return;
                     }
 
+                    
+                  
+                    
                     CommonResult commonResult = await _server.AddFileApps(_requestInfo.ID.ToString(),
                         pickedFile.FileName, pickedFile.DataArray,
                         pickedFile.FilePath);

@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
@@ -102,9 +104,16 @@ namespace xamarinJKH.Pays
             LabelPhone.Text = "+" + Settings.Person.Phone;
         }
 
-        private void OnItemTapped(object sender, ItemTappedEventArgs e)
+        private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
+            BillInfo select = e.Item as BillInfo;
+            var stream = await server.DownloadFileAsync(select.ID.ToString());
+            await DependencyService.Get<IFileWorker>().SaveTextAsync(select.Period + ".pdf", stream);
             
+            await Launcher.OpenAsync(new OpenFileRequest
+            {
+                File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(select.Period + ".pdf"))
+            });
         }
     }
 }

@@ -34,13 +34,13 @@ namespace xamarinJKH.Utils
 
         public static async Task DownloadDocumentsAsync(PdfDocEntity pdfDocEntity)
         {
-            RestClientMP server = new RestClientMP();
-            var stream = await server.DownloadFileAsync(pdfDocEntity.Url);
-            if (stream == null)
-            {
-                return;
-            }
-            await SaveFileAsync(pdfDocEntity.FileName, stream);
+            // RestClientMP server = new RestClientMP();
+            // var stream = await server.DownloadFileAsync(pdfDocEntity.Url);
+            // if (stream == null)
+            // {
+            //     return;
+            // }
+            // await SaveFileAsync(pdfDocEntity.FileName, stream);
         }
     }
 }

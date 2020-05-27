@@ -9,32 +9,33 @@
              BackgroundColor="#F3F3F3"
              mc:Ignorable="d"
              x:Class="xamarinJKH.MainPage">
-    <ScrollView>
-        <StackLayout>
-            <Image Source="top_fon_login"
-                   HorizontalOptions="Center" />
-            <!-- Place new controls here -->
-            <StackLayout x:Name="StackLayoutContent"
-                         IsVisible="False">
-                
+
+    <StackLayout>
+        <Image Source="top_fon_login"
+               HorizontalOptions="Center" />
+        <!-- Place new controls here -->
+        <ScrollView x:Name="StackLayoutContent"
+            IsVisible="False">
+            <StackLayout >
+
 
                 <Image x:Name="IconViewNameUk"
                        Source="icon_login"
-                       HeightRequest="100"
+                       HeightRequest="80"
                        HorizontalOptions="Center"
                        VerticalOptions="Center" />
 
                 <Label x:Name="UkName"
                        Text="Название"
                        FontAttributes="Bold"
-                       FontSize="20"
+                       FontSize="16"
                        TextColor="Black"
                        HorizontalOptions="Center" />
 
-                <Frame CornerRadius="30"
+                <Frame CornerRadius="50"
                        Margin="20, 15, 20, 15"
                        BackgroundColor="White"
-                       Padding="0">
+                       Padding="10">
 
                     <StackLayout
                         Margin="10, 20, 10, 10">
@@ -68,13 +69,13 @@
                                                 VerticalOptions="Center" />
                                 <Label x:Name="LabelPhone"
                                        Text="Телефон"
-                                       FontSize="16"
+                                       FontSize="15"
                                        TextColor="Black"
                                        Margin="-5, 0, 0, 0"
                                        VerticalOptions="Center" />
 
                                 <Entry x:Name="EntryLogin"
-                                       FontSize="18"
+                                       FontSize="15"
                                        VerticalOptions="End"
                                        HorizontalTextAlignment="Center"
                                        TextColor="#A2A2A2"
@@ -95,7 +96,7 @@
                                     HeightRequest="2"
                                     BackgroundColor="#DEDEDE"
                                     Margin="-3, 0, 0, 0"
-                                    WidthRequest="110" />
+                                    WidthRequest="120" />
                                 <Label
                                     x:Name="LabelseparatorLogin"
                                     HeightRequest="2"
@@ -114,13 +115,13 @@
                                                 VerticalOptions="Center" />
 
                                 <Label Text=" Пароль  "
-                                       FontSize="16"
+                                       FontSize="15"
                                        TextColor="Black"
                                        Margin="-5, 0, 0, 5"
                                        VerticalOptions="Center" />
 
                                 <Entry x:Name="EntryPass"
-                                       FontSize="18"
+                                       FontSize="15"
                                        IsPassword="True"
                                        TextColor="#A2A2A2"
                                        BackgroundColor="Transparent"
@@ -144,7 +145,7 @@
                                     HeightRequest="2"
                                     BackgroundColor="#DEDEDE"
                                     Margin="-3, 0, 0, 0"
-                                    WidthRequest="110" />
+                                    WidthRequest="120" />
                                 <Label
                                     x:Name="LabelseparatorPass"
                                     HeightRequest="2"
@@ -194,12 +195,39 @@
 
                     </StackLayout>
                 </Frame>
+                <StackLayout Spacing="0" Margin="0,-5,0,20">
+                    <StackLayout
+                        x:Name="BackStackLayout"
+                        Orientation="Horizontal"
+                        Spacing="0"
+                        HorizontalOptions="Center">
+                        <local:IconView Source="ic_questions"
+                                        HeightRequest="15"
+                                        Foreground="{Binding hex}"
+                                        HorizontalOptions="Center" />
+                        <Label
+                            x:Name="LabelTech"
+                            Text="Возникли проблемы? "
+                            FontSize="10"
+                            TextColor="Black"
+                            HorizontalOptions="Start" />
+                    </StackLayout>
 
+                    <Label
+                        x:Name="LabelSotr"
+                        Text="Вход для сотрудника"
+                        FontSize="13"
+                        TextColor="{Binding hex}"
+                        TextDecorations="Underline"
+                        HorizontalTextAlignment="Center"
+                        HorizontalOptions="Center" />
+                </StackLayout>
             </StackLayout>
-            <StackLayout
-                VerticalOptions="CenterAndExpand"
-                Margin="0,-100,0,0"
-                HorizontalOptions="CenterAndExpand">
+        </ScrollView>
+        <StackLayout
+            VerticalOptions="CenterAndExpand"
+            Margin="0,-100,0,0"
+            HorizontalOptions="CenterAndExpand">
             <Image x:Name="IconViewNameUkLoad"
                    Source="icon_login"
                    HeightRequest="100"
@@ -207,10 +235,8 @@
                    VerticalOptions="Center" />
             <ActivityIndicator x:Name="progress2"
                                IsRunning="true"
-                               
-                               Color="Aqua"
-                               />
-            </StackLayout>
+
+                               Color="Aqua" />
         </StackLayout>
-    </ScrollView>
+    </StackLayout>
 </ContentPage>

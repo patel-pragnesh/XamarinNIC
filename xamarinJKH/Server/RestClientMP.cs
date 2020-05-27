@@ -12,8 +12,8 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-        public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // Адрес сервера
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // Адрес сервера
+        public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
         // public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
@@ -569,7 +569,7 @@ namespace xamarinJKH.Server
             return new MemoryStream(response.RawBytes);
         }
 
-        public async Task<MemoryStream> DownloadFileAsync(string id)
+        public async Task<byte[]> DownloadFileAsync(string id)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(GET_FILE_BILLS + "/" + id, Method.GET);
@@ -582,7 +582,7 @@ namespace xamarinJKH.Server
                 return null;
             }
 
-            return new MemoryStream(response.RawBytes);
+            return response.RawBytes;
         }
 
         /// <summary>

@@ -73,6 +73,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CusTomReader\CustomEntryRenderer.cs" />
+    <Compile Include="CusTomReader\FileWorker.cs" />
     <Compile Include="CusTomReader\IconViewRenderer.cs" />
     <Compile Include="CusTomReader\MessageIOS.cs" />
     <Compile Include="Main.cs" />
