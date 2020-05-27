@@ -87,9 +87,9 @@ namespace xamarinJKH.Main
             }
             SetTextAndColor();
             getInfo();
-            FormattedString formattedResource = new FormattedString();
-            
-            if (Settings.Person.Accounts.Count > 0){
+            if (Settings.Person.Accounts.Count > 0)
+            {
+                FormattedString formattedResource = new FormattedString();
                 formattedResource.Spans.Add(new Span
                 {
                     Text = "Возможность передавать показания доступна с ",
@@ -99,7 +99,7 @@ namespace xamarinJKH.Main
                 });
                 formattedResource.Spans.Add(new Span
                 {
-                    Text = Settings.Person.Accounts[0].MetersStartDay + " по " + Settings.Person.Accounts[0].MetersEndDay + " числа ",
+                    // Text = Settings.Person.Accounts[0].MetersStartDay + " по " + Settings.Person.Accounts[0].MetersEndDay + " числа ",
                     TextColor = Color.White,
                     FontAttributes = FontAttributes.Bold,
                     FontSize = 15
@@ -111,18 +111,14 @@ namespace xamarinJKH.Main
                     FontAttributes = FontAttributes.None,
                     FontSize = 15
                 });
+
+                PeriodSendLbl.FormattedText = formattedResource;
             }
             else
             {
-                formattedResource.Spans.Add(new Span
-                {
-                    Text = " ",
-                    TextColor = Color.White,
-                    FontAttributes = FontAttributes.Bold,
-                    FontSize = 15
-                });
+                PeriodSendLbl.Text = "Лицевые счета не подключены";
             }
-            PeriodSendLbl.FormattedText = formattedResource;
+
             countersList.BackgroundColor = Color.Transparent;
         }
         

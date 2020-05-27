@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Xamarin.Forms;
 using xamarinJKH.Server.RequestModel;
 
 namespace xamarinJKH.Utils
@@ -9,6 +10,7 @@ namespace xamarinJKH.Utils
         public static MobileSettings MobileSettings = new MobileSettings();
         public static LoginResult Person = new LoginResult();
         public static List<NamedValue> TypeApp = new List<NamedValue>();
+        public static HashSet<Page> AppPAge = new HashSet<Page>();
         public static string UpdateKey = "";
         public static string DateUniq = "";
         public static EventBlockData EventBlockData = new EventBlockData();

@@ -83,6 +83,8 @@ namespace xamarinJKH.Main
             FrameBtnAdd.BackgroundColor = hex;
         }
 
+      
+
         async void getApps()
         {
             _requestList = await _server.GetRequestsList();

@@ -196,12 +196,21 @@
                 </Frame>
 
             </StackLayout>
+            <StackLayout
+                VerticalOptions="CenterAndExpand"
+                Margin="0,-100,0,0"
+                HorizontalOptions="CenterAndExpand">
+            <Image x:Name="IconViewNameUkLoad"
+                   Source="icon_login"
+                   HeightRequest="100"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
             <ActivityIndicator x:Name="progress2"
                                IsRunning="true"
-                               VerticalOptions="CenterAndExpand"
-                               HorizontalOptions="CenterAndExpand"
+                               
                                Color="Aqua"
                                />
+            </StackLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>

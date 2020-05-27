@@ -38,6 +38,8 @@ namespace xamarinJKH.Server
         public const string SAVE_METER_VALUE = "Meters/SaveMeterValue"; // Получить полную инфу по новости
         public const string GET_NEWS_FULL = "News/Content"; // Получить полную инфу по новости
         public const string GET_NEWS_IMAGE = "News/Image"; // Получить полную инфу по новости
+        public const string GET_SHOPS_GOODS = "Shops/Goods"; // Получить товары магазина
+        public const string GET_SHOPS_GOODS_IMAGE = "Shops/GoodsImage"; // Получить картинку товара
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -134,7 +136,7 @@ namespace xamarinJKH.Server
         /// <param name="password">Пароль</param>
         /// <param name="code">Код доступа необходимо запросить методом RequestAccessCode</param>
         /// <returns>CommonResult</returns>
-        public async Task<CommonResult> RegisterByPhone(string fio, string phone, string password, string code)
+        public async Task<CommonResult> RegisterByPhone(string fio, string phone, string password, string code, string birthday )
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(REGISTR_BY_PHONE, Method.POST);
@@ -144,7 +146,8 @@ namespace xamarinJKH.Server
                 fio,
                 phone,
                 password,
-                code
+                code,
+                birthday
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус
@@ -629,6 +632,44 @@ namespace xamarinJKH.Server
             }
 
             return response.Data;
+        }
+        /// <summary>
+        /// Получение товаров по магазину
+        /// </summary>
+        /// <returns>список товаров</returns>
+        public async Task<ItemsList<Goods>> GetShopGoods()
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_SHOPS_GOODS, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = await restClientMp.ExecuteTaskAsync<ItemsList<Goods>>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new ItemsList<Goods>()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        
+        public async Task<MemoryStream> GetImageGoods(string id)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_SHOPS_GOODS_IMAGE + "/" + id, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = restClientMp.Execute(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return null;
+            }
+
+            return new MemoryStream(response.RawBytes);
         }
     }
 }
