@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:apps="clr-namespace:xamarinJKH.Apps;assembly=xamarinJKH"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
-             
+
              x:Class="xamarinJKH.Apps.AppPage">
     <ContentPage.Content>
         <StackLayout>
@@ -25,15 +25,15 @@
                        VerticalOptions="Fill"
                        HorizontalOptions="Fill" />
                 <StackLayout x:Name="StackLayout"
-                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
                              Constant=15}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Height,
                              Factor=0,
                              Constant=0}"
-                    Orientation="Vertical">
+                             Orientation="Vertical">
                     <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
@@ -100,6 +100,7 @@
                                        HeightRequest="25"
                                        WidthRequest="25"
                                        IsVisible="False"
+                                       HorizontalOptions="StartAndExpand"
                                        Color="{Binding hex}" />
                     <xamarinJkh:IconView
                         x:Name="IconViewAddFile"

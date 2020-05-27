@@ -23,8 +23,8 @@ namespace xamarinJKH.Apps
         private Label LabelText = new Label();
         private Label LabelDate = new Label();
         Frame frameDate = new Frame();
-        Image imageA = new Image();
-        Image image = new Image();
+        IconView imageA = new IconView();
+        IconView image = new IconView();
 
         public MessageCell()
         {
@@ -35,7 +35,7 @@ namespace xamarinJKH.Apps
             frame.Margin = new Thickness(0, 0, 0, 0);
             frame.Padding = 5;
             frame.CornerRadius = 30;
-            
+
 
             ImagePerson.Source = ImageSource.FromFile("ic_not_author");
             ImagePerson.HeightRequest = 15;
@@ -90,7 +90,7 @@ namespace xamarinJKH.Apps
 
             image.IsVisible = false;
             image.HorizontalOptions = LayoutOptions.CenterAndExpand;
-          
+
 
             LabelText.TextColor = Color.Black;
             LabelText.FontSize = 15;
@@ -154,6 +154,11 @@ namespace xamarinJKH.Apps
 
             imageA.IsVisible = false;
             imageA.HorizontalOptions = LayoutOptions.CenterAndExpand;
+            image.HeightRequest = imageA.HeightRequest = 40;
+            image.WidthRequest = imageA.WidthRequest = 40;
+
+            imageA.Foreground = image.Foreground = Color.White;//Color.FromHex(Settings.MobileSettings.color);
+            image.Source = imageA.Source = "ic_file_download";
             StackLayout stackLayoutContentA = new StackLayout();
 
             LabelTextA.TextColor = Color.White;
@@ -270,19 +275,10 @@ namespace xamarinJKH.Apps
                 LabelName.Text = LabelNameA.Text = Name;
                 LabelText.Text = LabelTextA.Text = TextApp;
                 Labeltime.Text = LabeltimeA.Text = strings[1].Substring(0, 5);
-                // if (!FileID.Equals("-1"))
-                // {
-                //     if (TextApp.Contains("png") || TextApp.Contains("jpg"))
-                //     {
-                //         MemoryStream memoryStream = await server.GetFileAPP(FileID);
-                //         if (memoryStream != null)
-                //         {
-                //             image.Source = imageA.Source =
-                //                 ImageSource.FromStream(() => { return memoryStream; });
-                //             image.IsVisible = imageA.IsVisible = true;
-                //         }
-                //     }
-                // }
+                if (!FileID.Equals("-1"))
+                {
+                    image.IsVisible = imageA.IsVisible = true;
+                }
             }
         }
     }

@@ -24,6 +24,7 @@ namespace xamarinJKH.iOS
         {
             global::Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental");
             global::Xamarin.Forms.Forms.Init();
+            AiForms.Dialogs.Dialogs.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

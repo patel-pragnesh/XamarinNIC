@@ -22,6 +22,7 @@ namespace xamarinJKH.Droid
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            AiForms.Dialogs.Dialogs.Init(this);
             LoadApplication(new App());
           
 

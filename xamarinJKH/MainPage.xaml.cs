@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using xamarinJKH.Navigation;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
@@ -48,9 +49,19 @@ namespace xamarinJKH
             EntryLogin.Text = "";
             EntryPass.Text = "";
             // Login("79237173372", "123");
-            Login("79831727567", "123");
+            
             // Login("79261270258", "19871987");
             // Login("79261937745", "123");
+            string login = Preferences.Get("login","" );
+            string pass = Preferences.Get("pass","" );
+            if (Settings.IsFirsStart && !pass.Equals("") && !login.Equals(""))
+            {
+                // EntryLogin.Text = login;
+                // EntryPass.Text = pass;
+                Login(login, pass);
+                Settings.IsFirsStart = false;
+            }
+            
         }
 
         private async void getSettings()
@@ -129,6 +140,8 @@ namespace xamarinJKH
                     Settings.EventBlockData = await server.GetEventBlockData();
                     ItemsList<NamedValue> result = await server.GetRequestsTypes();
                     Settings.TypeApp = result.Data;
+                    Preferences.Set("login",replace );
+                    Preferences.Set("pass",pass );
                     await Navigation.PushModalAsync(new BottomNavigationPage());
                 }
                 else

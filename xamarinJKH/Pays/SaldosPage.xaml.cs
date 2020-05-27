@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using AiForms.Dialogs;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -107,13 +108,28 @@ namespace xamarinJKH.Pays
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             BillInfo select = e.Item as BillInfo;
-            var stream = await server.DownloadFileAsync(select.ID.ToString());
-            await DependencyService.Get<IFileWorker>().SaveTextAsync(select.Period + ".pdf", stream);
-            
-            await Launcher.OpenAsync(new OpenFileRequest
+            string filename = @select.Period + ".pdf";
+            if (await DependencyService.Get<IFileWorker>().ExistsAsync(filename))
             {
-                File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(select.Period + ".pdf"))
-            });
+                await Launcher.OpenAsync(new OpenFileRequest
+                {
+                    File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(filename))
+                });
+            }
+            else
+            {
+                await Settings.StartProgressBar();
+                var stream = await server.DownloadFileAsync(select.ID.ToString());
+                if (stream != null)
+                {
+                    await DependencyService.Get<IFileWorker>().SaveTextAsync(filename, stream);
+                    Loading.Instance.Hide();
+                    await Launcher.OpenAsync(new OpenFileRequest
+                    {
+                        File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(filename))
+                    });
+                }
+            }
         }
     }
 }

@@ -489,7 +489,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
-        public async Task<MemoryStream> GetFileAPP(string id)
+        public async Task<byte[]> GetFileAPP(string id)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(GET_FILE_APP + "/" + id, Method.GET);
@@ -502,7 +502,7 @@ namespace xamarinJKH.Server
                 return null;
             }
 
-            return new MemoryStream(response.RawBytes);
+            return response.RawBytes;
         }
         /// <summary>
         /// Получение полной инфы по новостям

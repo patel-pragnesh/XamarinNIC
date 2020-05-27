@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using AiForms.Dialogs;
+using AiForms.Dialogs.Abstractions;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
 using Xamarin.Essentials;
@@ -102,6 +104,7 @@ namespace xamarinJKH.Apps
                 default:
                     break;
             }
+
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) =>
@@ -143,6 +146,45 @@ namespace xamarinJKH.Apps
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
+            RequestMessage select = e.Item as RequestMessage;
+            if (!select.FileID.Equals("-1"))
+            {
+                
+                string fileName = FileName(@select.Text);
+                if (await DependencyService.Get<IFileWorker>().ExistsAsync(fileName))
+                {
+                    await Launcher.OpenAsync(new OpenFileRequest
+                    {
+                        File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+                    });
+                }
+                else
+                {
+                    await Settings.StartProgressBar();
+                    byte[] memoryStream = await _server.GetFileAPP(select.FileID.ToString());
+                    if (memoryStream != null)
+                    {
+                        await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
+                        Loading.Instance.Hide();
+                        await Launcher.OpenAsync(new OpenFileRequest
+                        {
+                            File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+                        });
+                    }
+                    else
+                    {
+                        await DisplayAlert("Ошибка", "Не удалось скачать файл", "OK");
+                    }
+                }
+            }
+        }
+        
+        string FileName(string text)
+        {
+            return text
+                .Replace("Отправлен новый файл: ", "")
+                .Replace("\"", "")
+                .Replace("\"", "");
         }
 
         async void addFileApp()
@@ -168,9 +210,7 @@ namespace xamarinJKH.Apps
                         return;
                     }
 
-                    
-                  
-                    
+
                     CommonResult commonResult = await _server.AddFileApps(_requestInfo.ID.ToString(),
                         pickedFile.FileName, pickedFile.DataArray,
                         pickedFile.FilePath);
