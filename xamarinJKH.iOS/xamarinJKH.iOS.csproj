@@ -222,11 +222,14 @@
     <BundleResource Include="Resources\ic_card_pay_black.png" />
     <BundleResource Include="Resources\ic_close.png" />
     <BundleResource Include="Resources\ic_close_password.png" />
+    <BundleResource Include="Resources\ic_cold_water.png" />
     <BundleResource Include="Resources\ic_date.png" />
     <BundleResource Include="Resources\ic_diskont.png" />
+    <BundleResource Include="Resources\ic_electr.png" />
     <BundleResource Include="Resources\ic_file.png" />
     <BundleResource Include="Resources\ic_file_download.png" />
     <BundleResource Include="Resources\ic_fio_reg.png" />
+    <BundleResource Include="Resources\ic_heat_water.png" />
     <BundleResource Include="Resources\ic_history_pay.png" />
     <BundleResource Include="Resources\ic_history_pay_top.png" />
     <BundleResource Include="Resources\ic_home.png" />
