@@ -16,6 +16,7 @@ namespace xamarinJKH.Main
         {
 
             InitializeComponent ();
+            NavigationPage.SetHasNavigationBar(this, false);
             SelectedTabColor = Color.FromHex(Utils.Settings.MobileSettings.color);
             UnselectedTabColor = Color.Gray;
            

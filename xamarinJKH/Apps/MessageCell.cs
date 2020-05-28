@@ -174,7 +174,7 @@ namespace xamarinJKH.Apps
             frameDateA.BackgroundColor = Color.FromHex("#E2E2E2");
             frameDateA.Margin = new Thickness(0, 0, 0, 10);
             frameDateA.Padding = 5;
-            frameDateA.CornerRadius = 30;
+            frameDateA.CornerRadius = 15;
 
             LabelDateA.FontSize = 15;
             LabelDateA.TextColor = Color.FromHex("#777777");

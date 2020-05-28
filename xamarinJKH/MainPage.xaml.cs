@@ -12,8 +12,10 @@ using xamarinJKH.Server.RequestModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using xamarinJKH.Main;
 using xamarinJKH.Utils;
+using NavigationPage = Xamarin.Forms.NavigationPage;
 
 namespace xamarinJKH
 {
@@ -28,6 +30,7 @@ namespace xamarinJKH
         public MainPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
             getSettings();
             var startRegForm = new TapGestureRecognizer();
             startRegForm.Tapped += async (s, e) => { await Navigation.PushModalAsync(new RegistrForm(this)); };

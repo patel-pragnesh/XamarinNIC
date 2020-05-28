@@ -1,6 +1,9 @@
 ﻿using System;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
+using Application = Xamarin.Forms.Application;
 
 namespace xamarinJKH
 {
@@ -10,7 +13,27 @@ namespace xamarinJKH
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    var nav = new Xamarin.Forms.NavigationPage(new MainPage())
+                    {
+                        BarBackgroundColor = Color.Black,
+                        BarTextColor = Color.White
+                    };
+
+                    nav.On<iOS>().SetIsNavigationBarTranslucent(true);
+                    nav.On<iOS>().SetStatusBarTextColorMode(StatusBarTextColorMode.MatchNavigationBarTextLuminosity);
+
+                    MainPage = nav;
+                    break;
+                case Device.Android:
+                    MainPage = new MainPage();
+                    break;
+                default:
+                    break;
+            }
+            
         }
 
         protected override void OnStart()

@@ -8,6 +8,7 @@
     <ContentPage.Content>
         <StackLayout>
             <RelativeLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+                
                 <Image x:Name="ImageFon"
                        Margin="0, -26, 0 ,0"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
@@ -96,7 +97,7 @@
                            VerticalOptions="Start"
                            BackgroundColor="White"
                            Padding="0, 25, 0, 25"
-                           Margin="10,0,10,0">
+                           Margin="10,10,10,0">
                         <StackLayout
                             Orientation="Horizontal">
                             <xamarinJkh:IconView
@@ -111,7 +112,7 @@
                                 FontSize="20"
                                 TextColor="Black"
                                 FontAttributes="Bold"
-                                Margin="0, 0, 0, 0"
+                                Margin="-20, 0, 0, 0"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="Center" />
                             <xamarinJkh:IconView
@@ -129,7 +130,7 @@
                            HorizontalOptions="FillAndExpand"
                            VerticalOptions="Start"
                            BackgroundColor="White"
-                           Margin="10, 0, 10, 0"
+                           Margin="10, 10, 10, 0"
                            Padding="0, 25, 0, 25">
                         <StackLayout
                             Orientation="Horizontal">
@@ -137,7 +138,7 @@
                                 x:Name="IconViewNews"
                                 Source="ic_news"
                                 HeightRequest="30"
-                                Margin="-20, 0, 0, 0"
+                                Margin="-10, 0, 0, 0"
                                 HorizontalOptions="Start"
                                 VerticalOptions="Center" />
                             <Label
@@ -145,7 +146,7 @@
                                 FontSize="20"
                                 TextColor="Black"
                                 FontAttributes="Bold"
-                                Margin="0, 0, 0, 0"
+                                Margin="-20, 0, 0, 0"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="Center" />
                             <xamarinJkh:IconView
@@ -160,7 +161,7 @@
                     </Frame>
                     <Frame x:Name="FrameQuestions"
                            CornerRadius="30"
-                           Margin="10, 10, 10, 10"
+                           Margin="10, 10, 10, 0"
                            HorizontalOptions="FillAndExpand"
                            VerticalOptions="Start"
                            BackgroundColor="White"
@@ -172,7 +173,7 @@
                                 Source="ic_questions2"
                                 HeightRequest="30"
                                 Foreground="Red"
-                                Margin="-20, 0, 0, 0"
+                                Margin="-10, 0, 0, 0"
                                 HorizontalOptions="Start"
                                 VerticalOptions="Center" />
                             <Label
@@ -180,7 +181,7 @@
                                 FontSize="20"
                                 TextColor="Black"
                                 FontAttributes="Bold"
-                                Margin="0, 0, 0, 0"
+                                Margin="-20, 0, 0, 0"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="Center" />
                             <xamarinJkh:IconView
@@ -195,7 +196,7 @@
                     </Frame>
                     <Frame x:Name="FrameOffers"
                            CornerRadius="30"
-                           Margin="10, 0, 10, 10"
+                           Margin="10, 10, 10, 0"
                            HorizontalOptions="FillAndExpand"
                            VerticalOptions="Start"
                            BackgroundColor="White"
@@ -206,14 +207,14 @@
                                 x:Name="IconViewOffers"
                                 Source="ic_diskont"
                                 HeightRequest="30"
-                                Margin="-20, 0, 0, 0"
+                                Margin="-10, 0, 0, 0"
                                 HorizontalOptions="Start"
                                 VerticalOptions="Center" />
                             <Label
                                 Text="Специальные предложения"
                                 FontSize="20"
                                 TextColor="Black"
-                                Margin="0, 0, 0, 0"
+                                Margin="-20, 0, 0, 0"
                                 FontAttributes="Bold"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="Center" />
@@ -229,7 +230,7 @@
                     </Frame>
                     <Frame x:Name="FrameShop"
                            CornerRadius="30"
-                           Margin="10, 0, 10, 10"
+                           Margin="10, 10, 10, 10"
                            IsVisible="False"
                            HorizontalOptions="FillAndExpand"
                            VerticalOptions="Start"

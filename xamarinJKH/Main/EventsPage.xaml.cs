@@ -4,12 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Additional;
 using xamarinJKH.News;
 using xamarinJKH.Questions;
 using xamarinJKH.Shop;
 using xamarinJKH.Utils;
+using NavigationPage = Xamarin.Forms.NavigationPage;
+using VisualElement = Xamarin.Forms.VisualElement;
 
 namespace xamarinJKH.Main
 {

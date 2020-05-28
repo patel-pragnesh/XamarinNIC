@@ -74,10 +74,6 @@ namespace xamarinJKH.iOS
                 var uiImage = UIImage.FromBundle(Element.Source);
                 if (uiImage != null)
                 {
-                    // if (Element.Source == "icon_login")
-                    // {
-                    //     uiImage = UIImage.FromBundle("icon_login");
-                    // }
                     uiImage = uiImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
                     Control.TintColor = Element.Foreground.ToUIColor();
                     Control.Image = uiImage;
@@ -86,6 +82,10 @@ namespace xamarinJKH.iOS
                         ((IVisualElementController)Element).NativeSizeChanged();
                     }
                 }
+                // else
+                // {
+                //     Console.WriteLine("===NULL===", Element.Source);
+                // }
             }
         }
     }

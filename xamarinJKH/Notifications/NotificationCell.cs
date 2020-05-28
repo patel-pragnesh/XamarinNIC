@@ -25,18 +25,20 @@ namespace xamarinJKH
             container.Orientation = StackOrientation.Vertical;
             StackLayout titleContainer = new StackLayout();
             titleContainer.Orientation = StackOrientation.Horizontal;
-            title.HorizontalOptions = LayoutOptions.FillAndExpand;
+            titleContainer.HorizontalOptions = LayoutOptions.FillAndExpand;
             title.Text = "Заголовок";
+            title.HorizontalTextAlignment = TextAlignment.Start;
+            title.HorizontalOptions = LayoutOptions.StartAndExpand;
             title.FontAttributes = FontAttributes.Bold;
             title.TextColor = Color.Black;
-            more.HorizontalOptions = LayoutOptions.End;
-            more.HorizontalTextAlignment = TextAlignment.End;
-            more.TextDecorations = TextDecorations.Underline;
             more.Text = "Подробнее >";
             more.FontSize = 11;
+            more.TextDecorations = TextDecorations.Underline;
             more.TextColor = Color.FromHex(Settings.MobileSettings.color);
-            more.WidthRequest = 190;
-           
+            more.HorizontalTextAlignment = TextAlignment.End;
+            more.HorizontalOptions = LayoutOptions.EndAndExpand;
+            more.MaxLines = 1;
+            more.MinimumWidthRequest = 80;
             titleContainer.Children.Add(title);
             titleContainer.Children.Add(more);
             container.Children.Add(titleContainer);

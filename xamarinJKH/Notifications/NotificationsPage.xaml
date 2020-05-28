@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <StackLayout>
             <RelativeLayout 
-                Margin="0,0,0,-120"
+                Margin="0,0,0,-180"
                 HorizontalOptions="FillAndExpand">
                 <!-- <Image x:Name="ImageTop" -->
                 <!--        Source="ic_top_event" -->

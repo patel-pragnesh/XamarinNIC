@@ -7,27 +7,27 @@
 
             android:TabbedPage.ToolbarPlacement="Bottom"
             x:Class="xamarinJKH.Main.BottomNavigationPage">
-    <NavigationPage HasNavigationBar="False" Title="События" IconImageSource="ic_events">
+    <NavigationPage HasNavigationBar="False" Title="События" IconImageSource="ic_events" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
             <local:EventsPage Title="События" IconImageSource="ic_events" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Оплата" IconImageSource="ic_pays">
+    <NavigationPage Title="Оплата" IconImageSource="ic_pays" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
             <local:PaysPage Title="Оплата" IconImageSource="ic_pays" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Показания" IconImageSource="ic_counters">
+    <NavigationPage Title="Показания" IconImageSource="ic_counters" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
             <local:CountersPage Title="Показания" IconImageSource="ic_counters" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Заявки" IconImageSource="ic_apps">
+    <NavigationPage Title="Заявки" IconImageSource="ic_apps" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
             <local:AppsPage Title="Заявки" IconImageSource="ic_apps" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Профиль" IconImageSource="ic_profile">
+    <NavigationPage Title="Профиль" IconImageSource="ic_profile" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
             <local:ProfilePage Title="Профиль" IconImageSource="ic_profile" />
         </x:Arguments>

@@ -273,10 +273,10 @@
     <BundleResource Include="Resources\ic_background_addCounter.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\ic_arrow_forward.png">
+    <BundleResource Include="Resources\ic_arrow_forward.png">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </AndroidResource>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

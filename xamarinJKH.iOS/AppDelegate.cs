@@ -26,7 +26,7 @@ namespace xamarinJKH.iOS
             global::Xamarin.Forms.Forms.Init();
             AiForms.Dialogs.Dialogs.Init();
             LoadApplication(new App());
-
+            UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;
             return base.FinishedLaunching(app, options);
         }
     }

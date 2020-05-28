@@ -71,7 +71,6 @@ namespace xamarinJKH.Main
             numberStack.Orientation = StackOrientation.Horizontal;
             numberStack.HorizontalOptions = LayoutOptions.FillAndExpand;
             Label numberLbl = new Label();
-            numberLbl.HorizontalOptions = LayoutOptions.StartAndExpand;
             numberLbl.Text = "Заводской №:";
             numberLbl.FontSize = 12;
             numberLbl.TextColor = Color.FromHex("#A2A2A2");

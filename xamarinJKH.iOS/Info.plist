@@ -40,5 +40,9 @@
 	<string>Light</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
