@@ -42,9 +42,18 @@ namespace xamarinJKH.Main
             StackLayout container = new StackLayout();
             container.Orientation = StackOrientation.Vertical;
 
+            StackLayout header = new StackLayout();
+            header.Orientation = StackOrientation.Horizontal;
+            header.HorizontalOptions = LayoutOptions.Center;
+
             resource.FontSize = 15;
             resource.TextColor = Color.Black;
             resource.HorizontalTextAlignment = TextAlignment.Center;
+
+            img.WidthRequest = 25;
+            
+            header.Children.Add(img);
+            header.Children.Add(resource);
             
             StackLayout addressStack = new StackLayout();
             addressStack.Orientation = StackOrientation.Horizontal;
@@ -64,7 +73,7 @@ namespace xamarinJKH.Main
             adress.MaxLines = 3;
             addressStack.Children.Add(adressLbl);
             addressStack.Children.Add(adress);
-            container.Children.Add(resource);
+            container.Children.Add(header);
             container.Children.Add(addressStack);
             
             StackLayout numberStack = new StackLayout();
@@ -340,8 +349,10 @@ namespace xamarinJKH.Main
                     Text = Resource,
                     TextColor = Color.Black,
                     FontAttributes = FontAttributes.Bold,
-                    FontSize = 20
+                    FontSize = 18
+                    
                 });
+                
                 resource.FormattedText = formattedResource;
                 adress.Text = Address;
                 number.Text = UniqueNum;
@@ -366,6 +377,19 @@ namespace xamarinJKH.Main
                     counterDate3.Text = Values[2].Period;
                     count3.Text = Values[2].Value.ToString(CultureInfo.InvariantCulture);
                 }
+
+                if (Resource.ToLower().Contains("холодное"))
+                {
+                    img.Source = ImageSource.FromFile("ic_cold_water");
+                }else if (Resource.ToLower().Contains("горячее"))
+                {
+                    img.Source = ImageSource.FromFile("ic_heat_water");
+                }
+                else
+                {
+                    img.Source = ImageSource.FromFile("ic_electr");
+                }
+
             }
         }
     }
