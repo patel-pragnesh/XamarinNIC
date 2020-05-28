@@ -5,6 +5,7 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:pays="clr-namespace:xamarinJKH.Pays;assembly=xamarinJKH"
              xmlns:apps="clr-namespace:xamarinJKH.Apps;assembly=xamarinJKH"
+             BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.Apps.NewAppPage">
     <ContentPage.Content>
         <StackLayout>
@@ -180,7 +181,7 @@
                                     HorizontalOptions="Start"
                                     HorizontalTextAlignment="Start" />
                                 <Label
-                                    Text="Файлы Максимальный размер: 10 МБ"
+                                    Text="Максимальный размер: 10 МБ"
                                     FontSize="11"
                                     TextColor="Gray"
                                     HorizontalOptions="Start"
@@ -222,7 +223,8 @@
 
                                 <DataTemplate>
                                     <apps:FileCell
-                                        FileName="{Binding FileName}" />
+                                        FileName="{Binding FileName}" 
+                                        FileSize="{Binding DataArray}" />
                                 </DataTemplate>
 
                             </ListView.ItemTemplate>

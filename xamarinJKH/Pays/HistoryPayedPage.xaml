@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:pays="clr-namespace:xamarinJKH.Pays;assembly=xamarinJKH"
+             BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.Pays.HistoryPayedPage">
     <ContentPage.Content>
         <StackLayout>

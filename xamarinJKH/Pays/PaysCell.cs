@@ -31,9 +31,11 @@ namespace xamarinJKH.Main
 
             StackLayout identAdress = new StackLayout();
             identAdress.HorizontalOptions = LayoutOptions.StartAndExpand;
+            identAdress.Spacing = 0;
+            
             ident.FontSize = 15;
             ident.TextColor = Color.Black;
-            adress.FontSize = 15;
+            adress.FontSize = 12;
             adress.TextColor = Color.Gray;
             adress.FontFamily = "Roboto";
 
@@ -113,9 +115,9 @@ namespace xamarinJKH.Main
             btn.TextColor = Color.White;
             btn.BackgroundColor = Color.Transparent;
             btn.HorizontalOptions  = LayoutOptions.Center;
-            btn.Margin = 10;
+            btn.Margin = 13;
             btn.FontAttributes = FontAttributes.Bold;
-            btn.FontSize = 15;
+            btn.FontSize = 16;
             btn.Text = "Оплатить";
 
             // containerBtn.Children.Add(image);

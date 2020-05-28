@@ -23,8 +23,10 @@ namespace xamarinJKH
         public string passAuth { get; set; }
 
         private MainPage _mainPage;
-        
+
         public Color hex { get; set; }
+
+        private bool isNext = false;
 
         public RegistrForm(MainPage mainPage)
         {
@@ -35,6 +37,26 @@ namespace xamarinJKH
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopModalAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
+
+            var nextReg = new TapGestureRecognizer();
+            nextReg.Tapped += async (s, e) => { FirstStepReg(); };
+            FrameBtnLogin.GestureRecognizers.Add(nextReg);
+
+            var nextReg2 = new TapGestureRecognizer();
+            nextReg2.Tapped += async (s, e) =>
+            {
+                if (isNext)
+                    SecondStep();
+            };
+            FrameBtnNextTwo.GestureRecognizers.Add(nextReg2); 
+            
+            var finalReg = new TapGestureRecognizer();
+            finalReg.Tapped += async (s, e) =>
+            {
+                FinalRegg();
+            };
+            FrameBtnRegFinal.GestureRecognizers.Add(finalReg);
+
             _mainPage = mainPage;
             var passwordVisible = new TapGestureRecognizer();
             passwordVisible.Tapped += async (s, e) =>
@@ -71,30 +93,37 @@ namespace xamarinJKH
             SwitchConsent.OnColor = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnReg.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            FrameBtnNextTwo.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            // FrameBtnNextTwo.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnRegFinal.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             FrameTech.BorderColor = Color.FromHex(Settings.MobileSettings.color);
             SwitchConsent.ThumbColor = Color.Black;
             BtnTech.TextColor = Color.FromHex(Settings.MobileSettings.color);
             progress.Color = Color.FromHex(Settings.MobileSettings.color);
-            
+
             LabelseparatorPassConfirm.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             LabelseparatorPass.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             LabelseparatorCode.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             LabelseparatorPhone.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             LabelseparatorFio.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            
         }
 
         private async void FirstStepReg()
         {
-            string phone = EntryPhone.Text;
+            string phone = EntryPhone.Text
+                .Replace("+", "")
+                .Replace(" ", "")
+                .Replace("(", "")
+                .Replace(")", "")
+                .Replace("-", "");
             string fio = EntryFio.Text;
             string date = DatePicker.Date.ToString("dd.MM.yyyy");
 
             if (phone.Equals(""))
             {
                 await DisplayAlert("Ошибка", "Заполните поле номер телефона", "OK");
+            }else if (phone.Length < 11)
+            {
+                await DisplayAlert("Ошибка", "Номер телефона необходимо ввести в формате: +7 (ХХХ) ХХХ-ХХХХ", "OK");
             }
             else if (fio.Equals(""))
             {
@@ -106,16 +135,26 @@ namespace xamarinJKH
             }
             else
             {
-                Person.Phone = phone.Replace("+", "")
-                    .Replace(" ", "")
-                    .Replace("(", "")
-                    .Replace(")", "")
-                    .Replace("-", "");
+                Person.Phone = phone;
                 Person.FIO = fio;
                 Person.Birthday = date;
-                LabelTitleRequestCode.Text = string.Format(
-                    "Чтобы получить код доступа нажмите «Запросить звонок с кодом».{0}Вам позвонит робот на номер {1} и сообщит код",
-                    Environment.NewLine, phone);
+                FormattedString formatted = new FormattedString();
+                formatted.Spans.Add(new Span
+                {
+                    Text =
+                        "Чтобы получить код доступа нажмите «Запросить звонок с кодом».\nВам позвонит робот на номер ",
+                });
+                formatted.Spans.Add(new Span
+                {
+                    Text = phone,
+                    TextColor = Color.Black,
+                });
+                formatted.Spans.Add(new Span
+                {
+                    Text = " и сообщит код",
+                });
+
+                LabelTitleRequestCode.FormattedText = formatted;
                 StepsImage.Source = ImageSource.FromFile("ic_steps_two");
                 RegistrationFrameStep1.IsVisible = false;
                 RegistrationFrameStep2.IsVisible = true;
@@ -125,6 +164,11 @@ namespace xamarinJKH
 
 
         private async void NextTwoReg(object sender, EventArgs e)
+        {
+            SecondStep();
+        }
+
+        private async void SecondStep()
         {
             var entryCodeText = EntryCode.Text;
             CheckResult result = await _server.RequestChechCode(Person.Phone, entryCodeText);
@@ -146,11 +190,13 @@ namespace xamarinJKH
         {
             if (!EntryCode.Text.Equals(""))
             {
-                FrameBtnNextTwo.IsVisible = true;
+                FrameBtnNextTwo.BackgroundColor = hex;
+                isNext = true;
             }
             else
             {
-                FrameBtnNextTwo.IsVisible = false;
+                FrameBtnNextTwo.BackgroundColor = Color.FromHex("#CFCFCF");
+                isNext = false;
             }
         }
 
@@ -169,7 +215,8 @@ namespace xamarinJKH
                 else
                 {
                     DependencyService.Get<IMessage>().ShortAlert("Запрос с кодом доступа отправлен");
-                }                
+                }
+
                 FrameBtnReg.IsVisible = true;
                 progress.IsVisible = false;
             }
@@ -190,6 +237,11 @@ namespace xamarinJKH
 
         private async void ButtonReg(object sender, EventArgs e)
         {
+            FinalRegg();
+        }
+
+        private async void FinalRegg()
+        {
             string pass = EntryPassNew.Text;
             string passConfirm = EntryPassCommit.Text;
             if (pass.Equals(""))
@@ -206,7 +258,8 @@ namespace xamarinJKH
             }
             else
             {
-                CommonResult result = await _server.RegisterByPhone(Person.FIO, Person.Phone, pass, Person.Code, Person.Birthday);
+                CommonResult result =
+                    await _server.RegisterByPhone(Person.FIO, Person.Phone, pass, Person.Code, Person.Birthday);
                 if (result.Error == null)
                 {
                     LoginAuth = "79237173372";
@@ -223,7 +276,6 @@ namespace xamarinJKH
 
         private void datePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
-            
         }
     }
 }

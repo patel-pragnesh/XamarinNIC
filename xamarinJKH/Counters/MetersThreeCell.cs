@@ -72,58 +72,85 @@ namespace xamarinJKH.Main
             numberStack.HorizontalOptions = LayoutOptions.FillAndExpand;
             Label numberLbl = new Label();
             numberLbl.HorizontalOptions = LayoutOptions.StartAndExpand;
-            numberLbl.Text = "Заводской №: ";
-            numberLbl.FontSize = 15;
+            numberLbl.Text = "Заводской №:";
+            numberLbl.FontSize = 12;
             numberLbl.TextColor = Color.FromHex("#A2A2A2");
             numberLbl.HorizontalTextAlignment = TextAlignment.Start;
+            numberLbl.HorizontalOptions = LayoutOptions.Start;
             numberLbl.MaxLines = 1;
-            numberLbl.WidthRequest = 100;
-            number.FontSize = 15;
-            number.HorizontalOptions = LayoutOptions.EndAndExpand;
+            // numberLbl.WidthRequest = 100;
+            number.FontSize = 12;
+            number.HorizontalOptions = LayoutOptions.End;
             number.TextColor = Color.Black;
             number.HorizontalTextAlignment = TextAlignment.End;
             number.MaxLines = 1;
+            
+            Label linesNumb = new Label();
+            linesNumb.HeightRequest = 1;
+            linesNumb.BackgroundColor = Color.LightGray;;
+            linesNumb.VerticalOptions = LayoutOptions.Center;
+            linesNumb.HorizontalOptions = LayoutOptions.FillAndExpand;
+            
             numberStack.Children.Add(numberLbl);
+            numberStack.Children.Add(linesNumb);
             numberStack.Children.Add(number);
             container.Children.Add(numberStack);
             
             StackLayout checkupDateStack = new StackLayout();
             checkupDateStack.Orientation = StackOrientation.Horizontal;
             checkupDateStack.HorizontalOptions = LayoutOptions.FillAndExpand;
+            checkupDateStack.Margin = new Thickness(0,-7,0,0);
             Label checkupDateLbl = new Label();
-            checkupDateLbl.Text = "Последняя поверка: ";
-            checkupDateLbl.FontSize = 15;
+            checkupDateLbl.Text = "Последняя поверка:";
+            checkupDateLbl.FontSize = 12;
             checkupDateLbl.TextColor = Color.FromHex("#A2A2A2");
             checkupDateLbl.HorizontalTextAlignment = TextAlignment.Start;
-            checkupDateLbl.HorizontalOptions = LayoutOptions.StartAndExpand;
+            checkupDateLbl.HorizontalOptions = LayoutOptions.Start;
             checkupDateLbl.MaxLines = 1;
-            checkupDateLbl.WidthRequest = 150;
-            checkup_date.FontSize = 15;
+            // checkupDateLbl.WidthRequest = 150;
+            checkup_date.FontSize = 12;
             checkup_date.TextColor = Color.Black;
             checkup_date.HorizontalTextAlignment = TextAlignment.End;
-            checkup_date.HorizontalOptions = LayoutOptions.EndAndExpand;
+            checkup_date.HorizontalOptions = LayoutOptions.End;
             checkup_date.MaxLines = 1;
+            
+            Label linesPover = new Label();
+            linesPover.HeightRequest = 1;
+            linesPover.BackgroundColor = Color.LightGray;;
+            linesPover.VerticalOptions = LayoutOptions.Center;
+            linesPover.HorizontalOptions = LayoutOptions.FillAndExpand;
+            
             checkupDateStack.Children.Add(checkupDateLbl);
+            checkupDateStack.Children.Add(linesPover);
             checkupDateStack.Children.Add(checkup_date);
             container.Children.Add(checkupDateStack);
             
             StackLayout recheckStack = new StackLayout();
             recheckStack.Orientation = StackOrientation.Horizontal;
             recheckStack.HorizontalOptions = LayoutOptions.FillAndExpand;
+            recheckStack.Margin = new Thickness(0,-7,0,0);
             Label recheckLbl = new Label();
-            recheckLbl.Text = "Межповерочный интервал: ";
-            recheckLbl.FontSize = 15;
+            recheckLbl.Text = "Межповерочный интервал:";
+            recheckLbl.FontSize = 12;
             recheckLbl.TextColor = Color.FromHex("#A2A2A2");
             recheckLbl.HorizontalTextAlignment = TextAlignment.Start;
-            recheckLbl.HorizontalOptions = LayoutOptions.StartAndExpand;
+            recheckLbl.HorizontalOptions = LayoutOptions.Start;
             recheckLbl.MaxLines = 1;
-            recheckLbl.WidthRequest = 150;
-            recheckup.FontSize = 15;
+            // recheckLbl.WidthRequest = 150;
+            recheckup.FontSize = 12;
             recheckup.TextColor = Color.Black;
             recheckup.HorizontalTextAlignment = TextAlignment.End;
-            recheckup.HorizontalOptions = LayoutOptions.EndAndExpand;
+            recheckup.HorizontalOptions = LayoutOptions.End;
             recheckup.MaxLines = 1;
+            
+            Label linesInterv = new Label();
+            linesInterv.HeightRequest = 1;
+            linesInterv.BackgroundColor = Color.LightGray;;
+            linesInterv.VerticalOptions = LayoutOptions.Center;
+            linesInterv.HorizontalOptions = LayoutOptions.FillAndExpand;
+            
             recheckStack.Children.Add(recheckLbl);
+            recheckStack.Children.Add(linesInterv);
             recheckStack.Children.Add(recheckup);
             container.Children.Add(recheckStack);
             
@@ -144,15 +171,23 @@ namespace xamarinJKH.Main
             counterDate1.FontSize = 15;
             counterDate1.TextColor = Color.FromHex("#A2A2A2");
             counterDate1.HorizontalTextAlignment = TextAlignment.Start;
-            counterDate1.HorizontalOptions = LayoutOptions.StartAndExpand;
+            counterDate1.HorizontalOptions = LayoutOptions.Start;
             counterDate1.MaxLines = 1;
-            counterDate1.WidthRequest = 150;
+            // counterDate1.WidthRequest = 150;
             count1.FontSize = 15;
             count1.TextColor = Color.Black;
             count1.HorizontalTextAlignment = TextAlignment.End;
-            count1.HorizontalOptions = LayoutOptions.EndAndExpand;
+            count1.HorizontalOptions = LayoutOptions.End;
+            count1.VerticalOptions = LayoutOptions.Start;
             count1.MaxLines = 1;
+            
+            Label lines = new Label();
+            lines.HeightRequest = 1;
+            lines.BackgroundColor = Color.LightGray;;
+            lines.VerticalOptions = LayoutOptions.Center;
+            lines.HorizontalOptions = LayoutOptions.FillAndExpand;
             count1Stack.Children.Add(counterDate1);
+            count1Stack.Children.Add(lines);
             count1Stack.Children.Add(count1);
             container.Children.Add(count1Stack);
             
@@ -162,15 +197,24 @@ namespace xamarinJKH.Main
             counterDate2.FontSize = 15;
             counterDate2.TextColor = Color.FromHex("#A2A2A2");
             counterDate2.HorizontalTextAlignment = TextAlignment.Start;
-            counterDate2.HorizontalOptions = LayoutOptions.StartAndExpand;
+            counterDate2.HorizontalOptions = LayoutOptions.Start;
             counterDate2.MaxLines = 1;
-            counterDate2.WidthRequest = 150;
+            // counterDate2.WidthRequest = 150;
             count2.FontSize = 15;
             count2.TextColor = Color.Black;
             count2.HorizontalTextAlignment = TextAlignment.End;
-            count2.HorizontalOptions = LayoutOptions.EndAndExpand;
+            count2.HorizontalOptions = LayoutOptions.End;
+            count2.VerticalOptions = LayoutOptions.Center;
             count2.MaxLines = 1;
+            
+            Label lines2 = new Label();
+            lines2.HeightRequest = 1;
+            lines2.BackgroundColor = Color.LightGray;;
+            lines2.VerticalOptions = LayoutOptions.Center;
+            lines2.HorizontalOptions = LayoutOptions.FillAndExpand;
+            
             count2Stack.Children.Add(counterDate2);
+            count2Stack.Children.Add(lines2);
             count2Stack.Children.Add(count2);
             container.Children.Add(count2Stack);
             
@@ -180,15 +224,24 @@ namespace xamarinJKH.Main
             counterDate3.FontSize = 15;
             counterDate3.TextColor = Color.FromHex("#A2A2A2");
             counterDate3.HorizontalTextAlignment = TextAlignment.Start;
-            counterDate3.HorizontalOptions = LayoutOptions.StartAndExpand;
+            counterDate3.HorizontalOptions = LayoutOptions.Start;
             counterDate3.MaxLines = 1;
-            counterDate3.WidthRequest = 150;
+            // counterDate3.WidthRequest = 150;
             count3.FontSize = 15;
             count3.TextColor = Color.Black;
             count3.HorizontalTextAlignment = TextAlignment.End;
-            count3.HorizontalOptions = LayoutOptions.EndAndExpand;
+            count3.HorizontalOptions = LayoutOptions.End;
+            count3.VerticalOptions = LayoutOptions.Center;
             count3.MaxLines = 1;
+            
+            Label lines3 = new Label();
+            lines3.HeightRequest = 1;
+            lines3.BackgroundColor = Color.LightGray;;
+            lines3.VerticalOptions = LayoutOptions.Center;
+            lines3.HorizontalOptions = LayoutOptions.FillAndExpand;
+            
             count3Stack.Children.Add(counterDate3);
+            count3Stack.Children.Add(lines3);
             count3Stack.Children.Add(count3);
             container.Children.Add(count3Stack);
 
@@ -196,7 +249,9 @@ namespace xamarinJKH.Main
             frameBtn.HorizontalOptions = LayoutOptions.FillAndExpand;
             frameBtn.VerticalOptions = LayoutOptions.Start;
             frameBtn.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            frameBtn.CornerRadius = 15;
+            frameBtn.CornerRadius = 10;
+            frameBtn.Margin = new Thickness(0,10,0,0);
+            frameBtn.Padding = 12;
 
             StackLayout containerBtn = new StackLayout();
             containerBtn.Orientation = StackOrientation.Horizontal;

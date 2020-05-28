@@ -3,6 +3,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.News.NewPage">
     <ContentPage.Content>
         <StackLayout>

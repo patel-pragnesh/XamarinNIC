@@ -72,7 +72,7 @@ namespace xamarinJKH.Pays
             formatted.Spans.Add(new Span
             {
                 Text = "Итого: ",
-                FontSize = 15,
+                FontSize = 17,
                 TextColor = Color.Black
             });
             formatted.Spans.Add(new Span
@@ -86,7 +86,7 @@ namespace xamarinJKH.Pays
             {
                 Text = " руб.",
                 FontSize = 15,
-                TextColor = Color.Gray
+                TextColor = Color.FromHex("#777777")
             });
             LabelTotal.FormattedText = formatted;
             String[] month = account.DebtActualDate.Split('.');
@@ -95,14 +95,14 @@ namespace xamarinJKH.Pays
             formatted.Spans.Add(new Span
             {
                 Text = "Оплата производится по квитанции за ",
-                FontSize = 15,
+                FontSize = 12,
                 TextColor = Color.Black
             });
             formatted.Spans.Add(new Span
             {
                 Text = Settings.months[Int32.Parse(month[1]) - 1] + " " + month[2],
-                FontSize = 15,
-                TextColor = Color.FromHex(Settings.MobileSettings.color),
+                FontSize = 12,
+                TextColor = Color.Black,
                 FontAttributes = FontAttributes.Bold
             });
             LabelMonth.FormattedText = formatted;

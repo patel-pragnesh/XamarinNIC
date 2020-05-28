@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.RegistrForm">
     <ContentPage.Content>
 
@@ -15,7 +16,7 @@
             <StackLayout
                 x:Name="BackStackLayout"
                 Orientation="Horizontal"
-                Margin="10, -150, 0, 0"
+                Margin="10, -170, 0, 0"
                 HorizontalOptions="Start">
                 <Image Source="ic_arrow_back"
                        HeightRequest="15"
@@ -29,7 +30,7 @@
             <Label
                 Text="Регистрация"
                 FontAttributes="Bold"
-                FontSize="30"
+                FontSize="27"
                 Margin="20, 20, 0, 0"
                 TextColor="White"
                 HorizontalOptions="Start" />
@@ -39,14 +40,14 @@
                 <StackLayout>
                     <Image x:Name="IconViewNameUk"
                            Source="icon_login"
-                           Margin="0, 70, 0, 0"
+                           Margin="0, 90, 0, 0"
                            HeightRequest="60"
                            HorizontalOptions="Center" />
 
                     <Label x:Name="UkName"
                            Text="Название"
                            FontAttributes="Bold"
-                           FontSize="20"
+                           FontSize="16"
                            TextColor="Black"
                            HorizontalOptions="Center" />
                     <!-- Первый шаг регистрации -->
@@ -170,8 +171,7 @@
                                         Format="dd.MM.yyyy"
                                         Date="6.01.2000"
                                         TextColor="#A2A2A2"
-                                        DateSelected="datePicker_DateSelected">
-                                    </DatePicker>
+                                        DateSelected="datePicker_DateSelected" />
                                 </StackLayout>
                                 <StackLayout
                                     Margin="0,-8,0,0"
@@ -209,15 +209,35 @@
 
                             <Frame CornerRadius="15"
                                    BackgroundColor="Red"
-                                   Margin="0, 10, 0, 0"
+                                   Margin="0, 5, 0, 0"
                                    x:Name="FrameBtnLogin"
-                                   Padding="0">
-                                <Button x:Name="BtnLogin"
-                                        Text="Далее"
+                                   Padding="12">
+                                <!-- <Button x:Name="BtnLogin" -->
+                                <!--         Text="Далее" -->
+                                <!--         TextColor="White" -->
+                                <!--         FontAttributes="Bold" -->
+                                <!--         Clicked="NextReg" -->
+                                <!--         BackgroundColor="Transparent" /> -->
+
+                                <StackLayout
+                                    Orientation="Horizontal"
+                                    Spacing="0"
+                                    HorizontalOptions="Center">
+                                    <Label
+                                        Text="Далее "
+                                        FontSize="15"
                                         TextColor="White"
                                         FontAttributes="Bold"
-                                        Clicked="NextReg"
-                                        BackgroundColor="Transparent" />
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center" />
+                                    <xamarinJkh:IconView Source="ic_arrow_forward"
+                                                         HeightRequest="12"
+                                                         WidthRequest="12"
+                                                         Margin="0,0,0,-3"
+                                                         Foreground="White"
+                                                         VerticalOptions="Center"
+                                                         HorizontalOptions="Center" />
+                                </StackLayout>
                             </Frame>
 
                         </StackLayout>
@@ -226,13 +246,17 @@
                     <Frame x:Name="RegistrationFrameStep2"
                            CornerRadius="50"
                            IsVisible="False"
-                           Margin="20, 15, 20, 15"
+                           Margin="15, 15, 15, 15"
                            BackgroundColor="White"
-                           Padding="10">
+                           Padding="5">
 
                         <StackLayout
                             Margin="10, 20, 10, 10">
-
+                            <Label Text="Подтверждение телефона"
+                                   FontAttributes="Bold"
+                                   FontSize="18"
+                                   TextColor="Black"
+                                   HorizontalOptions="Center" />
                             <StackLayout
                                 Orientation="Vertical"
                                 Margin="5, 10, 5, 10">
@@ -280,7 +304,7 @@
                                 </StackLayout>
                                 <Label x:Name="LabelTitleRequestCode"
                                        Text="Чтобы получить код доступа нажмите «Запросить звонок с кодом». Вам позвонит робот на номер +79237173372 и сообщит код"
-                                       FontSize="13"
+                                       FontSize="10"
                                        TextColor="#A2A2A2"
                                        HorizontalOptions="Center" />
                                 <!-- <Label Text="" -->
@@ -294,22 +318,24 @@
                                                    IsVisible="False"
                                                    Color="Red" />
                                 <Frame x:Name="FrameBtnReg"
-                                       CornerRadius="15"
+                                       CornerRadius="10"
                                        BackgroundColor="Red"
-                                       Margin="0, 10, 0, 0"
+                                       Margin="0, 5, 0, 0"
                                        Padding="0">
                                     <Button x:Name="BtnRegCode"
                                             Text="Запросить звонок с кодом"
                                             TextColor="White"
                                             FontAttributes="Bold"
+                                            Padding="0"
                                             Clicked="RegCodeRequest"
                                             BackgroundColor="Transparent" />
                                 </Frame>
 
                                 <StackLayout
+                                    Margin="0,5,0,0"
                                     Orientation="Horizontal">
-                                    <Label Text="Не поступил звонок? Напишите в тех. поддержку, поможем зарегист"
-                                           FontSize="13"
+                                    <Label Text="Не поступил звонок? Напишите в тех. поддержку, поможем зарегистрироваться"
+                                           FontSize="10"
                                            TextColor="#A2A2A2"
                                            WidthRequest="180"
                                            HorizontalOptions="Center" />
@@ -319,35 +345,57 @@
                                            Margin="-60, 0, 0, 0"
                                            HorizontalOptions="Center" />
                                     <Frame x:Name="FrameTech"
-                                           CornerRadius="15"
+                                           CornerRadius="10"
+                                           Margin="0,0,0,0"
                                            HorizontalOptions="FillAndExpand"
                                            BorderColor="Red"
-                                           HeightRequest="40"
-                                           VerticalOptions="End"
+                                           HeightRequest="35"
+                                           VerticalOptions="Center"
                                            Padding="0">
                                         <Button x:Name="BtnTech"
                                                 Text="Написать в тех. поддержку"
                                                 TextColor="Red"
                                                 FontSize="10"
+                                                FontAttributes="Bold"
                                                 Clicked="NextReg"
                                                 BackgroundColor="Transparent" />
+                                        
                                     </Frame>
                                 </StackLayout>
 
                             </StackLayout>
 
-                            <Frame CornerRadius="15"
-                                   BackgroundColor="Red"
-                                   Margin="0, 10, 0, 0"
+                            <Frame CornerRadius="10"
+                                   BackgroundColor="#CFCFCF"
+                                   Margin="0, 5, 0, 10"
                                    x:Name="FrameBtnNextTwo"
-                                   IsVisible="False"
-                                   Padding="0">
-                                <Button x:Name="BtnNextTwo"
-                                        Text="Далее"
+                                   Padding="12">
+                                <!-- <Button x:Name="BtnNextTwo" -->
+                                <!--         Text="Далее" -->
+                                <!--         TextColor="White" -->
+                                <!--         FontAttributes="Bold" -->
+                                <!--         Clicked="NextTwoReg" -->
+                                <!--         BackgroundColor="Transparent" /> -->
+
+                                <StackLayout
+                                    Orientation="Horizontal"
+                                    Spacing="0"
+                                    HorizontalOptions="Center">
+                                    <Label
+                                        Text="Далее "
+                                        FontSize="15"
                                         TextColor="White"
                                         FontAttributes="Bold"
-                                        Clicked="NextTwoReg"
-                                        BackgroundColor="Transparent" />
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center" />
+                                    <xamarinJkh:IconView Source="ic_arrow_forward"
+                                                         HeightRequest="12"
+                                                         WidthRequest="12"
+                                                         Margin="0,0,0,-3"
+                                                         Foreground="White"
+                                                         VerticalOptions="Center"
+                                                         HorizontalOptions="Center" />
+                                </StackLayout>
                             </Frame>
 
                         </StackLayout>
@@ -459,14 +507,38 @@
                             <Frame x:Name="FrameBtnRegFinal"
                                    CornerRadius="15"
                                    BackgroundColor="Red"
-                                   Margin="0, 10, 0, 0"
+                                   Margin="0, 10, 0, 10"
                                    Padding="0">
-                                <Button x:Name="BtnRegFinalStep"
-                                        Text="Зарегистрироваться"
-                                        TextColor="White"
-                                        FontAttributes="Bold"
-                                        Clicked="ButtonReg"
-                                        BackgroundColor="Transparent" />
+                                <!-- <Button x:Name="BtnRegFinalStep" -->
+                                <!--         Text="Зарегистрироваться" -->
+                                <!--         TextColor="White" -->
+                                <!--         FontAttributes="Bold" -->
+                                <!--         Clicked="ButtonReg" -->
+                                <!--         BackgroundColor="Transparent" /> -->
+                                
+                                <StackLayout
+                                    x:Name="SaveStackLayout"
+                                    Orientation="Horizontal"
+                                    Margin="0, 0, 0, 0"
+                                    Spacing="0"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="FillAndExpand">
+                                    <xamarinJkh:IconView x:Name="IconViewSave"
+                                                    Margin="0, 10, 0, 10"
+                                                    Source="ic_check_mark"
+                                                    HeightRequest="25"
+                                                    Foreground="White"
+                                                    HorizontalOptions="Start"
+                                                    VerticalOptions="Center" />
+                                    <Label x:Name="BtnSave"
+                                           Text="Зарегистрироваться"
+                                           Margin="0, 0, 0, 0"
+                                           FontSize="15"
+                                           TextColor="White"
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="FillAndExpand" 
+                                           VerticalOptions="Center"/>
+                                </StackLayout>
                             </Frame>
 
                         </StackLayout>
@@ -479,7 +551,7 @@
                                HorizontalOptions="FillAndExpand" />
                         <Label x:Name="LabelSteps"
                                Text="Шаг 1"
-                               FontSize="20"
+                               FontSize="16"
                                FontAttributes="Bold"
                                Margin="0, 10, 0, 15"
                                TextColor="Black"

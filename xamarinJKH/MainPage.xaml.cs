@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using xamarinJKH.Navigation;
@@ -31,6 +32,13 @@ namespace xamarinJKH
             var startRegForm = new TapGestureRecognizer();
             startRegForm.Tapped += async (s, e) => { await Navigation.PushModalAsync(new RegistrForm(this)); };
             RegistLabel.GestureRecognizers.Add(startRegForm);
+            
+            var startLogin = new TapGestureRecognizer();
+            startLogin.Tapped += async (s, e) =>
+            {
+                Login(EntryLogin.Text, EntryPass.Text);
+            };
+            FrameBtnLogin.GestureRecognizers.Add(startLogin);
 
             var forgetPasswordVisible = new TapGestureRecognizer();
             forgetPasswordVisible.Tapped += async (s, e) =>
@@ -56,10 +64,11 @@ namespace xamarinJKH
             string pass = Preferences.Get("pass","" );
             if (Settings.IsFirsStart && !pass.Equals("") && !login.Equals(""))
             {
-                // EntryLogin.Text = login;
-                // EntryPass.Text = pass;
+              
                 Login(login, pass);
                 Settings.IsFirsStart = false;
+                EntryLogin.Text = login;
+                EntryPass.Text = pass;
             }
             
         }
@@ -130,8 +139,16 @@ namespace xamarinJKH
                 .Replace("(", "")
                 .Replace(")", "")
                 .Replace("-", "");
+           
             if (!replace.Equals("") && !pass.Equals(""))
             {
+                if (replace.Length < 11)
+                {
+                    await DisplayAlert("Ошибка", "Номер телефона необходимо ввести в формате: +7 (ХХХ) ХХХ-ХХХХ", "OK");
+                    progress.IsVisible = false;
+                    FrameBtnLogin.IsVisible = true;
+                    return;
+                }
                 LoginResult login = await server.Login(replace, pass);
                 if (login.Error == null)
                 {

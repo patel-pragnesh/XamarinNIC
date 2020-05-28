@@ -15,12 +15,27 @@ namespace xamarinJKH.Pays
             container.Orientation = StackOrientation.Horizontal;
             container.HorizontalOptions = LayoutOptions.FillAndExpand;
             
+            Grid grid = new Grid
+            {
+                RowDefinitions =
+                {
+                    new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+                },
+                ColumnDefinitions =
+                {
+                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }
+                }
+            };
+            
             LabelDate.TextColor = Color.Black;
-            LabelDate.HorizontalOptions = LayoutOptions.StartAndExpand;
+            LabelDate.HorizontalOptions = LayoutOptions.FillAndExpand;
             LabelDate.FontSize = 15;
+            LabelDate.HorizontalTextAlignment = TextAlignment.Start;
             
             LabelPeriod.TextColor = Color.Black;
-            LabelPeriod.HorizontalOptions = LayoutOptions.CenterAndExpand;
+            LabelPeriod.HorizontalOptions = LayoutOptions.Fill;
             LabelPeriod.FontSize = 15;
             LabelPeriod.FontAttributes = FontAttributes.Bold;
             LabelPeriod.HorizontalTextAlignment = TextAlignment.Start;
@@ -28,12 +43,17 @@ namespace xamarinJKH.Pays
             LabelSum.TextColor = Color.Black;
             LabelSum.HorizontalOptions = LayoutOptions.EndAndExpand;
             LabelSum.FontSize = 15;
+            LabelSum.HorizontalTextAlignment = TextAlignment.Start;
             
             container.Children.Add(LabelDate);
             container.Children.Add(LabelPeriod);
             container.Children.Add(LabelSum);
 
-            View = container;
+            grid.Children.Add(LabelDate, 0, 0);
+            grid.Children.Add(LabelPeriod, 1, 0);
+            grid.Children.Add(LabelSum, 2, 0);
+            
+            View = grid;
 
         }
 

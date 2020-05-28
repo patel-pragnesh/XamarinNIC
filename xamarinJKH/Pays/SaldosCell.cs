@@ -15,13 +15,16 @@ namespace xamarinJKH.Pays
             StackLayout container = new StackLayout();
             container.Orientation = StackOrientation.Horizontal;
             container.Margin = new Thickness(0,0,0,10);
+            container.Spacing = 0;
             identDate.HorizontalOptions = LayoutOptions.FillAndExpand;
             sum.HorizontalOptions = LayoutOptions.End;
             sum.HorizontalTextAlignment = TextAlignment.End;
             file.HorizontalOptions = LayoutOptions.End;
             file.Foreground = Color.FromHex(Settings.MobileSettings.color);
-            file.HeightRequest = 20;
-            // file.WidthRequest = 10;
+            file.HeightRequest = 35;
+            file.WidthRequest = 25;
+            file.Margin = new Thickness(10,0,0,0);
+            file.VerticalOptions = LayoutOptions.End;
             file.Source = "ic_file";
             container.Children.Add(identDate);
             container.Children.Add(sum);

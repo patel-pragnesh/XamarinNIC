@@ -5,6 +5,7 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:questions="clr-namespace:xamarinJKH.Questions;assembly=xamarinJKH"
              xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
+             BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.Main.PaysPage">
     <ContentPage.Content>
         <StackLayout>
@@ -99,6 +100,7 @@
                         Text="+ Подключить лицевой счет"
                         TextDecorations="Underline"
                         FontAttributes="Bold"
+                        Margin="0,0,0,15"
                         HorizontalOptions="CenterAndExpand"
                         TextColor="White"
                         FontSize="15" />

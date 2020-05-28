@@ -50,18 +50,19 @@ namespace xamarinJKH.Pays
 
         private async Task RefreshData()
         {
-
             ItemsList<AccountAccountingInfo> info = await _server.GetAccountingInfo();
             if (info.Error == null)
             {
                 SetBills(info.Data);
                 additionalList.ItemsSource = null;
                 additionalList.ItemsSource = BillInfos;
-            }else
+            }
+            else
             {
                 await DisplayAlert("Ошибка", "Не удалось получить информацию о квитанциях", "OK");
             }
         }
+
         public SaldosPage(List<AccountAccountingInfo> infos)
         {
             SetBills(infos);
@@ -77,13 +78,13 @@ namespace xamarinJKH.Pays
                 default:
                     break;
             }
+
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
             SetText();
             this.BindingContext = this;
-            
         }
 
         void SetBills(List<AccountAccountingInfo> infos)
@@ -95,10 +96,9 @@ namespace xamarinJKH.Pays
                 {
                     BillInfos.Add(VARIABLE);
                 }
-                
             }
         }
-        
+
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
@@ -109,6 +109,11 @@ namespace xamarinJKH.Pays
         {
             BillInfo select = e.Item as BillInfo;
             string filename = @select.Period + ".pdf";
+            if (!select.HasFile)
+            {
+                return;
+            }
+
             if (await DependencyService.Get<IFileWorker>().ExistsAsync(filename))
             {
                 await Launcher.OpenAsync(new OpenFileRequest

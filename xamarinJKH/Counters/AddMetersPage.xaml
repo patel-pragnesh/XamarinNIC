@@ -6,6 +6,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:xamarinJKH"
+             BackgroundColor="#F3F3F3"
              xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
              xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
              xmlns:counters="clr-namespace:xamarinJKH.Counters;assembly=xamarinJKH"

@@ -133,7 +133,7 @@
                                            VerticalOptions="Center" />
 
                                     <Entry x:Name="EntryFio"
-                                           FontSize="18"
+                                           FontSize="15"
                                            VerticalOptions="End"
                                            HorizontalTextAlignment="Center"
                                            TextColor="#A2A2A2"
@@ -179,7 +179,7 @@
                                            VerticalOptions="Center" />
 
                                     <Entry x:Name="EntryEmail"
-                                           FontSize="18"
+                                           FontSize="15"
                                            TextColor="#A2A2A2"
                                            BackgroundColor="Transparent"
                                            HorizontalTextAlignment="Center"
@@ -234,6 +234,7 @@
                                            Margin="0, 0, 0, 0"
                                            FontSize="15"
                                            TextColor="White"
+                                           FontAttributes="Bold"
                                            HorizontalOptions="FillAndExpand" 
                                            VerticalOptions="Center"/>
                                 </StackLayout>
