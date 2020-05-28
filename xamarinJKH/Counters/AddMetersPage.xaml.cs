@@ -31,7 +31,8 @@ namespace xamarinJKH.Counters
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    ImageFon.Margin = new Thickness(0, 7, 0, 0);
+                    BackgroundColor = Color.White;
+                    ImageFon.Margin = new Thickness(0, 0, 0, 0);
                     StackLayout.Margin = new Thickness(0, 33, 0, 0);
                     IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
@@ -58,6 +59,17 @@ namespace xamarinJKH.Counters
         
         void SetTextAndColor()
         {
+            if (meter.Resource.ToLower().Contains("холодное"))
+            {
+                img.Source = ImageSource.FromFile("ic_cold_water");
+            }else if (meter.Resource.ToLower().Contains("горячее"))
+            {
+                img.Source = ImageSource.FromFile("ic_heat_water");
+            }
+            else
+            {
+                img.Source = ImageSource.FromFile("ic_electr");
+            }
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.Phone;
             NameLbl.Text = meter.Resource;
