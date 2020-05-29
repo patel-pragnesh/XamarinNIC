@@ -89,7 +89,7 @@
                         VerticalOptions="FillAndExpand"
                         Margin="10, -150, 10, 0">
                 <StackLayout
-                    VerticalOptions="StartAndExpand">
+                    VerticalOptions="FillAndExpand">
 
                     <Frame x:Name="FrameNotification"
                            CornerRadius="30"

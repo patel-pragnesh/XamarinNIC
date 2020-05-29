@@ -29,6 +29,9 @@ namespace xamarinJKH.Main
         private Label counterDate3 = new Label();
         private Label count3 = new Label();
 
+        StackLayout count1Stack = new StackLayout();
+        StackLayout count2Stack = new StackLayout();
+        StackLayout count3Stack = new StackLayout();
         public MetersThreeCell()
         {
             Frame frame = new Frame();
@@ -96,6 +99,7 @@ namespace xamarinJKH.Main
             Label linesNumb = new Label();
             linesNumb.HeightRequest = 1;
             linesNumb.BackgroundColor = Color.LightGray;;
+            linesNumb.Margin = new Thickness(0,2,0,0);
             linesNumb.VerticalOptions = LayoutOptions.Center;
             linesNumb.HorizontalOptions = LayoutOptions.FillAndExpand;
             
@@ -126,6 +130,7 @@ namespace xamarinJKH.Main
             linesPover.HeightRequest = 1;
             linesPover.BackgroundColor = Color.LightGray;;
             linesPover.VerticalOptions = LayoutOptions.Center;
+            linesPover.Margin = new Thickness(0,2,0,0);
             linesPover.HorizontalOptions = LayoutOptions.FillAndExpand;
             
             checkupDateStack.Children.Add(checkupDateLbl);
@@ -155,6 +160,7 @@ namespace xamarinJKH.Main
             linesInterv.HeightRequest = 1;
             linesInterv.BackgroundColor = Color.LightGray;;
             linesInterv.VerticalOptions = LayoutOptions.Center;
+            linesInterv.Margin = new Thickness(0,2,0,0);
             linesInterv.HorizontalOptions = LayoutOptions.FillAndExpand;
             
             recheckStack.Children.Add(recheckLbl);
@@ -173,7 +179,7 @@ namespace xamarinJKH.Main
             tarif1.TextColor = Color.Red;
             tarif1.HorizontalTextAlignment = TextAlignment.Center;
             
-            StackLayout count1Stack = new StackLayout();
+            
             count1Stack.Orientation = StackOrientation.Horizontal;
             count1Stack.HorizontalOptions = LayoutOptions.FillAndExpand;
             counterDate1.FontSize = 15;
@@ -199,7 +205,6 @@ namespace xamarinJKH.Main
             count1Stack.Children.Add(count1);
             container.Children.Add(count1Stack);
             
-            StackLayout count2Stack = new StackLayout();
             count2Stack.Orientation = StackOrientation.Horizontal;
             count2Stack.HorizontalOptions = LayoutOptions.FillAndExpand;
             counterDate2.FontSize = 15;
@@ -226,7 +231,6 @@ namespace xamarinJKH.Main
             count2Stack.Children.Add(count2);
             container.Children.Add(count2Stack);
             
-            StackLayout count3Stack = new StackLayout();
             count3Stack.Orientation = StackOrientation.Horizontal;
             count3Stack.HorizontalOptions = LayoutOptions.FillAndExpand;
             counterDate3.FontSize = 15;
@@ -362,12 +366,14 @@ namespace xamarinJKH.Main
                 {
                     counterDate1.Text = Values[0].Period;
                     count1.Text = Values[0].Value.ToString(CultureInfo.InvariantCulture);
+                    count2Stack.IsVisible = count3Stack.IsVisible = false;
                 }else if (Values.Count == 2)
                 {
                     counterDate1.Text = Values[0].Period;
                     count1.Text = Values[0].Value.ToString(CultureInfo.InvariantCulture);
                     counterDate2.Text = Values[1].Period;
                     count2.Text = Values[1].Value.ToString(CultureInfo.InvariantCulture);
+                    count3Stack.IsVisible = false;
                 }else if (Values.Count == 3)
                 {
                     counterDate1.Text = Values[0].Period;

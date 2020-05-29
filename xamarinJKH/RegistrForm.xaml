@@ -64,16 +64,18 @@
                                 Orientation="Vertical"
                                 Margin="5, 10, 5, 10">
                                 <StackLayout
+                                    Margin="15,0,0,0"
                                     Orientation="Horizontal">
                                     <xamarinJkh:IconView x:Name="IconViewLogin"
                                                          Source="ic_phone_login"
                                                          HeightRequest="25"
+                                                         WidthRequest="25"
                                                          Foreground="Red"
                                                          VerticalOptions="Center" />
                                     <Label Text="Телефон"
-                                           FontSize="15"
+                                           FontSize="14"
                                            TextColor="Black"
-                                           Margin="-5, 0, 0, 0"
+                                           HorizontalOptions="Start"
                                            VerticalOptions="Center" />
 
                                     <Entry x:Name="EntryPhone"
@@ -110,18 +112,20 @@
                                 </StackLayout>
 
                                 <StackLayout
-                                    Margin="0, 20, 0, 0"
+                                    Margin="15, 20, 0, 0"
                                     Orientation="Horizontal">
                                     <xamarinJkh:IconView x:Name="IconViewFio"
                                                          Source="ic_fio_reg"
                                                          HeightRequest="25"
+                                                         WidthRequest="25"
                                                          Foreground="Red"
                                                          VerticalOptions="Center" />
 
                                     <Label Text="ФИО  "
-                                           FontSize="15"
+                                           FontSize="14"
                                            TextColor="Black"
-                                           Margin="-5, 0, 15, 5"
+                                           HorizontalOptions="Start"
+                                           Margin="0, 0, 13, 5"
                                            VerticalOptions="Center" />
 
                                     <Entry x:Name="EntryFio"
@@ -151,27 +155,33 @@
                                 </StackLayout>
 
                                 <StackLayout
-                                    Margin="0, 10, 0, 0"
+                                    Margin="15, 10, 0, 0"
                                     Orientation="Horizontal">
                                     <xamarinJkh:IconView x:Name="IconViewDate"
                                                          Source="ic_date"
                                                          HeightRequest="25"
+                                                         WidthRequest="25"
                                                          Foreground="{Binding hex}"
                                                          VerticalOptions="Center" />
 
                                     <Label Text="Дата рождения"
-                                           FontSize="15"
+                                           FontSize="14"
                                            TextColor="Black"
-                                           Margin="-5, 0, 15, 5"
+                                           HorizontalOptions="Start"
+                                           Margin="-0, 0, 15, 5"
                                            VerticalOptions="Center" />
-
+                                    <StackLayout 
+                                        HorizontalOptions="FillAndExpand">
                                     <DatePicker
                                         x:Name="DatePicker"
                                         Margin="15,0,0,0"
                                         Format="dd.MM.yyyy"
+                                        FontSize="15"
+                                        HorizontalOptions="Center"
                                         Date="6.01.2000"
                                         TextColor="#A2A2A2"
                                         DateSelected="datePicker_DateSelected" />
+                                    </StackLayout>
                                 </StackLayout>
                                 <StackLayout
                                     Margin="0,-8,0,0"
@@ -198,7 +208,7 @@
                                 HorizontalOptions="End">
                                 <Label Text="Согласие на обработку персональных данных"
                                        FontSize="13"
-                                       Margin="0, 15, 0, 15"
+                                       Margin="5, 15, 5, 15"
                                        TextColor="Black"
                                        HorizontalOptions="Center" />
                                 <Switch
@@ -209,7 +219,7 @@
 
                             <Frame CornerRadius="15"
                                    BackgroundColor="Red"
-                                   Margin="0, 5, 0, 0"
+                                   Margin="5, 5, 5, 0"
                                    x:Name="FrameBtnLogin"
                                    Padding="12">
                                 <!-- <Button x:Name="BtnLogin" -->
@@ -301,7 +311,7 @@
                                         BackgroundColor="Red"
                                         HorizontalOptions="FillAndExpand" />
 
-                                </StackLayout>
+                                    </StackLayout>
                                 <Label x:Name="LabelTitleRequestCode"
                                        Text="Чтобы получить код доступа нажмите «Запросить звонок с кодом». Вам позвонит робот на номер +79237173372 и сообщит код"
                                        FontSize="10"
@@ -341,8 +351,8 @@
                                            HorizontalOptions="Center" />
                                     <Image Source="ic_arrow_tech"
                                            VerticalOptions="End"
-                                           WidthRequest="80"
-                                           Margin="-60, 0, 0, 0"
+                                           WidthRequest="60"
+                                           Margin="-40, 0, 0, 0"
                                            HorizontalOptions="Center" />
                                     <Frame x:Name="FrameTech"
                                            CornerRadius="10"
@@ -367,7 +377,7 @@
 
                             <Frame CornerRadius="10"
                                    BackgroundColor="#CFCFCF"
-                                   Margin="0, 5, 0, 10"
+                                   Margin="5, 5, 5, 10"
                                    x:Name="FrameBtnNextTwo"
                                    Padding="12">
                                 <!-- <Button x:Name="BtnNextTwo" -->
@@ -418,11 +428,11 @@
                                     Orientation="Horizontal">
                                     <xamarinJkh:IconView x:Name="IconViewPassNew"
                                                          Source="ic_password_login"
-                                                         HeightRequest="25"
+                                                         HeightRequest="20"
                                                          Foreground="Red"
                                                          VerticalOptions="Center" />
                                     <Label Text="Создайте пароль    "
-                                           FontSize="15"
+                                           FontSize="13.5"
                                            TextColor="Black"
                                            Margin="-10, 0, 20, 0"
                                            VerticalOptions="Center" />
@@ -438,6 +448,7 @@
                                     <xamarinJkh:IconView x:Name="ImageClosePass"
                                                          Source="ic_close_password"
                                                          HeightRequest="15"
+                                                         WidthRequest="15"
                                                          VerticalOptions="Center" />
                                 </StackLayout>
 
@@ -464,11 +475,11 @@
                                     Orientation="Horizontal">
                                     <xamarinJkh:IconView x:Name="IconViewConfirmPass"
                                                          Source="ic_password_login"
-                                                         HeightRequest="25"
+                                                         HeightRequest="20"
                                                          VerticalOptions="Center" />
 
                                     <Label Text="Подтвердите пароль"
-                                           FontSize="15"
+                                           FontSize="13.5"
                                            TextColor="Black"
                                            Margin="-10, 0, 15, 0"
                                            VerticalOptions="Center" />

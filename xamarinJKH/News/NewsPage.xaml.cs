@@ -69,6 +69,8 @@ namespace xamarinJKH.News
                     IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
+                    RelativeLayoutTop.Margin = new Thickness(0,0,0,-135);
+                    break;
                 default:
                     break;
             }
