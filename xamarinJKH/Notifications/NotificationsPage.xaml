@@ -10,6 +10,7 @@
         <StackLayout>
             <RelativeLayout 
                 Margin="0,0,0,-150"
+                x:Name="RelativeLayoutTop"
                 HorizontalOptions="FillAndExpand">
                 <!-- <Image x:Name="ImageTop" -->
                 <!--        Source="ic_top_event" -->
