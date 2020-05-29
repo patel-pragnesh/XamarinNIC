@@ -118,6 +118,8 @@
                                  HorizontalOptions="CenterAndExpand">
                         <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="CenterAndExpand">
+                            <Image x:Name="img"
+                                WidthRequest="25"/>
                             <Label x:Name="NameLbl"
                                 Text="Лицевой счет: "
                                 HeightRequest="20"

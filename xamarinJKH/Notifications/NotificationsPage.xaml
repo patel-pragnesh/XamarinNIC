@@ -9,8 +9,7 @@
     <ContentPage.Content>
         <StackLayout>
             <RelativeLayout 
-                Margin="0,0,0,-180"
-                x:Name="RelativeLayoutTop"
+                Margin="0,0,0,-150"
                 HorizontalOptions="FillAndExpand">
                 <!-- <Image x:Name="ImageTop" -->
                 <!--        Source="ic_top_event" -->
@@ -88,7 +87,7 @@
                     <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
-                        Margin="0, 35, 0, 0"
+                        Margin="0, 40, 0, 0"
                         HorizontalOptions="Start">
                         <Image Source="ic_arrow_back"
                                HeightRequest="15"

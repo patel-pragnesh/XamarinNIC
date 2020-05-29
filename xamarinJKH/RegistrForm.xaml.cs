@@ -37,7 +37,16 @@ namespace xamarinJKH
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopModalAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
-
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    BackgroundColor = Color.White;
+                    BackStackLayout.Margin = new Thickness(10, -150, 0, 0);
+                    break;
+                case Device.Android:
+                default:
+                    break;
+            }
             var nextReg = new TapGestureRecognizer();
             nextReg.Tapped += async (s, e) => { FirstStepReg(); };
             FrameBtnLogin.GestureRecognizers.Add(nextReg);

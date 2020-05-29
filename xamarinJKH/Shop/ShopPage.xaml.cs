@@ -44,7 +44,8 @@ namespace xamarinJKH.Shop
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    ImageTop.Margin = new Thickness(0, 7, 0, 0);
+                    BackgroundColor = Color.White;
+                    ImageTop.Margin = new Thickness(0, 0, 0, 0);
                     StackLayout.Margin = new Thickness(0, 33, 0, 0);
                     IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
