@@ -155,7 +155,7 @@ namespace xamarinJKH
                 });
                 formatted.Spans.Add(new Span
                 {
-                    Text = phone,
+                    Text = EntryPhone.Text,
                     TextColor = Color.Black,
                 });
                 formatted.Spans.Add(new Span

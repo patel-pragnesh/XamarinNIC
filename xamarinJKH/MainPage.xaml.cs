@@ -15,6 +15,7 @@ using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using xamarinJKH.Main;
 using xamarinJKH.Utils;
+using XamEffects;
 using NavigationPage = Xamarin.Forms.NavigationPage;
 
 namespace xamarinJKH

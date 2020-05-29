@@ -25,6 +25,7 @@ namespace xamarinJKH.iOS
             global::Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental");
             global::Xamarin.Forms.Forms.Init();
             AiForms.Dialogs.Dialogs.Init();
+            XamEffects.iOS.Effects.Init(); 
             LoadApplication(new App());
             UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;
             return base.FinishedLaunching(app, options);

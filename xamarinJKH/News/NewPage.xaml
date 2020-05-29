@@ -106,23 +106,24 @@
                 <StackLayout
                     VerticalOptions="StartAndExpand">
                     <StackLayout
+                        Spacing="0"
                         Margin="20">
                         <Label x:Name="LabelTitle"
                                FontAttributes="Bold"
-                               FontSize="25"
-                               HorizontalOptions="CenterAndExpand"
+                               FontSize="20"
+                               HorizontalOptions="StartAndExpand"
                                TextColor="Black"
                                Text="Заголовок" />
                         <Label x:Name="LabelDate"
                                HorizontalOptions="Start"
                                TextColor="Black"
-                               FontSize="20"
+                               FontSize="15"
                                Text="23.05.2020" />
                         <Label x:Name="LabelText"
                                HorizontalOptions="Start"
                                TextType="Html"
                                Margin="0, 20, 0, 0"
-                               FontSize="20"
+                               FontSize="15"
                                TextColor="Black"
                                Text="Большой текст">
                         </Label>
