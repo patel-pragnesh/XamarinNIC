@@ -363,7 +363,7 @@
                                            VerticalOptions="Center"
                                            Padding="0">
                                         <Button x:Name="BtnTech"
-                                                Text="Написать в тех. поддержку"
+                                                Text="   Написать в тех. поддержку   "
                                                 TextColor="Red"
                                                 FontSize="10"
                                                 FontAttributes="Bold"
@@ -492,6 +492,11 @@
                                            BackgroundColor="Transparent"
                                            HorizontalTextAlignment="Center"
                                            HorizontalOptions="FillAndExpand" />
+                                    <xamarinJkh:IconView Source="ic_close_password"
+                                                         HeightRequest="15"
+                                                         WidthRequest="15"
+                                                         VerticalOptions="Center" 
+                                                         Foreground="White"/>
 
                                 </StackLayout>
                                 <StackLayout

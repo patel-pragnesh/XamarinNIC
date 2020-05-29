@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AiForms.Dialogs;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
@@ -211,8 +212,9 @@ namespace xamarinJKH
 
         private async void RegCodeRequest(object sender, EventArgs e)
         {
-            FrameBtnReg.IsVisible = false;
-            progress.IsVisible = true;
+            // FrameBtnReg.IsVisible = false;
+            // progress.IsVisible = true;
+            await Settings.StartProgressBar(title: "Подождите", opacity: 0.4);
             CommonResult result = await _server.RequestAccessCode(Person.Phone);
             if (result.Error == null)
             {
@@ -226,13 +228,15 @@ namespace xamarinJKH
                     DependencyService.Get<IMessage>().ShortAlert("Запрос с кодом доступа отправлен");
                 }
 
-                FrameBtnReg.IsVisible = true;
-                progress.IsVisible = false;
+                // FrameBtnReg.IsVisible = true;
+                // progress.IsVisible = false;
+                Loading.Instance.Hide();
             }
             else
             {
-                FrameBtnReg.IsVisible = true;
-                progress.IsVisible = false;
+                // FrameBtnReg.IsVisible = true;
+                // progress.IsVisible = false;
+                Loading.Instance.Hide();
                 if (Device.RuntimePlatform == Device.iOS)
                 {
                     await DisplayAlert("", result.Error, "OK");

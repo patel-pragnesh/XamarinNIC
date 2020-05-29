@@ -63,14 +63,14 @@ namespace xamarinJKH.Utils
 
             return null;
         }
-        public static async Task StartProgressBar()
+        public static async Task StartProgressBar(string title = "Загрузка", double opacity = 0.6)
         {
             // Loading settings
             Configurations.LoadingConfig = new LoadingConfig {
                 IndicatorColor = Color.FromHex(MobileSettings.color),
                 OverlayColor = Color.Black,
-                Opacity = 0.6,
-                DefaultMessage = "Загрузка",
+                Opacity = opacity,
+                DefaultMessage = title,
             };
 
             await Loading.Instance.StartAsync(async progress =>{
