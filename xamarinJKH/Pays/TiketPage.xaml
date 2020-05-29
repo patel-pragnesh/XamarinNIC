@@ -99,7 +99,6 @@
                              Factor=0,
                              Constant=25}" />
             </RelativeLayout>
-            <WebView x:Name="WebViewPdf"></WebView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
