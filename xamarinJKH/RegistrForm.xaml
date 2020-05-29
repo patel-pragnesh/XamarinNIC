@@ -518,7 +518,7 @@
                             <Frame x:Name="FrameBtnRegFinal"
                                    CornerRadius="15"
                                    BackgroundColor="Red"
-                                   Margin="0, 10, 0, 10"
+                                   Margin="5, 10, 5, 10"
                                    Padding="0">
                                 <!-- <Button x:Name="BtnRegFinalStep" -->
                                 <!--         Text="Зарегистрироваться" -->
