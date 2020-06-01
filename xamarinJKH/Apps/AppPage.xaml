@@ -50,17 +50,64 @@
                     </StackLayout>
                     <Label x:Name="LabelNumber"
                            FontSize="20"
-                           Margin="10, 0 ,0,0"
+                           Margin="10, 10 ,0,0"
                            TextColor="White" />
                 </StackLayout>
             </RelativeLayout>
-            <Frame CornerRadius="30"
-                   Margin="20, 15, 20, -30"
+            <StackLayout HorizontalOptions="Fill">
+                <Frame CornerRadius="40"
+                       Margin="0, -60, 15, -95"
+                       HorizontalOptions="End"
+                       BackgroundColor="#B5B5B5"
+                       Padding="25,0,25,80">
+                    <StackLayout Orientation="Horizontal"
+                                 WidthRequest="150"
+                                 HeightRequest="100">
+                        <StackLayout
+                            Margin="0,15,0,0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="StartAndExpand">
+                            <Image Source="ic_info_app1"
+                                   HeightRequest="25" />
+                            <Label Text="Инфо"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   FontSize="10" />
+                        </StackLayout>
+                        <StackLayout
+                            Margin="10,15,0,0" 
+                            VerticalOptions="Center"
+                            HorizontalOptions="CenterAndExpand">
+                            <Image Source="ic_files_app1"
+                                   HeightRequest="25"
+                                   />
+                            <Label Text="Файлы"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   FontSize="10" />
+                        </StackLayout>
+                        <StackLayout
+                            Margin="0,15,0,0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="EndAndExpand">
+                            <Image Source="ic_close_app1"
+                                   HeightRequest="25"
+                                   WidthRequest="25" />
+                            <Label Text="Закрыть"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   FontSize="10" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <Frame CornerRadius="50"
+                   Margin="15, 15, 15, -30"
                    BackgroundColor="White"
-                   Padding="15,15,15,60">
+                   Padding="5,15,5,70">
                 <ListView x:Name="additionalList"
                           HasUnevenRows="True"
-                          Margin="20, 0, 20, 0"
+                          Margin="5, 0, 5, 0"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
                           IsPullToRefreshEnabled="True"
@@ -68,6 +115,7 @@
                           IsRefreshing="{Binding IsRefreshing}"
                           SelectionMode="None"
                           ItemTapped="OnItemTapped"
+                          
                           ItemsSource="{Binding messages}">
                     <ListView.Header>
 
@@ -88,7 +136,7 @@
                 </ListView>
             </Frame>
             <Frame CornerRadius="30"
-                   Margin="20, -30, 20, 15"
+                   Margin="15, -40, 15, 15"
                    BackgroundColor="White"
                    BorderColor="{Binding hex}"
                    Padding="10">
@@ -125,14 +173,14 @@
                     <ActivityIndicator x:Name="progress"
                                        IsRunning="true"
                                        HeightRequest="20"
-                                       WidthRequest="20" 
+                                       WidthRequest="20"
                                        IsVisible="False"
                                        Color="{Binding hex}" />
                     <StackLayout
                         IsVisible="False"
                         Spacing="-5">
-                        
-                        <CheckBox 
+
+                        <CheckBox
                             HorizontalOptions="Center"
                             Color="{Binding hex}" />
                         <Label

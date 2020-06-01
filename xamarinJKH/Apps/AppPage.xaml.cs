@@ -127,6 +127,7 @@ namespace xamarinJKH.Apps
             addFile.Tapped += async (s, e) => { addFileApp(); };
             IconViewAddFile.GestureRecognizers.Add(addFile);
             hex = Color.FromHex(Settings.MobileSettings.color);
+           
             setText();
             getMessage();
         }
@@ -147,7 +148,7 @@ namespace xamarinJKH.Apps
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             RequestMessage select = e.Item as RequestMessage;
-            if (!select.FileID.Equals("-1"))
+            if (@select != null && @select.FileID!= -1)
             {
                 
                 string fileName = FileName(@select.Text);
@@ -160,7 +161,7 @@ namespace xamarinJKH.Apps
                 }
                 else
                 {
-                    await Settings.StartProgressBar();
+                    await Settings.StartProgressBar("Загрузка", 0.8);
                     byte[] memoryStream = await _server.GetFileAPP(select.FileID.ToString());
                     if (memoryStream != null)
                     {
@@ -275,14 +276,24 @@ namespace xamarinJKH.Apps
                 messages = request.Messages;
                 LabelNumber.Text = "№ " + request.RequestNumber;
                 this.BindingContext = this;
-                additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
+               
             }
             else
             {
                 await DisplayAlert("Ошибка", "Не удалось получить информацию по комментариям", "OK");
             }
+
+            await MethodWithDelayAsync(1000);
+
         }
 
+        public async Task MethodWithDelayAsync(int milliseconds)
+        {
+            await Task.Delay(milliseconds);
+
+            additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
+        }
+        
         void setText()
         {
             try

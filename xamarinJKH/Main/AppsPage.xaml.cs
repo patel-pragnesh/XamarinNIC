@@ -78,7 +78,7 @@ namespace xamarinJKH.Main
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "Добрый день";
+            LabelPhone.Text = Settings.Person.Phone;
             SwitchApp.OnColor = hex;
             LabelSwitch.TextColor = hex;
             FrameBtnAdd.BackgroundColor = hex;

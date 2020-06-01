@@ -25,33 +25,36 @@ namespace xamarinJKH.Apps
         Frame frameDate = new Frame();
         IconView imageA = new IconView();
         IconView image = new IconView();
+        Frame frameA = new Frame();
+        Frame frame = new Frame();
 
         public MessageCell()
         {
-            Frame frame = new Frame();
             frame.HorizontalOptions = LayoutOptions.Start;
-            frame.VerticalOptions = LayoutOptions.End;
+            frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;
-            frame.Margin = new Thickness(0, 0, 0, 0);
-            frame.Padding = 5;
+            frame.Margin = new Thickness(0, -30, -15, 0);
+            frame.Padding = 10;
+            frame.HasShadow = true;
             frame.CornerRadius = 30;
 
 
             ImagePerson.Source = ImageSource.FromFile("ic_not_author");
-            ImagePerson.HeightRequest = 15;
+            ImagePerson.HeightRequest = 25;
+            ImagePerson.WidthRequest = 25;
             ImagePerson.VerticalOptions = LayoutOptions.Start;
             frame.Content = ImagePerson;
 
-            Frame frameA = new Frame();
             frameA.HorizontalOptions = LayoutOptions.Start;
-            frameA.VerticalOptions = LayoutOptions.End;
+            frameA.VerticalOptions = LayoutOptions.Start;
             frameA.BackgroundColor = Color.White;
-            frameA.Margin = new Thickness(0, 0, 0, 0);
-            frameA.Padding = 5;
+            frameA.Margin = new Thickness(-15, -30, 0, 0);
+            frameA.Padding = 10;
             frameA.CornerRadius = 30;
 
             ImagePersonA.Source = ImageSource.FromFile("ic_author");
-            ImagePersonA.HeightRequest = 15;
+            ImagePersonA.HeightRequest = 25;
+            ImagePersonA.WidthRequest = 25;
             ImagePersonA.VerticalOptions = LayoutOptions.Start;
             frameA.Content = ImagePersonA;
 
@@ -61,30 +64,32 @@ namespace xamarinJKH.Apps
 
             LabelName.TextColor = Color.Gray;
             LabelName.FontSize = 15;
-            LabelName.HorizontalOptions = LayoutOptions.Start;
+            LabelName.Margin = new Thickness(50, 0, 0, 0);
+            LabelName.HorizontalOptions = LayoutOptions.Center;
 
             Labeltime.TextColor = Color.Gray;
             Labeltime.FontSize = 15;
-            Labeltime.WidthRequest = 100;
-            Labeltime.HorizontalTextAlignment = TextAlignment.End;
+            Labeltime.HorizontalTextAlignment = TextAlignment.Start;
             Labeltime.VerticalOptions = LayoutOptions.End;
             LabeltimeA.VerticalOptions = LayoutOptions.End;
-            LabeltimeA.HorizontalTextAlignment = TextAlignment.Start;
-            LabeltimeA.WidthRequest = 100;
-            Labeltime.HorizontalOptions = LayoutOptions.EndAndExpand;
+            LabeltimeA.HorizontalTextAlignment = TextAlignment.End;
+            Labeltime.HorizontalOptions = LayoutOptions.Start;
+            Labeltime.Margin = new Thickness(5, -10, 15, 0);
+            LabeltimeA.Margin = new Thickness(0, -10, 5, 0);
 
             containerFioTime.Orientation = StackOrientation.Horizontal;
-            containerFioTime.Children.Add(frame);
+            containerFioTime.HorizontalOptions = LayoutOptions.FillAndExpand;
+            // containerFioTime.Children.Add(frame);
             containerFioTime.Children.Add(LabelName);
-            containerFioTime.Children.Add(Labeltime);
+            // containerFioTime.Children.Add(Labeltime);
 
             Frame frameText = new Frame();
-            frameText.HorizontalOptions = LayoutOptions.FillAndExpand;
+            frameText.HorizontalOptions = LayoutOptions.Start;
             frameText.VerticalOptions = LayoutOptions.StartAndExpand;
             frameText.BackgroundColor = Color.FromHex("#E2E2E2");
             frameText.Margin = new Thickness(0, 0, 0, 10);
             frameText.Padding = new Thickness(15, 15, 15, 15);
-            frameText.CornerRadius = 10;
+            frameText.CornerRadius = 20;
 
             StackLayout stackLayoutContent = new StackLayout();
 
@@ -102,6 +107,13 @@ namespace xamarinJKH.Apps
             stackLayoutContent.Children.Add(image);
             frameText.Content = stackLayoutContent;
 
+            StackLayout stackLayoutIconB = new StackLayout();
+            stackLayoutIconB.Orientation = StackOrientation.Horizontal;
+            stackLayoutIconB.Spacing = 0;
+
+            stackLayoutIconB.Children.Add(frame);
+            stackLayoutIconB.Children.Add(frameText);
+
 
             frameDate.HorizontalOptions = LayoutOptions.Center;
             frameDate.VerticalOptions = LayoutOptions.Start;
@@ -116,19 +128,21 @@ namespace xamarinJKH.Apps
             frameDate.Content = LabelDate;
             LabelText.HorizontalOptions = LayoutOptions.Center;
 
-            containerDate.Children.Add(frameDate);
+            // containerDate.Children.Add(frameDate);
             containerDate.Children.Add(containerFioTime);
-            containerDate.Children.Add(frameText);
+            containerDate.Children.Add(stackLayoutIconB);
+            containerDate.Children.Add(Labeltime);
 
-            Container.Orientation = StackOrientation.Horizontal;
 
+            Container.Children.Add(frameDate);
             Container.Children.Add(containerDate);
 
             StackLayout containerDateA = new StackLayout();
             StackLayout containerFioTimeA = new StackLayout();
 
-            LabelNameA.TextColor = Color.Gray;
+            LabelNameA.TextColor = Color.Transparent;
             LabelNameA.FontSize = 15;
+            LabelNameA.IsVisible = false;
             LabelNameA.HorizontalTextAlignment = TextAlignment.End;
             LabelNameA.HorizontalOptions = LayoutOptions.Start;
 
@@ -138,28 +152,29 @@ namespace xamarinJKH.Apps
 
             containerFioTimeA.Orientation = StackOrientation.Horizontal;
 
-            containerFioTimeA.Children.Add(LabeltimeA);
-            containerFioTimeA.Children.Add(LabelNameA);
-            containerFioTimeA.Children.Add(frameA);
+            // containerFioTimeA.Children.Add(LabeltimeA);
+            // containerFioTimeA.Children.Add(LabelNameA);
+            // containerFioTimeA.Children.Add(frameA);
 
 
             Frame frameTextA = new Frame();
-            frameTextA.HorizontalOptions = LayoutOptions.FillAndExpand;
+            frameTextA.HorizontalOptions = LayoutOptions.End;
             frameTextA.VerticalOptions = LayoutOptions.StartAndExpand;
             frameTextA.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            ;
             frameTextA.Margin = new Thickness(0, 0, 0, 10);
             frameTextA.Padding = new Thickness(15, 15, 15, 15);
-            frameTextA.CornerRadius = 10;
+            frameTextA.CornerRadius = 20;
 
             imageA.IsVisible = false;
             imageA.HorizontalOptions = LayoutOptions.CenterAndExpand;
             image.HeightRequest = imageA.HeightRequest = 40;
             image.WidthRequest = imageA.WidthRequest = 40;
 
-            imageA.Foreground = image.Foreground = Color.White;//Color.FromHex(Settings.MobileSettings.color);
+            imageA.Foreground = image.Foreground = Color.White;
             image.Source = imageA.Source = "ic_file_download";
+
             StackLayout stackLayoutContentA = new StackLayout();
+            stackLayoutContentA.HorizontalOptions = LayoutOptions.End;
 
             LabelTextA.TextColor = Color.White;
             LabelTextA.FontSize = 15;
@@ -167,7 +182,14 @@ namespace xamarinJKH.Apps
 
             stackLayoutContentA.Children.Add(LabelTextA);
             stackLayoutContentA.Children.Add(imageA);
+            StackLayout stackLayoutIcon = new StackLayout();
+            stackLayoutIcon.Orientation = StackOrientation.Horizontal;
+            stackLayoutIcon.Spacing = 0;
+            stackLayoutIcon.HorizontalOptions = LayoutOptions.End;
             frameTextA.Content = stackLayoutContentA;
+
+            stackLayoutIcon.Children.Add(frameTextA);
+            stackLayoutIcon.Children.Add(frameA);
 
             frameDateA.HorizontalOptions = LayoutOptions.Center;
             frameDateA.VerticalOptions = LayoutOptions.Start;
@@ -182,11 +204,18 @@ namespace xamarinJKH.Apps
             frameDateA.Content = LabelDateA;
             LabelTextA.HorizontalOptions = LayoutOptions.Center;
 
-            containerDateA.Children.Add(frameDateA);
+            // containerDateA.Children.Add(frameDateA);
             containerDateA.Children.Add(containerFioTimeA);
-            containerDateA.Children.Add(frameTextA);
+            containerDateA.Children.Add(stackLayoutIcon);
+            containerDateA.Children.Add(LabeltimeA);
+            containerDateA.Spacing = 3;
+            containerDateA.Margin = new Thickness(60, 0, 0, 0);
+            containerDateA.HorizontalOptions = LayoutOptions.FillAndExpand;
+            containerDate.Margin = new Thickness(0, 0, 60, 0);
 
-            ConteinerA.Orientation = StackOrientation.Horizontal;
+            // ConteinerA.HorizontalOptions = LayoutOptions.FillAndExpand;
+
+            ConteinerA.Children.Add(frameDateA);
             ConteinerA.Children.Add(containerDateA);
 
             StackLayout stackLayout = new StackLayout();
@@ -269,8 +298,44 @@ namespace xamarinJKH.Apps
                     Container.IsVisible = true;
                 }
 
+
                 var strings = DateApp.Split(' ');
                 var dateMess = strings[0];
+                if (Settings.DateUniq.Equals(dateMess))
+                {
+                    frameDate.IsVisible = false;
+                    frameDateA.IsVisible = false;
+                    if (Settings.isSelf == null || (bool) Settings.isSelf)
+                    {
+                        frameA.Content = new Label()
+                        {
+                            WidthRequest = 25,
+                            HeightRequest = 25
+                        };
+                        frameA.BackgroundColor = Color.Transparent;
+                    }
+                    else
+                    {
+                        ConteinerA.Margin = new Thickness(0,25,0,0);
+                        frame.Content = new Label()
+                        {
+                            WidthRequest = 25,
+                            HeightRequest = 25
+                        };
+                        frame.BackgroundColor = Color.Transparent;
+
+                        LabelName.IsVisible = false;
+                    }
+
+                    Settings.isSelf = IsSelf;
+                }
+                else
+                {
+                    frameDate.IsVisible = true;
+                    frameDateA.IsVisible = true;
+                    Settings.DateUniq = dateMess;
+                }
+
                 LabelDate.Text = LabelDateA.Text = dateMess;
                 LabelName.Text = LabelNameA.Text = Name;
                 LabelText.Text = LabelTextA.Text = TextApp;

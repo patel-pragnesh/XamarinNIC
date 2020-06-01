@@ -16,6 +16,7 @@ namespace xamarinJKH.Utils
         public static HashSet<Page> AppPAge = new HashSet<Page>();
         public static string UpdateKey = "";
         public static string DateUniq = "";
+        
         public static bool IsFirsStart = true;
         public static EventBlockData EventBlockData = new EventBlockData();
 
@@ -24,6 +25,8 @@ namespace xamarinJKH.Utils
             "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
             "Декабрь"
         };
+
+        public static bool? isSelf = null;
 
         public static AnnouncementInfo getNotif(String id)
         {

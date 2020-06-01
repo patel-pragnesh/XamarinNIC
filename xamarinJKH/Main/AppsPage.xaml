@@ -46,7 +46,6 @@
                                              Source="ic_phone"
                                              HeightRequest="15"
                                              Foreground="White"
-                                             IsVisible="False"
                                              Margin="-10, 0,0,0"
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
@@ -118,7 +117,7 @@
 
                     <StackLayout
                         HorizontalOptions="Center"
-                        Margin="20, 0, 20, 10"
+                        Margin="20, 10, 20, 15"
                         Spacing="20"
                         Orientation="Horizontal">
                         <StackLayout
@@ -128,27 +127,28 @@
                                 IsToggled="False"
                                 x:Name="SwitchApp" />
 
-                            <Label Text="Показать прочитанные"
+                            <Label Text="Показать закрытые"
                                    x:Name="LabelSwitch"
                                    FontAttributes="Bold"
                                    FontSize="15"
                                    TextColor="{Binding hex}"
+                                   VerticalOptions="CenterAndExpand"
                                    HorizontalOptions="Center" />
                         </StackLayout>
 
                         <Frame CornerRadius="10"
                                x:Name="FrameBtnAdd"
-                               Padding="0"
+                               Padding="-5"
                                MinimumWidthRequest="250"
                                BackgroundColor="{Binding hex}"
                                HorizontalOptions="FillAndExpand">
                             <StackLayout
                                 Orientation="Horizontal"
-                                VerticalOptions="CenterAndExpand"
+                                VerticalOptions="Center"
                                 HorizontalOptions="CenterAndExpand">
                                 <Button x:Name="LabelSaldos"
-                                        Text="          Добавить          "
-                                        FontSize="12"
+                                        Text="       Создать       "
+                                        FontSize="16"
                                         FontAttributes="Bold"
                                         TextColor="White"
                                         Clicked="startNewApp"
