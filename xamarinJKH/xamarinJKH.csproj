@@ -114,6 +114,10 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pays\AddIdent.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -186,6 +190,9 @@
     </Compile>
     <Compile Update="Shop\PayShopPage.xaml.cs">
       <DependentUpon>PayShopPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pays\AddIdent.xaml.cs">
+      <DependentUpon>AddIdent.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

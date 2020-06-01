@@ -24,7 +24,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarinJKH.testApps</string>
 	<key>CFBundleVersion</key>
-	<string>1.9</string>
+	<string>1.91</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
@@ -34,7 +34,7 @@
 	<key>UIStatusBarHidden</key>
 	<false/>
 	<key>UIRequiresFullScreen</key>
-	<false/>
+	<true/>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 	<key>CFBundleShortVersionString</key>
@@ -43,5 +43,7 @@
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
 </dict>
 </plist>

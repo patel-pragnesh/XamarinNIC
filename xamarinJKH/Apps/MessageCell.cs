@@ -32,7 +32,7 @@ namespace xamarinJKH.Apps
             frame.HorizontalOptions = LayoutOptions.Start;
             frame.VerticalOptions = LayoutOptions.End;
             frame.BackgroundColor = Color.White;
-            frame.Margin = new Thickness(0, 0, 0, 0);
+            frame.Margin = new Thickness(10, 0, 10, 0);
             frame.Padding = 5;
             frame.CornerRadius = 30;
 
@@ -46,7 +46,7 @@ namespace xamarinJKH.Apps
             frameA.HorizontalOptions = LayoutOptions.Start;
             frameA.VerticalOptions = LayoutOptions.End;
             frameA.BackgroundColor = Color.White;
-            frameA.Margin = new Thickness(0, 0, 0, 0);
+            frameA.Margin = new Thickness(10, 0, 10, 0);
             frameA.Padding = 5;
             frameA.CornerRadius = 30;
 

@@ -60,7 +60,7 @@
                    Padding="15,15,15,60">
                 <ListView x:Name="additionalList"
                           HasUnevenRows="True"
-                          Margin="20, 0, 20, 0"
+                          Margin="10, 0, 10, 0"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
                           IsPullToRefreshEnabled="True"
