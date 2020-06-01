@@ -15,16 +15,19 @@ namespace xamarinJKH.Server
         public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // Адрес сервера
         // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
         // public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+        
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
         public const string REQUEST_CODE = "auth/RequestAccessCode"; // Запрос кода подтверждения
         public const string REQUEST_CHECK_CODE = "auth/CheckAccessCode"; // Подтверждение кода подтверждения
         public const string REGISTR_BY_PHONE = "auth/RegisterByPhone"; // Регистрация по телефону
+        
         public const string GET_MOBILE_SETTINGS = "Config/MobileAppSettings "; // Регистрация по телефону
         public const string GET_EVENT_BLOCK_DATA = "Common/EventBlockData"; // Блок события
         public const string GET_PHOTO_ADDITIONAL = "AdditionalServices/logo"; // Картинка доп услуги
         public const string GET_ACCOUNTING_INFO = "Accounting/Info"; // инфомация о начислениях
         public const string GET_FILE_BILLS = "Bills/Download"; // Получить квитанцию
+        
         public const string REQUEST_LIST = "Requests/List"; // Заявки
         public const string REQUEST_DETAIL_LIST = "Requests/Details"; // Заявки
         public const string REQUEST_UPDATES = "Requests/GetUpdates"; // Обновление заявок
@@ -33,11 +36,16 @@ namespace xamarinJKH.Server
         public const string NEW_APP = "Requests/New"; // Добавление заявки
         public const string GET_TYPE = "Requests/RequestTypes"; // Получение типов заявок
         public const string GET_FILE_APP = "Requests/File"; // Получение типов заявок
-        public const string UPDATE_PROFILE = "user/updateProfile"; // Обновить данные профиля
+        
+        public const string UPDATE_PROFILE = "User/UpdateProfile"; // Обновить данные профиля
+        public const string ADD_IDENT_PROFILE = "User/AddAccountByIdent"; // Привязать ЛС к профилю
+        
         public const string GET_METERS_THREE = "Meters/List"; // Получить последние 3 показания по приборам
         public const string SAVE_METER_VALUE = "Meters/SaveMeterValue"; // Получить полную инфу по новости
+        
         public const string GET_NEWS_FULL = "News/Content"; // Получить полную инфу по новости
         public const string GET_NEWS_IMAGE = "News/Image"; // Получить полную инфу по новости
+        
         public const string GET_SHOPS_GOODS = "Shops/Goods"; // Получить товары магазина
         public const string GET_SHOPS_GOODS_IMAGE = "Shops/GoodsImage"; // Получить картинку товара
 
@@ -707,6 +715,30 @@ namespace xamarinJKH.Server
             }
 
             return new MemoryStream(response.RawBytes);
+        }
+        
+        public async Task<CommonResult> AddIdent(string Ident, string Confirm)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(ADD_IDENT_PROFILE, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                Ident,
+                Confirm
+            });
+            var response = await restClientMp.ExecuteTaskAsync<AddAccountResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new AddAccountResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
         }
     }
 }

@@ -45,6 +45,7 @@ namespace xamarinJKH.Apps
             ImagePerson.VerticalOptions = LayoutOptions.Start;
             frame.Content = ImagePerson;
 
+            Frame frameA = new Frame();
             frameA.HorizontalOptions = LayoutOptions.Start;
             frameA.VerticalOptions = LayoutOptions.Start;
             frameA.BackgroundColor = Color.White;

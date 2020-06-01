@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Xamarin.Essentials;
+using Xamarin.Forms;
 using xamarinJKH.Notifications;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
@@ -52,6 +53,7 @@ namespace xamarinJKH
             container.Children.Add(text);
             frame.Content = container;
             View = frame;
+            View.BackgroundColor = Color.White;
         }
 
         public static readonly BindableProperty TextNotifProperty =

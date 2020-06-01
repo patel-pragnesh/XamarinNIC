@@ -210,6 +210,7 @@
     <BundleResource Include="Resources\icon_login.png" />
     <BundleResource Include="Resources\ic_additional_top.png" />
     <BundleResource Include="Resources\ic_add_file.png" />
+    <BundleResource Include="Resources\ic_add_ident.png" />
     <BundleResource Include="Resources\ic_app_top.png" />
     <BundleResource Include="Resources\ic_app_top_in.png" />
     <BundleResource Include="Resources\ic_arrow_back.png" />

@@ -91,7 +91,8 @@
             </RelativeLayout>
             <StackLayout
                 VerticalOptions="FillAndExpand">
-                <Frame CornerRadius="40"
+                <Frame x:Name="FrameAddIdent"
+                       CornerRadius="40"
                        Margin="20, 0, 20, -60"
                        VerticalOptions="Start"
                        BackgroundColor="#494949"
@@ -134,7 +135,7 @@
                 <StackLayout>
 
                     <StackLayout
-                        HorizontalOptions="Center"
+                        HorizontalOptions="FillAndExpand"
                         Margin="20, 0, 20, 10"
                         Spacing="20"
                         Orientation="Horizontal">
@@ -148,7 +149,7 @@
                                 VerticalOptions="CenterAndExpand"
                                 HorizontalOptions="CenterAndExpand">
                                 <Button x:Name="LabelHistory"
-                                        Text="      История платежей      "
+                                        Text="История платежей"
                                         TextColor="White"
                                         FontAttributes="Bold"
                                         Clicked="OpenHistory"
@@ -167,7 +168,7 @@
                                 VerticalOptions="CenterAndExpand"
                                 HorizontalOptions="CenterAndExpand">
                                 <Button x:Name="LabelSaldos"
-                                        Text="          Квитанции          "
+                                        Text="        Квитанции        "
                                         FontSize="12"
                                         FontAttributes="Bold"
                                         TextColor="White"
