@@ -75,6 +75,18 @@
                                Margin="-10, 10, 0, 0"
                                VerticalOptions="Center" />
                     </StackLayout>
+                    <StackLayout
+                        x:Name="BackStackLayout"
+                        Orientation="Horizontal"
+                        Margin="5, 55, 0, 0"
+                        HorizontalOptions="Start">
+                        <Label
+                            Text="Профиль"
+                            FontSize="25"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start" />
+                    </StackLayout>
                 </StackLayout>
                 <Image x:Name="IconViewNameUk"
                        Source="icon_login"
@@ -88,13 +100,14 @@
                              Factor=0,
                              Constant=25}" />
             </RelativeLayout>
-            <ScrollView Orientation="Vertical"
+            <ScrollView x:Name="ScrollViewContainer"
+                Orientation="Vertical"
                         VerticalOptions="StartAndExpand"
                         Margin="10, -170, 10, 0">
                 <StackLayout
                     VerticalOptions="StartAndExpand">
                     <Frame CornerRadius="30"
-                           Margin="10, 10, 10, 15"
+                           Margin="10, 30, 10, 15"
                            BackgroundColor="White"
                            Padding="0">
 

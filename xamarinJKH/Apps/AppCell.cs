@@ -19,8 +19,8 @@ namespace xamarinJKH.Apps
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;
             frame.Margin = new Thickness(10, 0, 10, 14);
-            frame.Padding = new Thickness(15, 15, 15, 15);
-            frame.CornerRadius = 30;
+            frame.Padding = new Thickness(25, 15, 25, 20);
+            frame.CornerRadius = 40;
 
             StackLayout container = new StackLayout();
             container.Orientation = StackOrientation.Horizontal;
@@ -167,7 +167,7 @@ namespace xamarinJKH.Apps
                     Text = "• " + TextApp,
                     TextColor = Color.Black,
                     FontAttributes = FontAttributes.Bold,
-                    FontSize = 15
+                    FontSize = 17
                 });
                 numberAndDate.FormattedText = formatted;
                 LabelStatus.Text = Status;

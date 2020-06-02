@@ -72,6 +72,12 @@ namespace xamarinJKH.Additional
                     IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
+                    double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
+                    if (Math.Abs(or - 0.5) < 0.02)
+                    {
+                        RelativeLayoutTop.Margin = new Thickness(0,0,0,-90);
+                    }
+                    break;
                 default:
                     break;
             }

@@ -9,7 +9,8 @@
     <ContentPage.Content>
         <StackLayout>
             <RelativeLayout 
-                Margin="0,0,0,-150"
+                Margin="0,0,0,-140"
+                x:Name="RelativeLayoutTop"
                 VerticalOptions="Start"
                 HorizontalOptions="FillAndExpand">
                 <Image x:Name="ImageFon"
@@ -74,6 +75,18 @@
                                TextColor="White"
                                Margin="-10, 10, 0, 0"
                                VerticalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout
+                        x:Name="BackStackLayout"
+                        Orientation="Horizontal"
+                        Margin="5, 55, 0, 0"
+                        HorizontalOptions="Start">
+                        <Label
+                            Text="Показания"
+                            FontSize="25"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start" />
                     </StackLayout>
                 </StackLayout>
                 <Image x:Name="IconViewNameUk"

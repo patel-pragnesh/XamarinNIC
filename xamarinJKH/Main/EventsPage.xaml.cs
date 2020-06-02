@@ -12,6 +12,7 @@ using xamarinJKH.News;
 using xamarinJKH.Questions;
 using xamarinJKH.Shop;
 using xamarinJKH.Utils;
+using Application = Xamarin.Forms.Application;
 using NavigationPage = Xamarin.Forms.NavigationPage;
 using VisualElement = Xamarin.Forms.VisualElement;
 
@@ -33,12 +34,21 @@ namespace xamarinJKH.Main
                     IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
+                    double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
+                    if (Math.Abs(or - 0.5) < 0.02)
+                    {
+                        ScrollViewContainer.Margin = new Thickness(10, -135, 10, 0);
+                        BackStackLayout.Margin = new Thickness(5, 25, 0, 0);
+                    }
+                    break;
                 default:
                     break;
             }
+
             SetText();
             SetColor();
             SetVisibleControls();
+
         }
 
         void SetVisibleControls()
@@ -59,40 +69,39 @@ namespace xamarinJKH.Main
             else
             {
                 funk();
-
             }
         }
 
         private void StartNews()
         {
             var startNews = new TapGestureRecognizer();
-            startNews.Tapped += async (s, e) => { await Navigation.PushAsync (new NewsPage()); };
+            startNews.Tapped += async (s, e) => { await Navigation.PushAsync(new NewsPage()); };
             FrameNews.GestureRecognizers.Add(startNews);
         }
 
         private void StartQuestions()
         {
             var startQuest = new TapGestureRecognizer();
-            startQuest.Tapped += async (s, e) => { await Navigation.PushAsync (new QuestionsPage()); };
+            startQuest.Tapped += async (s, e) => { await Navigation.PushAsync(new QuestionsPage()); };
             FrameQuestions.GestureRecognizers.Add(startQuest);
         }
 
         private async void StartOffers()
         {
             var startAdditional = new TapGestureRecognizer();
-            startAdditional.Tapped += async (s, e) => { await Navigation.PushAsync (new AdditionalPage()); };
+            startAdditional.Tapped += async (s, e) => { await Navigation.PushAsync(new AdditionalPage()); };
             FrameOffers.GestureRecognizers.Add(startAdditional);
         }
 
         private void StartNotification()
         {
             var startNotif = new TapGestureRecognizer();
-            startNotif.Tapped += async (s, e) => { await Navigation.PushAsync (new NotificationsPage()); };
+            startNotif.Tapped += async (s, e) => { await Navigation.PushAsync(new NotificationsPage()); };
             FrameNotification.GestureRecognizers.Add(startNotif);
         }
+
         private void StartShop()
         {
-            
         }
 
         void SetText()
