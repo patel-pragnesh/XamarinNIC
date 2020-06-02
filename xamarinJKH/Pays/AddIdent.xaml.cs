@@ -64,12 +64,63 @@ namespace xamarinJKH.Pays
                 progress.IsVisible = true;
                 FrameBtnAdd.IsVisible = false;
                 progress.IsVisible = true;
-                CommonResult result = await _server.AddIdent(ident, Settings.Person.Email);
+                AddAccountResult result = await _server.AddIdent(ident, true);
                 if (result.Error == null)
                 {
-                    Console.WriteLine(result.ToString());
+                    Console.WriteLine(result.Address);
                     Console.WriteLine("Отправлено");
-                    await DisplayAlert("", "Лс/ч " + ident + " успешно подключён", "OK");             
+                    bool answer = await DisplayAlert("Проверьте правильность адреса", result.Address, "Добавить лицевой счет", "Отмена");
+                    if (answer)
+                    {
+                        AcceptAddIdentAccount(ident, Settings.Person.Email);
+                    }
+                    else
+                    {
+                        FrameBtnAdd.IsVisible = true;
+                        progress.IsVisible = false;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("---ОШИБКА---");
+                    Console.WriteLine(result.ToString());
+                    FrameBtnAdd.IsVisible = true;
+                    progress.IsVisible = false;
+                    if (Device.RuntimePlatform == Device.iOS)
+                    {
+                        await DisplayAlert("ОШИБКА", result.Error, "OK");
+                    }
+                    else
+                    {
+                        DependencyService.Get<IMessage>().ShortAlert(result.Error);
+                    }
+                }
+
+                progress.IsVisible = false;
+                FrameBtnAdd.IsVisible = true;
+            }
+            else
+            {
+                if (ident == "")
+                {
+                    await DisplayAlert("", "Заполните номер счета", "OK");
+                }
+            }
+        }
+        
+        public async void AcceptAddIdentAccount(string ident, string email)
+        {
+            if (ident != "")
+            {
+                progress.IsVisible = true;
+                FrameBtnAdd.IsVisible = false;
+                progress.IsVisible = true;
+                AddAccountResult result = await _server.AddIdent(ident);
+                if (result.Error == null)
+                {
+                    Console.WriteLine(result.Address);
+                    Console.WriteLine("Отправлено");
+                    await DisplayAlert("", "Лс/ч " + ident + " успешно подключён", "ОК");
                     FrameBtnAdd.IsVisible = true;
                     progress.IsVisible = false;
                     await Navigation.PopAsync();

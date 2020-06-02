@@ -31,9 +31,10 @@ namespace xamarinJKH
             title.HorizontalTextAlignment = TextAlignment.Start;
             title.HorizontalOptions = LayoutOptions.StartAndExpand;
             title.FontAttributes = FontAttributes.Bold;
+            title.FontSize = 13;
             title.TextColor = Color.Black;
             more.Text = "Подробнее >";
-            more.FontSize = 11;
+            more.FontSize = 12;
             more.TextDecorations = TextDecorations.Underline;
             more.TextColor = Color.FromHex(Settings.MobileSettings.color);
             more.HorizontalTextAlignment = TextAlignment.End;

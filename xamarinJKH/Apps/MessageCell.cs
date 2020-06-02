@@ -36,7 +36,7 @@ namespace xamarinJKH.Apps
             frame.Margin = new Thickness(0, -30, -15, 0);
             frame.Padding = 10;
             frame.HasShadow = true;
-            frame.CornerRadius = 30;
+            frame.CornerRadius = 23;
 
 
             ImagePerson.Source = ImageSource.FromFile("ic_not_author");
@@ -50,7 +50,7 @@ namespace xamarinJKH.Apps
             frameA.BackgroundColor = Color.White;
             frameA.Margin = new Thickness(-15, -30, 0, 0);
             frameA.Padding = 10;
-            frameA.CornerRadius = 30;
+            frameA.CornerRadius = 23;
 
             ImagePersonA.Source = ImageSource.FromFile("ic_author");
             ImagePersonA.HeightRequest = 25;
