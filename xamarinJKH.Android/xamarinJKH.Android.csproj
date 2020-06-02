@@ -70,6 +70,7 @@
     <Compile Include="CustomReader\FileWorker.cs" />
     <Compile Include="CustomReader\IconViewRenderer.cs" />
     <Compile Include="CustomReader\MessageAndroid.cs" />
+    <Compile Include="CustomRenderers\BorderlessDatePickerRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,7 +93,6 @@
     <AndroidResource Include="Resources\drawable\ic_arrow_up.png" />
     <AndroidResource Include="Resources\drawable\ic_author.png" />
     <AndroidResource Include="Resources\drawable\ic_background.png" />
-    <AndroidResource Include="Resources\drawable\ic_background_counter.png" />
     <AndroidResource Include="Resources\drawable\ic_background_event.png" />
     <AndroidResource Include="Resources\drawable\ic_card_pay_black.png" />
     <AndroidResource Include="Resources\drawable\ic_close.png" />
@@ -289,28 +289,46 @@
       </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\ic_background_pay.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\ic_background_profile.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\ic_check_mark.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\ic_exit.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\ic_profile_email.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\ic_background_counter.png">
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\ic_background_addCounter.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
