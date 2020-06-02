@@ -23,6 +23,8 @@ namespace xamarinJKH.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             XamEffects.Droid.Effects.Init();
             AiForms.Dialogs.Dialogs.Init(this);
+            App.ScreenHeight = (int) (Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
+            App.ScreenWidth = (int) (Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
             LoadApplication(new App());
           
 

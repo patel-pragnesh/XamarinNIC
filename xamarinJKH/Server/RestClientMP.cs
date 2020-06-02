@@ -13,8 +13,8 @@ namespace xamarinJKH.Server
     public class RestClientMP
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // Адрес сервера
-        public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
+        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
         
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
@@ -717,7 +717,7 @@ namespace xamarinJKH.Server
             return new MemoryStream(response.RawBytes);
         }
         
-        public async Task<AddAccountResult> AddIdent(string Ident, bool Confirm = false)
+        public async Task<CommonResult> AddIdent(string Ident, string Confirm)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(ADD_IDENT_PROFILE, Method.POST);

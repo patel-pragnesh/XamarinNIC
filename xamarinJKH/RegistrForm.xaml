@@ -184,7 +184,7 @@
                                     </StackLayout>
                                 </StackLayout>
                                 <StackLayout
-                                    Margin="0,-8,0,0"
+                                    Margin="0,0,0,0"
                                     Orientation="Horizontal">
                                     <!-- <Image Source="ic_separator" -->
                                     <!--        VerticalOptions="Start" -->

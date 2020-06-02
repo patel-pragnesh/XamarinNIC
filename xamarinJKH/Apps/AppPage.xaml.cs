@@ -101,6 +101,12 @@ namespace xamarinJKH.Apps
                     // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
+                    double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
+                    if (Math.Abs(or - 0.5) < 0.02)
+                    {
+                        ScrollViewContainer.Margin = new Thickness(0,0,0,-90);
+                    }
+                    break;
                 default:
                     break;
             }
@@ -115,6 +121,8 @@ namespace xamarinJKH.Apps
                 }
                 else
                 {
+                    Settings.isSelf = null;
+                    Settings.DateUniq = "";
                     _ = await Navigation.PopAsync();
                 }
             };
@@ -141,6 +149,8 @@ namespace xamarinJKH.Apps
             }
             else
             {
+                Settings.isSelf = null;
+                Settings.DateUniq = "";
                 return base.OnBackButtonPressed();
             }
         }

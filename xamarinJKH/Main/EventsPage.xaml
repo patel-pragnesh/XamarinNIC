@@ -72,6 +72,18 @@
                                Margin="-10, 10, 0, 0"
                                VerticalOptions="Center" />
                     </StackLayout>
+                    <StackLayout
+                        x:Name="BackStackLayout"
+                        Orientation="Horizontal"
+                        Margin="5, 55, 0, 0"
+                        HorizontalOptions="Start">
+                        <Label
+                            Text="События"
+                            FontSize="25"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start" />
+                    </StackLayout>
                 </StackLayout>
                 <Image x:Name="IconViewNameUk"
                        Source="icon_login"
@@ -85,7 +97,8 @@
                              Factor=0,
                              Constant=25}" />
             </RelativeLayout>
-            <ScrollView Orientation="Vertical"
+            <ScrollView x:Name="ScrollViewContainer"
+                Orientation="Vertical"
                         VerticalOptions="FillAndExpand"
                         Margin="10, -150, 10, 0">
                 <StackLayout

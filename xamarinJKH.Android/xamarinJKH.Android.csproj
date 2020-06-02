@@ -94,6 +94,7 @@
     <AndroidResource Include="Resources\drawable\ic_author.png" />
     <AndroidResource Include="Resources\drawable\ic_background.png" />
     <AndroidResource Include="Resources\drawable\ic_background_event.png" />
+    <AndroidResource Include="Resources\drawable\ic_background_profile.png" />
     <AndroidResource Include="Resources\drawable\ic_card_pay_black.png" />
     <AndroidResource Include="Resources\drawable\ic_close.png" />
     <AndroidResource Include="Resources\drawable\ic_close_app1.png" />
@@ -289,12 +290,6 @@
       </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\ic_background_pay.png">
-      <SubType>
-      </SubType>
-      <Generator>
-      </Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable\ic_background_profile.png">
       <SubType>
       </SubType>
       <Generator>

@@ -19,7 +19,7 @@ namespace xamarinJKH.Additional
             frame.BackgroundColor = Color.White;
             frame.Margin = new Thickness(10, 0, 10, 10);
             frame.Padding = new Thickness(0,0,0,0);
-            frame.CornerRadius = 30;
+            frame.CornerRadius = 40;
             StackLayout cell = new StackLayout();
             cell.Children.Add(image);
             frame.Content = cell;

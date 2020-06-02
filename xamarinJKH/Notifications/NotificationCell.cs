@@ -20,7 +20,7 @@ namespace xamarinJKH
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;
             frame.Margin = new Thickness(10, 0, 10, 10);
-            frame.Padding = new Thickness(20, 10, 20, 10);
+            frame.Padding = new Thickness(20, 23, 20, 10);
             frame.CornerRadius = 30;
             StackLayout container = new StackLayout();
             container.Orientation = StackOrientation.Vertical;
@@ -38,6 +38,7 @@ namespace xamarinJKH
             more.TextDecorations = TextDecorations.Underline;
             more.TextColor = Color.FromHex(Settings.MobileSettings.color);
             more.HorizontalTextAlignment = TextAlignment.End;
+            more.VerticalOptions = LayoutOptions.Center;
             more.HorizontalOptions = LayoutOptions.EndAndExpand;
             more.MaxLines = 1;
             more.MinimumWidthRequest = 80;
@@ -46,6 +47,8 @@ namespace xamarinJKH
             container.Children.Add(titleContainer);
             date.HorizontalOptions = LayoutOptions.Start;
             date.TextColor = Color.Black;
+            date.VerticalOptions = LayoutOptions.Center;
+            date.Margin = new Thickness(0,-5,0,0);
             container.Children.Add(date);
             text.HorizontalOptions = LayoutOptions.FillAndExpand;
             text.VerticalOptions = LayoutOptions.FillAndExpand;

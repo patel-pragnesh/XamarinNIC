@@ -76,6 +76,13 @@ namespace xamarinJKH.Pays
                     IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
+                    double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
+                    if (Math.Abs(or - 0.5) < 0.02)
+                    {
+                        ScrollViewContainer.Margin = new Thickness(0,0,0,-135);
+                        BackStackLayout.Margin = new Thickness(-5, 15, 0, 0);
+                    }
+                    break;
                 default:
                     break;
             }
@@ -104,6 +111,9 @@ namespace xamarinJKH.Pays
         {
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.Phone;
+            IconViewSortIdent.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            IconViewSortDate.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            LabelDate.TextColor = Color.FromHex(Settings.MobileSettings.color);
         }
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)

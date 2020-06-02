@@ -72,6 +72,12 @@ namespace xamarinJKH.News
                     break;
                 case Device.Android:
                     RelativeLayoutTop.Margin = new Thickness(0,0,0,-135);
+                    double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
+                    if (Math.Abs(or - 0.5) < 0.02)
+                    {
+                        RelativeLayoutTop.Margin = new Thickness(0,0,0,-90);
+                    }
+
                     break;
                 default:
                     break;
