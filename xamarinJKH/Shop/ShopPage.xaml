@@ -109,18 +109,12 @@
             <StackLayout VerticalOptions="FillAndExpand">
                 
                 <CarouselView x:Name="CarouselViewShop"
-                              IndicatorView="indicatorView"
                               PositionChanged="OnPositionChanged">
                     <CarouselView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal"
                                            ItemSpacing="20" />
                     </CarouselView.ItemsLayout>
                 </CarouselView>
-                <IndicatorView x:Name="indicatorView"
-                               IndicatorColor="LightGray"
-                               
-                               SelectedIndicatorColor="DarkGray"
-                               HorizontalOptions="Center" />
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                     <StackLayout HorizontalOptions="StartAndExpand" Padding="10,0,10,10" >
                         <Label Text="Вес:"

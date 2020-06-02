@@ -115,6 +115,8 @@ namespace xamarinJKH.Apps
                 }
                 else
                 {
+                    Settings.isSelf = null;
+                    Settings.DateUniq = "";
                     _ = await Navigation.PopAsync();
                 }
             };
@@ -141,6 +143,8 @@ namespace xamarinJKH.Apps
             }
             else
             {
+                Settings.isSelf = null;
+                Settings.DateUniq = "";
                 return base.OnBackButtonPressed();
             }
         }

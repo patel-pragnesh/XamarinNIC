@@ -20,7 +20,7 @@ namespace xamarinJKH.Questions
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;
             frame.Margin = new Thickness(10, 0, 10, 10);
-            frame.Padding = new Thickness(10, 10, 10, 10);
+            frame.Padding = new Thickness(15, 15, 15, 15);
             frame.CornerRadius = 30;
 
             StackLayout container = new StackLayout();
@@ -34,6 +34,8 @@ namespace xamarinJKH.Questions
 
             date.HorizontalOptions = LayoutOptions.Start;
             date.TextColor = Color.Black;
+            date.FontSize = 12;
+            date.Margin = new Thickness(0,-5,0,0);
             StackLayout containerCount = new StackLayout();
             containerCount.Orientation = StackOrientation.Horizontal;
             StackLayout containerOne = new StackLayout();
@@ -43,10 +45,13 @@ namespace xamarinJKH.Questions
 
             countQuestTitle.Text = "Количество вопросов:";
             countQuestTitle.HorizontalOptions = LayoutOptions.Start;
+            countQuestTitle.FontSize = 12;
+            countAnsweredTitle.VerticalOptions = LayoutOptions.Center;
             countQuestTitle.TextColor = Color.Black;
 
             countQuest.TextColor = Color.FromHex(Settings.MobileSettings.color);
             countQuest.HorizontalOptions = LayoutOptions.Start;
+            countQuest.FontSize = 12;
             countQuest.FontAttributes = FontAttributes.Bold;
 
             containerOne.Children.Add(countQuestTitle);
@@ -55,19 +60,37 @@ namespace xamarinJKH.Questions
             countAnsweredTitle.Text = "Количество отвеченных:";
             countAnsweredTitle.TextColor = Color.Black;
             countAnsweredTitle.HorizontalOptions = LayoutOptions.Start;
+            countAnsweredTitle.VerticalOptions = LayoutOptions.Center;
+            countAnsweredTitle.FontSize = 12;
 
             countAnswered.TextColor = Color.FromHex(Settings.MobileSettings.color);
             countAnswered.HorizontalOptions = LayoutOptions.Start;
             countAnswered.FontAttributes = FontAttributes.Bold;
+            countAnswered.FontSize = 12;
             containerTwo.Children.Add(countAnsweredTitle);
             containerTwo.Children.Add(countAnswered);
+            containerTwo.HorizontalOptions = LayoutOptions.End;
 
-            containerCount.Children.Add(containerOne);
-            containerCount.Children.Add(containerTwo);
-
+            Grid grid = new Grid
+            {
+                RowDefinitions =
+                {
+                    new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+                },
+                ColumnDefinitions =
+                {
+                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                }
+            };
+            
+            // containerCount.Children.Add(containerOne);
+            // containerCount.Children.Add(containerTwo);
+            grid.Children.Add(containerOne, 0, 0);
+            grid.Children.Add(containerTwo, 1, 0);
 
             container.Children.Add(date);
-            container.Children.Add(containerCount);
+            container.Children.Add(grid);
 
             Frame frameBtn = new Frame();
             frameBtn.HorizontalOptions = LayoutOptions.FillAndExpand;

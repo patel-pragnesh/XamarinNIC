@@ -10,7 +10,7 @@
     <ContentPage.Content>
         <StackLayout>
             <RelativeLayout
-                Margin="0,0,0,-120"
+                Margin="0,0,0,-130"
                 HorizontalOptions="FillAndExpand">
                 <!-- <Image x:Name="ImageTop" -->
                 <!--        Source="ic_top_event" -->
@@ -88,7 +88,7 @@
                     <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
-                        Margin="0, 40, 0, 0"
+                        Margin="-2, 35, 0, 0"
                         HorizontalOptions="Start">
                         <Image Source="ic_arrow_back"
                                HeightRequest="15"
@@ -97,6 +97,17 @@
                             Text="Назад "
                             FontSize="15"
                             TextColor="White"
+                            HorizontalOptions="Start" />
+                    </StackLayout>
+                    <StackLayout
+                        Orientation="Horizontal"
+                        Margin="12, 10, 0, 0"
+                        HorizontalOptions="Start">
+                        <Label
+                            Text="Опросы"
+                            FontSize="18"
+                            TextColor="White"
+                            FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
                 </StackLayout>

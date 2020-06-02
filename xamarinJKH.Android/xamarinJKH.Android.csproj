@@ -92,6 +92,7 @@
     <AndroidResource Include="Resources\drawable\ic_arrow_up.png" />
     <AndroidResource Include="Resources\drawable\ic_author.png" />
     <AndroidResource Include="Resources\drawable\ic_background.png" />
+    <AndroidResource Include="Resources\drawable\ic_background_counter.png" />
     <AndroidResource Include="Resources\drawable\ic_background_event.png" />
     <AndroidResource Include="Resources\drawable\ic_card_pay_black.png" />
     <AndroidResource Include="Resources\drawable\ic_close.png" />
@@ -304,10 +305,6 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\ic_profile_email.png">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable\ic_background_counter.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

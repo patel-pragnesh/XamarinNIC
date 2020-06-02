@@ -53,13 +53,14 @@ namespace xamarinJKH.Apps
             ImageStatus.Foreground = hex;
             ImageStatus.Source = "ic_status_new";
             ImageStatus.HeightRequest = 15;
+            ImageStatus.VerticalOptions = LayoutOptions.End;
             ImageStatus.WidthRequest = 15;
             ImageStatus.Margin = new Thickness(0, 0, 0, 0);
 
             LabelStatus.TextColor = Color.Black;
             LabelStatus.FontSize = 15;
-            LabelStatus.VerticalTextAlignment = TextAlignment.Start;
-            LabelStatus.VerticalOptions = LayoutOptions.Start;
+            LabelStatus.VerticalTextAlignment = TextAlignment.Center;
+            LabelStatus.VerticalOptions = LayoutOptions.Center;
 
 
             // status.Children.Add(ImageStatus);
