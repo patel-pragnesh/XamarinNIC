@@ -325,9 +325,9 @@
     <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\ic_background_event.png">
+    <BundleResource Include="Resources\ic_background_event.png">
       <SubType>Designer</SubType>
       <Generator></Generator>
-    </AndroidResource>
+    </BundleResource>
   </ItemGroup>
 </Project>
