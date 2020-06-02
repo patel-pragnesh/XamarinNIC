@@ -14,7 +14,7 @@
     <AssemblyName>xamarinJKH.iOS</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <ProvisioningType>automatic</ProvisioningType>
+    <ProvisioningType>manual</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,7 +50,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Development: Evgeny Yurtaykin (W7QP3Z4ZW5)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
@@ -71,11 +71,15 @@
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
     <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <AppExtensionDebugBundleId />
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="CusTomReader\CustomEntryRenderer.cs" />
     <Compile Include="CusTomReader\FileWorker.cs" />
     <Compile Include="CusTomReader\IconViewRenderer.cs" />
     <Compile Include="CusTomReader\MessageIOS.cs" />
+    <Compile Include="CustomRenderers\BorderlessDatePickerRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -147,24 +151,60 @@
     <ImageAsset Include="Assets.xcassets\ic_events.imageset\ic_events%403.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin20x20%402.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin20x20%403.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin29x29%402.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin29x29%403.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin40x40%402.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin40x40%403.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin60x60%402.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin60x60%403.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin20x20.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin20x20%402 2.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin29x29.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin29x29%402 2.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin40x40.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin40x40%402 2.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin76x76.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin76x76%402.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin83.5%402.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin1024.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin20x20%402.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin20x20%403.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin29x29%402.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin29x29%403.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin40x40%402.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin40x40%403.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin60x60%402.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin60x60%403.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin20x20.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin20x20%402 2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin29x29.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin29x29%402 2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin40x40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin40x40%402 2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin76x76.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin76x76%402.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin83.5%402.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin1024.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -200,11 +240,6 @@
     <Folder Include="Assets.xcassets\ic_events.imageset\" />
     <Folder Include="Assets.xcassets\ic_pays.imageset\" />
     <Folder Include="Assets.xcassets\ic_profile.imageset\" />
-    <Folder Include="Assets.xcassets\ic_pays.imageset\" />
-    <Folder Include="Assets.xcassets\ic_counters.imageset\" />
-    <Folder Include="Assets.xcassets\ic_profile.imageset\" />
-    <Folder Include="Assets.xcassets\ic_apps.imageset\" />
-    <Folder Include="Assets.xcassets\ic_events.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon_login.png" />

@@ -172,7 +172,7 @@
                                            VerticalOptions="Center" />
                                     <StackLayout 
                                         HorizontalOptions="FillAndExpand">
-                                    <DatePicker
+                                        <xamarinJkh:BorderlessDatePicker
                                         x:Name="DatePicker"
                                         Margin="15,0,0,0"
                                         Format="dd.MM.yyyy"
