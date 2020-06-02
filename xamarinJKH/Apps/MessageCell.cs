@@ -33,7 +33,7 @@ namespace xamarinJKH.Apps
             frame.HorizontalOptions = LayoutOptions.Start;
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;
-            frame.Margin = new Thickness(0, -30, -15, 0);
+            frame.Margin = new Thickness(5, -30, -15, 0);
             frame.Padding = 10;
             frame.HasShadow = true;
             frame.CornerRadius = 23;
@@ -48,7 +48,7 @@ namespace xamarinJKH.Apps
             frameA.HorizontalOptions = LayoutOptions.Start;
             frameA.VerticalOptions = LayoutOptions.Start;
             frameA.BackgroundColor = Color.White;
-            frameA.Margin = new Thickness(-15, -30, 0, 0);
+            frameA.Margin = new Thickness(-15, -30, 5, 0);
             frameA.Padding = 10;
             frameA.CornerRadius = 23;
 
@@ -64,7 +64,7 @@ namespace xamarinJKH.Apps
 
             LabelName.TextColor = Color.Gray;
             LabelName.FontSize = 15;
-            LabelName.Margin = new Thickness(50, 0, 0, 0);
+            LabelName.Margin = new Thickness(55, 0, 0, 0);
             LabelName.HorizontalOptions = LayoutOptions.Center;
 
             Labeltime.TextColor = Color.Gray;

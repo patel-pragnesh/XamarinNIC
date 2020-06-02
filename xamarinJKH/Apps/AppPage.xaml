@@ -101,13 +101,13 @@
                     </StackLayout>
                 </Frame>
             </StackLayout>
-            <Frame CornerRadius="50"
+            <Frame CornerRadius="30"
                    Margin="15, 15, 15, -30"
                    BackgroundColor="White"
-                   Padding="5,15,5,70">
+                   Padding="5,0,5,70">
                 <ListView x:Name="additionalList"
                           HasUnevenRows="True"
-                          Margin="5, 0, 5, 0"
+                          Margin="0, 0, 0, 0"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
                           IsPullToRefreshEnabled="True"
@@ -139,7 +139,7 @@
                    Margin="15, -40, 15, 15"
                    BackgroundColor="White"
                    BorderColor="{Binding hex}"
-                   Padding="10">
+                   Padding="15">
                 <StackLayout
                     Spacing="10"
                     Orientation="Horizontal">
