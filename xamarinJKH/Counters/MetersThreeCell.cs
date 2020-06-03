@@ -407,7 +407,7 @@ namespace xamarinJKH.Main
                     img.Source = ImageSource.FromFile("ic_electr");
                 }
                 int currDay = DateTime.Now.Day;
-                currDay = 16;
+                // currDay = 16;
                 frameBtn.IsVisible = true;
                 canCount.IsVisible = false;
                 if (Settings.Person.Accounts.Count > 0)

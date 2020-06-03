@@ -1,4 +1,5 @@
 ﻿
+using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using xamarinJKH.iOS.CustomRenderers;
@@ -15,10 +16,8 @@ namespace xamarinJKH.iOS.CustomRenderers
         {
 
             var listView = (UIKit.UITableView)Control;
-
-            
-            listView.AllowsSelection = false; // !!!
-
+            listView.BackgroundColor = UIColor.Clear;
+            listView.AllowsSelection = true; // !!!
         }
 
  

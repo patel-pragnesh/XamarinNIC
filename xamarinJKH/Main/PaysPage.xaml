@@ -134,7 +134,6 @@
 
                     </ListView.Header>
                     <ListView.ItemTemplate>
-
                         <DataTemplate>
                             <main:PaysCell
                                 Ident="{Binding Ident}"
