@@ -90,6 +90,7 @@ namespace xamarinJKH
             Notifications = Settings.EventBlockData.Announcements;
             this.BindingContext = this;
             NotificationList.BackgroundColor = Color.Transparent;
+            NotificationList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
         void SetText()

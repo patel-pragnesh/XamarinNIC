@@ -158,16 +158,16 @@
                                BackgroundColor="Transparent"
                                BorderColor="{Binding hex}"
                                Margin="10, 10, 10, 0"
-                               Padding="3,0,3,0">
-                            <Editor x:Name="EntryMess"
-                                    FontSize="18"
-                                    VerticalOptions="FillAndExpand"
-                                    Text=""
-                                    MinimumHeightRequest="100"
-                                    AutoSize="TextChanges"
-                                    Placeholder="Введите описание заявки..."
-                                    TextColor="#A2A2A2"
-                                    HorizontalOptions="FillAndExpand" />
+                               Padding="10,10,10,10">
+                            <xamarinJkh:BordlessEditor x:Name="EntryMess"
+                                            FontSize="18"
+                                            VerticalOptions="FillAndExpand"
+                                            Text=""
+                                            WidthRequest="100"
+                                            AutoSize="TextChanges"
+                                            Placeholder="Введите описание заявки..."
+                                            TextColor="#A2A2A2"
+                                            HorizontalOptions="FillAndExpand" />
                         </Frame>
                         <StackLayout Orientation="Horizontal"
                                      Margin="10, 0, 10, 0">

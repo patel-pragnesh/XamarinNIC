@@ -138,6 +138,7 @@ namespace xamarinJKH.Apps
            
             setText();
             getMessage();
+            additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
         protected override bool OnBackButtonPressed()

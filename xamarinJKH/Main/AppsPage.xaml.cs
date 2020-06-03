@@ -80,6 +80,7 @@ namespace xamarinJKH.Main
             SetText();
             getApps();
             additionalList.BackgroundColor = Color.Transparent;
+            additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
         void SetText()

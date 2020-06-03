@@ -76,12 +76,11 @@
                                    FontSize="10" />
                         </StackLayout>
                         <StackLayout
-                            Margin="10,15,0,0" 
+                            Margin="10,15,0,0"
                             VerticalOptions="Center"
                             HorizontalOptions="CenterAndExpand">
                             <Image Source="ic_files_app1"
-                                   HeightRequest="25"
-                                   />
+                                   HeightRequest="25" />
                             <Label Text="Файлы"
                                    TextColor="White"
                                    FontAttributes="Bold"
@@ -116,7 +115,7 @@
                           IsRefreshing="{Binding IsRefreshing}"
                           SelectionMode="None"
                           ItemTapped="OnItemTapped"
-                          
+
                           ItemsSource="{Binding messages}">
                     <ListView.Header>
 
@@ -137,7 +136,7 @@
                 </ListView>
             </Frame>
             <Frame CornerRadius="30"
-                   Margin="15, -40, 15, 15"
+                   Margin="15, -30, 15, 5"
                    BackgroundColor="White"
                    BorderColor="{Binding hex}"
                    Padding="15">
@@ -157,14 +156,14 @@
                         Foreground="{Binding hex}"
                         HeightRequest="20"
                         WidthRequest="20" />
-                    <Editor x:Name="EntryMess"
-                            FontSize="18"
-                            VerticalOptions="Center"
-                            Text=""
-                            AutoSize="Disabled"
-                            Placeholder="Введите сообщение..."
-                            TextColor="#A2A2A2"
-                            HorizontalOptions="FillAndExpand" />
+                    <xamarinJkh:BordlessEditor x:Name="EntryMess"
+                                               FontSize="18"
+                                               VerticalOptions="Center"
+                                               Text=""
+                                               AutoSize="Disabled"
+                                               Placeholder="Введите сообщение..."
+                                               TextColor="#A2A2A2"
+                                               HorizontalOptions="FillAndExpand" />
                     <xamarinJkh:IconView
                         x:Name="IconViewSend"
                         Source="ic_send_mess"

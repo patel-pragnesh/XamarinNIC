@@ -128,6 +128,7 @@ namespace xamarinJKH.Main
             }
 
             countersList.BackgroundColor = Color.Transparent;
+            countersList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
         
         private void picker_SelectedIndexChanged(object sender, EventArgs e)

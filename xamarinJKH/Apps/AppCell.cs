@@ -164,7 +164,7 @@ namespace xamarinJKH.Apps
                 });
                 formatted.Spans.Add(new Span
                 {
-                    Text = "• " + TextApp,
+                    Text = "• " + TextApp.Trim(),
                     TextColor = Color.Black,
                     FontAttributes = FontAttributes.Bold,
                     FontSize = 17

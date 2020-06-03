@@ -65,6 +65,7 @@ namespace xamarinJKH.Apps
                 SelectedType = Settings.TypeApp[0],
                 Files = files
             };
+            ListViewFiles.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
         private async void AddFile()
