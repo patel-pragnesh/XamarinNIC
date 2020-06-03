@@ -71,6 +71,7 @@
     <Compile Include="CustomReader\IconViewRenderer.cs" />
     <Compile Include="CustomReader\MessageAndroid.cs" />
     <Compile Include="CustomRenderers\BorderlessDatePickerRenderer.cs" />
+    <Compile Include="CustomRenderers\BorderlessPickerRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

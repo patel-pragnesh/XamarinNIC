@@ -87,6 +87,22 @@ namespace xamarinJKH.Main
             openSaldos.Tapped += async (s, e) => { await Navigation.PushAsync(new SaldosPage(_accountingInfo)); };
             FrameBtnSaldos.GestureRecognizers.Add(openSaldos);
         }
+        
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            
+            new Task(SyncSetup).Start(); // This could be an await'd task if need be
+        }
+        
+        async void SyncSetup()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                // Assuming this function needs to use Main/UI thread to move to your "Main Menu" Page
+                RefreshPaysData();
+            });
+        }
 
         void SetTextAndColor()
         {

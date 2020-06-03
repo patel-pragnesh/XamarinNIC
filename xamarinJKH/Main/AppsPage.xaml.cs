@@ -81,6 +81,22 @@ namespace xamarinJKH.Main
             getApps();
             additionalList.BackgroundColor = Color.Transparent;
         }
+        
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            
+            new Task(SyncSetup).Start(); // This could be an await'd task if need be
+        }
+        
+        async void SyncSetup()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                // Assuming this function needs to use Main/UI thread to move to your "Main Menu" Page
+                RefreshData();
+            });
+        }
 
         void SetText()
         {

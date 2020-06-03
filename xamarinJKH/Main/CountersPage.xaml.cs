@@ -105,13 +105,15 @@ namespace xamarinJKH.Main
                     FontAttributes = FontAttributes.None,
                     FontSize = 15
                 });
-                formattedResource.Spans.Add(new Span
-                {
-                    // Text = Settings.Person.Accounts[0].MetersStartDay + " по " + Settings.Person.Accounts[0].MetersEndDay + " числа ",
-                    TextColor = Color.White,
-                    FontAttributes = FontAttributes.Bold,
-                    FontSize = 15
-                });
+                if (Settings.Person.Accounts[0].MetersStartDay != null && Settings.Person.Accounts[0].MetersEndDay != null){
+                    formattedResource.Spans.Add(new Span
+                    {
+                        Text = Settings.Person.Accounts[0].MetersStartDay + " по " + Settings.Person.Accounts[0].MetersEndDay + " числа ",
+                        TextColor = Color.White,
+                        FontAttributes = FontAttributes.Bold,
+                        FontSize = 15
+                    });
+                }
                 formattedResource.Spans.Add(new Span
                 {
                     Text = "текущего месяца!",
@@ -128,6 +130,22 @@ namespace xamarinJKH.Main
             }
 
             countersList.BackgroundColor = Color.Transparent;
+        }
+        
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            
+            new Task(SyncSetup).Start(); // This could be an await'd task if need be
+        }
+        
+        async void SyncSetup()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                // Assuming this function needs to use Main/UI thread to move to your "Main Menu" Page
+                RefreshCountersData();
+            });
         }
         
         private void picker_SelectedIndexChanged(object sender, EventArgs e)

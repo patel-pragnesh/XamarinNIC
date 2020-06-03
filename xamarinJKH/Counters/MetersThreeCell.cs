@@ -28,6 +28,9 @@ namespace xamarinJKH.Main
         private StackLayout tarif3Stack = new StackLayout();
         private Label counterDate3 = new Label();
         private Label count3 = new Label();
+        StackLayout containerBtn = new StackLayout();
+        private Label canCount = new Label();
+        Frame frameBtn = new Frame();
 
         StackLayout count1Stack = new StackLayout();
         StackLayout count2Stack = new StackLayout();
@@ -256,16 +259,14 @@ namespace xamarinJKH.Main
             count3Stack.Children.Add(lines3);
             count3Stack.Children.Add(count3);
             container.Children.Add(count3Stack);
-
-            Frame frameBtn = new Frame();
+            
             frameBtn.HorizontalOptions = LayoutOptions.FillAndExpand;
             frameBtn.VerticalOptions = LayoutOptions.Start;
             frameBtn.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             frameBtn.CornerRadius = 10;
             frameBtn.Margin = new Thickness(0,10,0,0);
             frameBtn.Padding = 12;
-
-            StackLayout containerBtn = new StackLayout();
+            
             containerBtn.Orientation = StackOrientation.Horizontal;
             containerBtn.HorizontalOptions = LayoutOptions.CenterAndExpand;
 
@@ -281,6 +282,16 @@ namespace xamarinJKH.Main
 
             container.Children.Add(frameBtn);
 
+            canCount.Text = "Возможность передавать показания доступна с 15 по 25 число текущего месяца!";
+            canCount.FontSize = 12;
+            canCount.TextDecorations = TextDecorations.Underline;
+            canCount.FontAttributes = FontAttributes.Bold;
+            canCount.TextColor = Color.Black;
+            canCount.HorizontalTextAlignment = TextAlignment.End;
+            canCount.HorizontalOptions = LayoutOptions.CenterAndExpand;
+            canCount.HorizontalTextAlignment = TextAlignment.Center;
+            
+            container.Children.Add(canCount);
             frame.Content = container;
 
             View = frame;
@@ -395,7 +406,50 @@ namespace xamarinJKH.Main
                 {
                     img.Source = ImageSource.FromFile("ic_electr");
                 }
+                int currDay = DateTime.Now.Day;
+                currDay = 16;
+                frameBtn.IsVisible = true;
+                canCount.IsVisible = false;
+                if (Settings.Person.Accounts.Count > 0)
+                {
+                    FormattedString formattedDate = new FormattedString();
+                    formattedDate.Spans.Add(new Span
+                    {
+                        Text = "Возможность передавать показания доступна с ",
+                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                        FontAttributes = FontAttributes.None,
+                        FontSize = 12
+                    });
+                    if (Settings.Person.Accounts[0].MetersStartDay != null && Settings.Person.Accounts[0].MetersEndDay != null){
+                        formattedDate.Spans.Add(new Span
+                        {
+                            Text = Settings.Person.Accounts[0].MetersStartDay + " по " + Settings.Person.Accounts[0].MetersEndDay + " числа ",
+                            TextColor = Color.FromHex(Settings.MobileSettings.color),
+                            FontAttributes = FontAttributes.Bold,
+                            FontSize = 12
+                        });
+                    }
+                    formattedDate.Spans.Add(new Span
+                    {
+                        Text = "текущего месяца!",
+                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                        FontAttributes = FontAttributes.None,
+                        FontSize = 12
+                    });
 
+                    canCount.FormattedText = formattedDate;
+                    if (Settings.Person.Accounts[0].MetersStartDay <= currDay &&
+                        Settings.Person.Accounts[0].MetersEndDay >= currDay)
+                    {
+                        frameBtn.IsVisible = true;
+                        canCount.IsVisible = false;
+                    }
+                    else
+                    {
+                        frameBtn.IsVisible = false;
+                        canCount.IsVisible = true;
+                    }
+                }
             }
         }
     }

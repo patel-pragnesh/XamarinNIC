@@ -31,10 +31,10 @@ namespace xamarinJKH
             title.HorizontalTextAlignment = TextAlignment.Start;
             title.HorizontalOptions = LayoutOptions.StartAndExpand;
             title.FontAttributes = FontAttributes.Bold;
-            title.FontSize = 13;
+            title.FontSize = 15;
             title.TextColor = Color.Black;
             more.Text = "Подробнее >";
-            more.FontSize = 12;
+            more.FontSize = 13;
             more.TextDecorations = TextDecorations.Underline;
             more.TextColor = Color.FromHex(Settings.MobileSettings.color);
             more.HorizontalTextAlignment = TextAlignment.End;
@@ -47,11 +47,13 @@ namespace xamarinJKH
             container.Children.Add(titleContainer);
             date.HorizontalOptions = LayoutOptions.Start;
             date.TextColor = Color.Black;
+            date.FontSize = 14;
             date.VerticalOptions = LayoutOptions.Center;
             date.Margin = new Thickness(0,-5,0,0);
             container.Children.Add(date);
             text.HorizontalOptions = LayoutOptions.FillAndExpand;
             text.VerticalOptions = LayoutOptions.FillAndExpand;
+            text.FontSize = 14;
             text.TextColor = Color.Black;
             text.TextType = TextType.Html;
             container.Children.Add(text);
