@@ -93,6 +93,7 @@ namespace xamarinJKH.Pays
             BackStackLayout.GestureRecognizers.Add(backClick);
             SetText();
             this.BindingContext = this;
+            additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
         void SetBills(List<AccountAccountingInfo> infos)
@@ -144,6 +145,11 @@ namespace xamarinJKH.Pays
                     {
                         File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(filename))
                     });
+                }
+                else
+                {
+                    Loading.Instance.Hide();
+                    await DisplayAlert("Ошибка", "Не удалось скачать файл", "OK");
                 }
             }
         }

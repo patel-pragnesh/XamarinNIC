@@ -93,6 +93,7 @@ namespace xamarinJKH.Pays
             Payments = Accounts[0].Payments;
             SelectedAcc = Accounts[0];
             BindingContext = this;
+            additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
         void SetText()

@@ -90,6 +90,8 @@ namespace xamarinJKH.News
             NewsInfos = Settings.EventBlockData.News;
             this.BindingContext = this;
             NotificationList.BackgroundColor = Color.Transparent;
+            NotificationList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+
         }
 
         void SetText()

@@ -47,14 +47,14 @@ namespace xamarinJKH
             container.Children.Add(titleContainer);
             date.HorizontalOptions = LayoutOptions.Start;
             date.TextColor = Color.Black;
-            date.FontSize = 14;
+            date.FontSize = 12;
             date.VerticalOptions = LayoutOptions.Center;
             date.Margin = new Thickness(0,-5,0,0);
             container.Children.Add(date);
             text.HorizontalOptions = LayoutOptions.FillAndExpand;
             text.VerticalOptions = LayoutOptions.FillAndExpand;
-            text.FontSize = 14;
             text.TextColor = Color.Black;
+            text.FontSize = 15;
             text.TextType = TextType.Html;
             container.Children.Add(text);
             frame.Content = container;

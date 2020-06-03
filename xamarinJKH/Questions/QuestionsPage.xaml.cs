@@ -88,6 +88,7 @@ namespace xamarinJKH.Questions
             Quest = Settings.EventBlockData.Polls;
             this.BindingContext = this;
             additionalList.BackgroundColor = Color.Transparent;
+            additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
         void SetText()

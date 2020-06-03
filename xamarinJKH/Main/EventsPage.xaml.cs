@@ -108,6 +108,8 @@ namespace xamarinJKH.Main
         {
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.Phone;
+            // LabelTech.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            // IconViewTech.Foreground = Color.FromHex(Settings.MobileSettings.color);
         }
 
         void SetColor()

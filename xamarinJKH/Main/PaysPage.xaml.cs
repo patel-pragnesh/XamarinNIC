@@ -86,6 +86,7 @@ namespace xamarinJKH.Main
             var openSaldos = new TapGestureRecognizer();
             openSaldos.Tapped += async (s, e) => { await Navigation.PushAsync(new SaldosPage(_accountingInfo)); };
             FrameBtnSaldos.GestureRecognizers.Add(openSaldos);
+            additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
         
         protected override void OnAppearing()

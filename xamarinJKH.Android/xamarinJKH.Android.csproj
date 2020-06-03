@@ -48,6 +48,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -72,6 +73,8 @@
     <Compile Include="CustomReader\MessageAndroid.cs" />
     <Compile Include="CustomRenderers\BorderlessDatePickerRenderer.cs" />
     <Compile Include="CustomRenderers\BorderlessPickerRenderer.cs" />
+    <Compile Include="CustomRenderers\BordlessEditorRender.cs" />
+    <Compile Include="CustomRenderers\ListViewHighlightEffect.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
