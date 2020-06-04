@@ -13,8 +13,8 @@ namespace xamarinJKH.Server
     public class RestClientMP
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // Адрес сервера
-        public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
+        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
         
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
@@ -48,6 +48,7 @@ namespace xamarinJKH.Server
         
         public const string GET_SHOPS_GOODS = "Shops/Goods"; // Получить товары магазина
         public const string GET_SHOPS_GOODS_IMAGE = "Shops/GoodsImage"; // Получить картинку товара
+        public const string SAVE_RESULT_POLL = "Polls/SaveResult"; // Получить картинку товара
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -733,6 +734,28 @@ namespace xamarinJKH.Server
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 return new AddAccountResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        public async Task<CommonResult> SaveResultPolls(PollingResult pollingResult)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(SAVE_RESULT_POLL, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                pollingResult
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
                 {
                     Error = $"Ошибка {response.StatusDescription}"
                 };

@@ -91,6 +91,24 @@ namespace xamarinJKH.Questions
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
+        void isComplite()
+        {
+            foreach (var each in Settings.EventBlockData.Polls)
+            {
+                bool flag = false;
+                foreach (var quest in each.Questions)
+                {
+                    foreach (var ans in quest.Answers)
+                    {
+                        if (ans.IsUserAnswer)
+                        {
+                            
+                        }
+                    }
+                }
+            }
+        }
+        
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
