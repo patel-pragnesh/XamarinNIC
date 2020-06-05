@@ -29,6 +29,7 @@ namespace xamarinJKH.Pays
                 }
             };
             
+            
             LabelDate.TextColor = Color.Black;
             LabelDate.HorizontalOptions = LayoutOptions.FillAndExpand;
             LabelDate.FontSize = 15;

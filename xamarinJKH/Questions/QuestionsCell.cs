@@ -20,15 +20,15 @@ namespace xamarinJKH.Questions
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;
             frame.Margin = new Thickness(10, 0, 10, 10);
-            frame.Padding = new Thickness(15, 15, 15, 15);
-            frame.CornerRadius = 30;
+            frame.Padding = new Thickness(18, 18, 18, 18);
+            frame.CornerRadius = 35;
 
             StackLayout container = new StackLayout();
             container.Orientation = StackOrientation.Vertical;
 
             title.TextColor = Color.Black;
             title.FontAttributes = FontAttributes.Bold;
-            title.FontSize = 20;
+            title.FontSize = 18;
 
             container.Children.Add(title);
 
