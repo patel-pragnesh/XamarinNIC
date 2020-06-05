@@ -69,6 +69,20 @@ namespace xamarinJKH.News
                     ImageTop.Margin = new Thickness(0, 0, 0, 0);
                     StackLayout.Margin = new Thickness(0, 33, 0, 0);
                     IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
+                    Console.WriteLine(App.ScreenHeight);
+                    if (App.ScreenHeight <= 667)//iPhone6
+                    {
+                        RelativeLayoutTop.Margin = new Thickness(0,0,0,-110);
+                    }else if (App.ScreenHeight <= 736)//iPhone8Plus Height=736
+                    {
+                        RelativeLayoutTop.Margin = new Thickness(0,0,0,-200);
+                    }
+                    else
+                    {
+                        RelativeLayoutTop.Margin = new Thickness(0,0,0,-245);
+                    }
+                    
+                    
                     break;
                 case Device.Android:
                     RelativeLayoutTop.Margin = new Thickness(0,0,0,-135);
