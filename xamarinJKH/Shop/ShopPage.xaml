@@ -3,12 +3,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.Shop.ShopPage">
     <ContentPage.Content>
         <StackLayout>
                 <RelativeLayout
-                Margin="0,0,0,-150"
+                Margin="0,0,0,-90"
                 VerticalOptions="Start"
                 HorizontalOptions="FillAndExpand">
                 <Image x:Name="ImageTop" Margin="0, -26, 0 ,0"
@@ -34,12 +35,12 @@
                              Factor=0,
                              Constant=10}"
                     Orientation="Vertical">
-                    <Label x:Name="UkName"
-                           Text="Название"
+                    <Label x:Name="ShopName"
+                           Text="{Binding _Additional.ShopName}"
                            FontAttributes="Bold"
-                           FontSize="20"
+                           FontSize="30"
                            TextColor="White" />
-                    <StackLayout
+                    <!--<StackLayout
                         Orientation="Horizontal">
                         <xamarinJkh:IconView x:Name="IconViewLogin"
                                              Source="ic_phone"
@@ -54,7 +55,7 @@
                                TextColor="White"
                                Margin="-5, 0, 0, 0"
                                VerticalOptions="Center" />
-                    </StackLayout>
+                    </StackLayout>-->
                     <StackLayout
                         Orientation="Horizontal">
                         <xamarinJkh:IconView x:Name="IconViewTech"
@@ -75,7 +76,7 @@
                     <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
-                        Margin="0, 40, 0, 0"
+                        Margin="0, 20, 0, 0"
                         HorizontalOptions="Start">
                         <Image Source="ic_arrow_back"
                                HeightRequest="15"
@@ -85,16 +86,9 @@
                             FontSize="15"
                             TextColor="White"
                             HorizontalOptions="Start" />
-                    </StackLayout>
-                    <Label
-                        Text="{Binding _Additional.ShopName}"
-                        FontSize="20"
-                        TextColor="White"
-                        Margin="15,0,0,0"
-                        FontAttributes="Bold"
-                        HorizontalOptions="Start" />
+                    </StackLayout>                    
                 </StackLayout>
-                <Image x:Name="IconViewNameUk"
+                <!--<Image x:Name="IconViewNameUk"
                        Source="icon_login"
                        HeightRequest="70"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
@@ -104,53 +98,99 @@
                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Height,
                              Factor=0,
-                             Constant=25}" />
+                             Constant=25}" />-->
             </RelativeLayout>
-            <StackLayout VerticalOptions="FillAndExpand">
-                
-                <CarouselView x:Name="CarouselViewShop"
+            
+            <StackLayout VerticalOptions="FillAndExpand" >
+
+                <!--<CarouselView x:Name="CarouselViewShop" 
                               PositionChanged="OnPositionChanged">
                     <CarouselView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal"
                                            ItemSpacing="20" />
                     </CarouselView.ItemsLayout>
-                </CarouselView>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                    <StackLayout HorizontalOptions="StartAndExpand" Padding="10,0,10,10" >
-                        <Label Text="Вес:"
+                </CarouselView>-->
+                <ScrollView Orientation="Horizontal" Margin="35,-30,0,20">
+                    <StackLayout x:Name="GoodsCategories" Orientation="Horizontal">                       
+                    </StackLayout>                    
+                </ScrollView>
+
+                <yummy:PancakeView x:Name="GoodsLayot" CornerRadius="30,30,0,0" BackgroundColor = "White" VerticalOptions="FillAndExpand" Margin="15,-10,15,-20" Padding="20,0">                        
+                    </yummy:PancakeView>
+
+                <yummy:PancakeView  Padding="0" CornerRadius="50,50,0,0"  BackgroundColor="#e7e7e7"  >
+                    <yummy:PancakeView.Shadow>
+                        <yummy:DropShadow Opacity="0.7" Color="Gray" />
+                    </yummy:PancakeView.Shadow>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="20,0,20,0">
+                        <StackLayout HorizontalOptions="StartAndExpand"  Margin="0,20">
+                            <Label Text="Вес:"
                                TextColor="Black"
-                               FontSize="15"></Label>
-                        <Label x:Name="LabelWeightBuscket"
-                            Text="0 кг"
+                               FontSize="12"
+                               FontAttributes="Bold">                                
+                            </Label>
+                            <Label x:Name="LabelWeightBuscket">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="0 " FontSize="18" FontAttributes="Bold" TextColor="Black" />
+                                        <Span Text="г" FontSize="12"  TextColor="#8a8a8a" />                                        
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,20" >
+                            <Label Text="Итого цена:"
                                TextColor="Black"
-                               FontAttributes="Bold"
-                               FontSize="15"></Label>
-                    </StackLayout>
-                    <StackLayout HorizontalOptions="CenterAndExpand"
+                               FontSize="12"
+                               FontAttributes="Bold">
+                            </Label>
+                            <Label x:Name="LabelPriceBuscket">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="0 " FontSize="18" FontAttributes="Bold" TextColor="{Binding hex}" />
+                                        <Span Text="руб." FontSize="12"  TextColor="#8a8a8a" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                        <!--<StackLayout HorizontalOptions="CenterAndExpand"
                                  Padding="10,0,10,10" >
-                        <Label  
+                            <Label  
                             Text="Итого цена:"
                                TextColor="Black"
                                FontSize="15"></Label>
-                        <Label Text="0 р"
+                            <Label Text="0 р"
                                x:Name="LabelPriceBuscket"
                                TextColor="Black"
                                FontAttributes="Bold"
                                FontSize="15"></Label>
-                    </StackLayout>
-                    <StackLayout 
+                        </StackLayout>-->
+                        <Frame CornerRadius="10"                                                              
+                               x:Name="FrameBtn"
+                               Padding="0"
+                               Margin="0,20">
+                            <Button x:Name="BtnCheckOut" 
+                                BackgroundColor="{Binding hex}" HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"                                    
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            Text="Оформить заказ" Clicked="BtnCheckOut_Clicked"></Button>
+                            <!--<StackLayout 
                         x:Name="StackLayoutBasket"
-                        Padding="10,0,10,0" BackgroundColor="{Binding hex}" HorizontalOptions="EndAndExpand">
-                        <Label 
+                         HorizontalOptions="EndAndExpand">
+                                <Label 
                             HorizontalOptions="FillAndExpand"
                             VerticalOptions="FillAndExpand"
                             HorizontalTextAlignment="Center"
-                            VerticalTextAlignment="Center"
+                            VerticalTextAlignment="Center"                            
                             TextColor="White"
                             FontAttributes="Bold"
                             Text="Оформить заказ"  />
+                            </StackLayout>-->
+                        </Frame>
                     </StackLayout>
-                </StackLayout>
+                </yummy:PancakeView>
+                
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
