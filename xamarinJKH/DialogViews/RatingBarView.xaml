@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<abstractions:DialogView xmlns="http://xamarin.com/schemas/2014/forms"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                         CornerRadius="30" OffsetX="0" OffsetY="0" UseCurrentPageLocation="false"
+                         VerticalLayoutAlignment="Start" HorizontalLayoutAlignment="Center"
+                         xmlns:abstractions="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
+                         xmlns:controls="clr-namespace:Messier16.Forms.Controls;assembly=Messier16.Forms.Controls"
+                         xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+                         x:Class="xamarinJKH.DialogViews.RatingBarView">
+    <Frame CornerRadius="30"
+           x:Name="Frame"
+           HorizontalOptions="FillAndExpand"
+           BackgroundColor="white"
+           HasShadow="True"
+           Margin="15,125,15,15"
+           Padding="25,20,25,20">
+        <StackLayout
+
+            HorizontalOptions="FillAndExpand">
+            <xamarinJkh:IconView x:Name="IconViewPhone"
+                                 Source="ic_close"
+                                 HeightRequest="15"
+                                 WidthRequest="15"
+                                 Foreground="Black"
+                                 HorizontalOptions="End"
+                                 VerticalOptions="Center" />
+            <Label
+                x:Name="LabelDate"
+                TextColor="Black"
+                FontSize="20"
+                Margin="0,-20,0,0"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Text="Закрыть заявку?" />
+
+            <Label
+                TextColor="Black"
+                FontAttributes="Bold"
+                Margin="0,10,0,0"
+                HorizontalOptions="FillAndExpand"
+                HorizontalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Помогите нам стать лучше.
+                        " FontSize="17" />
+                        <Span Text="Оцените " TextColor="Black" FontAttributes="Bold" FontSize="17" />
+                        <Span Text="работу службы поддержки:" TextColor="Black" FontSize="17" />
+
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <controls:RatingBar x:Name="RatingBar"
+                FilledImage="ic_call_app.png"
+                                Image="ic_author.png"
+                                MaxRating="5"
+                                FillColor="{Binding HexColor}"
+                                Margin="35,0,35,0"
+                                HeightRequest="45" />
+
+            <Frame CornerRadius="15"
+                   BackgroundColor="Transparent"
+                   BorderColor="{Binding HexColor}"
+                   Margin="0, 25, 0, 0"
+                   Padding="10,10,10,10">
+                <xamarinJkh:BordlessEditor x:Name="EntryMess"
+                                           FontSize="18"
+                                           VerticalOptions="FillAndExpand"
+                                           Text=""
+                                           WidthRequest="100"
+                                           AutoSize="TextChanges"
+                                           Placeholder="Прокомментируйте вашу оценку..."
+                                           TextColor="#A2A2A2"
+                                           HorizontalOptions="FillAndExpand" />
+            </Frame>
+            <Frame CornerRadius="15"
+                   BackgroundColor="{Binding HexColor}"
+                   Margin="0, 10, 0, 20"
+                   x:Name="FrameBtnAdd"
+                   Padding="0">
+                <Button x:Name="BtnAdd"
+                        Text="Закрыть заявку"
+                        TextColor="White"
+                        Clicked="CloseApp"
+                        FontAttributes="Bold"
+                        BackgroundColor="Transparent" />
+            </Frame>
+        </StackLayout>
+    </Frame>
+</abstractions:DialogView>

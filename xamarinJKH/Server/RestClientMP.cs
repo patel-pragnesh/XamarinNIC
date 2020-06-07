@@ -749,7 +749,9 @@ namespace xamarinJKH.Server
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
-                pollingResult
+                pollingResult.PollId,
+                pollingResult.ExtraInfo,
+                pollingResult.Answers
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус

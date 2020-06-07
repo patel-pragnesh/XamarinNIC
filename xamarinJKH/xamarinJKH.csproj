@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="AiForms.Dialogs" Version="1.0.1" />
+    <PackageReference Include="Messier16.Forms.Controls" Version="2.2.0" />
     <PackageReference Include="PCLStorage" Version="1.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
@@ -118,6 +119,14 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="DialogViews\InfoAppDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DialogViews\RatingBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -193,6 +202,12 @@
     </Compile>
     <Compile Update="Pays\AddIdent.xaml.cs">
       <DependentUpon>AddIdent.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="DialogViews\InfoAppDialog.xaml.cs">
+      <DependentUpon>InfoAppDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="DialogViews\RatingBarView.xaml.cs">
+      <DependentUpon>RatingBarView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

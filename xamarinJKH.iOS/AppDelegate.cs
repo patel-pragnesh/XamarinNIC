@@ -29,6 +29,7 @@ namespace xamarinJKH.iOS
             XamEffects.iOS.Effects.Init(); 
             App.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
             App.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
+            Messier16.Forms.iOS.Controls.Messier16Controls.InitAll();
             LoadApplication(new App());
             UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;
             return base.FinishedLaunching(app, options);

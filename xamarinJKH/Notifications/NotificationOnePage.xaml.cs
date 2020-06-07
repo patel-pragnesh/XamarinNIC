@@ -80,7 +80,7 @@ namespace xamarinJKH.Notifications
 
         private async void ButtonClick(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new PollsPage(_polls));
+            await Navigation.PushAsync(new PollsPage(_polls, false));
         }
     }
 }

@@ -62,10 +62,11 @@
                        BackgroundColor="#B5B5B5"
                        Padding="25,0,25,80">
                     <StackLayout Orientation="Horizontal"
-                                 WidthRequest="150"
+                                 WidthRequest="100"
                                  HeightRequest="100">
                         <StackLayout
                             Margin="0,15,0,0"
+                            x:Name="StackLayoutInfo"
                             VerticalOptions="Center"
                             HorizontalOptions="StartAndExpand">
                             <Image Source="ic_info_app1"
@@ -75,20 +76,21 @@
                                    FontAttributes="Bold"
                                    FontSize="10" />
                         </StackLayout>
-                        <StackLayout
-                            Margin="10,15,0,0"
-                            VerticalOptions="Center"
-                            HorizontalOptions="CenterAndExpand">
-                            <Image Source="ic_files_app1"
-                                   HeightRequest="25" />
-                            <Label Text="Файлы"
-                                   TextColor="White"
-                                   FontAttributes="Bold"
-                                   FontSize="10" />
-                        </StackLayout>
+                        <!-- <StackLayout -->
+                        <!--     Margin="10,15,0,0" -->
+                        <!--     VerticalOptions="Center" -->
+                        <!--     HorizontalOptions="CenterAndExpand"> -->
+                        <!--     <Image Source="ic_files_app1" -->
+                        <!--            HeightRequest="25" /> -->
+                        <!--     <Label Text="Файлы" -->
+                        <!--            TextColor="White" -->
+                        <!--            FontAttributes="Bold" -->
+                        <!--            FontSize="10" /> -->
+                        <!-- </StackLayout> -->
                         <StackLayout
                             Margin="0,15,0,0"
                             VerticalOptions="Center"
+                            x:Name="StackLayoutClose"
                             HorizontalOptions="EndAndExpand">
                             <Image Source="ic_close_app1"
                                    HeightRequest="25"
@@ -101,7 +103,9 @@
                     </StackLayout>
                 </Frame>
             </StackLayout>
-            <Frame CornerRadius="30"
+            <Frame 
+                x:Name="FrameMessage"
+                CornerRadius="30"
                    Margin="15, 15, 15, -30"
                    BackgroundColor="White"
                    Padding="5,0,5,70">

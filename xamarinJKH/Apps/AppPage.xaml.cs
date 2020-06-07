@@ -12,6 +12,7 @@ using Plugin.FilePicker.Abstractions;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
@@ -104,8 +105,9 @@ namespace xamarinJKH.Apps
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
-                        ScrollViewContainer.Margin = new Thickness(0,0,0,-90);
+                        ScrollViewContainer.Margin = new Thickness(0, 0, 0, -90);
                     }
+
                     break;
                 default:
                     break;
@@ -134,8 +136,14 @@ namespace xamarinJKH.Apps
             var addFile = new TapGestureRecognizer();
             addFile.Tapped += async (s, e) => { addFileApp(); };
             IconViewAddFile.GestureRecognizers.Add(addFile);
+            var showInfo = new TapGestureRecognizer();
+            showInfo.Tapped += async (s, e) => { await ShowInfo(); };
+            StackLayoutInfo.GestureRecognizers.Add(showInfo); 
+            var closeApp = new TapGestureRecognizer();
+            closeApp.Tapped += async (s, e) => { await ShowRating(); };
+            StackLayoutClose.GestureRecognizers.Add(closeApp);
             hex = Color.FromHex(Settings.MobileSettings.color);
-           
+
             setText();
             getMessage();
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
@@ -159,9 +167,8 @@ namespace xamarinJKH.Apps
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             RequestMessage select = e.Item as RequestMessage;
-            if (@select != null && @select.FileID!= -1)
+            if (@select != null && @select.FileID != -1)
             {
-                
                 string fileName = FileName(@select.Text);
                 if (await DependencyService.Get<IFileWorker>().ExistsAsync(fileName))
                 {
@@ -190,7 +197,7 @@ namespace xamarinJKH.Apps
                 }
             }
         }
-        
+
         string FileName(string text)
         {
             return text
@@ -287,7 +294,6 @@ namespace xamarinJKH.Apps
                 messages = request.Messages;
                 LabelNumber.Text = "№ " + request.RequestNumber;
                 this.BindingContext = this;
-               
             }
             else
             {
@@ -295,7 +301,6 @@ namespace xamarinJKH.Apps
             }
 
             await MethodWithDelayAsync(1000);
-
         }
 
         public async Task MethodWithDelayAsync(int milliseconds)
@@ -304,7 +309,7 @@ namespace xamarinJKH.Apps
 
             additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
         }
-        
+
         void setText()
         {
             try
@@ -315,6 +320,36 @@ namespace xamarinJKH.Apps
             {
                 Console.WriteLine(e);
             }
+        }
+
+        public async Task ShowInfo()
+        {
+            string Status = request.Status;
+            string Source = "ic_status_wait";
+            if (Status.ToString().Contains("выполнена") || Status.ToString().Contains("закрыл"))
+            {
+                Source = "ic_status_done";
+            }
+            else if (Status.ToString().Contains("новая"))
+            {
+                Source = "ic_status_new";
+            }
+
+            var ret = await Dialog.Instance.ShowAsync<InfoAppDialog>(new
+            {
+                _Request = request,
+                HexColor = this.hex,
+                SourceApp = Source
+            });
+        }
+
+        public async Task ShowRating()
+        {
+            Settings.StartProgressBar();
+            var ret = await Dialog.Instance.ShowAsync<RatingBarView>(new
+            {
+                HexColor = this.hex
+            });
         }
     }
 }
