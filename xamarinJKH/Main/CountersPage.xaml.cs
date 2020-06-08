@@ -100,28 +100,49 @@ namespace xamarinJKH.Main
                 FormattedString formattedResource = new FormattedString();
                 formattedResource.Spans.Add(new Span
                 {
-                    Text = "Возможность передавать показания доступна с ",
+                    Text = "Возможность передавать показания доступна ",
                     TextColor = Color.White,
                     FontAttributes = FontAttributes.None,
                     FontSize = 15
                 });
                 if (Settings.Person.Accounts[0].MetersStartDay != null && Settings.Person.Accounts[0].MetersEndDay != null){
+                    if (Settings.Person.Accounts[0].MetersStartDay != 0 && Settings.Person.Accounts[0].MetersEndDay != 0)
+                    {
+                        formattedResource.Spans.Add(new Span
+                        {
+                            Text = "c " + Settings.Person.Accounts[0].MetersStartDay + " по " + Settings.Person.Accounts[0].MetersEndDay + " числа ",
+                            TextColor = Color.White,
+                            FontAttributes = FontAttributes.Bold,
+                            FontSize = 15
+                        });
+                        formattedResource.Spans.Add(new Span
+                        {
+                            Text = "текущего месяца!",
+                            TextColor = Color.White,
+                            FontAttributes = FontAttributes.None,
+                            FontSize = 15
+                        });
+                    }
+                    else
+                    {
+                        formattedResource.Spans.Add(new Span
+                        {
+                            Text = "в текущем месяце!",
+                            TextColor = Color.White,
+                            FontAttributes = FontAttributes.Bold,
+                            FontSize = 15
+                        });
+                    }
+                }else
+                {
                     formattedResource.Spans.Add(new Span
                     {
-                        Text = Settings.Person.Accounts[0].MetersStartDay + " по " + Settings.Person.Accounts[0].MetersEndDay + " числа ",
+                        Text = "в текущем месяце!",
                         TextColor = Color.White,
                         FontAttributes = FontAttributes.Bold,
                         FontSize = 15
                     });
                 }
-                formattedResource.Spans.Add(new Span
-                {
-                    Text = "текущего месяца!",
-                    TextColor = Color.White,
-                    FontAttributes = FontAttributes.None,
-                    FontSize = 15
-                });
-
                 PeriodSendLbl.FormattedText = formattedResource;
             }
             else
