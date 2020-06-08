@@ -86,5 +86,25 @@ namespace xamarinJKH.Utils
                 }
             });
         }
+        public static async Task StartOverlayBackground()
+        {
+            // Loading settings
+            Configurations.LoadingConfig = new LoadingConfig {
+                IndicatorColor = Color.Transparent,
+                OverlayColor = Color.Black,
+                Opacity = 0.8,
+                DefaultMessage = "",
+            };
+
+            await Loading.Instance.StartAsync(async progress =>{
+                // some heavy process.
+                for (var i = 0; i < 1000; i++)
+                {
+                    await Task.Delay(70);
+                    // can send progress to the dialog with the IProgress.
+                    // progress.Report((i + 1) * 0.01d);
+                }
+            });
+        }
     }
 }

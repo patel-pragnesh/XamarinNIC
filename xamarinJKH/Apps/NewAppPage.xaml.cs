@@ -161,6 +161,11 @@ namespace xamarinJKH.Apps
 
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var identLength = Settings.Person.Accounts[PickerLs.SelectedIndex].Ident.Length;
+            if (identLength < 6)
+            {
+                PickerLs.WidthRequest = identLength * 9;
+            }
         }
 
         public class AddAppModel

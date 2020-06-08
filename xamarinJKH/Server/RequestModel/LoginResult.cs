@@ -27,6 +27,22 @@ namespace xamarinJKH.Server.RequestModel
 
     public class AccountInfo
     {
+        public AccountInfo(string ident, int metersStartDay, int metersEndDay, int id, string fio, string address, string company, bool metersAccessFlag)
+        {
+            Ident = ident.Trim();
+            MetersStartDay = metersStartDay;
+            MetersEndDay = metersEndDay;
+            ID = id;
+            FIO = fio;
+            Address = address;
+            Company = company;
+            MetersAccessFlag = metersAccessFlag;
+        }
+
+        public AccountInfo()
+        {
+        }
+
         public int ID { get; set; }
         public string Ident { get; set; }
         public string FIO { get; set; }

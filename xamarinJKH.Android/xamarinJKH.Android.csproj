@@ -60,7 +60,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AiForms.Dialogs" Version="1.0.1" />
+    <PackageReference Include="AiForms.Dialogs" Version="1.0.3" />
     <PackageReference Include="Messier16.Forms.Controls" Version="2.2.0" />
     <PackageReference Include="PCLStorage" Version="1.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
@@ -91,6 +91,7 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\corner_border.xml" />
     <AndroidResource Include="Resources\drawable\icon_login.png" />
     <AndroidResource Include="Resources\drawable\ic_additional_top.png" />
     <AndroidResource Include="Resources\drawable\ic_add_file.png" />

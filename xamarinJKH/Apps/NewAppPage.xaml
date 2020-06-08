@@ -28,15 +28,15 @@
                        HorizontalOptions="Fill" />
 
                 <StackLayout x:Name="StackLayout"
-                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
                              Constant=15}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Height,
                              Factor=0,
                              Constant=10}"
-                    Orientation="Vertical">
+                             Orientation="Vertical">
                     <Label x:Name="UkName"
                            Text="Название"
                            FontAttributes="Bold"
@@ -112,6 +112,7 @@
                     <StackLayout
                         Margin="10, 10, 10, 10">
                         <StackLayout
+                            Spacing="0"
                             HorizontalOptions="Center"
                             Orientation="Horizontal">
 
@@ -120,20 +121,36 @@
                                 Text="Лицевой счет: "
                                 VerticalOptions="Center"
                                 FontAttributes="Bold"
-                                FontSize="15" />
-                            <Picker x:Name="PickerLs" Title="Выбор"
-                                    TitleColor="{Binding hex}"
-                                    TextColor="{Binding hex}"
-                                    VerticalOptions="Start"
-                                    MinimumWidthRequest="180"
-                                    HorizontalOptions="FillAndExpand"
-                                    SelectedIndexChanged="picker_SelectedIndexChanged"
-                                    ItemsSource="{Binding AllAcc}"
-                                    ItemDisplayBinding="{Binding Ident}"
-                                    SelectedItem="{Binding SelectedAcc}" />
+                                FontSize="17" />
+                            <StackLayout Spacing="0">
+                                <StackLayout  Orientation="Horizontal">
+                                    <xamarinJkh:BorderlessPicker x:Name="PickerLs" Title="Выбор"
+                                                                 TitleColor="{Binding hex}"
+                                                                 TextColor="{Binding hex}"
+                                                                 VerticalOptions="End"
+                                                                 MinimumWidthRequest="0"
+                                                                 HorizontalOptions="End"
+                                                                 SelectedIndexChanged="picker_SelectedIndexChanged"
+                                                                 ItemsSource="{Binding AllAcc}"
+                                                                 ItemDisplayBinding="{Binding Ident}"
+                                                                 SelectedItem="{Binding SelectedAcc}" />
+                                    <xamarinJkh:IconView Source="ic_arrow_forward"
+                                                         HeightRequest="12"
+                                                         WidthRequest="12"
+                                                         Rotation="90"
+                                                         Margin="0,5,0,0"
+                                                         VerticalOptions="Center"
+                                                         Foreground="{Binding hex}"/>
+                                </StackLayout>
+                                <Label
+                                    HeightRequest="1"
+                                    BackgroundColor="{Binding hex}"
+                                    HorizontalOptions="Fill" />
+                            </StackLayout>
                         </StackLayout>
                         <StackLayout
-                            Margin="0,-15,0,0"
+                            Margin="0,0,0,0"
+                            Spacing="0"
                             HorizontalOptions="Center"
                             Orientation="Horizontal">
 
@@ -142,17 +159,32 @@
                                 Text="Тип заявки: "
                                 VerticalOptions="Center"
                                 FontAttributes="Bold"
-                                FontSize="15" />
-                            <Picker x:Name="PickerType" Title="Выбор"
-                                    TitleColor="{Binding hex}"
-                                    TextColor="{Binding hex}"
-                                    HorizontalOptions="FillAndExpand"
-                                    WidthRequest="220"
-                                    VerticalOptions="Start"
-                                    SelectedIndexChanged="picker_SelectedIndexChanged"
-                                    ItemsSource="{Binding AllType}"
-                                    ItemDisplayBinding="{Binding Name}"
-                                    SelectedItem="{Binding SelectedType}" />
+                                FontSize="17" />
+                            <StackLayout Spacing="0">
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <xamarinJkh:BorderlessPicker x:Name="PickerType" Title="Выбор"
+                                                                 TitleColor="{Binding hex}"
+                                                                 TextColor="{Binding hex}"
+                                                                 VerticalOptions="End"
+                                                                 SelectedIndexChanged="picker_SelectedIndexChanged"
+                                                                 ItemsSource="{Binding AllType}"
+                                                                 ItemDisplayBinding="{Binding Name}"
+                                                                 SelectedItem="{Binding SelectedType}" />
+                                    <xamarinJkh:IconView Source="ic_arrow_forward"
+                                                         HeightRequest="12"
+                                                         WidthRequest="12"
+                                                         Rotation="90"
+                                                         Margin="0,5,0,0"
+                                                         VerticalOptions="Center"
+                                                         Foreground="{Binding hex}"
+                                                         HorizontalOptions="Center" />
+                                </StackLayout>
+                                <Label
+                                    HeightRequest="1"
+                                    BackgroundColor="{Binding hex}"
+                                    HorizontalOptions="Fill" />
+                            </StackLayout>
                         </StackLayout>
                         <Frame CornerRadius="15"
                                BackgroundColor="Transparent"
@@ -160,14 +192,14 @@
                                Margin="10, 10, 10, 0"
                                Padding="10,10,10,10">
                             <xamarinJkh:BordlessEditor x:Name="EntryMess"
-                                            FontSize="18"
-                                            VerticalOptions="FillAndExpand"
-                                            Text=""
-                                            WidthRequest="100"
-                                            AutoSize="TextChanges"
-                                            Placeholder="Введите описание заявки..."
-                                            TextColor="#A2A2A2"
-                                            HorizontalOptions="FillAndExpand" />
+                                                       FontSize="18"
+                                                       VerticalOptions="FillAndExpand"
+                                                       Text=""
+                                                       WidthRequest="100"
+                                                       AutoSize="TextChanges"
+                                                       Placeholder="Введите описание заявки..."
+                                                       TextColor="#A2A2A2"
+                                                       HorizontalOptions="FillAndExpand" />
                         </Frame>
                         <StackLayout Orientation="Horizontal"
                                      Margin="10, 0, 10, 0">
@@ -223,7 +255,7 @@
 
                                 <DataTemplate>
                                     <apps:FileCell
-                                        FileName="{Binding FileName}" 
+                                        FileName="{Binding FileName}"
                                         FileSize="{Binding DataArray}" />
                                 </DataTemplate>
 

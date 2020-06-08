@@ -39,15 +39,15 @@
                        HorizontalOptions="Fill" />
 
                 <StackLayout x:Name="StackLayout"
-                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
                              Constant=15}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Height,
                              Factor=0,
                              Constant=10}"
-                    Orientation="Vertical">
+                             Orientation="Vertical">
                     <Label x:Name="UkName"
                            Text="Название"
                            FontAttributes="Bold"
@@ -119,7 +119,7 @@
                        Margin="20, 0, 20, -60"
                        VerticalOptions="Start"
                        BackgroundColor="#494949"
-                       Padding="20,20,20,60">
+                       Padding="20,15,20,80">
                     <StackLayout
                         HorizontalOptions="Center"
                         Orientation="Horizontal">
@@ -129,46 +129,58 @@
                             Text="Лицевой счет: "
                             VerticalOptions="Center"
                             FontAttributes="Bold"
-                            FontSize="15" />
-                        <Picker x:Name="Picker" Title="Выбор"
-                                TitleColor="Black"
-                                TextColor="White"
-                                VerticalOptions="Start"
-                                SelectedIndexChanged="picker_SelectedIndexChanged"
-                                ItemsSource="{Binding Accounts}"
-                                ItemDisplayBinding="{Binding Ident}"
-                                SelectedItem="{Binding SelectedAcc}" />
+                            FontSize="17" />
+                        <StackLayout Spacing="0">
+                            <StackLayout Orientation="Horizontal">
+                                <xamarinJkh:BorderlessPicker x:Name="Picker" Title="Выбор"
+                                                             TitleColor="Black"
+                                                             TextColor="White"
+                                                             VerticalOptions="Start"
+                                                             SelectedIndexChanged="picker_SelectedIndexChanged"
+                                                             ItemsSource="{Binding Accounts}"
+                                                             ItemDisplayBinding="{Binding Ident}"
+                                                             SelectedItem="{Binding SelectedAcc}" />
+                                <xamarinJkh:IconView Source="ic_arrow_forward"
+                                                     HeightRequest="12"
+                                                     WidthRequest="12"
+                                                     Rotation="90"
+                                                     Margin="0,5,0,0"
+                                                     VerticalOptions="Center"
+                                                     Foreground="White"/>
+                            </StackLayout>
+                            <Label
+                                HeightRequest="1"
+                                BackgroundColor="White"
+                                HorizontalOptions="Fill" />
+                        </StackLayout>
                     </StackLayout>
                 </Frame>
                 <Frame CornerRadius="30"
                        Margin="20, 0, 20, 15"
                        BackgroundColor="White"
                        Padding="15">
-                    <StackLayout VerticalOptions="FillAndExpand" 
-                                 >
+                    <StackLayout VerticalOptions="FillAndExpand">
                         <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="FillAndExpand">
                             <Label Text="Дата"
                                    TextColor="Black"
                                    HorizontalOptions="StartAndExpand"
-                                   FontSize="15"
-                                   ></Label>
+                                   FontSize="15" />
                             <Label Text="Период"
                                    TextColor="Black"
                                    HorizontalOptions="CenterAndExpand"
-                                   FontSize="15"
-                                   ></Label>
+                                   FontSize="15" />
                             <Label Text="Сумма"
                                    TextColor="Black"
                                    HorizontalOptions="EndAndExpand"
                                    FontSize="15"
-                                   FontAttributes="Bold"></Label>
+                                   FontAttributes="Bold" />
                         </StackLayout>
                         <Label
-                               BackgroundColor="#878787"
-                               HeightRequest="1"
-                               HorizontalOptions="FillAndExpand"
-                               FontAttributes="Bold"></Label>
+                            BackgroundColor="#878787"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand"
+                            FontAttributes="Bold" />
                         <ListView x:Name="additionalList"
                                   HasUnevenRows="True"
                                   SeparatorVisibility="None"
@@ -195,6 +207,6 @@
                     </StackLayout>
                 </Frame>
             </StackLayout>
-            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -2,8 +2,9 @@
 
 <abstractions:DialogView xmlns="http://xamarin.com/schemas/2014/forms"
                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                         CornerRadius="30" OffsetX="0" OffsetY="0" UseCurrentPageLocation="false"
+                         CornerRadius="30" OffsetX="0" OffsetY="0" UseCurrentPageLocation="True"
                          VerticalLayoutAlignment="Start" HorizontalLayoutAlignment="Center"
+                         IsCanceledOnTouchOutside="False"
                          xmlns:abstractions="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
                          xmlns:controls="clr-namespace:Messier16.Forms.Controls;assembly=Messier16.Forms.Controls"
                          xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
@@ -18,7 +19,7 @@
         <StackLayout
 
             HorizontalOptions="FillAndExpand">
-            <xamarinJkh:IconView x:Name="IconViewPhone"
+            <xamarinJkh:IconView x:Name="IconViewClose"
                                  Source="ic_close"
                                  HeightRequest="15"
                                  WidthRequest="15"

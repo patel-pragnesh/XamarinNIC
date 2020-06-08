@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace xamarinJKH.Server.RequestModel
 {
@@ -53,6 +54,8 @@ namespace xamarinJKH.Server.RequestModel
     {
         public List<AccountAccountingInfo> AllAcc { get; set; }
         public AccountAccountingInfo SelectedAcc { get; set; }
+        public Color hex { get; set; }
+        
     }
     
 }

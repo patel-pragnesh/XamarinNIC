@@ -14,6 +14,7 @@ namespace xamarinJKH.Pays
     public partial class CostPage : ContentPage
     {
         private AccountAccountingInfo account { get; set; }
+        
         private List<AccountAccountingInfo> Accounts { get; set; }
 
         public CostPage(AccountAccountingInfo account, List<AccountAccountingInfo> accounts)
@@ -47,9 +48,13 @@ namespace xamarinJKH.Pays
             var openSaldos = new TapGestureRecognizer();
             openSaldos.Tapped += async (s, e) => { await Navigation.PushAsync(new SaldosPage(Accounts)); };
             FrameBtnSaldos.GestureRecognizers.Add(openSaldos);
+            var openHistory = new TapGestureRecognizer();
+            openHistory.Tapped += async (s, e) => { await Navigation.PushAsync(new HistoryPayedPage(Accounts)); };
+            FrameBtnHistory.GestureRecognizers.Add(openHistory);
             BindingContext = new AccountingInfoModel()
             {
-                AllAcc = Accounts
+                AllAcc = Accounts,
+                hex =  Color.FromHex(Settings.MobileSettings.color)
             };
             SetText();
         }
@@ -59,9 +64,6 @@ namespace xamarinJKH.Pays
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.Phone;
             Picker.Title = account.Ident;
-            Picker.FontSize = 15;
-            Picker.TextColor = Color.FromHex(Settings.MobileSettings.color);
-            Picker.TitleColor = Color.FromHex(Settings.MobileSettings.color);
             IconViewUslugi.Foreground = Color.FromHex(Settings.MobileSettings.color);
             Labelseparator.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
@@ -119,6 +121,11 @@ namespace xamarinJKH.Pays
 
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var identLength = Settings.Person.Accounts[Picker.SelectedIndex].Ident.Length;
+            if (identLength < 6)
+            {
+                Picker.WidthRequest = identLength * 9;
+            }
             account = Accounts[Picker.SelectedIndex];
             SetPays();
         }

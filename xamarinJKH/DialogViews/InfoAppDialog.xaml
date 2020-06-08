@@ -15,7 +15,7 @@
            HorizontalOptions="FillAndExpand"
            BackgroundColor="white"
            HasShadow="True"
-           Margin="15,125,15,15"
+           Margin="15,120,15,15"
            Padding="25,20,25,20">
         <StackLayout
             x:Name="StackLayoutContainer"

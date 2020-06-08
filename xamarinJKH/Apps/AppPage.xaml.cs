@@ -137,7 +137,7 @@ namespace xamarinJKH.Apps
             addFile.Tapped += async (s, e) => { addFileApp(); };
             IconViewAddFile.GestureRecognizers.Add(addFile);
             var showInfo = new TapGestureRecognizer();
-            showInfo.Tapped += async (s, e) => { await ShowInfo(); };
+            showInfo.Tapped += async (s, e) => {   ShowInfo(); };
             StackLayoutInfo.GestureRecognizers.Add(showInfo); 
             var closeApp = new TapGestureRecognizer();
             closeApp.Tapped += async (s, e) => { await ShowRating(); };
@@ -322,7 +322,7 @@ namespace xamarinJKH.Apps
             }
         }
 
-        public async Task ShowInfo()
+        private async void ShowInfo()
         {
             string Status = request.Status;
             string Source = "ic_status_wait";
@@ -345,11 +345,17 @@ namespace xamarinJKH.Apps
 
         public async Task ShowRating()
         {
-            Settings.StartProgressBar();
+            Settings.StartOverlayBackground();
             var ret = await Dialog.Instance.ShowAsync<RatingBarView>(new
             {
                 HexColor = this.hex
             });
+            
+        }
+
+        private async void OpenInfo(object sender, EventArgs e)
+        {
+           ShowInfo();
         }
     }
 }

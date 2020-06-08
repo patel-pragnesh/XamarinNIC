@@ -18,8 +18,16 @@ namespace xamarinJKH.DialogViews
         public RatingBarView()
         {
             InitializeComponent();
+            
+            var close = new TapGestureRecognizer();
+            close.Tapped += async (s, e) =>
+            {
+                DialogNotifier.Cancel();
+            };
+            IconViewClose.GestureRecognizers.Add(close);
         }
-
+        
+        
         private void CloseApp(object sender, EventArgs e)
         {
         }
@@ -32,5 +40,7 @@ namespace xamarinJKH.DialogViews
         {
             Loading.Instance.Hide();
         }
+        
+        
     }
 }
