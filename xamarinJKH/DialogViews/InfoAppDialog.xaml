@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<abstractions:DialogView xmlns="http://xamarin.com/schemas/2014/forms"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                         xmlns:extra="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
+                         CornerRadius="30" OffsetX="0" OffsetY="0" UseCurrentPageLocation="false"
+                         VerticalLayoutAlignment="Start" HorizontalLayoutAlignment="Center"
+
+                         xmlns:abstractions="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
+                         xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+                         x:Class="xamarinJKH.DialogViews.InfoAppDialog">
+
+    <Frame CornerRadius="30"
+           x:Name="Frame"
+           HorizontalOptions="FillAndExpand"
+           BackgroundColor="white"
+           HasShadow="True"
+           Margin="15,120,15,15"
+           Padding="25,20,25,20">
+        <StackLayout
+            x:Name="StackLayoutContainer"
+            HorizontalOptions="FillAndExpand">
+            <Label
+                x:Name="LabelDate"
+                TextColor="Black"
+                FontSize="15"
+                HorizontalOptions="Start"
+                Text="{Binding _Request.Added}" />
+            <Label
+                x:Name="LabelTema"
+                TextColor="Black"
+                HorizontalOptions="Start">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Тема: " TextColor="Black" FontAttributes="Bold" FontSize="18" />
+                        <Span Text=" {Binding _Request.Name}" FontSize="15" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label
+                x:Name="LabelKind"
+                TextColor="Black"
+                HorizontalOptions="Start">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Тип: " TextColor="Black" FontAttributes="Bold" FontSize="15" />
+                        <Span Text=" {Binding _Request.TypeName}" FontSize="15" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label
+                x:Name="LabelAdress"
+                TextColor="Black"
+                HorizontalOptions="Start">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Адрес: " TextColor="Black" FontAttributes="Bold" FontSize="15" />
+                        <Span Text=" {Binding _Request.Address}" FontSize="15" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <StackLayout
+                Orientation="Horizontal">
+                <Label
+                    x:Name="LabelPhone"
+                    TextColor="Black"
+                    HorizontalOptions="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Телефон: " TextColor="Black" FontAttributes="Bold" FontSize="15" />
+                            <Span Text=" {Binding _Request.Phone}" FontSize="15" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <xamarinJkh:IconView x:Name="IconViewPhone"
+                                     Source="ic_call_app"
+                                     HeightRequest="17"
+                                     WidthRequest="17"
+                                     Foreground="{Binding HexColor}"
+                                     HorizontalOptions="Start"
+                                     VerticalOptions="Center" />
+            </StackLayout>
+            <StackLayout
+                Orientation="Horizontal">
+
+                <xamarinJkh:IconView x:Name="IconViewStatus"
+                                     Source="{Binding SourceApp}"
+                                     HeightRequest="17"
+                                     WidthRequest="17"
+                                     Foreground="{Binding HexColor}"
+                                     HorizontalOptions="Start"
+                                     VerticalOptions="Center" />
+                <Label
+                    x:Name="LabelStatus"
+                    TextColor="Black"
+                    FontSize="15"
+                    HorizontalOptions="Start"
+                    Text="{Binding _Request.Status}" />
+            </StackLayout>
+            
+        </StackLayout>
+    </Frame>
+</abstractions:DialogView>

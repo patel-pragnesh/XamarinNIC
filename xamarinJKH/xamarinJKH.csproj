@@ -11,12 +11,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AiForms.Dialogs" Version="1.0.1" />
+    <PackageReference Include="AiForms.Dialogs" Version="1.0.3" />
+    <PackageReference Include="Messier16.Forms.Controls" Version="2.2.0" />
     <PackageReference Include="PCLStorage" Version="1.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="SimpleJson" Version="0.38.0" />
     <PackageReference Include="RestSharp" Version="106.11.2" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.4.2" />
     <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.34" />
     <PackageReference Include="XamEffects" Version="1.6.3" />
   </ItemGroup>
@@ -118,6 +120,14 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="DialogViews\InfoAppDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DialogViews\RatingBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -193,6 +203,12 @@
     </Compile>
     <Compile Update="Pays\AddIdent.xaml.cs">
       <DependentUpon>AddIdent.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="DialogViews\InfoAppDialog.xaml.cs">
+      <DependentUpon>InfoAppDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="DialogViews\RatingBarView.xaml.cs">
+      <DependentUpon>RatingBarView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

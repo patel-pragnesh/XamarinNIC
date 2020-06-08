@@ -19,6 +19,9 @@ namespace xamarinJKH.Server.RequestModel
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        
+        public bool IsComplite { get; set; }
+
         public bool IsReaded { get; set; }
         public List<QuestionInfo> Questions { get; set; }
     }
@@ -27,6 +30,8 @@ namespace xamarinJKH.Server.RequestModel
     {
         public int ID { get; set; }
         public string Text { get; set; }
+        
+        public bool IsCompleteByUser { get; set; }
         public List<AnswerInfo> Answers { get; set; }
     }
 

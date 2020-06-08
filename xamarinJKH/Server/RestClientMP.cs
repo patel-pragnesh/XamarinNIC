@@ -545,7 +545,7 @@ namespace xamarinJKH.Server
         public async Task<byte[]> GetPhotoAdditional(string id)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
-            RestRequest restRequest = new RestRequest(GET_PHOTO_ADDITIONAL + "/" + id, Method.POST);
+            RestRequest restRequest = new RestRequest(GET_PHOTO_ADDITIONAL + "/" + id, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = restClientMp.Execute(restRequest);
@@ -749,7 +749,9 @@ namespace xamarinJKH.Server
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
-                pollingResult
+                pollingResult.PollId,
+                pollingResult.ExtraInfo,
+                pollingResult.Answers
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус

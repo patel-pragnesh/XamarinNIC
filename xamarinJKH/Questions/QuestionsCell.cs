@@ -11,7 +11,7 @@ namespace xamarinJKH.Questions
         private Label countQuest = new Label();
         private Label countAnsweredTitle = new Label();
         private Label countAnswered = new Label();
-
+        Label btn = new Label();
 
         public QuestionsCell()
         {
@@ -35,7 +35,7 @@ namespace xamarinJKH.Questions
             date.HorizontalOptions = LayoutOptions.Start;
             date.TextColor = Color.Black;
             date.FontSize = 12;
-            date.Margin = new Thickness(0,-5,0,0);
+            date.Margin = new Thickness(0, -5, 0, 0);
             StackLayout containerCount = new StackLayout();
             containerCount.Orientation = StackOrientation.Horizontal;
             StackLayout containerOne = new StackLayout();
@@ -75,15 +75,15 @@ namespace xamarinJKH.Questions
             {
                 RowDefinitions =
                 {
-                    new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+                    new RowDefinition {Height = new GridLength(1, GridUnitType.Star)},
                 },
                 ColumnDefinitions =
                 {
-                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                    new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
+                    new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
                 }
             };
-            
+
             // containerCount.Children.Add(containerOne);
             // containerCount.Children.Add(containerTwo);
             grid.Children.Add(containerOne, 0, 0);
@@ -103,7 +103,7 @@ namespace xamarinJKH.Questions
             StackLayout containerBtn = new StackLayout();
             containerBtn.Orientation = StackOrientation.Horizontal;
             containerBtn.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            
+
             IconView image = new IconView();
             image.Source = "ic_questions2";
             image.Foreground = Color.White;
@@ -115,12 +115,12 @@ namespace xamarinJKH.Questions
             // btn.TextColor = Color.White;
             // btn.FontAttributes = FontAttributes.Bold;
             // btn.Text = "Пройти опрос";
+
             
-            Label btn = new Label();
             // btn.Margin = new Thickness(-30, 0, 0, 0);
             btn.TextColor = Color.White;
             btn.BackgroundColor = Color.Transparent;
-            btn.HorizontalOptions  = LayoutOptions.Center;
+            btn.HorizontalOptions = LayoutOptions.Center;
             btn.Margin = 10;
             btn.FontAttributes = FontAttributes.Bold;
             btn.FontSize = 15;
@@ -150,6 +150,9 @@ namespace xamarinJKH.Questions
         public static readonly BindableProperty TitleQuestProperty =
             BindableProperty.Create("TitleQuest", typeof(string), typeof(QuestionsCell), "");
 
+        public static readonly BindableProperty IsCompleteProperty =
+            BindableProperty.Create(" IsComplete", typeof(bool), typeof(QuestionsCell), false);
+
         public string CountQuest
         {
             get { return (string) GetValue(CountQuestProperty); }
@@ -168,6 +171,12 @@ namespace xamarinJKH.Questions
             set { SetValue(DateQuestProperty, value); }
         }
 
+        public bool IsComplete
+        {
+            get { return (bool) GetValue(IsCompleteProperty); }
+            set { SetValue(IsCompleteProperty, false); }
+        }
+
         public string TitleQuest
         {
             get { return (string) GetValue(TitleQuestProperty); }
@@ -181,6 +190,11 @@ namespace xamarinJKH.Questions
             if (BindingContext != null)
             {
                 countAnswered.Text = CountAnsw;
+                if (IsComplete)
+                {
+                    countAnswered.Text = CountQuest;
+                    btn.Text = "Посмотреть ответы";
+                }
                 date.Text = DateQuest;
                 title.Text = TitleQuest;
                 countQuest.Text = CountQuest;

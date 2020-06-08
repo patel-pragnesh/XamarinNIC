@@ -15,6 +15,7 @@ namespace xamarinJKH.Questions
     public partial class PollsPage : ContentPage
     {
         private PollInfo _pollInfo;
+        private readonly bool _isComplite;
         private List<StackLayout> _contentQuest = new List<StackLayout>();
         private RestClientMP server = new RestClientMP();
         private int quest = 0;
@@ -23,9 +24,10 @@ namespace xamarinJKH.Questions
 
         private PollingResult _pollingResult = new PollingResult();
 
-        public PollsPage(PollInfo pollInfo)
+        public PollsPage(PollInfo pollInfo, bool isComplite)
         {
             _pollInfo = pollInfo;
+            _isComplite = isComplite;
             InitializeComponent();
             switch (Device.RuntimePlatform)
             {
@@ -59,6 +61,10 @@ namespace xamarinJKH.Questions
             ChechQuestions();
             setVisibleButton();
             setIndicator();
+            if (_isComplite)
+            {
+                Container.IsEnabled = false;
+            }
         }
 
         private async void FinishClick()
@@ -67,10 +73,11 @@ namespace xamarinJKH.Questions
             if (result.Error == null)
             {
                 await DisplayAlert("Успешно", "Ответы успешно переданы", "OK");
+                _ = await Navigation.PopAsync();
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось передать ответы\n"+ result.Error, "OK");
+                await DisplayAlert("Ошибка", "Не удалось передать ответы\n" + result.Error, "OK");
             }
         }
 
@@ -155,8 +162,14 @@ namespace xamarinJKH.Questions
                     RadioButton radioButton = new RadioButton
                     {
                         Text = jAnswer.Text,
-                        BackgroundColor = Color.Transparent,
+                        IsChecked = jAnswer.IsUserAnswer,
+                        BackgroundColor = Color.Transparent
                     };
+                    isCheched = jAnswer.IsUserAnswer;
+                    if (jAnswer.IsUserAnswer)
+                    {
+                        radioButton.TextColor = Color.FromHex(Settings.MobileSettings.color);
+                    }
 
                     switch (Device.RuntimePlatform)
                     {
@@ -169,7 +182,7 @@ namespace xamarinJKH.Questions
                     }
 
                     radioButton.BorderColor = Color.Red;
-                    radioButton.Margin = new Thickness(-5,0,0,0);
+                    radioButton.Margin = new Thickness(-5, 0, 0, 0);
                     radioButton.CheckedChanged += (sender, e) =>
                     {
                         isCheched = true;
@@ -185,6 +198,7 @@ namespace xamarinJKH.Questions
 
                         setVisibleButton();
                     };
+
                     radio.Children.Add(radioButton);
                 }
 
@@ -235,19 +249,37 @@ namespace xamarinJKH.Questions
 
         void setVisibleButton()
         {
-            FrameBtnNext.IsVisible = isCheched;
+            if (_isComplite)
+            {
+                FrameBtnNext.IsVisible = true;
+            }
+            else
+            {
+                FrameBtnNext.IsVisible = isCheched;
+            }
+
             if (_pollingResult.Answers[quest].AnswerId != -1)
             {
                 FrameBtnNext.IsVisible = true;
             }
+
             if (quest + 1 == _pollInfo.Questions.Count)
             {
                 FrameBtnNext.IsVisible = false;
-                FrameBtnFinish.IsVisible = isCheched;
+                if (_isComplite)
+                {
+                    FrameBtnFinish.IsVisible = false;
+                }
+                else
+                {
+                    FrameBtnFinish.IsVisible = isCheched;
+                }
+
                 if (_pollingResult.Answers[quest].AnswerId != -1)
                 {
-                    FrameBtnFinish.IsVisible = true;
+                    FrameBtnFinish.IsVisible = !_isComplite;
                 }
+
                 if (quest > 0)
                 {
                     FrameBack.IsVisible = true;
@@ -293,7 +325,7 @@ namespace xamarinJKH.Questions
             }
             else
             {
-                indicators[i+1].BackgroundColor = Color.Transparent;
+                indicators[i + 1].BackgroundColor = Color.Transparent;
                 indicators[i].BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             }
         }
@@ -307,12 +339,10 @@ namespace xamarinJKH.Questions
             ChechQuestions();
             isCheched = false;
             setVisibleButton();
-            
         }
 
         private async void ButtonClickFinish(object sender, EventArgs e)
         {
-            
         }
     }
 }

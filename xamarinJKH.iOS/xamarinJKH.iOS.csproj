@@ -28,7 +28,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>Apple Development: Evgeny Yurtaykin (W7QP3Z4ZW5)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -50,7 +50,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Development: Evgeny Yurtaykin (W7QP3Z4ZW5)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
@@ -219,7 +219,8 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AiForms.Dialogs" Version="1.0.1" />
+    <PackageReference Include="AiForms.Dialogs" Version="1.0.3" />
+    <PackageReference Include="Messier16.Forms.Controls" Version="2.2.0" />
     <PackageReference Include="PCLStorage" Version="1.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
@@ -228,6 +229,9 @@
     </PackageReference>
     <PackageReference Include="SimpleJson">
       <Version>0.38.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms.PancakeView">
+      <Version>1.4.2</Version>
     </PackageReference>
     <PackageReference Include="XamEffects" Version="1.6.3" />
   </ItemGroup>
@@ -260,6 +264,7 @@
     <BundleResource Include="Resources\ic_background.png" />
     <BundleResource Include="Resources\ic_background_counter.png" />
     <BundleResource Include="Resources\ic_bottom_login.png" />
+    <BundleResource Include="Resources\ic_call_app.png" />
     <BundleResource Include="Resources\ic_card_pay_black.png" />
     <BundleResource Include="Resources\ic_close.png" />
     <BundleResource Include="Resources\ic_close_app1.png" />
@@ -300,7 +305,9 @@
     <BundleResource Include="Resources\ic_send_mess.png" />
     <BundleResource Include="Resources\ic_separator.png" />
     <BundleResource Include="Resources\ic_shop.png" />
-    <BundleResource Include="Resources\ic_shop_top.png" />
+    <BundleResource Include="Resources\ic_shop_top.png">
+      <SubType>Designer</SubType>
+    </BundleResource>
     <BundleResource Include="Resources\ic_status_done.png" />
     <BundleResource Include="Resources\ic_status_new.png" />
     <BundleResource Include="Resources\ic_status_wait.png" />
@@ -331,7 +338,14 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_background_event.png">
       <SubType>Designer</SubType>
-      <Generator></Generator>
+      <Generator>
+      </Generator>
     </BundleResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_shop_minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_shop_plus.png" />
   </ItemGroup>
 </Project>

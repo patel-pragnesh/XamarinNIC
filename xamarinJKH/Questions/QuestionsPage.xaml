@@ -146,6 +146,7 @@
                             <questions:QuestionsCell
                                 CountQuest="{Binding Questions.Count}"
                                 CountAnsw="0"
+                                IsComplete="{Binding IsComplite}"
                                 DateQuest="25.05.2020"
                                 TitleQuest="{Binding Name}" />
                         </DataTemplate>
@@ -163,6 +164,7 @@
                             <Switch
                                 OnColor="White"
                                 IsToggled="false"
+                                PropertyChanged="chage"
                                 x:Name="SwitchQuest" />
 
                             <Label Text="Показать пройденные опросы"

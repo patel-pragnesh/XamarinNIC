@@ -23,11 +23,12 @@ namespace xamarinJKH.Main
         public List<string> Accounts = new List<string>();
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
-        
+
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
-            set {
+            set
+            {
                 _isRefreshing = value;
                 OnPropertyChanged(nameof(IsRefreshing));
             }
@@ -64,8 +65,10 @@ namespace xamarinJKH.Main
                         meters.Add(meterInfo);
                     }
                 }
+
                 _meterInfo = meters;
             }
+
             countersList.ItemsSource = null;
             countersList.ItemsSource = _meterInfo;
         }
@@ -86,13 +89,15 @@ namespace xamarinJKH.Main
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
-                        RelativeLayoutTop.Margin = new Thickness(0,0,0,-125);
+                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -125);
                         BackStackLayout.Margin = new Thickness(5, 25, 0, 0);
                     }
+
                     break;
                 default:
                     break;
             }
+
             SetTextAndColor();
             getInfo();
             if (Settings.Person.Accounts.Count > 0)
@@ -172,6 +177,23 @@ namespace xamarinJKH.Main
         
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try
+            {
+                var identLength = Settings.Person.Accounts[Picker.SelectedIndex - 1].Ident.Length;
+                if (identLength < 6)
+                {
+                    Picker.WidthRequest = identLength * 9;
+                }
+            }
+            catch (Exception ex)
+            {
+                var identLength = Settings.Person.Accounts[Picker.SelectedIndex].Ident.Length;
+                if (identLength < 6)
+                {
+                    Picker.WidthRequest = identLength * 9;
+                }
+            }
+
             if (Accounts != null)
             {
                 if (Accounts.Count > 0)
@@ -247,7 +269,7 @@ namespace xamarinJKH.Main
                         }
                     }
                     Picker.ItemsSource = Accounts;
-                    Picker.Title = account;
+                    Picker.SelectedIndex = 0;
                 }
             }
             else

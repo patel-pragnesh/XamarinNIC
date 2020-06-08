@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,8 @@ namespace xamarinJKH.Questions
     public partial class QuestionsPage : ContentPage
     {
         public List<PollInfo> Quest { get; set; }
+        public List<PollInfo> QuestComlite { get; set; }
+        public List<PollInfo> QuestNotComlite { get; set; }
         private bool _isRefreshing = false;
         private RestClientMP server = new RestClientMP();
 
@@ -49,7 +52,16 @@ namespace xamarinJKH.Questions
             if (Settings.EventBlockData.Error == null)
             {
                 Settings.EventBlockData = await server.GetEventBlockData();
-                Quest = Settings.EventBlockData.Polls;
+                isComplite();
+                if (!SwitchQuest.IsToggled)
+                {
+                    Quest = QuestNotComlite;
+                }
+                else
+                {
+                    Quest = QuestComlite;
+                }
+
                 additionalList.ItemsSource = null;
                 additionalList.ItemsSource = Quest;
             }
@@ -86,41 +98,71 @@ namespace xamarinJKH.Questions
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
-                        RelativeLayoutTop.Margin = new Thickness(0,0,0,-80);
+                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -80);
                     }
+
                     break;
                 default:
                     break;
             }
+
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
             SetText();
-            Quest = Settings.EventBlockData.Polls;
+            // isComplite();
+            // Quest = QuestNotComlite;
             this.BindingContext = this;
             additionalList.BackgroundColor = Color.Transparent;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            new Task(SyncSetup).Start(); // This could be an await'd task if need be
+        }
+
+        async void SyncSetup()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                // Assuming this function needs to use Main/UI thread to move to your "Main Menu" Page
+                RefreshData();
+            });
+        }
+
         void isComplite()
         {
+            QuestComlite = new List<PollInfo>();
+            QuestNotComlite = new List<PollInfo>();
             foreach (var each in Settings.EventBlockData.Polls)
             {
-                bool flag = false;
+                bool flag = true;
                 foreach (var quest in each.Questions)
                 {
-                    foreach (var ans in quest.Answers)
+                    if (!quest.IsCompleteByUser)
                     {
-                        if (ans.IsUserAnswer)
-                        {
-                            
-                        }
+                        flag = false;
+                        break;
                     }
+                }
+
+                if (flag)
+                {
+                    each.IsComplite = true;
+                    QuestComlite.Add(each);
+                }
+                else
+                {
+                    each.IsComplite = false;
+                    QuestNotComlite.Add(each);
                 }
             }
         }
-        
+
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
@@ -132,7 +174,22 @@ namespace xamarinJKH.Questions
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             PollInfo select = e.Item as PollInfo;
-            await Navigation.PushAsync(new PollsPage(select));
+            await Navigation.PushAsync(new PollsPage(select, SwitchQuest.IsToggled));
+        }
+
+        private void chage(object sender, PropertyChangedEventArgs e)
+        {
+            if (!SwitchQuest.IsToggled)
+            {
+                Quest = QuestNotComlite;
+            }
+            else
+            {
+                Quest = QuestComlite;
+            }
+
+            additionalList.ItemsSource = null;
+            additionalList.ItemsSource = Quest;
         }
     }
 }

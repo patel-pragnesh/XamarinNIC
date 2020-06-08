@@ -25,6 +25,7 @@ namespace xamarinJKH.Droid
             AiForms.Dialogs.Dialogs.Init(this);
             App.ScreenHeight = (int) (Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
             App.ScreenWidth = (int) (Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
+            Messier16.Forms.Android.Controls.Messier16Controls.InitAll();
             LoadApplication(new App());
           
 

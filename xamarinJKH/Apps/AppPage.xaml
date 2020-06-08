@@ -10,7 +10,7 @@
         <StackLayout>
             <RelativeLayout
                 x:Name="ScrollViewContainer"
-                Margin="0,0,0,-110"
+                Margin="0,0,0,-170"
                 VerticalOptions="Start"
                 HorizontalOptions="FillAndExpand">
                 <Image x:Name="ImageTop" Margin="0, -26, 0 ,0"
@@ -25,20 +25,44 @@
                        Source="ic_app_top_in"
                        VerticalOptions="Fill"
                        HorizontalOptions="Fill" />
-                <StackLayout x:Name="StackLayout"
-                             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0,
-                             Constant=15}"
-                             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Height,
-                             Factor=0,
-                             Constant=0}"
-                             Orientation="Vertical">
+                <!-- <StackLayout x:Name="StackLayout" -->
+                <!--              RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, -->
+                <!--              Property=Width, -->
+                <!--              Factor=0, -->
+                <!--              Constant=15}" -->
+                <!--              RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, -->
+                <!--              Property=Height, -->
+                <!--              Factor=0, -->
+                <!--              Constant=0}" -->
+                <!--              Orientation="Vertical"> -->
+                <!--     <StackLayout -->
+                <!--         x:Name="BackStackLayout" -->
+                <!--         Orientation="Horizontal" -->
+                <!--         Margin="0, 40, 0, 0" -->
+                <!--         HorizontalOptions="Start"> -->
+                <!--         <Image Source="ic_arrow_back" -->
+                <!--                HeightRequest="15" -->
+                <!--                HorizontalOptions="Center" /> -->
+                <!--         <Label -->
+                <!--             Text="Назад " -->
+                <!--             FontSize="15" -->
+                <!--             TextColor="White" -->
+                <!--             HorizontalOptions="Start" /> -->
+                <!--     </StackLayout> -->
+                <!--     <Label x:Name="LabelNumber" -->
+                <!--            FontSize="20" -->
+                <!--            Margin="10, 15 ,0,0" -->
+                <!--            TextColor="White" /> -->
+                <!-- </StackLayout> -->
+            </RelativeLayout>
+            <StackLayout HorizontalOptions="Fill"
+                         Orientation="Horizontal">
+                <StackLayout
+                    Margin="15, 0, 0, 0"
+                    HorizontalOptions="FillAndExpand">
                     <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
-                        Margin="0, 40, 0, 0"
                         HorizontalOptions="Start">
                         <Image Source="ic_arrow_back"
                                HeightRequest="15"
@@ -54,18 +78,17 @@
                            Margin="10, 10 ,0,0"
                            TextColor="White" />
                 </StackLayout>
-            </RelativeLayout>
-            <StackLayout HorizontalOptions="Fill">
                 <Frame CornerRadius="40"
-                       Margin="0, -60, 15, -95"
+                       Margin="0, 0, 15, -95"
                        HorizontalOptions="End"
                        BackgroundColor="#B5B5B5"
                        Padding="25,0,25,80">
                     <StackLayout Orientation="Horizontal"
-                                 WidthRequest="150"
+                                 WidthRequest="100"
                                  HeightRequest="100">
                         <StackLayout
-                            Margin="0,15,0,0"
+                            Margin="0,5,0,0"
+                            x:Name="StackLayoutInfo"
                             VerticalOptions="Center"
                             HorizontalOptions="StartAndExpand">
                             <Image Source="ic_info_app1"
@@ -75,20 +98,21 @@
                                    FontAttributes="Bold"
                                    FontSize="10" />
                         </StackLayout>
+                        <!-- <StackLayout -->
+                        <!--     Margin="10,15,0,0" -->
+                        <!--     VerticalOptions="Center" -->
+                        <!--     HorizontalOptions="CenterAndExpand"> -->
+                        <!--     <Image Source="ic_files_app1" -->
+                        <!--            HeightRequest="25" /> -->
+                        <!--     <Label Text="Файлы" -->
+                        <!--            TextColor="White" -->
+                        <!--            FontAttributes="Bold" -->
+                        <!--            FontSize="10" /> -->
+                        <!-- </StackLayout> -->
                         <StackLayout
-                            Margin="10,15,0,0"
+                            Margin="0,5,0,0"
                             VerticalOptions="Center"
-                            HorizontalOptions="CenterAndExpand">
-                            <Image Source="ic_files_app1"
-                                   HeightRequest="25" />
-                            <Label Text="Файлы"
-                                   TextColor="White"
-                                   FontAttributes="Bold"
-                                   FontSize="10" />
-                        </StackLayout>
-                        <StackLayout
-                            Margin="0,15,0,0"
-                            VerticalOptions="Center"
+                            x:Name="StackLayoutClose"
                             HorizontalOptions="EndAndExpand">
                             <Image Source="ic_close_app1"
                                    HeightRequest="25"
@@ -101,10 +125,12 @@
                     </StackLayout>
                 </Frame>
             </StackLayout>
-            <Frame CornerRadius="30"
-                   Margin="15, 15, 15, -30"
-                   BackgroundColor="White"
-                   Padding="5,0,5,70">
+            <Frame
+                x:Name="FrameMessage"
+                CornerRadius="30"
+                Margin="15, 0, 15, -30"
+                BackgroundColor="White"
+                Padding="5,0,5,70">
                 <ListView x:Name="additionalList"
                           HasUnevenRows="True"
                           Margin="0, 0, 0, 0"
