@@ -132,15 +132,15 @@ namespace xamarinJKH.Shop
             //категории в меню со скроллом
             foreach (var c in CategoriesGoods)
             {
-                var l = new StackLayout();
+                var b = new Button();
                 if (c.Key == CategoriesGoods.Keys.First())
                 {
-                l = GetLabelForCategory(c.Key, true);
+                b = GetLabelForCategory(c.Key, true);
                 }
                 else
-                 l = GetLabelForCategory(c.Key,false);
+                 b = GetLabelForCategory(c.Key,false);
 
-                GoodsCategories.Children.Add(l);
+                GoodsCategories.Children.Add(b);
             }
 
             if (CategoriesGoods.Keys.FirstOrDefault() != null)
@@ -151,70 +151,123 @@ namespace xamarinJKH.Shop
 
             setKeys();
         }
-                
 
-        StackLayout GetLabelForCategory(string c, bool needUnderLine)
+
+        Button GetLabelForCategory(string c, bool needUnderLine)
         {
-            StackLayout labelStack = new StackLayout() { Margin = new Thickness(10, 10, 10, 10), BackgroundColor = Color.Transparent };
+            var b = new Button() { BackgroundColor = Color.Transparent };
+            b.Text = c;
+            b.FontSize = 20;
+            b.TextColor = Color.White;
+            b.BorderWidth = 0;
 
-            var cat = new Label();
-            cat.FontSize = 20;
-            cat.TextColor = Color.White;
-            cat.Text = c;
+            //StackLayout labelStack = new StackLayout() { Margin = new Thickness(10, 10, 10, 10), BackgroundColor = Color.Transparent };
+
+            //var cat = new Label();
+            //cat.FontSize = 20;
+            //cat.TextColor = Color.White;
+            //cat.Text = c;
             if (needUnderLine)
             {
-                cat.TextDecorations = TextDecorations.Underline;
-                cat.TextColor = Color.FromHex(Settings.MobileSettings.color);
-                prevCategoryTapped = cat;
+                //cat.TextDecorations = TextDecorations.Underline;
+                //cat.TextColor = Color.FromHex(Settings.MobileSettings.color);
+                b.TextColor = colorFromMobileSettings;// Color.FromHex(Settings.MobileSettings.color);
+                prevCategoryTapped = c;
             }
             else
-                cat.TextColor = Color.White;
+                b.TextColor = Color.White;
 
-            TapGestureRecognizer tap = new TapGestureRecognizer();
-            tap.Tapped += Tap_Tapped;
-            labelStack.GestureRecognizers.Add(tap);
-            labelStack.Children.Add(cat);
-            return labelStack;
+            b.Clicked += B_Clicked;
+            //TapGestureRecognizer tap = new TapGestureRecognizer();
+            //tap.Tapped += Tap_Tapped;
+            //labelStack.GestureRecognizers.Add(tap);
+            //labelStack.Children.Add(cat);
+            return b /*labelStack*/;
         }
 
-        static Label prevCategoryTapped;
-        private void Tap_Tapped(object sender, EventArgs e)
+        private void B_Clicked(object sender, EventArgs e)
         {
-            var sl = (StackLayout)sender;
-            var cat = (Label)sl.Children.First();
+            var b = (Button)sender;
+            //var cat = (Label)sl.Children.First();
 
-            cat.TextDecorations = TextDecorations.Underline;
-            var catName = cat.Text;
-            
+            //cat.TextDecorations = TextDecorations.Underline;
+            var catName = b.Text;
 
-            if (prevCategoryTapped.Text == catName )
+
+            if (prevCategoryTapped == catName)
                 return;
-            if (!string.IsNullOrWhiteSpace(prevCategoryTapped.Text))
+            if (!string.IsNullOrWhiteSpace(prevCategoryTapped))
             {
-                var sp = GoodsCategories.Children.FirstOrDefault(_ => ((Label)((StackLayout)_).Children[0]).Text == prevCategoryTapped.Text);
-                if(sp!=null)
-                {
-                    var indexP = GoodsCategories.Children.IndexOf(sp);
-                    GoodsCategories.Children.RemoveAt(indexP);
-                    GoodsCategories.Children.Insert(indexP, GetLabelForCategory(prevCategoryTapped.Text, false));
-                }
-            }            
+                
 
-            //замена категории
-            prevCategoryTapped = cat;
-            
-            var s = GoodsCategories.Children.FirstOrDefault(_ => ((Label)((StackLayout)_).Children[0]).Text == cat.Text);
-            if (s != null)
-            {
-                var indexP = GoodsCategories.Children.IndexOf(s);
-                GoodsCategories.Children.RemoveAt(indexP);
-                GoodsCategories.Children.Insert(indexP, GetLabelForCategory(cat.Text, true));
+                var sp = GoodsCategories.Children.FirstOrDefault(_ => ((Button)_).Text == prevCategoryTapped);
+                if (sp != null)
+                {
+                    var bPrev = (Button)sp;
+                    bPrev.TextColor = Color.White;
+                    //var indexP =(Button)GoodsCategories.Children.IndexOf(sp);
+                    //GoodsCategories.Children.RemoveAt(indexP);
+                    //GoodsCategories.Children.Insert(indexP, GetLabelForCategory(prevCategoryTapped.Text, false));
+                }
             }
+            b.TextColor = colorFromMobileSettings;
+            //замена категории
+            prevCategoryTapped = catName;
+
+            //var s = GoodsCategories.Children.FirstOrDefault(_ => ((Label)((StackLayout)_).Children[0]).Text == cat.Text);
+            //if (s != null)
+            //{
+            //    var indexP = GoodsCategories.Children.IndexOf(s);
+            //    GoodsCategories.Children.RemoveAt(indexP);
+            //    GoodsCategories.Children.Insert(indexP, GetLabelForCategory(cat.Text, true));
+            //}
 
             currentDisplayCategoryKey = catName;
 
             setList(catName);
         }
+
+        //static Label prevCategoryTapped;
+        static string prevCategoryTapped;
+
+
+        //private void Tap_Tapped(object sender, EventArgs e)
+        //{
+        //    //var sl = (StackLayout)sender;
+        //    //var cat = (Label)sl.Children.First();
+
+        //    //cat.TextDecorations = TextDecorations.Underline;
+        //    //var catName = cat.Text;
+            
+
+        //    //if (prevCategoryTapped.Text == catName )
+        //    //    return;
+        //    //if (!string.IsNullOrWhiteSpace(prevCategoryTapped.Text))
+        //    //{
+        //    //    var sp = GoodsCategories.Children.FirstOrDefault(_ => ((Label)((StackLayout)_).Children[0]).Text == prevCategoryTapped.Text);
+        //    //    if(sp!=null)
+        //    //    {
+        //    //        var indexP = GoodsCategories.Children.IndexOf(sp);
+        //    //        GoodsCategories.Children.RemoveAt(indexP);
+        //    //        GoodsCategories.Children.Insert(indexP, GetLabelForCategory(prevCategoryTapped.Text, false));
+        //    //    }
+        //    //}            
+
+        //    ////замена категории
+        //    //prevCategoryTapped = cat;
+            
+        //    //var s = GoodsCategories.Children.FirstOrDefault(_ => ((Label)((StackLayout)_).Children[0]).Text == cat.Text);
+        //    //if (s != null)
+        //    //{
+        //    //    var indexP = GoodsCategories.Children.IndexOf(s);
+        //    //    GoodsCategories.Children.RemoveAt(indexP);
+        //    //    GoodsCategories.Children.Insert(indexP, GetLabelForCategory(cat.Text, true));
+        //    //}
+
+        //    //currentDisplayCategoryKey = catName;
+
+        //    //setList(catName);
+        //}
 
         void setKeys()
         {
@@ -407,14 +460,16 @@ namespace xamarinJKH.Shop
                 labelCount.HorizontalOptions = LayoutOptions.Center;
                 labelCount.Text = each.ColBusket.ToString();
 
-                StackLayout stackLayoutAddAndMin = new StackLayout();
+                StackLayout stackLayoutAddAndMin = new StackLayout();// { Margin = new Thickness(0, 5, 0, 0) };
                 stackLayoutAddAndMin.Orientation = StackOrientation.Horizontal;
+
+                var icViewPlusMinusSize = 22;
 
                 IconView iconViewPlus = new IconView();
                 iconViewPlus.Source = "ic_shop_plus";
                 iconViewPlus.Foreground = colorFromMobileSettings;
-                iconViewPlus.HeightRequest = 15;
-                iconViewPlus.WidthRequest = 15;
+                iconViewPlus.HeightRequest = icViewPlusMinusSize;
+                iconViewPlus.WidthRequest = icViewPlusMinusSize;
 
 
                 var addItem = new TapGestureRecognizer();
@@ -457,8 +512,8 @@ namespace xamarinJKH.Shop
                 IconView iconViewMinus = new IconView();
                 iconViewMinus.Source = "ic_shop_minus";
                 iconViewMinus.Foreground = colorFromMobileSettings;
-                iconViewMinus.HeightRequest = 15;
-                iconViewMinus.WidthRequest = 15;
+                iconViewMinus.HeightRequest = icViewPlusMinusSize;
+                iconViewMinus.WidthRequest = icViewPlusMinusSize;
 
 
                 var dellItem = new TapGestureRecognizer();
