@@ -28,7 +28,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: Evgeny Yurtaykin (W7QP3Z4ZW5)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -50,7 +50,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: Evgeny Yurtaykin (W7QP3Z4ZW5)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
@@ -209,6 +209,14 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin1024.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\star_filled.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\star_filled.imageset\star_filled-1.png" />
+    <ImageAsset Include="Assets.xcassets\star_filled.imageset\star_filled%402x.png" />
+    <ImageAsset Include="Assets.xcassets\star_filled.imageset\star_filled%403x.png" />
+    <ImageAsset Include="Assets.xcassets\star.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\star.imageset\star.png" />
+    <ImageAsset Include="Assets.xcassets\star.imageset\star%402x.png" />
+    <ImageAsset Include="Assets.xcassets\star.imageset\star%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -248,6 +256,8 @@
     <Folder Include="Assets.xcassets\ic_events.imageset\" />
     <Folder Include="Assets.xcassets\ic_pays.imageset\" />
     <Folder Include="Assets.xcassets\ic_profile.imageset\" />
+    <Folder Include="Assets.xcassets\star_filled.imageset\" />
+    <Folder Include="Assets.xcassets\star.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon_login.png" />
