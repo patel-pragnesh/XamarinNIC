@@ -61,7 +61,7 @@ namespace xamarinJKH.Counters
         
         private async void ButtonClick(object sender, EventArgs e)
         {
-            SaveInfoAccount(EntryCount.Text);
+            //SaveInfoAccount(EntryCount.Text);
         }
         
         void SetTextAndColor()
