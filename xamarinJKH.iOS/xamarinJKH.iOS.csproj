@@ -83,6 +83,7 @@
     <Compile Include="CustomRenderers\BorderlessPickerRenderer.cs" />
     <Compile Include="CustomRenderers\BordlessEditorRender.cs" />
     <Compile Include="CustomRenderers\ListViewHighlightEffect.cs" />
+    <Compile Include="CustomRenderers\TapHighlightRemoveNotificationCellRenderer.cs" />
     <Compile Include="CustomRenderers\RadioButtonEffect.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
@@ -209,14 +210,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin1024.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\star_filled.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\star_filled.imageset\star_filled-1.png" />
-    <ImageAsset Include="Assets.xcassets\star_filled.imageset\star_filled%402x.png" />
-    <ImageAsset Include="Assets.xcassets\star_filled.imageset\star_filled%403x.png" />
-    <ImageAsset Include="Assets.xcassets\star.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\star.imageset\star.png" />
-    <ImageAsset Include="Assets.xcassets\star.imageset\star%402x.png" />
-    <ImageAsset Include="Assets.xcassets\star.imageset\star%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -256,8 +249,6 @@
     <Folder Include="Assets.xcassets\ic_events.imageset\" />
     <Folder Include="Assets.xcassets\ic_pays.imageset\" />
     <Folder Include="Assets.xcassets\ic_profile.imageset\" />
-    <Folder Include="Assets.xcassets\star_filled.imageset\" />
-    <Folder Include="Assets.xcassets\star.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon_login.png" />
