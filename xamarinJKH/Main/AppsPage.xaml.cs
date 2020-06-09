@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +18,13 @@ namespace xamarinJKH.Main
     public partial class AppsPage : ContentPage
     {
         public List<RequestInfo> RequestInfos { get; set; }
+        public List<RequestInfo> RequestInfosAlive { get; set; }
+        public List<RequestInfo> RequestInfosClose { get; set; }
         private RequestList _requestList;
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
         public Color hex { get; set; }
+
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -69,27 +73,29 @@ namespace xamarinJKH.Main
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
-                        ScrollViewContainer.Margin = new Thickness(0,0,0,-125);
+                        ScrollViewContainer.Margin = new Thickness(0, 0, 0, -125);
                         BackStackLayout.Margin = new Thickness(5, 25, 0, 0);
                     }
+
                     break;
                 default:
                     break;
             }
+
             hex = Color.FromHex(Settings.MobileSettings.color);
             SetText();
             getApps();
             additionalList.BackgroundColor = Color.Transparent;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
-        
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            
+
             new Task(SyncSetup).Start(); // This could be an await'd task if need be
         }
-        
+
         async void SyncSetup()
         {
             Device.BeginInvokeOnMainThread(() =>
@@ -104,24 +110,48 @@ namespace xamarinJKH.Main
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = Settings.Person.Phone;
             SwitchApp.OnColor = hex;
-            LabelSwitch.TextColor = hex;
             FrameBtnAdd.BackgroundColor = hex;
         }
 
-      
 
         async void getApps()
         {
             _requestList = await _server.GetRequestsList();
             if (_requestList.Error == null)
             {
-                RequestInfos = _requestList.Requests;
+                setCloses(_requestList.Requests);
                 Settings.UpdateKey = _requestList.UpdateKey;
                 this.BindingContext = this;
             }
             else
             {
                 await DisplayAlert("Ошибка", "Не удалось получить информацию о заявках", "OK");
+            }
+        }
+
+        void setCloses(List<RequestInfo> infos)
+        {
+            RequestInfosAlive = new List<RequestInfo>();
+            RequestInfosClose = new List<RequestInfo>();
+            foreach (var each in infos)
+            {
+                if (each.IsClosed)
+                {
+                    RequestInfosClose.Add(each);
+                }
+                else
+                {
+                    RequestInfosAlive.Add(each);
+                }
+            }
+
+            if (SwitchApp.IsToggled)
+            {
+                RequestInfos = RequestInfosClose;
+            }
+            else
+            {
+                RequestInfos = RequestInfosAlive;
             }
         }
 
@@ -141,6 +171,20 @@ namespace xamarinJKH.Main
             {
                 await DisplayAlert("Ошибка", "Лицевые счета не подключены", "OK");
             }
+        }
+
+        private async void change(object sender, PropertyChangedEventArgs e)
+        {
+            if (SwitchApp.IsToggled)
+            {
+                RequestInfos = RequestInfosClose;
+            }
+            else
+            {
+                RequestInfos = RequestInfosAlive;
+            }
+            additionalList.ItemsSource = null;
+            additionalList.ItemsSource = RequestInfos;
         }
     }
 }

@@ -14,6 +14,7 @@
     <PackageReference Include="AiForms.Dialogs" Version="1.0.3" />
     <PackageReference Include="Messier16.Forms.Controls" Version="2.2.0" />
     <PackageReference Include="PCLStorage" Version="1.0.2" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="SimpleJson" Version="0.38.0" />
@@ -128,6 +129,14 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="DialogViews\ToastDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DialogViews\RatingBarContentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -209,6 +218,12 @@
     </Compile>
     <Compile Update="DialogViews\RatingBarView.xaml.cs">
       <DependentUpon>RatingBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="DialogViews\ToastDialog.xaml.cs">
+      <DependentUpon>ToastDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="DialogViews\RatingBarContentView.xaml.cs">
+      <DependentUpon>RatingBarContentView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

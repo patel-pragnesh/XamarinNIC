@@ -159,6 +159,7 @@
                                                      VerticalOptions="Center"
                                                      HorizontalOptions="Center" />
                                 <Label
+                                    x:Name="LabelPrev"
                                     Text=" Назад  "
                                     FontSize="15"
                                     TextColor="White"
@@ -186,6 +187,7 @@
                                 Spacing="0"
                                 HorizontalOptions="Center">
                                 <Label
+                                    x:Name="LabelNext"
                                     Text="Вперед "
                                     FontSize="15"
                                     TextColor="White"
@@ -226,6 +228,7 @@
                                                      VerticalOptions="Center"
                                                      HorizontalOptions="Center" />
                                 <Label
+                                    x:Name="LabelFinish"
                                     Text=" Завершить"
                                     FontSize="15"
                                     TextColor="White"

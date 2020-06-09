@@ -26,6 +26,7 @@ namespace xamarinJKH.Droid
             App.ScreenHeight = (int) (Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
             App.ScreenWidth = (int) (Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
             Messier16.Forms.Android.Controls.Messier16Controls.InitAll();
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             LoadApplication(new App());
           
 

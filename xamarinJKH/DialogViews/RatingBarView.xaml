@@ -5,6 +5,7 @@
                          CornerRadius="30" OffsetX="0" OffsetY="0" UseCurrentPageLocation="True"
                          VerticalLayoutAlignment="Start" HorizontalLayoutAlignment="Center"
                          IsCanceledOnTouchOutside="False"
+                         
                          xmlns:abstractions="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
                          xmlns:controls="clr-namespace:Messier16.Forms.Controls;assembly=Messier16.Forms.Controls"
                          xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
@@ -65,11 +66,12 @@
                    BorderColor="{Binding HexColor}"
                    Margin="0, 25, 0, 0"
                    Padding="10,10,10,10">
-                <xamarinJkh:BordlessEditor x:Name="EntryMess"
+                <xamarinJkh:BordlessEditor x:Name="BordlessEditor"
                                            FontSize="18"
                                            VerticalOptions="FillAndExpand"
                                            Text=""
                                            WidthRequest="100"
+                                           IsSpellCheckEnabled="True"
                                            AutoSize="TextChanges"
                                            Placeholder="Прокомментируйте вашу оценку..."
                                            TextColor="#A2A2A2"

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
 using Xamarin.Forms;
+using xamarinJKH.DialogViews;
 using xamarinJKH.Server.RequestModel;
 
 namespace xamarinJKH.Utils
@@ -86,7 +87,7 @@ namespace xamarinJKH.Utils
                 }
             });
         }
-        public static async Task StartOverlayBackground()
+        public static async Task StartOverlayBackground(Color hex)
         {
             // Loading settings
             Configurations.LoadingConfig = new LoadingConfig {
@@ -98,12 +99,10 @@ namespace xamarinJKH.Utils
 
             await Loading.Instance.StartAsync(async progress =>{
                 // some heavy process.
-                for (var i = 0; i < 1000; i++)
+                var ret = await Dialog.Instance.ShowAsync<RatingBarView>(new
                 {
-                    await Task.Delay(70);
-                    // can send progress to the dialog with the IProgress.
-                    // progress.Report((i + 1) * 0.01d);
-                }
+                    HexColor = hex
+                });
             });
         }
     }

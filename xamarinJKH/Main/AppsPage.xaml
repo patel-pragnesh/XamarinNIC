@@ -5,11 +5,12 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
              xmlns:apps="clr-namespace:xamarinJKH.Apps;assembly=xamarinJKH"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.Main.AppsPage">
     <ContentPage.Content>
         <StackLayout>
-            <RelativeLayout 
+            <RelativeLayout
                 x:Name="ScrollViewContainer"
                 Margin="0,0,0,-140" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
                 <Image x:Name="ImageFon"
@@ -127,8 +128,10 @@
 
                     </ListView.ItemTemplate>
                 </ListView>
-                <StackLayout>
-
+                <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0" BackgroundColor="#8D8D8D"
+                                         Padding="0,10,0,2"
+                                         Margin="0"
+                                         VerticalOptions="FillAndExpand">
                     <StackLayout
                         HorizontalOptions="Center"
                         Margin="20, 10, 20, 15"
@@ -139,13 +142,14 @@
                             <Switch
                                 OnColor="{Binding hex}"
                                 IsToggled="False"
+                                PropertyChanged="change"
                                 x:Name="SwitchApp" />
 
                             <Label Text="Показать закрытые"
                                    x:Name="LabelSwitch"
                                    FontAttributes="Bold"
                                    FontSize="15"
-                                   TextColor="{Binding hex}"
+                                   TextColor="White"
                                    VerticalOptions="CenterAndExpand"
                                    HorizontalOptions="Center" />
                         </StackLayout>
@@ -153,6 +157,7 @@
                         <Frame CornerRadius="10"
                                x:Name="FrameBtnAdd"
                                Padding="-5"
+                               Margin="0,0,0,3"
                                MinimumWidthRequest="250"
                                BackgroundColor="{Binding hex}"
                                HorizontalOptions="FillAndExpand">
@@ -170,7 +175,7 @@
                             </StackLayout>
                         </Frame>
                     </StackLayout>
-                </StackLayout>
+                </pancakeView:PancakeView>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

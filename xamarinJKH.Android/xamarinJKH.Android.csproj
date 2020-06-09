@@ -48,6 +48,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -62,6 +63,7 @@
     <PackageReference Include="AiForms.Dialogs" Version="1.0.3" />
     <PackageReference Include="Messier16.Forms.Controls" Version="2.2.0" />
     <PackageReference Include="PCLStorage" Version="1.0.2" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="Xamarin.Forms.PancakeView">

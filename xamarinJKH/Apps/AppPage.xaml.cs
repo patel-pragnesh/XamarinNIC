@@ -9,6 +9,7 @@ using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -105,7 +106,7 @@ namespace xamarinJKH.Apps
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
-                        ScrollViewContainer.Margin = new Thickness(0, 0, 0, -90);
+                        ScrollViewContainer.Margin = new Thickness(0, 0, 0, -150);
                     }
 
                     break;
@@ -129,7 +130,6 @@ namespace xamarinJKH.Apps
                 }
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
-
             var sendMess = new TapGestureRecognizer();
             sendMess.Tapped += async (s, e) => { sendMessage(); };
             IconViewSend.GestureRecognizers.Add(sendMess);
@@ -140,7 +140,13 @@ namespace xamarinJKH.Apps
             showInfo.Tapped += async (s, e) => {   ShowInfo(); };
             StackLayoutInfo.GestureRecognizers.Add(showInfo); 
             var closeApp = new TapGestureRecognizer();
-            closeApp.Tapped += async (s, e) => { await ShowRating(); };
+            closeApp.Tapped += async (s, e) =>
+            {
+                // await ShowRating();
+                await PopupNavigation.Instance.PushAsync(new RatingBarContentView(hex, _requestInfo));
+                await RefreshData();
+
+            };
             StackLayoutClose.GestureRecognizers.Add(closeApp);
             hex = Color.FromHex(Settings.MobileSettings.color);
 
@@ -345,11 +351,8 @@ namespace xamarinJKH.Apps
 
         public async Task ShowRating()
         {
-            Settings.StartOverlayBackground();
-            var ret = await Dialog.Instance.ShowAsync<RatingBarView>(new
-            {
-                HexColor = this.hex
-            });
+            await Settings.StartOverlayBackground(hex);
+          
             
         }
 

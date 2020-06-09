@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:additional="clr-namespace:xamarinJKH.Additional;assembly=xamarinJKH"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:questions="clr-namespace:xamarinJKH.Questions;assembly=xamarinJKH"
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.Questions.QuestionsPage">
@@ -39,15 +40,15 @@
                        HorizontalOptions="Fill" />
 
                 <StackLayout x:Name="StackLayout"
-                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
                              Constant=15}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Height,
                              Factor=0,
                              Constant=10}"
-                    Orientation="Vertical">
+                             Orientation="Vertical">
                     <Label x:Name="UkName"
                            Text="Название"
                            FontAttributes="Bold"
@@ -153,9 +154,11 @@
 
                     </ListView.ItemTemplate>
                 </ListView>
-                <StackLayout
-                        >
-
+                <StackLayout Spacing="0">
+                    <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0" BackgroundColor="#8D8D8D"
+                                             Padding="0,17,0,5"
+                                             Margin="0"
+                                             VerticalOptions="FillAndExpand">
                         <StackLayout
                             HorizontalOptions="Center"
                             Margin="0, 0, 0, 10"
@@ -169,11 +172,12 @@
 
                             <Label Text="Показать пройденные опросы"
                                    FontAttributes="Bold"
-                                   FontSize="20"
-                                   TextColor="Black"
+                                   FontSize="17"
+                                   TextColor="White"
                                    HorizontalOptions="Center" />
                         </StackLayout>
-                    </StackLayout>
+                    </pancakeView:PancakeView>
+                </StackLayout>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -27,7 +27,7 @@ namespace xamarinJKH.DialogViews
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
-                        Frame.Margin = new Thickness(15,110,15,15); 
+                        Frame.Margin = new Thickness(15,113,15,15); 
                     }else if (Math.Abs(or - 0.55) < 0.02)
                     {
                         Frame.Margin = new Thickness(15,100,15,15); 

@@ -104,7 +104,7 @@
                         Margin="12, 5, 0, 0"
                         HorizontalOptions="Start">
                         <Label
-                            Text="Уведомления1"
+                            Text="Уведомления"
                             FontSize="18"
                             TextColor="White"
                             FontAttributes="Bold"

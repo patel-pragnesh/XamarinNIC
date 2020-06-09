@@ -164,5 +164,10 @@ namespace xamarinJKH.Pays
         {
             await Navigation.PushAsync(new SaldosPage(Accounts)); 
         }
+
+        private async void OpenHistory(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new HistoryPayedPage(Accounts));
+        }
     }
 }

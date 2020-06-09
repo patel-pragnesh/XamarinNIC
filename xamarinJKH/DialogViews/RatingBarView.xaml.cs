@@ -7,14 +7,17 @@ using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.Server;
+using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.DialogViews
 {
     public partial class RatingBarView : DialogView
     {
+        private RestClientMP server = new RestClientMP();
         public Color HexColor { get; set; }
-
+        public RequestInfo _Request { get; set; }
         public RatingBarView()
         {
             InitializeComponent();
@@ -40,10 +43,31 @@ namespace xamarinJKH.DialogViews
         }
         
         
-        private void CloseApp(object sender, EventArgs e)
+        private async void CloseApp(object sender, EventArgs e)
         {
+            string text = BordlessEditor.Text;
+            if (!text.Equals(""))
+            {
+                CommonResult result = await server.CloseApp(_Request.ID.ToString(), text, RatingBar.Rating.ToString());
+                if (result.Error == null)
+                {
+                    await ShowToast("Збс");
+                }
+                else
+                {
+                    await ShowToast(result.Error);
+                }
+            }
+            else
+            {
+                await ShowToast("Заполните комментарий к заявке");
+            }
         }
-
+        public async Task ShowToast(string title)
+        {
+            Toast.Instance.Show<ToastDialog>(new{Title=title,Duration=1500});
+            // Optionally, view model can be passed to the toast view instance.
+        }
         public override void SetUp()
         {
         }
