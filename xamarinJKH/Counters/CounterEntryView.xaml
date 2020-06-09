@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:xamarinJKH.CustomRenderers"
+             xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
+             xmlns:counters="clr-namespace:xamarinJKH.Counters"
+             x:Class="xamarinJKH.Counters.CounterEntryView">
+  <ContentView.Content>
+        <Grid HorizontalOptions="FillAndExpand"
+              HeightRequest="50"
+                                      Padding="20,0"
+                                      ColumnSpacing="5"
+                                      VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.12*"/>
+                <ColumnDefinition Width="0.12*"/>
+                <ColumnDefinition Width="0.12*"/>
+                <ColumnDefinition Width="0.12*"/>
+                <ColumnDefinition Width="0.12*"/>
+                <ColumnDefinition Width="0.06*"/>
+                <ColumnDefinition Width="0.12*"/>
+                <ColumnDefinition Width="0.12*"/>
+                <ColumnDefinition Width="0.12*"/>
+            </Grid.ColumnDefinitions>
+            <counters:CounterEntryCell Grid.Column="0"/>
+            <counters:CounterEntryCell Grid.Column="1"/>
+            <counters:CounterEntryCell Grid.Column="2"/>
+            <counters:CounterEntryCell Grid.Column="3"/>
+            <counters:CounterEntryCell Grid.Column="4"/>
+            <!--<counters:CounterEntryCell Grid.Column="5"/>-->
+            <counters:CounterEntryCell Grid.Column="6"/>
+            <counters:CounterEntryCell Grid.Column="7"/>
+            <counters:CounterEntryCell Grid.Column="8"/>
+            <controls:CounterEntry x:Name="EntryCount"
+                                                           BackgroundColor="Transparent"
+                                                           Grid.ColumnSpan="9"
+                                           FontSize="26"
+                                           FontAttributes="Bold"
+                                           VerticalOptions="End"
+                                           HorizontalTextAlignment="Start"
+                                            VerticalTextAlignment="Start"
+                                           TextColor="Black"
+                                                           CharacterSpacing="9.5"
+                                           Margin="0,10"
+                                           Placeholder="00000,000"
+                                           Keyboard="Numeric">
+                <controls:CounterEntry.Behaviors>
+                    <mask:MaskedBehavior Mask="XXXXX,XXX"/>
+                </controls:CounterEntry.Behaviors>
+            </controls:CounterEntry>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
