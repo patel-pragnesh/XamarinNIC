@@ -280,8 +280,14 @@ namespace xamarinJKH.Main
         
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            MeterInfo select = e.Item as MeterInfo;
-            await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this));
+            int currDay = DateTime.Now.Day;
+            if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
+                        Settings.Person.Accounts[0].MetersEndDay >= currDay) || (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                        Settings.Person.Accounts[0].MetersEndDay == 0))
+            {
+                MeterInfo select = e.Item as MeterInfo;
+                await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this));
+            }            
         }
     }
 }
