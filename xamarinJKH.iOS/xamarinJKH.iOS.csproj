@@ -329,6 +329,8 @@
     <BundleResource Include="Resources\ic_check_mark.png" />
     <BundleResource Include="Resources\ic_exit.png" />
     <BundleResource Include="Resources\ic_background_addCounter.png" />
+    <BundleResource Include="Resources\star_filled.png" />
+    <BundleResource Include="Resources\star.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_arrow_forward.png">
