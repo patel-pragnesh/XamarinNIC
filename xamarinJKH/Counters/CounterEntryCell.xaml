@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="xamarinJKH.Counters.CounterEntryCell">
+  <ContentView.Content>
+        <Frame CornerRadius="5"
+               BorderColor="Black"
+               Padding="0"
+               IsClippedToBounds="True">
+            <Grid VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.8*"/>
+                    <RowDefinition Height="0.2*"/>
+                </Grid.RowDefinitions>
+                <BoxView Color="Red"
+                         Grid.Row="1"/>
+            </Grid>
+        </Frame>
+        
+  </ContentView.Content>
+</ContentView>
