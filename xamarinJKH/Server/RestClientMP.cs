@@ -36,6 +36,7 @@ namespace xamarinJKH.Server
         public const string NEW_APP = "Requests/New"; // Добавление заявки
         public const string GET_TYPE = "Requests/RequestTypes"; // Получение типов заявок
         public const string GET_FILE_APP = "Requests/File"; // Получение типов заявок
+        public const string CLOSE_APP = "Requests/Close "; // Закрытие заявки
         
         public const string UPDATE_PROFILE = "User/UpdateProfile"; // Обновить данные профиля
         public const string ADD_IDENT_PROFILE = "User/AddAccountByIdent"; // Привязать ЛС к профилю
@@ -752,6 +753,31 @@ namespace xamarinJKH.Server
                 pollingResult.PollId,
                 pollingResult.ExtraInfo,
                 pollingResult.Answers
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        
+        public async Task<CommonResult> CloseApp(string RequestId, string Text, string Mark)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(CLOSE_APP, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                RequestId,
+                Text,
+                Mark
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус
