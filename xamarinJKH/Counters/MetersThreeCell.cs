@@ -423,45 +423,47 @@ namespace xamarinJKH.Main
                     if (Settings.Person.Accounts[0].MetersStartDay != null && Settings.Person.Accounts[0].MetersEndDay != null){
                         if (Settings.Person.Accounts[0].MetersStartDay != 0 && Settings.Person.Accounts[0].MetersEndDay != 0)
                         {
-                            formattedResource.Spans.Add(new Span
+                            formattedDate.Spans.Add(new Span
                             {
                                 Text = "c " + Settings.Person.Accounts[0].MetersStartDay + " по " + Settings.Person.Accounts[0].MetersEndDay + " числа ",
-                                TextColor = Color.White,
+                                TextColor = Color.FromHex(Settings.MobileSettings.color),
                                 FontAttributes = FontAttributes.Bold,
-                                FontSize = 15
+                                FontSize = 12
                             });
-                            formattedResource.Spans.Add(new Span
+                            formattedDate.Spans.Add(new Span
                             {
                                 Text = "текущего месяца!",
-                                TextColor = Color.White,
+                                TextColor = Color.FromHex(Settings.MobileSettings.color),
                                 FontAttributes = FontAttributes.None,
-                                FontSize = 15
+                                FontSize = 12
                             });
                         }
                         else
                         {
-                            formattedResource.Spans.Add(new Span
+                            formattedDate.Spans.Add(new Span
                             {
                                 Text = "в текущем месяце!",
-                                TextColor = Color.White,
+                                TextColor = Color.FromHex(Settings.MobileSettings.color),
                                 FontAttributes = FontAttributes.Bold,
-                                FontSize = 15
+                                FontSize = 12
                             });
                         }
-                    }else
+                    }
+                    else
                     {
-                        formattedResource.Spans.Add(new Span
+                        formattedDate.Spans.Add(new Span
                         {
                             Text = "в текущем месяце!",
-                            TextColor = Color.White,
+                            TextColor = Color.FromHex(Settings.MobileSettings.color),
                             FontAttributes = FontAttributes.Bold,
-                            FontSize = 15
+                            FontSize = 12
                         });
                     }
 
                     canCount.FormattedText = formattedDate;
-                    if (Settings.Person.Accounts[0].MetersStartDay <= currDay &&
-                        Settings.Person.Accounts[0].MetersEndDay >= currDay)
+                    if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
+                        Settings.Person.Accounts[0].MetersEndDay >= currDay) || (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                        Settings.Person.Accounts[0].MetersEndDay == 0))
                     {
                         frameBtn.IsVisible = true;
                         canCount.IsVisible = false;
