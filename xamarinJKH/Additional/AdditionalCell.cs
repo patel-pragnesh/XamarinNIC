@@ -69,12 +69,16 @@ namespace xamarinJKH.Additional
             if (BindingContext != null)
             {
                 byte[] imageByte = await _server.GetPhotoAdditional(Detail);
-                Stream stream = new MemoryStream(imageByte);
-                image.Source = ImageSource.FromStream(() => { return stream; });
-                image.VerticalOptions = LayoutOptions.FillAndExpand;
-                image.Aspect = Aspect.Fill;
-                image.HorizontalOptions = LayoutOptions.FillAndExpand;
-                image.HeightRequest = ImageHeight;
+                if (imageByte != null)
+                {
+                    Stream stream = new MemoryStream(imageByte);
+                    image.Source = ImageSource.FromStream(() => { return stream; });
+                    image.VerticalOptions = LayoutOptions.FillAndExpand;
+                    image.Aspect = Aspect.Fill;
+                    image.HorizontalOptions = LayoutOptions.FillAndExpand;
+                    image.HeightRequest = ImageHeight;
+                }
+                
             }
         }
     }

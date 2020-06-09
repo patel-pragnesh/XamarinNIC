@@ -173,6 +173,9 @@ namespace xamarinJKH.Questions
 
                     switch (Device.RuntimePlatform)
                     {
+                        case Device.iOS:
+                            radioButton.BorderColor = Color.FromHex(Settings.MobileSettings.color);
+                            break;
                         case Device.Android:
                             radioButton.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
                             break;

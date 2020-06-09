@@ -105,32 +105,49 @@ namespace xamarinJKH.Main
                 FormattedString formattedResource = new FormattedString();
                 formattedResource.Spans.Add(new Span
                 {
-                    Text = "Возможность передавать показания доступна с ",
+                    Text = "Возможность передавать показания доступна ",
                     TextColor = Color.White,
                     FontAttributes = FontAttributes.None,
                     FontSize = 15
                 });
-                if (Settings.Person.Accounts[0].MetersStartDay != null &&
-                    Settings.Person.Accounts[0].MetersEndDay != null)
+                if (Settings.Person.Accounts[0].MetersStartDay != null && Settings.Person.Accounts[0].MetersEndDay != null){
+                    if (Settings.Person.Accounts[0].MetersStartDay != 0 && Settings.Person.Accounts[0].MetersEndDay != 0)
+                    {
+                        formattedResource.Spans.Add(new Span
+                        {
+                            Text = "c " + Settings.Person.Accounts[0].MetersStartDay + " по " + Settings.Person.Accounts[0].MetersEndDay + " числа ",
+                            TextColor = Color.White,
+                            FontAttributes = FontAttributes.Bold,
+                            FontSize = 15
+                        });
+                        formattedResource.Spans.Add(new Span
+                        {
+                            Text = "текущего месяца!",
+                            TextColor = Color.White,
+                            FontAttributes = FontAttributes.None,
+                            FontSize = 15
+                        });
+                    }
+                    else
+                    {
+                        formattedResource.Spans.Add(new Span
+                        {
+                            Text = "в текущем месяце!",
+                            TextColor = Color.White,
+                            FontAttributes = FontAttributes.Bold,
+                            FontSize = 15
+                        });
+                    }
+                }else
                 {
                     formattedResource.Spans.Add(new Span
                     {
-                        Text = Settings.Person.Accounts[0].MetersStartDay + " по " +
-                               Settings.Person.Accounts[0].MetersEndDay + " числа ",
+                        Text = "в текущем месяце!",
                         TextColor = Color.White,
                         FontAttributes = FontAttributes.Bold,
                         FontSize = 15
                     });
                 }
-
-                formattedResource.Spans.Add(new Span
-                {
-                    Text = "текущего месяца!",
-                    TextColor = Color.White,
-                    FontAttributes = FontAttributes.None,
-                    FontSize = 15
-                });
-
                 PeriodSendLbl.FormattedText = formattedResource;
             }
             else
@@ -141,14 +158,14 @@ namespace xamarinJKH.Main
             countersList.BackgroundColor = Color.Transparent;
             countersList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
-
+        
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
+            
             new Task(SyncSetup).Start(); // This could be an await'd task if need be
         }
-
+        
         async void SyncSetup()
         {
             Device.BeginInvokeOnMainThread(() =>
@@ -157,7 +174,7 @@ namespace xamarinJKH.Main
                 RefreshCountersData();
             });
         }
-
+        
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -182,13 +199,11 @@ namespace xamarinJKH.Main
                 if (Accounts.Count > 0)
                 {
                     account = Accounts[Picker.SelectedIndex];
-
-
                     SetIdents();
                 }
             }
         }
-
+        
         void SetIdents()
         {
             Picker.TextColor = Color.White;
@@ -209,24 +224,23 @@ namespace xamarinJKH.Main
                         meters.Add(meterInfo);
                     }
                 }
-
                 _meterInfo = meters;
             }
-
             countersList.ItemsSource = null;
             countersList.ItemsSource = _meterInfo;
         }
-
+        
         private async void ButtonClick(object sender, EventArgs e)
         {
+            
         }
-
+        
         void SetTextAndColor()
         {
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.Phone;
         }
-
+        
         async void getInfo()
         {
             ItemsList<MeterInfo> info = await _server.GetThreeMeters();
@@ -249,13 +263,11 @@ namespace xamarinJKH.Main
                                 k = true;
                             }
                         }
-
                         if (k == false)
                         {
                             Accounts.Add(meterInfo.Ident);
                         }
                     }
-
                     Picker.ItemsSource = Accounts;
                     Picker.SelectedIndex = 0;
                 }
@@ -265,7 +277,7 @@ namespace xamarinJKH.Main
                 await DisplayAlert("Ошибка", "Не удалось получить информацию о начислениях", "OK");
             }
         }
-
+        
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             MeterInfo select = e.Item as MeterInfo;

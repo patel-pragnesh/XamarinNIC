@@ -22,8 +22,7 @@ namespace xamarinJKH.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental");
-            global::Xamarin.Forms.Forms.SetFlags("IndicatorView_Experimental");
+            global::Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental", "IndicatorView_Experimental");
             global::Xamarin.Forms.Forms.Init();
             AiForms.Dialogs.Dialogs.Init();
             XamEffects.iOS.Effects.Init(); 

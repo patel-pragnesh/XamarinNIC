@@ -24,6 +24,18 @@ namespace xamarinJKH.DialogViews
             {
                 DialogNotifier.Cancel();
             };
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    RatingBar.Margin = new Thickness(0, 10, 0, 10);
+                    RatingBar.FillColor = Color.FromHex(Settings.MobileSettings.color);
+                    RatingBar.HeightRequest = 50;
+                    break;
+                case Device.Android:
+                    break;
+                default:
+                    break;
+            }
             IconViewClose.GestureRecognizers.Add(close);
         }
         
