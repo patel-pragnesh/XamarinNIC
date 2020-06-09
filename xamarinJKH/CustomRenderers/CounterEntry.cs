@@ -23,6 +23,20 @@ namespace xamarinJKH.CustomRenderers
             this.Focus();
             this.TextChanged += (sender, e) =>
             {
+                try
+                {
+                    var val = e.NewTextValue.Replace('.', ',');
+                    if (e.NewTextValue != e.OldTextValue)
+                    if (val[e.NewTextValue.Length - 1] == ',')
+                    {
+                        this.Text = String.Format("{0:00000.###}", double.Parse(val)).Replace('.',',');
+                    }
+                }
+                catch
+                {
+
+                }
+                
                 //try
                 //{
                 //    if (e.NewTextValue == "00000.000")
