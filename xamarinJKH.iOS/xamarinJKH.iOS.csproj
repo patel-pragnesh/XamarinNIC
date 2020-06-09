@@ -83,6 +83,7 @@
     <Compile Include="CustomRenderers\BorderlessPickerRenderer.cs" />
     <Compile Include="CustomRenderers\BordlessEditorRender.cs" />
     <Compile Include="CustomRenderers\ListViewHighlightEffect.cs" />
+    <Compile Include="CustomRenderers\TapHighlightRemoveNotificationCellRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -346,5 +347,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_shop_plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_basket_top.png" />
   </ItemGroup>
 </Project>
