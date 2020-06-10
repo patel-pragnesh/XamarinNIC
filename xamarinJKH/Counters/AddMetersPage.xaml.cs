@@ -57,6 +57,7 @@ namespace xamarinJKH.Counters
             saveClick.Tapped += async (s, e) => { ButtonClick(FrameBtnLogin, null); };
             FrameBtnLogin.GestureRecognizers.Add(saveClick);
             SetTextAndColor();
+            FrameBtnLogin.BackgroundColor = Color.FromHex(xamarinJKH.Utils.Settings.MobileSettings.color);
         }
         
         private async void ButtonClick(object sender, EventArgs e)
@@ -135,7 +136,8 @@ namespace xamarinJKH.Counters
             RecheckLbl.FormattedText = formattedRecheckup;
             if (meter.Values.Count != 0)
             {
-                PredCount.Text = meter.Values[0].Value.ToString(CultureInfo.InvariantCulture);
+                BindingContext = new AddMetersPageViewModel(meter.Values[0].Value);
+                //PredCount.Text = meter.Values[0].Value.ToString(CultureInfo.InvariantCulture);
             }
         }
         
