@@ -59,7 +59,17 @@ namespace xamarinJKH.Counters
             SetTextAndColor();
             FrameBtnLogin.BackgroundColor = Color.FromHex(xamarinJKH.Utils.Settings.MobileSettings.color);
         }
-        
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                Counter.CounterInput.Unfocus();
+                Counter.CounterInput.Focus();
+            });
+        }
+
         private async void ButtonClick(object sender, EventArgs e)
         {
             SaveInfoAccount(Counter.CounterInput.Text);
