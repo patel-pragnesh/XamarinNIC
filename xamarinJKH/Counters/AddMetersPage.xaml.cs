@@ -61,7 +61,7 @@ namespace xamarinJKH.Counters
         
         private async void ButtonClick(object sender, EventArgs e)
         {
-            SaveInfoAccount(EntryCount.Text);
+            SaveInfoAccount(Counter.CounterInput.Text);
         }
         
         void SetTextAndColor()
@@ -141,7 +141,7 @@ namespace xamarinJKH.Counters
         
         public async void SaveInfoAccount(string count)
         {
-            if (count != "")
+            if (!string.IsNullOrEmpty(count))
             {
                 progress.IsVisible = true;
                 FrameBtnLogin.IsVisible = false;

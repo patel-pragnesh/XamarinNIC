@@ -10,6 +10,7 @@
              xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
              xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
              xmlns:counters="clr-namespace:xamarinJKH.Counters;assembly=xamarinJKH"
+             xmlns:controls="clr-namespace:xamarinJKH.CustomRenderers"
              x:Class="xamarinJKH.Counters.AddMetersPage">
     <ContentPage.Content>
         <StackLayout>
@@ -173,23 +174,15 @@
                                 Orientation="Vertical"
                                 Margin="5, 10, 5, 10">
 
-                                <StackLayout
-                                    Orientation="Horizontal">
+                            <StackLayout
+                                    Orientation="Horizontal"
+                                    Padding="20,0">
+                                <counters:CounterEntryView x:Name="Counter"/>
 
-                                    <Entry x:Name="EntryCount"
-                                           Margin="20, 0, 20, 0"
-                                           FontSize="26"
-                                           FontAttributes="Bold"
-                                           VerticalOptions="End"
-                                           HorizontalTextAlignment="Center"
-                                           TextColor="Black"
-                                           HorizontalOptions="FillAndExpand"
-                                           Placeholder="0,00"
-                                           Keyboard="Numeric">
-                                    </Entry>
-                                </StackLayout>
+                            </StackLayout>
 
                                 <StackLayout
+                                    IsVisible="False"
                                     Orientation="Horizontal">
                                     <Label
                                         x:Name="LabelseparatorFio"
