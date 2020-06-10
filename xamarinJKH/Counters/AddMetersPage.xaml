@@ -11,7 +11,13 @@
              xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
              xmlns:counters="clr-namespace:xamarinJKH.Counters;assembly=xamarinJKH"
              xmlns:controls="clr-namespace:xamarinJKH.CustomRenderers"
+             xmlns:converters="clr-namespace:xamarinJKH.Converters"
              x:Class="xamarinJKH.Counters.AddMetersPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:CounterFormatConverter x:Key="CounterFormat"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <RelativeLayout
@@ -164,7 +170,7 @@
                             Margin="10, 20, 10, 10">
 
                             <Label Text="Новые показания"
-                                   Margin="0, 0, 0, 0"
+                                   Margin="0, -10, 0, 0"
                                    FontAttributes="Bold"
                                    FontSize="20"
                                    TextColor="Black"
@@ -196,19 +202,20 @@
                                     Margin="0, 0, 0, 0"
                                     Orientation="Horizontal">
                                     <Label x:Name="PredCount"
-                                           Text="0,00"
+                                           Text="{Binding PrevCounter, Converter={x:StaticResource CounterFormat}}"
                                            HorizontalTextAlignment="Center"
                                            HorizontalOptions="FillAndExpand"
+                                           CharacterSpacing="15"
                                            MaxLines="1"
-                                           FontSize="16"
+                                           FontSize="20"
                                            TextColor="#A2A2A2"
-                                           Margin="20, 0, 20, 0" />
+                                           Margin="20, 10, 20, 0" />
                                 </StackLayout>
                                 <StackLayout
                                     Orientation="Horizontal">
                                     <Label
                                         Text="Предыдущие показания"
-                                        FontSize="14"
+                                        FontSize="Micro"
                                         TextColor="#A2A2A2"
                                         HeightRequest="20"
                                         Margin="0, 0, 0, 0"
@@ -223,7 +230,6 @@
                                                IsVisible="False"
                                                Color="Red" />
                             <Frame CornerRadius="15"
-                                   BackgroundColor="Red"
                                    Margin="0, 10, 0, 10"
                                    x:Name="FrameBtnLogin"
                                    Padding="0">
