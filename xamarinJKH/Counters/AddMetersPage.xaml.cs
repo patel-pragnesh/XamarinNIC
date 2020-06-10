@@ -141,7 +141,7 @@ namespace xamarinJKH.Counters
         
         public async void SaveInfoAccount(string count)
         {
-            if (count != "")
+            if (!string.IsNullOrEmpty(count))
             {
                 progress.IsVisible = true;
                 FrameBtnLogin.IsVisible = false;
