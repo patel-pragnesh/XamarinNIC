@@ -91,6 +91,9 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CustomRenderers\TapHighlightRemoveCountersCellRenderer.cs" />
+    <Compile Include="CustomRenderers\TapHighlightRemovePaysCellRenderer.cs" />
+    <Compile Include="CustomRenderers\TapHighlightRemoveAppsCellRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -326,6 +329,8 @@
     <BundleResource Include="Resources\ic_check_mark.png" />
     <BundleResource Include="Resources\ic_exit.png" />
     <BundleResource Include="Resources\ic_background_addCounter.png" />
+    <BundleResource Include="Resources\star_filled.png" />
+    <BundleResource Include="Resources\star.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_arrow_forward.png">

@@ -27,9 +27,9 @@ namespace xamarinJKH.DialogViews
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    RatingBar.Margin = new Thickness(0, 10, 0, 10);
+                    RatingBar.Margin = new Thickness(0, 0, 0, 0);
                     RatingBar.FillColor = Color.FromHex(Settings.MobileSettings.color);
-                    RatingBar.HeightRequest = 50;
+                    RatingBar.HeightRequest = 35;
                     break;
                 case Device.Android:
                     break;

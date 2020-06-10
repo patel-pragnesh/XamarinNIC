@@ -123,7 +123,7 @@
                              Constant=25}" />
             </RelativeLayout>
             <StackLayout
-                VerticalOptions="StartAndExpand">
+                VerticalOptions="FillAndExpand">
                 <ListView x:Name="NotificationList"
                           HasUnevenRows="True"
                           Margin="10, 0, 10, 0"
