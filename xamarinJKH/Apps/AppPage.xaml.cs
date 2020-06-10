@@ -229,8 +229,7 @@ namespace xamarinJKH.Apps
             //
             // // PickAndShowFile(null);
 
-
-            var action = await DisplayActionSheet("Добавить вложение", "Отмена", "",
+            var action = await DisplayActionSheet("Добавить вложение", "Отмена", null,
                 TAKE_PHOTO,
                 TAKE_GALRY, TAKE_FILE);
             switch (action)
