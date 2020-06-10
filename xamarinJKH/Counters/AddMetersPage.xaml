@@ -177,7 +177,7 @@
                             <StackLayout
                                     Orientation="Horizontal"
                                     Padding="20,0">
-                                <counters:CounterEntryView/>
+                                <counters:CounterEntryView x:Name="Counter"/>
 
                             </StackLayout>
 
