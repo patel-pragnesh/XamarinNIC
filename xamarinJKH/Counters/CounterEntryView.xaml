@@ -33,45 +33,15 @@
                 <ColumnDefinition Width="0.12*"/>
                 <ColumnDefinition Width="0.12*"/>
             </Grid.ColumnDefinitions>
-            <pancake:PancakeView 
-               BorderColor="Gray"
-               BorderThickness="1"
-               Padding="0"
-               CornerRadius="5,5,5,0"
-               Grid.Column="0"
-               IsClippedToBounds="True">
-                <Grid VerticalOptions="FillAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.85*"/>
-                        <RowDefinition Height="0.15*"/>
-                    </Grid.RowDefinitions>
-                    <BoxView Color="Red"
-                         Grid.Row="1"/>
-                </Grid>
-            </pancake:PancakeView>
-            <counters:CounterEntryCell Grid.Column="1"/>
-            <counters:CounterEntryCell Grid.Column="2"/>
-            <counters:CounterEntryCell Grid.Column="3"/>
-            <counters:CounterEntryCell Grid.Column="4"/>
+            <counters:CounterEntryCell Grid.Column="0" CellIndex="0"/>
+            <counters:CounterEntryCell Grid.Column="1" CellIndex="1"/>
+            <counters:CounterEntryCell Grid.Column="2" CellIndex="2"/>
+            <counters:CounterEntryCell Grid.Column="3" CellIndex="3"/>
+            <counters:CounterEntryCell Grid.Column="4" CellIndex="4"/>
             <!--<counters:CounterEntryCell Grid.Column="5"/>-->
-            <counters:CounterEntryCell Grid.Column="6"/>
-            <counters:CounterEntryCell Grid.Column="7"/>
-            <pancake:PancakeView 
-               BorderColor="Gray"
-               BorderThickness="1"
-               Padding="0"
-               CornerRadius="5,5,0,5"
-               Grid.Column="8"
-               IsClippedToBounds="True">
-                <Grid VerticalOptions="FillAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.85*"/>
-                        <RowDefinition Height="0.15*"/>
-                    </Grid.RowDefinitions>
-                    <BoxView Color="Red"
-                         Grid.Row="1"/>
-                </Grid>
-            </pancake:PancakeView>
+            <counters:CounterEntryCell Grid.Column="6" CellIndex="6"/>
+            <counters:CounterEntryCell Grid.Column="7" CellIndex="7"/>
+            <counters:CounterEntryCell Grid.Column="8" CellIndex="8"/>
             <controls:CounterEntry x:Name="EntryCount"
                                                            BackgroundColor="Transparent"
                                                            Grid.ColumnSpan="9"
