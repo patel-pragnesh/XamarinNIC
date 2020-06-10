@@ -6,15 +6,18 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Plugin.CurrentActivity;
+using Plugin.Media;
 using Xamarin.Forms;
 using xamarinJKH.Utils;
+
 
 namespace xamarinJKH.Droid
 {
     [Activity(Label = "xamarinJKH", Icon = "@drawable/icon_login", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity 
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
@@ -27,6 +30,10 @@ namespace xamarinJKH.Droid
             App.ScreenWidth = (int) (Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
             Messier16.Forms.Android.Controls.Messier16Controls.InitAll();
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            await CrossMedia.Current.Initialize();
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
+            
             LoadApplication(new App());
           
 

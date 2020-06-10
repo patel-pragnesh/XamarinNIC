@@ -9,6 +9,10 @@ using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -18,6 +22,7 @@ using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
+using PermissionStatus = Plugin.Permissions.Abstractions.PermissionStatus;
 
 namespace xamarinJKH.Apps
 {
@@ -30,6 +35,12 @@ namespace xamarinJKH.Apps
         private RequestList _requestList;
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
+        const string TAKE_PHOTO = "Сделать фото";
+        const string TAKE_GALRY = "Выбрать фото из галереи";
+        const string TAKE_FILE = "Выбрать файл";
+        const string CAMERA = "camera";
+        const string GALERY = "galery";
+        const string FILE = "file";
 
         public bool IsRefreshing
         {
@@ -137,15 +148,14 @@ namespace xamarinJKH.Apps
             addFile.Tapped += async (s, e) => { addFileApp(); };
             IconViewAddFile.GestureRecognizers.Add(addFile);
             var showInfo = new TapGestureRecognizer();
-            showInfo.Tapped += async (s, e) => {   ShowInfo(); };
-            StackLayoutInfo.GestureRecognizers.Add(showInfo); 
+            showInfo.Tapped += async (s, e) => { ShowInfo(); };
+            StackLayoutInfo.GestureRecognizers.Add(showInfo);
             var closeApp = new TapGestureRecognizer();
             closeApp.Tapped += async (s, e) =>
             {
                 // await ShowRating();
                 await PopupNavigation.Instance.PushAsync(new RatingBarContentView(hex, _requestInfo));
                 await RefreshData();
-
             };
             StackLayoutClose.GestureRecognizers.Add(closeApp);
             hex = Color.FromHex(Settings.MobileSettings.color);
@@ -214,7 +224,144 @@ namespace xamarinJKH.Apps
 
         async void addFileApp()
         {
-            PickAndShowFile(null);
+            // getCameraFile();
+            // // GetGalaryFile();
+            //
+            // // PickAndShowFile(null);
+
+
+            var action = await DisplayActionSheet("Добавить вложение", "Отмена", "",
+                TAKE_PHOTO,
+                TAKE_GALRY, TAKE_FILE);
+            switch (action)
+            {
+                case TAKE_PHOTO:
+                    await startLoadFile(CAMERA);
+                    break;
+                case TAKE_GALRY:
+                    await startLoadFile(GALERY);
+                    break;
+                case TAKE_FILE:
+                    await startLoadFile(FILE);
+                    break;
+            }
+        }
+
+        async Task getCameraFile()
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsTakePhotoSupported || !CrossMedia.Current.IsCameraAvailable)
+            {
+                await DisplayAlert("Ошибка", "Камера не доступна", "OK");
+
+                return;
+            }
+
+            MediaFile file = await CrossMedia.Current.TakePhotoAsync(
+                new StoreCameraMediaOptions
+                {
+                    SaveToAlbum = true,
+                    Directory = "Demo"
+                });
+
+            if (file == null)
+                return;
+            CommonResult commonResult = await _server.AddFileApps(_requestInfo.ID.ToString(),
+                getFileName(file.Path), StreamToByteArray(file.GetStream()),
+                file.Path);
+            if (commonResult == null)
+            {
+                await ShowToast("Файл отправлен");
+                await RefreshData();
+            }
+        }
+
+        public async Task startLoadFile(string metod)
+        {
+            // Loading settings
+            Configurations.LoadingConfig = new LoadingConfig
+            {
+                IndicatorColor = hex,
+                OverlayColor = Color.Black,
+                Opacity = 0.8,
+                DefaultMessage = "Отправка файла",
+            };
+
+            await Loading.Instance.StartAsync(async progress =>
+            {
+                switch (metod)
+                {
+                    case CAMERA:
+                        await getCameraFile();
+                        break;
+                    case GALERY:
+                        await GetGalaryFile();
+                        break;
+                    case FILE:
+                        await PickAndShowFile(null);
+                        break;
+                }
+            });
+        }
+
+        async Task GetGalaryFile()
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await DisplayAlert("Ошибка", "Галерея не доступна", "OK");
+
+                return;
+            }
+
+            var file = await CrossMedia.Current.PickPhotoAsync();
+            if (file == null)
+                return;
+            CommonResult commonResult = await _server.AddFileApps(_requestInfo.ID.ToString(),
+                getFileName(file.Path), StreamToByteArray(file.GetStream()),
+                file.Path);
+            if (commonResult == null)
+            {
+                await ShowToast("Файл отправлен");
+                await RefreshData();
+            }
+        }
+
+        public static byte[] StreamToByteArray(Stream stream)
+        {
+            if (stream is MemoryStream)
+            {
+                return ((MemoryStream) stream).ToArray();
+            }
+            else
+            {
+                // Jon Skeet's accepted answer 
+                return ReadFully(stream);
+            }
+        }
+
+        string getFileName(string path)
+        {
+            try
+            {
+                string[] fileName = path.Split('/');
+                return fileName[fileName.Length - 1];
+            }
+            catch (Exception ex)
+            {
+                return "filename";
+            }
+        }
+
+        public static byte[] ReadFully(Stream input)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                input.CopyTo(ms);
+                return ms.ToArray();
+            }
         }
 
         private async Task PickAndShowFile(string[] fileTypes)
@@ -352,13 +499,11 @@ namespace xamarinJKH.Apps
         public async Task ShowRating()
         {
             await Settings.StartOverlayBackground(hex);
-          
-            
         }
 
         private async void OpenInfo(object sender, EventArgs e)
         {
-           ShowInfo();
+            ShowInfo();
         }
     }
 }

@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using AiForms.Dialogs;
+using AiForms.Dialogs.Abstractions;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Main;
@@ -22,7 +27,14 @@ namespace xamarinJKH.Apps
         public List<FileData> files { get; set; }
         public List<byte[]> Byteses = new List<byte[]>();
         private AppsPage _appsPage;
-
+        const string TAKE_PHOTO = "Сделать фото";
+        const string TAKE_GALRY = "Выбрать фото из галереи";
+        const string TAKE_FILE = "Выбрать файл";
+        const string CAMERA = "camera";
+        const string GALERY = "galery";
+        const string FILE = "file";
+        public int PikerLsItem = 0;
+        public int PikerTypeItem = 0;
         public NewAppPage(AppsPage appsPage)
         {
             _appsPage = appsPage;
@@ -39,13 +51,15 @@ namespace xamarinJKH.Apps
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
-                        ScrollViewContainer.Margin = new Thickness(0,0,0,-115);
+                        ScrollViewContainer.Margin = new Thickness(0, 0, 0, -115);
                         BackStackLayout.Margin = new Thickness(-5, 15, 0, 0);
                     }
+
                     break;
                 default:
                     break;
             }
+
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
@@ -70,7 +84,21 @@ namespace xamarinJKH.Apps
 
         private async void AddFile()
         {
-            await PickAndShowFile(null);
+            var action = await DisplayActionSheet("Добавить вложение", "Отмена", "",
+                TAKE_PHOTO,
+                TAKE_GALRY, TAKE_FILE);
+            switch (action)
+            {
+                case TAKE_PHOTO:
+                    await startLoadFile(CAMERA);
+                    break;
+                case TAKE_GALRY:
+                    await startLoadFile(GALERY);
+                    break;
+                case TAKE_FILE:
+                    await startLoadFile(FILE);
+                    break;
+            }
         }
 
         private async void PickImage_Clicked(object sender, EventArgs args)
@@ -112,9 +140,10 @@ namespace xamarinJKH.Apps
                     // LabelPhone.Text = pickedFile.FilePath;
                     if (pickedFile.DataArray.Length > 10000000)
                     {
-                        await DisplayAlert("Ошибка", "Размер файла превышает 10мб" , "OK");
+                        await DisplayAlert("Ошибка", "Размер файла превышает 10мб", "OK");
                         return;
                     }
+
                     files.Add(pickedFile);
                     Byteses.Add(pickedFile.DataArray);
                     ListViewFiles.IsVisible = true;
@@ -139,6 +168,122 @@ namespace xamarinJKH.Apps
             }
         }
 
+        async Task getCameraFile()
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsTakePhotoSupported || !CrossMedia.Current.IsCameraAvailable)
+            {
+                await DisplayAlert("Ошибка", "Камера не доступна", "OK");
+
+                return;
+            }
+
+            MediaFile file = await CrossMedia.Current.TakePhotoAsync(
+                new StoreCameraMediaOptions
+                {
+                    SaveToAlbum = true,
+                    Directory = "Demo"
+                });
+
+            if (file == null)
+                return;
+            FileData fileData = new FileData( file.Path,getFileName(file.Path), () => file.GetStream() );
+            Byteses.Add(StreamToByteArray(file.GetStream()));
+            files.Add(fileData);
+            ListViewFiles.IsVisible = true;
+            if (ListViewFiles.HeightRequest < 120)
+                ListViewFiles.HeightRequest += 30;
+            setBinding();
+        }
+        
+        async Task GetGalaryFile()
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await DisplayAlert("Ошибка", "Галерея не доступна", "OK");
+
+                return;
+            }
+
+            var file = await CrossMedia.Current.PickPhotoAsync();
+            if (file == null)
+                return;
+            FileData fileData = new FileData( file.Path,getFileName(file.Path), () => file.GetStream() );
+            Byteses.Add(StreamToByteArray(file.GetStream()));
+            files.Add(fileData);
+            ListViewFiles.IsVisible = true;
+            if (ListViewFiles.HeightRequest < 120)
+                ListViewFiles.HeightRequest += 30;
+            setBinding();
+            PickerLs.SelectedIndex = PikerLsItem;
+            PickerType.SelectedIndex = PikerTypeItem;
+        }
+        
+        public async Task startLoadFile(string metod)
+        {
+            // Loading settings
+            Configurations.LoadingConfig = new LoadingConfig
+            {
+                IndicatorColor = Color.FromHex(Settings.MobileSettings.color),
+                OverlayColor = Color.Black,
+                Opacity = 0.8,
+                DefaultMessage = "Загрузка файла",
+            };
+
+            await Loading.Instance.StartAsync(async progress =>
+            {
+                switch (metod)
+                {
+                    case CAMERA:
+                        await getCameraFile();
+                        break;
+                    case GALERY:
+                        await GetGalaryFile();
+                        break;
+                    case FILE:
+                        await PickAndShowFile(null);
+                        break;
+                }
+            });
+        }
+
+        public static byte[] StreamToByteArray(Stream stream)
+        {
+            if (stream is MemoryStream)
+            {
+                return ((MemoryStream) stream).ToArray();
+            }
+            else
+            {
+                           return ReadFully(stream);
+            }
+        }
+
+        string getFileName(string path)
+        {
+            try
+            {
+                string[] fileName = path.Split('/');
+                return fileName[fileName.Length - 1];
+            }
+            catch (Exception ex)
+            {
+                return "filename";
+            }
+        }
+
+        public static byte[] ReadFully(Stream input)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                input.CopyTo(ms);
+                return ms.ToArray();
+            }
+        }
+
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
@@ -147,24 +292,42 @@ namespace xamarinJKH.Apps
 
         void setBinding()
         {
-            BindingContext = null;
-            BindingContext = new AddAppModel()
+            PikerLsItem = PickerLs.SelectedIndex;
+            PikerTypeItem = PickerType.SelectedIndex;
+            try
             {
-                AllAcc = Settings.Person.Accounts,
-                AllType = Settings.TypeApp,
-                hex = Color.FromHex(Settings.MobileSettings.color),
-                SelectedAcc = Settings.Person.Accounts[0],
-                SelectedType = Settings.TypeApp[0],
-                Files = files
-            };
+                BindingContext = null;
+                BindingContext = new AddAppModel()
+                {
+                    AllAcc = Settings.Person.Accounts,
+                    AllType = Settings.TypeApp,
+                    hex = Color.FromHex(Settings.MobileSettings.color),
+                    SelectedAcc = Settings.Person.Accounts[PikerLsItem],
+                    SelectedType = Settings.TypeApp[PikerTypeItem],
+                    Files = files
+                };
+            }
+            catch (Exception ex)
+            {
+                // ignored
+            }
         }
 
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var identLength = Settings.Person.Accounts[PickerLs.SelectedIndex].Ident.Length;
-            if (identLength < 6)
+           
+            
+            try
             {
-                PickerLs.WidthRequest = identLength * 9;
+                var identLength = Settings.Person.Accounts[PickerLs.SelectedIndex].Ident.Length;
+                if (identLength < 6)
+                {
+                    PickerLs.WidthRequest = identLength * 9;
+                }
+            }
+            catch (Exception ex)
+            {
+                // ignored
             }
         }
 
@@ -234,9 +397,12 @@ namespace xamarinJKH.Apps
                 }
 
                 setBinding();
+                
             }
         }
 
+        
+        
         async void sendFiles(string id)
         {
             int i = 0;
@@ -247,6 +413,21 @@ namespace xamarinJKH.Apps
                 i++;
             }
         }
-        
+
+        private void pickerType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var identLength = Settings.TypeApp[PickerType.SelectedIndex].Name.Length;
+                if (identLength < 6)
+                {
+                    PickerType.WidthRequest = identLength * 10;
+                }
+            }
+            catch (Exception ex)
+            {
+                // ignored
+            }
+        }
     }
 }

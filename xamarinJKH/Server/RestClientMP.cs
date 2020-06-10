@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using Plugin.FilePicker.Abstractions;
+using Plugin.Media.Abstractions;
 using xamarinJKH.Server.RequestModel;
 using RestSharp;
 using xamarinJKH.Utils;

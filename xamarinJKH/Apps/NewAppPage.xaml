@@ -167,7 +167,7 @@
                                                                  TitleColor="{Binding hex}"
                                                                  TextColor="{Binding hex}"
                                                                  VerticalOptions="End"
-                                                                 SelectedIndexChanged="picker_SelectedIndexChanged"
+                                                                 SelectedIndexChanged="pickerType_SelectedIndexChanged"
                                                                  ItemsSource="{Binding AllType}"
                                                                  ItemDisplayBinding="{Binding Name}"
                                                                  SelectedItem="{Binding SelectedType}" />
