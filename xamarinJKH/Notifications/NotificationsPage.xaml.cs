@@ -74,14 +74,16 @@ namespace xamarinJKH
                     RelativeLayoutTop.Margin = new Thickness(0,0,0,0);
                     if (App.ScreenHeight <= 667)//iPhone6
                     {
-                        NotificationList.Margin = new Thickness(0,-110,0,0);
-                    }else if (App.ScreenHeight <= 736)//iPhone8Plus Height=736
+                        //NotificationList.Margin = new Thickness(0,-110,0,0);
+                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -110);
+                    }
+                    else if (App.ScreenHeight <= 736)//iPhone8Plus Height=736
                     {
-                        NotificationList.Margin = new Thickness(0,-145,0,0);
+                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -145);
                     }
                     else
                     {
-                        NotificationList.Margin = new Thickness(0,-145,0,0);
+                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -145);
                     }
                     break;
                 case Device.Android:
