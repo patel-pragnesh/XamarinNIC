@@ -4,15 +4,22 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:converters="clr-namespace:xamarinJKH.Converters"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:controls="clr-namespace:xamarinJKH.CustomRenderers"
              xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
              xmlns:counters="clr-namespace:xamarinJKH.Counters"
              x:Class="xamarinJKH.Counters.CounterEntryView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:CharacterSpacingConverter x:Key="Spacing"/>
+        </ResourceDictionary>
+    </ContentView.Resources>
   <ContentView.Content>
         <Grid HorizontalOptions="FillAndExpand"
               HeightRequest="50"
                                       Padding="20,0"
-                                      ColumnSpacing="5"
+                                      ColumnSpacing="6.5"
                                       VerticalOptions="FillAndExpand">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.12*"/>
@@ -20,12 +27,27 @@
                 <ColumnDefinition Width="0.12*"/>
                 <ColumnDefinition Width="0.12*"/>
                 <ColumnDefinition Width="0.12*"/>
-                <ColumnDefinition Width="0.06*"/>
+                <ColumnDefinition Width="0.07*"/>
                 <ColumnDefinition Width="0.12*"/>
                 <ColumnDefinition Width="0.12*"/>
                 <ColumnDefinition Width="0.12*"/>
             </Grid.ColumnDefinitions>
-            <counters:CounterEntryCell Grid.Column="0"/>
+            <pancake:PancakeView 
+               BorderColor="Gray"
+               BorderThickness="1"
+               Padding="0"
+               CornerRadius="5,5,5,0"
+               Grid.Column="0"
+               IsClippedToBounds="True">
+                <Grid VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.85*"/>
+                        <RowDefinition Height="0.15*"/>
+                    </Grid.RowDefinitions>
+                    <BoxView Color="Red"
+                         Grid.Row="1"/>
+                </Grid>
+            </pancake:PancakeView>
             <counters:CounterEntryCell Grid.Column="1"/>
             <counters:CounterEntryCell Grid.Column="2"/>
             <counters:CounterEntryCell Grid.Column="3"/>
@@ -33,18 +55,33 @@
             <!--<counters:CounterEntryCell Grid.Column="5"/>-->
             <counters:CounterEntryCell Grid.Column="6"/>
             <counters:CounterEntryCell Grid.Column="7"/>
-            <counters:CounterEntryCell Grid.Column="8"/>
+            <pancake:PancakeView 
+               BorderColor="Gray"
+               BorderThickness="1"
+               Padding="0"
+               CornerRadius="5,5,0,5"
+               Grid.Column="8"
+               IsClippedToBounds="True">
+                <Grid VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.85*"/>
+                        <RowDefinition Height="0.15*"/>
+                    </Grid.RowDefinitions>
+                    <BoxView Color="Red"
+                         Grid.Row="1"/>
+                </Grid>
+            </pancake:PancakeView>
             <controls:CounterEntry x:Name="EntryCount"
                                                            BackgroundColor="Transparent"
                                                            Grid.ColumnSpan="9"
-                                           FontSize="26"
-                                           FontAttributes="Bold"
+                                           FontSize="29"
+                                           FontAttributes="None"
                                            VerticalOptions="End"
                                            HorizontalTextAlignment="Start"
-                                            VerticalTextAlignment="Start"
+                                            VerticalTextAlignment="Center"
                                            TextColor="Black"
-                                                           CharacterSpacing="9.5"
-                                           Margin="0,10"
+                                           CharacterSpacing="{Binding Path=Width, Source={x:Reference EntryCount}, Converter={x:StaticResource Spacing}}"
+                                           Margin="-2.5,10"
                                            Placeholder="00000,000"
                                            Keyboard="Numeric">
                 <controls:CounterEntry.Behaviors>

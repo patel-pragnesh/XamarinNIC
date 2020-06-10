@@ -12,9 +12,15 @@ namespace xamarinJKH.Counters
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CounterEntryView : ContentView
     {
+        public Entry CounterInput
+        {
+            get => EntryCount;
+        }
         public CounterEntryView()
         {
             InitializeComponent();
         }
+
+
     }
 }
