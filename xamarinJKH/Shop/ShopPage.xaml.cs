@@ -381,7 +381,6 @@ namespace xamarinJKH.Shop
                 imgFrame.CornerRadius = 10;
                 imgFrame.HeightRequest = 40;
                 imgFrame.WidthRequest = 40;
-                //imgFrame.HorizontalOptions = LayoutOptions.FillAndExpand;
                 imgFrame.VerticalOptions = LayoutOptions.Start;
                 imgFrame.BackgroundColor = Color.FromHex("#e7e7e7");
                 imgFrame.Padding = new Thickness(5, 5, 5, 5);
@@ -391,7 +390,6 @@ namespace xamarinJKH.Shop
                 LabelName.TextColor = Color.Black;
                 LabelName.FontSize = 15;
                 LabelName.FontAttributes = FontAttributes.Bold;
-                //LabelName.Text = each.Name;                
 
                 FormattedString LabelNameFormattedString = new FormattedString();
 
@@ -410,15 +408,7 @@ namespace xamarinJKH.Shop
                     weigt.TextColor = Color.Gray;
                     weigt.FontSize = 10;
                     LabelNameFormattedString.Spans.Add(weigt);
-                }
-                //else if(string.IsNullOrWhiteSpace( each.Units))
-                //{
-                //    Span units = new Span();
-                //    units.Text = "\n" + each.Units ;
-                //    units.TextColor = Color.Gray;
-                //    units.FontSize = 10;
-                //    LabelNameFormattedString.Spans.Add(units);
-                //}
+                }                
 
                 LabelName.FormattedText = LabelNameFormattedString;
 
@@ -428,10 +418,7 @@ namespace xamarinJKH.Shop
 
                 StackLayout stackLayoutprice = new StackLayout();
 
-                Label LabelPrice = new Label();
-                //LabelPrice.TextColor = Color.Black;
-                //LabelPrice.FontSize = 15;
-                //LabelPrice.Text = each.Price.ToString() + " \u20BD";
+                Label LabelPrice = new Label();                
                 LabelPrice.HorizontalOptions = LayoutOptions.EndAndExpand;
                 LabelPrice.VerticalTextAlignment = TextAlignment.Start;
 
@@ -963,9 +950,6 @@ namespace xamarinJKH.Shop
                 sumBasket += each.Value.priceBusket;
                 sumWeightBasket += each.Value.weightBusket;
             }
-
-            //LabelPriceBuscket.Text = sumBasket.ToString() + " \u20BD";
-            //LabelWeightBuscket.Text = (sumWeightBasket / 1000).ToString() + "кг.";
 
             FormattedString formattedStringPriceBasket = new FormattedString();
             formattedStringPriceBasket.Spans.Add(new Span
