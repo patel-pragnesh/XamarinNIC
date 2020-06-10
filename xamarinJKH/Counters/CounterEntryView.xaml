@@ -17,7 +17,8 @@
     </ContentView.Resources>
   <ContentView.Content>
         <Grid HorizontalOptions="FillAndExpand"
-              HeightRequest="50"
+              HeightRequest="100"
+              Margin="0,-9"
                                       Padding="20,0"
                                       ColumnSpacing="6.5"
                                       VerticalOptions="FillAndExpand">
@@ -81,7 +82,7 @@
                                             VerticalTextAlignment="Center"
                                            TextColor="Black"
                                            CharacterSpacing="{Binding Path=Width, Source={x:Reference EntryCount}, Converter={x:StaticResource Spacing}}"
-                                           Margin="-2.5,10"
+                                           Margin="-2.5,0"
                                            Placeholder="00000,000"
                                            Keyboard="Numeric">
                 <controls:CounterEntry.Behaviors>
