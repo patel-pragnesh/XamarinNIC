@@ -17,7 +17,6 @@
     </ContentView.Resources>
   <ContentView.Content>
         <Grid HorizontalOptions="FillAndExpand"
-              HeightRequest="100"
               Margin="0,-9"
                                       Padding="20,0"
                                       ColumnSpacing="6.5"

@@ -351,6 +351,31 @@ namespace xamarinJKH.Main
             set { SetValue(RecheckIntervalProperty, value); }
         }
 
+        void SetEditButton()
+        {
+            frameBtn.IsVisible = false;
+            var stack = (View as Frame).Content as StackLayout;
+            stack.Children.RemoveAt(stack.Children.Count - 2);
+
+            stack.Children.Add(new Label()
+            {
+                Text = $"Показания переданы {Values[0].Period}",
+                FontSize = 14,
+                VerticalTextAlignment = TextAlignment.Center,
+                HorizontalTextAlignment = TextAlignment.Center
+            });
+
+            var editLabel = new Label()
+            {
+                Text = "Изменить показания",
+                FontAttributes = FontAttributes.Bold,
+                TextColor = Color.FromHex(Settings.MobileSettings.color),
+                VerticalTextAlignment = TextAlignment.Center,
+                HorizontalTextAlignment = TextAlignment.Center
+            };
+            stack.Children.Add(editLabel);
+           
+        }
 
         protected override async void OnBindingContextChanged()
         {
@@ -393,6 +418,12 @@ namespace xamarinJKH.Main
                     count2.Text = Values[1].Value.ToString(CultureInfo.InvariantCulture);
                     counterDate3.Text = Values[2].Period;
                     count3.Text = Values[2].Value.ToString(CultureInfo.InvariantCulture);
+                }
+
+
+                if (int.Parse(Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
+                {
+                    SetEditButton();
                 }
 
                 if (Resource.ToLower().Contains("холодное"))

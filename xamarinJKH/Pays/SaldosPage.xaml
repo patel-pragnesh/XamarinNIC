@@ -132,16 +132,19 @@
                             HorizontalOptions="End">
                             <xamarinJkh:IconView
                                 x:Name="IconViewSortDate"
-                                Source="ic_arrow_down"
+                                Source="up_arrow"
                                 Foreground="Red"
+                                VerticalOptions="Center"
+                                Rotation="180"
                                 Margin="0,0,-2,0"
-                                HeightRequest="10"
-                                WidthRequest="10"
+                                HeightRequest="15"
+                                WidthRequest="15"
                                 HorizontalOptions="Center" />
                             <Label
                                 x:Name="LabelDate"
                                 Text="По дате "
                                 FontSize="15"
+                                VerticalOptions="Center"
                                 TextColor="Red"
                                 TextDecorations="Underline"
                                 HorizontalOptions="Start" />
@@ -152,16 +155,19 @@
                             HorizontalOptions="End">
                             <xamarinJkh:IconView
                                 x:Name="IconViewSortIdent"
-                                Foreground="Gray"
-                                Source="ic_arrow_up"
+                                Foreground="#8B8B8B"
+                                Source="up_arrow"
                                 Margin="0,0,-2,0"
-                                HeightRequest="10"
-                                WidthRequest="10"
+                                HeightRequest="15"
+                                VerticalOptions="Center"
+                                WidthRequest="15"
                                 HorizontalOptions="Center" />
                             <Label
+                                x:Name="LabelLs"
                                 Text="По л/сч "
                                 FontSize="15"
                                 TextDecorations="Underline"
+                                VerticalOptions="Center"
                                 TextColor="Gray"
                                 HorizontalOptions="Start" />
                         </StackLayout>

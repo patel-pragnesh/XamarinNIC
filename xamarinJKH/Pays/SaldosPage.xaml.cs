@@ -22,7 +22,9 @@ namespace xamarinJKH.Pays
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
         private RestClientMP server = new RestClientMP();
-
+        private bool isSortDate = true;
+        private bool isSortLs = true;
+        Color hex = Color.FromHex(Settings.MobileSettings.color);
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -90,12 +92,75 @@ namespace xamarinJKH.Pays
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
-            BackStackLayout.GestureRecognizers.Add(backClick);
+            BackStackLayout.GestureRecognizers.Add(backClick); 
+            var sortDate = new TapGestureRecognizer();
+            sortDate.Tapped += async (s, e) =>
+            {
+                SortDate();
+            };
+            StackLayoutSortDate.GestureRecognizers.Add(sortDate);
+            var sortLs = new TapGestureRecognizer();
+            sortLs.Tapped += async (s, e) =>
+            {
+                SortLs();
+            };
+            StackLayoutSortIdent.GestureRecognizers.Add(sortLs);
             SetText();
             this.BindingContext = this;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
+        void SortDate()
+        {
+            IconViewSortDate.Foreground = hex;
+            LabelDate.TextColor = hex;
+            Color fromHex = Color.FromHex("#8B8B8B");
+            IconViewSortIdent.Foreground = fromHex;
+            LabelLs.TextColor = fromHex;
+            if (isSortDate)
+            {
+                IconViewSortDate.Rotation = 0;
+                var list  = BillInfos.OrderBy(u => u.Period);
+                BillInfos = new List<BillInfo>(list);
+                isSortDate = false;
+            }
+            else
+            {
+                isSortDate = true;
+                IconViewSortDate.Rotation = 180;
+                var list  = BillInfos.OrderByDescending(u => u.Period);
+                BillInfos = new List<BillInfo>(list);
+            }
+            additionalList.ItemsSource = null;
+            additionalList.ItemsSource = BillInfos;
+        }
+
+        private void SortLs()
+        {
+            Color fromHex = Color.FromHex("#8B8B8B");
+            IconViewSortDate.Foreground = fromHex;
+            LabelDate.TextColor = fromHex;
+          
+            IconViewSortIdent.Foreground = hex;
+            LabelLs.TextColor = hex;
+            if (!isSortLs)
+            {
+                IconViewSortIdent.Rotation = 0;
+                var list  = BillInfos.OrderBy(u => u.Ident);
+                BillInfos = new List<BillInfo>(list);
+                isSortLs = true;
+            }
+            else
+            {
+                isSortLs = false;
+                IconViewSortIdent.Rotation = 180;
+                var list  = BillInfos.OrderByDescending(u => u.Ident);
+                BillInfos = new List<BillInfo>(list);
+            }
+            additionalList.ItemsSource = null;
+            additionalList.ItemsSource = BillInfos;
+        }
+        
         void SetBills(List<AccountAccountingInfo> infos)
         {
             BillInfos = new List<BillInfo>();
@@ -106,15 +171,20 @@ namespace xamarinJKH.Pays
                     BillInfos.Add(VARIABLE);
                 }
             }
+            
+            var list  = BillInfos.OrderByDescending(u => u.Period);
+            
+            BillInfos = new List<BillInfo>(list);
         }
 
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.Phone;
-            IconViewSortIdent.Foreground = Color.FromHex(Settings.MobileSettings.color);
-            IconViewSortDate.Foreground = Color.FromHex(Settings.MobileSettings.color);
-            LabelDate.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            // IconViewSortIdent.Foreground = Color.FromHex(Settings.MobileSettings.color);
+           
+            IconViewSortDate.Foreground = hex;
+            LabelDate.TextColor = hex;
         }
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
