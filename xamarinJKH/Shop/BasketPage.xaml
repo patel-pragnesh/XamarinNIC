@@ -129,7 +129,7 @@
                             VerticalOptions="FillAndExpand"                                    
                             TextColor="White"
                             FontAttributes="Bold"
-                            Text="Оформить заказ" Clicked="BtnCheckOut_Clicked"></Button>
+                            Text="Подтвердить заказ" Clicked="BtnCheckOut_Clicked"></Button>
                     </Frame>
                 </StackLayout>
             </yummy:PancakeView>
