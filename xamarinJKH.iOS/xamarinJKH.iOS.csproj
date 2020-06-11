@@ -336,6 +336,7 @@
     <BundleResource Include="Resources\ic_background_addCounter.png" />
     <BundleResource Include="Resources\star_filled.png" />
     <BundleResource Include="Resources\star.png" />
+    <BundleResource Include="Resources\up_arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_arrow_forward.png">
