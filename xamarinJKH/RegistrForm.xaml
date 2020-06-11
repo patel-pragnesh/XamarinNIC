@@ -23,10 +23,11 @@
                    Grid.RowSpan="2"
                    CornerRadius="40"
                    Margin="0,-50,0,-30"/>
-            <Image Source="top_fon_login"
+            <Image x:Name="TopFon"
+                   Source="top_fon_login"
                    Grid.Row="0"
-                   Margin="0,-60,0,0"
-                   Aspect="AspectFill" />
+                   Margin="0,-20,0,0"
+                   Aspect="Fill" />
             <StackLayout Grid.Row="0" Padding="10">
                 <StackLayout
                 x:Name="BackStackLayout"
@@ -44,7 +45,7 @@
                 </StackLayout>
             </StackLayout>
             
-            <Label
+            <Label x:Name="RegLbl"
                 Text="Регистрация"
                 FontAttributes="Bold"
                 FontSize="27"
@@ -336,8 +337,9 @@
                                 <Label x:Name="LabelTitleRequestCode"
                                        Text="Чтобы получить код доступа нажмите «Запросить звонок с кодом». Вам позвонит робот на номер +79237173372 и сообщит код"
                                        FontSize="10"
+                                       HorizontalTextAlignment="Center"
                                        TextColor="#A2A2A2"
-                                       HorizontalOptions="Center" />
+                                       HorizontalOptions="FillAndExpand" />
                                 <!-- <Label Text="" -->
                                 <!--        FontSize="13" -->
                                 <!--        TextColor="#A2A2A2" -->
@@ -348,6 +350,7 @@
                                                    IsRunning="true"
                                                    IsVisible="False"
                                                    Color="Red" />
+                                
                                 <Frame x:Name="FrameBtnReg"
                                        CornerRadius="10"
                                        BackgroundColor="Red"
@@ -355,13 +358,28 @@
                                        Padding="0">
                                     <Button x:Name="BtnRegCode"
                                             Text="Запросить звонок с кодом"
+                                            FontSize="15"
                                             TextColor="White"
                                             FontAttributes="Bold"
                                             Padding="0"
                                             Clicked="RegCodeRequest"
                                             BackgroundColor="Transparent" />
                                 </Frame>
-
+                                <Frame x:Name="FrameTimer"
+                                       CornerRadius="10"
+                                       BackgroundColor="Red"
+                                       Margin="0, 5, 0, 0"
+                                       Padding="0, 5, 0, 5">
+                                    <Label x:Name="LabelTimer"
+                                        Text="ЗАПРОСИТЬ ПОВТОРНЫЙ ЗВОНОК МОЖНО БУДЕТ ЧЕРЕЗ: 60 секунд"
+                                        FontSize="15"
+                                        TextColor="White"
+                                        FontAttributes="Bold"
+                                        HorizontalTextAlignment="Center"
+                                        MaxLines="2"
+                                        HorizontalOptions="Center"
+                                        BackgroundColor="Transparent"/>
+                                </Frame>
                                 <StackLayout
                                     Margin="0,5,0,0"
                                     Orientation="Horizontal">

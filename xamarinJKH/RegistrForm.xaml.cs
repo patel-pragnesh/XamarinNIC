@@ -23,6 +23,9 @@ namespace xamarinJKH
         public string LoginAuth { get; set; }
         public string passAuth { get; set; }
 
+        bool TimerStart = false;
+        int TimerTime = 59;
+
         private MainPage _mainPage;
 
         public Color hex { get; set; }
@@ -35,14 +38,13 @@ namespace xamarinJKH
             setColors();
             hex = Color.FromHex(Settings.MobileSettings.color);
             this.BindingContext = this;
-            var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopModalAsync(); };
-            BackStackLayout.GestureRecognizers.Add(backClick);
+            
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
                     BackgroundColor = Color.White;
-                    BackStackLayout.Margin = new Thickness(10, -150, 0, 0);
+                    BackStackLayout.Margin = new Thickness(10, 40, 0, 0);
+                    RegLbl.Margin = new Thickness(20, 60, 0, 0);
                     break;
                 case Device.Android:
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
@@ -54,6 +56,11 @@ namespace xamarinJKH
                 default:
                     break;
             }
+            NavigationPage.SetHasNavigationBar(this, false);
+            var backClick = new TapGestureRecognizer();
+            backClick.Tapped += BackClick;
+            BackStackLayout.GestureRecognizers.Add(backClick);
+            FrameTimer.IsVisible = false;
             var nextReg = new TapGestureRecognizer();
             nextReg.Tapped += async (s, e) => { FirstStepReg(); };
             FrameBtnLogin.GestureRecognizers.Add(nextReg);
@@ -109,6 +116,7 @@ namespace xamarinJKH
             SwitchConsent.OnColor = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnReg.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            FrameTimer.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             // FrameBtnNextTwo.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnRegFinal.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             FrameTech.BorderColor = Color.FromHex(Settings.MobileSettings.color);
@@ -175,9 +183,30 @@ namespace xamarinJKH
                 RegistrationFrameStep1.IsVisible = false;
                 RegistrationFrameStep2.IsVisible = true;
                 LabelSteps.Text = "Шаг 2";
+                if (Settings.TimerStart)
+                {
+                    Settings.TimerStart = false;
+                    TimerStart = true;
+                    TimerTime = Settings.TimerTime;
+                    LabelTimer.Text = "ЗАПРОСИТЬ ПОВТОРНЫЙ ЗВОНОК МОЖНО БУДЕТ ЧЕРЕЗ: " + TimerTime + " секунд";
+                    FrameBtnReg.IsVisible = false;
+                    FrameTimer.IsVisible = true;                    
+                    Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
+                }
             }
         }
 
+        private async void BackClick(object sender, EventArgs e)
+        {
+            if (TimerStart)
+            {
+                TimerStart = false;
+                Settings.TimerStart = true;
+                Settings.TimerTime = TimerTime;
+                Device.StartTimer(TimeSpan.FromSeconds(1), Settings.OnTimerTick);
+            }
+            _ = await Navigation.PopModalAsync();
+        }
 
         private async void NextTwoReg(object sender, EventArgs e)
         {
@@ -216,6 +245,37 @@ namespace xamarinJKH
             }
         }
 
+        private bool OnTimerTick()
+        {
+            if (TimerStart)
+            {
+                if (LabelTimer != null)
+                {
+                    LabelTimer.Text = "ЗАПРОСИТЬ ПОВТОРНЫЙ ЗВОНОК МОЖНО БУДЕТ ЧЕРЕЗ: " + TimerTime + " секунд";
+                }                
+                TimerTime -= 1;
+                if (TimerTime < 0)
+                {
+                    TimerStart = false;
+                    TimerTime = 59;
+                    if (FrameTimer != null)
+                    {
+                        FrameTimer.IsVisible = false;
+                        FrameBtnReg.IsVisible = true;
+                    }                                        
+                }
+            }
+            if (TimerStart == false)
+            {
+                if (FrameTimer != null)
+                {
+                    FrameTimer.IsVisible = false;
+                    FrameBtnReg.IsVisible = true;
+                }                
+            }
+            return TimerStart;
+        }
+
         private async void RegCodeRequest(object sender, EventArgs e)
         {
             // FrameBtnReg.IsVisible = false;
@@ -225,6 +285,10 @@ namespace xamarinJKH
             if (result.Error == null)
             {
                 Console.WriteLine("Отправлено");
+                TimerStart = true;
+                FrameBtnReg.IsVisible = false;
+                FrameTimer.IsVisible = true;
+                Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
                 if (Device.RuntimePlatform == Device.iOS)
                 {
                     await DisplayAlert("", "Запрос с кодом доступа отправлен", "OK");
@@ -232,8 +296,7 @@ namespace xamarinJKH
                 else
                 {
                     DependencyService.Get<IMessage>().ShortAlert("Запрос с кодом доступа отправлен");
-                }
-
+                }                
                 // FrameBtnReg.IsVisible = true;
                 // progress.IsVisible = false;
                 Loading.Instance.Hide();

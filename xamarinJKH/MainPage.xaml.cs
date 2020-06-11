@@ -111,7 +111,7 @@ namespace xamarinJKH
                 });
                 formatted.Spans.Add(new Span
                 {
-                    Text = "Напиши нам.",
+                    Text = "Напишите нам.",
                     TextColor = hex,
                     FontSize = 13,
                     TextDecorations = TextDecorations.Underline

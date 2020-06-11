@@ -17,7 +17,9 @@ namespace xamarinJKH.Utils
         public static HashSet<Page> AppPAge = new HashSet<Page>();
         public static string UpdateKey = "";
         public static string DateUniq = "";
-        
+        public static bool TimerStart = false;
+        public static int TimerTime = 59;
+
         public static bool IsFirsStart = true;
         public static EventBlockData EventBlockData = new EventBlockData();
 
@@ -28,6 +30,20 @@ namespace xamarinJKH.Utils
         };
 
         public static bool? isSelf = null;
+
+        public static bool OnTimerTick()
+        {
+            if (TimerStart)
+            {
+                TimerTime -= 1;
+                if (TimerTime < 0)
+                {
+                    TimerStart = false;
+                    TimerTime = 59;
+                }
+            }
+            return TimerStart;
+        }
 
         public static AnnouncementInfo getNotif(String id)
         {
