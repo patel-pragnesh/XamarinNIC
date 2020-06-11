@@ -175,6 +175,7 @@
                                    FontSize="20"
                                    TextColor="Black"
                                    VerticalOptions="Start"
+                                   
                                    HorizontalTextAlignment="Center"/>
 
                             <StackLayout
