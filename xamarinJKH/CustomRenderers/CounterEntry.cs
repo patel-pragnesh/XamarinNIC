@@ -16,6 +16,13 @@ namespace xamarinJKH.CustomRenderers
 
         bool DecimalPart;
         int Changed;
+
+        public static BindableProperty IsEditing = BindableProperty.Create("IsEditing", typeof(bool), typeof(bool), false);
+        public bool Editing
+        {
+            get => (bool)GetValue(IsEditing);
+            set => SetValue(IsEditing, value);
+        }
         public CounterEntry() : base()
         {
             //var characters = int.Parse((string)GetValue(CharachterCount));
@@ -36,7 +43,7 @@ namespace xamarinJKH.CustomRenderers
                             this.Text = String.Format("{0:00000.###}", double.Parse(val)).Replace('.', ',');
 
                         }
-                        if (string.IsNullOrEmpty(e.OldTextValue) && double.Parse(val.Replace(',','.')) > 0 && Changed < 1)
+                        if (string.IsNullOrEmpty(e.OldTextValue) && double.Parse(val.Replace(',','.')) > 0 && Changed < 1 && Editing)
                         {
                             Changed++;
                             decimal value = decimal.Parse(val.Replace(',', '.'));

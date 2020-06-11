@@ -60,15 +60,16 @@ namespace xamarinJKH.Counters
             saveClick.Tapped += async (s, e) => { ButtonClick(FrameBtnLogin, null); };
             FrameBtnLogin.GestureRecognizers.Add(saveClick);
             FrameBtnLogin.BackgroundColor = Color.FromHex(xamarinJKH.Utils.Settings.MobileSettings.color);
-            if (counterThisMonth > 0)
-            {
-                Counter.CounterInput.Text = counterThisMonth.ToString().Replace('.',',');
-            }
 
             if (counterPrevMonth > 0)
             {
                 PrevValue = counterPrevMonth;
                 SetPrev = true;
+            }
+            (Counter.CounterInput as xamarinJKH.CustomRenderers.CounterEntry).Editing = SetPrev;
+            if (counterThisMonth > 0)
+            {
+                Counter.CounterInput.Text = counterThisMonth.ToString().Replace('.',',');
             }
 
             SetTextAndColor();
