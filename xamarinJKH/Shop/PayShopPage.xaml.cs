@@ -32,7 +32,7 @@ namespace xamarinJKH.Shop
                     BackgroundColor = Color.White;
                     ImageTop.Margin = new Thickness(0, 0, 0, 0);
                     StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
+                    //IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
                 default:
@@ -52,57 +52,63 @@ namespace xamarinJKH.Shop
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
-            var payGoods = new TapGestureRecognizer();
-            payGoods.Tapped += async (s, e) => { PayGoods(); };
-            StackLayouPay.GestureRecognizers.Add(payGoods);
+
             hex = Color.FromHex(Settings.MobileSettings.color);
-            SetText();
             BindingContext = this;
             SetPriceAndWeight();
         }
 
-        async void PayGoods()
-        {
-            progress.IsVisible = true;
-            StackLayouPay.IsVisible = false;
-            if (Settings.Person.Accounts.Count > 0)
-            {
-                IDResult result = await _server.newAppPay(Settings.Person.Accounts[0].Ident,
-                    _Additional.id_RequestType.ToString(), getBuscketStr(), true,SetPriceAndWeight() , "Покупка в магазине " + _Additional.ShopName);
+        //async void PayGoods()
+        //{
+        //    try
+        //    {
+        //        progress.IsVisible = true;
+        //        BtnCheckOut.IsEnabled = false;
+        //        if (Settings.Person.Accounts.Count > 0)
+        //        {
+        //            IDResult result = await _server.newAppPay(Settings.Person.Accounts[0].Ident,
+        //                _Additional.id_RequestType.ToString(), getBuscketStr(), true, SetPriceAndWeight(), "Покупка в магазине " + _Additional.ShopName);
 
-                if (result.Error == null)
-                {
-                    RequestsUpdate requestsUpdate =
-                        await _server.GetRequestsUpdates(Settings.UpdateKey, result.ID.ToString());
-                    if (requestsUpdate.Error == null)
-                    {
-                        Settings.UpdateKey = requestsUpdate.NewUpdateKey;
-                    }
+        //            if (result.Error == null)
+        //            {
+        //                RequestsUpdate requestsUpdate =
+        //                    await _server.GetRequestsUpdates(Settings.UpdateKey, result.ID.ToString());
+        //                if (requestsUpdate.Error == null)
+        //                {
+        //                    Settings.UpdateKey = requestsUpdate.NewUpdateKey;
+        //                }
 
-                    await DisplayAlert("Успешно", "Заказ успешно оформлен", "OK");
-                    // foreach (var ePage in Settings.AppPAge)
-                    // {
-                    //     Navigation.RemovePage(ePage);
-                    // }
+        //                await DisplayAlert("Успешно", "Заказ успешно оформлен", "OK");
+        //                // foreach (var ePage in Settings.AppPAge)
+        //                // {
+        //                //     Navigation.RemovePage(ePage);
+        //                // }
 
-                    RequestInfo requestInfo = new RequestInfo();
-                    requestInfo.ID = result.ID;
-                    await Navigation.PushAsync(new AppPage(requestInfo, true));
+        //                RequestInfo requestInfo = new RequestInfo();
+        //                requestInfo.ID = result.ID;
+        //                await Navigation.PushAsync(new AppPage(requestInfo, true));
 
-                }
-                else
-                {
-                    await DisplayAlert("Ошибка", result.Error, "OK");
-                }
-            }
-            else
-            {
-                await DisplayAlert("Ошибка", "Подключите лицевой счет", "OK");
-            }
+        //            }
+        //            else
+        //            {
+        //                await DisplayAlert("Ошибка", result.Error, "OK");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            await DisplayAlert("Ошибка", "Подключите лицевой счет", "OK");
+        //        }
 
-            progress.IsVisible = false;
-            StackLayouPay.IsVisible = true;
-        }
+        //        progress.IsVisible = false;
+        //        BtnCheckOut.IsEnabled = true;
+
+        //    }
+        //    catch (Exception ex)
+        //    {                
+        //        await DisplayAlert("Ошибка", "Во время выполнения проищошла ошибка", "OK");
+        //        BtnCheckOut.IsEnabled = true;
+        //    }
+        //}
 
         string getBuscketStr()
         {
@@ -126,28 +132,103 @@ namespace xamarinJKH.Shop
             stringBuilder.Append("\nБезналичный расчет.");
 
             return stringBuilder.ToString();
-        }
-
-        void SetText()
-        {
-            UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.Phone;
-        }
+        }        
 
         decimal SetPriceAndWeight()
         {
             decimal sumBasket = 0;
             decimal sumWeightBasket = 0;
-            foreach (var each in Goodset)
-            {
-                sumBasket += each.Value.priceBusket;
-                sumWeightBasket += each.Value.weightBusket;
-            }
+             sumBasket = Goodset.Sum(_ => _.Value.priceBusket);
+             sumWeightBasket = Goodset.Sum(_ => _.Value.weightBusket);
 
-            LabelPriceBuscket.Text = sumBasket.ToString() + " \u20BD";
-            LabelWeightBuscket.Text = (sumWeightBasket / 1000).ToString() + "кг.";
+            LabelPriceBuscket.Text = Convert.ToString(sumBasket);
+            LabelWeightBuscket.Text = Convert.ToString(sumWeightBasket);
 
             return sumBasket;
+        }
+
+        private async void BtnCheckOut_Clicked(object sender, EventArgs e)
+        {
+            if (!LabelPriceBuscket.Text.Equals("0"))
+            {
+                try
+                {
+                    progress.IsVisible = true;
+                    BtnCheckOut.IsEnabled = false;
+                    if (Settings.Person.Accounts.Count > 0)
+                    {
+                        IDResult result = await _server.newAppPay(Settings.Person.Accounts[0].Ident,
+                            _Additional.id_RequestType.ToString(), getBuscketStr(), true, SetPriceAndWeight(), "Покупка в магазине " + _Additional.ShopName);
+
+                        if (result.Error == null)
+                        {
+                            RequestsUpdate requestsUpdate =
+                                await _server.GetRequestsUpdates(Settings.UpdateKey, result.ID.ToString());
+                            if (requestsUpdate.Error == null)
+                            {
+                                Settings.UpdateKey = requestsUpdate.NewUpdateKey;
+                            }
+
+                            await DisplayAlert("Успешно", "Заказ успешно оформлен", "OK");
+                            // foreach (var ePage in Settings.AppPAge)
+                            // {
+                            //     Navigation.RemovePage(ePage);
+                            // }
+
+                            RequestInfo requestInfo = new RequestInfo();
+                            requestInfo.ID = result.ID;
+                            await Navigation.PushAsync(new AppPage(requestInfo, true));
+
+                        }
+                        else
+                        {
+                            await DisplayAlert("Ошибка", result.Error, "OK");
+                        }
+                    }
+                    else
+                    {
+                        await DisplayAlert("Ошибка", "Подключите лицевой счет", "OK");
+                    }
+
+                    progress.IsVisible = false;
+                    BtnCheckOut.IsEnabled = true;
+
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Ошибка", "Во время выполнения проищошла ошибка", "OK");
+                    BtnCheckOut.IsEnabled = true;
+                }
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Корзина пуста", "OK");
+            }
+        }
+
+        private void btnCashPay_Clicked(object sender, EventArgs e)
+        {
+            PaymentDescription0.Text = "Оплата наличными при получении";
+            PaymentDescription1.Text = "В момент получения товара передайте курьеру код подтверждения и деньги";
+            btnCardPay.TextColor = Color.Gray;
+            frameBtnCardPay.BorderColor = Color.Gray;
+
+            btnCashPay.TextColor = hex;
+            frameBtnCashPay.BorderColor = hex;
+        }
+
+        private void btnCardPay_Clicked(object sender, EventArgs e)
+        {
+            PaymentDescription0.Text = "Оплата картой при получении";
+
+            //под замену на текст для карты. запросить текст для карты.
+            PaymentDescription1.Text = "В момент получения товара передайте курьеру код подтверждения и деньги";
+            btnCardPay.TextColor = hex;
+            frameBtnCardPay.BorderColor = hex;
+
+            btnCashPay.TextColor = Color.Gray;
+            frameBtnCashPay.BorderColor = Color.Gray;
+
         }
     }
 }
