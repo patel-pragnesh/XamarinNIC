@@ -15,6 +15,7 @@ namespace xamarinJKH.CustomRenderers
         //}
 
         bool DecimalPart;
+        int Changed;
         public CounterEntry() : base()
         {
             //var characters = int.Parse((string)GetValue(CharachterCount));
@@ -29,16 +30,22 @@ namespace xamarinJKH.CustomRenderers
                     var val = e.NewTextValue.Replace('.', ',');
                     
                     if (e.NewTextValue != e.OldTextValue)
-                    if (val[e.NewTextValue.Length - 1] == ',')
                     {
-                        this.Text = String.Format("{0:00000.###}", double.Parse(val)).Replace('.',',');
-                            
+                        if (val[e.NewTextValue.Length - 1] == ',')
+                        {
+                            this.Text = String.Format("{0:00000.###}", double.Parse(val)).Replace('.', ',');
+
+                        }
+                        if (string.IsNullOrEmpty(e.OldTextValue) && double.Parse(val.Replace(',','.')) > 0 && Changed < 1)
+                        {
+                            Changed++;
+                            decimal value = decimal.Parse(val.Replace(',', '.'));
+                            value += 0.0001M;
+                            this.Text = String.Format("{0:00000.000}", value).Replace('.', ',');
+                            this.CursorPosition = 9;
+                        }
                     }
-                    if (string.IsNullOrEmpty(e.OldTextValue) && double.Parse(val) > 0)
-                    {
-                        this.Text = String.Format("{0:00000.000}", double.Parse(val)).Replace('.', ',');
-                        this.CursorPosition = 9;
-                    }
+                    
                 }
                 catch
                 {
@@ -71,6 +78,20 @@ namespace xamarinJKH.CustomRenderers
 
                 //}
             };
+        }
+
+        public static int GetDecimalPlaces(decimal n)
+        {
+            n = Math.Abs(n); //make sure it is positive.
+            n -= (int)n;     //remove the integer part of the number.
+            var decimalPlaces = 0;
+            while (n > 0)
+            {
+                decimalPlaces++;
+                n *= 10;
+                n -= (int)n;
+            }
+            return decimalPlaces;
         }
     }
 }
