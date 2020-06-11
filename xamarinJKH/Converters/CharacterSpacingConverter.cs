@@ -11,8 +11,8 @@ namespace xamarinJKH.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            //33, потому что такая константа заработала
-            return (double)value / 33;
+            var ratio = (float)App.ScreenHeight / (float)App.ScreenWidth;
+            return (double)value / (ratio > 1.8 ? 34 : 33.5f);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
