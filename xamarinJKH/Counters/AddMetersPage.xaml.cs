@@ -23,7 +23,10 @@ namespace xamarinJKH.Counters
         private MeterInfo meter = new MeterInfo();
         private List<MeterInfo> meters = new List<MeterInfo>();
         private CountersPage _countersPage;
-        public AddMetersPage(MeterInfo meter, List<MeterInfo> meters, CountersPage countersPage)
+
+        decimal PrevValue;
+        bool SetPrev;
+        public AddMetersPage(MeterInfo meter, List<MeterInfo> meters, CountersPage countersPage, decimal counterThisMonth = 0, decimal counterPrevMonth = 0)
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
@@ -56,8 +59,19 @@ namespace xamarinJKH.Counters
             var saveClick = new TapGestureRecognizer();
             saveClick.Tapped += async (s, e) => { ButtonClick(FrameBtnLogin, null); };
             FrameBtnLogin.GestureRecognizers.Add(saveClick);
-            SetTextAndColor();
             FrameBtnLogin.BackgroundColor = Color.FromHex(xamarinJKH.Utils.Settings.MobileSettings.color);
+            if (counterThisMonth > 0)
+            {
+                Counter.CounterInput.Text = counterThisMonth.ToString().Replace('.',',');
+            }
+
+            if (counterPrevMonth > 0)
+            {
+                PrevValue = counterPrevMonth;
+                SetPrev = true;
+            }
+
+            SetTextAndColor();
         }
 
         protected async override void OnAppearing()
@@ -146,7 +160,7 @@ namespace xamarinJKH.Counters
             RecheckLbl.FormattedText = formattedRecheckup;
             if (meter.Values.Count != 0)
             {
-                BindingContext = new AddMetersPageViewModel(meter.Values[0].Value);
+                BindingContext = new AddMetersPageViewModel(SetPrev ? PrevValue : meter.Values[0].Value);
                 //PredCount.Text = meter.Values[0].Value.ToString(CultureInfo.InvariantCulture);
             }
         }
