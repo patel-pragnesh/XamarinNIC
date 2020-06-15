@@ -366,4 +366,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_basket_top.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_counter.png" />
+  </ItemGroup>
 </Project>
