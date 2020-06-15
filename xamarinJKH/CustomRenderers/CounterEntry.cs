@@ -43,13 +43,24 @@ namespace xamarinJKH.CustomRenderers
                             this.Text = String.Format("{0:00000.###}", double.Parse(val)).Replace('.', ',');
 
                         }
-                        if (string.IsNullOrEmpty(e.OldTextValue) && double.Parse(val.Replace(',','.')) > 0 && Changed < 1 && Editing)
+                        var debug = val.Split(',');
+                        if ((string.IsNullOrEmpty(e.OldTextValue) && double.Parse(val) > 0 && Changed < 2 && Editing) || debug.Length > 2)
                         {
                             Changed++;
-                            decimal value = decimal.Parse(val.Replace(',', '.'));
-                            value += 0.0001M;
-                            this.Text = String.Format("{0:00000.000}", value).Replace('.', ',');
-                            this.CursorPosition = 9;
+                            try
+                            {
+                                decimal value = decimal.Parse(val.Replace(',', '.'));
+                                value += 0.0001M;
+                                this.Text = String.Format("{0:00000.000}", value).Replace('.', ',');
+                                this.CursorPosition = 9;
+                            }
+                            catch
+                            {
+                                decimal value = decimal.Parse($"{debug[0]}.{debug[1]}{debug[2]}");
+                                value += 0.0001M;
+                                this.Text = String.Format("{0:00000.000}", value).Replace('.', ',');
+                                this.CursorPosition = 9;
+                            }
                         }
                     }
                     
