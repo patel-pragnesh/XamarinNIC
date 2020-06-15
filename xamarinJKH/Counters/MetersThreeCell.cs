@@ -407,23 +407,25 @@ namespace xamarinJKH.Main
                 if (Values.Count == 1)
                 {
                     counterDate1.Text = Values[0].Period;
-                    count1.Text = Values[0].Value.ToString(CultureInfo.InvariantCulture);
+                    count1.Text = String.Format("{0:0.000}", Values[0].Value);//.ToString(CultureInfo.InvariantCulture);
                     count2Stack.IsVisible = count3Stack.IsVisible = false;
-                }else if (Values.Count == 2)
+                }
+                else if (Values.Count == 2)
                 {
                     counterDate1.Text = Values[0].Period;
-                    count1.Text = Values[0].Value.ToString(CultureInfo.InvariantCulture);
+                    count1.Text = String.Format("{0:0.000}", Values[0].Value);//.ToString(CultureInfo.InvariantCulture);
                     counterDate2.Text = Values[1].Period;
-                    count2.Text = Values[1].Value.ToString(CultureInfo.InvariantCulture);
+                    count2.Text = String.Format("{0:0.000}", Values[1].Value);//.ToString(CultureInfo.InvariantCulture);
                     count3Stack.IsVisible = false;
-                }else if (Values.Count == 3)
+                }
+                else if (Values.Count == 3)
                 {
                     counterDate1.Text = Values[0].Period;
-                    count1.Text = Values[0].Value.ToString(CultureInfo.InvariantCulture);
+                    count1.Text = String.Format("{0:0.000}", Values[0].Value);//.ToString(CultureInfo.InvariantCulture);
                     counterDate2.Text = Values[1].Period;
-                    count2.Text = Values[1].Value.ToString(CultureInfo.InvariantCulture);
+                    count2.Text = String.Format("{0:0.000}", Values[1].Value);//.ToString(CultureInfo.InvariantCulture);
                     counterDate3.Text = Values[2].Period;
-                    count3.Text = Values[2].Value.ToString(CultureInfo.InvariantCulture);
+                    count3.Text = String.Format("{0:0.000}", Values[2].Value);//.ToString(CultureInfo.InvariantCulture);
                 }
 
 
