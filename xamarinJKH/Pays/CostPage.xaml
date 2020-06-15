@@ -261,7 +261,7 @@
             </StackLayout>
             <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0" BackgroundColor="#8D8D8D"
                                      Padding="0,20,0,10"
-                                     VerticalOptions="FillAndExpand">
+                                     VerticalOptions="Fill">
                 <!-- <StackLayout -->
                 <!--     HorizontalOptions="FillAndExpand" -->
                 <!--   -->
