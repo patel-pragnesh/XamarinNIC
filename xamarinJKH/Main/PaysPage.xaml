@@ -149,23 +149,39 @@
                     <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0" BackgroundColor="#8D8D8D"
                                              Padding="0,20,0,10"
                                              VerticalOptions="FillAndExpand">
-                        <StackLayout
-                            HorizontalOptions="FillAndExpand"
-                            Margin="20, 0, 20, 10"
-                            Spacing="20"
-                            Orientation="Horizontal">
+                        <!-- <StackLayout -->
+                        <!--     HorizontalOptions="FillAndExpand" -->
+                        <!--   -->
+                        <!--     Orientation="Horizontal"> -->
+                        <Grid HorizontalOptions="FillAndExpand"
+                              ColumnSpacing="10"
+                              Margin="20, 0, 20, 10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
                             <Frame CornerRadius="10"
                                    x:Name="FrameBtnHistory"
                                    Padding="0"
-                                   MinimumWidthRequest="250"
-                                   HorizontalOptions="FillAndExpand">
+                                   Grid.Column="0" Grid.Row="0"
+                                   >
                                 <StackLayout
                                     Orientation="Horizontal"
+                                    Spacing="7"
                                     VerticalOptions="CenterAndExpand"
-                                    HorizontalOptions="CenterAndExpand">
+                                    HorizontalOptions="Center">
+                                    <xamarinJkh:IconView
+                                        Source="ic_history_pay"
+                                        Foreground="{Binding hex}"
+                                        HeightRequest="24"
+                                        WidthRequest="20" />
                                     <Button x:Name="LabelHistory"
                                             Text="История платежей"
                                             TextColor="White"
+                                            Padding="0"
                                             FontAttributes="Bold"
                                             Clicked="OpenHistory"
                                             FontSize="12"
@@ -176,22 +192,32 @@
                             <Frame CornerRadius="10"
                                    x:Name="FrameBtnSaldos"
                                    Padding="0"
-                                   MinimumWidthRequest="250"
+                                   Grid.Column="1" Grid.Row="0"
                                    HorizontalOptions="FillAndExpand">
                                 <StackLayout
                                     Orientation="Horizontal"
+                                    Spacing="0"
+                                    Margin="18,0,0,0"
                                     VerticalOptions="CenterAndExpand"
-                                    HorizontalOptions="CenterAndExpand">
+                                    HorizontalOptions="Center">
+                                    <xamarinJkh:IconView
+                                        Source="ic_saldos"
+                                        Foreground="{Binding hex}"
+                                        HeightRequest="24"
+                                        WidthRequest="20" />
                                     <Button x:Name="LabelSaldos"
-                                            Text="        Квитанции        "
+                                            Text="Квитанции"
                                             FontSize="12"
+                                            Padding="0"
+                                            Margin="-5,0,0,0"
                                             FontAttributes="Bold"
                                             TextColor="White"
                                             Clicked="openSaldo"
                                             BackgroundColor="Transparent" />
                                 </StackLayout>
                             </Frame>
-                        </StackLayout>
+                        </Grid>
+                        <!-- </StackLayout> -->
                     </pancakeView:PancakeView>
 
                 </StackLayout>

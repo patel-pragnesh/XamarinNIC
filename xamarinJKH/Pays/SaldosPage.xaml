@@ -118,7 +118,8 @@
                    Margin="20, 15, 20, 15"
                    BackgroundColor="White"
                    Padding="15">
-                <StackLayout VerticalOptions="FillAndExpand">
+                <StackLayout VerticalOptions="FillAndExpand"
+                             Spacing="15">
                     <StackLayout Orientation="Horizontal">
                         <Label
                             Text="Квитанции"

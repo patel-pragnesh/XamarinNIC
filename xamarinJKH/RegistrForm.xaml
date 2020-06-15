@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.RegistrForm">
     <ContentPage.Content>
@@ -73,12 +74,12 @@
                            TextColor="Black"
                            HorizontalOptions="Center" />
                     <!-- Первый шаг регистрации -->
-                    <Frame x:Name="RegistrationFrameStep1"
-                           CornerRadius="50"
-                           Margin="20, 15, 20, 15"
-                           HasShadow="True"
-                           Padding="20"
-                           BackgroundColor="White">
+                    <customRenderers:MaterialFrame Elevation="20" x:Name="RegistrationFrameStep1"
+                                                   CornerRadius="50"
+                                                   Margin="20, 15, 20, 15"
+                                                   HasShadow="True"
+                                                   Padding="20"
+                                                   BackgroundColor="White">
 
                         <StackLayout>
 
@@ -273,14 +274,14 @@
                             </Frame>
 
                         </StackLayout>
-                    </Frame>
+                    </customRenderers:MaterialFrame>
                     <!-- Второй шаг регистрации -->
-                    <Frame x:Name="RegistrationFrameStep2"
-                           CornerRadius="50"
-                           IsVisible="False"
-                           Margin="15, 15, 15, 15"
-                           BackgroundColor="White"
-                           Padding="5">
+                    <customRenderers:MaterialFrame Elevation="20" x:Name="RegistrationFrameStep2"
+                                                   CornerRadius="50"
+                                                   IsVisible="False"
+                                                   Margin="15, 15, 15, 15"
+                                                   BackgroundColor="White"
+                                                   Padding="5">
 
                         <StackLayout
                             Margin="10, 20, 10, 10">
@@ -337,7 +338,7 @@
                                 <Label x:Name="LabelTitleRequestCode"
                                        Text="Чтобы получить код доступа нажмите «Запросить звонок с кодом». Вам позвонит робот на номер +79237173372 и сообщит код"
                                        FontSize="10"
-                                       HorizontalTextAlignment="Center"
+                                       HorizontalTextAlignment="Start"
                                        TextColor="#A2A2A2"
                                        HorizontalOptions="FillAndExpand" />
                                 <!-- <Label Text="" -->
@@ -391,16 +392,17 @@
                                     <Image Source="ic_arrow_tech"
                                            VerticalOptions="End"
                                            WidthRequest="60"
-                                           Margin="-40, 0, 0, 0"
+                                           Margin="-40, 35, 0, 0"
                                            HorizontalOptions="Center" />
-                                    <Frame x:Name="FrameTech"
-                                           CornerRadius="10"
-                                           Margin="0,0,0,0"
-                                           HorizontalOptions="FillAndExpand"
-                                           BorderColor="Red"
-                                           HeightRequest="35"
-                                           VerticalOptions="Center"
-                                           Padding="0">
+                                    <customRenderers:MaterialFrame Elevation="10"
+                                                                   x:Name="FrameTech"
+                                                                   CornerRadius="10"
+                                                                   Margin="0,-10,0,0"
+                                                                   HorizontalOptions="FillAndExpand"
+                                                                   BorderColor="Red"
+                                                                   HeightRequest="35"
+                                                                   VerticalOptions="Center"
+                                                                   Padding="0">
                                         <Button x:Name="BtnTech"
                                                 Text="   Написать в тех. поддержку   "
                                                 TextColor="Red"
@@ -409,7 +411,7 @@
                                                 Clicked="NextReg"
                                                 BackgroundColor="Transparent" />
                                         
-                                    </Frame>
+                                    </customRenderers:MaterialFrame>
                                 </StackLayout>
 
                             </StackLayout>
@@ -448,14 +450,14 @@
                             </Frame>
 
                         </StackLayout>
-                    </Frame>
+                    </customRenderers:MaterialFrame>
                     <!-- Третий шаг регистрации -->
-                    <Frame x:Name="RegistrationFrameStep3"
-                           CornerRadius="50"
-                           IsVisible="False"
-                           Margin="20, 15, 20, 15"
-                           BackgroundColor="White"
-                           Padding="10">
+                    <customRenderers:MaterialFrame Elevation="20" x:Name="RegistrationFrameStep3"
+                                                   CornerRadius="50"
+                                                   IsVisible="False"
+                                                   Margin="20, 15, 20, 15"
+                                                   BackgroundColor="White"
+                                                   Padding="10">
 
                         <StackLayout
                             Margin="10, 20, 10, 10">
@@ -597,7 +599,7 @@
                             </Frame>
 
                         </StackLayout>
-                    </Frame>
+                    </customRenderers:MaterialFrame>
                     
                 </StackLayout>
             </ScrollView>

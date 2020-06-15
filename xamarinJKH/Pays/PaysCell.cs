@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using SimpleImageButton.SimpleImageButton.Models;
 using Xamarin.Forms;
 using xamarinJKH.Utils;
 
@@ -102,28 +103,30 @@ namespace xamarinJKH.Main
 
             StackLayout containerBtn = new StackLayout();
             containerBtn.Orientation = StackOrientation.Horizontal;
+            containerBtn.Spacing = 0;
             containerBtn.HorizontalOptions = LayoutOptions.CenterAndExpand;
 
             IconView image = new IconView();
             image.Source = "ic_pays";
             image.Foreground = Color.White;
-            image.Margin = new Thickness(-45, 0, 0, 0);
-            image.HeightRequest = 15;
+            // image.Margin = new Thickness(-45, 0, 0, 0);
+            image.HeightRequest = 30;
+            image.WidthRequest = 30;
 
             Label btn = new Label();
             // btn.Margin = new Thickness(-30, 0, 0, 0);
             btn.TextColor = Color.White;
             btn.BackgroundColor = Color.Transparent;
             btn.HorizontalOptions  = LayoutOptions.Center;
-            btn.Margin = 13;
+            btn.Margin = new Thickness(13,13,0,13);
             btn.FontAttributes = FontAttributes.Bold;
             btn.FontSize = 16;
             btn.Text = "Оплатить";
 
-            // containerBtn.Children.Add(image);
-            // containerBtn.Children.Add(btn);
+            containerBtn.Children.Add(image);
+            containerBtn.Children.Add(btn);
 
-            frameBtn.Content = btn;
+            frameBtn.Content = containerBtn;
 
             container.Children.Add(frameBtn);
 
@@ -228,7 +231,7 @@ namespace xamarinJKH.Main
                 });
                 formattedPayDate.Spans.Add(new Span
                 {
-                    Text = "на " + DateIdent,
+                    Text = "на " + DateIdent + ":",
                     TextColor = Color.Black,
                     FontSize = 15
                 });

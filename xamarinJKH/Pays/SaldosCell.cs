@@ -14,7 +14,7 @@ namespace xamarinJKH.Pays
         {
             StackLayout container = new StackLayout();
             container.Orientation = StackOrientation.Horizontal;
-            container.Margin = new Thickness(0,0,0,10);
+            container.Margin = new Thickness(0, 0, 0, 10);
             container.Spacing = 0;
             identDate.HorizontalOptions = LayoutOptions.FillAndExpand;
             sum.HorizontalOptions = LayoutOptions.End;
@@ -23,7 +23,7 @@ namespace xamarinJKH.Pays
             file.Foreground = Color.FromHex(Settings.MobileSettings.color);
             file.HeightRequest = 35;
             file.WidthRequest = 25;
-            file.Margin = new Thickness(10,0,0,0);
+            file.Margin = new Thickness(10, 0, 0, 0);
             file.VerticalOptions = LayoutOptions.End;
             file.Source = "ic_file";
             container.Children.Add(identDate);
@@ -78,6 +78,7 @@ namespace xamarinJKH.Pays
             if (BindingContext != null)
             {
                 FormattedString formattedIdent = new FormattedString();
+                DateIdent = FirstLetterToUpper(DateIdent);
                 formattedIdent.Spans.Add(new Span
                 {
                     Text = DateIdent,
@@ -100,9 +101,10 @@ namespace xamarinJKH.Pays
                 identDate.FormattedText = formattedIdent;
 
                 formattedIdent = new FormattedString();
+                double sum2 = Double.Parse(SumPay);
                 formattedIdent.Spans.Add(new Span
                 {
-                    Text = SumPay,
+                    Text = $"{sum2:0.00}".Replace(',','.'),
                     TextColor = Color.Black,
                     FontAttributes = FontAttributes.Bold,
                     FontSize = 15
@@ -120,6 +122,16 @@ namespace xamarinJKH.Pays
                     file.IsVisible = false;
                 }
             }
+        }
+
+        public static string FirstLetterToUpper(string str)
+        {
+            if (str.Length > 0)
+            {
+                return Char.ToUpper(str[0]) + str.Substring(1);
+            }
+
+            return "";
         }
     }
 }

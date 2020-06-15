@@ -17,6 +17,7 @@ namespace xamarinJKH.Main
     public partial class PaysPage : ContentPage
     {
         public List<AccountAccountingInfo> _accountingInfo { get; set; }
+        public Color hex { get; set; }
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
         private RestClientMP server = new RestClientMP();
@@ -76,7 +77,7 @@ namespace xamarinJKH.Main
                 default:
                     break;
             }
-
+            hex = Color.FromHex(Settings.MobileSettings.color);
             SetTextAndColor();
             getInfo();
             additionalList.BackgroundColor = Color.Transparent;
@@ -109,10 +110,11 @@ namespace xamarinJKH.Main
         {
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.Phone;
-            FrameBtnHistory.BorderColor = Color.FromHex(Settings.MobileSettings.color);
-            FrameBtnSaldos.BorderColor = Color.FromHex(Settings.MobileSettings.color);
-            LabelSaldos.TextColor = Color.FromHex(Settings.MobileSettings.color);
-            LabelHistory.TextColor = Color.FromHex(Settings.MobileSettings.color);
+      
+            FrameBtnHistory.BorderColor = hex;
+            FrameBtnSaldos.BorderColor = hex;
+            LabelSaldos.TextColor = hex;
+            LabelHistory.TextColor = hex;
         }
 
         async void getInfo()

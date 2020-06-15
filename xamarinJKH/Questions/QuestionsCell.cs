@@ -101,14 +101,16 @@ namespace xamarinJKH.Questions
             frameBtn.CornerRadius = 10;
 
             StackLayout containerBtn = new StackLayout();
+            containerBtn.Spacing = 0;
             containerBtn.Orientation = StackOrientation.Horizontal;
             containerBtn.HorizontalOptions = LayoutOptions.CenterAndExpand;
 
             IconView image = new IconView();
             image.Source = "ic_questions2";
             image.Foreground = Color.White;
-            image.Margin = new Thickness(-40, 0, 0, 0);
-            image.HeightRequest = 15;
+            // image.Margin = new Thickness(-40, 0, 0, 0);
+            image.HeightRequest = 25;
+            image.WidthRequest = 25;
 
             // Label btn = new Label();
             // btn.Margin = new Thickness(-15, 0, 0, 0);
@@ -121,12 +123,13 @@ namespace xamarinJKH.Questions
             btn.TextColor = Color.White;
             btn.BackgroundColor = Color.Transparent;
             btn.HorizontalOptions = LayoutOptions.Center;
-            btn.Margin = 10;
+            btn.Margin = new Thickness(9,13,0,13);
             btn.FontAttributes = FontAttributes.Bold;
+            btn.VerticalOptions = LayoutOptions.Center;
             btn.FontSize = 15;
             btn.Text = "Пройти опрос";
 
-            // containerBtn.Children.Add(image);
+            containerBtn.Children.Add(image);
             containerBtn.Children.Add(btn);
 
             frameBtn.Content = containerBtn;

@@ -3,6 +3,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.Main.EventsPage">
     <ContentPage.Content>
@@ -104,13 +105,13 @@
                 <StackLayout
                     VerticalOptions="FillAndExpand">
 
-                    <Frame x:Name="FrameNotification"
-                           CornerRadius="30"
-                           HorizontalOptions="FillAndExpand"
-                           VerticalOptions="Start"
-                           BackgroundColor="White"
-                           Padding="0, 25, 0, 25"
-                           Margin="10,10,10,0">
+                    <customRenderers:MaterialFrame Elevation="20" x:Name="FrameNotification"
+                                   CornerRadius="30"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="Start"
+                                   BackgroundColor="White"
+                                   Padding="0, 25, 0, 25"
+                                   Margin="10,10,10,0">
                         <StackLayout
                             Orientation="Horizontal">
                             <xamarinJkh:IconView
@@ -137,14 +138,14 @@
                                 HorizontalOptions="End"
                                 VerticalOptions="Center" />
                         </StackLayout>
-                    </Frame>
-                    <Frame x:Name="FrameNews"
-                           CornerRadius="30"
-                           HorizontalOptions="FillAndExpand"
-                           VerticalOptions="Start"
-                           BackgroundColor="White"
-                           Margin="10, 10, 10, 0"
-                           Padding="0, 25, 0, 25">
+                    </customRenderers:MaterialFrame>
+                    <customRenderers:MaterialFrame Elevation="20"  x:Name="FrameNews"
+                                                   CornerRadius="30"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   VerticalOptions="Start"
+                                                   BackgroundColor="White"
+                                                   Margin="10, 10, 10, 0"
+                                                   Padding="0, 25, 0, 25">
                         <StackLayout
                             Orientation="Horizontal">
                             <xamarinJkh:IconView
@@ -171,14 +172,14 @@
                                 HorizontalOptions="End"
                                 VerticalOptions="Center" />
                         </StackLayout>
-                    </Frame>
-                    <Frame x:Name="FrameQuestions"
-                           CornerRadius="30"
-                           Margin="10, 10, 10, 0"
-                           HorizontalOptions="FillAndExpand"
-                           VerticalOptions="Start"
-                           BackgroundColor="White"
-                           Padding="0, 25, 0, 25">
+                    </customRenderers:MaterialFrame>
+                    <customRenderers:MaterialFrame Elevation="20"  x:Name="FrameQuestions"
+                                                   CornerRadius="30"
+                                                   Margin="10, 10, 10, 0"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   VerticalOptions="Start"
+                                                   BackgroundColor="White"
+                                                   Padding="0, 25, 0, 25">
                         <StackLayout
                             Orientation="Horizontal">
                             <xamarinJkh:IconView
@@ -206,14 +207,14 @@
                                 HorizontalOptions="End"
                                 VerticalOptions="Center" />
                         </StackLayout>
-                    </Frame>
-                    <Frame x:Name="FrameOffers"
-                           CornerRadius="30"
-                           Margin="10, 10, 10, 0"
-                           HorizontalOptions="FillAndExpand"
-                           VerticalOptions="Start"
-                           BackgroundColor="White"
-                           Padding="0, 25, 0, 25">
+                    </customRenderers:MaterialFrame>
+                    <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOffers"
+                                                   CornerRadius="30"
+                                                   Margin="10, 10, 10, 0"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   VerticalOptions="Start"
+                                                   BackgroundColor="White"
+                                                   Padding="0, 25, 0, 25">
                         <StackLayout
                             Orientation="Horizontal">
                             <xamarinJkh:IconView
@@ -240,7 +241,7 @@
                                 HorizontalOptions="End"
                                 VerticalOptions="Center" />
                         </StackLayout>
-                    </Frame>
+                    </customRenderers:MaterialFrame>
                     <Frame x:Name="FrameShop"
                            CornerRadius="30"
                            Margin="10, 10, 10, 10"
