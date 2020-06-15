@@ -274,8 +274,14 @@ namespace xamarinJKH.Main
             btn.Margin = new Thickness(0, 0, 0, 0);
             btn.TextColor = Color.White;
             btn.FontAttributes = FontAttributes.Bold;
+            btn.VerticalTextAlignment = TextAlignment.Center;
             btn.FontSize = 15;
             btn.Text = "Передать показания";
+            containerBtn.Children.Add(new Image()
+            {
+                Source = "ic_counter",
+                HeightRequest = 20
+            });
             containerBtn.Children.Add(btn);
 
             frameBtn.Content = containerBtn;
@@ -323,7 +329,7 @@ namespace xamarinJKH.Main
         
         public string Resource
         {
-            get { return (string) GetValue(ResourceProperty); }
+            get { return ((string)GetValue(ResourceProperty)).ToLower().Contains("водоснабжение") ? $"{(string)GetValue(ResourceProperty)}, м3" : (string)GetValue(ResourceProperty); }
             set { SetValue(ResourceProperty, value); }
         }
 
