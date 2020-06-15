@@ -104,7 +104,7 @@
             <StackLayout
                 VerticalOptions="StartAndExpand">
                 <Frame CornerRadius="40"
-                       Margin="20, 0, 20, -60"
+                       Margin="20, 0, 20, -40"
                        VerticalOptions="Start"
                        BackgroundColor="#494949"
                        Padding="20,20,20,60">
