@@ -69,15 +69,22 @@ namespace xamarinJKH.Main
             adressLbl.FontSize = 15;
             adressLbl.TextColor = Color.FromHex("#A2A2A2");
             adressLbl.HorizontalTextAlignment = TextAlignment.Start;
-            adressLbl.HorizontalOptions = LayoutOptions.StartAndExpand;
+            adressLbl.HorizontalOptions = LayoutOptions.Start;
             adressLbl.MaxLines = 1;
-            adressLbl.WidthRequest = 100;
             adress.FontSize = 15;
             adress.TextColor = Color.Black;
             adress.HorizontalTextAlignment = TextAlignment.End;
-            adress.HorizontalOptions = LayoutOptions.EndAndExpand;
+            adress.HorizontalOptions = LayoutOptions.End;
             adress.MaxLines = 3;
             addressStack.Children.Add(adressLbl);
+            addressStack.Children.Add(new Label
+            {
+                HeightRequest = 1,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                BackgroundColor = Color.LightGray,
+                Margin = new Thickness(0, 5, 0, 0),
+                VerticalOptions = LayoutOptions.Center
+            });
             addressStack.Children.Add(adress);
             container.Children.Add(header);
             container.Children.Add(addressStack);
@@ -101,7 +108,7 @@ namespace xamarinJKH.Main
             
             Label linesNumb = new Label();
             linesNumb.HeightRequest = 1;
-            linesNumb.BackgroundColor = Color.LightGray;;
+            linesNumb.BackgroundColor = Color.LightGray; 
             linesNumb.Margin = new Thickness(0,2,0,0);
             linesNumb.VerticalOptions = LayoutOptions.Center;
             linesNumb.HorizontalOptions = LayoutOptions.FillAndExpand;
