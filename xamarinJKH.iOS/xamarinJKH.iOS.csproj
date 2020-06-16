@@ -84,6 +84,7 @@
     <Compile Include="CustomRenderers\BorderlessDatePickerRenderer.cs" />
     <Compile Include="CustomRenderers\BorderlessPickerRenderer.cs" />
     <Compile Include="CustomRenderers\BordlessEditorRender.cs" />
+    <Compile Include="CustomRenderers\CounterEntryNewRenderer.cs" />
     <Compile Include="CustomRenderers\ListViewHighlightEffect.cs" />
     <Compile Include="CustomRenderers\MaterialFrameRenderer.cs" />
     <Compile Include="CustomRenderers\TapHighlightRemoveAdditionalCellRenderer.cs" />

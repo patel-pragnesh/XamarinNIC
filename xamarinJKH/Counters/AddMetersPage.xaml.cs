@@ -14,6 +14,7 @@ using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 using Xamarin.Forms.Internals;
+using System.Security.Cryptography;
 
 namespace xamarinJKH.Counters
 {
@@ -85,27 +86,112 @@ namespace xamarinJKH.Counters
             BindingContext = this;
 
             SetTextAndColor();
+
+            d2.OnBackspace += D2_OnBackspace;
+            d3.OnBackspace += D3_OnBackspace;
+            d4.OnBackspace += D4_OnBackspace;
+            d5.OnBackspace += D5_OnBackspace;
+            d6.OnBackspace += D6_OnBackspace;
+            d7.OnBackspace += D7_OnBackspace;
+            d8.OnBackspace += D8_OnBackspace;
+        }
+
+        private void D2_OnBackspace(object sender, EventArgs e)
+        {
+            if(string.IsNullOrWhiteSpace(d2.Text))
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    d1.Text = "";
+                    d1.Focus();                    
+                });
+            }
+        }
+        private void D3_OnBackspace(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(d3.Text))
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    d2.Text = "";
+                    d2.Focus();
+                });
+            }
+        }
+        private void D4_OnBackspace(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(d4.Text))
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    d3.Text = "";
+                    d3.Focus();
+                });
+            }
+        }
+        private void D5_OnBackspace(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(d5.Text))
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    d4.Text = "";
+                    d4.Focus();
+                });
+            }
+        }
+        private void D6_OnBackspace(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(d6.Text))
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    d5.Text = "";
+                    d5.Focus();
+                });
+            }
+        }
+        private void D7_OnBackspace(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(d7.Text))
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    d6.Text = "";
+                    d6.Focus();
+                });
+            }
+        }
+        private void D8_OnBackspace(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(d8.Text))
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    d7.Text = "";
+                    d7.Focus();
+                });
+            }
         }
 
         void SetPrevious(decimal counterPrevMonth)
         {
-            //var d = 5423.456;
-            var ddd = counterPrevMonth * 1000;
-            var d08t = ddd % 10;
-            ddd = (ddd-d08t)/10;
-            var d07t = ddd % 10;
-            ddd = (ddd-d07t)/10;
-            var d06t = ddd % 10;
-            ddd = (ddd-d06t)/10;
-            var d05t = ddd % 10;
-            ddd = (ddd - d05t) / 10;
-            var d04t = ddd % 10;
-            ddd = (ddd - d04t) / 10;
-            var d03t = ddd % 10;
-            ddd = (ddd - d03t) / 10;
-            var d02t = ddd % 10;
-            ddd = (ddd - d02t) / 10;
-            var d01t = ddd % 10;
+            var counter8 = counterPrevMonth * 1000;
+            var d08t = counter8 % 10;
+            counter8 = (counter8-d08t)/10;
+            var d07t = counter8 % 10;
+            counter8 = (counter8-d07t)/10;
+            var d06t = counter8 % 10;
+            counter8 = (counter8-d06t)/10;
+            var d05t = counter8 % 10;
+            counter8 = (counter8 - d05t) / 10;
+            var d04t = counter8 % 10;
+            counter8 = (counter8 - d04t) / 10;
+            var d03t = counter8 % 10;
+            counter8 = (counter8 - d03t) / 10;
+            var d02t = counter8 % 10;
+            counter8 = (counter8 - d02t) / 10;
+            var d01t = counter8 % 10;
 
 
             Device.BeginInvokeOnMainThread(() =>
@@ -129,8 +215,6 @@ namespace xamarinJKH.Counters
             {
                 d1.Unfocus();
                 d1.Focus();
-                //Counter.CounterInput.Unfocus();
-                //Counter.CounterInput.Focus();
             });
         }
 
@@ -160,7 +244,6 @@ namespace xamarinJKH.Counters
                     count += d7.Text != "0" ? d7.Text : "";
                     count += d8.Text != "0" ? d8.Text : "";
                     
-                    //count += d2.Text + d3.Text + d4.Text + d5.Text+ "." + d6.Text + d7.Text + d8.Text;
                     SaveInfoAccount(count);
                 }
                 else
@@ -322,11 +405,13 @@ namespace xamarinJKH.Counters
             });
         }
         private void d3_Completed(object sender, EventArgs e)
-        {
+        {           
+
             Device.BeginInvokeOnMainThread(() =>
             {
+
                 if (string.IsNullOrWhiteSpace(d3.Text))
-                {
+                { 
                     return;
                 }
 
