@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Apps;
 using xamarinJKH.Server;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 
@@ -81,7 +82,9 @@ namespace xamarinJKH.Main
                 default:
                     break;
             }
-
+            var addClick = new TapGestureRecognizer();
+            addClick.Tapped += async (s, e) => { startNewApp(FrameBtnAdd, null); };
+            FrameBtnAdd.GestureRecognizers.Add(addClick);
             hex = Color.FromHex(Settings.MobileSettings.color);
             SetText();
             getApps();
@@ -111,6 +114,7 @@ namespace xamarinJKH.Main
             LabelPhone.Text = Settings.Person.Phone;
             SwitchApp.OnColor = hex;
             FrameBtnAdd.BackgroundColor = hex;
+            IconAddApp.Foreground = Color.White;
         }
 
 

@@ -23,8 +23,6 @@
 	<string>xamarinJKH</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarinJKH.testApps</string>
-	<key>CFBundleVersion</key>
-	<string>1.96</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
@@ -45,14 +43,21 @@
 	<false/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
-
 	<key>NSCameraUsageDescription</key>
-	<string>This app needs access to the camera to take photos.</string>
+	<string>Вы можете сфотографировать проблему и приложить к заявке фотографию</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app needs access to photos.</string>
+	<string>Вы можете приложить фото к заявке</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>This app needs access to microphone.</string>
+	<string>Вы можете предоставить доступ к микрофону чтобы записать видео и приложить к заявке</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Геопозиция</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Предоставьте доступ к геопозиции</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Предоставьте доступ к календарю и дате</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>This app needs access to the photo gallery.</string>
+	<string>Вы можете приложить фото к заявке</string>
+	<key>CFBundleVersion</key>
+	<string>2.01</string>
 </dict>
 </plist>

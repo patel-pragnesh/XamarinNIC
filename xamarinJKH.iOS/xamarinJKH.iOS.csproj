@@ -340,6 +340,7 @@
     <BundleResource Include="Resources\star_filled.png" />
     <BundleResource Include="Resources\star.png" />
     <BundleResource Include="Resources\up_arrow.png" />
+    <BundleResource Include="Resources\icon_add_app.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_arrow_forward.png">

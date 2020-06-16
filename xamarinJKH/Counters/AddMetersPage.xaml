@@ -198,7 +198,7 @@
                                                 <RowDefinition Height="0.85*"></RowDefinition>
                                                 <RowDefinition Height="0.15*"></RowDefinition>
                                             </Grid.RowDefinitions>
-                                            <xamarinJkh:CounterEntryNew x:Name="d1"  TextChanged="d1_Completed" Completed="d1_Completed"></xamarinJkh:CounterEntryNew>                                            
+                                            <xamarinJkh:CounterEntryNew x:Name="d1"  TextChanged="d1_Completed" ></xamarinJkh:CounterEntryNew>                                            
                                             <xamarinJkh:BoxForCounter/>
                                         </Grid>                         
                                     </pancake:PancakeView>
@@ -212,7 +212,7 @@
                                                 <RowDefinition Height="0.85*"></RowDefinition>
                                                 <RowDefinition Height="0.15*"></RowDefinition>
                                             </Grid.RowDefinitions>
-                                            <xamarinJkh:CounterEntryNew x:Name="d2" TextChanged="d2_Completed" Completed="d2_Completed"></xamarinJkh:CounterEntryNew>
+                                            <xamarinJkh:CounterEntryNew x:Name="d2" TextChanged="d2_Completed" ></xamarinJkh:CounterEntryNew>
                                             <xamarinJkh:BoxForCounter/>
                                         </Grid>
                                     </pancake:PancakeView>
@@ -226,7 +226,7 @@
                                                 <RowDefinition Height="0.85*"></RowDefinition>
                                                 <RowDefinition Height="0.15*"></RowDefinition>
                                             </Grid.RowDefinitions>
-                                            <xamarinJkh:CounterEntryNew x:Name="d3" Grid.Row="0" TextChanged="d3_Completed" Completed="d3_Completed"></xamarinJkh:CounterEntryNew>
+                                            <xamarinJkh:CounterEntryNew x:Name="d3" Grid.Row="0" TextChanged="d3_Completed" ></xamarinJkh:CounterEntryNew>
                                             <xamarinJkh:BoxForCounter/>
                                         </Grid>
                                     </pancake:PancakeView>
@@ -241,7 +241,7 @@
                                                 <RowDefinition Height="0.15*"></RowDefinition>
                                             </Grid.RowDefinitions>
                                             <xamarinJkh:CounterEntryNew x:Name="d4" MaxLength="1" HorizontalTextAlignment="Center" Keyboard="Numeric" Margin="0,0,0,-10" 
-                                                                        Grid.Row="0" TextChanged="d4_Completed" Completed="d4_Completed"></xamarinJkh:CounterEntryNew>
+                                                                        Grid.Row="0" TextChanged="d4_Completed" ></xamarinJkh:CounterEntryNew>
                                             <xamarinJkh:BoxForCounter/>
                                         </Grid>
                                     </pancake:PancakeView>
@@ -256,7 +256,7 @@
                                                 <RowDefinition Height="0.15*"></RowDefinition>
                                             </Grid.RowDefinitions>
                                             <xamarinJkh:CounterEntryNew x:Name="d5" MaxLength="1" HorizontalTextAlignment="Center" Keyboard="Numeric" Margin="0,0,0,-10" 
-                                                                        Grid.Row="0" TextChanged="d5_Completed" Completed="d5_Completed"></xamarinJkh:CounterEntryNew>
+                                                                        Grid.Row="0" TextChanged="d5_Completed" ></xamarinJkh:CounterEntryNew>
                                             <xamarinJkh:BoxForCounter/>
                                         </Grid>
                                     </pancake:PancakeView>
@@ -285,7 +285,7 @@
                                                 <RowDefinition Height="0.15*"></RowDefinition>
                                             </Grid.RowDefinitions>
                                             <xamarinJkh:CounterEntryNew x:Name="d6" MaxLength="1" HorizontalTextAlignment="Center" Keyboard="Numeric" Margin="0,0,0,-10" 
-                                                                        Grid.Row="0" TextChanged="d6_Completed" Completed="d6_Completed"></xamarinJkh:CounterEntryNew>
+                                                                        Grid.Row="0" TextChanged="d6_Completed" ></xamarinJkh:CounterEntryNew>
                                             <xamarinJkh:BoxForCounter/>
                                         </Grid>
                                     </pancake:PancakeView>
@@ -300,7 +300,7 @@
                                                 <RowDefinition Height="0.15*"></RowDefinition>
                                             </Grid.RowDefinitions>
                                             <xamarinJkh:CounterEntryNew x:Name="d7" MaxLength="1" HorizontalTextAlignment="Center" Keyboard="Numeric" Margin="0,0,0,-10" 
-                                                                        Grid.Row="0" TextChanged="d7_Completed" Completed="d7_Completed"></xamarinJkh:CounterEntryNew>
+                                                                        Grid.Row="0" TextChanged="d7_Completed" ></xamarinJkh:CounterEntryNew>
                                             <xamarinJkh:BoxForCounter/>
                                         </Grid>
                                     </pancake:PancakeView>
@@ -315,7 +315,7 @@
                                                 <RowDefinition Height="0.15*"></RowDefinition>
                                             </Grid.RowDefinitions>
                                             <xamarinJkh:CounterEntryNew x:Name="d8" MaxLength="1" HorizontalTextAlignment="Center" Keyboard="Numeric" Margin="0,0,0,-10" 
-                                                                        Grid.Row="0" ></xamarinJkh:CounterEntryNew>
+                                                                        Grid.Row="0" TextChanged="d8_Completed"></xamarinJkh:CounterEntryNew>
                                             <xamarinJkh:BoxForCounter/>
                                         </Grid>
                                     </pancake:PancakeView>

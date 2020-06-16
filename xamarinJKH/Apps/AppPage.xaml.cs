@@ -114,7 +114,7 @@ namespace xamarinJKH.Apps
                     // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
-                    double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
+                    double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
                         ScrollViewContainer.Margin = new Thickness(0, 0, 0, -150);
@@ -332,7 +332,7 @@ namespace xamarinJKH.Apps
         {
             if (stream is MemoryStream)
             {
-                return ((MemoryStream) stream).ToArray();
+                return ((MemoryStream)stream).ToArray();
             }
             else
             {
@@ -486,7 +486,10 @@ namespace xamarinJKH.Apps
             {
                 Source = "ic_status_new";
             }
-
+            if (request.Phone.Contains("+") == false && request.Phone.Substring(0, 2) == "79")
+            {
+                request.Phone = "+" + request.Phone;
+            }
             var ret = await Dialog.Instance.ShowAsync<InfoAppDialog>(new
             {
                 _Request = request,

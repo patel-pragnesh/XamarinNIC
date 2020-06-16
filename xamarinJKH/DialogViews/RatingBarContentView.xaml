@@ -66,8 +66,8 @@
                 </Label>
 
                 <controls:RatingBar x:Name="RatingBar"
-                                    FilledImage="ic_call_app.png"
-                                    Image="ic_author.png"
+                                    FilledImage="star_filled.png"
+                                    Image="star.png"
                                     MaxRating="5"
                                     Rating="0"
                                     FillColor="{Binding HexColor}"
