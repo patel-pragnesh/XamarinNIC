@@ -20,12 +20,7 @@
         <StackLayout
             x:Name="StackLayoutContainer"
             HorizontalOptions="FillAndExpand">
-            <Label
-                x:Name="LabelDate"
-                TextColor="Black"
-                FontSize="15"
-                HorizontalOptions="Start"
-                Text="{Binding _Request.Added}" />
+            
             <Label
                 x:Name="LabelTema"
                 TextColor="Black"
@@ -37,6 +32,12 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
+            <Label
+                x:Name="LabelDate"
+                TextColor="Black"
+                FontSize="15"
+                HorizontalOptions="Start"
+                Text="{Binding _Request.Added}" />
             <Label
                 x:Name="LabelKind"
                 TextColor="Black"
@@ -73,13 +74,13 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <xamarinJkh:IconView x:Name="IconViewPhone"
+                <!--<xamarinJkh:IconView x:Name="IconViewPhone"
                                      Source="ic_call_app"
                                      HeightRequest="17"
                                      WidthRequest="17"
                                      Foreground="{Binding HexColor}"
                                      HorizontalOptions="Start"
-                                     VerticalOptions="Center" />
+                                     VerticalOptions="Center" />-->
             </StackLayout>
             <StackLayout
                 Orientation="Horizontal">

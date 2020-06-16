@@ -233,14 +233,14 @@
                                 <StackLayout
                                     x:Name="SaveStackLayout"
                                     Orientation="Horizontal"
-                                    Margin="-80, 0, 0, 0"
+                                    Margin="-40, 0, 0, 0"
                                     HorizontalOptions="Center"
                                     VerticalOptions="FillAndExpand">
                                     <local:IconView x:Name="IconViewSave"
                                                     Margin="0, 10, 0, 10"
                                                     Source="ic_check_mark"
                                                     HeightRequest="25"
-                                                    HorizontalOptions="Start"
+                                                    WidthRequest="35"
                                                     VerticalOptions="Center" />
                                     <Label x:Name="BtnSave"
                                            Text="Сохранить"
@@ -300,14 +300,14 @@
                         <StackLayout
                             x:Name="ExitStackLayout"
                             Orientation="Horizontal"
-                            Margin="-80, 0, 0, 0"
+                            Margin="-40, 0, 0, 0"
                             HorizontalOptions="Center"
                             VerticalOptions="FillAndExpand">
                             <local:IconView x:Name="IconViewExit"
                                             Margin="0, 10, 0, 10"
                                             Source="ic_exit"
                                             HeightRequest="25"
-                                            HorizontalOptions="Start"
+                                            WidthRequest="35"
                                             VerticalOptions="Center" />
                             <Label x:Name="BtnExit"
                                    Text="Выйти"
