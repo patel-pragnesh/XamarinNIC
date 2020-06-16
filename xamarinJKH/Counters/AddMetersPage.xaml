@@ -170,7 +170,7 @@
                     <StackLayout
                             Margin="10, 10, 10, 10">
 
-                        <Label Text="Новые показания"
+                        <Label x:Name="meterReadingName" Text="Новые показания"
                                    Margin="10, 0, 10, 0"
                                    FontAttributes="Bold"
                                    FontSize="20"

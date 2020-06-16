@@ -25,5 +25,11 @@ namespace xamarinJKH
         {
             OnBackspace?.Invoke(null, null);
         }
+
+        //protected override void OnTextChanged(string oldValue, string newValue)
+        //{
+        //    base.OnTextChanged(oldValue, newValue);
+
+        //}
     }
 }

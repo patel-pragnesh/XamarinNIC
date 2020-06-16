@@ -15,6 +15,7 @@ using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 using Xamarin.Forms.Internals;
 using System.Security.Cryptography;
+using Xamarin.Forms.Markup;
 
 namespace xamarinJKH.Counters
 {
@@ -26,7 +27,7 @@ namespace xamarinJKH.Counters
         private List<MeterInfo> meters = new List<MeterInfo>();
         private CountersPage _countersPage;
 
-        public Color CellColor { get; set; } //=> Color.FromHex(xamarinJKH.Utils.Settings.MobileSettings.color);
+        public Color CellColor { get; set; } 
 
         decimal PrevValue;
         bool SetPrev;
@@ -68,20 +69,23 @@ namespace xamarinJKH.Counters
             if (counterPrevMonth > 0)
             {
                 SetPrevious(counterPrevMonth);
-                   //PrevValue = counterPrevMonth;
                 SetPrev = true;
             }
 
-            //(Counter.CounterInput as xamarinJKH.CustomRenderers.CounterEntry).Editing = SetPrev;
-            //if (counterThisMonth > 0)
-            //{
-            //    Counter.CounterInput.Text = counterThisMonth.ToString().Replace('.',',');
-            //}
+            if(counterThisMonth>0)
+            {
+                meterReadingName.Text = "Изменить показания";
+                SetCurrent(counterThisMonth);
+            }
+            else
+            {
+                meterReadingName.Text = "Новые показания";
+            }
+
             Device.BeginInvokeOnMainThread(() =>
             {
                 CellColor = Color.FromHex(Settings.MobileSettings.color);
-            });
-            
+            });            
 
             BindingContext = this;
 
@@ -94,6 +98,48 @@ namespace xamarinJKH.Counters
             d6.OnBackspace += D6_OnBackspace;
             d7.OnBackspace += D7_OnBackspace;
             d8.OnBackspace += D8_OnBackspace;
+
+            
+
+            d1.Focused += Entry_Focused;
+            d2.Focused += Entry_Focused;
+            d3.Focused += Entry_Focused;
+            d4.Focused += Entry_Focused;
+            d5.Focused += Entry_Focused; 
+            d6.Focused += Entry_Focused;
+            d7.Focused += Entry_Focused;
+            d8.Focused += Entry_Focused;
+        }
+
+        private async void Entry_Focused(object sender, FocusEventArgs e)
+        {            
+            Device.BeginInvokeOnMainThread(async () =>
+            {                
+                await Task.Delay(100);
+                var entry = (CounterEntryNew)sender;
+                if (!string.IsNullOrWhiteSpace(entry.Text))
+                {
+                    entry.CursorPosition = 0;
+                    entry.SelectionLength = entry.Text.Length;
+                }                
+            });           
+        }
+
+        private void SetCurrent(decimal counterThisMonth)
+        {
+            var d = GetNumbers(counterThisMonth);
+
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                d8.Text = d[0];
+                d7.Text = d[1];
+                d6.Text = d[2];
+                d5.Text = d[3];
+                d4.Text = d[4];
+                d3.Text = d[5];
+                d2.Text = d[6];
+                d1.Text = d[7];                
+            });
         }
 
         private void D2_OnBackspace(object sender, EventArgs e)
@@ -174,38 +220,35 @@ namespace xamarinJKH.Counters
             }
         }
 
+        List<string> GetNumbers(decimal counter)
+        {
+            var retList = new List<string>();
+            var counter8 =Convert.ToInt32( counter * 1000);
+            for (int i=0; i<8; i++)
+            {
+                var d = counter8 % 10;
+                retList.Add(d.ToString());
+                counter8 = (counter8 - d) / 10;
+            }
+            
+            return retList;
+        }
+
         void SetPrevious(decimal counterPrevMonth)
         {
-            var counter8 = counterPrevMonth * 1000;
-            var d08t = counter8 % 10;
-            counter8 = (counter8-d08t)/10;
-            var d07t = counter8 % 10;
-            counter8 = (counter8-d07t)/10;
-            var d06t = counter8 % 10;
-            counter8 = (counter8-d06t)/10;
-            var d05t = counter8 % 10;
-            counter8 = (counter8 - d05t) / 10;
-            var d04t = counter8 % 10;
-            counter8 = (counter8 - d04t) / 10;
-            var d03t = counter8 % 10;
-            counter8 = (counter8 - d03t) / 10;
-            var d02t = counter8 % 10;
-            counter8 = (counter8 - d02t) / 10;
-            var d01t = counter8 % 10;
-
+            var d = GetNumbers(counterPrevMonth);
 
             Device.BeginInvokeOnMainThread(() =>
             {
-                d08.Text = Convert.ToString(d08t);
-                d07.Text = Convert.ToString(d07t);
-                d06.Text = Convert.ToString(d06t);
-                d05.Text = Convert.ToString(d05t);
-                d04.Text = Convert.ToString(d04t);
-                d03.Text = Convert.ToString(d03t);
-                d02.Text = Convert.ToString(d02t);
-                d01.Text = Convert.ToString(d01t);
+                d08.Text = d[0];
+                d07.Text = d[1];
+                d06.Text = d[2];
+                d05.Text = d[3];
+                d04.Text = d[4];
+                d03.Text = d[5];
+                d02.Text = d[6];
+                d01.Text = d[7];
             });            
-
         }
 
         protected async override void OnAppearing()
