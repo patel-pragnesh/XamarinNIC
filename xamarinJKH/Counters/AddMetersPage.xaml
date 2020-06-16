@@ -11,6 +11,7 @@
              xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
              xmlns:counters="clr-namespace:xamarinJKH.Counters;assembly=xamarinJKH"
              xmlns:controls="clr-namespace:xamarinJKH.CustomRenderers"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:converters="clr-namespace:xamarinJKH.Converters"
              x:Class="xamarinJKH.Counters.AddMetersPage">
     <ContentPage.Resources>
@@ -105,7 +106,7 @@
                 </StackLayout>
                 <Image x:Name="IconViewNameUk"
                        Source="icon_login"
-                       HeightRequest="70"
+                       HeightRequest="60"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0.75,
@@ -159,17 +160,17 @@
                             TextColor="White"
                             FontSize="15" />
                     </StackLayout>
-                    
+
                 </Frame>
                 <Frame CornerRadius="30"
                            Margin="20, 10, 20, 15"
                            BackgroundColor="White"
                            Padding="0">
 
-                        <StackLayout
+                    <StackLayout
                             Margin="10, 10, 10, 10">
 
-                            <Label Text="Новые показания"
+                        <Label Text="Новые показания"
                                    Margin="10, 0, 10, 0"
                                    FontAttributes="Bold"
                                    FontSize="20"
@@ -178,32 +179,166 @@
                                    
                                    HorizontalTextAlignment="Center"/>
 
-                            <StackLayout
+                        <StackLayout
                                 Orientation="Vertical"
                                 Margin="5, 10, 5, 10">
 
-                            <StackLayout
+                            <!--<StackLayout
                                     Orientation="Horizontal"
                                     Padding="20,0">
-                                <counters:CounterEntryView x:Name="Counter"/>
+                                <counters:CounterEntryView x:Name="Counter"/>-->
+                            <!--<counters:CounterEntryView x:Name="Counter"/>-->
+                            <StackLayout x:Name="CounterLayout"
+                                    Orientation="Horizontal" HeightRequest="80"  Margin="20,0" Spacing="5" HorizontalOptions="FillAndExpand">
+
+                                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                                    <pancake:PancakeView BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,5,0" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="60" MinimumHeightRequest="40" >
+                                        <Grid VerticalOptions="FillAndExpand" RowSpacing="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="0.85*"></RowDefinition>
+                                                <RowDefinition Height="0.15*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <xamarinJkh:CounterEntryNew x:Name="d1"  TextChanged="d1_Completed" Completed="d1_Completed"></xamarinJkh:CounterEntryNew>                                            
+                                            <xamarinJkh:BoxForCounter/>
+                                        </Grid>                         
+                                    </pancake:PancakeView>
+                                    <Label x:Name="d01" Text="0" TextColor="#A2A2A2" FontSize="20" HorizontalTextAlignment="Center"></Label>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                                    <pancake:PancakeView BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,0,0" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="60" MinimumHeightRequest="40"  >
+                                        <Grid VerticalOptions="FillAndExpand" RowSpacing="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="0.85*"></RowDefinition>
+                                                <RowDefinition Height="0.15*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <xamarinJkh:CounterEntryNew x:Name="d2" TextChanged="d2_Completed" Completed="d2_Completed"></xamarinJkh:CounterEntryNew>
+                                            <xamarinJkh:BoxForCounter/>
+                                        </Grid>
+                                    </pancake:PancakeView>
+                                    <Label x:Name="d02" Text="0" TextColor="#A2A2A2" FontSize="20" HorizontalTextAlignment="Center"></Label>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                                    <pancake:PancakeView BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,0,0" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="60" MinimumHeightRequest="40"  >
+                                        <Grid VerticalOptions="FillAndExpand" RowSpacing="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="0.85*"></RowDefinition>
+                                                <RowDefinition Height="0.15*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <xamarinJkh:CounterEntryNew x:Name="d3" Grid.Row="0" TextChanged="d3_Completed" Completed="d3_Completed"></xamarinJkh:CounterEntryNew>
+                                            <xamarinJkh:BoxForCounter/>
+                                        </Grid>
+                                    </pancake:PancakeView>
+                                    <Label x:Name="d03" Text="0" TextColor="#A2A2A2" FontSize="20" HorizontalTextAlignment="Center"></Label>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                                    <pancake:PancakeView BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,0,0" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="60" MinimumHeightRequest="40"  >
+                                        <Grid VerticalOptions="FillAndExpand" RowSpacing="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="0.85*"></RowDefinition>
+                                                <RowDefinition Height="0.15*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <xamarinJkh:CounterEntryNew x:Name="d4" MaxLength="1" HorizontalTextAlignment="Center" Keyboard="Numeric" Margin="0,0,0,-10" 
+                                                                        Grid.Row="0" TextChanged="d4_Completed" Completed="d4_Completed"></xamarinJkh:CounterEntryNew>
+                                            <xamarinJkh:BoxForCounter/>
+                                        </Grid>
+                                    </pancake:PancakeView>
+                                    <Label x:Name="d04" Text="0" TextColor="#A2A2A2" FontSize="20" HorizontalTextAlignment="Center"></Label>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                                    <pancake:PancakeView BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,0,0" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="60" MinimumHeightRequest="40"  >
+                                        <Grid VerticalOptions="FillAndExpand" RowSpacing="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="0.85*"></RowDefinition>
+                                                <RowDefinition Height="0.15*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <xamarinJkh:CounterEntryNew x:Name="d5" MaxLength="1" HorizontalTextAlignment="Center" Keyboard="Numeric" Margin="0,0,0,-10" 
+                                                                        Grid.Row="0" TextChanged="d5_Completed" Completed="d5_Completed"></xamarinJkh:CounterEntryNew>
+                                            <xamarinJkh:BoxForCounter/>
+                                        </Grid>
+                                    </pancake:PancakeView>
+                                    <Label x:Name="d05" Text="0" TextColor="#A2A2A2" FontSize="20" HorizontalTextAlignment="Center"></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+                                    <pancake:PancakeView BorderColor="Transparent" BorderThickness="1"  Padding="0" CornerRadius="5,5,0,0" WidthRequest="10"  MinimumWidthRequest="5" HeightRequest="60" MinimumHeightRequest="40"  >
+                                        <Grid VerticalOptions="FillAndExpand" RowSpacing="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="0.85*"></RowDefinition>
+                                                <RowDefinition Height="0.15*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="," FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="End" Margin="0,0,0,-10" TextColor="Black" Grid.Row="0"></Label>
+                                            <BoxView Color="Transparent"  Margin="0" Grid.Row="1"/>
+                                        </Grid>
+                                    </pancake:PancakeView>
+                                    <Label Text="," FontSize="20" TextColor="#A2A2A2" HorizontalTextAlignment="Center" ></Label>
+                                </StackLayout>
+                                
+
+                                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                                    <pancake:PancakeView BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,0,0" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="60" MinimumHeightRequest="40"  >
+                                        <Grid VerticalOptions="FillAndExpand" RowSpacing="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="0.85*"></RowDefinition>
+                                                <RowDefinition Height="0.15*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <xamarinJkh:CounterEntryNew x:Name="d6" MaxLength="1" HorizontalTextAlignment="Center" Keyboard="Numeric" Margin="0,0,0,-10" 
+                                                                        Grid.Row="0" TextChanged="d6_Completed" Completed="d6_Completed"></xamarinJkh:CounterEntryNew>
+                                            <xamarinJkh:BoxForCounter/>
+                                        </Grid>
+                                    </pancake:PancakeView>
+                                    <Label x:Name="d06" Text="0" TextColor="#A2A2A2" FontSize="20" HorizontalTextAlignment="Center"></Label>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                                    <pancake:PancakeView BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,0,0" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="60" MinimumHeightRequest="40"  >
+                                        <Grid VerticalOptions="FillAndExpand" RowSpacing="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="0.85*"></RowDefinition>
+                                                <RowDefinition Height="0.15*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <xamarinJkh:CounterEntryNew x:Name="d7" MaxLength="1" HorizontalTextAlignment="Center" Keyboard="Numeric" Margin="0,0,0,-10" 
+                                                                        Grid.Row="0" TextChanged="d7_Completed" Completed="d7_Completed"></xamarinJkh:CounterEntryNew>
+                                            <xamarinJkh:BoxForCounter/>
+                                        </Grid>
+                                    </pancake:PancakeView>
+                                    <Label x:Name="d07" Text="0" TextColor="#A2A2A2" FontSize="20" HorizontalTextAlignment="Center"></Label>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                                    <pancake:PancakeView BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,0,5" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="60" MinimumHeightRequest="40" >
+                                        <Grid VerticalOptions="FillAndExpand" RowSpacing="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="0.85*"></RowDefinition>
+                                                <RowDefinition Height="0.15*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <xamarinJkh:CounterEntryNew x:Name="d8" MaxLength="1" HorizontalTextAlignment="Center" Keyboard="Numeric" Margin="0,0,0,-10" 
+                                                                        Grid.Row="0" ></xamarinJkh:CounterEntryNew>
+                                            <xamarinJkh:BoxForCounter/>
+                                        </Grid>
+                                    </pancake:PancakeView>
+                                    <Label x:Name="d08" Text="0" TextColor="#A2A2A2" FontSize="20" HorizontalTextAlignment="Center"></Label>
+                                </StackLayout>                                
 
                             </StackLayout>
 
-                                <StackLayout
+                            <StackLayout
                                     IsVisible="False"
                                     Orientation="Horizontal">
-                                    <Label
+                                <Label
                                         x:Name="LabelseparatorFio"
                                         HeightRequest="2"
                                         Margin="20, 0, 20, 0"
                                         BackgroundColor="Red"
                                         HorizontalOptions="FillAndExpand" />
 
-                                </StackLayout>
-                                <StackLayout
+                            </StackLayout>
+                            <!--<StackLayout
                                     Margin="0, 0, 0, 0"
                                     Orientation="Horizontal">
-                                    <Label x:Name="PredCount"
+                                <Label x:Name="PredCount"
                                            Text="{Binding PrevCounter, Converter={x:StaticResource CounterFormat}}"
                                            HorizontalTextAlignment="Center"
                                            HorizontalOptions="FillAndExpand"
@@ -212,42 +347,41 @@
                                            FontSize="20"
                                            TextColor="#A2A2A2"
                                            Margin="20, 10, 20, 0" />
-                                </StackLayout>
-                                <StackLayout
+                            </StackLayout>-->
+                            <StackLayout
                                     Orientation="Horizontal">
-                                    <Label
+                                <Label
                                         Text="Предыдущие показания"
                                         FontSize="Micro"
                                         TextColor="#A2A2A2"
                                         HeightRequest="20"
-                                        Margin="0, 0, 0, 0"
+                                        Margin="0, 10,0,0"
                                         HorizontalTextAlignment="Center"
                                         HorizontalOptions="FillAndExpand" />
-
-                                </StackLayout>
-
                             </StackLayout>
-                            <ActivityIndicator x:Name="progress"
+
+                        </StackLayout>
+                        <ActivityIndicator x:Name="progress"
                                                IsRunning="true"
                                                IsVisible="False"
                                                Color="Red" />
-                            <Frame CornerRadius="15"
+                        <Frame CornerRadius="15"
                                    Margin="0, 10, 0, 10"
                                    x:Name="FrameBtnLogin"
                                    Padding="0">
-                                <StackLayout
+                            <StackLayout
                                     x:Name="SaveStackLayout"
                                     Orientation="Horizontal"
                                     Margin="-80, 0, 0, 0"
                                     HorizontalOptions="Center"
                                     VerticalOptions="FillAndExpand">
-                                    <local:IconView x:Name="IconViewSave"
+                                <local:IconView x:Name="IconViewSave"
                                                     Margin="0, 10, 0, 10"
                                                     Source="ic_check_mark"
                                                     HeightRequest="25"
                                                     HorizontalOptions="Start"
                                                     VerticalOptions="Center" />
-                                    <Label x:Name="BtnSave"
+                                <Label x:Name="BtnSave"
                                            Text="Передать показания"
                                            Margin="0, 0, 0, 0"
                                            FontAttributes="Bold"
@@ -255,10 +389,10 @@
                                            TextColor="White"
                                            HorizontalOptions="FillAndExpand" 
                                            VerticalOptions="Center"/>
-                                </StackLayout>
-                            </Frame>
-                        </StackLayout>
-                    </Frame>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

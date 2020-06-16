@@ -13,6 +13,7 @@ using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
+using Xamarin.Forms.Internals;
 
 namespace xamarinJKH.Counters
 {
@@ -24,10 +25,12 @@ namespace xamarinJKH.Counters
         private List<MeterInfo> meters = new List<MeterInfo>();
         private CountersPage _countersPage;
 
+        public Color CellColor { get; set; } //=> Color.FromHex(xamarinJKH.Utils.Settings.MobileSettings.color);
+
         decimal PrevValue;
         bool SetPrev;
         public AddMetersPage(MeterInfo meter, List<MeterInfo> meters, CountersPage countersPage, decimal counterThisMonth = 0, decimal counterPrevMonth = 0)
-        {
+        {            
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             _countersPage = countersPage;
@@ -40,10 +43,10 @@ namespace xamarinJKH.Counters
                     IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
-                    double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
+                    double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
-                        ScrollViewContainer.Margin = new Thickness(0,0,0,-110);
+                        ScrollViewContainer.Margin = new Thickness(0, 0, 0, -110);
                         BackStackLayout.Margin = new Thickness(-5, 15, 0, 0);
                     }
                     break;
@@ -55,7 +58,7 @@ namespace xamarinJKH.Counters
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
-            
+
             var saveClick = new TapGestureRecognizer();
             saveClick.Tapped += async (s, e) => { ButtonClick(FrameBtnLogin, null); };
             FrameBtnLogin.GestureRecognizers.Add(saveClick);
@@ -63,16 +66,60 @@ namespace xamarinJKH.Counters
 
             if (counterPrevMonth > 0)
             {
-                PrevValue = counterPrevMonth;
+                SetPrevious(counterPrevMonth);
+                   //PrevValue = counterPrevMonth;
                 SetPrev = true;
             }
-            (Counter.CounterInput as xamarinJKH.CustomRenderers.CounterEntry).Editing = SetPrev;
-            if (counterThisMonth > 0)
+
+            //(Counter.CounterInput as xamarinJKH.CustomRenderers.CounterEntry).Editing = SetPrev;
+            //if (counterThisMonth > 0)
+            //{
+            //    Counter.CounterInput.Text = counterThisMonth.ToString().Replace('.',',');
+            //}
+            Device.BeginInvokeOnMainThread(() =>
             {
-                Counter.CounterInput.Text = counterThisMonth.ToString().Replace('.',',');
-            }
+                CellColor = Color.FromHex(Settings.MobileSettings.color);
+            });
+            
+
+            BindingContext = this;
 
             SetTextAndColor();
+        }
+
+        void SetPrevious(decimal counterPrevMonth)
+        {
+            //var d = 5423.456;
+            var ddd = counterPrevMonth * 1000;
+            var d08t = ddd % 10;
+            ddd = (ddd-d08t)/10;
+            var d07t = ddd % 10;
+            ddd = (ddd-d07t)/10;
+            var d06t = ddd % 10;
+            ddd = (ddd-d06t)/10;
+            var d05t = ddd % 10;
+            ddd = (ddd - d05t) / 10;
+            var d04t = ddd % 10;
+            ddd = (ddd - d04t) / 10;
+            var d03t = ddd % 10;
+            ddd = (ddd - d03t) / 10;
+            var d02t = ddd % 10;
+            ddd = (ddd - d02t) / 10;
+            var d01t = ddd % 10;
+
+
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                d08.Text = Convert.ToString(d08t);
+                d07.Text = Convert.ToString(d07t);
+                d06.Text = Convert.ToString(d06t);
+                d05.Text = Convert.ToString(d05t);
+                d04.Text = Convert.ToString(d04t);
+                d03.Text = Convert.ToString(d03t);
+                d02.Text = Convert.ToString(d02t);
+                d01.Text = Convert.ToString(d01t);
+            });            
+
         }
 
         protected async override void OnAppearing()
@@ -80,22 +127,61 @@ namespace xamarinJKH.Counters
             base.OnAppearing();
             Device.BeginInvokeOnMainThread(() =>
             {
-                Counter.CounterInput.Unfocus();
-                Counter.CounterInput.Focus();
+                d1.Unfocus();
+                d1.Focus();
+                //Counter.CounterInput.Unfocus();
+                //Counter.CounterInput.Focus();
             });
         }
 
         private async void ButtonClick(object sender, EventArgs e)
         {
-            SaveInfoAccount(Counter.CounterInput.Text);
+            try {
+                string count ="";
+                var p1 = -1;
+                var p2 = -1;
+                var p3 = -1;
+                var p4 = -1;
+                var p5 = -1;
+                var p6 = -1;
+                var p7 = -1;
+                var p8 = -1;
+
+                if (int.TryParse(d1.Text,out p1) && int.TryParse(d2.Text, out p2) && int.TryParse(d3.Text, out p3) 
+                    && int.TryParse(d4.Text, out p4) && int.TryParse(d5.Text, out p5) && int.TryParse(d6.Text, out p6)
+                    && int.TryParse(d7.Text, out p7) && int.TryParse(d8.Text, out p8))
+                {
+                    count += d1.Text != "0" ? d1.Text : "";
+                    count += d2.Text != "0" ? d2.Text : "";
+                    count += d3.Text != "0" ? d3.Text : "";
+                    count += d4.Text != "0" ? d4.Text : "";
+                    count += d5.Text+ "." ;
+                    count += d6.Text;
+                    count += d7.Text != "0" ? d7.Text : "";
+                    count += d8.Text != "0" ? d8.Text : "";
+                    
+                    //count += d2.Text + d3.Text + d4.Text + d5.Text+ "." + d6.Text + d7.Text + d8.Text;
+                    SaveInfoAccount(count);
+                }
+                else
+                {
+                    await DisplayAlert("Внимание", "Не все введенные символы являются цифрами. Пожалуйста, проверьте правильность введенных показаний", "OK");
+                }
+            }
+            catch(Exception ex)
+            {
+                await DisplayAlert("ОШИБКА", "При передаче показаний произошла ошибка", "OK");
+            }
+            
         }
-        
+
         void SetTextAndColor()
         {
             if (meter.Resource.ToLower().Contains("холодное"))
             {
                 img.Source = ImageSource.FromFile("ic_cold_water");
-            }else if (meter.Resource.ToLower().Contains("горячее"))
+            }
+            else if (meter.Resource.ToLower().Contains("горячее"))
             {
                 img.Source = ImageSource.FromFile("ic_heat_water");
             }
@@ -125,7 +211,7 @@ namespace xamarinJKH.Counters
                 FontSize = 15
             });
             UniqNumLbl.FormattedText = formattedUniq;
-            
+
             FormattedString formattedCheckup = new FormattedString();
             formattedCheckup.Spans.Add(new Span
             {
@@ -142,7 +228,7 @@ namespace xamarinJKH.Counters
                 FontSize = 15
             });
             CheckupLbl.FormattedText = formattedCheckup;
-            
+
             FormattedString formattedRecheckup = new FormattedString();
             formattedRecheckup.Spans.Add(new Span
             {
@@ -165,7 +251,7 @@ namespace xamarinJKH.Counters
                 //PredCount.Text = meter.Values[0].Value.ToString(CultureInfo.InvariantCulture);
             }
         }
-        
+
         public async void SaveInfoAccount(string count)
         {
             if (!string.IsNullOrEmpty(count))
@@ -173,7 +259,7 @@ namespace xamarinJKH.Counters
                 progress.IsVisible = true;
                 FrameBtnLogin.IsVisible = false;
                 progress.IsVisible = true;
-                CommonResult result = await _server.SaveMeterValue(meter.ID.ToString(), count.Replace(",", "."), "", "");
+                CommonResult result = await _server.SaveMeterValue(meter.ID.ToString(), count, "", "");
                 if (result.Error == null)
                 {
                     Console.WriteLine(result.ToString());
@@ -207,6 +293,98 @@ namespace xamarinJKH.Counters
             {
                 await DisplayAlert("Введите показания", "", "OK");
             }
+        }
+
+        private void d1_Completed(object sender, EventArgs e)
+        {            
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if(string.IsNullOrWhiteSpace(d1.Text))
+                {
+                    return;
+                }
+                
+                d2.Unfocus();
+                d2.Focus();                
+            });
+        }
+        private void d2_Completed(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (string.IsNullOrWhiteSpace(d2.Text))
+                {
+                    return;
+                }
+
+                d3.Unfocus();
+                d3.Focus();
+            });
+        }
+        private void d3_Completed(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (string.IsNullOrWhiteSpace(d3.Text))
+                {
+                    return;
+                }
+
+                d4.Unfocus();
+                d4.Focus();
+            });
+        }
+        private void d4_Completed(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (string.IsNullOrWhiteSpace(d4.Text))
+                {
+                    return;
+                }
+
+                d5.Unfocus();
+                d5.Focus();
+            });
+        }
+        private void d5_Completed(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (string.IsNullOrWhiteSpace(d5.Text))
+                {
+                    return;
+                }
+
+                d6.Unfocus();
+                d6.Focus();
+            });
+        }
+        private void d6_Completed(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (string.IsNullOrWhiteSpace(d6.Text))
+                {
+                    return;
+                }
+
+                d7.Unfocus();
+                d7.Focus();
+            });
+        }
+        private void d7_Completed(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (string.IsNullOrWhiteSpace(d7.Text))
+                {
+                    return;
+                }
+
+                d8.Unfocus();
+                d8.Focus();
+            });
         }
     }
 }
