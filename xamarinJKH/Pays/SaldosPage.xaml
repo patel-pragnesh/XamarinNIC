@@ -5,6 +5,7 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
              xmlns:pays="clr-namespace:xamarinJKH.Pays;assembly=xamarinJKH"
+             xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.Pays.SaldosPage">
     <ContentPage.Content>
@@ -114,10 +115,10 @@
                              Factor=0,
                              Constant=25}" />
             </RelativeLayout>
-            <Frame CornerRadius="30"
-                   Margin="20, 15, 20, 15"
-                   BackgroundColor="White"
-                   Padding="15">
+            <customRenderers:MaterialFrame Elevation="20" CornerRadius="30"
+                                           Margin="20, 15, 20, 15"
+                                           BackgroundColor="White"
+                                           Padding="15">
                 <StackLayout VerticalOptions="FillAndExpand"
                              Spacing="15">
                     <StackLayout Orientation="Horizontal">
@@ -200,7 +201,7 @@
                     </ListView>
                 </StackLayout>
 
-            </Frame>
+            </customRenderers:MaterialFrame>
         </StackLayout>
 
     </ContentPage.Content>

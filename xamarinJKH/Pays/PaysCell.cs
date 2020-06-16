@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using SimpleImageButton.SimpleImageButton.Models;
 using Xamarin.Forms;
+using xamarinJKH.CustomRenderers;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Main
@@ -16,8 +17,9 @@ namespace xamarinJKH.Main
 
         public PaysCell()
         {
-            Frame frame = new Frame();
+            MaterialFrame frame = new MaterialFrame();
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
+            frame.Elevation = 20;
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;
             frame.Margin = new Thickness(10, 0, 10, 10);

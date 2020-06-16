@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:xamarinJKH"
              xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.Main.ProfilePage">
     <ContentPage.Content>
@@ -106,10 +107,10 @@
                         Margin="10, -170, 10, 0">
                 <StackLayout
                     VerticalOptions="StartAndExpand">
-                    <Frame CornerRadius="30"
-                           Margin="10, 30, 10, 15"
-                           BackgroundColor="White"
-                           Padding="0">
+                    <customRenderers:MaterialFrame Elevation="20" CornerRadius="30"
+                                                   Margin="10, 30, 10, 15"
+                                                   BackgroundColor="White"
+                                                   Padding="0">
 
                         <StackLayout
                             Margin="10, 20, 10, 10">
@@ -253,11 +254,12 @@
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
-                    </Frame>
-                    <Frame CornerRadius="30"
-                           Margin="10, 15, 10, 15"
-                           BackgroundColor="White"
-                           Padding="0">
+                    </customRenderers:MaterialFrame>
+                    <customRenderers:MaterialFrame Elevation="20"
+                                                   CornerRadius="30"
+                                                   Margin="10, 15, 10, 15"
+                                                   BackgroundColor="White"
+                                                   Padding="0">
 
                         <StackLayout
                             Margin="10, 20, 10, 10">
@@ -280,7 +282,8 @@
                                     Orientation="Horizontal">
                                     <Switch
                                         OnColor="Red"
-                                        IsToggled="true"
+                                        IsToggled="{Binding isSave}"
+                                        Toggled="SwitchSavePass_OnPropertyChanged"
                                         Margin="5, 0, 0, 0"
                                         x:Name="SwitchSavePass" />
                                     <Label Text="Не сохранять пароль"
@@ -291,7 +294,7 @@
                                 </StackLayout>
                             </StackLayout>
                         </StackLayout>
-                    </Frame>
+                    </customRenderers:MaterialFrame>
                     <Frame CornerRadius="15"
                            BackgroundColor="Red"
                            Margin="10, 10, 10, 10"

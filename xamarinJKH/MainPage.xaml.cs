@@ -36,12 +36,9 @@ namespace xamarinJKH
             var startRegForm = new TapGestureRecognizer();
             startRegForm.Tapped += async (s, e) => { await Navigation.PushModalAsync(new RegistrForm(this)); };
             RegistLabel.GestureRecognizers.Add(startRegForm);
-            
+
             var startLogin = new TapGestureRecognizer();
-            startLogin.Tapped += async (s, e) =>
-            {
-                Login(EntryLogin.Text, EntryPass.Text);
-            };
+            startLogin.Tapped += async (s, e) => { Login(EntryLogin.Text, EntryPass.Text); };
             FrameBtnLogin.GestureRecognizers.Add(startLogin);
 
             var forgetPasswordVisible = new TapGestureRecognizer();
@@ -61,20 +58,19 @@ namespace xamarinJKH
             EntryLogin.Text = "";
             EntryPass.Text = "";
             // Login("79237173372", "123");
-            
+
             // Login("79261270258", "19871987");
             // Login("79261937745", "123");
-            string login = Preferences.Get("login","" );
-            string pass = Preferences.Get("pass","" );
-            if (Settings.IsFirsStart && !pass.Equals("") && !login.Equals(""))
+            string login = Preferences.Get("login", "");
+            string pass = Preferences.Get("pass", "");
+            bool isSave = Preferences.Get("isPass", false);
+            if (Settings.IsFirsStart && !pass.Equals("") && !login.Equals("") && !isSave)
             {
-              
                 Login(login, pass);
                 Settings.IsFirsStart = false;
                 EntryLogin.Text = login;
                 EntryPass.Text = pass;
             }
-            
         }
 
         private async void getSettings()
@@ -143,7 +139,7 @@ namespace xamarinJKH
                 .Replace("(", "")
                 .Replace(")", "")
                 .Replace("-", "");
-           
+
             if (!replace.Equals("") && !pass.Equals(""))
             {
                 if (replace.Length < 11)
@@ -153,6 +149,7 @@ namespace xamarinJKH
                     FrameBtnLogin.IsVisible = true;
                     return;
                 }
+
                 LoginResult login = await server.Login(replace, pass);
                 if (login.Error == null)
                 {
@@ -161,8 +158,8 @@ namespace xamarinJKH
                     Settings.EventBlockData = await server.GetEventBlockData();
                     ItemsList<NamedValue> result = await server.GetRequestsTypes();
                     Settings.TypeApp = result.Data;
-                    Preferences.Set("login",replace );
-                    Preferences.Set("pass",pass );
+                    Preferences.Set("login", replace);
+                    Preferences.Set("pass", pass);
                     await Navigation.PushModalAsync(new BottomNavigationPage());
                 }
                 else

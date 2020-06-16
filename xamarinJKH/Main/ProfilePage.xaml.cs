@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
@@ -18,9 +20,11 @@ namespace xamarinJKH.Main
     {
         private LoginResult Person = new LoginResult();
         private RestClientMP _server = new RestClientMP();
+        public bool isSave  {get;set;}
         public ProfilePage()
         {
             InitializeComponent();
+            isSave = Preferences.Get("isPass", false);
             NavigationPage.SetHasNavigationBar(this, false);
             var exitClick = new TapGestureRecognizer();
             exitClick.Tapped += async (s, e) =>
@@ -54,6 +58,7 @@ namespace xamarinJKH.Main
             SetColor();
             EntryFio.Text = Settings.Person.FIO;
             EntryEmail.Text = Settings.Person.Email;
+            BindingContext = this;
         }
         
         private async void ButtonClick(object sender, EventArgs e)
@@ -141,6 +146,14 @@ namespace xamarinJKH.Main
             SwitchSavePass.ThumbColor = Color.Black;
             BtnExit.TextColor = hexColor;
             progress.Color = hexColor;
+
+            
         }
+
+        private void SwitchSavePass_OnPropertyChanged(object sender, ToggledEventArgs toggledEventArgs)
+        {
+            Preferences.Set("isPass",isSave);
+        }
+     
     }
 }

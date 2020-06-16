@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms;
+using xamarinJKH.CustomRenderers;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Questions
@@ -15,7 +16,8 @@ namespace xamarinJKH.Questions
 
         public QuestionsCell()
         {
-            Frame frame = new Frame();
+            MaterialFrame frame = new MaterialFrame();
+            frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;

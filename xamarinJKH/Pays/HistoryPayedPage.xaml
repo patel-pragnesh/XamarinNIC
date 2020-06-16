@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:pays="clr-namespace:xamarinJKH.Pays;assembly=xamarinJKH"
+             xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.Pays.HistoryPayedPage">
     <ContentPage.Content>
@@ -115,11 +116,11 @@
             </RelativeLayout>
             <StackLayout
                 VerticalOptions="FillAndExpand">
-                <Frame CornerRadius="40"
-                       Margin="20, 0, 20, -60"
-                       VerticalOptions="Start"
-                       BackgroundColor="#494949"
-                       Padding="20,15,20,80">
+                <customRenderers:MaterialFrame Elevation="20" CornerRadius="40"
+                                               Margin="20, 0, 20, -60"
+                                               VerticalOptions="Start"
+                                               BackgroundColor="#494949"
+                                               Padding="20,15,20,80">
                     <StackLayout
                         HorizontalOptions="Center"
                         Orientation="Horizontal">
@@ -154,7 +155,7 @@
                                 HorizontalOptions="Fill" />
                         </StackLayout>
                     </StackLayout>
-                </Frame>
+                </customRenderers:MaterialFrame>
                 <Frame CornerRadius="30"
                        Margin="20, 0, 20, 15"
                        BackgroundColor="White"

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Globalization;
 using Xamarin.Forms;
+using xamarinJKH.CustomRenderers;
 using xamarinJKH.Utils;
 using xamarinJKH.Server.RequestModel;
 
@@ -37,7 +38,8 @@ namespace xamarinJKH.Main
         StackLayout count3Stack = new StackLayout();
         public MetersThreeCell()
         {
-            Frame frame = new Frame();
+            MaterialFrame frame = new MaterialFrame();
+            frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;

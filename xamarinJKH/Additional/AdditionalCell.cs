@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Xamarin.Forms;
+using xamarinJKH.CustomRenderers;
 using xamarinJKH.Server;
 
 namespace xamarinJKH.Additional
@@ -13,7 +14,8 @@ namespace xamarinJKH.Additional
         public AdditionalCell()
         {
             image = new Image();
-            Frame frame = new Frame();
+            MaterialFrame frame = new MaterialFrame();
+            frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;

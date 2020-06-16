@@ -1,5 +1,6 @@
 ﻿using Xamarin.Essentials;
 using Xamarin.Forms;
+using xamarinJKH.CustomRenderers;
 using xamarinJKH.Notifications;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
@@ -15,7 +16,8 @@ namespace xamarinJKH
 
         public NotificationCell()
         {
-            Frame frame = new Frame();
+            MaterialFrame frame = new MaterialFrame();
+            frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;
