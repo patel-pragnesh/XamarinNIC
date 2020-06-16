@@ -379,11 +379,19 @@ namespace xamarinJKH.Counters
         }
 
         private void d1_Completed(object sender, EventArgs e)
-        {            
+        {
+            var entryNew = sender as CounterEntryNew;
             Device.BeginInvokeOnMainThread(() =>
             {
-                if(string.IsNullOrWhiteSpace(d1.Text))
+                if(string.IsNullOrWhiteSpace(entryNew.Text))
                 {
+                    return;
+                }
+                
+                if(!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+                {
+                    entryNew.Text = "";
+                    entryNew.Focus();
                     return;
                 }
                 
@@ -393,10 +401,18 @@ namespace xamarinJKH.Counters
         }
         private void d2_Completed(object sender, EventArgs e)
         {
+            var entryNew = sender as CounterEntryNew;
             Device.BeginInvokeOnMainThread(() =>
             {
-                if (string.IsNullOrWhiteSpace(d2.Text))
+                if (string.IsNullOrWhiteSpace(entryNew.Text))
                 {
+                    return;
+                }
+
+                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+                {
+                    entryNew.Text = "";
+                    entryNew.Focus();
                     return;
                 }
 
@@ -405,13 +421,19 @@ namespace xamarinJKH.Counters
             });
         }
         private void d3_Completed(object sender, EventArgs e)
-        {           
-
+        {
+            var entryNew = sender as CounterEntryNew;
             Device.BeginInvokeOnMainThread(() =>
             {
+                if (string.IsNullOrWhiteSpace(entryNew.Text))
+                {
+                    return;
+                }
 
-                if (string.IsNullOrWhiteSpace(d3.Text))
-                { 
+                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+                {
+                    entryNew.Text = "";
+                    entryNew.Focus();
                     return;
                 }
 
@@ -421,10 +443,18 @@ namespace xamarinJKH.Counters
         }
         private void d4_Completed(object sender, EventArgs e)
         {
+            var entryNew = sender as CounterEntryNew;
             Device.BeginInvokeOnMainThread(() =>
             {
-                if (string.IsNullOrWhiteSpace(d4.Text))
+                if (string.IsNullOrWhiteSpace(entryNew.Text))
                 {
+                    return;
+                }
+
+                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+                {
+                    entryNew.Text = "";
+                    entryNew.Focus();
                     return;
                 }
 
@@ -434,10 +464,18 @@ namespace xamarinJKH.Counters
         }
         private void d5_Completed(object sender, EventArgs e)
         {
+            var entryNew = sender as CounterEntryNew;
             Device.BeginInvokeOnMainThread(() =>
             {
-                if (string.IsNullOrWhiteSpace(d5.Text))
+                if (string.IsNullOrWhiteSpace(entryNew.Text))
                 {
+                    return;
+                }
+
+                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+                {
+                    entryNew.Text = "";
+                    entryNew.Focus();
                     return;
                 }
 
@@ -447,10 +485,18 @@ namespace xamarinJKH.Counters
         }
         private void d6_Completed(object sender, EventArgs e)
         {
+            var entryNew = sender as CounterEntryNew;
             Device.BeginInvokeOnMainThread(() =>
             {
-                if (string.IsNullOrWhiteSpace(d6.Text))
+                if (string.IsNullOrWhiteSpace(entryNew.Text))
                 {
+                    return;
+                }
+
+                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+                {
+                    entryNew.Text = "";
+                    entryNew.Focus();
                     return;
                 }
 
@@ -460,15 +506,42 @@ namespace xamarinJKH.Counters
         }
         private void d7_Completed(object sender, EventArgs e)
         {
+            var entryNew = sender as CounterEntryNew;
             Device.BeginInvokeOnMainThread(() =>
             {
-                if (string.IsNullOrWhiteSpace(d7.Text))
+                if (string.IsNullOrWhiteSpace(entryNew.Text))
                 {
+                    return;
+                }
+
+                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+                {
+                    entryNew.Text = "";
+                    entryNew.Focus();
                     return;
                 }
 
                 d8.Unfocus();
                 d8.Focus();
+            });
+        }
+
+        private void d8_Completed(object sender, EventArgs e)
+        {
+            var entryNew = sender as CounterEntryNew;
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (string.IsNullOrWhiteSpace(entryNew.Text))
+                {
+                    return;
+                }
+
+                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+                {
+                    entryNew.Text = "";
+                    entryNew.Focus();
+                    return;
+                }
             });
         }
     }
