@@ -129,16 +129,25 @@ namespace xamarinJKH.Shop
                 }
             }
 
+            bool isSecondElement = true;
             //категории в меню со скроллом
             foreach (var c in CategoriesGoods)
             {
                 var b = new Button();
                 if (c.Key == CategoriesGoods.Keys.First())
                 {
-                b = GetLabelForCategory(c.Key, true);
+                    b = GetLabelForCategory(c.Key, true);
+                    prevButton = b;
                 }
                 else
-                 b = GetLabelForCategory(c.Key,false);
+                {
+                    b = GetLabelForCategory(c.Key, false); 
+                    if(isSecondElement)
+                    {
+                        isSecondElement = false;
+                        nextButton = b;
+                    }
+                }
 
                 GoodsCategories.Children.Add(b);
             }
@@ -153,6 +162,10 @@ namespace xamarinJKH.Shop
         }
 
 
+        Button prevButton = null;
+        Button nextButton = null;
+
+
         Button GetLabelForCategory(string c, bool needUnderLine)
         {
             var b = new Button() { BackgroundColor = Color.Transparent };
@@ -160,6 +173,15 @@ namespace xamarinJKH.Shop
             b.FontSize = 20;
             b.TextColor = Color.White;
             b.BorderWidth = 0;
+
+            SwipeGestureRecognizer recognizer = new SwipeGestureRecognizer() { Direction = SwipeDirection.Right };
+            recognizer.Swiped += SwipeGestureRecognizer_Swiped;
+            b.GestureRecognizers.Add(recognizer);
+
+            SwipeGestureRecognizer recognizerLeft = new SwipeGestureRecognizer() { Direction = SwipeDirection.Left };
+            recognizerLeft.Swiped += SwipeGestureRecognizer_SwipedLeft;
+            b.GestureRecognizers.Add(recognizerLeft);
+
 
             //StackLayout labelStack = new StackLayout() { Margin = new Thickness(10, 10, 10, 10), BackgroundColor = Color.Transparent };
 
@@ -185,49 +207,43 @@ namespace xamarinJKH.Shop
             return b /*labelStack*/;
         }
 
+
         private void B_Clicked(object sender, EventArgs e)
         {
             var b = (Button)sender;
-            //var cat = (Label)sl.Children.First();
+            
+            prevButton = b;
+            var fff = GoodsCategories.Children.FirstOrDefault(_ => ((Button)_).Text == b.Text);
+            var indexNetButton = GoodsCategories.Children.IndexOf(fff);
+            if (GoodsCategories.Children.Count <= indexNetButton)
+                nextButton = (Button)GoodsCategories.Children[indexNetButton];
+            else
+                nextButton = (Button)fff;
 
-            //cat.TextDecorations = TextDecorations.Underline;
+
             var catName = b.Text;
-
 
             if (prevCategoryTapped == catName)
                 return;
             if (!string.IsNullOrWhiteSpace(prevCategoryTapped))
             {
-                
-
                 var sp = GoodsCategories.Children.FirstOrDefault(_ => ((Button)_).Text == prevCategoryTapped);
                 if (sp != null)
                 {
                     var bPrev = (Button)sp;
                     bPrev.TextColor = Color.White;
-                    //var indexP =(Button)GoodsCategories.Children.IndexOf(sp);
-                    //GoodsCategories.Children.RemoveAt(indexP);
-                    //GoodsCategories.Children.Insert(indexP, GetLabelForCategory(prevCategoryTapped.Text, false));
                 }
             }
             b.TextColor = colorFromMobileSettings;
             //замена категории
-            prevCategoryTapped = catName;
-
-            //var s = GoodsCategories.Children.FirstOrDefault(_ => ((Label)((StackLayout)_).Children[0]).Text == cat.Text);
-            //if (s != null)
-            //{
-            //    var indexP = GoodsCategories.Children.IndexOf(s);
-            //    GoodsCategories.Children.RemoveAt(indexP);
-            //    GoodsCategories.Children.Insert(indexP, GetLabelForCategory(cat.Text, true));
-            //}
+            prevCategoryTapped = catName;                       
 
             currentDisplayCategoryKey = catName;
 
             setList(catName);
         }
 
-        //static Label prevCategoryTapped;
+        
         static string prevCategoryTapped;
 
 
@@ -1018,5 +1034,17 @@ namespace xamarinJKH.Shop
                 await DisplayAlert("Ошибка", "Корзина пуста", "OK");
             }
         }
+
+        private void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
+        {
+            if (prevButton != null)
+                B_Clicked(prevButton, new EventArgs());
+        }
+        private void SwipeGestureRecognizer_SwipedLeft(object sender, SwipedEventArgs e)
+        {
+            if (nextButton != null)
+                B_Clicked(nextButton, new EventArgs());
+        }
+        
     }
 }

@@ -188,7 +188,11 @@ namespace xamarinJKH.Main
                 var identLength = Settings.Person.Accounts[Picker.SelectedIndex - 1].Ident.Length;
                 if (identLength < 6)
                 {
-                    Picker.WidthRequest = identLength * 9;
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        Picker.WidthRequest = identLength * 10;
+                        //Picker.MinimumWidthRequest = identLength * 9;
+                    });
                 }
             }
             catch (Exception ex)
@@ -198,7 +202,11 @@ namespace xamarinJKH.Main
                     var identLength = Settings.Person.Accounts[Picker.SelectedIndex].Ident.Length;
                     if (identLength < 6)
                     {
-                        Picker.WidthRequest = identLength * 9;
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            Picker.WidthRequest = identLength * 9;
+                           // Picker.MinimumWidthRequest = identLength * 9;
+                        });
                     }
                 }
             }

@@ -77,7 +77,11 @@
             
             <StackLayout VerticalOptions="FillAndExpand" >
                 <ScrollView Orientation="Horizontal" Margin="35,0,0,20">
-                    <StackLayout x:Name="GoodsCategories" Orientation="Horizontal">                       
+                    <StackLayout x:Name="GoodsCategories" Orientation="Horizontal">
+                        <StackLayout.GestureRecognizers>
+                            <SwipeGestureRecognizer Direction="Right" Swiped="SwipeGestureRecognizer_Swiped"></SwipeGestureRecognizer>
+                            <SwipeGestureRecognizer Direction="Left" Swiped="SwipeGestureRecognizer_SwipedLeft"></SwipeGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>                    
                 </ScrollView>
 

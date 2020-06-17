@@ -421,6 +421,22 @@ namespace xamarinJKH.Counters
             }
         }
 
+        void marginSetOnIos(CounterEntryNew d)
+        {
+            if(Device.RuntimePlatform==Device.iOS)
+            {
+                if (string.IsNullOrWhiteSpace(d.Text))
+                {
+                    d.Margin = new Thickness(0, 0, -15, -10 );
+                }
+                //else
+                //{
+                //    d.Margin = new Thickness(0, 0, 0, -10);
+                //}
+            }
+            
+        }
+
         private void d1_Completed(object sender, EventArgs e)
         {
             var entryNew = sender as CounterEntryNew;

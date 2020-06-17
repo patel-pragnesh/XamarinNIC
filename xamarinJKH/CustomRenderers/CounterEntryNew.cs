@@ -12,9 +12,20 @@ namespace xamarinJKH
             FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Entry));
             FontAttributes = FontAttributes.Bold;
             MaxLength = 1;
-            HorizontalTextAlignment = TextAlignment.Center; 
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                HorizontalTextAlignment = TextAlignment.Start;
+                Margin = new Thickness(0, 0, -15, -10);
+            }
+            else
+            {
+                HorizontalTextAlignment = TextAlignment.Center;
+                Margin = new Thickness(0, 0, 0, -10);
+            }
+            
+            
             Keyboard = Keyboard.Numeric;
-            Margin = new Thickness(0, 0, 0, -10);
+            //Margin = new Thickness(0, 0, 0, -10);
             Grid.SetRow(this, 0);
         }
 
