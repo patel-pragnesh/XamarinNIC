@@ -25,6 +25,7 @@
                 <Image Source="top_fon_login"
                        HorizontalOptions="Center" />
                 <Label
+                    x:Name="EntryLabel"
                     Text="Вход"
                     FontAttributes="Bold"
                     FontSize="27"
@@ -104,6 +105,14 @@
                                                 <mask:MaskedBehavior Mask="+7 (XXX) XXX-XXXX" />
                                             </Entry.Behaviors>
                                         </Entry>
+                                        <Entry x:Name="EntryLoginConst"
+                                               FontSize="15"
+                                               VerticalOptions="End"
+                                               HorizontalTextAlignment="Center"
+                                               TextColor="#A2A2A2"
+                                               HorizontalOptions="FillAndExpand"
+                                               Keyboard="Email">
+                                        </Entry>
                                     </StackLayout>
 
                                     <StackLayout
@@ -140,6 +149,13 @@
                                                VerticalOptions="Center" />
 
                                         <Entry x:Name="EntryPass"
+                                               FontSize="15"
+                                               IsPassword="True"
+                                               TextColor="#A2A2A2"
+                                               BackgroundColor="Transparent"
+                                               HorizontalTextAlignment="Center"
+                                               HorizontalOptions="FillAndExpand" />
+                                        <Entry x:Name="EntryPassConst"
                                                FontSize="15"
                                                IsPassword="True"
                                                TextColor="#A2A2A2"
@@ -212,6 +228,7 @@
                                     </StackLayout>
                                 </Frame>
                                 <StackLayout
+                                    x:Name="RegStackLayout"
                                     Margin="0, 15, 0, 10"
                                     Orientation="Horizontal">
                                     <Label

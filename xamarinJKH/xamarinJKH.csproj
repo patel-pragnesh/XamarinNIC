@@ -234,5 +234,11 @@
     <Compile Update="DialogViews\RatingBarContentView.xaml.cs">
       <DependentUpon>RatingBarContentView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="MainConst\BottomNavigationConstPage.xaml.cs">
+      <DependentUpon>BottomNavigationConstPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MainConst\" />
   </ItemGroup>
 </Project>

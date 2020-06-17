@@ -14,6 +14,7 @@ using Xamarin.Forms.Internals;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using xamarinJKH.Main;
+using xamarinJKH.MainConst;
 using xamarinJKH.Utils;
 using XamEffects;
 using NavigationPage = Xamarin.Forms.NavigationPage;
@@ -23,6 +24,7 @@ namespace xamarinJKH
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
+
     public partial class MainPage : ContentPage
     {
         private RestClientMP server = new RestClientMP();
@@ -37,14 +39,19 @@ namespace xamarinJKH
             startRegForm.Tapped += async (s, e) => { await Navigation.PushModalAsync(new RegistrForm(this)); };
             RegistLabel.GestureRecognizers.Add(startRegForm);
 
+            var authConst = new TapGestureRecognizer();
+            authConst.Tapped += ChoiceAuth;
+            LabelSotr.GestureRecognizers.Add(authConst);
+
             var startLogin = new TapGestureRecognizer();
-            startLogin.Tapped += async (s, e) => { Login(EntryLogin.Text, EntryPass.Text); };
+            startLogin.Tapped += ButtonClick;
             FrameBtnLogin.GestureRecognizers.Add(startLogin);
 
             var forgetPasswordVisible = new TapGestureRecognizer();
             forgetPasswordVisible.Tapped += async (s, e) =>
             {
                 EntryPass.IsPassword = !EntryPass.IsPassword;
+                EntryPassConst.IsPassword = !EntryPassConst.IsPassword;
                 if (EntryPass.IsPassword)
                 {
                     ImageClosePass.Foreground = Color.FromHex(Settings.MobileSettings.color);
@@ -53,9 +60,11 @@ namespace xamarinJKH
                 {
                     ImageClosePass.Foreground = Color.DarkSlateGray;
                 }
+
             };
             ImageClosePass.GestureRecognizers.Add(forgetPasswordVisible);
             EntryLogin.Text = "";
+            EntryLoginConst.Text = "";
             EntryPass.Text = "";
             // Login("79237173372", "123");
 
@@ -63,18 +72,32 @@ namespace xamarinJKH
             // Login("79261937745", "123");
             string login = Preferences.Get("login", "");
             string pass = Preferences.Get("pass", "");
+            string loginConst = Preferences.Get("loginConst", "");
+            string passConst = Preferences.Get("passConst", "");
             bool isSave = Preferences.Get("isPass", false);
+            if (Settings.ConstAuth && Settings.IsFirsStart && !passConst.Equals("") && !loginConst.Equals("") && !isSave)
+            {
+                LoginDispatcher(loginConst, passConst);
+                Settings.IsFirsStart = false;
+                EntryLogin.Text = login;
+                EntryLoginConst.Text = loginConst;
+                EntryPass.Text = pass;
+                EntryPassConst.Text = passConst;
+            }
             if (Settings.IsFirsStart && !pass.Equals("") && !login.Equals("") && !isSave)
             {
                 Login(login, pass);
                 Settings.IsFirsStart = false;
                 EntryLogin.Text = login;
+                EntryLoginConst.Text = loginConst;
                 EntryPass.Text = pass;
+                EntryPassConst.Text = passConst;
             }
         }
 
         private async void getSettings()
         {
+            
             Settings.MobileSettings = await server.MobileAppSettings("2.303", "1");
             if (Settings.MobileSettings.Error == null)
             {
@@ -121,11 +144,74 @@ namespace xamarinJKH
                 getSettings();
                 // BtnLogin.IsEnabled = false;
             }
+            if (Settings.ConstAuth)
+            {
+                Settings.ConstAuth = true;
+                EntryLabel.Text = "Вход для сотрудника";
+                LabelSotr.Text = "Вход для жителя";
+                LabelPhone.Text = "Логин";
+                RegStackLayout.IsVisible = false;
+                EntryLogin.IsVisible = false;
+                EntryLoginConst.IsVisible = true;
+                EntryPass.IsVisible = false;
+                EntryPassConst.IsVisible = true;
+                IconViewLogin.Source = "ic_fio_reg";
+            }
+            else
+            {
+                Settings.ConstAuth = false;
+                EntryLabel.Text = "Вход";
+                LabelSotr.Text = "Вход для сотрудника";
+                LabelPhone.Text = "Телефон";
+                RegStackLayout.IsVisible = true;
+                EntryLogin.IsVisible = true;
+                EntryLoginConst.IsVisible = false;
+                EntryPass.IsVisible = true;
+                EntryPassConst.IsVisible = false;
+                IconViewLogin.Source = "ic_phone_login";
+            }
+        }
+
+        private async void ChoiceAuth(object sender, EventArgs e)
+        {
+            if (Settings.ConstAuth)
+            {
+                Settings.ConstAuth = false;
+                EntryLabel.Text = "Вход";
+                LabelSotr.Text = "Вход для сотрудника";
+                LabelPhone.Text = "Телефон";
+                RegStackLayout.IsVisible = true;
+                EntryLogin.IsVisible = true;
+                EntryLoginConst.IsVisible = false;
+                EntryPass.IsVisible = true;
+                EntryPassConst.IsVisible = false;
+                IconViewLogin.Source = "ic_phone_login";
+            }
+            else
+            {
+                Settings.ConstAuth = true;
+                EntryLabel.Text = "Вход для сотрудника";
+                LabelSotr.Text = "Вход для жителя";
+                LabelPhone.Text = "Логин";
+                RegStackLayout.IsVisible = false;
+                EntryLogin.IsVisible = false;
+                EntryLoginConst.IsVisible = true;
+                EntryPass.IsVisible = false;
+                EntryPassConst.IsVisible = true;
+                IconViewLogin.Source = "ic_fio_reg";
+            }
         }
 
         private async void ButtonClick(object sender, EventArgs e)
         {
-            Login(EntryLogin.Text, EntryPass.Text);
+            if (Settings.ConstAuth)
+            {
+                LoginDispatcher(EntryLoginConst.Text, EntryPassConst.Text);
+            }
+            else
+            {
+                Login(EntryLogin.Text, EntryPass.Text);
+            }            
         }
 
         public async void Login(string loginAuth, string pass)
@@ -161,6 +247,54 @@ namespace xamarinJKH
                     Preferences.Set("login", replace);
                     Preferences.Set("pass", pass);
                     await Navigation.PushModalAsync(new BottomNavigationPage());
+                }
+                else
+                {
+                    if (login.Error.ToLower().Contains("unauthorized"))
+                    {
+                        await DisplayAlert("Ошибка", "Пользователь не найден", "OK");
+                    }
+                    else
+                    {
+                        await DisplayAlert("Ошибка", login.Error, "OK");
+                    }
+                }
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Заполните пустые поля", "OK");
+            }
+
+            progress.IsVisible = false;
+            FrameBtnLogin.IsVisible = true;
+        }
+
+        public async void LoginDispatcher(string loginAuth, string pass)
+        {
+            progress.IsVisible = true;
+            FrameBtnLogin.IsVisible = false;
+
+            var replace = loginAuth
+                .Replace("+", "")
+                .Replace(" ", "")
+                .Replace("(", "")
+                .Replace(")", "")
+                .Replace("-", "");
+
+            if (!replace.Equals("") && !pass.Equals(""))
+            {
+
+                LoginResult login = await server.LoginDispatcher(replace, pass);
+                if (login.Error == null)
+                {
+                    // await DisplayAlert("Успешно", login.ToString(), "OK");
+                    Settings.Person = login;
+                    //Settings.EventBlockData = await server.GetEventBlockData();
+                    ItemsList<NamedValue> result = await server.GetRequestsTypes();
+                    Settings.TypeApp = result.Data;
+                    Preferences.Set("loginConst", replace);
+                    Preferences.Set("passConst", pass);
+                    await Navigation.PushModalAsync(new BottomNavigationConstPage());
                 }
                 else
                 {

@@ -21,6 +21,7 @@ namespace xamarinJKH.Utils
         public static int TimerTime = 59;
 
         public static bool IsFirsStart = true;
+        public static bool ConstAuth = false;
         public static EventBlockData EventBlockData = new EventBlockData();
 
         public static string[] months =
