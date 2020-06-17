@@ -48,7 +48,7 @@ namespace xamarinJKH.Main
             SetText();
             SetColor();
             SetVisibleControls();
-
+            
         }
 
         void SetVisibleControls()
@@ -58,6 +58,8 @@ namespace xamarinJKH.Main
             setVisible(Settings.EventBlockData.Announcements.Count == 0, StartNotification, FrameNotification);
             setVisible(Settings.EventBlockData.AdditionalServices.Count == 0, StartOffers, FrameOffers);
             setVisible(false, StartShop, FrameShop);
+            
+            
         }
 
         void setVisible(bool visible, Action funk, VisualElement frame)

@@ -13,22 +13,24 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // Адрес сервера
+        public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
-        
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
         public const string REQUEST_CODE = "auth/RequestAccessCode"; // Запрос кода подтверждения
         public const string REQUEST_CHECK_CODE = "auth/CheckAccessCode"; // Подтверждение кода подтверждения
         public const string REGISTR_BY_PHONE = "auth/RegisterByPhone"; // Регистрация по телефону
-        
+        public const string SEND_CHECK_CODE = "auth/SendCheckCode"; // Запрос проверочного кода
+        public const string VALIDATE_CHECK_CODE = "auth/ValidateCheckCode "; // Проверка кода из смс
+
         public const string GET_MOBILE_SETTINGS = "Config/MobileAppSettings "; // Регистрация по телефону
         public const string GET_EVENT_BLOCK_DATA = "Common/EventBlockData"; // Блок события
         public const string GET_PHOTO_ADDITIONAL = "AdditionalServices/logo"; // Картинка доп услуги
         public const string GET_ACCOUNTING_INFO = "Accounting/Info"; // инфомация о начислениях
         public const string GET_FILE_BILLS = "Bills/Download"; // Получить квитанцию
-        
+
         public const string REQUEST_LIST = "Requests/List"; // Заявки
         public const string REQUEST_DETAIL_LIST = "Requests/Details"; // Заявки
         public const string REQUEST_UPDATES = "Requests/GetUpdates"; // Обновление заявок
@@ -38,19 +40,29 @@ namespace xamarinJKH.Server
         public const string GET_TYPE = "Requests/RequestTypes"; // Получение типов заявок
         public const string GET_FILE_APP = "Requests/File"; // Получение типов заявок
         public const string CLOSE_APP = "Requests/Close "; // Закрытие заявки
-        
+
         public const string UPDATE_PROFILE = "User/UpdateProfile"; // Обновить данные профиля
         public const string ADD_IDENT_PROFILE = "User/AddAccountByIdent"; // Привязать ЛС к профилю
-        
+
+        public const string
+            GET_PERSONAL_DATA = "User/GetPersonalDataByIdent"; // Получение данных о физ лице по номеру л/сч
+
+        public const string ADD_PERSONAL_DATA = "User/AddPersonalData"; // Добавление/обновление информации о физ лице
+
         public const string GET_METERS_THREE = "Meters/List"; // Получить последние 3 показания по приборам
         public const string SAVE_METER_VALUE = "Meters/SaveMeterValue"; // Получить полную инфу по новости
-        
+
         public const string GET_NEWS_FULL = "News/Content"; // Получить полную инфу по новости
         public const string GET_NEWS_IMAGE = "News/Image"; // Получить полную инфу по новости
-        
+
         public const string GET_SHOPS_GOODS = "Shops/Goods"; // Получить товары магазина
         public const string GET_SHOPS_GOODS_IMAGE = "Shops/GoodsImage"; // Получить картинку товара
         public const string SAVE_RESULT_POLL = "Polls/SaveResult"; // Получить картинку товара
+
+        public const string GET_OSS = "OSS/GetOSS"; // Получить список ОСС. 
+        public const string SAVE_ANSWER_OSS = "OSS/SaveAnswer"; // Сохранить ответ на вопрос.
+        public const string FINISH_OSS = "OSS/CompleteVote"; // Завершить голосование 
+
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -147,7 +159,8 @@ namespace xamarinJKH.Server
         /// <param name="password">Пароль</param>
         /// <param name="code">Код доступа необходимо запросить методом RequestAccessCode</param>
         /// <returns>CommonResult</returns>
-        public async Task<CommonResult> RegisterByPhone(string fio, string phone, string password, string code, string birthday )
+        public async Task<CommonResult> RegisterByPhone(string fio, string phone, string password, string code,
+            string birthday)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(REGISTR_BY_PHONE, Method.POST);
@@ -171,8 +184,8 @@ namespace xamarinJKH.Server
             }
 
             return response.Data;
-        } 
-       
+        }
+
 
         /// <summary>
         /// Подтверждение кода доступа
@@ -280,6 +293,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         /// <summary>
         /// Добавление новой заявки
         /// </summary>
@@ -287,7 +301,7 @@ namespace xamarinJKH.Server
         /// <param name="typeID">Тип заявки</param>
         /// <param name="Text">Текст заявки</param>
         /// <returns>id новой заявки</returns>
-        public async Task<IDResult> newApp(string ident , string typeID , string Text)
+        public async Task<IDResult> newApp(string ident, string typeID, string Text)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(NEW_APP, Method.POST);
@@ -311,6 +325,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         /// <summary>
         /// Добавление платной заявки
         /// </summary>
@@ -321,7 +336,8 @@ namespace xamarinJKH.Server
         /// <param name="paidSum">Сумма оплаты</param>
         /// <param name="paidServiceText">Текст для оплаты</param>
         /// <returns>id новой заявки</returns>
-        public async Task<IDResult> newAppPay(string ident , string typeID , string Text, bool isPaid, decimal paidSum, string paidServiceText )
+        public async Task<IDResult> newAppPay(string ident, string typeID, string Text, bool isPaid, decimal paidSum,
+            string paidServiceText)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(NEW_APP, Method.POST);
@@ -348,6 +364,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         /// <summary>
         /// Запрос списка заявок без сообщений и файлов
         /// </summary>
@@ -371,6 +388,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         /// <summary>
         /// Получение типов заявок
         /// </summary>
@@ -386,7 +404,7 @@ namespace xamarinJKH.Server
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 return new ItemsList<NamedValue>()
-                    {
+                {
                     Error = $"Ошибка {response.StatusDescription}"
                 };
             }
@@ -417,13 +435,14 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         /// <summary>
         /// Запрос об изменении заявок
         /// </summary>
         /// <param name="updateKey">ключ обновления</param>
         /// <param name="currentRequestId">id заявки (не обязательно)</param>
         /// <returns>RequestsUpdate</returns>
-        public async Task<RequestsUpdate> GetRequestsUpdates(string updateKey, string currentRequestId  )
+        public async Task<RequestsUpdate> GetRequestsUpdates(string updateKey, string currentRequestId)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(REQUEST_UPDATES, Method.POST);
@@ -435,7 +454,7 @@ namespace xamarinJKH.Server
                 currentRequestId
             });
             var response = await restClientMp.ExecuteTaskAsync<RequestsUpdate>(restRequest);
-            
+
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
             {
@@ -447,14 +466,14 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
-        
+
         /// <summary>
         /// Отправка сообщения по заявке
         /// </summary>
         /// <param name="text">текст сообщения</param>
         /// <param name="requestId">id заявки</param>
         /// <returns>CommonResult</returns>
-        public async Task<CommonResult> AddMessage(string text , string requestId)
+        public async Task<CommonResult> AddMessage(string text, string requestId)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(ADD_MESSAGE, Method.POST);
@@ -466,7 +485,7 @@ namespace xamarinJKH.Server
                 requestId
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
-            
+
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
             {
@@ -478,8 +497,8 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
-        
-        public async Task<CommonResult> AddFileApps(string requestId , string name, byte[] source, string path)
+
+        public async Task<CommonResult> AddFileApps(string requestId, string name, byte[] source, string path)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(ADD_FILE, Method.POST);
@@ -488,7 +507,7 @@ namespace xamarinJKH.Server
             restRequest.AddParameter("requestId", requestId);
             restRequest.AddFile(path, source, name);
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
-            
+
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
             {
@@ -500,6 +519,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         public async Task<byte[]> GetFileAPP(string id)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
@@ -515,6 +535,7 @@ namespace xamarinJKH.Server
 
             return response.RawBytes;
         }
+
         /// <summary>
         /// Получение полной инфы по новостям
         /// </summary>
@@ -559,6 +580,7 @@ namespace xamarinJKH.Server
 
             return response.RawBytes;
         }
+
         /// <summary>
         /// Получение картинки новости
         /// </summary>
@@ -649,7 +671,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
-        
+
         /// <summary>
         /// Сохранение показаний счетчика
         /// </summary>
@@ -681,6 +703,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         /// <summary>
         /// Получение товаров по магазину
         /// </summary>
@@ -703,7 +726,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
-        
+
         public async Task<MemoryStream> GetImageGoods(string id)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
@@ -719,7 +742,7 @@ namespace xamarinJKH.Server
 
             return new MemoryStream(response.RawBytes);
         }
-        
+
         public async Task<AddAccountResult> AddIdent(string Ident, bool Confirm = false)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
@@ -743,6 +766,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         public async Task<CommonResult> SaveResultPolls(PollingResult pollingResult)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
@@ -767,7 +791,224 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
-        
+
+        /// <summary>
+        /// Получить список ОСС
+        /// </summary>
+        /// <param name="getArchive">- 1-получать архивные данные, 0-нет (по умолчанию 1) </param>
+        /// <returns>OSS</returns>
+        public async Task<ItemsList<OSS>> GetOss(int getArchive = 1)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_OSS, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                getArchive
+            });
+            var response = await restClientMp.ExecuteTaskAsync<ItemsList<OSS>>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new ItemsList<OSS>()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
+        /// <summary>
+        /// Получение данных о физ лице по номеру л/сч
+        /// </summary>
+        /// <param name="Ident"> Лицевой счет</param>
+        /// <returns></returns>
+        public async Task<NaturalPerson> GetPersonalDataByIdent(string Ident)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_PERSONAL_DATA, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                Ident
+            });
+            var response = await restClientMp.ExecuteTaskAsync<NaturalPerson>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new NaturalPerson()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
+        /// <summary>
+        /// Добавление/обновление информации о физ лице
+        /// </summary>
+        /// <param name="ID">id</param>
+        /// <param name="Ident"> ЛС</param>
+        /// <param name="FIO">ФИО</param>
+        /// <param name="DateOfBirth">Дата рождения</param>
+        /// <param name="stringPlaceOfBirth">Место рождения</param>
+        /// <param name="PassportSerie">Серия</param>
+        /// <param name="PassportNumber">Номер</param>
+        /// <param name="PassportDate">Дата выдачи</param>
+        /// <param name="PassportIssuedBy">Выдал</param>
+        /// <param name="RegistrationAddress">Адрес регистрации</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> AddPersonalData(string ID, string Ident, string FIO, string DateOfBirth,
+            string stringPlaceOfBirth, string PassportSerie, string PassportNumber, string PassportDate,
+            string PassportIssuedBy, string RegistrationAddress)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(ADD_PERSONAL_DATA, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                ID,
+                Ident,
+                FIO,
+                DateOfBirth,
+                stringPlaceOfBirth,
+                PassportSerie,
+                PassportNumber,
+                PassportDate,
+                PassportIssuedBy,
+                RegistrationAddress
+                
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
+        /// <summary>
+        /// Отправка ответа на вопрос ОСС
+        /// </summary>
+        /// <param name="ossAnswer">Ответ</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> SaveAnswer(OSSAnswer ossAnswer)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(SAVE_ANSWER_OSS, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                ossAnswer
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
+        /// <summary>
+        /// Завершение голосования
+        /// </summary>
+        /// <param name="ID">id - голосования</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> CompleteVote(int ID)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(FINISH_OSS, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                ID
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
+        /// <summary>
+        /// Отправка кода подтверждения
+        /// </summary>
+        /// <param name="Phone">телефон пользователя</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> SendCheckCode(string Phone)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(SEND_CHECK_CODE, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddBody(new
+            {
+                Phone
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
+        /// <summary>
+        /// Проверка кода
+        /// </summary>
+        /// <param name="Phone">Телефон</param>
+        /// <param name="Code">Код</param>
+        /// <returns></returns>
+        public async Task<IsCorrected> ValidateCheckCode(string Phone, string Code)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(VALIDATE_CHECK_CODE, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddBody(new
+            {
+                Phone,
+                Code
+            });
+            var response = await restClientMp.ExecuteTaskAsync<IsCorrected>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new IsCorrected()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
         public async Task<CommonResult> CloseApp(string RequestId, string Text, string Mark)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
