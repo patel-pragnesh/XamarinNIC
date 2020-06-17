@@ -110,12 +110,16 @@ namespace xamarinJKH.Main
                     FontAttributes = FontAttributes.None,
                     FontSize = 15
                 });
-                if (Settings.Person.Accounts[0].MetersStartDay != null && Settings.Person.Accounts[0].MetersEndDay != null){
-                    if (Settings.Person.Accounts[0].MetersStartDay != 0 && Settings.Person.Accounts[0].MetersEndDay != 0)
+                if (Settings.Person.Accounts[0].MetersStartDay != null &&
+                    Settings.Person.Accounts[0].MetersEndDay != null)
+                {
+                    if (Settings.Person.Accounts[0].MetersStartDay != 0 &&
+                        Settings.Person.Accounts[0].MetersEndDay != 0)
                     {
                         formattedResource.Spans.Add(new Span
                         {
-                            Text = "c " + Settings.Person.Accounts[0].MetersStartDay + " по " + Settings.Person.Accounts[0].MetersEndDay + " числа ",
+                            Text = "c " + Settings.Person.Accounts[0].MetersStartDay + " по " +
+                                   Settings.Person.Accounts[0].MetersEndDay + " числа ",
                             TextColor = Color.White,
                             FontAttributes = FontAttributes.Bold,
                             FontSize = 15
@@ -138,7 +142,8 @@ namespace xamarinJKH.Main
                             FontSize = 15
                         });
                     }
-                }else
+                }
+                else
                 {
                     formattedResource.Spans.Add(new Span
                     {
@@ -148,6 +153,7 @@ namespace xamarinJKH.Main
                         FontSize = 15
                     });
                 }
+
                 PeriodSendLbl.FormattedText = formattedResource;
             }
             else
@@ -158,14 +164,14 @@ namespace xamarinJKH.Main
             countersList.BackgroundColor = Color.Transparent;
             countersList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
-        
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            
+
             new Task(SyncSetup).Start(); // This could be an await'd task if need be
         }
-        
+
         async void SyncSetup()
         {
             Device.BeginInvokeOnMainThread(() =>
@@ -174,7 +180,7 @@ namespace xamarinJKH.Main
                 RefreshCountersData();
             });
         }
-        
+
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -187,10 +193,13 @@ namespace xamarinJKH.Main
             }
             catch (Exception ex)
             {
-                var identLength = Settings.Person.Accounts[Picker.SelectedIndex].Ident.Length;
-                if (identLength < 6)
+                if (Picker.SelectedIndex != -1 && Settings.Person.Accounts.Count != 0)
                 {
-                    Picker.WidthRequest = identLength * 9;
+                    var identLength = Settings.Person.Accounts[Picker.SelectedIndex].Ident.Length;
+                    if (identLength < 6)
+                    {
+                        Picker.WidthRequest = identLength * 9;
+                    }
                 }
             }
 
@@ -203,7 +212,7 @@ namespace xamarinJKH.Main
                 }
             }
         }
-        
+
         void SetIdents()
         {
             Picker.TextColor = Color.White;
@@ -224,23 +233,24 @@ namespace xamarinJKH.Main
                         meters.Add(meterInfo);
                     }
                 }
+
                 _meterInfo = meters;
             }
+
             countersList.ItemsSource = null;
             countersList.ItemsSource = _meterInfo;
         }
-        
+
         private async void ButtonClick(object sender, EventArgs e)
         {
-            
         }
-        
+
         void SetTextAndColor()
         {
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.Phone;
         }
-        
+
         async void getInfo()
         {
             ItemsList<MeterInfo> info = await _server.GetThreeMeters();
@@ -263,11 +273,13 @@ namespace xamarinJKH.Main
                                 k = true;
                             }
                         }
+
                         if (k == false)
                         {
                             Accounts.Add(meterInfo.Ident);
                         }
                     }
+
                     Picker.ItemsSource = Accounts;
                     Picker.SelectedIndex = 0;
                 }
@@ -277,24 +289,26 @@ namespace xamarinJKH.Main
                 await DisplayAlert("Ошибка", "Не удалось получить информацию о начислениях", "OK");
             }
         }
-        
+
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             int currDay = DateTime.Now.Day;
             if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
-                        Settings.Person.Accounts[0].MetersEndDay >= currDay) || (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                        Settings.Person.Accounts[0].MetersEndDay == 0))
+                 Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
+                (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                 Settings.Person.Accounts[0].MetersEndDay == 0))
             {
                 MeterInfo select = e.Item as MeterInfo;
                 if (int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
                 {
-                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, select.Values[0].Value, select.Values[1].Value));
+                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, select.Values[0].Value,
+                        select.Values[1].Value));
                 }
                 else
                 {
                     await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this));
                 }
-            }            
+            }
         }
     }
 }
