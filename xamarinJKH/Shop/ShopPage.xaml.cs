@@ -137,7 +137,7 @@ namespace xamarinJKH.Shop
                 if (c.Key == CategoriesGoods.Keys.First())
                 {
                     b = GetLabelForCategory(c.Key, true);
-                    prevButton = b;
+                    //prevButton = b;
                 }
                 else
                 {
@@ -145,12 +145,19 @@ namespace xamarinJKH.Shop
                     if(isSecondElement)
                     {
                         isSecondElement = false;
-                        nextButton = b;
+                        //nextButton = b;
                     }
                 }
 
                 GoodsCategories.Children.Add(b);
+                
             }
+
+            Label foo = new Label() { Text = "masssssssssssssssssssssssssssssssssssssssssssssiveStringgggggggggggggggggggg",
+                TextColor = Color.Transparent,
+                FontSize = 14 };
+            GoodsCategories.Children.Add(foo);
+
 
             if (CategoriesGoods.Keys.FirstOrDefault() != null)
             {
@@ -162,9 +169,6 @@ namespace xamarinJKH.Shop
         }
 
 
-        Button prevButton = null;
-        Button nextButton = null;
-
 
         Button GetLabelForCategory(string c, bool needUnderLine)
         {
@@ -173,15 +177,6 @@ namespace xamarinJKH.Shop
             b.FontSize = 20;
             b.TextColor = Color.White;
             b.BorderWidth = 0;
-
-            SwipeGestureRecognizer recognizer = new SwipeGestureRecognizer() { Direction = SwipeDirection.Right };
-            recognizer.Swiped += SwipeGestureRecognizer_Swiped;
-            b.GestureRecognizers.Add(recognizer);
-
-            SwipeGestureRecognizer recognizerLeft = new SwipeGestureRecognizer() { Direction = SwipeDirection.Left };
-            recognizerLeft.Swiped += SwipeGestureRecognizer_SwipedLeft;
-            b.GestureRecognizers.Add(recognizerLeft);
-
 
             //StackLayout labelStack = new StackLayout() { Margin = new Thickness(10, 10, 10, 10), BackgroundColor = Color.Transparent };
 
@@ -210,24 +205,15 @@ namespace xamarinJKH.Shop
 
         private void B_Clicked(object sender, EventArgs e)
         {
-            var b = (Button)sender;
+            var b = (Button)sender;            
             
-            prevButton = b;
-            var fff = GoodsCategories.Children.FirstOrDefault(_ => ((Button)_).Text == b.Text);
-            var indexNetButton = GoodsCategories.Children.IndexOf(fff);
-            if (GoodsCategories.Children.Count <= indexNetButton)
-                nextButton = (Button)GoodsCategories.Children[indexNetButton];
-            else
-                nextButton = (Button)fff;
-
-
             var catName = b.Text;
 
             if (prevCategoryTapped == catName)
                 return;
             if (!string.IsNullOrWhiteSpace(prevCategoryTapped))
             {
-                var sp = GoodsCategories.Children.FirstOrDefault(_ => ((Button)_).Text == prevCategoryTapped);
+                var sp = GoodsCategories.Children.FirstOrDefault(_ => _.GetType() == typeof(Button) && ((Button)_).Text == prevCategoryTapped);
                 if (sp != null)
                 {
                     var bPrev = (Button)sp;
@@ -1035,16 +1021,37 @@ namespace xamarinJKH.Shop
             }
         }
 
-        private void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
-        {
-            if (prevButton != null)
-                B_Clicked(prevButton, new EventArgs());
-        }
-        private void SwipeGestureRecognizer_SwipedLeft(object sender, SwipedEventArgs e)
-        {
-            if (nextButton != null)
-                B_Clicked(nextButton, new EventArgs());
-        }
         
+
+        static double scrollXPosition=0;
+        private void ScrollView_Scrolled(object sender, ScrolledEventArgs e)
+        {
+            if(scrollXPosition+50<e.ScrollX)
+            {
+                var current =  GoodsCategories.Children.FirstOrDefault(_ => _.GetType() == typeof(Button) && ((Button)_).Text == currentDisplayCategoryKey);
+                var next = GoodsCategories.Children.FirstOrDefault(_ => _.X > current.X && _.GetType() == typeof(Button));
+                if(next!=null)
+                {
+                    ((ScrollView)sender).ScrollToAsync(next, ScrollToPosition.Center, true);
+                    B_Clicked((Button)next, new EventArgs());
+                    scrollXPosition = e.ScrollX;
+                }        
+            }
+            if(scrollXPosition !=0 && scrollXPosition - 50 > e.ScrollX)
+            {
+                var current = GoodsCategories.Children.FirstOrDefault(_ => _.GetType() == typeof(Button) && ((Button)_).Text == currentDisplayCategoryKey);
+                var next = GoodsCategories.Children.FirstOrDefault(_ => _.X < current.X && _.GetType() == typeof(Button));
+                if (next != null)
+                {
+                    ((ScrollView)sender).ScrollToAsync(next, ScrollToPosition.Center, true);
+                    B_Clicked((Button)next, new EventArgs());
+                    scrollXPosition = e.ScrollX;
+                }
+            }
+            var lastBtn = GoodsCategories.Children.Last(_ => _.GetType() == typeof(Button));
+            if (e.ScrollX > lastBtn.X)
+                ((ScrollView)sender).ScrollToAsync(lastBtn, ScrollToPosition.Center, false) ;
+
+        }
     }
 }

@@ -76,15 +76,11 @@
             </RelativeLayout>
             
             <StackLayout VerticalOptions="FillAndExpand" >
-                <ScrollView Orientation="Horizontal" Margin="35,0,0,20">
-                    <StackLayout x:Name="GoodsCategories" Orientation="Horizontal">
-                        <StackLayout.GestureRecognizers>
-                            <SwipeGestureRecognizer Direction="Right" Swiped="SwipeGestureRecognizer_Swiped"></SwipeGestureRecognizer>
-                            <SwipeGestureRecognizer Direction="Left" Swiped="SwipeGestureRecognizer_SwipedLeft"></SwipeGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
+                <ScrollView Orientation="Horizontal" Margin="35,0,0,20" Scrolled="ScrollView_Scrolled"  >
+                    <StackLayout x:Name="GoodsCategories" Orientation="Horizontal" Spacing="15" MinimumWidthRequest="1300">                      
                     </StackLayout>                    
                 </ScrollView>
-
+                
                 <yummy:PancakeView x:Name="GoodsLayot" CornerRadius="30,30,0,0" BackgroundColor = "White" VerticalOptions="FillAndExpand" Margin="15,-10,15,-20" Padding="20,0">                        
                     </yummy:PancakeView>
 
