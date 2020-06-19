@@ -13,9 +13,9 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-        //public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-         public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
 
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
@@ -43,6 +43,7 @@ namespace xamarinJKH.Server
 
         public const string UPDATE_PROFILE = "User/UpdateProfile"; // Обновить данные профиля
         public const string ADD_IDENT_PROFILE = "User/AddAccountByIdent"; // Привязать ЛС к профилю
+        public const string DEL_IDENT_PROFILE = "User/DeleteAccountByIdent"; // отвязать ЛС от профиля
 
         public const string
             GET_PERSONAL_DATA = "User/GetPersonalDataByIdent"; // Получение данных о физ лице по номеру л/сч
@@ -62,6 +63,13 @@ namespace xamarinJKH.Server
         public const string GET_OSS = "OSS/GetOSS"; // Получить список ОСС. 
         public const string SAVE_ANSWER_OSS = "OSS/SaveAnswer"; // Сохранить ответ на вопрос.
         public const string FINISH_OSS = "OSS/CompleteVote"; // Завершить голосование 
+
+        public const string
+            SET_ACQUAINTED_OSS =
+                "OSS/SetAcquainted"; // Записывает в лог, что участник голосования ознакомился с повесткой собрания 
+
+        public const string
+            SET_START_OSS = "OSS/SetStartVoiting"; // Записывает в лог, что участник начал голосование   
 
 
         /// <summary>
@@ -767,6 +775,29 @@ namespace xamarinJKH.Server
             return response.Data;
         }
 
+        public async Task<CommonResult> DellIdent(string Ident)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(DEL_IDENT_PROFILE, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                Ident
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
         public async Task<CommonResult> SaveResultPolls(PollingResult pollingResult)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
@@ -882,7 +913,6 @@ namespace xamarinJKH.Server
                 PassportDate,
                 PassportIssuedBy,
                 RegistrationAddress
-                
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус
@@ -934,6 +964,62 @@ namespace xamarinJKH.Server
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(FINISH_OSS, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                ID
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
+        /// <summary>
+        /// Записывает в лог, что участник голосования ознакомился с повесткой собрания
+        /// </summary>
+        /// <param name="ID">id голосования</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> SetAcquainted(int ID)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(SET_ACQUAINTED_OSS, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                ID
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
+        /// <summary>
+        /// Записывает в лог, что участник начал голосование 
+        /// </summary>
+        /// <param name="ID">id голосования</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> SetStartVoiting(int ID)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(SET_START_OSS, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new

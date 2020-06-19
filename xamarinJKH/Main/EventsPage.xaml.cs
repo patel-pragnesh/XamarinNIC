@@ -47,10 +47,26 @@ namespace xamarinJKH.Main
 
             SetText();
             SetColor();
-            SetVisibleControls();
+            StartNews();
+            StartNotification();
+            StartOffers();
+            StartQuestions();
+            // SetVisibleControls();
             
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            
+            new Task(SyncSetup).Start(); // This could be an await'd task if need be
+        }
+        
+        async void SyncSetup()
+        {
+            Device.BeginInvokeOnMainThread(SetVisibleControls);
+        }
+        
         void SetVisibleControls()
         {
             setVisible(Settings.EventBlockData.News.Count == 0, StartNews, FrameNews);
@@ -70,7 +86,7 @@ namespace xamarinJKH.Main
             }
             else
             {
-                funk();
+                // funk();
             }
         }
 

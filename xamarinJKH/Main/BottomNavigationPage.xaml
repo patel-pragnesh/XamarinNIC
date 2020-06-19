@@ -4,12 +4,11 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:local="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-
             android:TabbedPage.ToolbarPlacement="Bottom"
             x:Class="xamarinJKH.Main.BottomNavigationPage">
     <NavigationPage HasNavigationBar="False" Title="События" IconImageSource="ic_events" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
-            <local:EventsPage Title="События" IconImageSource="ic_events" />
+            <local:EventsPage  Title="События" IconImageSource="ic_events" />
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Оплата" IconImageSource="ic_pays" BarBackgroundColor="Black" BarTextColor="White">

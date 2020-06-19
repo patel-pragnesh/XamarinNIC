@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Xml.Xsl;
+using AiForms.Dialogs;
+using AiForms.Dialogs.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Pays;
@@ -57,6 +60,7 @@ namespace xamarinJKH.Main
         public PaysPage()
         {
             InitializeComponent();
+            Settings.mainPage = this;
             NavigationPage.SetHasNavigationBar(this, false);
             switch (Device.RuntimePlatform)
             {
@@ -70,13 +74,15 @@ namespace xamarinJKH.Main
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
-                        RelativeLayoutTop.Margin = new Thickness(0,0,0,-125);
+                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -125);
                         BackStackLayout.Margin = new Thickness(5, 25, 0, 0);
                     }
+
                     break;
                 default:
                     break;
             }
+
             hex = Color.FromHex(Settings.MobileSettings.color);
             SetTextAndColor();
             getInfo();
@@ -89,14 +95,14 @@ namespace xamarinJKH.Main
             FrameBtnSaldos.GestureRecognizers.Add(openSaldos);
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
-        
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            
+
             new Task(SyncSetup).Start(); // This could be an await'd task if need be
         }
-        
+
         async void SyncSetup()
         {
             Device.BeginInvokeOnMainThread(() =>
@@ -110,7 +116,7 @@ namespace xamarinJKH.Main
         {
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.Phone;
-      
+
             FrameBtnHistory.BorderColor = hex;
             FrameBtnSaldos.BorderColor = hex;
             LabelSaldos.TextColor = hex;
@@ -159,6 +165,65 @@ namespace xamarinJKH.Main
             {
                 await DisplayAlert("Ошибка", "Лицевые счета не подключены", "OK");
             }
+        }
+
+        public async void DellLs(string Ident)
+        {
+            bool answer = await Settings.mainPage.DisplayAlert("Удалить?", "Удалить лицевой счет: " + Ident + " ?",
+                "Да", "Отмена");
+            if (answer)
+            {
+                await DellIdent(Ident);
+            }
+        }
+
+        public async Task DellIdent(string ident)
+        {
+            // Loading settings
+            Configurations.LoadingConfig = new LoadingConfig
+            {
+                IndicatorColor = Color.FromHex(Settings.MobileSettings.color),
+                OverlayColor = Color.Black,
+                Opacity = 0.8,
+                DefaultMessage = "Удаление ЛС",
+            };
+            RestClientMP server = new RestClientMP();
+            await Loading.Instance.StartAsync(async progress =>
+            {
+                // some heavy process.
+                await DellIdentTask(ident, server);
+            });
+        }
+
+        private async Task DellIdentTask(string ident, RestClientMP server)
+        {
+            CommonResult result = await server.DellIdent(ident);
+            if (result.Error == null)
+            {
+                Settings.EventBlockData = await server.GetEventBlockData();
+                ItemsList<NamedValue> resultN = await server.GetRequestsTypes();
+                Settings.TypeApp = resultN.Data;
+                removeLs(ident);
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", result.Error, "ОК");
+            }
+        }
+
+        void removeLs(string ident)
+        {
+            foreach (var each in _accountingInfo)
+            {
+                if (each.Ident.Equals(ident))
+                {
+                    _accountingInfo.Remove(each);
+                    break;
+                }
+            }
+
+            additionalList.ItemsSource = null;
+            additionalList.ItemsSource = _accountingInfo;
         }
     }
 }

@@ -5,6 +5,7 @@ using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
 using Xamarin.Forms;
 using xamarinJKH.DialogViews;
+using xamarinJKH.Main;
 using xamarinJKH.Server.RequestModel;
 
 namespace xamarinJKH.Utils
@@ -30,6 +31,7 @@ namespace xamarinJKH.Utils
             "Декабрь"
         };
 
+        public static PaysPage mainPage;
         public static bool? isSelf = null;
 
         public static bool OnTimerTick()

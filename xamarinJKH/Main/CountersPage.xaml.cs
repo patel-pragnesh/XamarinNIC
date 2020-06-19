@@ -97,7 +97,7 @@ namespace xamarinJKH.Main
                 default:
                     break;
             }
-
+            
             SetTextAndColor();
             getInfo();
             if (Settings.Person.Accounts.Count > 0)

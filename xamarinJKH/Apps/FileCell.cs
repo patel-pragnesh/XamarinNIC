@@ -78,7 +78,7 @@ namespace xamarinJKH.Apps
             {
                 byte[] bytes = new byte[] {1};
                 LabelName.Text = FileName;
-                LabelSize.Text = (FileSize.Length / 1000).ToString() + " КБ";
+                // LabelSize.Text = (FileSize.Length / 1000).ToString() + " КБ";
             }
         }
     }

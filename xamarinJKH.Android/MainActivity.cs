@@ -1,11 +1,12 @@
 ﻿using System;
-
+using Android;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Support.V4.App;
 using Plugin.CurrentActivity;
 using Plugin.Media;
 using Xamarin.Forms;
@@ -34,9 +35,16 @@ namespace xamarinJKH.Droid
             await CrossMedia.Current.Initialize();
             SimpleImageButton.SimpleImageButton.Initializator.Initializator.Init();
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
+            ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera);
+            ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadExternalStorage);
+
             LoadApplication(new App());
           
-
+        }
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

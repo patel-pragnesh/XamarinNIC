@@ -35,6 +35,7 @@ namespace xamarinJKH.Apps
         const string FILE = "file";
         public int PikerLsItem = 0;
         public int PikerTypeItem = 0;
+
         public NewAppPage(AppsPage appsPage)
         {
             _appsPage = appsPage;
@@ -87,17 +88,24 @@ namespace xamarinJKH.Apps
             var action = await DisplayActionSheet("Добавить вложение", "Отмена", "",
                 TAKE_PHOTO,
                 TAKE_GALRY, TAKE_FILE);
-            switch (action)
+            try
             {
-                case TAKE_PHOTO:
-                    await startLoadFile(CAMERA);
-                    break;
-                case TAKE_GALRY:
-                    await startLoadFile(GALERY);
-                    break;
-                case TAKE_FILE:
-                    await startLoadFile(FILE);
-                    break;
+                switch (action)
+                {
+                    case TAKE_PHOTO:
+                        await getCameraFile();
+                        break;
+                    case TAKE_GALRY:
+                        await GetGalaryFile();
+                        break;
+                    case TAKE_FILE:
+                        await PickAndShowFile(null);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                
             }
         }
 
@@ -238,13 +246,13 @@ namespace xamarinJKH.Apps
                 switch (metod)
                 {
                     case CAMERA:
-                        await getCameraFile();
+                        // await getCameraFile();
                         break;
                     case GALERY:
-                        await GetGalaryFile();
+                        // await GetGalaryFile();
                         break;
                     case FILE:
-                        await PickAndShowFile(null);
+                        // await PickAndShowFile(null);
                         break;
                 }
             });
@@ -258,7 +266,7 @@ namespace xamarinJKH.Apps
             }
             else
             {
-                           return ReadFully(stream);
+                return ReadFully(stream);
             }
         }
 
@@ -315,8 +323,6 @@ namespace xamarinJKH.Apps
 
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
-            
             try
             {
                 var identLength = Settings.Person.Accounts[PickerLs.SelectedIndex].Ident.Length;
@@ -397,12 +403,10 @@ namespace xamarinJKH.Apps
                 }
 
                 setBinding();
-                
             }
         }
 
-        
-        
+
         async void sendFiles(string id)
         {
             int i = 0;

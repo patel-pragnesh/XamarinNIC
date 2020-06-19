@@ -33,6 +33,7 @@ namespace xamarinJKH
         public MainPage()
         {
             InitializeComponent();
+            
             NavigationPage.SetHasNavigationBar(this, false);
             getSettings();
             var startRegForm = new TapGestureRecognizer();
@@ -214,6 +215,11 @@ namespace xamarinJKH
             }            
         }
 
+        void permiss()
+        {
+            
+        }
+        
         public async void Login(string loginAuth, string pass)
         {
             progress.IsVisible = true;

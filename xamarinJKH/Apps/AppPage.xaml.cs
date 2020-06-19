@@ -106,6 +106,7 @@ namespace xamarinJKH.Apps
             close = closeAll;
             _requestInfo = requestInfo;
             InitializeComponent();
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -114,7 +115,7 @@ namespace xamarinJKH.Apps
                     // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
-                    double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
+                    double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
                         ScrollViewContainer.Margin = new Thickness(0, 0, 0, -150);
@@ -228,42 +229,71 @@ namespace xamarinJKH.Apps
             // // GetGalaryFile();
             //
             // // PickAndShowFile(null);
-
+            MediaFile file = null;
             var action = await DisplayActionSheet("Добавить вложение", "Отмена", null,
                 TAKE_PHOTO,
                 TAKE_GALRY, TAKE_FILE);
             switch (action)
             {
                 case TAKE_PHOTO:
-                    await startLoadFile(CAMERA);
+
+                    if (!CrossMedia.Current.IsTakePhotoSupported || !CrossMedia.Current.IsCameraAvailable)
+                    {
+                        await DisplayAlert("Ошибка", "Камера не доступна", "OK");
+
+                        return;
+                    }
+
+                    try
+                    {
+                        file = await CrossMedia.Current.TakePhotoAsync(
+                            new StoreCameraMediaOptions
+                            {
+                                SaveToAlbum = false,
+                                Directory = "Demo"
+                            });
+                        if (file != null)
+                            await startLoadFile(CAMERA, file);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        throw;
+                    }
+                   
                     break;
                 case TAKE_GALRY:
-                    await startLoadFile(GALERY);
+
+                    if (!CrossMedia.Current.IsPickPhotoSupported)
+                    {
+                        await DisplayAlert("Ошибка", "Галерея не доступна", "OK");
+
+                        return;
+                    }
+
+                    try
+                    {
+                        file = await CrossMedia.Current.PickPhotoAsync();
+                        if (file == null)
+                            return;
+                        await startLoadFile(GALERY, file);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                   
                     break;
                 case TAKE_FILE:
-                    await startLoadFile(FILE);
+                    await startLoadFile(FILE, null);
                     break;
             }
+
+            Loading.Instance.Hide();
         }
 
-        async Task getCameraFile()
+        async Task getCameraFile(MediaFile file)
         {
-            await CrossMedia.Current.Initialize();
-
-            if (!CrossMedia.Current.IsTakePhotoSupported || !CrossMedia.Current.IsCameraAvailable)
-            {
-                await DisplayAlert("Ошибка", "Камера не доступна", "OK");
-
-                return;
-            }
-
-            MediaFile file = await CrossMedia.Current.TakePhotoAsync(
-                new StoreCameraMediaOptions
-                {
-                    SaveToAlbum = true,
-                    Directory = "Demo"
-                });
-
             if (file == null)
                 return;
             CommonResult commonResult = await _server.AddFileApps(_requestInfo.ID.ToString(),
@@ -276,7 +306,7 @@ namespace xamarinJKH.Apps
             }
         }
 
-        public async Task startLoadFile(string metod)
+        public async Task startLoadFile(string metod, MediaFile file)
         {
             // Loading settings
             Configurations.LoadingConfig = new LoadingConfig
@@ -292,10 +322,10 @@ namespace xamarinJKH.Apps
                 switch (metod)
                 {
                     case CAMERA:
-                        await getCameraFile();
+                        await getCameraFile(file);
                         break;
                     case GALERY:
-                        await GetGalaryFile();
+                        await GetGalaryFile(file);
                         break;
                     case FILE:
                         await PickAndShowFile(null);
@@ -304,20 +334,8 @@ namespace xamarinJKH.Apps
             });
         }
 
-        async Task GetGalaryFile()
+        async Task GetGalaryFile(MediaFile file)
         {
-            await CrossMedia.Current.Initialize();
-
-            if (!CrossMedia.Current.IsPickPhotoSupported)
-            {
-                await DisplayAlert("Ошибка", "Галерея не доступна", "OK");
-
-                return;
-            }
-
-            var file = await CrossMedia.Current.PickPhotoAsync();
-            if (file == null)
-                return;
             CommonResult commonResult = await _server.AddFileApps(_requestInfo.ID.ToString(),
                 getFileName(file.Path), StreamToByteArray(file.GetStream()),
                 file.Path);
@@ -332,7 +350,7 @@ namespace xamarinJKH.Apps
         {
             if (stream is MemoryStream)
             {
-                return ((MemoryStream)stream).ToArray();
+                return ((MemoryStream) stream).ToArray();
             }
             else
             {
@@ -462,8 +480,10 @@ namespace xamarinJKH.Apps
             additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
         }
 
-        void setText()
+        async void setText()
         {
+            await CrossMedia.Current.Initialize();
+
             try
             {
                 LabelNumber.Text = "№ " + _requestInfo.RequestNumber;
@@ -486,10 +506,12 @@ namespace xamarinJKH.Apps
             {
                 Source = "ic_status_new";
             }
+
             if (request.Phone.Contains("+") == false && request.Phone.Substring(0, 2) == "79")
             {
                 request.Phone = "+" + request.Phone;
             }
+
             var ret = await Dialog.Instance.ShowAsync<InfoAppDialog>(new
             {
                 _Request = request,

@@ -1,8 +1,16 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
+using AiForms.Dialogs;
+using AiForms.Dialogs.Abstractions;
+using Rg.Plugins.Popup.Services;
 using SimpleImageButton.SimpleImageButton.Models;
 using Xamarin.Forms;
 using xamarinJKH.CustomRenderers;
+using xamarinJKH.DialogViews;
+using xamarinJKH.InterfacesIntegration;
+using xamarinJKH.Server;
+using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Main
@@ -64,6 +72,8 @@ namespace xamarinJKH.Main
 
             dell.Children.Add(x);
             dell.Children.Add(close);
+            
+           
 
             dateIdent.Children.Add(identAdress);
             dateIdent.Children.Add(dell);
@@ -208,6 +218,14 @@ namespace xamarinJKH.Main
 
             if (BindingContext != null)
             {
+                
+                var delLs = new TapGestureRecognizer();
+                delLs.Tapped += async (s, e) =>
+                {
+                    // Settings.mainPage.DellLs(Ident);
+                };
+                dell.GestureRecognizers.Add(delLs);
+                
                 FormattedString formattedIdent = new FormattedString();
                 formattedIdent.Spans.Add(new Span
                 {
@@ -256,5 +274,7 @@ namespace xamarinJKH.Main
                 sumPay.FormattedText = formattedPay;
             }
         }
+        
+        
     }
 }
