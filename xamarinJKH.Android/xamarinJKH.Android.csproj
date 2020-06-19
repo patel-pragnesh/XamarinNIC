@@ -115,12 +115,14 @@
     <AndroidResource Include="Resources\drawable\ic_background.png" />
     <AndroidResource Include="Resources\drawable\ic_background_event.png" />
     <AndroidResource Include="Resources\drawable\ic_background_profile.png" />
+    <AndroidResource Include="Resources\drawable\ic_calendar.png" />
     <AndroidResource Include="Resources\drawable\ic_call_app.png" />
     <AndroidResource Include="Resources\drawable\ic_card_pay_black.png" />
     <AndroidResource Include="Resources\drawable\ic_close.png" />
     <AndroidResource Include="Resources\drawable\ic_close_app1.png" />
     <AndroidResource Include="Resources\drawable\ic_cold_water.png" />
     <AndroidResource Include="Resources\drawable\ic_date.png" />
+    <AndroidResource Include="Resources\drawable\ic_dislike.png" />
     <AndroidResource Include="Resources\drawable\ic_electr.png" />
     <AndroidResource Include="Resources\drawable\ic_file.png" />
     <AndroidResource Include="Resources\drawable\ic_files_app1.png" />
@@ -131,6 +133,8 @@
     <AndroidResource Include="Resources\drawable\ic_home.png" />
     <AndroidResource Include="Resources\drawable\ic_info_app1.png" />
     <AndroidResource Include="Resources\drawable\ic_minus.png" />
+    <AndroidResource Include="Resources\drawable\ic_monitor.png" />
+    <AndroidResource Include="Resources\drawable\ic_monitor_top.png" />
     <AndroidResource Include="Resources\drawable\ic_news_top.png" />
     <AndroidResource Include="Resources\drawable\ic_new_app_top.png" />
     <AndroidResource Include="Resources\drawable\ic_notification_top.png" />
@@ -146,9 +150,11 @@
     <AndroidResource Include="Resources\drawable\ic_send_mess.png" />
     <AndroidResource Include="Resources\drawable\ic_shop.png" />
     <AndroidResource Include="Resources\drawable\ic_shop_top.png" />
+    <AndroidResource Include="Resources\drawable\ic_star.png" />
     <AndroidResource Include="Resources\drawable\ic_status_done.png" />
     <AndroidResource Include="Resources\drawable\ic_status_new.png" />
     <AndroidResource Include="Resources\drawable\ic_status_wait.png" />
+    <AndroidResource Include="Resources\drawable\ic_time.png" />
     <AndroidResource Include="Resources\drawable\ic_top_event_back.png" />
     <AndroidResource Include="Resources\drawable\up_arrow.png" />
     <AndroidResource Include="Resources\layout\Tabbar.xml" />

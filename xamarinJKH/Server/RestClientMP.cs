@@ -14,8 +14,8 @@ namespace xamarinJKH.Server
     public class RestClientMP
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+        public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
 
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
@@ -63,13 +63,8 @@ namespace xamarinJKH.Server
         public const string GET_OSS = "OSS/GetOSS"; // Получить список ОСС. 
         public const string SAVE_ANSWER_OSS = "OSS/SaveAnswer"; // Сохранить ответ на вопрос.
         public const string FINISH_OSS = "OSS/CompleteVote"; // Завершить голосование 
-
-        public const string
-            SET_ACQUAINTED_OSS =
-                "OSS/SetAcquainted"; // Записывает в лог, что участник голосования ознакомился с повесткой собрания 
-
-        public const string
-            SET_START_OSS = "OSS/SetStartVoiting"; // Записывает в лог, что участник начал голосование   
+        public const string SET_ACQUAINTED_OSS = "OSS/SetAcquainted"; // Записывает в лог, что участник голосования ознакомился с повесткой собрания 
+        public const string SET_START_OSS = "OSS/SetStartVoiting"; // Записывает в лог, что участник начал голосование   
 
 
         /// <summary>

@@ -277,6 +277,7 @@
     <BundleResource Include="Resources\ic_background.png" />
     <BundleResource Include="Resources\ic_background_counter.png" />
     <BundleResource Include="Resources\ic_bottom_login.png" />
+    <BundleResource Include="Resources\ic_calendar.png" />
     <BundleResource Include="Resources\ic_call_app.png" />
     <BundleResource Include="Resources\ic_card_pay_black.png" />
     <BundleResource Include="Resources\ic_close.png" />
@@ -285,6 +286,7 @@
     <BundleResource Include="Resources\ic_cold_water.png" />
     <BundleResource Include="Resources\ic_date.png" />
     <BundleResource Include="Resources\ic_diskont.png" />
+    <BundleResource Include="Resources\ic_dislike.png" />
     <BundleResource Include="Resources\ic_electr.png" />
     <BundleResource Include="Resources\ic_file.png" />
     <BundleResource Include="Resources\ic_files_app1.png" />
@@ -296,6 +298,8 @@
     <BundleResource Include="Resources\ic_home.png" />
     <BundleResource Include="Resources\ic_info_app1.png" />
     <BundleResource Include="Resources\ic_minus.png" />
+    <BundleResource Include="Resources\ic_monitor.png" />
+    <BundleResource Include="Resources\ic_monitor_top.png" />
     <BundleResource Include="Resources\ic_news.png" />
     <BundleResource Include="Resources\ic_news_top.png" />
     <BundleResource Include="Resources\ic_new_app_top.png" />
@@ -321,6 +325,7 @@
     <BundleResource Include="Resources\ic_shop_top.png">
       <SubType>Designer</SubType>
     </BundleResource>
+    <BundleResource Include="Resources\ic_star.png" />
     <BundleResource Include="Resources\ic_status_done.png" />
     <BundleResource Include="Resources\ic_status_new.png" />
     <BundleResource Include="Resources\ic_status_wait.png" />
@@ -328,6 +333,7 @@
     <BundleResource Include="Resources\ic_steps_three.png" />
     <BundleResource Include="Resources\ic_steps_two.png" />
     <BundleResource Include="Resources\ic_tech.png" />
+    <BundleResource Include="Resources\ic_time.png" />
     <BundleResource Include="Resources\ic_top_event_back.png" />
     <BundleResource Include="Resources\ic_top_event.png" />
     <BundleResource Include="Resources\top_fon_login.png" />

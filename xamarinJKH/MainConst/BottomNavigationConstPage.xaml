@@ -4,12 +4,18 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:local="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:mainConst="clr-namespace:xamarinJKH.MainConst;assembly=xamarinJKH"
 
             android:TabbedPage.ToolbarPlacement="Bottom"
             x:Class="xamarinJKH.MainConst.BottomNavigationConstPage">
     <NavigationPage Title="Заявки" IconImageSource="ic_apps" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
             <local:AppsPage Title="Заявки" IconImageSource="ic_apps" />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Монитор" IconImageSource="ic_monitor" BarBackgroundColor="Black" BarTextColor="White">
+        <x:Arguments>
+            <mainConst:MonitorPage Title="Монитор" IconImageSource="ic_monitor" />
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Профиль" IconImageSource="ic_profile" BarBackgroundColor="Black" BarTextColor="White">
