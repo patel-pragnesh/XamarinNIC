@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:apps="clr-namespace:xamarinJKH.Apps;assembly=xamarinJKH"
+             xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             xmlns:dialogViews="clr-namespace:xamarinJKH.DialogViews;assembly=xamarinJKH"
+             xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
+             BackgroundColor="#F3F3F3"
+             x:Class="xamarinJKH.AppsConst.AppConstPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <RelativeLayout
+                x:Name="ScrollViewContainer"
+                Margin="0,0,0,-170"
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand">
+                <Image x:Name="ImageTop" Margin="0, -26, 0 ,0"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Width,
+                             Factor=0,
+                             Constant=0}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Height,
+                             Factor=0,
+                             Constant=0}"
+                       Source="ic_app_top_in"
+                       VerticalOptions="Fill"
+                       HorizontalOptions="Fill" />
+                <!-- <StackLayout x:Name="StackLayout" -->
+                <!--              RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, -->
+                <!--              Property=Width, -->
+                <!--              Factor=0, -->
+                <!--              Constant=15}" -->
+                <!--              RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, -->
+                <!--              Property=Height, -->
+                <!--              Factor=0, -->
+                <!--              Constant=0}" -->
+                <!--              Orientation="Vertical"> -->
+                <!--     <StackLayout -->
+                <!--         x:Name="BackStackLayout" -->
+                <!--         Orientation="Horizontal" -->
+                <!--         Margin="0, 40, 0, 0" -->
+                <!--         HorizontalOptions="Start"> -->
+                <!--         <Image Source="ic_arrow_back" -->
+                <!--                HeightRequest="15" -->
+                <!--                HorizontalOptions="Center" /> -->
+                <!--         <Label -->
+                <!--             Text="Назад " -->
+                <!--             FontSize="15" -->
+                <!--             TextColor="White" -->
+                <!--             HorizontalOptions="Start" /> -->
+                <!--     </StackLayout> -->
+                <!--     <Label x:Name="LabelNumber" -->
+                <!--            FontSize="20" -->
+                <!--            Margin="10, 15 ,0,0" -->
+                <!--            TextColor="White" /> -->
+                <!-- </StackLayout> -->
+            </RelativeLayout>
+            <StackLayout HorizontalOptions="Fill"
+                         Orientation="Horizontal">
+                <StackLayout
+                    Margin="15, 0, 0, 0"
+                    HorizontalOptions="FillAndExpand">
+                    <StackLayout
+                        x:Name="BackStackLayout"
+                        Orientation="Horizontal"
+                        HorizontalOptions="Start">
+                        <Image Source="ic_arrow_back"
+                               HeightRequest="15"
+                               HorizontalOptions="Center" />
+                        <Label
+                            Text="Назад "
+                            FontSize="15"
+                            TextColor="White"
+                            HorizontalOptions="Start" />
+                    </StackLayout>
+                    <Label x:Name="LabelNumber"
+                           FontSize="20"
+                           Margin="10, 10 ,0,0"
+                           TextColor="White" />
+                </StackLayout>
+                <Frame CornerRadius="40"
+                       Margin="0, 0, 15, -95"
+                       HorizontalOptions="End"
+                       BackgroundColor="#B5B5B5"
+                       Padding="25,0,25,80">
+                    <StackLayout Orientation="Horizontal"
+                                 WidthRequest="100"
+                                 HeightRequest="100">
+                        <StackLayout
+                            Margin="0,5,0,0"
+                            x:Name="StackLayoutInfo"
+                            VerticalOptions="Center"
+                            HorizontalOptions="StartAndExpand">
+                            <Image Source="ic_info_app1"
+                                   HeightRequest="25" />
+                            <Label Text="Инфо"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   FontSize="10" />
+                        </StackLayout>
+                        <!-- <StackLayout -->
+                        <!--     Margin="10,15,0,0" -->
+                        <!--     VerticalOptions="Center" -->
+                        <!--     HorizontalOptions="CenterAndExpand"> -->
+                        <!--     <Image Source="ic_files_app1" -->
+                        <!--            HeightRequest="25" /> -->
+                        <!--     <Label Text="Файлы" -->
+                        <!--            TextColor="White" -->
+                        <!--            FontAttributes="Bold" -->
+                        <!--            FontSize="10" /> -->
+                        <!-- </StackLayout> -->
+                        <StackLayout
+                            Margin="0,5,0,0"
+                            VerticalOptions="Center"
+                            x:Name="StackLayoutClose"
+                            HorizontalOptions="EndAndExpand">
+                            <Image Source="ic_close_app1"
+                                   HeightRequest="25"
+                                   WidthRequest="25" />
+                            <Label Text="Закрыть"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   FontSize="10" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <customRenderers:MaterialFrame Elevation="20"
+                                           x:Name="FrameMessage"
+                                           CornerRadius="30"
+                                           Margin="15, 0, 15, -30"
+                                           BackgroundColor="White"
+                                           Padding="5,0,5,70">
+                <ListView x:Name="additionalList"
+                          HasUnevenRows="True"
+                          Margin="0, 0, 0, 0"
+                          SeparatorVisibility="None"
+                          VerticalScrollBarVisibility="Never"
+                          IsPullToRefreshEnabled="True"
+                          RefreshCommand="{Binding RefreshCommand}"
+                          IsRefreshing="{Binding IsRefreshing}"
+                          SelectionMode="None"
+                          ItemTapped="OnItemTapped"
+
+                          ItemsSource="{Binding messages}">
+                    <ListView.Header>
+
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+
+                        <DataTemplate>
+                            <apps:MessageCell
+                                Name="{Binding AuthorName}"
+                                Time="{Binding Status}"
+                                DateApp="{Binding Added}"
+                                TextApp="{Binding Text}"
+                                FileID="{Binding FileID}"
+                                IsSelf="{Binding IsSelf}" />
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+                </ListView>
+            </customRenderers:MaterialFrame>
+            <Frame CornerRadius="30"
+                   Margin="15, -30, 15, 5"
+                   BackgroundColor="White"
+                   BorderColor="{Binding hex}"
+                   Padding="15">
+                <StackLayout
+                    Spacing="10"
+                    Orientation="Horizontal">
+                    <ActivityIndicator x:Name="progressFile"
+                                       IsRunning="true"
+                                       HeightRequest="25"
+                                       WidthRequest="25"
+                                       IsVisible="False"
+                                       HorizontalOptions="StartAndExpand"
+                                       Color="{Binding hex}" />
+                    <xamarinJkh:IconView
+                        x:Name="IconViewAddFile"
+                        Source="ic_add_file"
+                        Foreground="{Binding hex}"
+                        HeightRequest="20"
+                        WidthRequest="20" />
+                    <xamarinJkh:BordlessEditor x:Name="EntryMess"
+                                               FontSize="18"
+                                               VerticalOptions="Center"
+                                               Text=""
+                                               AutoSize="Disabled"
+                                               Placeholder="Введите сообщение..."
+                                               TextColor="#A2A2A2"
+                                               HorizontalOptions="FillAndExpand" />
+                    <xamarinJkh:IconView
+                        x:Name="IconViewSend"
+                        Source="ic_send_mess"
+                        Foreground="{Binding hex}"
+                        HeightRequest="20"
+                        WidthRequest="20" />
+                    <ActivityIndicator x:Name="progress"
+                                       IsRunning="true"
+                                       HeightRequest="20"
+                                       WidthRequest="20"
+                                       IsVisible="False"
+                                       Color="{Binding hex}" />
+                    <StackLayout
+                        IsVisible="False"
+                        Spacing="-5">
+
+                        <CheckBox
+                            HorizontalOptions="Center"
+                            Color="{Binding hex}" />
+                        <Label
+                            FontSize="10"
+                            TextColor="Black"
+                            HorizontalOptions="Center"
+                            Text="Скрытое" />
+                    </StackLayout>
+
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

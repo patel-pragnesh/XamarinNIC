@@ -2,7 +2,7 @@
 
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:local="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
+            xmlns:local="clr-namespace:xamarinJKH.MainConst;assembly=xamarinJKH"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             xmlns:mainConst="clr-namespace:xamarinJKH.MainConst;assembly=xamarinJKH"
 
@@ -10,7 +10,7 @@
             x:Class="xamarinJKH.MainConst.BottomNavigationConstPage">
     <NavigationPage Title="Заявки" IconImageSource="ic_apps" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
-            <local:AppsPage Title="Заявки" IconImageSource="ic_apps" />
+            <local:AppsConstPage Title="Заявки" IconImageSource="ic_apps" />
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Монитор" IconImageSource="ic_monitor" BarBackgroundColor="Black" BarTextColor="White">
@@ -20,7 +20,7 @@
     </NavigationPage>
     <NavigationPage Title="Профиль" IconImageSource="ic_profile" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
-            <local:ProfilePage Title="Профиль" IconImageSource="ic_profile" />
+            <local:ProfileConstPage Title="Профиль" IconImageSource="ic_profile" />
         </x:Arguments>
     </NavigationPage>
 </TabbedPage>

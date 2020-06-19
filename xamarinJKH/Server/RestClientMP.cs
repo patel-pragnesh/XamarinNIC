@@ -31,6 +31,12 @@ namespace xamarinJKH.Server
         public const string GET_ACCOUNTING_INFO = "Accounting/Info"; // инфомация о начислениях
         public const string GET_FILE_BILLS = "Bills/Download"; // Получить квитанцию
 
+        public const string REQUEST_LIST_CONST = "RequestsDispatcher/List"; // Заявки сотрудника
+        public const string REQUEST_DETAIL_LIST_CONST = "RequestsDispatcher/Details"; // Заявки сотрудника
+        public const string REQUEST_UPDATES_CONST = "RequestsDispatcher/GetUpdates"; // Обновление заявок сотрудника
+        public const string CLOSE_APP_CONST = "RequestsDispatcher/Close "; // Закрытие заявки
+        public const string DISPATCHERS_LIST_CONST = "RequestsDispatcher/DispatchersList "; // Список диспетчеров
+
         public const string REQUEST_LIST = "Requests/List"; // Заявки
         public const string REQUEST_DETAIL_LIST = "Requests/Details"; // Заявки
         public const string REQUEST_UPDATES = "Requests/GetUpdates"; // Обновление заявок
@@ -376,6 +382,26 @@ namespace xamarinJKH.Server
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(REQUEST_LIST, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+
+            var response = await restClientMp.ExecuteTaskAsync<RequestList>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new RequestList()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
+        public async Task<RequestList> GetRequestsListConst()
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(REQUEST_LIST_CONST, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
 

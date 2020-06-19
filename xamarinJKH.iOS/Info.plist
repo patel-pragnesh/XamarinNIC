@@ -58,6 +58,6 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Вы можете приложить фото к заявке</string>
 	<key>CFBundleVersion</key>
-	<string>2.01</string>
+	<string>2.12</string>
 </dict>
 </plist>

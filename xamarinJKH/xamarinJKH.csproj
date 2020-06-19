@@ -244,8 +244,21 @@
     <Compile Update="MainConst\MonitorPage.xaml.cs">
       <DependentUpon>MonitorPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="MainConst\ProfileConstPage.xaml.cs">
+      <DependentUpon>ProfileConstPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="MainConst\AppsConstPage.xaml.cs">
+      <DependentUpon>AppsConstPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="AppsConst\AppConstPage.xaml.cs">
+      <DependentUpon>AppConstPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="AppsConst\NewAppConstPage.xaml.cs">
+      <DependentUpon>NewAppConstPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MainConst\" />
+    <Folder Include="AppsConst\" />
   </ItemGroup>
 </Project>
