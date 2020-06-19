@@ -76,6 +76,7 @@ namespace xamarinJKH
             string loginConst = Preferences.Get("loginConst", "");
             string passConst = Preferences.Get("passConst", "");
             bool isSave = Preferences.Get("isPass", false);
+            Settings.ConstAuth = Preferences.Get("constAuth", false);
             if (Settings.ConstAuth && Settings.IsFirsStart && !passConst.Equals("") && !loginConst.Equals("") && !isSave)
             {
                 LoginDispatcher(loginConst, passConst);
@@ -85,7 +86,7 @@ namespace xamarinJKH
                 EntryPass.Text = pass;
                 EntryPassConst.Text = passConst;
             }
-            if (Settings.IsFirsStart && !pass.Equals("") && !login.Equals("") && !isSave)
+            else if (Settings.IsFirsStart && !pass.Equals("") && !login.Equals("") && !isSave)
             {
                 Login(login, pass);
                 Settings.IsFirsStart = false;
@@ -252,6 +253,7 @@ namespace xamarinJKH
                     Settings.TypeApp = result.Data;
                     Preferences.Set("login", replace);
                     Preferences.Set("pass", pass);
+                    Preferences.Set("constAuth", false);
                     await Navigation.PushModalAsync(new BottomNavigationPage());
                 }
                 else
@@ -300,6 +302,7 @@ namespace xamarinJKH
                     Settings.TypeApp = result.Data;
                     Preferences.Set("loginConst", replace);
                     Preferences.Set("passConst", pass);
+                    Preferences.Set("constAuth", true);
                     await Navigation.PushModalAsync(new BottomNavigationConstPage());
                 }
                 else
