@@ -48,7 +48,7 @@ namespace xamarinJKH.AppsConst
             numberAndDate.TextColor = Color.Black;
             numberAndDate.FontSize = 12;
             numberAndDate.VerticalOptions = LayoutOptions.StartAndExpand;
-            numberAndDate.HorizontalOptions = LayoutOptions.StartAndExpand;
+            numberAndDate.HorizontalOptions = LayoutOptions.Fill;
 
             ImageStatus.Foreground = hex;
             ImageStatus.Source = "ic_status_new";
