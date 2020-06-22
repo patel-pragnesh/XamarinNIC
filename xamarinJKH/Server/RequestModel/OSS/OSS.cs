@@ -6,32 +6,32 @@ namespace xamarinJKH.Server.RequestModel
     public class OSS
     {
         public int ID { get; set; }
-        public string MeetingTitle { get; set; }
-        public string DateStart { get; set; }
-        public string DateEnd { get; set; }
-        public string DateRealPart { get; set; }
+        public string MeetingTitle { get; set; } // Заголовок собрания
+        public string DateStart { get; set; } // дата начала собрания
+        public string DateEnd { get; set; } // дата окончания собрания
+        public string DateRealPart { get; set; } // дата начала очного собрания
 
-        public string ResultsReleaseDate { get; set; }
+        public string ResultsReleaseDate { get; set; } // Дата когда будут доступны итоги голосования
 
-        public string DateRegistrationRealPart { get; set; }
-        public string RealPartPlace { get; set; }
+        public string DateRegistrationRealPart { get; set; } // Дата ренгистрации для очного голосования
+        public string RealPartPlace { get; set; } // Место прохождения очного голосования
         public string PlaceForViewingDocuments { get; set; }
 
-        public string PlaceOfReceiptSolutions { get; set; }
-        public string DateEndReceiptSolutions { get; set; }
+        public string PlaceOfReceiptSolutions { get; set; } // Место подсчета результатов
+        public string DateEndReceiptSolutions { get; set; }// Окончание очного голосования
 
-        public string HouseAddress { get; set; }
-        public string Author { get; set; }
-        public string Form { get; set; }
-        public string Type { get; set; }
-        public string MeetingView { get; set; }
+        public string HouseAddress { get; set; } // Адресс дома
+        public string Author { get; set; } // Инициатор собрания
+        public string Form { get; set; } // Форма голосования (очная/заочная и т.д)
+        public string Type { get; set; } // Тип собрания (внеочередное и т.д)
+        public string MeetingView { get; set; } // Вид собрания
 
-        public string Comment { get; set; }
-        public decimal AreaResidential { get; set; }
-        public decimal AreaNonresidential { get; set; }
-        public bool IsComplete { get; set; }
-        public decimal VoitingArea { get; set; }
-        public decimal ComplateArea { get; set; }
+        public string Comment { get; set; } // Коммент 
+        public decimal AreaResidential { get; set; } // Общая площадь помещений:
+        public decimal AreaNonresidential { get; set; } // Площадь нежилая
+        public bool IsComplete { get; set; } // Собрание завершено 
+        public decimal VoitingArea { get; set; } // Общая площадь помещений:
+        public decimal ComplateArea { get; set; } // Общая доля проголосовавших
         public decimal ComplateAreaPercents
         {
             get
@@ -51,17 +51,17 @@ namespace xamarinJKH.Server.RequestModel
         public string AdminstratorPostAddress { get; set; }
         public string AdminstratorSite { get; set; }
 
-        public bool AdministratorIsFL { get; set; }
-        public bool AdministratorIsUL { get; set; }
+        public bool AdministratorIsFL { get; set; } // Физ лицо 
+        public bool AdministratorIsUL { get; set; } // Юр Лицо
 
 
-        public List<OSSQuestion> Questions { get; set; }
-        public List<OSSAccount> Accounts { get; set; }
-        public List<OSSInitiator> Initiators { get; internal set; }
-        public string WebSiteForScanDocView { get; internal set; }
-        public bool InitiatorsIsCompany { get; internal set; }
-        public int TotalAccounts { get; internal set; }
-        public int ComplateAccoounts { get; internal set; }
+        public List<OSSQuestion> Questions { get; set; } // Вопросы
+        public List<OSSAccount> Accounts { get; set; }// Лс
+        public List<OSSInitiator> Initiators { get; internal set; }// Инициаторы
+        public string WebSiteForScanDocView { get; internal set; }// Электронные образцы
+        public bool InitiatorsIsCompany { get; internal set; } // Инициатор Ук или Собственник
+        public int TotalAccounts { get; internal set; } // Кол-во аккаунтов доступных для голосования
+        public int ComplateAccoounts { get; internal set; } // Всего проголосовавших собственников 
         public string Error { get; set; }
     }
 }

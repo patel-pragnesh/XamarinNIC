@@ -6,16 +6,16 @@ namespace xamarinJKH.Server.RequestModel
     public class OSSQuestion
     {
         public int ID { get; set; }
-        public string Number { get; set; }
-        public string Text { get; set; }
-        public string Answer { get; set; }
-        public string QuestionMessage { get; set; }
+        public string Number { get; set; }// Номер вопроса
+        public string Text { get; set; }// краткий Текст вопрсоа
+        public string Answer { get; set; }// Ответ
+        public string QuestionMessage { get; set; } // Полный текст вопроса
         public bool DoNotVoite { get; set; }
         public List<OSSAnswerStats> AnswersStats { get; set; }
 
-        public int CountWhyVoiteYes { get; set; }
-        public int CountWhyVoiteNo { get; set; }
-        public int CountWhyVoiteUnknow { get; set; }
+        public int CountWhyVoiteYes { get; set; } // Кол-во ответов за
+        public int CountWhyVoiteNo { get; set; } // Кол-во ответов против
+        public int CountWhyVoiteUnknow { get; set; } // Кол-во ответов воздержался
 
         public int AnswerTotalCount
         {

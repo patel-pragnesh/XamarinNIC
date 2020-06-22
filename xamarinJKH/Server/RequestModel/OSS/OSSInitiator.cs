@@ -2,6 +2,7 @@
 {
     public class OSSInitiator
     {
+        // То же самое что у OSSAccount
         public string Ident { get; set; }
         public string FIO { get; set; }
 
