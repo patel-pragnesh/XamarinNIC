@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
 using xamarinJKH.ViewModels;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
-using RestSharp;
+using xamarinJKH.Server;
+using xamarinJKH.InterfacesIntegration;
+using Xamarin.Essentials;
+using xamarinJKH.CustomRenderers;
 
 namespace xamarinJKH.Pays
 {
@@ -22,11 +19,33 @@ namespace xamarinJKH.Pays
         {
             InitializeComponent();
             BindingContext = viewModel = vm;
-            //PDF.Source = viewModel.Path;
-            //PDF.Navigating += async (s, e) =>
-            //{
-            //    await PDF.EvaluateJavaScriptAsync("PDF.js");
-            //};
+            viewModel.LoadPdf.Execute(null);
+            View pdfview;
+            if (Device.RuntimePlatform == "Android")
+            {
+                pdfview = new CustomWebView()
+                {
+                    VerticalOptions = LayoutOptions.FillAndExpand,
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
+                    Uri = "http://www.africau.edu/images/default/sample.pdf"
+                };
+                Content.Children.Add(pdfview);
+            }
+            else
+            {
+                pdfview = new WebView()
+                {
+                    VerticalOptions = LayoutOptions.FillAndExpand,
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
+                    Source = "http://www.africau.edu/images/default/sample.pdf"
+                };
+                Content.Children.Add(pdfview);
+            }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
         }
 
         async void GoBack(object sender, EventArgs args)
@@ -36,7 +55,11 @@ namespace xamarinJKH.Pays
 
         async void ShareBill(object sender, EventArgs args)
         {
-            await Xamarin.Essentials.Share.RequestAsync(this.viewModel.Bill.Period);
+            await Xamarin.Essentials.Share.RequestAsync(new ShareTextRequest()
+            {
+                Uri = viewModel.Path,
+                Text = "Поделиться квитанцией"
+            });
         }
     }
 
@@ -63,6 +86,17 @@ namespace xamarinJKH.Pays
             get => "+" + Settings.Person.Phone;
         }
 
+        public Command LoadPdf { get; set; }
+        string _path;
+        public string Path
+        {
+            get => _path;
+            set
+            {
+                _path = value;
+                OnPropertyChanged("Path");
+            }
+        }
         public string Name
         {
             get => Settings.MobileSettings.main_name;
@@ -70,6 +104,13 @@ namespace xamarinJKH.Pays
         public PayPdfViewModel(BillInfo info)
         {
             Bill = info;
+            RestClientMP server = new RestClientMP();
+            
+            LoadPdf = new Command(async () =>
+            {
+               //TODO: Получение ссылки на настоящий файл квитанции с бека
+                Path = "http://www.africau.edu/images/default/sample.pdf";//"file:///" + DependencyService.Get<IFileWorker>().GetFilePath(filename);
+            });
         }
     }
 }

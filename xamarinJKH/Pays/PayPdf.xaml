@@ -71,6 +71,7 @@
                 </Grid>
             </Frame>
             <StackLayout Grid.Row="1"
+                         x:Name="Content"
                          Padding="10">
                 <StackLayout Orientation="Horizontal">
                     <xamarinJkh:IconView Foreground="Black"
@@ -112,10 +113,6 @@
                         </xamarinJkh:IconView.GestureRecognizers>
                     </xamarinJkh:IconView>
                 </StackLayout>
-                <!--<WebView x:Name="PDF"
-                         Source="https://google.com/"
-                         VerticalOptions="FillAndExpand"
-                         HorizontalOptions="FillAndExpand"/>-->
             </StackLayout>
         </Grid>
     </ContentPage.Content>
