@@ -52,7 +52,9 @@ namespace xamarinJKH.Main
             StartOffers();
             StartQuestions();
             // SetVisibleControls();
-            
+            StartOSS();
+
+
         }
 
         protected override void OnAppearing()
@@ -74,8 +76,11 @@ namespace xamarinJKH.Main
             setVisible(Settings.EventBlockData.Announcements.Count == 0, StartNotification, FrameNotification);
             setVisible(Settings.EventBlockData.AdditionalServices.Count == 0, StartOffers, FrameOffers);
             setVisible(false, StartShop, FrameShop);
-            
-            
+
+            //для ОСС
+            setVisible(false, StartOSS, FrameOSS);
+
+
         }
 
         void setVisible(bool visible, Action funk, VisualElement frame)
@@ -118,6 +123,13 @@ namespace xamarinJKH.Main
             FrameNotification.GestureRecognizers.Add(startNotif);
         }
 
+        private void StartOSS()
+        {
+            var startOSSTGR = new TapGestureRecognizer();
+            startOSSTGR.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSMain()); };
+            FrameOSS.GestureRecognizers.Add(startOSSTGR);
+        }
+
         private void StartShop()
         {
         }
@@ -145,6 +157,13 @@ namespace xamarinJKH.Main
             IconViewForvardQuestions.Foreground = hexColor;
             IconViewOffers.Foreground = hexColor;
             IconViewForvardOffers.Foreground = hexColor;
+
+
+            IconViewOss.Foreground = hexColor;
+            IconViewForvardOss.Foreground = hexColor;
+
+
+
             // LabelTech.TextColor = hexColor;
         }
     }

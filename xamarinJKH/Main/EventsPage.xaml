@@ -242,6 +242,42 @@
                                 VerticalOptions="Center" />
                         </StackLayout>
                     </customRenderers:MaterialFrame>
+                    <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOSS"
+                                                   CornerRadius="30"
+                                                   Margin="10, 10, 10, 0"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   VerticalOptions="Start"
+                                                   BackgroundColor="White"
+                                                   Padding="0, 25, 0, 25">
+                        <StackLayout
+                            Orientation="Horizontal">
+                            <xamarinJkh:IconView
+                                x:Name="IconViewOss"
+                                Source="ic_questions2"
+                                HeightRequest="30"
+                                Margin="-10, 0, 0, 0"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center" />
+                            <Label
+                                Text="Общие собрания собственников"
+                                FontSize="20"
+                                TextColor="Black"
+                                Margin="-20, 0, 0, 0"
+                                FontAttributes="Bold"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Center" />
+                            <xamarinJkh:IconView
+                                x:Name="IconViewForvardOss"
+                                Source="ic_arrow_forward"
+                                HeightRequest="25"
+                                WidthRequest="25"
+                                Margin="0,0,15,0"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </customRenderers:MaterialFrame>
+                    
+                    
                     <Frame x:Name="FrameShop"
                            CornerRadius="30"
                            Margin="10, 10, 10, 10"
