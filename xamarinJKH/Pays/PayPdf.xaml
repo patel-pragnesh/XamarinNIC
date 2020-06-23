@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:xamarinJkh="clr-namespace:xamarinJKH"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="xamarinJKH.Pays.PayPdf">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="Black"
+                   x:Name="TopBar"
+                   VerticalOptions="FillAndExpand"
+                   CornerRadius="40"
+                   Padding="0,50,0,0"
+                   Margin="0,-50,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    <pancake:PancakeView 
+                           Padding="25"
+                           Grid.Column="1"
+                           CornerRadius="40,0,40,40"
+                           BackgroundColor="White">
+                        <Image Source="icon_login"
+                               Margin="5,0"/>
+                    </pancake:PancakeView>
+                    <StackLayout Padding="15,10" Spacing="5">
+                        <Label
+                              TextColor="White"
+                              FontSize="20"
+                              FontAttributes="Bold"
+                              Text="{Binding Name}"/>
+                        <StackLayout Orientation="Horizontal">
+                            <xamarinJkh:IconView x:Name="IconViewLogin"
+                                             Source="ic_phone"
+                                             HeightRequest="15"
+                                             WidthRequest="20"
+                                             Foreground="White"
+                                             Margin="0, 0,0,0"
+                                             HorizontalOptions="Start"
+                                             VerticalOptions="Center" />
+                            <Label Text="{Binding Phone}"
+                                   FontSize="16"
+                                   TextColor="White"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" Margin="15,10,-10,0" Spacing="5">
+                            <xamarinJkh:IconView x:Name="IconViewTech"
+                                             Source="ic_tech"
+                                             HeightRequest="20"
+                                             WidthRequest="20"
+                                             Foreground="White"
+                                             HorizontalOptions="Start"
+                                             VerticalOptions="Center" />
+                            <Label Text="Написать в тех. поддержку"
+                                   TextColor="White"
+                                   FontSize="16"
+                                   TextDecorations="Underline"/>
+                        </StackLayout>
+                        
+                    </StackLayout>
+                </Grid>
+            </Frame>
+            <StackLayout Grid.Row="1"
+                         x:Name="Content"
+                         Padding="10">
+                <StackLayout Orientation="Horizontal">
+                    <xamarinJkh:IconView Foreground="Black"
+                                         Source="ic_arrow_back"
+                                         HeightRequest="10"/>
+                    <Label Text="Назад"
+                           VerticalOptions="Center"
+                           
+                           VerticalTextAlignment="Center"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="GoBack"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                             Spacing="20"
+                             Margin="10"
+                             HeightRequest="50"
+                             HorizontalOptions="FillAndExpand">
+                    <Label Text="{Binding Bill.Period}"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"
+                           FontAttributes="Bold"
+                           FontSize="Large"
+                           HorizontalOptions="FillAndExpand"/>
+                    <xamarinJkh:IconView 
+                                 Source="ic_print"
+                                 HeightRequest="20"
+                                 WidthRequest="40"
+                                 Foreground="{Binding Theme}"
+                                 HorizontalOptions="End">
+                    </xamarinJkh:IconView>
+                    <xamarinJkh:IconView Foreground="{Binding Theme}"
+                                 Source="ic_share"
+                                 HeightRequest="20"
+                                 WidthRequest="40"
+                                 HorizontalOptions="End">
+                        <xamarinJkh:IconView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ShareBill"/>
+                        </xamarinJkh:IconView.GestureRecognizers>
+                    </xamarinJkh:IconView>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
