@@ -105,6 +105,7 @@
                 <Frame CornerRadius="40"
                        Margin="20, 0, 20, -70"
                        VerticalOptions="Start"
+                       x:Name="Frame"
                        BackgroundColor="#8D8D8D"
                        Padding="20,20,20,80">
                     <StackLayout Orientation="Horizontal">

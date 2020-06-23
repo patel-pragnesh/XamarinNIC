@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.Monitor;
+using xamarinJKH.Server;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.MainConst
@@ -46,7 +48,7 @@ namespace xamarinJKH.MainConst
                         // ScrollViewContainer.Margin = new Thickness(10, -135, 10, 0);
                         BackStackLayout.Margin = new Thickness(5, 25, 0, 0);
                         IconViewNameUk.Margin = new Thickness(-3, -10, 0, 0);
-                        RelativeLayoutTop.Margin = new Thickness(0,0,0,-130);
+                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -130);
                         IconViewNotComplite.Margin = 0;
                         IconViewNotComplite.HeightRequest = 8;
                         IconViewNotComplite.WidthRequest = 8;
@@ -60,9 +62,18 @@ namespace xamarinJKH.MainConst
                     break;
             }
 
+            var addClick = new TapGestureRecognizer();
+            addClick.Tapped += async (s, e) =>
+            {
+                var _requestList = await _server.GetRequestsListConst();
+                await Navigation.PushAsync(new MonitorAppsPage(_requestList.Requests));
+            };
+            Frame.GestureRecognizers.Add(addClick);
             SetText();
             BindingContext = this;
         }
+
+        public RestClientMP _server = new RestClientMP();
 
         void SetText()
         {

@@ -150,6 +150,14 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Monitor\MonitorAppsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pays\PayServicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -255,6 +263,12 @@
     </Compile>
     <Compile Update="AppsConst\NewAppConstPage.xaml.cs">
       <DependentUpon>NewAppConstPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Monitor\MonitorAppsPage.xaml.cs">
+      <DependentUpon>MonitorAppsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pays\PayServicePage.xaml.cs">
+      <DependentUpon>PayServicePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

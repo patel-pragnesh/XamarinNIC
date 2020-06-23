@@ -307,7 +307,7 @@ namespace xamarinJKH.Main
                  Settings.Person.Accounts[0].MetersEndDay == 0))
             {
                 MeterInfo select = e.Item as MeterInfo;
-                if (int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
+                if (select.Values.Count > 0 && int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
                 {
                     await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, select.Values[0].Value,
                         select.Values[1].Value));

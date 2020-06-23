@@ -15,7 +15,8 @@ namespace xamarinJKH.Server
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+        public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
 
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
@@ -69,9 +70,15 @@ namespace xamarinJKH.Server
         public const string GET_OSS = "OSS/GetOSS"; // Получить список ОСС. 
         public const string SAVE_ANSWER_OSS = "OSS/SaveAnswer"; // Сохранить ответ на вопрос.
         public const string FINISH_OSS = "OSS/CompleteVote"; // Завершить голосование 
-        public const string SET_ACQUAINTED_OSS = "OSS/SetAcquainted"; // Записывает в лог, что участник голосования ознакомился с повесткой собрания 
-        public const string SET_START_OSS = "OSS/SetStartVoiting"; // Записывает в лог, что участник начал голосование   
 
+        public const string
+            SET_ACQUAINTED_OSS =
+                "OSS/SetAcquainted"; // Записывает в лог, что участник голосования ознакомился с повесткой собрания 
+
+        public const string
+            SET_START_OSS = "OSS/SetStartVoiting"; // Записывает в лог, что участник начал голосование   
+
+        public const string PAY_ONLINE = "PayOnline/GetPayLink"; // Метод возвращает ссылку на оплату
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -1135,6 +1142,49 @@ namespace xamarinJKH.Server
                 return new CommonResult()
                 {
                     Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
+        public async Task<PayService> GetPayLink(string Ident, decimal Sum, List<int> Services = null)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(PAY_ONLINE, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                Ident,
+                Sum,
+                Services
+            });
+            var response = await restClientMp.ExecuteTaskAsync<PayService>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new PayService()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        public async Task<PayResult> GetPayResult(string url)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(url, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+
+            var response = await restClientMp.ExecuteTaskAsync<PayResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new PayResult()
+                {
+                    error = $"Ошибка {response.StatusDescription}"
                 };
             }
 

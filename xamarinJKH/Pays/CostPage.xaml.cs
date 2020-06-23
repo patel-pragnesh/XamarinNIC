@@ -14,7 +14,7 @@ namespace xamarinJKH.Pays
     public partial class CostPage : ContentPage
     {
         private AccountAccountingInfo account { get; set; }
-        
+
         private List<AccountAccountingInfo> Accounts { get; set; }
 
         public CostPage(AccountAccountingInfo account, List<AccountAccountingInfo> accounts)
@@ -34,13 +34,15 @@ namespace xamarinJKH.Pays
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
-                        ScrollViewContainer.Margin = new Thickness(0,0,0,-120);
+                        ScrollViewContainer.Margin = new Thickness(0, 0, 0, -120);
                         BackStackLayout.Margin = new Thickness(-5, 15, 0, 0);
                     }
+
                     break;
                 default:
                     break;
             }
+
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
@@ -54,7 +56,7 @@ namespace xamarinJKH.Pays
             BindingContext = new AccountingInfoModel()
             {
                 AllAcc = Accounts,
-                hex =  Color.FromHex(Settings.MobileSettings.color)
+                hex = Color.FromHex(Settings.MobileSettings.color)
             };
             SetText();
         }
@@ -126,29 +128,33 @@ namespace xamarinJKH.Pays
             {
                 Picker.WidthRequest = identLength * 9;
             }
+
             account = Accounts[Picker.SelectedIndex];
             SetPays();
         }
 
         private void Entry_Completed(object sender, EventArgs e)
         {
-            
         }
 
         private void EntrySum_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             FormattedString formatted = new FormattedString();
+            
+
+            string sumText = EntrySum.Text.Equals("") ? "0" : EntrySum.Text;
 
             formatted.Spans.Add(new Span
             {
                 Text = "Итого: ",
-                FontSize = 20,
+                FontSize = 17,
                 TextColor = Color.Black
             });
+
             formatted.Spans.Add(new Span
             {
-                Text = EntrySum.Text,
-                FontSize = 25,
+                Text = sumText,
+                FontSize = 20,
                 TextColor = Color.FromHex(Settings.MobileSettings.color),
                 FontAttributes = FontAttributes.Bold
             });
@@ -160,14 +166,36 @@ namespace xamarinJKH.Pays
             });
             LabelTotal.FormattedText = formatted;
         }
+
         private async void openSaldo(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SaldosPage(Accounts)); 
+            await Navigation.PushAsync(new SaldosPage(Accounts));
         }
 
         private async void OpenHistory(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new HistoryPayedPage(Accounts));
+        }
+
+        private async void Pay(object sender, EventArgs e)
+        {
+            string sumText = EntrySum.Text;
+            if (!sumText.Equals("") && !sumText.Equals("0")&& !sumText.Equals("-"))
+            {
+                decimal sum = Decimal.Parse(sumText);
+                if (sum > 0)
+                {
+                    await Navigation.PushAsync(new PayServicePage(account.Ident, sum));
+                }
+                else
+                {
+                    await DisplayAlert("Ошибка", "Имеется переплата по л.с", "OK");
+                }
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Введите сумму", "OK");
+            }
         }
     }
 }

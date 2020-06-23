@@ -36,6 +36,7 @@ namespace xamarinJKH.Main
         StackLayout count1Stack = new StackLayout();
         StackLayout count2Stack = new StackLayout();
         StackLayout count3Stack = new StackLayout();
+
         public MetersThreeCell()
         {
             MaterialFrame frame = new MaterialFrame();
@@ -59,10 +60,10 @@ namespace xamarinJKH.Main
             resource.HorizontalTextAlignment = TextAlignment.Center;
 
             img.WidthRequest = 25;
-            
+
             header.Children.Add(img);
             header.Children.Add(resource);
-            
+
             StackLayout addressStack = new StackLayout();
             addressStack.Orientation = StackOrientation.Horizontal;
             addressStack.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -90,7 +91,7 @@ namespace xamarinJKH.Main
             addressStack.Children.Add(adress);
             container.Children.Add(header);
             container.Children.Add(addressStack);
-            
+
             StackLayout numberStack = new StackLayout();
             numberStack.Orientation = StackOrientation.Horizontal;
             numberStack.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -107,23 +108,23 @@ namespace xamarinJKH.Main
             number.TextColor = Color.Black;
             number.HorizontalTextAlignment = TextAlignment.End;
             number.MaxLines = 1;
-            
+
             Label linesNumb = new Label();
             linesNumb.HeightRequest = 1;
-            linesNumb.BackgroundColor = Color.LightGray; 
-            linesNumb.Margin = new Thickness(0,2,0,0);
+            linesNumb.BackgroundColor = Color.LightGray;
+            linesNumb.Margin = new Thickness(0, 2, 0, 0);
             linesNumb.VerticalOptions = LayoutOptions.Center;
             linesNumb.HorizontalOptions = LayoutOptions.FillAndExpand;
-            
+
             numberStack.Children.Add(numberLbl);
             numberStack.Children.Add(linesNumb);
             numberStack.Children.Add(number);
             container.Children.Add(numberStack);
-            
+
             StackLayout checkupDateStack = new StackLayout();
             checkupDateStack.Orientation = StackOrientation.Horizontal;
             checkupDateStack.HorizontalOptions = LayoutOptions.FillAndExpand;
-            checkupDateStack.Margin = new Thickness(0,-7,0,0);
+            checkupDateStack.Margin = new Thickness(0, -7, 0, 0);
             Label checkupDateLbl = new Label();
             checkupDateLbl.Text = "Последняя поверка:";
             checkupDateLbl.FontSize = 12;
@@ -137,23 +138,24 @@ namespace xamarinJKH.Main
             checkup_date.HorizontalTextAlignment = TextAlignment.End;
             checkup_date.HorizontalOptions = LayoutOptions.End;
             checkup_date.MaxLines = 1;
-            
+
             Label linesPover = new Label();
             linesPover.HeightRequest = 1;
-            linesPover.BackgroundColor = Color.LightGray;;
+            linesPover.BackgroundColor = Color.LightGray;
+            ;
             linesPover.VerticalOptions = LayoutOptions.Center;
-            linesPover.Margin = new Thickness(0,2,0,0);
+            linesPover.Margin = new Thickness(0, 2, 0, 0);
             linesPover.HorizontalOptions = LayoutOptions.FillAndExpand;
-            
+
             checkupDateStack.Children.Add(checkupDateLbl);
             checkupDateStack.Children.Add(linesPover);
             checkupDateStack.Children.Add(checkup_date);
             container.Children.Add(checkupDateStack);
-            
+
             StackLayout recheckStack = new StackLayout();
             recheckStack.Orientation = StackOrientation.Horizontal;
             recheckStack.HorizontalOptions = LayoutOptions.FillAndExpand;
-            recheckStack.Margin = new Thickness(0,-7,0,0);
+            recheckStack.Margin = new Thickness(0, -7, 0, 0);
             Label recheckLbl = new Label();
             recheckLbl.Text = "Межповерочный интервал:";
             recheckLbl.FontSize = 12;
@@ -167,31 +169,32 @@ namespace xamarinJKH.Main
             recheckup.HorizontalTextAlignment = TextAlignment.End;
             recheckup.HorizontalOptions = LayoutOptions.End;
             recheckup.MaxLines = 1;
-            
+
             Label linesInterv = new Label();
             linesInterv.HeightRequest = 1;
-            linesInterv.BackgroundColor = Color.LightGray;;
+            linesInterv.BackgroundColor = Color.LightGray;
+            ;
             linesInterv.VerticalOptions = LayoutOptions.Center;
-            linesInterv.Margin = new Thickness(0,2,0,0);
+            linesInterv.Margin = new Thickness(0, 2, 0, 0);
             linesInterv.HorizontalOptions = LayoutOptions.FillAndExpand;
-            
+
             recheckStack.Children.Add(recheckLbl);
             recheckStack.Children.Add(linesInterv);
             recheckStack.Children.Add(recheckup);
             container.Children.Add(recheckStack);
-            
+
             Label separator = new Label();
 
             separator.HeightRequest = 1;
             separator.BackgroundColor = Color.LightGray;
             separator.Margin = new Thickness(0, 5, 0, 5);
             container.Children.Add(separator);
-            
+
             tarif1.FontSize = 15;
             tarif1.TextColor = Color.Red;
             tarif1.HorizontalTextAlignment = TextAlignment.Center;
-            
-            
+
+
             count1Stack.Orientation = StackOrientation.Horizontal;
             count1Stack.HorizontalOptions = LayoutOptions.FillAndExpand;
             counterDate1.FontSize = 15;
@@ -206,17 +209,18 @@ namespace xamarinJKH.Main
             count1.HorizontalOptions = LayoutOptions.End;
             count1.VerticalOptions = LayoutOptions.Start;
             count1.MaxLines = 1;
-            
+
             Label lines = new Label();
             lines.HeightRequest = 1;
-            lines.BackgroundColor = Color.LightGray;;
+            lines.BackgroundColor = Color.LightGray;
+            ;
             lines.VerticalOptions = LayoutOptions.Center;
             lines.HorizontalOptions = LayoutOptions.FillAndExpand;
             count1Stack.Children.Add(counterDate1);
             count1Stack.Children.Add(lines);
             count1Stack.Children.Add(count1);
             container.Children.Add(count1Stack);
-            
+
             count2Stack.Orientation = StackOrientation.Horizontal;
             count2Stack.HorizontalOptions = LayoutOptions.FillAndExpand;
             counterDate2.FontSize = 15;
@@ -231,18 +235,19 @@ namespace xamarinJKH.Main
             count2.HorizontalOptions = LayoutOptions.End;
             count2.VerticalOptions = LayoutOptions.Center;
             count2.MaxLines = 1;
-            
+
             Label lines2 = new Label();
             lines2.HeightRequest = 1;
-            lines2.BackgroundColor = Color.LightGray;;
+            lines2.BackgroundColor = Color.LightGray;
+            ;
             lines2.VerticalOptions = LayoutOptions.Center;
             lines2.HorizontalOptions = LayoutOptions.FillAndExpand;
-            
+
             count2Stack.Children.Add(counterDate2);
             count2Stack.Children.Add(lines2);
             count2Stack.Children.Add(count2);
             container.Children.Add(count2Stack);
-            
+
             count3Stack.Orientation = StackOrientation.Horizontal;
             count3Stack.HorizontalOptions = LayoutOptions.FillAndExpand;
             counterDate3.FontSize = 15;
@@ -257,25 +262,26 @@ namespace xamarinJKH.Main
             count3.HorizontalOptions = LayoutOptions.End;
             count3.VerticalOptions = LayoutOptions.Center;
             count3.MaxLines = 1;
-            
+
             Label lines3 = new Label();
             lines3.HeightRequest = 1;
-            lines3.BackgroundColor = Color.LightGray;;
+            lines3.BackgroundColor = Color.LightGray;
+            ;
             lines3.VerticalOptions = LayoutOptions.Center;
             lines3.HorizontalOptions = LayoutOptions.FillAndExpand;
-            
+
             count3Stack.Children.Add(counterDate3);
             count3Stack.Children.Add(lines3);
             count3Stack.Children.Add(count3);
             container.Children.Add(count3Stack);
-            
+
             frameBtn.HorizontalOptions = LayoutOptions.FillAndExpand;
             frameBtn.VerticalOptions = LayoutOptions.Start;
             frameBtn.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             frameBtn.CornerRadius = 10;
-            frameBtn.Margin = new Thickness(0,10,0,0);
+            frameBtn.Margin = new Thickness(0, 10, 0, 0);
             frameBtn.Padding = 12;
-            
+
             containerBtn.Orientation = StackOrientation.Horizontal;
             containerBtn.HorizontalOptions = LayoutOptions.CenterAndExpand;
 
@@ -305,13 +311,13 @@ namespace xamarinJKH.Main
             canCount.HorizontalTextAlignment = TextAlignment.End;
             canCount.HorizontalOptions = LayoutOptions.CenterAndExpand;
             canCount.HorizontalTextAlignment = TextAlignment.Center;
-            
+
             container.Children.Add(canCount);
             frame.Content = container;
 
             View = frame;
         }
-        
+
         public static readonly BindableProperty ResourceProperty =
             BindableProperty.Create("Resource", typeof(string), typeof(MetersThreeCell), "");
 
@@ -323,22 +329,28 @@ namespace xamarinJKH.Main
 
         public static readonly BindableProperty CheckupDateProperty =
             BindableProperty.Create("LastCheckupDate", typeof(string), typeof(MetersThreeCell), "");
-        
+
         public static readonly BindableProperty RecheckIntervalProperty =
             BindableProperty.Create("RecheckInterval", typeof(string), typeof(MetersThreeCell), "");
 
         public static readonly BindableProperty ValuesProperty =
-            BindableProperty.Create("Values", typeof(List<MeterValueInfo>), typeof(MetersThreeCell), new List<MeterValueInfo>());
+            BindableProperty.Create("Values", typeof(List<MeterValueInfo>), typeof(MetersThreeCell),
+                new List<MeterValueInfo>());
 
         public List<MeterValueInfo> Values
         {
             get { return (List<MeterValueInfo>) GetValue(ValuesProperty); }
             set { SetValue(ValuesProperty, value); }
         }
-        
+
         public string Resource
         {
-            get { return ((string)GetValue(ResourceProperty)).ToLower().Contains("водоснабжение") ? $"{(string)GetValue(ResourceProperty)}, м3" : (string)GetValue(ResourceProperty); }
+            get
+            {
+                return ((string) GetValue(ResourceProperty)).ToLower().Contains("водоснабжение")
+                    ? $"{(string) GetValue(ResourceProperty)}, м3"
+                    : (string) GetValue(ResourceProperty);
+            }
             set { SetValue(ResourceProperty, value); }
         }
 
@@ -389,7 +401,6 @@ namespace xamarinJKH.Main
                 HorizontalTextAlignment = TextAlignment.Center
             };
             stack.Children.Add(editLabel);
-           
         }
 
         protected override async void OnBindingContextChanged()
@@ -405,9 +416,8 @@ namespace xamarinJKH.Main
                     TextColor = Color.Black,
                     FontAttributes = FontAttributes.Bold,
                     FontSize = 18
-                    
                 });
-                
+
                 resource.FormattedText = formattedResource;
                 adress.Text = Address;
                 number.Text = UniqueNum;
@@ -416,29 +426,39 @@ namespace xamarinJKH.Main
                 if (Values.Count == 1)
                 {
                     counterDate1.Text = Values[0].Period;
-                    count1.Text = String.Format("{0:0.000}", Values[0].Value);//.ToString(CultureInfo.InvariantCulture);
+                    count1.Text =
+                        String.Format("{0:0.000}", Values[0].Value); //.ToString(CultureInfo.InvariantCulture);
                     count2Stack.IsVisible = count3Stack.IsVisible = false;
                 }
                 else if (Values.Count == 2)
                 {
                     counterDate1.Text = Values[0].Period;
-                    count1.Text = String.Format("{0:0.000}", Values[0].Value);//.ToString(CultureInfo.InvariantCulture);
+                    count1.Text =
+                        String.Format("{0:0.000}", Values[0].Value); //.ToString(CultureInfo.InvariantCulture);
                     counterDate2.Text = Values[1].Period;
-                    count2.Text = String.Format("{0:0.000}", Values[1].Value);//.ToString(CultureInfo.InvariantCulture);
+                    count2.Text =
+                        String.Format("{0:0.000}", Values[1].Value); //.ToString(CultureInfo.InvariantCulture);
                     count3Stack.IsVisible = false;
                 }
                 else if (Values.Count == 3)
                 {
                     counterDate1.Text = Values[0].Period;
-                    count1.Text = String.Format("{0:0.000}", Values[0].Value);//.ToString(CultureInfo.InvariantCulture);
+                    count1.Text =
+                        String.Format("{0:0.000}", Values[0].Value); //.ToString(CultureInfo.InvariantCulture);
                     counterDate2.Text = Values[1].Period;
-                    count2.Text = String.Format("{0:0.000}", Values[1].Value);//.ToString(CultureInfo.InvariantCulture);
+                    count2.Text =
+                        String.Format("{0:0.000}", Values[1].Value); //.ToString(CultureInfo.InvariantCulture);
                     counterDate3.Text = Values[2].Period;
-                    count3.Text = String.Format("{0:0.000}", Values[2].Value);//.ToString(CultureInfo.InvariantCulture);
+                    count3.Text =
+                        String.Format("{0:0.000}", Values[2].Value); //.ToString(CultureInfo.InvariantCulture);
+                }
+                else if (Values.Count == 0)
+                {
+                    count1Stack.IsVisible = count2Stack.IsVisible = count3Stack.IsVisible = false;
                 }
 
 
-                if (int.Parse(Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
+                if (Values.Count > 0 && int.Parse(Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
                 {
                     SetEditButton();
                 }
@@ -446,7 +466,8 @@ namespace xamarinJKH.Main
                 if (Resource.ToLower().Contains("холодное"))
                 {
                     img.Source = ImageSource.FromFile("ic_cold_water");
-                }else if (Resource.ToLower().Contains("горячее"))
+                }
+                else if (Resource.ToLower().Contains("горячее"))
                 {
                     img.Source = ImageSource.FromFile("ic_heat_water");
                 }
@@ -454,6 +475,7 @@ namespace xamarinJKH.Main
                 {
                     img.Source = ImageSource.FromFile("ic_electr");
                 }
+
                 int currDay = DateTime.Now.Day;
                 // currDay = 16;
                 frameBtn.IsVisible = true;
@@ -468,12 +490,16 @@ namespace xamarinJKH.Main
                         FontAttributes = FontAttributes.None,
                         FontSize = 12
                     });
-                    if (Settings.Person.Accounts[0].MetersStartDay != null && Settings.Person.Accounts[0].MetersEndDay != null){
-                        if (Settings.Person.Accounts[0].MetersStartDay != 0 && Settings.Person.Accounts[0].MetersEndDay != 0)
+                    if (Settings.Person.Accounts[0].MetersStartDay != null &&
+                        Settings.Person.Accounts[0].MetersEndDay != null)
+                    {
+                        if (Settings.Person.Accounts[0].MetersStartDay != 0 &&
+                            Settings.Person.Accounts[0].MetersEndDay != 0)
                         {
                             formattedDate.Spans.Add(new Span
                             {
-                                Text = "c " + Settings.Person.Accounts[0].MetersStartDay + " по " + Settings.Person.Accounts[0].MetersEndDay + " числа ",
+                                Text = "c " + Settings.Person.Accounts[0].MetersStartDay + " по " +
+                                       Settings.Person.Accounts[0].MetersEndDay + " числа ",
                                 TextColor = Color.FromHex(Settings.MobileSettings.color),
                                 FontAttributes = FontAttributes.Bold,
                                 FontSize = 12
@@ -510,8 +536,9 @@ namespace xamarinJKH.Main
 
                     canCount.FormattedText = formattedDate;
                     if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
-                        Settings.Person.Accounts[0].MetersEndDay >= currDay) || (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                        Settings.Person.Accounts[0].MetersEndDay == 0))
+                         Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
+                        (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                         Settings.Person.Accounts[0].MetersEndDay == 0))
                     {
                         frameBtn.IsVisible = true;
                         canCount.IsVisible = false;

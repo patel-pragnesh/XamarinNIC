@@ -248,6 +248,7 @@
                                             Text="Оплатить"
                                             TextColor="White"
                                             FontSize="17"
+                                            Clicked="Pay"
                                             FontAttributes="Bold"
                                             BackgroundColor="Transparent" />
                                 </StackLayout>
