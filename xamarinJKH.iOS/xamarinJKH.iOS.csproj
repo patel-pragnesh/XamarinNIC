@@ -375,4 +375,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_counter.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_share.png" />
+  </ItemGroup>
 </Project>
