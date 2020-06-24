@@ -102,6 +102,9 @@
                                  WidthRequest="40"
                                  Foreground="{Binding Theme}"
                                  HorizontalOptions="End">
+                        <xamarinJkh:IconView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Print"/>
+                        </xamarinJkh:IconView.GestureRecognizers>
                     </xamarinJkh:IconView>
                     <xamarinJkh:IconView Foreground="{Binding Theme}"
                                  Source="ic_share"
