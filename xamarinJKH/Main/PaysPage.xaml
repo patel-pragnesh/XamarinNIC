@@ -203,13 +203,13 @@
                                     <xamarinJkh:IconView
                                         Source="ic_saldos"
                                         Foreground="{Binding hex}"
+                                        Margin="-20,0,5,0"
                                         HeightRequest="24"
                                         WidthRequest="20" />
                                     <Button x:Name="LabelSaldos"
                                             Text="Квитанции"
                                             FontSize="12"
                                             Padding="0"
-                                            Margin="-5,0,0,0"
                                             FontAttributes="Bold"
                                             TextColor="White"
                                             Clicked="openSaldo"

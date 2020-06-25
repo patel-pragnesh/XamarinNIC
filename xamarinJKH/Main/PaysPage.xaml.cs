@@ -75,7 +75,7 @@ namespace xamarinJKH.Main
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
                         RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -125);
-                        BackStackLayout.Margin = new Thickness(5, 25, 0, 0);
+                        BackStackLayout.Margin = new Thickness(5, 15, 0, 0);
                     }
 
                     break;
