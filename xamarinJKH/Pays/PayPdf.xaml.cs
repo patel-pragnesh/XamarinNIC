@@ -8,6 +8,7 @@ using xamarinJKH.Server;
 using xamarinJKH.InterfacesIntegration;
 using Xamarin.Essentials;
 using xamarinJKH.CustomRenderers;
+using System.Net.Http;
 
 namespace xamarinJKH.Pays
 {
@@ -60,6 +61,12 @@ namespace xamarinJKH.Pays
                 Uri = viewModel.Path,
                 Text = "Поделиться квитанцией"
             });
+        }
+
+        async void Print(object sender, EventArgs args)
+        {
+            HttpClient client = new HttpClient();
+            DependencyService.Get<xamarinJKH.InterfacesIntegration.IPrintManager>().SendFileToPrint(await client.GetByteArrayAsync("http://www.africau.edu/images/default/sample.pdf"));
         }
     }
 
