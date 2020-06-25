@@ -200,7 +200,7 @@ namespace xamarinJKH.Main
             CommonResult result = await server.DellIdent(ident);
             if (result.Error == null)
             {
-                Settings.EventBlockData = await server.GetEventBlockData();
+                // Settings.EventBlockData = await server.GetEventBlockData();
                 ItemsList<NamedValue> resultN = await server.GetRequestsTypes();
                 Settings.TypeApp = resultN.Data;
                 removeLs(ident);

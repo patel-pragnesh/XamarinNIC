@@ -21,14 +21,17 @@ namespace xamarinJKH.Server.RequestModel
         public string Error { get; set; }
     }
     
-    public class BillInfo
+    public class BillInfo 
     {
         public int ID { get; set; }
         public string Ident { get; set; }
         public string Period { get; set; }
         public bool HasFile { get; set; }
         public decimal Total { get; set; }
+        
     }
+    
+    
 
     public class MobilePayment
     {

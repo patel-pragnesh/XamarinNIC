@@ -123,11 +123,11 @@ namespace xamarinJKH.Pays
 
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var identLength = Settings.Person.Accounts[Picker.SelectedIndex].Ident.Length;
-            if (identLength < 6)
-            {
-                Picker.WidthRequest = identLength * 9;
-            }
+            // var identLength = Settings.Person.Accounts[Picker.SelectedIndex].Ident.Length;
+            // if (identLength < 6)
+            // {
+            //     Picker.WidthRequest = identLength * 9;
+            // }
 
             account = Accounts[Picker.SelectedIndex];
             SetPays();

@@ -10,6 +10,7 @@ using Android.Support.V4.App;
 using Plugin.CurrentActivity;
 using Plugin.Media;
 using Xamarin.Forms;
+using xamarinJKH.Android;
 using xamarinJKH.Utils;
 
 
@@ -37,9 +38,7 @@ namespace xamarinJKH.Droid
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera);
             ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadExternalStorage);
-
             LoadApplication(new App());
-          
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {

@@ -323,18 +323,18 @@ namespace xamarinJKH.Apps
 
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                var identLength = Settings.Person.Accounts[PickerLs.SelectedIndex].Ident.Length;
-                if (identLength < 6)
-                {
-                    PickerLs.WidthRequest = identLength * 9;
-                }
-            }
-            catch (Exception ex)
-            {
-                // ignored
-            }
+            // try
+            // {
+            //     var identLength = Settings.Person.Accounts[PickerLs.SelectedIndex].Ident.Length;
+            //     if (identLength < 6)
+            //     {
+            //         PickerLs.WidthRequest = identLength * 9;
+            //     }
+            // }
+            // catch (Exception ex)
+            // {
+            //     // ignored
+            // }
         }
 
         public class AddAppModel
@@ -420,18 +420,18 @@ namespace xamarinJKH.Apps
 
         private void pickerType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                var identLength = Settings.TypeApp[PickerType.SelectedIndex].Name.Length;
-                if (identLength < 6)
-                {
-                    PickerType.WidthRequest = identLength * 10;
-                }
-            }
-            catch (Exception ex)
-            {
-                // ignored
-            }
+            // try
+            // {
+            //     var identLength = Settings.TypeApp[PickerType.SelectedIndex].Name.Length;
+            //     if (identLength < 6)
+            //     {
+            //         PickerType.WidthRequest = identLength * 10;
+            //     }
+            // }
+            // catch (Exception ex)
+            // {
+            //     // ignored
+            // }
         }
     }
 }

@@ -252,7 +252,7 @@ namespace xamarinJKH
                 {
                     // await DisplayAlert("Успешно", login.ToString(), "OK");
                     Settings.Person = login;
-                    Settings.EventBlockData = await server.GetEventBlockData();
+                    // Settings.EventBlockData = await server.GetEventBlockData();
                     ItemsList<NamedValue> result = await server.GetRequestsTypes();
                     Settings.TypeApp = result.Data;
                     Preferences.Set("login", replace);

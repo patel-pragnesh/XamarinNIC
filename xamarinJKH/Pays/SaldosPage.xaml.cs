@@ -12,6 +12,7 @@ using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
+using xamarinJKH.Utils.Compatator;
 
 namespace xamarinJKH.Pays
 {
@@ -25,6 +26,7 @@ namespace xamarinJKH.Pays
         private bool isSortDate = true;
         private bool isSortLs = true;
         Color hex = Color.FromHex(Settings.MobileSettings.color);
+
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -81,9 +83,10 @@ namespace xamarinJKH.Pays
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
-                        ScrollViewContainer.Margin = new Thickness(0,0,0,-135);
+                        ScrollViewContainer.Margin = new Thickness(0, 0, 0, -135);
                         BackStackLayout.Margin = new Thickness(-5, 15, 0, 0);
                     }
+
                     break;
                 default:
                     break;
@@ -92,18 +95,12 @@ namespace xamarinJKH.Pays
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
-            BackStackLayout.GestureRecognizers.Add(backClick); 
+            BackStackLayout.GestureRecognizers.Add(backClick);
             var sortDate = new TapGestureRecognizer();
-            sortDate.Tapped += async (s, e) =>
-            {
-                SortDate();
-            };
+            sortDate.Tapped += async (s, e) => { SortDate(); };
             StackLayoutSortDate.GestureRecognizers.Add(sortDate);
             var sortLs = new TapGestureRecognizer();
-            sortLs.Tapped += async (s, e) =>
-            {
-                SortLs();
-            };
+            sortLs.Tapped += async (s, e) => { SortLs(); };
             StackLayoutSortIdent.GestureRecognizers.Add(sortLs);
             SetText();
             this.BindingContext = this;
@@ -120,7 +117,7 @@ namespace xamarinJKH.Pays
             if (isSortDate)
             {
                 IconViewSortDate.Rotation = 0;
-                var list  = BillInfos.OrderBy(u => u.Period);
+                var list = BillInfos.OrderBy(u => u.Period);
                 BillInfos = new List<BillInfo>(list);
                 isSortDate = false;
             }
@@ -128,9 +125,10 @@ namespace xamarinJKH.Pays
             {
                 isSortDate = true;
                 IconViewSortDate.Rotation = 180;
-                var list  = BillInfos.OrderByDescending(u => u.Period);
+                var list = BillInfos.OrderByDescending(u => u.Period);
                 BillInfos = new List<BillInfo>(list);
             }
+
             additionalList.ItemsSource = null;
             additionalList.ItemsSource = BillInfos;
         }
@@ -140,27 +138,28 @@ namespace xamarinJKH.Pays
             Color fromHex = Color.FromHex("#8B8B8B");
             IconViewSortDate.Foreground = fromHex;
             LabelDate.TextColor = fromHex;
-          
+            BillinfoComarable comarable = new BillinfoComarable();
+
             IconViewSortIdent.Foreground = hex;
             LabelLs.TextColor = hex;
             if (!isSortLs)
             {
                 IconViewSortIdent.Rotation = 0;
-                var list  = BillInfos.OrderBy(u => u.Ident);
-                BillInfos = new List<BillInfo>(list);
+                BillInfos.Sort(comarable);
                 isSortLs = true;
             }
             else
             {
                 isSortLs = false;
                 IconViewSortIdent.Rotation = 180;
-                var list  = BillInfos.OrderByDescending(u => u.Ident);
-                BillInfos = new List<BillInfo>(list);
+                BillInfos.Sort(comarable);
+                BillInfos.Reverse();
             }
+
             additionalList.ItemsSource = null;
             additionalList.ItemsSource = BillInfos;
         }
-        
+
         void SetBills(List<AccountAccountingInfo> infos)
         {
             BillInfos = new List<BillInfo>();
@@ -171,9 +170,9 @@ namespace xamarinJKH.Pays
                     BillInfos.Add(VARIABLE);
                 }
             }
-            
-            var list  = BillInfos.OrderByDescending(u => u.Period);
-            
+
+            var list = BillInfos.OrderByDescending(u => u.Period);
+
             BillInfos = new List<BillInfo>(list);
         }
 
@@ -182,7 +181,7 @@ namespace xamarinJKH.Pays
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.Phone;
             // IconViewSortIdent.Foreground = Color.FromHex(Settings.MobileSettings.color);
-           
+
             IconViewSortDate.Foreground = hex;
             LabelDate.TextColor = hex;
         }
@@ -194,8 +193,8 @@ namespace xamarinJKH.Pays
             {
                 select.Period = select.Period.ToUpper();
                 await Navigation.PushAsync(new PayPdf(new PayPdfViewModel(select)));
-
             }
+
             return;
             string filename = @select.Period + ".pdf";
             if (!select.HasFile)

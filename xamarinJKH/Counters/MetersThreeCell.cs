@@ -67,30 +67,57 @@ namespace xamarinJKH.Main
             StackLayout addressStack = new StackLayout();
             addressStack.Orientation = StackOrientation.Horizontal;
             addressStack.HorizontalOptions = LayoutOptions.FillAndExpand;
+            
+            Grid grid = new Grid
+            {
+                RowDefinitions =
+                {
+                    new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+                },
+                ColumnDefinitions =
+                {
+                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) },
+                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) },
+                }
+            };
+            
+            
             Label adressLbl = new Label();
-            adressLbl.Text = "Адрес: ";
+            adressLbl.Text = "Адрес:";
             adressLbl.FontSize = 15;
             adressLbl.TextColor = Color.FromHex("#A2A2A2");
             adressLbl.HorizontalTextAlignment = TextAlignment.Start;
-            adressLbl.HorizontalOptions = LayoutOptions.Start;
-            adressLbl.MaxLines = 1;
+            adressLbl.HorizontalOptions = LayoutOptions.Fill;
             adress.FontSize = 15;
             adress.TextColor = Color.Black;
             adress.HorizontalTextAlignment = TextAlignment.End;
-            adress.HorizontalOptions = LayoutOptions.End;
+            adress.HorizontalOptions = LayoutOptions.Fill;
             adress.MaxLines = 3;
-            addressStack.Children.Add(adressLbl);
-            addressStack.Children.Add(new Label
+            // addressStack.Children.Add(adressLbl);
+            // addressStack.Children.Add(new Label
+            // {
+            //     HeightRequest = 1,
+            //     HorizontalOptions = LayoutOptions.FillAndExpand,
+            //     BackgroundColor = Color.LightGray,
+            //     Margin = new Thickness(0, 5, 0, 0),
+            //     VerticalOptions = LayoutOptions.Center
+            // });
+            // addressStack.Children.Add(adress);
+            
+            grid.Children.Add(adressLbl, 0, 0);
+            grid.Children.Add(new Label
             {
                 HeightRequest = 1,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 BackgroundColor = Color.LightGray,
                 Margin = new Thickness(0, 5, 0, 0),
                 VerticalOptions = LayoutOptions.Center
-            });
-            addressStack.Children.Add(adress);
+            }, 1, 0);
+            grid.Children.Add(adress, 2, 0);
+
             container.Children.Add(header);
-            container.Children.Add(addressStack);
+            container.Children.Add(grid);
 
             StackLayout numberStack = new StackLayout();
             numberStack.Orientation = StackOrientation.Horizontal;
@@ -349,7 +376,7 @@ namespace xamarinJKH.Main
             {
                 return ((string) GetValue(ResourceProperty)).ToLower().Contains("водоснабжение")
                     ? $"{(string) GetValue(ResourceProperty)}, м3"
-                    : (string) GetValue(ResourceProperty);
+                    : $"{(string) GetValue(ResourceProperty)}, кВт";
             }
             set { SetValue(ResourceProperty, value); }
         }

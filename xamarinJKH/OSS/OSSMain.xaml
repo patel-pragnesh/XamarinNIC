@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-    
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
@@ -7,10 +7,10 @@
              BackgroundColor="#F3F3F3">
     <ContentPage.Content>
         <StackLayout>
-            <RelativeLayout 
+            <RelativeLayout
                 Margin="0,0,0,-140"
                 x:Name="RelativeLayoutTop"
-                HorizontalOptions="FillAndExpand">               
+                HorizontalOptions="FillAndExpand">
                 <Image x:Name="ImageTop" Margin="0, -26, 0 ,0"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
@@ -25,15 +25,15 @@
                        HorizontalOptions="Fill" />
 
                 <StackLayout x:Name="StackLayout"
-                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
                              Constant=15}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Height,
                              Factor=0,
                              Constant=10}"
-                    Orientation="Vertical">
+                             Orientation="Vertical">
                     <Label x:Name="UkName"
                            Text="Название"
                            FontAttributes="Bold"
@@ -113,19 +113,24 @@
                              Property=Height,
                              Factor=0,
                              Constant=25}" />
-                
+
             </RelativeLayout>
-            <StackLayout x:Name="ossContent" VerticalOptions="FillAndExpand" Margin="20,10,20,0" >
-                <Frame x:Name="OssTypeFrame" HeightRequest="80" MinimumHeightRequest="60" WidthRequest="900" BackgroundColor="#8d8d8d" CornerRadius="40"  HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,-20,0,0">
-                        <Button x:Name="ButtonActive" Text="Активные" TextColor="White" FontAttributes="Bold" FontSize="Medium" BackgroundColor="Transparent" BorderWidth="0"  Clicked="Button_Clicked"></Button>
-                        <Button x:Name="ButtonArchive" Text="Завершенные" TextColor="White" FontAttributes="Bold" FontSize="Medium"  BackgroundColor="Transparent" BorderWidth="0" Clicked="Button_Clicked_1"></Button>                        
+            <StackLayout x:Name="ossContent" VerticalOptions="FillAndExpand" Margin="20,10,20,0">
+                <Frame x:Name="OssTypeFrame" HeightRequest="80" MinimumHeightRequest="60" WidthRequest="900"
+                       BackgroundColor="#8d8d8d" CornerRadius="40" HorizontalOptions="FillAndExpand"
+                       VerticalOptions="Start">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start"
+                                 Margin="0,-20,0,0">
+                        <Button x:Name="ButtonActive" Text="Активные" TextColor="White" FontAttributes="Bold"
+                                FontSize="Medium" BackgroundColor="Transparent" BorderWidth="0"
+                                Clicked="Button_Clicked" />
+                        <Button x:Name="ButtonArchive" Text="Завершенные" TextColor="White" FontAttributes="Bold"
+                                FontSize="Medium" BackgroundColor="Transparent" BorderWidth="0"
+                                Clicked="Button_Clicked_1" />
                     </StackLayout>
                 </Frame>
                 <ScrollView x:Name="OSSList" Margin="0,-80,0,0">
-                    <StackLayout x:Name="OSSListContent" HorizontalOptions="FillAndExpand">
-                       
-                    </StackLayout>                    
+                    <StackLayout x:Name="OSSListContent" HorizontalOptions="FillAndExpand" />
                 </ScrollView>
             </StackLayout>
 

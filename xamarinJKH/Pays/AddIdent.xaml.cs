@@ -123,6 +123,7 @@ namespace xamarinJKH.Pays
                     await DisplayAlert("", "Лс/ч " + ident + " успешно подключён", "ОК");
                     FrameBtnAdd.IsVisible = true;
                     progress.IsVisible = false;
+                   
                     await Navigation.PopAsync();
                     _paysPage.RefreshPaysData();
                 }

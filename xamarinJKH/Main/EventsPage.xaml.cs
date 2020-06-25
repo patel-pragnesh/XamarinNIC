@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using xamarinJKH.Additional;
 using xamarinJKH.News;
 using xamarinJKH.Questions;
+using xamarinJKH.Server;
 using xamarinJKH.Shop;
 using xamarinJKH.Utils;
 using Application = Xamarin.Forms.Application;
@@ -68,9 +69,11 @@ namespace xamarinJKH.Main
         {
             Device.BeginInvokeOnMainThread(SetVisibleControls);
         }
-        
-        void SetVisibleControls()
+
+        async void SetVisibleControls()
         {
+            RestClientMP server = new RestClientMP();
+            Settings.EventBlockData = await server.GetEventBlockData();
             setVisible(Settings.EventBlockData.News.Count == 0, StartNews, FrameNews);
             setVisible(Settings.EventBlockData.Polls.Count == 0, StartQuestions, FrameQuestions);
             setVisible(Settings.EventBlockData.Announcements.Count == 0, StartNotification, FrameNotification);

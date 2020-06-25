@@ -131,7 +131,7 @@
                                                                      TitleColor="{Binding hex}"
                                                                      TextColor="{Binding hex}"
                                                                      VerticalOptions="End"
-                                                                     HorizontalOptions="End"
+                                                                     HorizontalOptions="FillAndExpand"
                                                                      SelectedIndexChanged="picker_SelectedIndexChanged"
                                                                      ItemsSource="{Binding AllAcc}"
                                                                      ItemDisplayBinding="{Binding Ident}"
