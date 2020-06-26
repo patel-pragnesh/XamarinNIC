@@ -81,10 +81,12 @@ namespace xamarinJKH.News
                     }
                     else
                     {
-                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -145);
+                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -180);
                     }
-                    
-                    
+                    if (Application.Current.MainPage.Height > 800)
+                    {
+                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -180);
+                    }
                     break;
                 case Device.Android:
                     RelativeLayoutTop.Margin = new Thickness(0,0,0,-135);

@@ -23,7 +23,7 @@
                              Property=Height,
                              Factor=0,
                              Constant=0}"
-                       Source="ic_new_app_top"
+                       Source="ic_app_top"
                        VerticalOptions="Fill"
                        HorizontalOptions="Fill" />
 
@@ -78,15 +78,16 @@
                     <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
-                        Margin="0, 40, 0, 0"
+                        Margin="-2, 35, 0, 0"
                         HorizontalOptions="Start">
                         <Image Source="ic_arrow_back"
                                HeightRequest="15"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Назад "
-                            FontSize="15"
+                            Text="Создать заявку"
+                            FontSize="18"
                             TextColor="White"
+                            FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
                 </StackLayout>

@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <StackLayout>
             <RelativeLayout
-                Margin="0,0,0,-140"
+                Margin="0,0,0,-180"
                 x:Name="RelativeLayoutTop"
                 VerticalOptions="Start"
                 HorizontalOptions="FillAndExpand">
