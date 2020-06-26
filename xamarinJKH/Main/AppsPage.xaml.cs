@@ -65,6 +65,8 @@ namespace xamarinJKH.Main
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
+                    FrameBtnAdd.IsVisible = false;
+                    FrameBtnAddIos.IsVisible = true;
                     BackgroundColor = Color.White;
                     ImageFon.Margin = new Thickness(0, 0, 0, 0);
                     StackLayout.Margin = new Thickness(0, 33, 0, 0);
@@ -81,6 +83,10 @@ namespace xamarinJKH.Main
                     }                  
                     break;
                 case Device.Android:
+                    FrameBtnAdd.IsVisible = true;
+                    FrameBtnAddIos.IsVisible = false;
+                    ScrollViewContainer.Margin = new Thickness(0,0,0,-170);
+                    BackStackLayout.Margin = new Thickness(5,25,0,0);
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
@@ -123,7 +129,6 @@ namespace xamarinJKH.Main
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = Settings.Person.Phone;
             SwitchApp.OnColor = hex;
-            FrameBtnAdd.BackgroundColor = hex;
             IconAddApp.Foreground = Color.White;
         }
 

@@ -96,6 +96,8 @@ namespace xamarinJKH.Main
                     }
                     break;
                 case Device.Android:
+                    RelativeLayoutTop.Margin = new Thickness(0,0,0,-170);
+                    BackStackLayout.Margin = new Thickness(5,25,0,0);
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {

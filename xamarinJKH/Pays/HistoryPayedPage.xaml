@@ -126,6 +126,7 @@
                                                              TitleColor="Black"
                                                              TextColor="White"
                                                              VerticalOptions="Start"
+                                                             HorizontalOptions="Fill"
                                                              SelectedIndexChanged="picker_SelectedIndexChanged"
                                                              ItemsSource="{Binding Accounts}"
                                                              ItemDisplayBinding="{Binding Ident}"

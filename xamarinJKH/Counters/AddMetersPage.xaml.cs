@@ -50,6 +50,7 @@ namespace xamarinJKH.Counters
                     }
                     break;
                 case Device.Android:
+                    ScrollViewContainer.Margin = new Thickness(0, 0, 0, -162);
                     double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
