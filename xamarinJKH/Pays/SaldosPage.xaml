@@ -12,21 +12,9 @@
         <StackLayout>
             <RelativeLayout
                 x:Name="ScrollViewContainer"
-                Margin="0,0,0,-150"
+                Margin="0,0,0,-162"
                 VerticalOptions="Start"
                 HorizontalOptions="FillAndExpand">
-                <!-- <Image x:Name="ImageTop" -->
-                <!--        Source="ic_top_event" -->
-                <!--        VerticalOptions="StartAndExpand" -->
-                <!--        HorizontalOptions="CenterAndExpand" -->
-                <!--        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, -->
-                <!--              Property=Width, -->
-                <!--              Factor=0, -->
-                <!--              Constant=0}" -->
-                <!--        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, -->
-                <!--              Property=Height, -->
-                <!--              Factor=0, -->
-                <!--              Constant=-26}" /> -->
                 <Image x:Name="ImageTop" Margin="0, -26, 0 ,0"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
@@ -91,15 +79,16 @@
                     <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
-                        Margin="0, 40, 0, 0"
+                        Margin="-2, 35, 0, 0"
                         HorizontalOptions="Start">
                         <Image Source="ic_arrow_back"
                                HeightRequest="15"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Назад "
-                            FontSize="15"
+                            Text="Квитанции"
+                            FontSize="18"
                             TextColor="White"
+                            FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
                 </StackLayout>
@@ -116,7 +105,7 @@
                              Constant=25}" />
             </RelativeLayout>
             <customRenderers:MaterialFrame Elevation="20" CornerRadius="30"
-                                           Margin="20, 15, 20, 15"
+                                           Margin="20, 0, 20, 15"
                                            BackgroundColor="White"
                                            Padding="15">
                 <StackLayout VerticalOptions="FillAndExpand"

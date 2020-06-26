@@ -109,6 +109,23 @@ namespace xamarinJKH.Pays
 
         void SortDate()
         {
+            
+             List<BillInfo> listTop = new List<BillInfo>();
+            List<BillInfo> listBottom = new List<BillInfo>();
+            foreach (var each in BillInfos)
+            {
+                if (each.Period.Split().Length > 1)
+                {
+                    listTop.Add(each);
+                }
+                else
+                {
+                    listBottom.Add(each);
+                }
+                
+            }
+            BillinfoComarable comarable = new BillinfoComarable();
+
             IconViewSortDate.Foreground = hex;
             LabelDate.TextColor = hex;
             Color fromHex = Color.FromHex("#8B8B8B");
@@ -117,18 +134,23 @@ namespace xamarinJKH.Pays
             if (isSortDate)
             {
                 IconViewSortDate.Rotation = 0;
-                var list = BillInfos.OrderBy(u => u.Period);
-                BillInfos = new List<BillInfo>(list);
+                listTop.Sort(comarable);
+                var list  = listBottom.OrderBy(u => u.Period);
+                listBottom = new List<BillInfo>(list);
                 isSortDate = false;
             }
             else
             {
                 isSortDate = true;
                 IconViewSortDate.Rotation = 180;
-                var list = BillInfos.OrderByDescending(u => u.Period);
-                BillInfos = new List<BillInfo>(list);
+                listTop.Sort(comarable);
+                listTop.Reverse();
+                var list  = listBottom.OrderByDescending(u => u.Ident);
+                listBottom = new List<BillInfo>(list);
             }
-
+            BillInfos.Clear();
+            BillInfos.AddRange(listTop);
+            BillInfos.AddRange(listBottom);
             additionalList.ItemsSource = null;
             additionalList.ItemsSource = BillInfos;
         }
@@ -138,22 +160,23 @@ namespace xamarinJKH.Pays
             Color fromHex = Color.FromHex("#8B8B8B");
             IconViewSortDate.Foreground = fromHex;
             LabelDate.TextColor = fromHex;
-            BillinfoComarable comarable = new BillinfoComarable();
 
             IconViewSortIdent.Foreground = hex;
             LabelLs.TextColor = hex;
             if (!isSortLs)
             {
                 IconViewSortIdent.Rotation = 0;
-                BillInfos.Sort(comarable);
+                var list  = BillInfos.OrderBy(u => u.Ident);
+                BillInfos = new List<BillInfo>(list);
                 isSortLs = true;
             }
             else
             {
                 isSortLs = false;
                 IconViewSortIdent.Rotation = 180;
-                BillInfos.Sort(comarable);
-                BillInfos.Reverse();
+                var list  = BillInfos.OrderByDescending(u => u.Ident);
+                BillInfos = new List<BillInfo>(list);
+             
             }
 
             additionalList.ItemsSource = null;
@@ -176,6 +199,11 @@ namespace xamarinJKH.Pays
             BillInfos = new List<BillInfo>(list);
         }
 
+        void SortNotFormat()
+        {
+            
+        }
+        
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
@@ -189,19 +217,19 @@ namespace xamarinJKH.Pays
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             BillInfo select = e.Item as BillInfo;
-            if (select != null)
-            {
-                select.Period = select.Period.ToUpper();
-                await Navigation.PushAsync(new PayPdf(new PayPdfViewModel(select)));
-            }
-
-            return;
+            // if (select != null)
+            // {
+            //     select.Period = select.Period.ToUpper();
+            //     await Navigation.PushAsync(new PayPdf(new PayPdfViewModel(select)));
+            // }
+            //
+            // return;
             string filename = @select.Period + ".pdf";
             if (!select.HasFile)
             {
                 return;
             }
-
+            
             if (await DependencyService.Get<IFileWorker>().ExistsAsync(filename))
             {
                 await Launcher.OpenAsync(new OpenFileRequest

@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <StackLayout>
             <RelativeLayout
-                Margin="0,0,0,-130"
+                Margin="0,0,0,-162"
                 x:Name="ScrollViewContainer"
                 VerticalOptions="Start"
                 HorizontalOptions="FillAndExpand">
@@ -77,15 +77,16 @@
                     <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
-                        Margin="-2, 40, 0, 0"
+                        Margin="-2, 35, 0, 0"
                         HorizontalOptions="Start">
                         <Image Source="ic_arrow_back"
                                HeightRequest="15"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Назад "
-                            FontSize="15"
+                            Text="Оплатить"
+                            FontSize="18"
                             TextColor="White"
+                            FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
                 </StackLayout>

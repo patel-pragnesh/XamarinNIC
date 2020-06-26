@@ -8,7 +8,7 @@
     <ContentPage.Content>
         <StackLayout>
             <RelativeLayout
-                Margin="0,0,0,-140"
+                Margin="0,0,0,-162"
                 x:Name="RelativeLayoutTop"
                 HorizontalOptions="FillAndExpand">
                 <Image x:Name="ImageTop" Margin="0, -26, 0 ,0"
@@ -80,16 +80,6 @@
                         <Image Source="ic_arrow_back"
                                HeightRequest="15"
                                HorizontalOptions="Center" />
-                        <Label
-                            Text="Назад "
-                            FontSize="15"
-                            TextColor="White"
-                            HorizontalOptions="Start" />
-                    </StackLayout>
-                    <StackLayout
-                        Orientation="Horizontal"
-                        Margin="12, 10, 0, 0"
-                        HorizontalOptions="Start">
                         <Label
                             Text="Сообщения о проведении общего &#10;собрания собственников"
                             FontSize="18"

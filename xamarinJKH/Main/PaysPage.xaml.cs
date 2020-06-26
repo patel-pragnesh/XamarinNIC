@@ -69,6 +69,7 @@ namespace xamarinJKH.Main
                     ImageFon.Margin = new Thickness(0, 0, 0, 0);
                     StackLayout.Margin = new Thickness(0, 33, 0, 0);
                     IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
+                    IconViewSaldos.Margin = new Thickness(-20,0,5,0);
                     break;
                 case Device.Android:
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);

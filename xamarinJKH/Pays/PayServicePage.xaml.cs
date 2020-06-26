@@ -24,7 +24,7 @@ namespace xamarinJKH.Pays
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
-            // BackStackLayout.GestureRecognizers.Add(backClick);
+            BackStackLayout.GestureRecognizers.Add(backClick);
             // switch (Device.RuntimePlatform)
             // {
             //     case Device.iOS:

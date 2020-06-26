@@ -11,21 +11,9 @@
     <ContentPage.Content>
         <StackLayout>
             <RelativeLayout
-                Margin="0,0,0,-130"
+                Margin="0,0,0,-162"
                 x:Name="RelativeLayoutTop"
                 HorizontalOptions="FillAndExpand">
-                <!-- <Image x:Name="ImageTop" -->
-                <!--        Source="ic_top_event" -->
-                <!--        VerticalOptions="StartAndExpand" -->
-                <!--        HorizontalOptions="CenterAndExpand" -->
-                <!--        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, -->
-                <!--              Property=Width, -->
-                <!--              Factor=0, -->
-                <!--              Constant=0}" -->
-                <!--        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, -->
-                <!--              Property=Height, -->
-                <!--              Factor=0, -->
-                <!--              Constant=-26}" /> -->
                 <Image x:Name="ImageTop" Margin="0, -26, 0 ,0"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
@@ -95,16 +83,6 @@
                         <Image Source="ic_arrow_back"
                                HeightRequest="15"
                                HorizontalOptions="Center" />
-                        <Label
-                            Text="Назад "
-                            FontSize="15"
-                            TextColor="White"
-                            HorizontalOptions="Start" />
-                    </StackLayout>
-                    <StackLayout
-                        Orientation="Horizontal"
-                        Margin="12, 10, 0, 0"
-                        HorizontalOptions="Start">
                         <Label
                             Text="Опросы"
                             FontSize="18"

@@ -8,21 +8,9 @@
     <ContentPage.Content>
          <StackLayout>
             <RelativeLayout 
-                Margin="0,0,0,-140"
+                Margin="0,0,0,0"
                 x:Name="RelativeLayoutTop"
                 HorizontalOptions="FillAndExpand">
-                <!-- <Image x:Name="ImageTop" -->
-                <!--        Source="ic_top_event" -->
-                <!--        VerticalOptions="StartAndExpand" -->
-                <!--        HorizontalOptions="CenterAndExpand" -->
-                <!--        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, -->
-                <!--              Property=Width, -->
-                <!--              Factor=0, -->
-                <!--              Constant=0}" -->
-                <!--        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, -->
-                <!--              Property=Height, -->
-                <!--              Factor=0, -->
-                <!--              Constant=-26}" /> -->
                 <Image x:Name="ImageTop" Margin="0, -26, 0 ,0"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
@@ -93,16 +81,6 @@
                                HeightRequest="15"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Назад "
-                            FontSize="15"
-                            TextColor="White"
-                            HorizontalOptions="Start" />
-                    </StackLayout>
-                    <StackLayout
-                        Orientation="Horizontal"
-                        Margin="12, 10, 0, 0"
-                        HorizontalOptions="Start">
-                        <Label
                             Text="Новости"
                             FontSize="18"
                             TextColor="White"
@@ -123,10 +101,10 @@
                              Constant=25}" />
             </RelativeLayout>
             <StackLayout
-                VerticalOptions="FillAndExpand">
+                VerticalOptions="StartAndExpand">
                 <ListView x:Name="NotificationList"
                           HasUnevenRows="True"
-                          Margin="10, 0, 10, 0"
+                          Margin="10, -30, 10, 0"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
                           SelectionMode="None"

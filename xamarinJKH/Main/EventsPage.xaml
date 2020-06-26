@@ -76,7 +76,7 @@
                     <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
-                        Margin="5, 55, 0, 0"
+                        Margin="5, 25, 0, 0"
                         HorizontalOptions="Start">
                         <Label
                             Text="События"
@@ -101,7 +101,7 @@
             <ScrollView x:Name="ScrollViewContainer"
                 Orientation="Vertical"
                         VerticalOptions="FillAndExpand"
-                        Margin="10, -150, 10, 0">
+                        Margin="10, -180, 10, 0">
                 <StackLayout
                     VerticalOptions="FillAndExpand">
 

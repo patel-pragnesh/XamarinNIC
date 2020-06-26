@@ -8,22 +8,10 @@
              x:Class="xamarinJKH.NotificationsPage">
     <ContentPage.Content>
         <StackLayout>
-            <RelativeLayout 
-                Margin="0,0,0,-125"
+            <RelativeLayout
+                Margin="0,0,0,0"
                 x:Name="RelativeLayoutTop"
                 HorizontalOptions="FillAndExpand">
-                <!-- <Image x:Name="ImageTop" -->
-                <!--        Source="ic_top_event" -->
-                <!--        VerticalOptions="StartAndExpand" -->
-                <!--        HorizontalOptions="CenterAndExpand" -->
-                <!--        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, -->
-                <!--              Property=Width, -->
-                <!--              Factor=0, -->
-                <!--              Constant=0}" -->
-                <!--        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, -->
-                <!--              Property=Height, -->
-                <!--              Factor=0, -->
-                <!--              Constant=-26}" /> -->
                 <Image x:Name="ImageTop" Margin="0, -26, 0 ,0"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
@@ -38,15 +26,15 @@
                        HorizontalOptions="Fill" />
 
                 <StackLayout x:Name="StackLayout"
-                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
                              Factor=0,
                              Constant=15}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Height,
                              Factor=0,
                              Constant=10}"
-                    Orientation="Vertical">
+                             Orientation="Vertical">
                     <Label x:Name="UkName"
                            Text="Название"
                            FontAttributes="Bold"
@@ -85,24 +73,14 @@
                                Margin="-10, 10, 0, 0"
                                VerticalOptions="Center" />
                     </StackLayout>
-                    <StackLayout
-                        x:Name="BackStackLayout"
-                        Orientation="Horizontal"
-                        Margin="-2, 35, 0, 0"
-                        HorizontalOptions="Start">
+
+                    <StackLayout x:Name="BackStackLayout"
+                                 Orientation="Horizontal"
+                                 Margin="-2, 35, 0, 0"
+                                 HorizontalOptions="Start">
                         <Image Source="ic_arrow_back"
                                HeightRequest="15"
                                HorizontalOptions="Center" />
-                        <Label
-                            Text="Назад "
-                            FontSize="15"
-                            TextColor="White"
-                            HorizontalOptions="Start" />
-                    </StackLayout>
-                    <StackLayout
-                        Orientation="Horizontal"
-                        Margin="12, 5, 0, 0"
-                        HorizontalOptions="Start">
                         <Label
                             Text="Уведомления"
                             FontSize="18"
@@ -127,7 +105,7 @@
                 VerticalOptions="StartAndExpand">
                 <ListView x:Name="NotificationList"
                           HasUnevenRows="True"
-                          Margin="10, 0, 10, 0"
+                          Margin="10, -30, 10, 0"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
                           SelectionMode="None"
@@ -142,14 +120,14 @@
 
                             <xamarinJkh:NotificationCell
                                 TextNotif="{Binding Text}"
-                                DateNotif = "{Binding Created}"
-                                TitleNotif = "{Binding Header}"/>
+                                DateNotif="{Binding Created}"
+                                TitleNotif="{Binding Header}" />
                         </DataTemplate>
 
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
         </StackLayout>
-        
+
     </ContentPage.Content>
 </ContentPage>
