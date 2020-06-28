@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             BackgroundColor="#F3F3F3"
+             x:Class="xamarinJKH.OSSPersonalVotingResult">
+    <ContentPage.Content>
+        <StackLayout>
+            <RelativeLayout HorizontalOptions="FillAndExpand" x:Name="RelativeLayoutTop"
+                            VerticalOptions="Start">
+                <Image x:Name="ImageTop"
+                       Source="ic_background_OSSPool"
+                       VerticalOptions="Fill"
+                       HorizontalOptions="FillAndExpand"
+                       Margin="0, -26, 0 ,0"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Width,
+                             Factor=0,
+                             Constant=0}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Height,
+                             Factor=0,
+                             Constant=0}" />
+
+
+                <StackLayout x:Name="StackLayout"
+                             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Width,
+                             Factor=0,
+                             Constant=15}"
+                             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Height,
+                             Factor=0,
+                             Constant=10}"
+                             Orientation="Vertical">
+                    <Label x:Name="UkName"
+                           Text="Название"
+                           FontAttributes="Bold"
+                           FontSize="20"
+                           TextColor="White" />
+                    <StackLayout
+                        Orientation="Horizontal">
+                        <xamarinJkh:IconView x:Name="IconViewLogin"
+                                             Source="ic_phone"
+                                             HeightRequest="15"
+                                             Foreground="White"
+                                             Margin="-10, 0,0,0"
+                                             HorizontalOptions="Start"
+                                             VerticalOptions="Center" />
+                        <Label x:Name="LabelPhone"
+                               Text="Телефон"
+                               FontSize="16"
+                               TextColor="White"
+                               Margin="-5, 0, 0, 0"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout
+                        Orientation="Horizontal">
+                        <xamarinJkh:IconView x:Name="IconViewTech"
+                                             Source="ic_tech"
+                                             HeightRequest="20"
+                                             Foreground="White"
+                                             Margin="0, 10,0,0"
+                                             HorizontalOptions="Start"
+                                             VerticalOptions="Center" />
+                        <Label x:Name="LabelTech"
+                               Text="Написать в тех.поддержку"
+                               FontSize="16"
+                               TextDecorations="Underline"
+                               TextColor="White"
+                               Margin="-10, 10, 0, 0"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout
+                        x:Name="BackStackLayout"
+                        Orientation="Horizontal"
+                        Margin="0, 40, 0, 0"
+                        HorizontalOptions="Start">
+                        <xamarinJkh:IconView Source="ic_arrow_back"
+                                             HeightRequest="15"
+                                             WidthRequest="15"
+                                             Foreground="White"
+                                             HorizontalOptions="Center" />
+                        <Label
+                            Text="Назад "
+                            FontSize="15"
+                            TextColor="White"
+                            HorizontalOptions="Start" />
+                    </StackLayout>
+                </StackLayout>
+                <Image x:Name="IconViewNameUk"
+                       Source="icon_login"
+                       HeightRequest="70"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Width,
+                             Factor=0.75,
+                             Constant=10}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                             Property=Height,
+                             Factor=0,
+                             Constant=25}" />
+            </RelativeLayout>
+            <StackLayout Orientation="Vertical" Margin="0,70,0,0">
+                <StackLayout
+                Spacing="0"
+                Margin="20,10">
+                    <Label x:Name="LabelTitle"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalOptions="CenterAndExpand"
+                       TextColor="White"
+                       Text="Результаты Вашего голосования в м.кв." />
+                </StackLayout>
+                <ScrollView>
+                    <StackLayout>
+                        <Label x:Name="lRezults" Margin="20,10" TextColor="Black">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Вы проголосовали " FontSize="14" FontAttributes="Bold"></Span>
+                                    <Span x:Name="spanAnswersCnt" FontSize="14"  FontAttributes="Bold"></Span>
+                                    <Span Text=" Ваши ответы:" FontSize="14" FontAttributes="Bold"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <StackLayout Margin="20,5" Orientation="Horizontal">
+                            <Frame x:Name="cntYes" CornerRadius="20" HeightRequest="25" WidthRequest="25" Padding="0">
+                                <Label x:Name="lCntYes" FontSize="12" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White"></Label>
+                            </Frame>
+                            <Label Text="За" FontSize="16" TextColor="Black" VerticalOptions="Center" />
+                        </StackLayout>
+                        <StackLayout Margin="20,5" Orientation="Horizontal">
+                            <Frame x:Name="cntNo" CornerRadius="20" HeightRequest="25" WidthRequest="25" Padding="0">
+                                <Label x:Name="lCntNo" FontSize="12" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White"></Label>
+                            </Frame>
+                            <Label Text="Против" FontSize="16" TextColor="Black" VerticalOptions="Center" />
+                        </StackLayout>
+                        <StackLayout Margin="20,5" Orientation="Horizontal">
+                            <Frame x:Name="cntAbstained" CornerRadius="20" HeightRequest="25" WidthRequest="25" Padding="0">
+                                <Label x:Name="lCntAbstained" FontSize="12" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White"></Label>
+                            </Frame>
+                            <Label Text="Воздержался" FontSize="16" TextColor="Black" VerticalOptions="Center" />
+                        </StackLayout>
+                        <BoxView x:Name="delimColored" HeightRequest="1" Margin="0,15"></BoxView>
+                        <Label Margin="20,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Общая площадь помещений:" TextColor="#545454" FontSize="14">
+                                    </Span>
+                                    <Span x:Name="TotalArea" TextColor="Black" FontSize="14"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Margin="20,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Ваша доля:" TextColor="#545454" FontSize="14">
+                                    </Span>
+                                    <Span x:Name="Area" TextColor="Black" FontSize="14"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <BoxView BackgroundColor="#545454" Margin="20,10" HeightRequest="1"></BoxView>
+                        <Label Text="Спасибо за участие!" Margin="20,5" TextColor="Black" FontAttributes="Bold" FontSize="16"></Label>
+                        <Label Margin="20,10">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span x:Name="dayEnd" TextColor="Black" FontSize="14" FontAttributes="Bold"/>
+                                    <Span x:Name="dayEndPlus" Text="заключительный день голососвания. Итоги голосования будут доступны " TextColor="Black" FontSize="14"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+                </ScrollView>
+
+                <yummy:PancakeView  Padding="0" CornerRadius="50,50,0,0"  BackgroundColor="#414141"  >
+                    <yummy:PancakeView.Shadow>
+                        <yummy:DropShadow Opacity="0.7" Color="Gray" />
+                    </yummy:PancakeView.Shadow>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="20,0,20,0">
+                        <StackLayout x:Name="status"  Orientation="Vertical" HorizontalOptions="FillAndExpand"  Margin="0,20">                            
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="FillAndExpand" Margin="0" >
+                            <Frame CornerRadius="10"                                                              
+                               x:Name="FrameBtn"
+                               Padding="0"
+                               Margin="0,20">
+                                <Button x:Name="Btn" 
+                                BackgroundColor="Red" HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"                                    
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            Text="К списку ОСС" Clicked="Btn_Clicked"></Button>
+                            </Frame>
+                        </StackLayout>                        
+                    </StackLayout>
+                </yummy:PancakeView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
