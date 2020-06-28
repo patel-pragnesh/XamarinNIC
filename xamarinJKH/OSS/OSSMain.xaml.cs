@@ -69,7 +69,7 @@ namespace xamarinJKH
             LabelPhone.Text = "+" + Settings.Person.Phone;
 
             ButtonActive.TextColor = colorFromMobileSettings;
-            GetOssData(0);
+            GetOssData(1);
 
             NavigationPage.SetHasNavigationBar(this, false);
 
@@ -109,23 +109,73 @@ namespace xamarinJKH
             }
         }
 
+        
         private async void GetOssData(int type=0)
         {
             //получаем данные от сервера по ОСС
-            var result = await rc.GetOss(type);
+            var result = await rc.GetOss(0);           
+
             if(result.Error==null)
             {
+                var dateNow = DateTime.Now;
+                //Завершенные
+                if (type == 0)
+                {
+                    var rr = result.Data.Where(_ => Convert.ToDateTime(_.DateEnd, new CultureInfo("ru-RU")).AddHours(24) < dateNow).ToList();
+                    result.Data = rr;
+                }
+                //Активные
+                if(type==1)
+                {
+                    var rr = result.Data.Where(_ => Convert.ToDateTime(_.DateEnd, new CultureInfo("ru-RU")).AddHours(24) > dateNow).ToList();
+                    result.Data = rr;
+                }
+
                 frames.Clear();
                 arrows.Clear();
+#if DEBUG
+                //var ossf = new List<int>() { 128 ,83 ,80 ,78 ,57 };
+
+                //var g = result.Data.Where(_ => Convert.ToDateTime(_.DateEnd, new CultureInfo("ru-RU")) > DateTime.Now.AddDays(-31));
+                //var g1 = 0;
+#endif
 
                 Device.BeginInvokeOnMainThread(async () =>
                 {
+                    if(result.Data.Count>10)
+                    {
+                        OSSList.Margin = new Thickness(0, -65, 0, 0);
+                    }
+
                     OSSListContent.Children.Clear();
                     
                     bool isFirst = true;
-
+                    
                     foreach (var oss in result.Data)
                     {
+
+#if DEBUG
+                        if(oss.Accounts.Count>1)
+                        {
+
+                        }
+                        //отладочная инфа                    
+                        if(!oss.Questions.Any(_=>string.IsNullOrWhiteSpace(_.Answer)))
+                        {
+
+                        }
+                        else
+                        {
+
+                        }
+                        if (oss.HouseAddress!=null)
+                        {
+
+                        }
+                        //if (!ossf.Contains(oss.ID)  )
+                        //    continue;
+#endif
+
                         Frame f = new Frame();
                         f.MinimumHeightRequest = 50;
                         f.BackgroundColor = Color.White;
@@ -164,23 +214,34 @@ namespace xamarinJKH
 
 
                         int statusInt = 0;//зеленый
-                        if(oss.IsComplete)
+                        if(Convert.ToDateTime(oss.DateEnd, new CultureInfo("ru-RU")) < DateTime.Now)
                         {
                             iconViewStatus.Foreground= Color.FromHex("#ed2e37");
-                            statusInt = 2; // красный
+                            statusInt = 3; // красный, голосование окончено , статус "итоги голосования" и переход на эту страницу 
                         }
-                        else
+                        if (Convert.ToDateTime(oss.DateStart, new CultureInfo("ru-RU")) < DateTime.Now && Convert.ToDateTime(oss.DateEnd, new CultureInfo("ru-RU")) > DateTime.Now)
                         {
-                            if (Convert.ToDateTime(oss.DateStart, new CultureInfo("ru-RU")) > DateTime.Now)
+                            //статус - идет голосование
+                            if (!oss.Questions.Any(_ => string.IsNullOrWhiteSpace(_.Answer)))
                             {
-                                iconViewStatus.Foreground = Color.FromHex("#ff971c");
-                                statusInt = 1;//желтый
+                                // Ваш голос учтен - страница личных результатов голосования
+                                statusInt = 2;//желтый(стоит сейчас) или какой еще цвет?
+                                iconViewStatus.Foreground = Color.FromHex("#50ac2f");
                             }
                             else
                             {
-                                iconViewStatus.Foreground = Color.FromHex("#50ac2f");
+                                //если не все проголосовано, переходим на вопрос начиная с которго нет ответов, и продолжаем голосование
+                                iconViewStatus.Foreground = Color.FromHex("#ff971c");
+                                statusInt = 1;//желтый
                             }
+                            
                         }
+                        if (Convert.ToDateTime(oss.DateStart, new CultureInfo("ru-RU")) > DateTime.Now)
+                        {
+                            //зеленый, "Уведомление о проведении ОСС", statusInt = 0
+                            iconViewStatus.Foreground = Color.FromHex("#50ac2f");
+                        }
+                       
 
                         iconViewStatus.HeightRequest = 15;
                         iconViewStatus.WidthRequest = 15;
@@ -287,14 +348,21 @@ namespace xamarinJKH
                             ColorStatusTextString = Color.FromHex("#50ac2f");
                             textStatius = "Уведомление о проведении ОСС";
                         }
-                        else if (statusInt == 1)
+                        else if (statusInt == 1) 
                         {
                             iconViewStatusNameIcon.Source = "ic_status_yellow";
                             iconViewStatusNameIcon.Foreground = Color.FromHex("#ff971c");
                             ColorStatusTextString = Color.FromHex("#ff971c");
                             textStatius = "Идет голосование";
                         }
-                        else //2
+                        else if(statusInt == 2)
+                        {
+                            iconViewStatusNameIcon.Source = "ic_status_done";
+                            iconViewStatusNameIcon.Foreground = Color.FromHex("#50ac2f");
+                            ColorStatusTextString = Color.FromHex("#50ac2f");
+                            textStatius = "Ваш голос учтён";
+                        }
+                        else //3
                         {
                             iconViewStatusNameIcon.Source = "ic_status_red";
                             iconViewStatusNameIcon.Foreground = Color.FromHex("#ed2e37");
@@ -328,7 +396,36 @@ namespace xamarinJKH
                         buttonFrame.Content = iconViewArrowButton;
 
                         TapGestureRecognizer buttonFrametapGesture = new TapGestureRecognizer();
-                        buttonFrametapGesture.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSInfo(oss)); };
+                        buttonFrametapGesture.Tapped += async (s, e) => { 
+
+                            switch (statusInt){
+                                case 0: 
+                                case 1:
+                                   var setAcquintedResult = await rc.SetAcquainted(oss.ID);
+                                    if(string.IsNullOrWhiteSpace( setAcquintedResult.Error) )
+                                    {
+                                        await Navigation.PushAsync(new OSSInfo(oss));
+                                    }
+                                    else
+                                    {
+                                        await DisplayAlert("Ошибка", "Не удалось отправить уведомление об ознакомлении с повесткой ОСС", "OK");
+
+                                    }
+
+                                    break;
+                                case 3: //"Итоги голосования"/"завершено" - открываем форму общих результатов голосования
+                                    await Navigation.PushAsync(new OSSTotalVotingResult(oss));
+
+                                    break;
+                                case 2: //"Ваш голос учтен"  - открываем форму личных результатов голосования
+                                    await Navigation.PushAsync(new OSSPersonalVotingResult(oss));
+
+                                    break;
+                                default: await Navigation.PushAsync(new OSSInfo(oss));
+                                    return;
+                            } 
+                            //await Navigation.PushAsync(new OSSInfo(oss)); 
+                        };
                         buttonFrame.GestureRecognizers.Add(buttonFrametapGesture);
 
                         status.Children.Add(buttonFrame);
@@ -358,8 +455,8 @@ namespace xamarinJKH
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            //активные
-            GetOssData(0);
+            //активные(за последний месяц)
+            GetOssData(1);
             Device.BeginInvokeOnMainThread(() =>
             {
                 ((Button)sender).TextColor = colorFromMobileSettings;
@@ -370,7 +467,7 @@ namespace xamarinJKH
         private void Button_Clicked_1(object sender, EventArgs e)
         {
             //архивные
-            GetOssData(1);
+            GetOssData(0);
             Device.BeginInvokeOnMainThread(() =>
             {
                 ((Button)sender).TextColor = colorFromMobileSettings;

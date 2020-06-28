@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 
@@ -15,6 +16,27 @@ namespace xamarinJKH
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OSSInfo : ContentPage
     {
+        OSS _oss=null;
+        int GetOssStatus(OSS oss)
+        {
+            int statusInt = 0;//зеленый
+            if (Convert.ToDateTime(oss.DateStart, new CultureInfo("ru-RU")) < DateTime.Now)
+            {                
+                statusInt = 1; // статус "уведомление о проведнии ОСС"
+            }
+            if (Convert.ToDateTime(oss.DateStart, new CultureInfo("ru-RU")) < DateTime.Now && Convert.ToDateTime(oss.DateEnd, new CultureInfo("ru-RU")) > DateTime.Now)
+            {
+                //статус - идет голосование
+                //if (!oss.Questions.Any(_ => string.IsNullOrWhiteSpace(_.Answer)))
+                //{
+                    // Ваш голос учтен - страница личных результатов голосования
+                    statusInt = 2;//желтый(стоит сейчас) или какой еще цвет?             
+                //}                
+            }
+
+            return statusInt;
+        }
+
         public OSSInfo(OSS sObj)
         {
             InitializeComponent();
@@ -68,6 +90,9 @@ namespace xamarinJKH
             LabelPhone.Text = "+" + Settings.Person.Phone;
 
             Btn.BackgroundColor = colorFromMobileSettings;
+
+            _oss = sObj;
+
             //заполнение статуса ОСС
             FiilOssStatusLayout(sObj);
 
@@ -84,17 +109,30 @@ namespace xamarinJKH
 
         private void FiilOssStatusLayout(OSS oss)
         {
-            int statusInt = 0;//зеленый
-            if (oss.IsComplete)
+            int statusInt = 0;//зеленый            
+            
+            if (Convert.ToDateTime(oss.DateEnd, new CultureInfo("ru-RU")) < DateTime.Now)
             {
-                statusInt = 2; // красный
+                statusInt = 3; // красный, голосование окончено , статус "итоги голосования" и переход на эту страницу 
             }
-            else
+            if (Convert.ToDateTime(oss.DateStart, new CultureInfo("ru-RU")) < DateTime.Now && Convert.ToDateTime(oss.DateEnd, new CultureInfo("ru-RU")) > DateTime.Now)
             {
-                if (Convert.ToDateTime(oss.DateStart, new CultureInfo("ru-RU")) > DateTime.Now)
+                //статус - идет голосование
+                if (!oss.Questions.Any(_ => string.IsNullOrWhiteSpace(_.Answer)))
                 {
+                    // Ваш голос учтен - страница личных результатов голосования
+                    statusInt = 2;//желтый(стоит сейчас) или какой еще цвет?
+                }
+                else
+                {
+                    //если не всё проголосовано, переходим на вопрос начиная с которго нет ответов, и продолжаем голосование
                     statusInt = 1;//желтый
                 }
+            }
+            if (Convert.ToDateTime(oss.DateStart, new CultureInfo("ru-RU")) > DateTime.Now)
+            {
+                //зеленый, "Уведомление о проведении ОСС", statusInt = 0
+                statusInt = 0;
             }
 
             IconView iconViewStatusNameIcon = new IconView();
@@ -246,8 +284,6 @@ namespace xamarinJKH
             };
         }
 
-
-
         async void FillOssInfoAsync(OSS sObj)
         {
             /******* общая информация ********/
@@ -315,9 +351,6 @@ namespace xamarinJKH
             CommonInfo.Content = rootStackCommon;
 
             OSSListContent.Children.Add(CommonInfo);
-
-
-
         }
 
         async void SetTheme(OSS sObj)
@@ -471,20 +504,20 @@ namespace xamarinJKH
 
             //без заполнения, поля надо уточнить
             //ФИО
-            var fio = "";
+            var fio = sObj.AdminstratorName;
             additionslData.Children.Add(detailLabel("ФИО: ", fio));
 
             //Паспортные данные
-            var passport = "";
+            var passport = sObj.AdminstratorDocNumber;
             additionslData.Children.Add(detailLabel("Паспортные данные: ", passport));
 
             //Место постоянного проживания
-            var passportAdress = "";
+            var passportAdress = sObj.AdminstratorAddress;
             additionslData.Children.Add(detailLabel("Место постоянного проживания: ", passportAdress));
             
             //Адрес электронной почты
-            var emailAdress = "";
-            additionslData.Children.Add(detailLabel("Адрес электронной почты: ", sObj.AdminstratorEmail));
+            var emailAdress = sObj.AdminstratorEmail;
+            additionslData.Children.Add(detailLabel("Адрес электронной почты: ", emailAdress));
 
             rootStack.Children.Add(additionslData);
 
@@ -535,7 +568,7 @@ namespace xamarinJKH
             additionslData.Children.Add(site);
 
             //Рукописные образцы: - содержимое поля надо уточнить
-            var placeForWriteDesigns = "";
+            var placeForWriteDesigns = sObj.PlaceOfReceiptSolutions;
             var docName = detailLabel("Рукописные образцы: ", placeForWriteDesigns);                
             additionslData.Children.Add(docName);
             
@@ -548,8 +581,24 @@ namespace xamarinJKH
             OSSListContent.Children.Add(CommonTheme);
         }
 
-        private void Btn_Clicked(object sender, EventArgs e)
+
+        private RestClientMP server = new RestClientMP();
+
+
+        private async void Btn_Clicked(object sender, EventArgs e)
         {
+            var intStatus = GetOssStatus(_oss);
+            if(intStatus==2)
+            {
+                //записываем на сервер что пользователь начал голосование
+                await server.SetStartVoiting(_oss.ID);
+
+                await Navigation.PushAsync(new OSSPool(_oss));
+            }
+            else if (intStatus == 1)
+            {
+                await DisplayAlert("Информация", $"Голосование начнется {_oss.DateStart} по местному времени, Вам будет прислано Push оповещение", "OK");
+            }
             //тут добавить логику нажатия, в зависимости от статуса ОСС
         }
     }
