@@ -37,6 +37,11 @@ namespace xamarinJKH.Server
         public const string REQUEST_UPDATES_CONST = "RequestsDispatcher/GetUpdates"; // Обновление заявок сотрудника
         public const string CLOSE_APP_CONST = "RequestsDispatcher/Close "; // Закрытие заявки
         public const string DISPATCHERS_LIST_CONST = "RequestsDispatcher/DispatchersList "; // Список диспетчеров
+        public const string GET_HOUSES_GROUP = "RequestsDispatcher/HouseGroups"; // Возвращает список районов
+        public const string GET_HOUSES = "RequestsDispatcher/Houses"; // Возвращает список домов. 
+
+        public const string
+            GET_REQUESTS_STATS = "RequestsDispatcher/RequestStats"; // Возвращает статистику по заявкам.  
 
         public const string REQUEST_LIST = "Requests/List"; // Заявки
         public const string REQUEST_DETAIL_LIST = "Requests/Details"; // Заявки
@@ -110,7 +115,7 @@ namespace xamarinJKH.Server
         }
 
         /// <summary>
-        /// Аунтификация пользователя по номеру телефона
+        ///     Аунтификация пользователя по номеру телефона
         /// </summary>
         /// <param name="phone">Номер телефона</param>
         /// <param name="password">Пароль</param>
@@ -1172,6 +1177,12 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
+        /// <summary>
+        /// Получение результата провведения платежа
+        /// </summary>
+        /// <param name="url">урл платежа</param>
+        /// <returns>PayResult</returns>
         public async Task<PayResult> GetPayResult(string url)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
@@ -1190,5 +1201,85 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
+        /// <summary>
+        /// Возвращает список районов.
+        /// </summary>
+        /// <returns> Возвращаемый результат – ItemsList<NamedValue></returns>
+        public async Task<ItemsList<NamedValue>> GetHouseGroups()
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_HOUSES_GROUP, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            
+            var response = await restClientMp.ExecuteTaskAsync<ItemsList<NamedValue>>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new ItemsList<NamedValue>()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+            return response.Data;
+        }  
+        /// <summary>
+        /// Возвращает список домов. 
+        /// </summary>
+        /// <param name="street">название улицы для фильтра (необязательный параметр)</param>
+        /// <returns>Возвращаемый результат – ItemsList<HouseProfile>. </returns>
+        public async Task<ItemsList<HouseProfile>> GetHouse(string street = null)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_HOUSES, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                street
+            });
+            var response = await restClientMp.ExecuteTaskAsync<ItemsList<HouseProfile>>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new ItemsList<HouseProfile>()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+            return response.Data;
+        } 
+        
+        /// <summary>
+        /// Возвращает статистику по заявкам. 
+        /// </summary>
+        /// <param name="districtId">ид района</param>
+        /// <param name="houseId">ид дома</param>
+        /// <returns>объект со статистикой</returns>
+        public async Task<ItemsList<RequestStats>> RequestStats(int? districtId = null, int? houseId = null)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_REQUESTS_STATS, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                // houseId,
+                districtId
+            });
+            var response = await restClientMp.ExecuteTaskAsync<ItemsList<RequestStats>>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new ItemsList<RequestStats>()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+            return response.Data;
+        }
+
+
     }
 }
