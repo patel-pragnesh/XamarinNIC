@@ -411,4 +411,13 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_share.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_background_OSSPool.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_ossEnd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_export_pdf.png" />
+  </ItemGroup>
 </Project>

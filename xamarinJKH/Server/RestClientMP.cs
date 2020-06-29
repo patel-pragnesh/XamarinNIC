@@ -13,9 +13,9 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
+         public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
         // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
 
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
@@ -859,18 +859,20 @@ namespace xamarinJKH.Server
         /// <summary>
         /// Получить список ОСС
         /// </summary>
-        /// <param name="getArchive">- 1-получать архивные данные, 0-нет (по умолчанию 1) </param>
+        ///// <param name = "getArchive" > -1 - получать архивные данные, 0-нет(по умолчанию 1) </param>
+        /// <param name="getArchive">-1-получать данные за последний месяц, 0-все данные (по умолчанию 0) (правка Вадима от 26.06.2020)</param>
         /// <returns>OSS</returns>
-        public async Task<ItemsList<OSS>> GetOss(int getArchive = 1)
+        public async Task<ItemsList<OSS>> GetOss(int getArchive = 0)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
-            RestRequest restRequest = new RestRequest(GET_OSS, Method.GET);
+            RestRequest restRequest = new RestRequest(GET_OSS + "?getArchive="+getArchive, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
-            restRequest.AddBody(new
-            {
-                getArchive
-            });
+            //restRequest.AddBody(new
+            //{
+            //    getArchive
+            //});
+            
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<OSS>>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
