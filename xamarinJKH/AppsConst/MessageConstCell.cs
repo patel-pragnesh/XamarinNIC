@@ -287,7 +287,7 @@ namespace xamarinJKH.AppsConst
 
             if (BindingContext != null)
             {
-                if (!IsSelf)
+                if (IsSelf)
                 {
                     ConteinerA.IsVisible = true;
                     Container.IsVisible = false;

@@ -49,8 +49,7 @@ namespace xamarinJKH.Server
         public const string ADD_MESSAGE_CONST = "RequestsDispatcher/AddMessage"; // Отправка сообщения
         public const string GET_HOUSES_GROUP = "RequestsDispatcher/HouseGroups"; // Возвращает список районов
         public const string GET_HOUSES = "RequestsDispatcher/Houses"; // Возвращает список домов. 
-        public const string
-            GET_REQUESTS_STATS = "RequestsDispatcher/RequestStats"; // Возвращает статистику по заявкам.  
+        public const string GET_REQUESTS_STATS = "RequestsDispatcher/RequestStats"; // Возвращает статистику по заявкам.  
 
 
         public const string REQUEST_LIST = "Requests/List"; // Заявки
@@ -523,6 +522,25 @@ namespace xamarinJKH.Server
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(GET_TYPE_CONST, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = await restClientMp.ExecuteTaskAsync<ItemsList<NamedValue>>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new ItemsList<NamedValue>()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
+        public async Task<ItemsList<NamedValue>> GetDispatcherList()
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(DISPATCHERS_LIST_CONST, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<NamedValue>>(restRequest);
