@@ -973,10 +973,11 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(SAVE_ANSWER_OSS, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
-            restRequest.AddBody(new
-            {
-                ossAnswer
-            });
+            //restRequest.AddBody(new
+            //{
+            //    ossAnswer
+            //});
+            restRequest.AddBody(ossAnswer);
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
