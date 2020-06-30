@@ -18,9 +18,7 @@ namespace xamarinJKH.Monitor
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MonitorAppsPage : ContentPage
     {
-        public List<RequestInfo> RequestInfos { get; set; }
-        public List<RequestInfo> RequestInfosAlive { get; set; }
-        public List<RequestInfo> RequestInfosClose { get; set; }
+        public List<Requests> RequestInfos { get; set; }
         private RequestList _requestList;
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
@@ -28,7 +26,7 @@ namespace xamarinJKH.Monitor
 
         
         
-        public MonitorAppsPage(List<RequestInfo> requestInfos)
+        public MonitorAppsPage(List<Requests> requestInfos)
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);

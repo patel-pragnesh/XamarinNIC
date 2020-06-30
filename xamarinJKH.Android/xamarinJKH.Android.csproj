@@ -48,6 +48,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -111,8 +112,10 @@
     <AndroidResource Include="Resources\drawable\ic_app_top.png" />
     <AndroidResource Include="Resources\drawable\ic_app_top_in.png" />
     <AndroidResource Include="Resources\drawable\ic_arrow_down.png" />
+    <AndroidResource Include="Resources\drawable\ic_arrow_down_monitor.png" />
     <AndroidResource Include="Resources\drawable\ic_arrow_forward.png" />
     <AndroidResource Include="Resources\drawable\ic_arrow_up.png" />
+    <AndroidResource Include="Resources\drawable\ic_arrow_up_monitorpng.png" />
     <AndroidResource Include="Resources\drawable\ic_author.png" />
     <AndroidResource Include="Resources\drawable\ic_background.png" />
     <AndroidResource Include="Resources\drawable\ic_background_event.png" />

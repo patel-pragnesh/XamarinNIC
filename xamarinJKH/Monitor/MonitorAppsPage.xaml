@@ -106,7 +106,7 @@
 
                         <DataTemplate>
                             <appsConst:AppConstCell
-                                Number="{Binding RequestNumber}"
+                                Number="{Binding Number}"
                                 Status="{Binding Status}"
                                 DateApp="{Binding Added}"
                                 TextApp="{Binding Name}" />

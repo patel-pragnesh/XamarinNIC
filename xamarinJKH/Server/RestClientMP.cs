@@ -13,9 +13,9 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-         public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        //public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
+        public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
         // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
 
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
@@ -1265,11 +1265,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_REQUESTS_STATS, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
-            restRequest.AddBody(new
-            {
-                // houseId,
-                districtId
-            });
+            restRequest.AddParameter("districtId", districtId);
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<RequestStats>>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
