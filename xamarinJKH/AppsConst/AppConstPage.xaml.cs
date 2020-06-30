@@ -100,11 +100,13 @@ namespace xamarinJKH.AppsConst
         public Color hex { get; set; }
 
         public bool close = false;
+        public bool isNotRead { get; set; }
 
-        public AppConstPage(RequestInfo requestInfo, bool closeAll = false)
+        public AppConstPage(RequestInfo requestInfo, bool isNotRead = true, bool closeAll = false)
         {
             close = closeAll;
             _requestInfo = requestInfo;
+            this.isNotRead = isNotRead;
             InitializeComponent();
             switch (Device.RuntimePlatform)
             {

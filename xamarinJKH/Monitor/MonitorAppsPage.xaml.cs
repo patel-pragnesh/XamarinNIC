@@ -86,8 +86,21 @@ namespace xamarinJKH.Monitor
         
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            RequestInfo select = e.Item as RequestInfo;
+            Requests select = e.Item as Requests;
+            RequestInfo requestInfo = new RequestInfo()
+            {
+                ID = select.Number,
+                RequestNumber  = select.Number.ToString(),
+                Added = select.Added.ToString(),
+                Name = select.Name,
+                Status = select.Status,
+                StatusID = select.id_Status,
+                IsClosed = !select.IsActive,
+                IsPerformed = true
+            };
             
+            await Navigation.PushAsync(new AppConstPage(requestInfo, false));
+
         }
         
     }

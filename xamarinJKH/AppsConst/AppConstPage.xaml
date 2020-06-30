@@ -83,6 +83,7 @@
                 <Frame CornerRadius="40"
                        Margin="0, 0, 15, -95"
                        HorizontalOptions="End"
+                       IsVisible="{Binding isNotRead}"
                        BackgroundColor="#B5B5B5"
                        Padding="5,0,5,80">
                     <ScrollView Orientation="Horizontal"
@@ -211,6 +212,7 @@
                    Margin="15, -30, 15, 5"
                    BackgroundColor="White"
                    BorderColor="{Binding hex}"
+                   IsVisible="{Binding isNotRead}"
                    Padding="15">
                 <StackLayout
                     Spacing="10"
@@ -249,7 +251,7 @@
                                        IsVisible="False"
                                        Color="{Binding hex}" />
                     <StackLayout
-                        IsVisible="False"
+                       
                         Spacing="-5">
 
                         <CheckBox
