@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 
@@ -14,8 +15,9 @@ namespace xamarinJKH.Pays
     public partial class CostPage : ContentPage
     {
         private AccountAccountingInfo account { get; set; }
-
+        RestClientMP server = new RestClientMP();
         private List<AccountAccountingInfo> Accounts { get; set; }
+        private bool isComission = false;
 
         public CostPage(AccountAccountingInfo account, List<AccountAccountingInfo> accounts)
         {
@@ -76,10 +78,18 @@ namespace xamarinJKH.Pays
             SetPays();
         }
 
-        void SetPays()
+        async void SetPays()
         {
             EntrySum.Text = account.Sum.ToString();
             FormattedString formatted = new FormattedString();
+            ComissionModel result = await server.GetSumWithComission(account.Sum.ToString());
+            string totalSum = EntrySum.Text;
+            if (result.Error == null && !result.Comission.Equals("0"))
+            {
+                isComission = true;
+                LabelCommision.Text = "Комиссия " + result.Comission + " руб.";
+                totalSum = result.TotalSum.ToString();
+            }
 
             formatted.Spans.Add(new Span
             {
@@ -89,7 +99,7 @@ namespace xamarinJKH.Pays
             });
             formatted.Spans.Add(new Span
             {
-                Text = EntrySum.Text,
+                Text = totalSum,
                 FontSize = 20,
                 TextColor = Color.FromHex(Settings.MobileSettings.color),
                 FontAttributes = FontAttributes.Bold
@@ -137,12 +147,24 @@ namespace xamarinJKH.Pays
         {
         }
 
-        private void EntrySum_OnTextChanged(object sender, TextChangedEventArgs e)
+        private async void EntrySum_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             FormattedString formatted = new FormattedString();
-            
+
 
             string sumText = EntrySum.Text.Equals("") ? "0" : EntrySum.Text;
+            string totalSum = sumText;
+
+            if (isComission)
+            {
+                ComissionModel result = await server.GetSumWithComission(sumText);
+                if (result.Error == null && !result.Comission.Equals("0"))
+                {
+                    isComission = true;
+                    LabelCommision.Text = "Комиссия " + result.Comission + " руб.";
+                    totalSum = result.TotalSum.ToString();
+                }
+            }
 
             formatted.Spans.Add(new Span
             {
@@ -153,7 +175,7 @@ namespace xamarinJKH.Pays
 
             formatted.Spans.Add(new Span
             {
-                Text = sumText,
+                Text = totalSum,
                 FontSize = 20,
                 TextColor = Color.FromHex(Settings.MobileSettings.color),
                 FontAttributes = FontAttributes.Bold
@@ -180,7 +202,7 @@ namespace xamarinJKH.Pays
         private async void Pay(object sender, EventArgs e)
         {
             string sumText = EntrySum.Text;
-            if (!sumText.Equals("") && !sumText.Equals("0")&& !sumText.Equals("-"))
+            if (!sumText.Equals("") && !sumText.Equals("0") && !sumText.Equals("-"))
             {
                 decimal sum = Decimal.Parse(sumText);
                 if (sum > 0)

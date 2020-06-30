@@ -109,223 +109,73 @@
                        BackgroundColor="#8D8D8D"
                        Padding="20,20,20,80">
                     <StackLayout Orientation="Horizontal">
-                        <StackLayout HorizontalOptions="StartAndExpand" Orientation="Vertical" VerticalOptions="Center"
-                                     Spacing="-5">
-                            <Label Text="Выбор района"
-                                   x:Name="LabelGroup"
-                                   FontSize="{Binding fontSize}"
-                                   FontAttributes="Bold"
-                                   TextColor="White" />
-                            <Label Text="Оценки"
-                                   FontSize="{Binding fontSize}"
-                                   TextColor="White" />
+                        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout HorizontalOptions="CenterAndExpand"
+                                         Grid.Row="0"
+                                         Grid.Column="0"
+                                         x:Name="StackLayoutGroup"
+                                         Orientation="Vertical"
+                                         VerticalOptions="Center"
+                                         Spacing="-2">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Выбор района"
+                                           x:Name="LabelGroup"
+                                           FontSize="{Binding fontSize}"
+                                           FontAttributes="Bold"
+                                           TextColor="White" />
+                                    <xamarinJkh:IconView Source="ic_arrow_forward"
+                                                         HeightRequest="12"
+                                                         WidthRequest="12"
+                                                         Rotation="90"
+                                                         Margin="0,5,0,0"
+                                                         VerticalOptions="Center"
+                                                         Foreground="White" />
+                                </StackLayout>
+                                <Label
+                                    HeightRequest="1"
+                                    BackgroundColor="White"
+                                    HorizontalOptions="Fill" />
+                            </StackLayout>
+                            <StackLayout Spacing="-2"
+                                         Grid.Row="0"
+                                         Grid.Column="1"
+                                         x:Name="StackLayoutHouse"
+                                         HorizontalOptions="CenterAndExpand"
+                                         VerticalOptions="Center">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Выбор дома"
+                                           x:Name="LabelHouse"
+                                           FontSize="{Binding fontSize}"
+                                           FontAttributes="Bold"
+                                           TextColor="White" />
+                                    <xamarinJkh:IconView Source="ic_arrow_forward"
+                                                         HeightRequest="12"
+                                                         WidthRequest="12"
+                                                         Rotation="90"
+                                                         Margin="0,5,0,0"
+                                                         VerticalOptions="Center"
+                                                         Foreground="White" />
+                                </StackLayout>
+                                <Label
+                                    HeightRequest="1"
+                                    BackgroundColor="White"
+                                    HorizontalOptions="Fill" />
+                            </StackLayout>
+                        </Grid>
 
-                        </StackLayout>
-                        <StackLayout Spacing="5"
-                                     HorizontalOptions="EndAndExpand"
-                                     VerticalOptions="Center" Orientation="Horizontal">
-                            <StackLayout Spacing="-10">
-                                <Frame
-                                    Padding="0"
-                                    CornerRadius="0"
-                                    HasShadow="False"
-                                    BackgroundColor="Transparent"
-                                    IsClippedToBounds="True">
-                                    <Grid HeightRequest="50" IsClippedToBounds="True">
-                                        <xamarinJkh:IconView Source="ic_star"
-                                                             HeightRequest="{Binding StarSize}"
-                                                             WidthRequest="{Binding StarSize}"
-                                                             Foreground="{Binding hex}"
-                                                             VerticalOptions="Center" />
-                                        <Frame
-                                            Margin="0"
-                                            Padding="0"
-                                            CornerRadius="5"
-                                            BackgroundColor="Transparent"
-                                            HasShadow="False"
-                                            IsClippedToBounds="True">
-                                            <Label Text="1"
-                                                   x:Name="LabelOneStarAll"
-                                                   FontSize="{Binding fontSize}"
-                                                   HorizontalOptions="Center"
-                                                   Margin="0"
-                                                   VerticalOptions="Center"
-                                                   TextColor="White" />
-                                        </Frame>
-                                    </Grid>
-                                </Frame>
-                                <Label Text="1"
-                                       FontSize="{Binding fontSize}"
-                                       TextColor="White"
-                                       HorizontalOptions="Center" />
-                            </StackLayout>
-                            <Label HeightRequest="1"
-                                   BackgroundColor="White"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="FillAndExpand" />
-
-                            <StackLayout Spacing="-10">
-                                <Frame
-                                    Padding="0"
-                                    CornerRadius="0"
-                                    HasShadow="False"
-                                    VerticalOptions="Fill"
-                                    BackgroundColor="Transparent"
-                                    IsClippedToBounds="True">
-                                    <Grid HeightRequest="50" IsClippedToBounds="True">
-                                        <xamarinJkh:IconView Source="ic_star"
-                                                             HeightRequest="{Binding StarSize}"
-                                                             WidthRequest="{Binding StarSize}"
-                                                             Foreground="{Binding hex}"
-                                                             VerticalOptions="Center" />
-                                        <Frame
-                                            Margin="0"
-                                            Padding="0"
-                                            CornerRadius="5"
-                                            BackgroundColor="Transparent"
-                                            HasShadow="False"
-                                            IsClippedToBounds="True">
-                                            <Label Text="1"
-                                                   x:Name="LabelTwoStarAll"
-                                                   FontSize="{Binding fontSize}"
-                                                   HorizontalOptions="Center"
-                                                   Margin="0"
-                                                   VerticalOptions="Center"
-                                                   TextColor="White" />
-                                        </Frame>
-                                    </Grid>
-                                </Frame>
-                                <Label Text="2"
-                                       FontSize="{Binding fontSize}"
-                                       TextColor="White"
-                                       HorizontalOptions="Center" />
-                            </StackLayout>
-                            <Label HeightRequest="1"
-                                   BackgroundColor="White"
-                                   HorizontalOptions="FillAndExpand" />
-
-                            <StackLayout Spacing="-10">
-                                <Frame
-                                    Padding="0"
-                                    CornerRadius="0"
-                                    HasShadow="False"
-                                    BackgroundColor="Transparent"
-                                    x:Name="LabelThreStarAll"
-                                    IsClippedToBounds="True">
-                                    <Grid HeightRequest="50" IsClippedToBounds="True">
-                                        <xamarinJkh:IconView Source="ic_star"
-                                                             HeightRequest="{Binding StarSize}"
-                                                             WidthRequest="{Binding StarSize}"
-                                                             Foreground="{Binding hex}"
-                                                             VerticalOptions="Center" />
-                                        <Frame
-                                            Margin="0"
-                                            Padding="0"
-                                            CornerRadius="5"
-                                            BackgroundColor="Transparent"
-                                            HasShadow="False"
-                                            IsClippedToBounds="True">
-                                            <Label Text="1"
-                                                   FontSize="{Binding fontSize}"
-                                                   HorizontalOptions="Center"
-                                                   Margin="0"
-                                                   VerticalOptions="Center"
-                                                   TextColor="White" />
-                                        </Frame>
-                                    </Grid>
-                                </Frame>
-                                <Label Text="3"
-                                       FontSize="{Binding fontSize}"
-                                       TextColor="White"
-                                       HorizontalOptions="Center" />
-                            </StackLayout>
-                            <Label HeightRequest="1"
-                                   BackgroundColor="White"
-                                   HorizontalOptions="FillAndExpand" />
-
-                            <StackLayout Spacing="-10">
-                                <Frame
-                                    Padding="0"
-                                    CornerRadius="0"
-                                    HasShadow="False"
-                                    BackgroundColor="Transparent"
-                                    IsClippedToBounds="True">
-                                    <Grid HeightRequest="50" IsClippedToBounds="True">
-                                        <xamarinJkh:IconView Source="ic_star"
-                                                             HeightRequest="{Binding StarSize}"
-                                                             WidthRequest="{Binding StarSize}"
-                                                             Foreground="{Binding hex}"
-                                                             VerticalOptions="Center" />
-                                        <Frame
-                                            Margin="0"
-                                            Padding="0"
-                                            CornerRadius="5"
-                                            BackgroundColor="Transparent"
-                                            HasShadow="False"
-                                            x:Name="LabelFourStarAll"
-                                            IsClippedToBounds="True">
-                                            <Label Text="1"
-                                                   FontSize="{Binding fontSize}"
-                                                   HorizontalOptions="Center"
-                                                   Margin="0"
-                                                   VerticalOptions="Center"
-                                                   TextColor="White" />
-                                        </Frame>
-                                    </Grid>
-                                </Frame>
-                                <Label Text="4"
-                                       FontSize="{Binding fontSize}"
-                                       TextColor="White"
-                                       VerticalOptions="End"
-                                       HorizontalOptions="Center" />
-                            </StackLayout>
-                            <Label HeightRequest="1"
-                                   BackgroundColor="White"
-                                   VerticalOptions="End"
-                                   HorizontalOptions="Fill" />
-                            <StackLayout Spacing="-10">
-                                <Frame
-                                    Padding="0"
-                                    CornerRadius="0"
-                                    HasShadow="False"
-                                    BackgroundColor="Transparent"
-                                    IsClippedToBounds="True">
-                                    <Grid HeightRequest="50" IsClippedToBounds="True">
-                                        <xamarinJkh:IconView Source="ic_star"
-                                                             HeightRequest="{Binding StarSize}"
-                                                             WidthRequest="{Binding StarSize}"
-                                                             Foreground="{Binding hex}"
-                                                             VerticalOptions="Center" />
-                                        <Frame
-                                            Margin="0"
-                                            Padding="0"
-                                            CornerRadius="5"
-                                            BackgroundColor="Transparent"
-                                            HasShadow="False"
-                                            x:Name="LabelFiveStarAll"
-                                            IsClippedToBounds="True">
-                                            <Label Text="1"
-                                                   FontSize="{Binding fontSize}"
-                                                   HorizontalOptions="Center"
-                                                   Margin="0"
-                                                   VerticalOptions="Center"
-                                                   TextColor="White" />
-                                        </Frame>
-                                    </Grid>
-                                </Frame>
-                                <Label Text="5"
-                                       FontSize="{Binding fontSize}"
-                                       TextColor="White"
-                                       HorizontalOptions="Center" />
-                            </StackLayout>
-                        </StackLayout>
                     </StackLayout>
                 </Frame>
                 <ScrollView VerticalOptions="FillAndExpand"
                             Orientation="Vertical">
                     <StackLayout Spacing="0">
-                        <StackLayout x:Name="LayoutContent" Spacing="0">
-                        </StackLayout>
+                        <StackLayout x:Name="LayoutContent" Spacing="0" />
                         <customRenderers:MaterialFrame
                             Elevation="20"
                             x:Name="MaterialFrameNotDoingContainer"
@@ -370,8 +220,7 @@
                                             VerticalOptions="Center" />
                                     </StackLayout>
                                 </customRenderers:MaterialFrame>
-                                <StackLayout x:Name="LayoutGrid"  Margin="20,15,20,0">
-                                </StackLayout>
+                                <StackLayout x:Name="LayoutGrid" Margin="20,15,20,0" />
                             </StackLayout>
                         </customRenderers:MaterialFrame>
 

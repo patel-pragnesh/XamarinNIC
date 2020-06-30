@@ -1,6 +1,7 @@
 ﻿using System;
 using Android;
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.Views;
@@ -8,6 +9,7 @@ using Android.Widget;
 using Android.OS;
 using Android.Support.V4.App;
 using Plugin.CurrentActivity;
+using Plugin.FirebasePushNotification;
 using Plugin.Media;
 using Xamarin.Forms;
 using xamarinJKH.Android;
@@ -39,11 +41,18 @@ namespace xamarinJKH.Droid
             ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera);
             ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadExternalStorage);
             LoadApplication(new App());
+            FirebasePushNotificationManager.ProcessIntent(this,Intent);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+        
+        protected override void OnNewIntent(Intent intent)
+        {
+            base.OnNewIntent(intent);
+            FirebasePushNotificationManager.ProcessIntent(this, intent);
         }
     }
 }

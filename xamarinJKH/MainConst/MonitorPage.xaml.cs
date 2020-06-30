@@ -26,10 +26,12 @@ namespace xamarinJKH.MainConst
         public int StarSize { get; set; }
         private List<string> period = new List<string>() {"Сегодня", "За неделю", "За месяц"};
         private Dictionary<string, string> HousesGroup = new Dictionary<string, string>();
+        private Dictionary<string, string> Houses = new Dictionary<string, string>();
         private Thickness IconViewNotComplite;
         private Thickness IconViewPrMargin;
         private double IconViewNotCompliteHeightRequest = 11;
         private double IconViewPrHeightRequest = 11;
+        private string street = "";
 
         public MonitorPage()
         {
@@ -74,14 +76,12 @@ namespace xamarinJKH.MainConst
             }
 
             var addClick = new TapGestureRecognizer();
-            addClick.Tapped += async (s, e) =>
-            {
-                // var _requestList = await _server.GetRequestsListConst();
-                // await Navigation.PushAsync(new MonitorAppsPage(_requestList.Requests));
-                await StartStatistick();
-            };
+            addClick.Tapped += async (s, e) => { await StartStatistick(); };
+            StackLayoutGroup.GestureRecognizers.Add(addClick);
+            var addClickHome = new TapGestureRecognizer();
+            addClickHome.Tapped += async (s, e) => { await StartStatistick(false); };
+            StackLayoutHouse.GestureRecognizers.Add(addClickHome);
 
-            Frame.GestureRecognizers.Add(addClick);
             var colapse = new TapGestureRecognizer();
             colapse.Tapped += async (s, e) =>
             {
@@ -114,9 +114,9 @@ namespace xamarinJKH.MainConst
 
         public RestClientMP _server = new RestClientMP();
 
-        async Task getMonitorStandart(int id)
+        async Task getMonitorStandart(int id, int houseID = -1)
         {
-            ItemsList<RequestStats> result = await _server.RequestStats(id);
+            ItemsList<RequestStats> result = await _server.RequestStats(id, houseID);
             if (result.Error == null)
             {
                 if (result.Data.Count > 0)
@@ -524,7 +524,7 @@ namespace xamarinJKH.MainConst
                         Spacing = -10
                     };
                     var forwardStar = new TapGestureRecognizer();
-                    List<Requests> requests = getRequestsStar(each,j);
+                    List<Requests> requests = getRequestsStar(each, j);
                     forwardStar.Tapped += async (s, e) =>
                     {
                         if (requests.Count > 0)
@@ -624,10 +624,11 @@ namespace xamarinJKH.MainConst
                 case 2: return stats.ClosedRequestsWithMark3List;
                 case 3: return stats.ClosedRequestsWithMark4List;
                 case 4: return stats.ClosedRequestsWithMark5List;
-                default: return  new List<Requests>();
+                default: return new List<Requests>();
             }
         }
-        public async Task StartStatistick()
+
+        public async Task StartStatistick(bool isGroup = true)
         {
             // Loading settings
             Configurations.LoadingConfig = new LoadingConfig
@@ -641,7 +642,12 @@ namespace xamarinJKH.MainConst
             await Loading.Instance.StartAsync(async progress =>
             {
                 // some heavy process.
-                await getHouseGroups();
+                if (isGroup)
+                    await getHouseGroups();
+                else
+                {
+                    await getHouse();
+                }
             });
         }
 
@@ -671,7 +677,30 @@ namespace xamarinJKH.MainConst
                     LayoutContent.Children.Clear();
                     MaterialFrameNotDoingContainer.IsVisible = false;
                     LabelGroup.Text = action;
+                    street = action;
                     await getMonitorStandart(Int32.Parse(HousesGroup[action]));
+                }
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", groups.Error, "OK");
+            }
+        }
+
+        async Task getHouse()
+        {
+            ItemsList<HouseProfile> groups = await _server.GetHouse();
+            if (groups.Error == null)
+            {
+                string[] param = null;
+                setListHouse(groups, ref param);
+                var action = await DisplayActionSheet("Выбрать дом", "Отмена", null, param);
+                if (action != null && !action.Equals("Отмена"))
+                {
+                    LayoutContent.Children.Clear();
+                    MaterialFrameNotDoingContainer.IsVisible = false;
+                    LabelHouse.Text = action;
+                    await getMonitorStandart(-1, Int32.Parse(Houses[action]));
                 }
             }
             else
@@ -689,6 +718,30 @@ namespace xamarinJKH.MainConst
             {
                 HousesGroup.Add(each.Name, each.ID);
                 param[i] = each.Name;
+                i++;
+            }
+        }
+
+        void setListHouse(ItemsList<HouseProfile> groups, ref string[] param)
+        {
+            Houses = new Dictionary<string, string>();
+            param = new string [groups.Data.Count];
+            int i = 0;
+            foreach (var each in groups.Data)
+            {
+                try
+                {
+                    if (each.Address != null)
+                    {
+                        Houses.Add(each.Address, each.ID.ToString());
+                        param[i] = each.Address;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
                 i++;
             }
         }

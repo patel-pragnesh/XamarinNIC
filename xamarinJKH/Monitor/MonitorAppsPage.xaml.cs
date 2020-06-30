@@ -50,7 +50,9 @@ namespace xamarinJKH.Monitor
                 default:
                     break;
             }
-        
+            var backClick = new TapGestureRecognizer();
+            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            BackStackLayout.GestureRecognizers.Add(backClick);
             hex = Color.FromHex(Settings.MobileSettings.color);
             SetText();
             RequestInfos = requestInfos;
@@ -90,7 +92,7 @@ namespace xamarinJKH.Monitor
             RequestInfo requestInfo = new RequestInfo()
             {
                 ID = select.Number,
-                RequestNumber  = select.Number.ToString(),
+                RequestNumber  = select.RequestNumber,
                 Added = select.Added.ToString(),
                 Name = select.Name,
                 Status = select.Status,

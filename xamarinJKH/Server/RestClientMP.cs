@@ -14,9 +14,9 @@ namespace xamarinJKH.Server
     public class RestClientMP
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
-        public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
         // public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
+        public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
 
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
@@ -28,8 +28,10 @@ namespace xamarinJKH.Server
 
         public const string GET_MOBILE_SETTINGS = "Config/MobileAppSettings "; // Регистрация по телефону
         public const string GET_EVENT_BLOCK_DATA = "Common/EventBlockData"; // Блок события
+        
         public const string GET_PHOTO_ADDITIONAL = "AdditionalServices/logo"; // Картинка доп услуги
         public const string GET_ACCOUNTING_INFO = "Accounting/Info"; // инфомация о начислениях
+        public const string GET_SUM_COMISSION = "Accounting/SumWithComission"; // Возвращает сумму с комиссией
         public const string GET_FILE_BILLS = "Bills/Download"; // Получить квитанцию
 
         public const string REQUEST_LIST_CONST = "RequestsDispatcher/List"; // Заявки сотрудника
@@ -1513,10 +1515,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_HOUSES, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
-            restRequest.AddBody(new
-            {
-                street
-            });
+           
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<HouseProfile>>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
@@ -1535,18 +1534,43 @@ namespace xamarinJKH.Server
         /// <param name="districtId">ид района</param>
         /// <param name="houseId">ид дома</param>
         /// <returns>объект со статистикой</returns>
-        public async Task<ItemsList<RequestStats>> RequestStats(int? districtId = null, int? houseId = null)
+        public async Task<ItemsList<RequestStats>> RequestStats(int? districtId = null, int? houseId = -1)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(GET_REQUESTS_STATS, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddParameter("districtId", districtId);
+            restRequest.AddParameter("houseId", houseId);
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<RequestStats>>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 return new ItemsList<RequestStats>()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+            return response.Data;
+        }
+        
+        /// <summary>
+        /// Получить сумму комиссии
+        /// </summary>
+        /// <param name="sum">сумма оплаты</param>
+        /// <returns></returns>
+        public async Task<ComissionModel> GetSumWithComission(string sum )
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_SUM_COMISSION, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddParameter("sum", sum.Replace(",","."));
+            var response = await restClientMp.ExecuteTaskAsync<ComissionModel>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new ComissionModel()
                 {
                     Error = $"Ошибка {response.StatusDescription}"
                 };

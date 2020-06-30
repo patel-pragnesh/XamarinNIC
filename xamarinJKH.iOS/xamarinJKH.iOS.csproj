@@ -217,10 +217,18 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin1024.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\ic_monitor.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\ic_monitor.imageset\ic_monitor.png" />
-    <ImageAsset Include="Assets.xcassets\ic_monitor.imageset\ic_monitor%402.png" />
-    <ImageAsset Include="Assets.xcassets\ic_monitor.imageset\ic_monitor%403.png" />
+    <ImageAsset Include="Assets.xcassets\ic_monitor.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_monitor.imageset\ic_monitor.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_monitor.imageset\ic_monitor%402.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_monitor.imageset\ic_monitor%403.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -233,7 +241,9 @@
   <ItemGroup>
     <PackageReference Include="AiForms.Dialogs" Version="1.0.3" />
     <PackageReference Include="Messier16.Forms.Controls" Version="2.2.0" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="PCLStorage" Version="1.0.2" />
+    <PackageReference Include="Plugin.FirebasePushNotification" Version="3.3.13-beta" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
     <PackageReference Include="SimpleImageButton" Version="1.0.3" />

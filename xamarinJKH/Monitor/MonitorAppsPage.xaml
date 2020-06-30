@@ -12,7 +12,7 @@
         <StackLayout>
             <RelativeLayout
                 x:Name="ScrollViewContainer"
-                Margin="0,0,0,-140" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+                Margin="0,0,0,-162" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
                 <Image x:Name="ImageFon"
                        Margin="0, -26, 0 , 0"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
@@ -68,11 +68,14 @@
                     <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
-                        Margin="5, 55, 0, 0"
+                        Margin="-2, 35, 0, 0"
                         HorizontalOptions="Start">
+                        <Image Source="ic_arrow_back"
+                               HeightRequest="15"
+                               HorizontalOptions="Center" />
                         <Label
                             Text="Заявки"
-                            FontSize="25"
+                            FontSize="18"
                             TextColor="White"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
@@ -106,7 +109,7 @@
 
                         <DataTemplate>
                             <appsConst:AppConstCell
-                                Number="{Binding Number}"
+                                Number="{Binding RequestNumber}"
                                 Status="{Binding Status}"
                                 DateApp="{Binding Added}"
                                 TextApp="{Binding Name}" />
