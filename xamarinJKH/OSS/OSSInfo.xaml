@@ -79,17 +79,7 @@
                         HorizontalOptions="Start">
                         <Image Source="ic_arrow_back"
                                HeightRequest="15"
-                               HorizontalOptions="Center" />
-                        <Label
-                            Text="Назад "
-                            FontSize="15"
-                            TextColor="White"
-                            HorizontalOptions="Start" />
-                    </StackLayout>
-                    <StackLayout
-                        Orientation="Horizontal"
-                        Margin="12, 10, 0, 0"
-                        HorizontalOptions="Start">
+                               HorizontalOptions="Center" />                        
                         <Label
                             Text="Приветствуем Вас на собрании &#10;собственников жилья!"
                             FontSize="18"

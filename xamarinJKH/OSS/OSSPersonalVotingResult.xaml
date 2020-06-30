@@ -85,11 +85,12 @@
                                              WidthRequest="15"
                                              Foreground="White"
                                              HorizontalOptions="Center" />
-                        <Label
-                            Text="Назад "
-                            FontSize="15"
-                            TextColor="White"
-                            HorizontalOptions="Start" />
+                        <Label x:Name="LabelTitle"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalOptions="CenterAndExpand"
+                       TextColor="White"
+                       Text="Результаты Вашего голосования в м.кв." />
                     </StackLayout>
                 </StackLayout>
                 <Image x:Name="IconViewNameUk"
@@ -104,20 +105,10 @@
                              Factor=0,
                              Constant=25}" />
             </RelativeLayout>
-            <StackLayout Orientation="Vertical" Margin="0,70,0,0">
-                <StackLayout
-                Spacing="0"
-                Margin="20,10">
-                    <Label x:Name="LabelTitle"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalOptions="CenterAndExpand"
-                       TextColor="White"
-                       Text="Результаты Вашего голосования в м.кв." />
-                </StackLayout>
+            <StackLayout Orientation="Vertical" Margin="0,130,0,0">               
                 <ScrollView>
                     <StackLayout>
-                        <Label x:Name="lRezults" Margin="20,10" TextColor="Black">
+                        <Label x:Name="lRezults" Margin="30,10" TextColor="Black">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="Вы проголосовали " FontSize="14" FontAttributes="Bold"></Span>
@@ -126,22 +117,58 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <StackLayout Margin="20,5" Orientation="Horizontal">
-                            <Frame x:Name="cntYes" CornerRadius="20" HeightRequest="25" WidthRequest="25" Padding="0">
-                                <Label x:Name="lCntYes" FontSize="12" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White"></Label>
-                            </Frame>
+                        
+                        <StackLayout Margin="20,5" Orientation="Horizontal">                           
+                            <Grid HorizontalOptions="Center"  VerticalOptions="Center">
+                                <Grid.RowDefinitions> <RowDefinition Height="*"/> </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions> <ColumnDefinition Width="*"/> </Grid.ColumnDefinitions>
+                                <xamarinJkh:IconView x:Name="cntYes" HorizontalOptions="Center"
+         Source="ic_OssCircleStatus.png" HeightRequest="25" WidthRequest="25"
+         Grid.Row="0"
+         Grid.Column="0"/>
+                                <Label x:Name="lCntYes" 
+          FontSize="12" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White"
+         Grid.Row="0"
+         Grid.Column="0"/>
+                            </Grid>
                             <Label Text="За" FontSize="16" TextColor="Black" VerticalOptions="Center" />
                         </StackLayout>
-                        <StackLayout Margin="20,5" Orientation="Horizontal">
-                            <Frame x:Name="cntNo" CornerRadius="20" HeightRequest="25" WidthRequest="25" Padding="0">
-                                <Label x:Name="lCntNo" FontSize="12" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White"></Label>
-                            </Frame>
+                        <StackLayout Margin="20,5" Orientation="Horizontal">                           
+                            <Grid HorizontalOptions="Center"  VerticalOptions="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <xamarinJkh:IconView x:Name="cntNo" HorizontalOptions="Center"
+         Source="ic_OssCircleStatus.png" HeightRequest="25" WidthRequest="25"
+         Grid.Row="0"
+         Grid.Column="0"/>
+                                <Label x:Name="lCntNo" 
+          FontSize="12" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White"
+         Grid.Row="0"
+         Grid.Column="0"/>
+                            </Grid>
                             <Label Text="Против" FontSize="16" TextColor="Black" VerticalOptions="Center" />
                         </StackLayout>
-                        <StackLayout Margin="20,5" Orientation="Horizontal">
-                            <Frame x:Name="cntAbstained" CornerRadius="20" HeightRequest="25" WidthRequest="25" Padding="0">
-                                <Label x:Name="lCntAbstained" FontSize="12" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White"></Label>
-                            </Frame>
+                        <StackLayout Margin="20,5" Orientation="Horizontal">                           
+                            <Grid HorizontalOptions="Center"  VerticalOptions="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <xamarinJkh:IconView x:Name="cntAbstained" HorizontalOptions="Center"
+         Source="ic_OssCircleStatus.png" HeightRequest="25" WidthRequest="25"
+         Grid.Row="0"
+         Grid.Column="0"/>
+                                <Label x:Name="lCntAbstained" 
+          FontSize="12" VerticalOptions="Center" HorizontalOptions="Center" Text="0" TextColor="White"
+         Grid.Row="0"
+         Grid.Column="0"/>
+                            </Grid>
                             <Label Text="Воздержался" FontSize="16" TextColor="Black" VerticalOptions="Center" />
                         </StackLayout>
                         <BoxView x:Name="delimColored" HeightRequest="1" Margin="0,15"></BoxView>

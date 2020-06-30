@@ -139,7 +139,8 @@ namespace xamarinJKH.Main
         private void StartOSS()
         {
             var startOSSTGR = new TapGestureRecognizer();
-            startOSSTGR.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSMain()); };
+            //startOSSTGR.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSMain()); };
+            startOSSTGR.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSAuth()); };
             FrameOSS.GestureRecognizers.Add(startOSSTGR);
         }
 
