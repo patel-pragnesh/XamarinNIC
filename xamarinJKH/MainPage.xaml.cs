@@ -302,7 +302,7 @@ namespace xamarinJKH
                     // await DisplayAlert("Успешно", login.ToString(), "OK");
                     Settings.Person = login;
                     //Settings.EventBlockData = await server.GetEventBlockData();
-                    ItemsList<NamedValue> result = await server.GetRequestsTypes();
+                    ItemsList<NamedValue> result = await server.GetRequestsTypesConst();
                     Settings.TypeApp = result.Data;
                     Preferences.Set("loginConst", replace);
                     Preferences.Set("passConst", pass);

@@ -4,7 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:pays="clr-namespace:xamarinJKH.Pays;assembly=xamarinJKH"
-             xmlns:apps="clr-namespace:xamarinJKH.Apps;assembly=xamarinJKH"
+             xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
+             xmlns:apps="clr-namespace:xamarinJKH.AppsConst;assembly=xamarinJKH"
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.AppsConst.NewAppConstPage">
     <ContentPage.Content>
@@ -23,7 +24,7 @@
                              Property=Height,
                              Factor=0,
                              Constant=0}"
-                       Source="ic_new_app_top"
+                       Source="ic_app_top"
                        VerticalOptions="Fill"
                        HorizontalOptions="Fill" />
 
@@ -42,22 +43,11 @@
                            FontAttributes="Bold"
                            FontSize="20"
                            TextColor="White" />
-                    <StackLayout
-                        Orientation="Horizontal">
-                        <xamarinJkh:IconView x:Name="IconViewLogin"
-                                             Source="ic_phone"
-                                             HeightRequest="15"
-                                             Foreground="White"
-                                             Margin="-10, 0,0,0"
-                                             HorizontalOptions="Start"
-                                             VerticalOptions="Center" />
-                        <Label x:Name="LabelPhone"
-                               Text="Телефон"
+                    <Label x:Name="LabelName"
+                               Text="Администратор, добрый день!"
                                FontSize="16"
                                TextColor="White"
-                               Margin="-5, 0, 0, 0"
                                VerticalOptions="Center" />
-                    </StackLayout>
                     <StackLayout
                         Orientation="Horizontal">
                         <xamarinJkh:IconView x:Name="IconViewTech"
@@ -78,15 +68,16 @@
                     <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
-                        Margin="0, 40, 0, 0"
+                        Margin="-2, 35, 0, 0"
                         HorizontalOptions="Start">
                         <Image Source="ic_arrow_back"
                                HeightRequest="15"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Назад "
-                            FontSize="15"
+                            Text="Создать заявку"
+                            FontSize="18"
                             TextColor="White"
+                            FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
                 </StackLayout>
@@ -113,43 +104,57 @@
                         Margin="10, 10, 10, 10">
                         <StackLayout
                             Spacing="0"
-                            HorizontalOptions="Center"
+                            Margin="5, 5, 5, 5"
+                            HorizontalOptions="FillAndExpand"
                             Orientation="Horizontal">
 
                             <Label
                                 TextColor="Black"
                                 Text="Лицевой счет: "
                                 VerticalOptions="Center"
+                                HorizontalOptions="Start"
                                 FontAttributes="Bold"
                                 FontSize="17" />
-                            <StackLayout Spacing="0">
-                                <StackLayout  Orientation="Horizontal">
-                                    <xamarinJkh:BorderlessPicker x:Name="PickerLs" Title="Выбор"
-                                                                 TitleColor="{Binding hex}"
-                                                                 TextColor="{Binding hex}"
-                                                                 VerticalOptions="End"
-                                                                 MinimumWidthRequest="0"
-                                                                 HorizontalOptions="Fill"
-                                                                 SelectedIndexChanged="picker_SelectedIndexChanged"
-                                                                 ItemsSource="{Binding AllAcc}"
-                                                                 ItemDisplayBinding="{Binding Ident}"
-                                                                 SelectedItem="{Binding SelectedAcc}" />
-                                    <xamarinJkh:IconView Source="ic_arrow_forward"
-                                                         HeightRequest="12"
-                                                         WidthRequest="12"
-                                                         Rotation="90"
-                                                         Margin="0,5,0,0"
-                                                         VerticalOptions="Center"
-                                                         Foreground="{Binding hex}"/>
-                                </StackLayout>
-                                <Label
-                                    HeightRequest="1"
-                                    BackgroundColor="{Binding hex}"
-                                    HorizontalOptions="Fill" />
-                            </StackLayout>
+                            <Entry
+                                x:Name="EntryLS"
+                                FontSize="15"
+                                VerticalOptions="End"
+                                Placeholder="12345678"
+                                HorizontalTextAlignment="Center"
+                                TextColor="#A2A2A2"
+                                HorizontalOptions="FillAndExpand"
+                                Keyboard="Text"/>
                         </StackLayout>
                         <StackLayout
-                            Margin="0,0,0,0"
+                            Margin="5, 5, 5, 5"
+                            Spacing="0"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal">
+
+                            <Label
+                                TextColor="Black"
+                                Text="Номер телефона: "
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                FontAttributes="Bold"
+                                FontSize="17" />
+                            <Entry
+                                x:Name="EntryPhone"
+                                FontSize="15"
+                                VerticalOptions="End"
+                                HorizontalTextAlignment="Center"
+                                TextColor="#A2A2A2"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="+7 (900) 000-0000"
+                                Keyboard="Numeric">
+                                <Entry.Behaviors>
+                                    <mask:MaskedBehavior Mask="+7 (XXX) XXX-XXXX" />
+                                </Entry.Behaviors>
+                                </Entry>
+                        </StackLayout>
+
+                        <StackLayout
+                            Margin="5, 5, 5, 5"
                             Spacing="0"
                             HorizontalOptions="Center"
                             Orientation="Horizontal">
@@ -158,6 +163,7 @@
                                 TextColor="Black"
                                 Text="Тип заявки: "
                                 VerticalOptions="Center"
+                                HorizontalOptions="Start"
                                 FontAttributes="Bold"
                                 FontSize="17" />
                             <StackLayout Spacing="0">
@@ -190,7 +196,7 @@
                         <Frame CornerRadius="15"
                                BackgroundColor="Transparent"
                                BorderColor="{Binding hex}"
-                               Margin="10, 10, 10, 0"
+                               Margin="5, 10, 5, 0"
                                Padding="10,10,10,10">
                             <xamarinJkh:BordlessEditor x:Name="EntryMess"
                                                        FontSize="18"
@@ -255,7 +261,7 @@
                             <ListView.ItemTemplate>
 
                                 <DataTemplate>
-                                    <apps:FileCell
+                                    <apps:FileConstCell
                                         FileName="{Binding FileName}"
                                         FileSize="{Binding DataArray}" />
                                 </DataTemplate>

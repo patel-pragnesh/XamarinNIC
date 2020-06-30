@@ -42,6 +42,16 @@ namespace xamarinJKH.Main
                     ImageFon.Margin = new Thickness(0, 0, 0, 0);
                     StackLayout.Margin = new Thickness(0, 33, 0, 0);
                     IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
+                    if (Application.Current.MainPage.Height < 800)
+                    {
+                        ScrollViewContainer.Margin = new Thickness(10, -170, 10, 0);
+                        BackStackLayout.Margin = new Thickness(5, 15, 0, 0);
+                    }
+                    else
+                    {
+                        ScrollViewContainer.Margin = new Thickness(10, -230, 10, 0);
+                        BackStackLayout.Margin = new Thickness(5, 35, 0, 0);
+                    }
                     break;
                 case Device.Android:
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);

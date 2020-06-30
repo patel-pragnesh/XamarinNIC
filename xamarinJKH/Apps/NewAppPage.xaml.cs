@@ -91,7 +91,7 @@ namespace xamarinJKH.Apps
 
         private async void AddFile()
         {
-            var action = await DisplayActionSheet("Добавить вложение", "Отмена", "",
+            var action = await DisplayActionSheet("Добавить вложение", "Отмена", null,
                 TAKE_PHOTO,
                 TAKE_GALRY, TAKE_FILE);
             try
@@ -364,7 +364,7 @@ namespace xamarinJKH.Apps
                 try
                 {
                     string ident = Settings.Person.Accounts[PickerLs.SelectedIndex].Ident;
-                    string typeId = Settings.TypeApp[PickerLs.SelectedIndex].ID;
+                    string typeId = Settings.TypeApp[PickerType.SelectedIndex].ID;
                     IDResult result = await _server.newApp(ident, typeId, text);
 
 

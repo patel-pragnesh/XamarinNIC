@@ -46,8 +46,14 @@ namespace xamarinJKH.AppsConst
                     ImageTop.Margin = new Thickness(0, 0, 0, 0);
                     StackLayout.Margin = new Thickness(0, 33, 0, 0);
                     IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
+                    if (Application.Current.MainPage.Height > 800)
+                    {
+                        ScrollViewContainer.Margin = new Thickness(0, 0, 0, -180);
+                        BackStackLayout.Margin = new Thickness(-5, 35, 0, 0);
+                    }
                     break;
                 case Device.Android:
+                    ScrollViewContainer.Margin = new Thickness(0, 0, 0, -162);
                     double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
@@ -70,21 +76,27 @@ namespace xamarinJKH.AppsConst
 
             SetText();
             files = new List<FileData>();
-            BindingContext = new AddAppModel()
+            if (Settings.TypeApp == null)
             {
-                AllAcc = Settings.Person.Accounts,
-                AllType = Settings.TypeApp,
-                hex = Color.FromHex(Settings.MobileSettings.color),
-                SelectedAcc = Settings.Person.Accounts[0],
-                SelectedType = Settings.TypeApp[0],
-                Files = files
-            };
+                Console.WriteLine("Отсутсвуют типы заявок");
+            }
+            else
+            {
+                BindingContext = new AddAppConstModel()
+                {
+                    AllType = Settings.TypeApp,
+                    hex = Color.FromHex(Settings.MobileSettings.color),
+                    SelectedType = Settings.TypeApp[0],
+                    Files = files
+                };
+            }
+
             ListViewFiles.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
         private async void AddFile()
         {
-            var action = await DisplayActionSheet("Добавить вложение", "Отмена", "",
+            var action = await DisplayActionSheet("Добавить вложение", "Отмена", null,
                 TAKE_PHOTO,
                 TAKE_GALRY, TAKE_FILE);
             switch (action)
@@ -218,7 +230,7 @@ namespace xamarinJKH.AppsConst
             if (ListViewFiles.HeightRequest < 120)
                 ListViewFiles.HeightRequest += 30;
             setBinding();
-            PickerLs.SelectedIndex = PikerLsItem;
+            //PickerLs.SelectedIndex = PikerLsItem;
             PickerType.SelectedIndex = PikerTypeItem;
         }
 
@@ -287,22 +299,35 @@ namespace xamarinJKH.AppsConst
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.Phone;
+            FormattedString formattedName = new FormattedString();
+            formattedName.Spans.Add(new Span
+            {
+                Text = Settings.Person.FIO,
+                TextColor = Color.White,
+                FontAttributes = FontAttributes.Bold,
+                FontSize = 16
+            });
+            formattedName.Spans.Add(new Span
+            {
+                Text = ", добрый день!",
+                TextColor = Color.White,
+                FontAttributes = FontAttributes.None,
+                FontSize = 16
+            });
+            LabelName.FormattedText = formattedName;
         }
 
         void setBinding()
         {
-            PikerLsItem = PickerLs.SelectedIndex;
+            //PikerLsItem = PickerLs.SelectedIndex;
             PikerTypeItem = PickerType.SelectedIndex;
             try
             {
                 BindingContext = null;
-                BindingContext = new AddAppModel()
+                BindingContext = new AddAppConstModel()
                 {
-                    AllAcc = Settings.Person.Accounts,
                     AllType = Settings.TypeApp,
                     hex = Color.FromHex(Settings.MobileSettings.color),
-                    SelectedAcc = Settings.Person.Accounts[PikerLsItem],
                     SelectedType = Settings.TypeApp[PikerTypeItem],
                     Files = files
                 };
@@ -331,11 +356,9 @@ namespace xamarinJKH.AppsConst
             // }
         }
 
-        public class AddAppModel
+        public class AddAppConstModel
         {
-            public List<AccountInfo> AllAcc { get; set; }
             public List<NamedValue> AllType { get; set; }
-            public AccountInfo SelectedAcc { get; set; }
             public NamedValue SelectedType { get; set; }
 
             public List<FileData> Files { get; set; }
@@ -351,9 +374,9 @@ namespace xamarinJKH.AppsConst
             {
                 try
                 {
-                    string ident = Settings.Person.Accounts[PickerLs.SelectedIndex].Ident;
-                    string typeId = Settings.TypeApp[PickerLs.SelectedIndex].ID;
-                    IDResult result = await _server.newApp(ident, typeId, text);
+                    string ident = EntryLS.Text;
+                    string typeId = Settings.TypeApp[PickerType.SelectedIndex].ID;
+                    IDResult result = await _server.newAppConst(ident, typeId, text);
 
 
                     if (result.Error == null)
@@ -408,7 +431,7 @@ namespace xamarinJKH.AppsConst
             int i = 0;
             foreach (var each in files)
             {
-                CommonResult commonResult = await _server.AddFileApps(id, each.FileName, Byteses[i],
+                CommonResult commonResult = await _server.AddFileAppsConst(id, each.FileName, Byteses[i],
                     each.FilePath);
                 i++;
             }

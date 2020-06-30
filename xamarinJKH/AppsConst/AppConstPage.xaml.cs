@@ -70,7 +70,7 @@ namespace xamarinJKH.AppsConst
         private async Task RefreshData()
         {
             RequestsUpdate requestsUpdate =
-                await _server.GetRequestsUpdates(Settings.UpdateKey, _requestInfo.ID.ToString());
+                await _server.GetRequestsUpdatesConst(Settings.UpdateKey, _requestInfo.ID.ToString());
             if (requestsUpdate.Error == null)
             {
                 Settings.UpdateKey = requestsUpdate.NewUpdateKey;
@@ -154,7 +154,7 @@ namespace xamarinJKH.AppsConst
             closeApp.Tapped += async (s, e) =>
             {
                 // await ShowRating();
-                await PopupNavigation.Instance.PushAsync(new RatingBarContentView(hex, _requestInfo));
+                await PopupNavigation.Instance.PushAsync(new RatingBarContentView(hex, _requestInfo, true));
                 await RefreshData();
             };
             StackLayoutClose.GestureRecognizers.Add(closeApp);
@@ -196,7 +196,7 @@ namespace xamarinJKH.AppsConst
                 else
                 {
                     await Settings.StartProgressBar("Загрузка", 0.8);
-                    byte[] memoryStream = await _server.GetFileAPP(select.FileID.ToString());
+                    byte[] memoryStream = await _server.GetFileAPPConst(select.FileID.ToString());
                     if (memoryStream != null)
                     {
                         await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
@@ -266,7 +266,7 @@ namespace xamarinJKH.AppsConst
 
             if (file == null)
                 return;
-            CommonResult commonResult = await _server.AddFileApps(_requestInfo.ID.ToString(),
+            CommonResult commonResult = await _server.AddFileAppsConst(_requestInfo.ID.ToString(),
                 getFileName(file.Path), StreamToByteArray(file.GetStream()),
                 file.Path);
             if (commonResult == null)
@@ -318,7 +318,7 @@ namespace xamarinJKH.AppsConst
             var file = await CrossMedia.Current.PickPhotoAsync();
             if (file == null)
                 return;
-            CommonResult commonResult = await _server.AddFileApps(_requestInfo.ID.ToString(),
+            CommonResult commonResult = await _server.AddFileAppsConst(_requestInfo.ID.ToString(),
                 getFileName(file.Path), StreamToByteArray(file.GetStream()),
                 file.Path);
             if (commonResult == null)
@@ -382,7 +382,7 @@ namespace xamarinJKH.AppsConst
                     }
 
 
-                    CommonResult commonResult = await _server.AddFileApps(_requestInfo.ID.ToString(),
+                    CommonResult commonResult = await _server.AddFileAppsConst(_requestInfo.ID.ToString(),
                         pickedFile.FileName, pickedFile.DataArray,
                         pickedFile.FilePath);
                     if (commonResult == null)
@@ -408,7 +408,7 @@ namespace xamarinJKH.AppsConst
             {
                 progress.IsVisible = true;
                 IconViewSend.IsVisible = false;
-                CommonResult result = await _server.AddMessage(message, _requestInfo.ID.ToString());
+                CommonResult result = await _server.AddMessageConst(message, _requestInfo.ID.ToString(), false);
                 if (result.Error == null)
                 {
                     EntryMess.Text = "";
@@ -439,7 +439,7 @@ namespace xamarinJKH.AppsConst
 
         async void getMessage()
         {
-            request = await _server.GetRequestsDetailList(_requestInfo.ID.ToString());
+            request = await _server.GetRequestsDetailListConst(_requestInfo.ID.ToString());
             if (request.Error == null)
             {
                 Settings.DateUniq = "";

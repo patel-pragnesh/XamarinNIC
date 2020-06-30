@@ -101,6 +101,9 @@ namespace xamarinJKH.Main
             var addClick = new TapGestureRecognizer();
             addClick.Tapped += async (s, e) => { startNewApp(FrameBtnAdd, null); };
             FrameBtnAdd.GestureRecognizers.Add(addClick);
+            var addClickIOS = new TapGestureRecognizer();
+            addClickIOS.Tapped += async (s, e) => { startNewApp(FrameBtnAddIos, null); };
+            FrameBtnAddIos.GestureRecognizers.Add(addClickIOS);
             hex = Color.FromHex(Settings.MobileSettings.color);
             SetText();
             getApps();

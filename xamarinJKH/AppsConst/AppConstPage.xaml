@@ -2,7 +2,7 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:apps="clr-namespace:xamarinJKH.Apps;assembly=xamarinJKH"
+             xmlns:apps="clr-namespace:xamarinJKH.AppsConst;assembly=xamarinJKH"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:dialogViews="clr-namespace:xamarinJKH.DialogViews;assembly=xamarinJKH"
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
@@ -84,47 +84,90 @@
                        Margin="0, 0, 15, -95"
                        HorizontalOptions="End"
                        BackgroundColor="#B5B5B5"
-                       Padding="25,0,25,80">
-                    <StackLayout Orientation="Horizontal"
-                                 WidthRequest="100"
+                       Padding="5,0,5,80">
+                    <ScrollView Orientation="Horizontal"
+                                WidthRequest="120"
+                                HeightRequest="100"
+                                Padding="20,0,20,0">
+                        <StackLayout Orientation="Horizontal"
+                                 WidthRequest="300"
                                  HeightRequest="100">
-                        <StackLayout
-                            Margin="0,5,0,0"
-                            x:Name="StackLayoutInfo"
-                            VerticalOptions="Center"
-                            HorizontalOptions="StartAndExpand">
-                            <Image Source="ic_info_app1"
-                                   HeightRequest="25" />
-                            <Label Text="Инфо"
-                                   TextColor="White"
-                                   FontAttributes="Bold"
-                                   FontSize="10" />
+                        
+                            <StackLayout
+                                Margin="0,5,0,0"
+                                x:Name="StackLayoutInfo"
+                                VerticalOptions="Center"
+                                HorizontalOptions="StartAndExpand">
+                                <Image Source="ic_info_app1"
+                                       HeightRequest="25" />
+                                <Label Text="Инфо"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       FontSize="10" />
+                            </StackLayout>
+                            <!-- <StackLayout -->
+                            <!--     Margin="10,15,0,0" -->
+                            <!--     VerticalOptions="Center" -->
+                            <!--     HorizontalOptions="CenterAndExpand"> -->
+                            <!--     <Image Source="ic_files_app1" -->
+                            <!--            HeightRequest="25" /> -->
+                            <!--     <Label Text="Файлы" -->
+                            <!--            TextColor="White" -->
+                            <!--            FontAttributes="Bold" -->
+                            <!--            FontSize="10" /> -->
+                            <!-- </StackLayout> -->
+                            <StackLayout
+                                Margin="0,5,0,0"
+                                x:Name="StackLayoutAccept"
+                                VerticalOptions="Center"
+                                HorizontalOptions="StartAndExpand">
+                                <Image Source="ic_check_mark"
+                                       HeightRequest="25" />
+                                <Label Text="Принять"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       FontSize="10" />
+                            </StackLayout>
+                            <StackLayout
+                                Margin="0,5,0,0"
+                                x:Name="StackLayoutExecute"
+                                VerticalOptions="Center"
+                                HorizontalOptions="StartAndExpand">
+                                <Image Source="ic_execute"
+                                       HeightRequest="25" />
+                                <Label Text="Выполнить"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       FontSize="10" />
+                            </StackLayout>
+                            <StackLayout
+                                Margin="0,5,0,0"
+                                x:Name="StackLayoutMoveDisp"
+                                VerticalOptions="Center"
+                                HorizontalOptions="StartAndExpand">
+                                <Image Source="ic_move_disp"
+                                       HeightRequest="25" />
+                                <Label Text="Перевести"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       FontSize="10" />
+                            </StackLayout>
+                            <StackLayout
+                                Margin="0,5,0,0"
+                                VerticalOptions="Center"
+                                x:Name="StackLayoutClose"
+                                HorizontalOptions="EndAndExpand">
+                                <Image Source="ic_close_app1"
+                                       HeightRequest="25"
+                                       WidthRequest="25" />
+                                <Label Text="Закрыть"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       FontSize="10" />
+                            </StackLayout>
+                        
                         </StackLayout>
-                        <!-- <StackLayout -->
-                        <!--     Margin="10,15,0,0" -->
-                        <!--     VerticalOptions="Center" -->
-                        <!--     HorizontalOptions="CenterAndExpand"> -->
-                        <!--     <Image Source="ic_files_app1" -->
-                        <!--            HeightRequest="25" /> -->
-                        <!--     <Label Text="Файлы" -->
-                        <!--            TextColor="White" -->
-                        <!--            FontAttributes="Bold" -->
-                        <!--            FontSize="10" /> -->
-                        <!-- </StackLayout> -->
-                        <StackLayout
-                            Margin="0,5,0,0"
-                            VerticalOptions="Center"
-                            x:Name="StackLayoutClose"
-                            HorizontalOptions="EndAndExpand">
-                            <Image Source="ic_close_app1"
-                                   HeightRequest="25"
-                                   WidthRequest="25" />
-                            <Label Text="Закрыть"
-                                   TextColor="White"
-                                   FontAttributes="Bold"
-                                   FontSize="10" />
-                        </StackLayout>
-                    </StackLayout>
+                    </ScrollView>
                 </Frame>
             </StackLayout>
 
@@ -136,7 +179,7 @@
                                            Padding="5,0,5,70">
                 <ListView x:Name="additionalList"
                           HasUnevenRows="True"
-                          Margin="0, 0, 0, 0"
+                          Margin="0, 5, 0, 0"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
                           IsPullToRefreshEnabled="True"
@@ -152,7 +195,7 @@
                     <ListView.ItemTemplate>
 
                         <DataTemplate>
-                            <apps:MessageCell
+                            <apps:MessageConstCell
                                 Name="{Binding AuthorName}"
                                 Time="{Binding Status}"
                                 DateApp="{Binding Added}"

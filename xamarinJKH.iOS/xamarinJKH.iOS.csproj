@@ -96,6 +96,7 @@
     <Compile Include="CustomRenderers\TapHighlightRemoveCountersCellRenderer.cs" />
     <Compile Include="CustomRenderers\TapHighlightRemovePaysCellRenderer.cs" />
     <Compile Include="CustomRenderers\TapHighlightRemoveAppsCellRenderer.cs" />
+    <Compile Include="CustomRenderers\TapHighlightRemoveAppConstCellRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -216,6 +217,10 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\IconXamarin1024.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_monitor.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_monitor.imageset\ic_monitor.png" />
+    <ImageAsset Include="Assets.xcassets\ic_monitor.imageset\ic_monitor%402.png" />
+    <ImageAsset Include="Assets.xcassets\ic_monitor.imageset\ic_monitor%403.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -259,6 +264,7 @@
     <Folder Include="Assets.xcassets\ic_events.imageset\" />
     <Folder Include="Assets.xcassets\ic_pays.imageset\" />
     <Folder Include="Assets.xcassets\ic_profile.imageset\" />
+    <Folder Include="Assets.xcassets\ic_monitor.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon_login.png" />
@@ -296,7 +302,6 @@
     <BundleResource Include="Resources\ic_home.png" />
     <BundleResource Include="Resources\ic_info_app1.png" />
     <BundleResource Include="Resources\ic_minus.png" />
-    <BundleResource Include="Resources\ic_monitor.png" />
     <BundleResource Include="Resources\ic_monitor_top.png" />
     <BundleResource Include="Resources\ic_news.png" />
     <BundleResource Include="Resources\ic_news_top.png" />
@@ -345,6 +350,8 @@
     <BundleResource Include="Resources\star.png" />
     <BundleResource Include="Resources\up_arrow.png" />
     <BundleResource Include="Resources\icon_add_app.png" />
+    <BundleResource Include="Resources\ic_execute.png" />
+    <BundleResource Include="Resources\ic_move_disp.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_arrow_forward.png">

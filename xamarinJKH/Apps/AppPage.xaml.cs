@@ -155,7 +155,7 @@ namespace xamarinJKH.Apps
             closeApp.Tapped += async (s, e) =>
             {
                 // await ShowRating();
-                await PopupNavigation.Instance.PushAsync(new RatingBarContentView(hex, _requestInfo));
+                await PopupNavigation.Instance.PushAsync(new RatingBarContentView(hex, _requestInfo, false));
                 await RefreshData();
             };
             StackLayoutClose.GestureRecognizers.Add(closeApp);

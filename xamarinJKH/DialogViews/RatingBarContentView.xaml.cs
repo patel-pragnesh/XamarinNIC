@@ -19,12 +19,14 @@ namespace xamarinJKH.DialogViews
         private RestClientMP server = new RestClientMP();
         public Color HexColor { get; set; }
         public RequestInfo _Request { get; set; }
+        bool IsConst = false;
 
-        public RatingBarContentView(Color hexColor, RequestInfo request)
+        public RatingBarContentView(Color hexColor, RequestInfo request, bool isConst)
         {
             HexColor = hexColor;
             _Request = request;
             InitializeComponent();
+            IsConst = isConst;
             var close = new TapGestureRecognizer();
             close.Tapped += async (s, e) => { await PopupNavigation.Instance.PopAsync(); };
             IconViewClose.GestureRecognizers.Add(close);
@@ -57,10 +59,9 @@ namespace xamarinJKH.DialogViews
             {
                 // some heavy process.
                 string text = BordlessEditor.Text;
-                if (!text.Equals(""))
+                if (IsConst)
                 {
-                    CommonResult result =
-                        await server.CloseApp(_Request.ID.ToString(), text, RatingBar.Rating.ToString());
+                    CommonResult result = await server.CloseAppConst(_Request.ID.ToString());
                     if (result.Error == null)
                     {
                         await ShowToast("Заявка закрыта");
@@ -70,6 +71,19 @@ namespace xamarinJKH.DialogViews
                     {
                         await ShowToast(result.Error);
                     }
+                }
+                else if (!text.Equals("") && !IsConst)
+                {
+                    CommonResult result = await server.CloseApp(_Request.ID.ToString(), text, RatingBar.Rating.ToString());
+                    if (result.Error == null)
+                    {
+                        await ShowToast("Заявка закрыта");
+                        await PopupNavigation.Instance.PopAsync();
+                    }
+                    else
+                    {
+                        await ShowToast(result.Error);
+                    }                   
                 }
                 else
                 {
