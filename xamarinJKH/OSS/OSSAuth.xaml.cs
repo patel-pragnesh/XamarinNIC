@@ -52,52 +52,7 @@ namespace xamarinJKH
                     break;
                 case Device.Android:
                     RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -135);
-                    //var h = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Height;
-                    //var w = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width;
-                    //  var isLongScreen =h/w >=1.9;
-                    ////if (isLongScreen)
-                    ////{
-                    //    int m = 8;
-                    //    var x = Convert.ToInt32(h / 300);
-                    //    switch (x)
-                    //    {
-                    //        case 5:
-                    //            m = 20;
-                    //            break;
-                    //        case 6:
-                    //            m = 18; 
-                    //            break;
-                    //        case 7:
-                    //            m = 16;
-                    //            break;
-                    //        case 8:
-                    //            m = 14;
-                    //            break;
-                    //        case 9:
-                    //            m = 12;
-                    //            break;
-                    //        case 10:
-                    //            m = 10;
-                    //            break;
-                    //        case 11:
-                    //            m = 8;
-                    //            break;
-                    //        case 12:
-                    //            m = 6;
-                    //            break;
-                    //        default:
-
-                    //            break;
-                    //    }
-
-                    //    int k = Convert.ToInt32( h / m);
-                    //    pageContent.Margin = new Thickness(0, -300, 0, 300); 
-                    ////}
-                    ////else
-                    ////{
-                    ////    int m = Convert.ToInt32(h / 14);
-                    ////    pageContent.Margin = new Thickness(0, -m, 0, m);
-                    ////}
+                    
 
                     double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
