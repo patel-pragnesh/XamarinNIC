@@ -43,7 +43,7 @@ namespace xamarinJKH
             {
                 case Device.iOS:
                     BackgroundColor = Color.White;
-                    BackStackLayout.Margin = new Thickness(10, 40, 0, 0);
+                    BackStackLayout.Margin = new Thickness(10, 20, 0, 0);
                     RegLbl.Margin = new Thickness(20, 60, 0, 0);
                     break;
                 case Device.Android:
@@ -95,6 +95,20 @@ namespace xamarinJKH
                 }
             };
             ImageClosePass.GestureRecognizers.Add(passwordVisible);
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    if (App.ScreenHeight < 600)
+                    {
+                        EntryPassNew.FontSize = 12;
+                        EntryPassCommit.FontSize = 12;
+                    }
+                    break;
+                case Device.Android:
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void NextReg(object sender, EventArgs e)

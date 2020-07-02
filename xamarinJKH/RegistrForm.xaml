@@ -244,7 +244,8 @@
                                    BackgroundColor="Red"
                                    Margin="5, 5, 5, 0"
                                    x:Name="FrameBtnLogin"
-                                   Padding="12">
+                                   Padding="12"
+                                   HasShadow="False">
                                 <!-- <Button x:Name="BtnLogin" -->
                                 <!--         Text="Далее" -->
                                 <!--         TextColor="White" -->
@@ -281,7 +282,8 @@
                                                    IsVisible="False"
                                                    Margin="15, 15, 15, 15"
                                                    BackgroundColor="White"
-                                                   Padding="5">
+                                                   Padding="5"
+                                                   HasShadow="False">
 
                         <StackLayout
                             Margin="10, 20, 10, 10">
@@ -373,7 +375,7 @@
                                        Padding="0, 5, 0, 5">
                                     <Label x:Name="LabelTimer"
                                         Text="ЗАПРОСИТЬ ПОВТОРНЫЙ ЗВОНОК МОЖНО БУДЕТ ЧЕРЕЗ: 60 секунд"
-                                        FontSize="15"
+                                        FontSize="12"
                                         TextColor="White"
                                         FontAttributes="Bold"
                                         HorizontalTextAlignment="Center"
@@ -392,7 +394,7 @@
                                     <Image Source="ic_arrow_tech"
                                            VerticalOptions="End"
                                            WidthRequest="60"
-                                           Margin="-40, 35, 0, 0"
+                                           Margin="-40, 45, 0, 0"
                                            HorizontalOptions="Center" />
                                     <customRenderers:MaterialFrame Elevation="10"
                                                                    x:Name="FrameTech"
@@ -473,9 +475,9 @@
                                                          Foreground="Red"
                                                          VerticalOptions="Center" />
                                     <Label Text="Создайте пароль    "
-                                           FontSize="13.5"
+                                           FontSize="12"
                                            TextColor="Black"
-                                           Margin="-10, 0, 20, 0"
+                                           Margin="-10, 0, 10, 0"
                                            VerticalOptions="Center" />
 
                                     <Entry x:Name="EntryPassNew"
@@ -522,7 +524,7 @@
                                     <Label Text="Подтвердите пароль"
                                            FontSize="13.5"
                                            TextColor="Black"
-                                           Margin="-10, 0, 15, 0"
+                                           Margin="-10, 0, 5, 0"
                                            VerticalOptions="Center" />
 
                                     <Entry x:Name="EntryPassCommit"
@@ -589,7 +591,7 @@
                                                     VerticalOptions="Center" />
                                     <Label x:Name="BtnSave"
                                            Text="Зарегистрироваться"
-                                           Margin="0, 0, 0, 0"
+                                           Margin="0, 0, 0, 10"
                                            FontSize="15"
                                            TextColor="White"
                                            FontAttributes="Bold"

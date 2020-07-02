@@ -79,7 +79,7 @@ namespace xamarinJKH.MainConst
                 progress.IsVisible = true;
                 FrameBtnLogin.IsVisible = false;
                 progress.IsVisible = true;
-                CommonResult result = await _server.UpdateProfile(email, fio);
+                CommonResult result = await _server.UpdateProfileConst(email, fio);
                 if (result.Error == null)
                 {
                     Console.WriteLine(result.ToString());

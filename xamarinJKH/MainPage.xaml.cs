@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Text.RegularExpressions;
 using Xamarin.Essentials;
 using xamarinJKH.Navigation;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 using Xamarin.Forms.Internals;
-using Xamarin.Forms.PlatformConfiguration;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using xamarinJKH.Main;
 using xamarinJKH.MainConst;
 using xamarinJKH.Utils;
@@ -35,6 +35,7 @@ namespace xamarinJKH
             InitializeComponent();
             
             NavigationPage.SetHasNavigationBar(this, false);
+            
             getSettings();
             var startRegForm = new TapGestureRecognizer();
             startRegForm.Tapped += async (s, e) => { await Navigation.PushModalAsync(new RegistrForm(this)); };
@@ -94,6 +95,23 @@ namespace xamarinJKH
                 EntryLoginConst.Text = loginConst;
                 EntryPass.Text = pass;
                 EntryPassConst.Text = passConst;
+            }
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    if (App.ScreenHeight < 600)
+                    {
+                        RegistLabel.FontSize = 13;
+                        ForgotPass.FontSize = 13;
+                        RegStackLayout.Margin = new Thickness(0, 5, 0, 0);
+                        BottomStackLayout.Margin = new Thickness(0, -20, 0, 20);
+                    }
+                    break;
+                case Device.Android:
+                    break;
+                default:
+                    break;
             }
         }
 
