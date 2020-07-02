@@ -7,16 +7,16 @@ using Plugin.FilePicker.Abstractions;
 using Plugin.Media.Abstractions;
 using xamarinJKH.Server.RequestModel;
 using RestSharp;
-using Xamarin.Forms;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-        public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
+         public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
         // public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
         // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Челябинск
 
@@ -36,8 +36,6 @@ namespace xamarinJKH.Server
         public const string GET_SUM_COMISSION = "Accounting/SumWithComission"; // Возвращает сумму с комиссией
         public const string GET_FILE_BILLS = "Bills/Download"; // Получить квитанцию
 
-        public const string REGISTR_DISPATCHER_DEVICE = "Dispatcher/RegisterDevice"; //Регистрация устройства.
-        
         public const string REQUEST_LIST_CONST = "RequestsDispatcher/List"; // Заявки сотрудника
         public const string REQUEST_DETAIL_LIST_CONST = "RequestsDispatcher/Details"; // Детали заявки сотрудника
         public const string REQUEST_UPDATES_CONST = "RequestsDispatcher/GetUpdates"; // Обновление заявок сотрудника
@@ -53,8 +51,7 @@ namespace xamarinJKH.Server
         public const string ADD_MESSAGE_CONST = "RequestsDispatcher/AddMessage"; // Отправка сообщения
         public const string GET_HOUSES_GROUP = "RequestsDispatcher/HouseGroups"; // Возвращает список районов
         public const string GET_HOUSES = "RequestsDispatcher/Houses"; // Возвращает список домов. 
-        public const string
-            GET_REQUESTS_STATS = "RequestsDispatcher/RequestStats"; // Возвращает статистику по заявкам.  
+        public const string GET_REQUESTS_STATS = "RequestsDispatcher/RequestStats"; // Возвращает статистику по заявкам.  
 
 
         public const string REQUEST_LIST = "Requests/List"; // Заявки
@@ -70,7 +67,6 @@ namespace xamarinJKH.Server
         public const string UPDATE_PROFILE = "User/UpdateProfile"; // Обновить данные профиля
         public const string ADD_IDENT_PROFILE = "User/AddAccountByIdent"; // Привязать ЛС к профилю
         public const string DEL_IDENT_PROFILE = "User/DeleteAccountByIdent"; // отвязать ЛС от профиля
-        public const string REGISTR_DEVICE = "User/RegisterDevice"; // отвязать ЛС от профиля
 
         public const string
             GET_PERSONAL_DATA = "User/GetPersonalDataByIdent"; // Получение данных о физ лице по номеру л/сч
@@ -97,6 +93,10 @@ namespace xamarinJKH.Server
 
         public const string
             SET_START_OSS = "OSS/SetStartVoiting"; // Записывает в лог, что участник начал голосование   
+
+        public const string OSS_CHECK_PIN = "OSS/ValidatePinCode"; // Проверка пин-кода
+        public const string OSS_CHECK_CODE = "OSS/SendCheckCode"; // Запрос проверочного кода
+        public const string OSS_SAVE_PIN = "OSS/ValidateCheckCode"; // Проверка кода из смс и установка пин-кода аккаунта (если проверка пройдена).
 
         public const string PAY_ONLINE = "PayOnline/GetPayLink"; // Метод возвращает ссылку на оплату
 
@@ -543,6 +543,25 @@ namespace xamarinJKH.Server
             return response.Data;
         }
 
+        public async Task<ItemsList<NamedValue>> GetDispatcherList()
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(DISPATCHERS_LIST_CONST, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = await restClientMp.ExecuteTaskAsync<ItemsList<NamedValue>>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new ItemsList<NamedValue>()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
         /// <summary>
         /// Получение полной инфы по заявке
         /// </summary>
@@ -910,37 +929,6 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
-        
-        public async Task<CommonResult> RegisterDevice(bool isCons = false)
-        {
-            string OS = Device.RuntimePlatform;
-            string Version = App.version;
-            string Model = App.model;
-            string DeviceId = App.token;
-            RestClient restClientMp = new RestClient(SERVER_ADDR);
-            string url = isCons ? REGISTR_DISPATCHER_DEVICE : REGISTR_DEVICE;
-            RestRequest restRequest = new RestRequest(url, Method.POST);
-            restRequest.RequestFormat = DataFormat.Json;
-            restRequest.AddHeader("acx", Settings.Person.acx);
-            restRequest.AddBody(new
-            {
-                DeviceId,
-                Model,
-                OS,
-                Version
-            });
-            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
-            // Проверяем статус
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                return new CommonResult()
-                {
-                    Error = $"Ошибка {response.StatusDescription}"
-                };
-            }
-
-            return response.Data;
-        }
 
         /// <summary>
         /// Сохранение показаний счетчика
@@ -1112,6 +1100,102 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
+        /// <summary>
+        /// Проверка пин-кода аккаунта.
+        /// </summary>
+        /// <param name="PinCode">пин-код</param>
+        /// <returns></returns>
+        public async Task<CommonResult> OSSCheckPin(string PinCode)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            //RestRequest restRequest = new RestRequest(OSS_CHECK_PIN + "?PinCode=" + pinCode, Method.POST);
+            RestRequest restRequest = new RestRequest(OSS_CHECK_PIN, Method.POST);
+
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+
+            restRequest.AddBody(new
+            {
+                PinCode
+            });
+
+            var response = await restClientMp.ExecuteTaskAsync< CommonResult > (restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+            return response.Data;
+        }
+
+        /// <summary>
+        /// Запрос проверочного кода
+        /// </summary>
+        /// <param name="phone">номер телефона пользователя</param>
+        /// <param name="ident">номер л/сч</param>        
+        /// <returns></returns>
+        public async Task<CommonResult> OSSCheckCode(string Phone, string Ident)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(OSS_CHECK_CODE, Method.POST);
+
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                Phone,
+                Ident
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+            return response.Data;
+        }
+
+        /// <summary>
+        /// Проверка кода из смс и установка пин-кода аккаунта (если проверка пройдена)
+        /// </summary>
+        /// <param name="phone">номер телефона пользователя</param>
+        /// <param name="code">код</param>
+        /// <param name="pinCode">пин-код</param>
+        /// <returns></returns>
+        public async Task<CommonResult> OSSSavePin(string Phone, string Code, string PinCode)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(OSS_SAVE_PIN, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                Phone,
+                Code,
+                PinCode
+            });
+
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+            return response.Data;
+        }
+
+
+        
 
         /// <summary>
         /// Получение данных о физ лице по номеру л/сч

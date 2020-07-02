@@ -129,12 +129,12 @@ namespace xamarinJKH
 
             //отвепты по штукам
             lCntYes.Text = oSS.Questions.Where(_ => _.Answer == "0").Count().ToString();
-            cntYes.BackgroundColor = colorFromMobileSettings;
+            cntYes.Foreground = colorFromMobileSettings;
             lCntNo.Text = oSS.Questions.Where(_ => _.Answer == "1").Count().ToString();
-            cntNo.BackgroundColor = colorFromMobileSettings;
+            cntNo.Foreground = colorFromMobileSettings;
 
             lCntAbstained.Text = oSS.Questions.Where(_ => _.Answer == "2").Count().ToString();
-            cntAbstained.BackgroundColor = colorFromMobileSettings;
+            cntAbstained.Foreground = colorFromMobileSettings;
 
 
             delimColored.BackgroundColor = colorFromMobileSettings;

@@ -152,6 +152,20 @@ namespace xamarinJKH.AppsConst
             var showInfo = new TapGestureRecognizer();
             showInfo.Tapped += async (s, e) => { ShowInfo(); };
             StackLayoutInfo.GestureRecognizers.Add(showInfo);
+            var acceptAp = new TapGestureRecognizer();
+            acceptAp.Tapped += async (s, e) => { acceptApp(); };
+            StackLayoutAccept.GestureRecognizers.Add(acceptAp);
+            var performAp = new TapGestureRecognizer();
+            performAp.Tapped += async (s, e) => { performApp(); };
+            StackLayoutExecute.GestureRecognizers.Add(performAp);
+            var moveDisp = new TapGestureRecognizer();
+            moveDisp.Tapped += async (s, e) =>
+            {
+                // await ShowRating();
+                await PopupNavigation.Instance.PushAsync(new MoveDispatcherView(hex, _requestInfo, true));
+                await RefreshData();
+            };
+            StackLayoutMoveDisp.GestureRecognizers.Add(moveDisp);
             var closeApp = new TapGestureRecognizer();
             closeApp.Tapped += async (s, e) =>
             {
@@ -455,6 +469,38 @@ namespace xamarinJKH.AppsConst
             }
 
             await MethodWithDelayAsync(1000);
+        }
+
+        async void acceptApp()
+        {
+            progress.IsVisible = true;
+            var request = await _server.LockAppConst(_requestInfo.ID.ToString());
+            if (request.Error == null)
+            {
+                await ShowToast("Заявка принята к выполнению");
+                await RefreshData();
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Не удалось принять заявку", "OK");
+            }
+            progress.IsVisible = false;
+        }
+
+        async void performApp()
+        {
+            progress.IsVisible = true;
+            var request = await _server.PerformAppConst(_requestInfo.ID.ToString());
+            if (request.Error == null)
+            {
+                await ShowToast("Заявка выполнена");
+                await RefreshData();
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Не удалось выполнить заявку", "OK");
+            }
+            progress.IsVisible = false;
         }
 
         public async Task MethodWithDelayAsync(int milliseconds)

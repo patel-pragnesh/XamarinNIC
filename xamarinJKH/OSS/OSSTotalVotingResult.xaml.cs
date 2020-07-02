@@ -142,12 +142,12 @@ namespace xamarinJKH
             spanAnswersCnt.Text = cntVotes;
 
             lCntYes.Text = answerYesCount.ToString();
-            cntYes.BackgroundColor = colorFromMobileSettings;
+            cntYes.Foreground = colorFromMobileSettings;
             lCntNo.Text = answerNoCount.ToString();
-            cntNo.BackgroundColor = colorFromMobileSettings;
+            cntNo.Foreground = colorFromMobileSettings;
 
             lCntAbstained.Text = answerAbstainedCount.ToString();
-            cntAbstained.BackgroundColor = colorFromMobileSettings;
+            cntAbstained.Foreground = colorFromMobileSettings;
 
 
             delimColored.BackgroundColor = colorFromMobileSettings;

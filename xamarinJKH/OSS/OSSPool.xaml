@@ -24,8 +24,6 @@
                              Property=Height,
                              Factor=0,
                              Constant=0}" />
-
-
                 <StackLayout x:Name="StackLayout"
                              RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                              Property=Width,
@@ -84,11 +82,12 @@
                                              WidthRequest="15"
                                              Foreground="White"
                                              HorizontalOptions="Center" />
-                        <Label
-                            Text="Назад "
-                            FontSize="15"
-                            TextColor="White"
-                            HorizontalOptions="Start" />
+                        <Label x:Name="LabelTitle"
+                       FontAttributes="Bold"
+                       FontSize="20"
+                       HorizontalOptions="StartAndExpand"
+                       TextColor="White"
+                       Text="Вопросы для голосования" />
                     </StackLayout>
                 </StackLayout>
                 <Image x:Name="IconViewNameUk"
@@ -103,17 +102,7 @@
                              Factor=0,
                              Constant=25}" />
             </RelativeLayout>
-            <StackLayout Orientation="Vertical" Margin="0,70,0,0">
-                <StackLayout
-                Spacing="0"
-                Margin="40,10,20,0">
-                    <Label x:Name="LabelTitle"
-                       FontAttributes="Bold"
-                       FontSize="20"
-                       HorizontalOptions="StartAndExpand"
-                       TextColor="White"
-                       Text="Вопросы для голосования" />
-                </StackLayout>
+            <StackLayout Orientation="Vertical" Margin="0,100,0,0">                
                 <StackLayout x:Name="questionStack" Margin="40,30,40,10" HorizontalOptions="FillAndExpand">
                     <Label x:Name="questionLabel"></Label>
                 </StackLayout>
