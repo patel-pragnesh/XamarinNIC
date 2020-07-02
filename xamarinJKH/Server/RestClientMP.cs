@@ -7,16 +7,18 @@ using Plugin.FilePicker.Abstractions;
 using Plugin.Media.Abstractions;
 using xamarinJKH.Server.RequestModel;
 using RestSharp;
+using Xamarin.Forms;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
+        public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
         // public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
-        public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Челябинск
 
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
@@ -34,6 +36,8 @@ namespace xamarinJKH.Server
         public const string GET_SUM_COMISSION = "Accounting/SumWithComission"; // Возвращает сумму с комиссией
         public const string GET_FILE_BILLS = "Bills/Download"; // Получить квитанцию
 
+        public const string REGISTR_DISPATCHER_DEVICE = "Dispatcher/RegisterDevice"; //Регистрация устройства.
+        
         public const string REQUEST_LIST_CONST = "RequestsDispatcher/List"; // Заявки сотрудника
         public const string REQUEST_DETAIL_LIST_CONST = "RequestsDispatcher/Details"; // Детали заявки сотрудника
         public const string REQUEST_UPDATES_CONST = "RequestsDispatcher/GetUpdates"; // Обновление заявок сотрудника
@@ -66,6 +70,7 @@ namespace xamarinJKH.Server
         public const string UPDATE_PROFILE = "User/UpdateProfile"; // Обновить данные профиля
         public const string ADD_IDENT_PROFILE = "User/AddAccountByIdent"; // Привязать ЛС к профилю
         public const string DEL_IDENT_PROFILE = "User/DeleteAccountByIdent"; // отвязать ЛС от профиля
+        public const string REGISTR_DEVICE = "User/RegisterDevice"; // отвязать ЛС от профиля
 
         public const string
             GET_PERSONAL_DATA = "User/GetPersonalDataByIdent"; // Получение данных о физ лице по номеру л/сч
@@ -892,6 +897,37 @@ namespace xamarinJKH.Server
             {
                 email,
                 fio
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        
+        public async Task<CommonResult> RegisterDevice(bool isCons = false)
+        {
+            string OS = Device.RuntimePlatform;
+            string Version = App.version;
+            string Model = App.model;
+            string DeviceId = App.token;
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            string url = isCons ? REGISTR_DISPATCHER_DEVICE : REGISTR_DEVICE;
+            RestRequest restRequest = new RestRequest(url, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                DeviceId,
+                Model,
+                OS,
+                Version
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус

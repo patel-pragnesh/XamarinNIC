@@ -74,7 +74,7 @@ namespace xamarinJKH
             }
 
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) => { ClosePage(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
 
             UkName.Text = Settings.MobileSettings.main_name;
@@ -280,7 +280,7 @@ namespace xamarinJKH
             if (result.Error == null)
             {
                 await DisplayAlert("Успешно", "Ответы успешно переданы", "OK");
-                _ = await Navigation.PopAsync();
+                ClosePage();
             }
             else
             {
@@ -416,5 +416,17 @@ namespace xamarinJKH
                 indicators[i].BackgroundColor = colorFromMobileSettings;
             }
         }
+        async void ClosePage()
+        {
+            try
+            {
+                await Navigation.PopAsync();
+            }
+            catch (Exception e)
+            {
+                await Navigation.PopModalAsync();
+            }
+        }
+      
     }
 }

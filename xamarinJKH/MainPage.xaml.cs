@@ -258,6 +258,7 @@ namespace xamarinJKH
                     Preferences.Set("login", replace);
                     Preferences.Set("pass", pass);
                     Preferences.Set("constAuth", false);
+                    
                     await Navigation.PushModalAsync(new BottomNavigationPage());
                 }
                 else
@@ -299,6 +300,7 @@ namespace xamarinJKH
                 LoginResult login = await server.LoginDispatcher(replace, pass);
                 if (login.Error == null)
                 {
+                    App.isCons = true;
                     // await DisplayAlert("Успешно", login.ToString(), "OK");
                     Settings.Person = login;
                     //Settings.EventBlockData = await server.GetEventBlockData();

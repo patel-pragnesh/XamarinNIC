@@ -83,7 +83,19 @@ namespace xamarinJKH
             }
 
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) =>
+            {
+                try
+                {
+                    _ = await Navigation.PopAsync();
+
+                }
+                catch (Exception exception)
+                {
+                    _ = await Navigation.PopModalAsync();
+
+                }
+            };
             BackStackLayout.GestureRecognizers.Add(backClick);
 
             UkName.Text = Settings.MobileSettings.main_name;
@@ -593,13 +605,24 @@ namespace xamarinJKH
                 //записываем на сервер что пользователь начал голосование
                 await server.SetStartVoiting(_oss.ID);
 
-                await Navigation.PushAsync(new OSSPool(_oss));
+                OpenPage(new OSSPool(_oss));
             }
             else if (intStatus == 1)
             {
                 await DisplayAlert("Информация", $"Голосование начнется {_oss.DateStart} по местному времени, Вам будет прислано Push оповещение", "OK");
             }
             //тут добавить логику нажатия, в зависимости от статуса ОСС
+        }
+        async void OpenPage(Page page)
+        {
+            try
+            {
+                await Navigation.PushAsync(page);
+            }
+            catch
+            {
+                await Navigation.PushModalAsync(page);
+            }
         }
     }
 }

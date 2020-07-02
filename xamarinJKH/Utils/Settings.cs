@@ -32,6 +32,7 @@ namespace xamarinJKH.Utils
         };
 
         public static PaysPage mainPage;
+        public static Page Page;
         public static bool? isSelf = null;
 
         public static bool OnTimerTick()

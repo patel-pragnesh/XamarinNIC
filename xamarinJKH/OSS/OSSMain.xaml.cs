@@ -62,7 +62,17 @@ namespace xamarinJKH
             }
 
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) =>
+            {
+                try
+                {
+                    _ = await Navigation.PopAsync();
+                }
+                catch (Exception ex)
+                {
+                    _ = await Navigation.PopModalAsync();
+                }
+            };
             BackStackLayout.GestureRecognizers.Add(backClick);
 
             UkName.Text = Settings.MobileSettings.main_name;
@@ -404,7 +414,7 @@ namespace xamarinJKH
                                    var setAcquintedResult = await rc.SetAcquainted(oss.ID);
                                     if(string.IsNullOrWhiteSpace( setAcquintedResult.Error) )
                                     {
-                                        await Navigation.PushAsync(new OSSInfo(oss));
+                                        OpenPage(new OSSInfo(oss));
                                     }
                                     else
                                     {
@@ -414,14 +424,14 @@ namespace xamarinJKH
 
                                     break;
                                 case 3: //"Итоги голосования"/"завершено" - открываем форму общих результатов голосования
-                                    await Navigation.PushAsync(new OSSTotalVotingResult(oss));
+                                     OpenPage(new OSSTotalVotingResult(oss));
 
                                     break;
                                 case 2: //"Ваш голос учтен"  - открываем форму личных результатов голосования
-                                    await Navigation.PushAsync(new OSSPersonalVotingResult(oss));
+                                     OpenPage(new OSSPersonalVotingResult(oss));
 
                                     break;
-                                default: await Navigation.PushAsync(new OSSInfo(oss));
+                                default: OpenPage(new OSSInfo(oss));
                                     return;
                             } 
                             //await Navigation.PushAsync(new OSSInfo(oss)); 
@@ -474,5 +484,19 @@ namespace xamarinJKH
                 ButtonActive.TextColor = Color.White;
             });
         }
+
+        async void OpenPage(Page page)
+        {
+            try
+            {
+                await Navigation.PushAsync(page);
+            }
+            catch
+            {
+                await Navigation.PushModalAsync(page);
+            }
+        }
+        
+        
     }
 }

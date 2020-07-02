@@ -62,7 +62,7 @@ namespace xamarinJKH
             }
 
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) => { ClosePage(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
 
             SetDecorations();
@@ -185,7 +185,19 @@ namespace xamarinJKH
                 Navigation.RemovePage(Navigation.NavigationStack[LeastFoundIndex]);
             }
 
-            Navigation.PopAsync();
+            ClosePage();
+        }
+
+        async void ClosePage()
+        {
+            try
+            {
+                await Navigation.PopAsync();
+            }
+            catch (Exception e)
+            {
+                await Navigation.PopModalAsync();
+            }
         }
     }
 }

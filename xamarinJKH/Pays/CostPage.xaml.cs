@@ -84,7 +84,7 @@ namespace xamarinJKH.Pays
             FormattedString formatted = new FormattedString();
             ComissionModel result = await server.GetSumWithComission(account.Sum.ToString());
             string totalSum = EntrySum.Text;
-            if (result.Error == null && !result.Comission.Equals("0"))
+            if (result.Error == null && result.Comission != 0)
             {
                 isComission = true;
                 LabelCommision.Text = "Комиссия " + result.Comission + " руб.";

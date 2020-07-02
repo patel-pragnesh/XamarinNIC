@@ -32,6 +32,8 @@ namespace xamarinJKH.Droid
             AiForms.Dialogs.Dialogs.Init(this);
             App.ScreenHeight = (int) (Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
             App.ScreenWidth = (int) (Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
+            App.version = Build.VERSION.Sdk;
+            App.model = Build.Model;
             Messier16.Forms.Android.Controls.Messier16Controls.InitAll();
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
