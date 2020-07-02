@@ -44,7 +44,7 @@ namespace xamarinJKH
             progress.Color = hex;
 
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) => { ClosePage(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
 
             var forgetPasswordVisible0 = new TapGestureRecognizer();
@@ -163,7 +163,30 @@ namespace xamarinJKH
             FrameBtnLogin.IsVisible = true;
 
             //далее переход на форму голосования, или на форму ввода пина
-            await Navigation.PushAsync(new OSSAuth());            
+            OpenPage(new OSSAuth());            
+        }
+        
+        async void OpenPage(Page page)
+        {
+            try
+            {
+                await Navigation.PushAsync(page);
+            }
+            catch
+            {
+                await Navigation.PushModalAsync(page);
+            }
+        }
+        async void ClosePage()
+        {
+            try
+            {
+                await Navigation.PopAsync();
+            }
+            catch (Exception e)
+            {
+                await Navigation.PopModalAsync();
+            }
         }
     }
 }

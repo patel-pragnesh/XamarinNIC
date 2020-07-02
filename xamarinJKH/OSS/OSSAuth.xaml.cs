@@ -36,7 +36,7 @@ namespace xamarinJKH
             progress.Color = hex;
 
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) => { ClosePage(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
 
             var forgetPasswordVisible = new TapGestureRecognizer();
@@ -60,7 +60,7 @@ namespace xamarinJKH
             FrameBtnLogin.GestureRecognizers.Add(startLogin);
 
             var startRegForm = new TapGestureRecognizer();
-            startRegForm.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSRegisterPin()); };
+            startRegForm.Tapped += async (s, e) => { OpenPage(new OSSRegisterPin()); };
             RegistLabel.GestureRecognizers.Add(startRegForm);
 
             
@@ -88,7 +88,7 @@ namespace xamarinJKH
                 {
                     progress.IsVisible = false;
                     FrameBtnLogin.IsVisible = true;
-                    await Navigation.PushAsync(new OSSMain());
+                    OpenPage(new OSSMain());
                 }
                 else
                 {
@@ -116,6 +116,29 @@ namespace xamarinJKH
                 return "Ошибка при проверки пин-кода";
             }
             
+        }
+        async void ClosePage()
+        {
+            try
+            {
+                await Navigation.PopAsync();
+            }
+            catch (Exception e)
+            {
+                await Navigation.PopModalAsync();
+            }
+        }
+        
+        async void OpenPage(Page page)
+        {
+            try
+            {
+                await Navigation.PushAsync(page);
+            }
+            catch
+            {
+                await Navigation.PushModalAsync(page);
+            }
         }
     }
 }
