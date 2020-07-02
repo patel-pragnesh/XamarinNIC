@@ -16,10 +16,16 @@ namespace xamarinJKH
     {
         Color colorFromMobileSettings = Color.FromHex(Settings.MobileSettings.color);
 
-        public OSSPersonalVotingResult(OSS oSS)
+        public OSSPersonalVotingResult(OSS oSS, bool userFinishPool=false)
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+
+            if(userFinishPool)
+            {
+                listNeedUpdate = userFinishPool;
+            }
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -127,7 +133,7 @@ namespace xamarinJKH
             var cntVotes = "за "+ oSS.Questions.Where(_ => !string.IsNullOrWhiteSpace(_.Answer)).Count().ToString() + " / " + oSS.Questions.Count.ToString()+".";
             spanAnswersCnt.Text = cntVotes;
 
-            //отвепты по штукам
+            //ответы по штукам
             lCntYes.Text = oSS.Questions.Where(_ => _.Answer == "0").Count().ToString();
             cntYes.Foreground = colorFromMobileSettings;
             lCntNo.Text = oSS.Questions.Where(_ => _.Answer == "1").Count().ToString();
@@ -151,15 +157,14 @@ namespace xamarinJKH
 
         }
 
+        bool listNeedUpdate = false;
 
         private async void Btn_Clicked(object sender, EventArgs e)
-        {
-            //for (var counter = 1; counter < 2; counter++)
-            //{
-            //Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
-            //}
-            PopUntilDestination(typeof(OSSMain));
-            //await Navigation.PopAsync();
+        {            
+            if (listNeedUpdate)
+                await Navigation.PushAsync(new OSSMain());
+            else
+                PopUntilDestination(typeof(OSSMain));
         }
 
         void PopUntilDestination(Type DestinationPage)

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
@@ -81,7 +82,7 @@ namespace xamarinJKH
             LabelPhone.Text = "+" + Settings.Person.Phone;
 
             
-            FrameBack.BackgroundColor = colorFromMobileSettings;
+            //FrameBack.BackgroundColor = colorFromMobileSettings;
             FrameBtnNext.BackgroundColor = colorFromMobileSettings; 
             FrameBtnFinish.BackgroundColor = colorFromMobileSettings;
 
@@ -89,9 +90,9 @@ namespace xamarinJKH
             var nextClick = new TapGestureRecognizer();
             nextClick.Tapped += async (s, e) => { NextQuest(); };
             FrameBtnNext.GestureRecognizers.Add(nextClick);
-            var backClickQuest = new TapGestureRecognizer();
-            backClickQuest.Tapped += async (s, e) => { BackQuest(); };
-            FrameBack.GestureRecognizers.Add(backClickQuest);
+            //var backClickQuest = new TapGestureRecognizer();
+            //backClickQuest.Tapped += async (s, e) => { BackQuest(); };
+            //FrameBack.GestureRecognizers.Add(backClickQuest);
             var finishClick = new TapGestureRecognizer();
             finishClick.Tapped += async (s, e) => { FinishClick(); };
             FrameBtnFinish.GestureRecognizers.Add(finishClick);
@@ -114,6 +115,9 @@ namespace xamarinJKH
             setVisibleButton();
 
             SetQuestion(quest);
+            if (quest > 0)
+                visibleIndicator(quest, true);
+                
         }
 
         
@@ -236,9 +240,8 @@ namespace xamarinJKH
                 Device.BeginInvokeOnMainThread(async () => {
                     await DisplayAlert("Ошибка", result.Error, "OK");
                     return;
-                });
-                
-                }
+                });                
+            }
             else
             {
                 quest++;
@@ -254,68 +257,52 @@ namespace xamarinJKH
                     setVisibleButton();
                 });
             }
-
-            
-            
         }
 
-        private void BackQuest()
-        {
-            quest--;
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                visibleIndicator(quest, false);
-                Container.Children.Clear();
-                Container.Children.Add(_contentQuest[quest]);
-                SetQuestion(quest);
-                ChechQuestions();
-                FrameBtnNext.IsVisible = true;
-            });
-        }
 
         private async void FinishClick()
         {
-            var result = await server.CompleteVote(_oss.ID); 
-
-            if (result.Error == null)
+            //отравка последнего ответа на сервер
+            var result = await server.SaveAnswer(new OSSAnswer() { Answer = _oss.Questions[quest].Answer, QuestionId = _oss.Questions[quest].ID });
+            if (!string.IsNullOrWhiteSpace(result.Error))
             {
-                await DisplayAlert("Успешно", "Ответы успешно переданы", "OK");
-                ClosePage();
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await DisplayAlert("Ошибка", result.Error, "OK");
+                    return;
+                });
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось передать ответы\n" + result.Error, "OK");
+                //отправка результата на сервер
+                var resultComplite = await server.CompleteVote(_oss.ID);
+
+                if (resultComplite.Error == null)
+                {
+                    await DisplayAlert("Успешно", "Ответы успешно переданы", "OK");
+
+                    await Navigation.PushAsync(new OSSPersonalVotingResult(_oss, true));
+                }
+                else
+                {
+                    await DisplayAlert("Ошибка", "Не удалось передать ответы\n" + result.Error, "OK");
+                }
             }
+              
         }
 
+       
         private void ChechQuestions()
         {
             if (quest + 1 == _oss.Questions.Count)
             {
                 FrameBtnNext.IsVisible = false;
-                FrameBtnFinish.IsVisible = true;
-                if (quest > 0)
-                {
-                    FrameBack.IsVisible = true;
-                }
-                else
-                {
-                    FrameBack.IsVisible = false;
-                }
+                FrameBtnFinish.IsVisible = true;               
             }
             else
             {
                 FrameBtnNext.IsVisible = true;
                 FrameBtnFinish.IsVisible = false;
-
-                if (quest > 0)
-                {
-                    FrameBack.IsVisible = true;
-                }
-                else
-                {
-                    FrameBack.IsVisible = false;
-                }
             }
         }
 
@@ -351,15 +338,6 @@ namespace xamarinJKH
                 {
                     FrameBtnFinish.IsVisible = !_isComplite;
                 }
-
-                if (quest > 0)
-                {
-                    FrameBack.IsVisible = true;
-                }
-                else
-                {
-                    FrameBack.IsVisible = false;
-                }
             }
         }
 
@@ -375,6 +353,7 @@ namespace xamarinJKH
                 }
             };
             int i = 0;
+            
             double width = StackLayoutIndicator.WidthRequest / _oss.Questions.Count;
             foreach (var each in _oss.Questions)
             {

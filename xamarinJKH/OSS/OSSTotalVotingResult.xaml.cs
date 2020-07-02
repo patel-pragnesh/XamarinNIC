@@ -156,17 +156,22 @@ namespace xamarinJKH
             Area.Text = " " + oSS.ComplateArea.ToString() + " м.кв. = " + oSS.ComplateAreaPercents+ "%";
 
             //ссылки на документы  - Макс по идее должен сказать откуда взять.
-            urlBlank.TextColor = colorFromMobileSettings;
-            urlBlank.GestureRecognizers.Add(new TapGestureRecognizer
-            {
-                Command = new Command(async () => await Launcher.OpenAsync(oSS.AdminstratorSite))
-            });
+            //urlBlank.TextColor = colorFromMobileSettings;
+            //urlBlank.GestureRecognizers.Add(new TapGestureRecognizer
+            //{
+            //    Command = new Command(async () => await Launcher.OpenAsync(oSS.AdminstratorSite))
+            //});
 
-            urlProtokol.TextColor = colorFromMobileSettings;
-            urlProtokol.GestureRecognizers.Add(new TapGestureRecognizer
+            ProtokolStackL.IsVisible = oSS.HasProtocolFile;
+            if(ProtokolStackL.IsVisible)
             {
-                Command = new Command(async () => await Launcher.OpenAsync(oSS.AdminstratorSite))
-            });
+                urlProtokol.TextColor = colorFromMobileSettings;
+                urlProtokol.GestureRecognizers.Add(new TapGestureRecognizer
+                {
+                    Command = new Command(async () => await Launcher.OpenAsync(oSS.ProtocolFileLink))
+                });
+            }
+            
 
         }
 

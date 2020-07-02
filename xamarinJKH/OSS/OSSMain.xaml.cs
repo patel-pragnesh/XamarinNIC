@@ -120,10 +120,13 @@ namespace xamarinJKH
         }
 
         
-        private async void GetOssData(int type=0)
+        private async Task<bool> GetOssData(int type=0)
         {
             //получаем данные от сервера по ОСС
-            var result = await rc.GetOss(0);           
+            var result = await rc.GetOss(0);
+
+            var haveP =result.Data.Where(_ => _.HasProtocolFile).ToList();
+
 
             if(result.Error==null)
             {
@@ -131,13 +134,13 @@ namespace xamarinJKH
                 //Завершенные
                 if (type == 0)
                 {
-                    var rr = result.Data.Where(_ => Convert.ToDateTime(_.DateEnd, new CultureInfo("ru-RU")).AddHours(24) < dateNow).ToList();
+                    var rr = result.Data.Where(_ => Convert.ToDateTime(_.DateEnd, new CultureInfo("ru-RU")).AddHours(24) < dateNow ).ToList();
                     result.Data = rr;
                 }
                 //Активные
                 if(type==1)
                 {
-                    var rr = result.Data.Where(_ => Convert.ToDateTime(_.DateEnd, new CultureInfo("ru-RU")).AddHours(24) > dateNow).ToList();
+                    var rr = result.Data.Where(_ => Convert.ToDateTime(_.DateEnd, new CultureInfo("ru-RU")).AddHours(24) > dateNow ).ToList();
                     result.Data = rr;
                 }
 
@@ -150,8 +153,8 @@ namespace xamarinJKH
                 //var g1 = 0;
 #endif
 
-                Device.BeginInvokeOnMainThread(async () =>
-                {
+                //Device.BeginInvokeOnMainThread(async () =>
+                //{
                     if(result.Data.Count>10)
                     {
                         OSSList.Margin = new Thickness(0, -65, 0, 0);
@@ -452,37 +455,82 @@ namespace xamarinJKH
 
                         OSSListContent.Children.Add(f);
                     }     
-                });
-
+                //});
+                return true;
             }
             else
             {
                 await DisplayAlert("Ошибка", "Не удалось получить информацию об ОСС", "OK");
+                return false;
+            }
+
+            
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        { 
+            //активные
+            try
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    ButtonActive.IsEnabled = false;                   
+                    ButtonArchive.IsEnabled = false;
+
+                    frames.Clear();
+                    arrows.Clear();
+
+                    var r = await GetOssData(1);
+
+
+                    ((Button)sender).TextColor = colorFromMobileSettings;
+                    ButtonArchive.TextColor = Color.White;
+
+                    ButtonActive.IsEnabled = true;
+                    ButtonArchive.IsEnabled = true;
+                });
+            }
+            catch(Exception ex)
+            {
+                await DisplayAlert("Ошибка", "Не удалось получить информацию об ОСС", "OK");
             }
             
-
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked_1(object sender, EventArgs e)
         {
-            //активные(за последний месяц)
-            GetOssData(1);
-            Device.BeginInvokeOnMainThread(() =>
+            try
             {
-                ((Button)sender).TextColor = colorFromMobileSettings;
-                ButtonArchive.TextColor = Color.White;
-            });
-        }
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    ButtonActive.IsEnabled = false;
+                    ButtonArchive.IsEnabled = false;
 
-        private void Button_Clicked_1(object sender, EventArgs e)
-        {
+                    frames.Clear();
+                    arrows.Clear();
+
+                    var r =  await GetOssData(0);
+
+
+                    ((Button)sender).TextColor = colorFromMobileSettings;
+                    ButtonActive.TextColor = Color.White;
+
+                    ButtonActive.IsEnabled = true;
+                    ButtonArchive.IsEnabled = true;
+                });
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Ошибка", "Не удалось получить информацию об ОСС", "OK");
+            }
+            
             //архивные
-            GetOssData(0);
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                ((Button)sender).TextColor = colorFromMobileSettings;
-                ButtonActive.TextColor = Color.White;
-            });
+            //GetOssData(0);
+            //Device.BeginInvokeOnMainThread(() =>
+            //{
+            //    ((Button)sender).TextColor = colorFromMobileSettings;
+            //    ButtonActive.TextColor = Color.White;
+            //});
         }
 
         async void OpenPage(Page page)

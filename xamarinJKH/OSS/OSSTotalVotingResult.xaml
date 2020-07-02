@@ -195,7 +195,7 @@
                         <Label Text="Спасибо за участие!" Margin="20,5" TextColor="Black" FontAttributes="Bold" FontSize="16"></Label>
                         
                         <StackLayout x:Name="stackDesign" Orientation="Horizontal" Margin="20,0">
-                            <StackLayout Orientation="Vertical">
+                            <StackLayout x:Name="BlankStackL" Orientation="Vertical" IsEnabled="False" IsVisible="False">
                                 <xamarinJkh:IconView x:Name="pdf1" Source="ic_export_pdf"
                                                      HeightRequest="30"
                                                      WidthRequest="30"
@@ -210,7 +210,7 @@
                                     </Label.FormattedText>
                                 </Label>                                
                             </StackLayout>
-                            <StackLayout Orientation="Vertical">
+                            <StackLayout x:Name="ProtokolStackL" Orientation="Vertical">
                                 <xamarinJkh:IconView  x:Name="pdf2" Source="ic_export_pdf"
                                                      HeightRequest="30"
                                                      WidthRequest="30"
