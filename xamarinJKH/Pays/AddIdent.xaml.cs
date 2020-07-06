@@ -27,9 +27,9 @@ namespace xamarinJKH.Pays
             {
                 case Device.iOS:
                     BackgroundColor = Color.White;
-                    ImageFon.Margin = new Thickness(0, 0, 0, 0);
-                    StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
+                    // ImageFon.Margin = new Thickness(0, 0, 0, 0);
+                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
+                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
                 default:

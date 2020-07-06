@@ -48,9 +48,9 @@ namespace xamarinJKH.MainConst
             {
                 case Device.iOS:
                     BackgroundColor = Color.White;
-                    ImageFon.Margin = new Thickness(0, 0, 0, 0);
-                    StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
+                    // ImageFon.Margin = new Thickness(0, 0, 0, 0);
+                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
+                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
@@ -61,9 +61,9 @@ namespace xamarinJKH.MainConst
                         fontSize2 = 15;
                         fontSize3 = 12;
                         // ScrollViewContainer.Margin = new Thickness(10, -135, 10, 0);
-                        BackStackLayout.Margin = new Thickness(5, 25, 0, 0);
-                        IconViewNameUk.Margin = new Thickness(-3, -10, 0, 0);
-                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -130);
+                        // BackStackLayout.Margin = new Thickness(5, 25, 0, 0);
+                        // IconViewNameUk.Margin = new Thickness(-3, -10, 0, 0);
+                        // RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -130);
                         IconViewNotComplite = 0;
                         IconViewNotCompliteHeightRequest = 8;
                         IconViewPrHeightRequest = 8;

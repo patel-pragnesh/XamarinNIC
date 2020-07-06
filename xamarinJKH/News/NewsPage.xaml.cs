@@ -66,35 +66,35 @@ namespace xamarinJKH.News
                 case Device.iOS:
                     BackgroundColor = Color.White;
                     BackgroundColor = Color.White;
-                    ImageTop.Margin = new Thickness(0, 0, 0, 0);
-                    StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
-                    RelativeLayoutTop.Margin = new Thickness(0,0,0,0);
-                    if (App.ScreenHeight <= 667)//iPhone6
-                    {
-                        //NotificationList.Margin = new Thickness(0,-110,0,0);
-                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -110);
-                    }
-                    else if (App.ScreenHeight <= 736)//iPhone8Plus Height=736
-                    {
-                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -145);
-                    }
-                    else
-                    {
-                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -180);
-                    }
-                    if (Application.Current.MainPage.Height > 800)
-                    {
-                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -180);
-                    }
+                    // ImageTop.Margin = new Thickness(0, 0, 0, 0);
+                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
+                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
+                    // RelativeLayoutTop.Margin = new Thickness(0,0,0,0);
+                    // if (App.ScreenHeight <= 667)//iPhone6
+                    // {
+                    //     //NotificationList.Margin = new Thickness(0,-110,0,0);
+                    //     RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -110);
+                    // }
+                    // else if (App.ScreenHeight <= 736)//iPhone8Plus Height=736
+                    // {
+                    //     RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -145);
+                    // }
+                    // else
+                    // {
+                    //     RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -180);
+                    // }
+                    // if (Application.Current.MainPage.Height > 800)
+                    // {
+                    //     RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -180);
+                    // }
                     break;
                 case Device.Android:
-                    RelativeLayoutTop.Margin = new Thickness(0,0,0,-135);
-                    double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
-                    if (Math.Abs(or - 0.5) < 0.02)
-                    {
-                        RelativeLayoutTop.Margin = new Thickness(0,0,0,-90);
-                    }
+                    // RelativeLayoutTop.Margin = new Thickness(0,0,0,-135);
+                    // double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
+                    // if (Math.Abs(or - 0.5) < 0.02)
+                    // {
+                    //     RelativeLayoutTop.Margin = new Thickness(0,0,0,-90);
+                    // }
 
                     break;
                 default:
