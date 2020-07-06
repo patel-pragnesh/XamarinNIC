@@ -154,13 +154,13 @@ namespace xamarinJKH
                 //Завершенные
                 if (type == 0)
                 {
-                    var rr = result.Data.Where(_ => Convert.ToDateTime(_.DateEnd, new CultureInfo("ru-RU")).AddHours(24) < dateNow ).OrderByDescending(_ => _.DateEnd).ToList();
+                    var rr = result.Data.Where(_ => Convert.ToDateTime(_.DateEnd, new CultureInfo("ru-RU")) < dateNow ).OrderByDescending(_ => _.DateEnd).ToList();
                     result.Data = rr;
                 }
                 //Активные
                 if(type==1)
                 {
-                    var rr = result.Data.Where(_ => Convert.ToDateTime(_.DateEnd, new CultureInfo("ru-RU")).AddHours(24) > dateNow ).OrderByDescending(_=>_.DateEnd).ToList();
+                    var rr = result.Data.Where(_ => Convert.ToDateTime(_.DateEnd, new CultureInfo("ru-RU")) > dateNow ).OrderByDescending(_=>_.DateEnd).ToList();
                     result.Data = rr;
                 }
 
