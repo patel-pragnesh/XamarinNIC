@@ -107,12 +107,13 @@
                              Constant=25}" />
 
             </RelativeLayout>
-            <StackLayout Margin="0,-100,0,100">
+            <StackLayout x:Name="pageContent" Margin="0,-100,0,100">
                 <customRenderers:MaterialFrame Elevation="20"  CornerRadius="50"
                                                        Margin="15, 15, 15, 15"
                                                        BackgroundColor="White"
                                                        Padding="10"
                                                HorizontalOptions="FillAndExpand"
+                                               VerticalOptions="StartAndExpand"
                                            >
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="10">
 
@@ -130,6 +131,7 @@
                                                BackgroundColor="Transparent"
                                                HorizontalTextAlignment="Center"
                                                HorizontalOptions="FillAndExpand"
+                                   Keyboard="Numeric"
                                    Placeholder="Пин код" PlaceholderColor="#A2A2A2"/>                          
 
                             <local:IconView x:Name="ImageClosePass"

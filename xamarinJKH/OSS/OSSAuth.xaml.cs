@@ -26,6 +26,50 @@ namespace xamarinJKH
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
 
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    BackgroundColor = Color.White;
+                    BackgroundColor = Color.White;
+                    ImageTop.Margin = new Thickness(0, 0, 0, 0);
+                    StackLayout.Margin = new Thickness(0, 33, 0, 0);
+                    IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
+                    RelativeLayoutTop.Margin = new Thickness(0, 0, 0, 0);
+                    if (App.ScreenHeight <= 667)//iPhone6
+                    {
+                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -110);
+                    }
+                    else if (App.ScreenHeight <= 736)//iPhone8Plus Height=736
+                    {
+                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -145);
+                    }
+                    else
+                    {
+                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -145);
+                    }
+
+
+                    break;
+                case Device.Android:
+                    RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -135);
+                    
+
+                    double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
+                    if (Math.Abs(or - 0.5) < 0.02)
+                    {
+                        //RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -90);
+                        pageContent.Margin = new Thickness(0, -150, 0, 250);
+                    }
+                    else
+                    {
+                        pageContent.Margin = new Thickness(0, -150, 0, 150);
+                    }
+
+                    break;
+                default:
+                    break;
+            }
+
             UkName.Text = Settings.MobileSettings.main_name;
             IconViewLogin.Foreground = hex;
             IconViewPass.Foreground = hex;
@@ -108,6 +152,17 @@ namespace xamarinJKH
         {
             try
             {
+                int c;
+                var isInt = int.TryParse(text, out c);
+                if(!isInt)
+                {
+                    return "Введенный пин-код не является числом";
+                }
+                if (c < 0)
+                {
+                    return "Введите положительное число в поле пин-код";
+                }
+
                 var r = await rc.OSSCheckPin(text);
                 return r.Error;
             }

@@ -125,6 +125,7 @@
                                                TextColor="#A2A2A2"
                                                BackgroundColor="Transparent"
                                                HorizontalOptions="FillAndExpand"
+                                   Keyboard="Numeric"
                                    Placeholder="Проверочный код" PlaceholderColor="#A2A2A2"/>                           
                         </StackLayout>
                         
@@ -139,6 +140,7 @@
                                                TextColor="#A2A2A2"
                                                BackgroundColor="Transparent"
                                                HorizontalOptions="FillAndExpand" 
+                                    Keyboard="Numeric"
                                    Placeholder="Задайте пин-код"  PlaceholderColor="#A2A2A2"
                                    Margin="19,0,0,0"/>
                             <local:IconView x:Name="ImageClosePass0"
@@ -167,6 +169,7 @@
                                                TextColor="#A2A2A2"
                                                BackgroundColor="Transparent"
                                                HorizontalOptions="FillAndExpand"
+                                    Keyboard="Numeric"
                                    Placeholder="Подтвердите пин-код" PlaceholderColor="#A2A2A2"
                                    Margin="19,0,0,0"/>
                             <local:IconView x:Name="ImageClosePass"

@@ -127,7 +127,7 @@
                 </ScrollView>
                 <StackLayout Orientation="Horizontal"
                                  Margin="40, 0, 40, 50">
-                    <Frame CornerRadius="10"
+                    <!--<Frame CornerRadius="10"
                                BackgroundColor="Red"
                                Margin="0, 10, 0, 0"
                                x:Name="FrameBack"
@@ -156,7 +156,7 @@
                                     HorizontalOptions="Center" />
 
                         </StackLayout>
-                    </Frame>
+                    </Frame>-->
                     <Frame CornerRadius="10"
                                BackgroundColor="Red"
                                HorizontalOptions="EndAndExpand"

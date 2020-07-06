@@ -63,5 +63,9 @@ namespace xamarinJKH.Server.RequestModel
         public int TotalAccounts { get; internal set; } // Кол-во аккаунтов доступных для голосования
         public int ComplateAccoounts { get; internal set; } // Всего проголосовавших собственников 
         public string Error { get; set; }
+                
+        public bool HasProtocolFile { get; set; } // файл протокола загружен
+        
+        public string ProtocolFileLink { get; set; } // ccылка на файл протокола
     }
 }

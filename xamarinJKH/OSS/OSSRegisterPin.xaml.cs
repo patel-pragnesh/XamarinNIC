@@ -125,6 +125,58 @@ namespace xamarinJKH
                 return;
             }
 
+            int c0;
+            var isInt0 = int.TryParse(code, out c0);
+            if (!isInt0)
+            {
+                await DisplayAlert("Ошибка", "Введенный проверочный код не является числом", "OK");
+                progress.IsVisible = false;
+                FrameBtnLogin.IsVisible = true;
+                return;
+            }
+            if (c0 < 0)
+            {
+                await DisplayAlert("Ошибка", "Введите положительное число в поле \"Проверочный код\"", "OK");
+                progress.IsVisible = false;
+                FrameBtnLogin.IsVisible = true;
+                return;
+            }
+
+
+            int c;            
+            var isInt = int.TryParse(EntryPin0.Text, out c);
+            if (!isInt)
+            {
+                await DisplayAlert("Ошибка", "Введенный пин-код не является числом", "OK");
+                progress.IsVisible = false;
+                FrameBtnLogin.IsVisible = true;
+                return;
+            }
+            if (c < 0)
+            {
+                await DisplayAlert("Ошибка", "Введите положительное число в поле пин-код", "OK");
+                progress.IsVisible = false;
+                FrameBtnLogin.IsVisible = true;
+                return;
+            }
+
+            int c1;
+            var isInt1 = int.TryParse(EntryPin.Text, out c1);
+            if (!isInt1)
+            {
+                await DisplayAlert("Ошибка", "Введенный в поле подтверждения пин-код не является числом", "OK");
+                progress.IsVisible = false;
+                FrameBtnLogin.IsVisible = true;
+                return;
+            }
+            if (c1 < 0)
+            {
+                await DisplayAlert("Ошибка", "Введите положительное число в поле подтверждения пин-кода", "OK");
+                progress.IsVisible = false;
+                FrameBtnLogin.IsVisible = true;
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace( EntryPin0.Text) || string.IsNullOrWhiteSpace( EntryPin.Text))
             {
                 //пин не введен
