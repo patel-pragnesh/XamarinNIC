@@ -20,42 +20,62 @@ namespace xamarinJKH
         {
             InitializeComponent();
 
+            //switch (Device.RuntimePlatform)
+            //{
+            //    case Device.iOS:
+            //        BackgroundColor = Color.White;
+            //        BackgroundColor = Color.White;
+            //        ImageTop.Margin = new Thickness(0, 0, 0, 0);
+            //        StackLayout.Margin = new Thickness(0, 33, 0, 0);
+            //        IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
+            //        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, 0);
+            //        if (App.ScreenHeight <= 667)//iPhone6
+            //        {
+            //            RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -110);
+            //        }
+            //        else if (App.ScreenHeight <= 736)//iPhone8Plus Height=736
+            //        {
+            //            RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -145);
+            //        }
+            //        else
+            //        {
+            //            RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -145);
+            //        }
+
+
+            //        break;
+            //    case Device.Android:
+            //        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -135);
+            //        double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
+            //        if (Math.Abs(or - 0.5) < 0.02)
+            //        {
+            //            RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -90);
+            //        }
+            //        else
+            //        {
+            //            ossContent.Margin = new Thickness(20, 30, 20, 0);
+            //        }                           
+
+            //        break;
+            //    default:
+            //        break;
+            //}
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
                     BackgroundColor = Color.White;
-                    BackgroundColor = Color.White;
-                    ImageTop.Margin = new Thickness(0, 0, 0, 0);
-                    StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
-                    RelativeLayoutTop.Margin = new Thickness(0, 0, 0, 0);
-                    if (App.ScreenHeight <= 667)//iPhone6
+                    if (Application.Current.MainPage.Height < 800)
                     {
-                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -110);
-                    }
-                    else if (App.ScreenHeight <= 736)//iPhone8Plus Height=736
-                    {
-                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -145);
+                        ossContent.Margin = new Thickness(10, -180, 10, 0);
                     }
                     else
                     {
-                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -145);
+                        ossContent.Margin = new Thickness(10, -185, 10, 0);
                     }
-
-
                     break;
                 case Device.Android:
-                    RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -135);
                     double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
-                    if (Math.Abs(or - 0.5) < 0.02)
-                    {
-                        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -90);
-                    }
-                    else
-                    {
-                        ossContent.Margin = new Thickness(20, 30, 20, 0);
-                    }                           
-
+                    //ossContent.Margin = new Thickness(10, 45, 10, 0);
                     break;
                 default:
                     break;
@@ -134,13 +154,13 @@ namespace xamarinJKH
                 //Завершенные
                 if (type == 0)
                 {
-                    var rr = result.Data.Where(_ => Convert.ToDateTime(_.DateEnd, new CultureInfo("ru-RU")).AddHours(24) < dateNow ).ToList();
+                    var rr = result.Data.Where(_ => Convert.ToDateTime(_.DateEnd, new CultureInfo("ru-RU")).AddHours(24) < dateNow ).OrderByDescending(_ => _.DateEnd).ToList();
                     result.Data = rr;
                 }
                 //Активные
                 if(type==1)
                 {
-                    var rr = result.Data.Where(_ => Convert.ToDateTime(_.DateEnd, new CultureInfo("ru-RU")).AddHours(24) > dateNow ).ToList();
+                    var rr = result.Data.Where(_ => Convert.ToDateTime(_.DateEnd, new CultureInfo("ru-RU")).AddHours(24) > dateNow ).OrderByDescending(_=>_.DateEnd).ToList();
                     result.Data = rr;
                 }
 

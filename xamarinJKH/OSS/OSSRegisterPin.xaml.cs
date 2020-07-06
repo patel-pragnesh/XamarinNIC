@@ -21,6 +21,25 @@ namespace xamarinJKH
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
 
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    BackgroundColor = Color.White;
+                    if (Application.Current.MainPage.Height < 800)
+                    {
+                        ScrollViewContainer.Margin = new Thickness(10, -180, 10, 0);
+                    }
+                    else
+                    {
+                        ScrollViewContainer.Margin = new Thickness(10, -185, 10, 0);
+                    }
+                    break;
+                case Device.Android:
+                    break;
+                default:
+                    break;
+            }
+
             //Запрос в смс/пуше кода подтверждения 
             GetAuthCode();
 

@@ -7,107 +7,228 @@
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
              xmlns:local="clr-namespace:xamarinJKH"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="#F3F3F3"   
              x:Class="xamarinJKH.OSSRegisterPin">
     <ContentPage.Content>
-        <StackLayout>
-            <RelativeLayout
-                Margin="0,0,0,-162"
-                x:Name="RelativeLayoutTop"
-                HorizontalOptions="FillAndExpand">
-                <Image x:Name="ImageTop" Margin="0, -26, 0 ,0"
-                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0,
-                             Constant=0}"
-                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Height,
-                             Factor=0,
-                             Constant=0}"
+        <StackLayout>           
+            <Grid>
+                <Image x:Name="ImageFon"
+                       Margin="0,20,0,0"
                        Source="ic_background_OSS"
-                       VerticalOptions="Fill"
-                       HorizontalOptions="Fill" />
-
-                <StackLayout x:Name="StackLayout"
-                             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0,
-                             Constant=15}"
-                             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Height,
-                             Factor=0,
-                             Constant=10}"
-                             Orientation="Vertical">
-                    <Label x:Name="UkName"
-                           Text="Название"
-                           FontAttributes="Bold"
-                           FontSize="20"
-                           TextColor="White" />
+                       VerticalOptions="Start"
+                       Aspect="AspectFill"
+                       HorizontalOptions="FillAndExpand" />
+                <StackLayout>
+                    <pancakeView:PancakeView
+                        Padding="0"
+                        CornerRadius="0,0,25,25"
+                        BackgroundColor="#131313"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Start"
+                        x:Name="Pancake"
+                        IsClippedToBounds="True">
+                        <Grid IsClippedToBounds="True">
+                            <StackLayout Orientation="Horizontal"
+                                         VerticalOptions="Fill"
+                                         HorizontalOptions="FillAndExpand">
+                                <StackLayout Padding="10"
+                                             HorizontalOptions="FillAndExpand">
+                                    <Label x:Name="UkName"
+                                           Text="Название"
+                                           FontAttributes="Bold"
+                                           FontSize="16"
+                                           TextColor="White" />
+                                    <StackLayout
+                                        Spacing="0"
+                                        Orientation="Horizontal">
+                                        <xamarinJkh:IconView x:Name="IconViewLogin"
+                                                             Source="ic_phone"
+                                                             HeightRequest="15"
+                                                             Foreground="White"
+                                                             Margin="-10, 0,0,0"
+                                                             HorizontalOptions="Start"
+                                                             VerticalOptions="Center" />
+                                        <Label x:Name="LabelPhone"
+                                               Text="Телефон"
+                                               FontSize="14"
+                                               TextColor="White"
+                                               Margin="-5, 0, 0, 0"
+                                               VerticalOptions="Center" />
+                                    </StackLayout>
+                                </StackLayout>
+                                <pancakeView:PancakeView
+                                    BorderColor="Gray"
+                                    x:Name="PancakeViewIcon"
+                                    BorderThickness="1"
+                                    Padding="15"
+                                    CornerRadius="25,0,25,25"
+                                    BackgroundColor="White"
+                                    HorizontalOptions="End"
+                                    IsClippedToBounds="True">
+                                    <Image x:Name="IconViewNameUk"
+                                           Source="icon_login"
+                                           HeightRequest="50" />
+                                </pancakeView:PancakeView>
+                            </StackLayout>
+                        </Grid>
+                    </pancakeView:PancakeView>
                     <StackLayout
-                        Orientation="Horizontal">
-                        <xamarinJkh:IconView x:Name="IconViewLogin"
-                                             Source="ic_phone"
-                                             HeightRequest="15"
-                                             Foreground="White"
-                                             Margin="-10, 0,0,0"
-                                             HorizontalOptions="Start"
-                                             VerticalOptions="Center" />
-                        <Label x:Name="LabelPhone"
-                               Text="Телефон"
-                               FontSize="16"
-                               TextColor="White"
-                               Margin="-5, 0, 0, 0"
-                               VerticalOptions="Center" />
-                    </StackLayout>
-                    <StackLayout
+                        HorizontalOptions="End"
+                        Margin="0,0,15,0"
                         Orientation="Horizontal">
                         <xamarinJkh:IconView x:Name="IconViewTech"
                                              Source="ic_tech"
                                              HeightRequest="20"
                                              Foreground="White"
-                                             Margin="0, 10,0,0"
+                                             Margin="0, 0,0,0"
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
                                Text="Написать в тех.поддержку"
-                               FontSize="16"
+                               FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
-                               Margin="-10, 10, 0, 0"
+                               Margin="-10, 0, 0, 0"
                                VerticalOptions="Center" />
                     </StackLayout>
                     <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
-                        Margin="-2, 35, 0, 0"
+                        Margin="25, 0, 0, 0"
                         HorizontalOptions="Start">
                         <Image Source="ic_arrow_back"
                                HeightRequest="15"
                                HorizontalOptions="Center" />
                         <Label
                             Text="Регистрация пин-кода"
-                            FontSize="18"
+                            FontSize="23"
                             TextColor="White"
                             FontAttributes="Bold"
-                            HorizontalOptions="Start"
-                            LineBreakMode="WordWrap"
-       MaxLines="2"/>
+                            HorizontalOptions="Start" />
                     </StackLayout>
-                </StackLayout>
-                <Image x:Name="IconViewNameUk"
-                       Source="icon_login"
-                       HeightRequest="70"
-                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0.75,
-                             Constant=10}"
-                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Height,
-                             Factor=0,
-                             Constant=25}" />
+                    <ScrollView x:Name="ScrollViewContainer"
+                                Orientation="Vertical"
+                                VerticalOptions="FillAndExpand"
+                                Margin="10, 0, 10, 10">
+                        <StackLayout
+                            VerticalOptions="FillAndExpand">
+                            <customRenderers:MaterialFrame Elevation="20"  CornerRadius="50"
+                                                       Margin="15, 15, 15, 15"
+                                                       BackgroundColor="White"
+                                                       Padding="10"
+                                               HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="10">
+                                    <StackLayout Margin="-15, 20, 0, 0" Orientation="Horizontal">
+                                        <local:IconView x:Name="IconViewCode"
+                                                        Source="ic_send_mess"
+                                                        HeightRequest="25"
+                                                        VerticalOptions="Center" />
+                                        <Entry x:Name="EntryCode"
+                                               FontSize="15"
+                                               IsPassword="False"
+                                               TextColor="#A2A2A2"
+                                               BackgroundColor="Transparent"
+                                               HorizontalOptions="FillAndExpand"
+                                   Keyboard="Numeric"
+                                   Placeholder="Проверочный код" PlaceholderColor="#A2A2A2"/>
+                                    </StackLayout>
 
-            </RelativeLayout>
-            <StackLayout Margin="0,-100,0,100">
+                                    <StackLayout Margin="0, 20, 0, 0" Orientation="Horizontal">
+                                        <local:IconView x:Name="IconViewPass0"
+                                                        Source="ic_password_login"
+                                                        HeightRequest="25"
+                                                        VerticalOptions="Center" />
+                                        <Entry x:Name="EntryPin0"
+                                               FontSize="15"
+                                               IsPassword="True"
+                                               TextColor="#A2A2A2"
+                                               BackgroundColor="Transparent"
+                                               HorizontalOptions="FillAndExpand" 
+                                    Keyboard="Numeric"
+                                   Placeholder="Задайте пин-код"  PlaceholderColor="#A2A2A2"
+                                   Margin="19,0,0,0"/>
+                                        <local:IconView x:Name="ImageClosePass0"
+                                                        Source="ic_close_password"
+                                                        HeightRequest="15"
+                                                        WidthRequest="15"
+                                                        HorizontalOptions="End"
+                                                        VerticalOptions="Center" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                            x:Name="LabelseparatorPass0"
+                                            HeightRequest="2"                                            
+                                            BackgroundColor="Red"
+                                            HorizontalOptions="FillAndExpand" />
+
+                                    </StackLayout>
+                                    <StackLayout Margin="0, 20, 0, 0" Orientation="Horizontal">
+                                        <local:IconView x:Name="IconViewPass"
+                                                        Source="ic_password_login"
+                                                        HeightRequest="25"
+                                                        VerticalOptions="Center" />
+                                        <Entry x:Name="EntryPin"
+                                               FontSize="15"
+                                               IsPassword="True"
+                                               TextColor="#A2A2A2"
+                                               BackgroundColor="Transparent"
+                                               HorizontalOptions="FillAndExpand"
+                                    Keyboard="Numeric"
+                                   Placeholder="Подтвердите пин-код" PlaceholderColor="#A2A2A2"
+                                   Margin="19,0,0,0"/>
+                                        <local:IconView x:Name="ImageClosePass"
+                                                        Source="ic_close_password"
+                                                        HeightRequest="15"
+                                                        WidthRequest="15"
+                                                        HorizontalOptions="End"
+                                                        VerticalOptions="Center" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                            x:Name="LabelseparatorPass"
+                                            HeightRequest="2"                                            
+                                            BackgroundColor="Red"
+                                            HorizontalOptions="FillAndExpand" />
+                                    </StackLayout>
+                                    <ActivityIndicator x:Name="progress"
+                                                   IsRunning="true"
+                                                   IsVisible="False"
+                                                   Color="Red" />
+                                    <Frame CornerRadius="15"
+                                       BackgroundColor="Red"
+                                       Margin="0, 10, 0, 0"
+                                       x:Name="FrameBtnLogin"
+                                       Padding="12">
+                                        <StackLayout
+                                        Orientation="Horizontal"
+                                        Spacing="0"
+                                        HorizontalOptions="Center">
+                                            <Label
+                                            Text="Подтвердить "
+                                            FontSize="15"
+                                            TextColor="White"
+                                            FontAttributes="Bold"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Center" />
+                                            <local:IconView Source="ic_arrow_forward"
+                                                        HeightRequest="12"
+                                                        WidthRequest="12"
+                                                        Margin="0,0,0,-3"
+                                                        Foreground="White"
+                                                        VerticalOptions="Center"
+                                                        HorizontalOptions="Center" />
+                                        </StackLayout>
+                                    </Frame>
+
+                                </StackLayout>
+                            </customRenderers:MaterialFrame>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+            </Grid>
+
+            <!--<StackLayout Margin="0,-100,0,100">
                 <customRenderers:MaterialFrame Elevation="20"  CornerRadius="50"
                                                        Margin="15, 15, 15, 15"
                                                        BackgroundColor="White"
@@ -219,7 +340,7 @@
                     </StackLayout>
                 </customRenderers:MaterialFrame>
 
-            </StackLayout>
+            </StackLayout>-->
 
         </StackLayout>
     </ContentPage.Content>
