@@ -4,318 +4,327 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.Main.EventsPage">
     <ContentPage.Content>
         <StackLayout>
-            <RelativeLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand">
-                
-                <Image x:Name="ImageFon"
-                       Margin="0, -26, 0 ,0"
-                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0,
-                             Constant=0}"
-                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Height,
-                             Factor=0,
-                             Constant=0}"
-                       Source="ic_background_event"
-                       VerticalOptions="Fill"
-                       HorizontalOptions="Fill" />
+           
 
-                <StackLayout
-                    x:Name="StackLayout"
-                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0,
-                             Constant=15}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Height,
-                             Factor=0,
-                             Constant=10}"
-                    Orientation="Vertical">
-                    <Label x:Name="UkName"
-                           Text="Название"
-                           FontAttributes="Bold"
-                           FontSize="20"
-                           TextColor="White" />
+            <Grid>
+                <Image x:Name="ImageFon"
+                       Margin="0,20,0,0"
+                       Source="ic_background_event"
+                       VerticalOptions="Start"
+                       Aspect="AspectFill"
+                       HorizontalOptions="FillAndExpand" />
+                <StackLayout>
+                    <pancakeView:PancakeView
+                        Padding="0"
+                        CornerRadius="0,0,25,25"
+                        BackgroundColor="#131313"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Start"
+                        x:Name="Pancake"
+                        IsClippedToBounds="True">
+                        <Grid IsClippedToBounds="True">
+                            <StackLayout Orientation="Horizontal"
+                                         VerticalOptions="Fill"
+                                         HorizontalOptions="FillAndExpand">
+                                <StackLayout Padding="10"
+                                             HorizontalOptions="FillAndExpand">
+                                    <Label x:Name="UkName"
+                                           Text="Название"
+                                           FontAttributes="Bold"
+                                           FontSize="16"
+                                           TextColor="White" />
+                                    <StackLayout
+                                        Spacing="0"
+                                        Orientation="Horizontal">
+                                        <xamarinJkh:IconView x:Name="IconViewLogin"
+                                                             Source="ic_phone"
+                                                             HeightRequest="15"
+                                                             Foreground="White"
+                                                             Margin="-10, 0,0,0"
+                                                             HorizontalOptions="Start"
+                                                             VerticalOptions="Center" />
+                                        <Label x:Name="LabelPhone"
+                                               Text="Телефон"
+                                               FontSize="14"
+                                               TextColor="White"
+                                               Margin="-5, 0, 0, 0"
+                                               VerticalOptions="Center" />
+                                    </StackLayout>
+                                </StackLayout>
+                                <pancakeView:PancakeView
+                                    BorderColor="Gray"
+                                    x:Name="PancakeViewIcon"
+                                    BorderThickness="1"
+                                    Padding="15"
+                                    CornerRadius="25,0,25,25"
+                                    BackgroundColor="White"
+                                    HorizontalOptions="End"
+                                    IsClippedToBounds="True">
+                                    <Image x:Name="IconViewNameUk"
+                                           Source="icon_login"
+                                           HeightRequest="50" />
+                                </pancakeView:PancakeView>
+                            </StackLayout>
+                        </Grid>
+                    </pancakeView:PancakeView>
                     <StackLayout
-                        Orientation="Horizontal">
-                        <xamarinJkh:IconView x:Name="IconViewLogin"
-                                             Source="ic_phone"
-                                             HeightRequest="15"
-                                             Foreground="White"
-                                             Margin="-10, 0,0,0"
-                                             HorizontalOptions="Start"
-                                             VerticalOptions="Center" />
-                        <Label x:Name="LabelPhone"
-                               Text="Телефон"
-                               FontSize="16"
-                               TextColor="White"
-                               Margin="-5, 0, 0, 0"
-                               VerticalOptions="Center" />
-                    </StackLayout>
-                    <StackLayout
+                        HorizontalOptions="End"
+                        Margin="0,0,15,0"
                         Orientation="Horizontal">
                         <xamarinJkh:IconView x:Name="IconViewTech"
                                              Source="ic_tech"
                                              HeightRequest="20"
                                              Foreground="White"
-                                             Margin="0, 10,0,0"
+                                             Margin="0, 0,0,0"
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
                                Text="Написать в тех.поддержку"
-                               FontSize="16"
+                               FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
-                               Margin="-10, 10, 0, 0"
+                               Margin="-10, 0, 0, 0"
                                VerticalOptions="Center" />
                     </StackLayout>
                     <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
-                        Margin="5, 25, 0, 0"
+                        Margin="25, 0, 0, 0"
                         HorizontalOptions="Start">
                         <Label
                             Text="События"
-                            FontSize="25"
+                            FontSize="23"
                             TextColor="White"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
-                </StackLayout>
-                <Image x:Name="IconViewNameUk"
-                       Source="icon_login"
-                       HeightRequest="70"
-                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0.75,
-                             Constant=10}"
-                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Height,
-                             Factor=0,
-                             Constant=25}" />
-            </RelativeLayout>
-            <ScrollView x:Name="ScrollViewContainer"
-                Orientation="Vertical"
-                        VerticalOptions="FillAndExpand"
-                        Margin="10, -180, 10, 0">
-                <StackLayout
-                    VerticalOptions="FillAndExpand">
+                    <ScrollView x:Name="ScrollViewContainer"
+                                Orientation="Vertical"
+                                VerticalOptions="FillAndExpand"
+                                Margin="10, 0, 10, 10">
+                        <StackLayout
+                            VerticalOptions="FillAndExpand">
 
-                    <customRenderers:MaterialFrame Elevation="20" x:Name="FrameNotification"
+                            <customRenderers:MaterialFrame Elevation="20" x:Name="FrameNotification"
+                                                           CornerRadius="30"
+                                                           HorizontalOptions="FillAndExpand"
+                                                           VerticalOptions="Start"
+                                                           BackgroundColor="White"
+                                                           Padding="0, 25, 0, 25"
+                                                           Margin="10,10,10,0">
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <xamarinJkh:IconView
+                                        x:Name="IconViewNotification"
+                                        Source="ic_notification"
+                                        HeightRequest="30"
+                                        Margin="-10, 0, 0, 0"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Text="Уведомления"
+                                        FontSize="20"
+                                        TextColor="Black"
+                                        FontAttributes="Bold"
+                                        Margin="-20, 0, 0, 0"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Center" />
+                                    <xamarinJkh:IconView
+                                        x:Name="IconViewForvardNotification"
+                                        Source="ic_arrow_forward"
+                                        HeightRequest="25"
+                                        WidthRequest="25"
+                                        Margin="0,0,15,0"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                            </customRenderers:MaterialFrame>
+                            <customRenderers:MaterialFrame Elevation="20" x:Name="FrameNews"
+                                                           CornerRadius="30"
+                                                           HorizontalOptions="FillAndExpand"
+                                                           VerticalOptions="Start"
+                                                           BackgroundColor="White"
+                                                           Margin="10, 10, 10, 0"
+                                                           Padding="0, 25, 0, 25">
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <xamarinJkh:IconView
+                                        x:Name="IconViewNews"
+                                        Source="ic_news"
+                                        HeightRequest="30"
+                                        Margin="-10, 0, 0, 0"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Text="Новости"
+                                        FontSize="20"
+                                        TextColor="Black"
+                                        FontAttributes="Bold"
+                                        Margin="-20, 0, 0, 0"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Center" />
+                                    <xamarinJkh:IconView
+                                        x:Name="IconViewForvardNews"
+                                        Source="ic_arrow_forward"
+                                        HeightRequest="25"
+                                        WidthRequest="25"
+                                        Margin="0,0,15,0"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                            </customRenderers:MaterialFrame>
+                            <customRenderers:MaterialFrame Elevation="20" x:Name="FrameQuestions"
+                                                           CornerRadius="30"
+                                                           Margin="10, 10, 10, 0"
+                                                           HorizontalOptions="FillAndExpand"
+                                                           VerticalOptions="Start"
+                                                           BackgroundColor="White"
+                                                           Padding="0, 25, 0, 25">
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <xamarinJkh:IconView
+                                        x:Name="IconViewQuestions"
+                                        Source="ic_questions2"
+                                        HeightRequest="30"
+                                        Foreground="Red"
+                                        Margin="-10, 0, 0, 0"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Text="Опросы"
+                                        FontSize="20"
+                                        TextColor="Black"
+                                        FontAttributes="Bold"
+                                        Margin="-20, 0, 0, 0"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Center" />
+                                    <xamarinJkh:IconView
+                                        x:Name="IconViewForvardQuestions"
+                                        Source="ic_arrow_forward"
+                                        HeightRequest="25"
+                                        WidthRequest="25"
+                                        Margin="0,0,15,0"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                            </customRenderers:MaterialFrame>
+                            <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOffers"
+                                                           CornerRadius="30"
+                                                           Margin="10, 10, 10, 0"
+                                                           HorizontalOptions="FillAndExpand"
+                                                           VerticalOptions="Start"
+                                                           BackgroundColor="White"
+                                                           Padding="0, 25, 0, 25">
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <xamarinJkh:IconView
+                                        x:Name="IconViewOffers"
+                                        Source="ic_diskont"
+                                        HeightRequest="30"
+                                        Margin="-10, 0, 0, 0"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Text="Специальные предложения"
+                                        FontSize="20"
+                                        TextColor="Black"
+                                        Margin="-20, 0, 0, 0"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Center" />
+                                    <xamarinJkh:IconView
+                                        x:Name="IconViewForvardOffers"
+                                        Source="ic_arrow_forward"
+                                        HeightRequest="25"
+                                        WidthRequest="25"
+                                        Margin="0,0,15,0"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                            </customRenderers:MaterialFrame>
+                            <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOSS"
+                                                           CornerRadius="30"
+                                                           Margin="10, 10, 10, 10"
+                                                           HorizontalOptions="FillAndExpand"
+                                                           VerticalOptions="Start"
+                                                           BackgroundColor="White"
+                                                           Padding="0, 25, 0, 25">
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <xamarinJkh:IconView
+                                        x:Name="IconViewOss"
+                                        Source="ic_questions2"
+                                        HeightRequest="30"
+                                        Margin="-10, 0, 0, 0"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Text="Общие собрания собственников"
+                                        FontSize="20"
+                                        TextColor="Black"
+                                        Margin="-20, 0, 0, 0"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Center" />
+                                    <xamarinJkh:IconView
+                                        x:Name="IconViewForvardOss"
+                                        Source="ic_arrow_forward"
+                                        HeightRequest="25"
+                                        WidthRequest="25"
+                                        Margin="0,0,15,0"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                            </customRenderers:MaterialFrame>
+
+
+                            <Frame x:Name="FrameShop"
                                    CornerRadius="30"
+                                   Margin="10, 10, 10, 10"
+                                   IsVisible="False"
                                    HorizontalOptions="FillAndExpand"
                                    VerticalOptions="Start"
                                    BackgroundColor="White"
-                                   Padding="0, 25, 0, 25"
-                                   Margin="10,10,10,0">
-                        <StackLayout
-                            Orientation="Horizontal">
-                            <xamarinJkh:IconView
-                                x:Name="IconViewNotification"
-                                Source="ic_notification"
-                                HeightRequest="30"
-                                Margin="-10, 0, 0, 0"
-                                HorizontalOptions="Start"
-                                VerticalOptions="Center" />
-                            <Label
-                                Text="Уведомления"
-                                FontSize="20"
-                                TextColor="Black"
-                                FontAttributes="Bold"
-                                Margin="-20, 0, 0, 0"
-                                HorizontalOptions="FillAndExpand"
-                                VerticalOptions="Center" />
-                            <xamarinJkh:IconView
-                                x:Name="IconViewForvardNotification"
-                                Source="ic_arrow_forward"
-                                HeightRequest="25"
-                                WidthRequest="25"
-                                Margin="0,0,15,0"
-                                HorizontalOptions="End"
-                                VerticalOptions="Center" />
+                                   Padding="0, 25, 0, 25">
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <xamarinJkh:IconView
+                                        x:Name="IconViewShop"
+                                        Source="ic_shop"
+                                        HeightRequest="30"
+                                        WidthRequest="60"
+                                        Margin="0, 0, 20, 0"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Text="Магазин"
+                                        FontSize="20"
+                                        TextColor="Black"
+                                        Margin="0, 0, 0, 0"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Center" />
+                                    <xamarinJkh:IconView
+                                        x:Name="IconViewForvardShop"
+                                        Source="ic_arrow_forward"
+                                        HeightRequest="25"
+                                        WidthRequest="25"
+                                        Margin="0,0,15,0"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                            </Frame>
                         </StackLayout>
-                    </customRenderers:MaterialFrame>
-                    <customRenderers:MaterialFrame Elevation="20"  x:Name="FrameNews"
-                                                   CornerRadius="30"
-                                                   HorizontalOptions="FillAndExpand"
-                                                   VerticalOptions="Start"
-                                                   BackgroundColor="White"
-                                                   Margin="10, 10, 10, 0"
-                                                   Padding="0, 25, 0, 25">
-                        <StackLayout
-                            Orientation="Horizontal">
-                            <xamarinJkh:IconView
-                                x:Name="IconViewNews"
-                                Source="ic_news"
-                                HeightRequest="30"
-                                Margin="-10, 0, 0, 0"
-                                HorizontalOptions="Start"
-                                VerticalOptions="Center" />
-                            <Label
-                                Text="Новости"
-                                FontSize="20"
-                                TextColor="Black"
-                                FontAttributes="Bold"
-                                Margin="-20, 0, 0, 0"
-                                HorizontalOptions="FillAndExpand"
-                                VerticalOptions="Center" />
-                            <xamarinJkh:IconView
-                                x:Name="IconViewForvardNews"
-                                Source="ic_arrow_forward"
-                                HeightRequest="25"
-                                WidthRequest="25"
-                                Margin="0,0,15,0"
-                                HorizontalOptions="End"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </customRenderers:MaterialFrame>
-                    <customRenderers:MaterialFrame Elevation="20"  x:Name="FrameQuestions"
-                                                   CornerRadius="30"
-                                                   Margin="10, 10, 10, 0"
-                                                   HorizontalOptions="FillAndExpand"
-                                                   VerticalOptions="Start"
-                                                   BackgroundColor="White"
-                                                   Padding="0, 25, 0, 25">
-                        <StackLayout
-                            Orientation="Horizontal">
-                            <xamarinJkh:IconView
-                                x:Name="IconViewQuestions"
-                                Source="ic_questions2"
-                                HeightRequest="30"
-                                Foreground="Red"
-                                Margin="-10, 0, 0, 0"
-                                HorizontalOptions="Start"
-                                VerticalOptions="Center" />
-                            <Label
-                                Text="Опросы"
-                                FontSize="20"
-                                TextColor="Black"
-                                FontAttributes="Bold"
-                                Margin="-20, 0, 0, 0"
-                                HorizontalOptions="FillAndExpand"
-                                VerticalOptions="Center" />
-                            <xamarinJkh:IconView
-                                x:Name="IconViewForvardQuestions"
-                                Source="ic_arrow_forward"
-                                HeightRequest="25"
-                                WidthRequest="25"
-                                Margin="0,0,15,0"
-                                HorizontalOptions="End"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </customRenderers:MaterialFrame>
-                    <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOffers"
-                                                   CornerRadius="30"
-                                                   Margin="10, 10, 10, 0"
-                                                   HorizontalOptions="FillAndExpand"
-                                                   VerticalOptions="Start"
-                                                   BackgroundColor="White"
-                                                   Padding="0, 25, 0, 25">
-                        <StackLayout
-                            Orientation="Horizontal">
-                            <xamarinJkh:IconView
-                                x:Name="IconViewOffers"
-                                Source="ic_diskont"
-                                HeightRequest="30"
-                                Margin="-10, 0, 0, 0"
-                                HorizontalOptions="Start"
-                                VerticalOptions="Center" />
-                            <Label
-                                Text="Специальные предложения"
-                                FontSize="20"
-                                TextColor="Black"
-                                Margin="-20, 0, 0, 0"
-                                FontAttributes="Bold"
-                                HorizontalOptions="FillAndExpand"
-                                VerticalOptions="Center" />
-                            <xamarinJkh:IconView
-                                x:Name="IconViewForvardOffers"
-                                Source="ic_arrow_forward"
-                                HeightRequest="25"
-                                WidthRequest="25"
-                                Margin="0,0,15,0"
-                                HorizontalOptions="End"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </customRenderers:MaterialFrame>
-                    <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOSS"
-                                                   CornerRadius="30"
-                                                   Margin="10, 10, 10, 0"
-                                                   HorizontalOptions="FillAndExpand"
-                                                   VerticalOptions="Start"
-                                                   BackgroundColor="White"
-                                                   Padding="0, 25, 0, 25">
-                        <StackLayout
-                            Orientation="Horizontal">
-                            <xamarinJkh:IconView
-                                x:Name="IconViewOss"
-                                Source="ic_questions2"
-                                HeightRequest="30"
-                                Margin="-10, 0, 0, 0"
-                                HorizontalOptions="Start"
-                                VerticalOptions="Center" />
-                            <Label
-                                Text="Общие собрания собственников"
-                                FontSize="20"
-                                TextColor="Black"
-                                Margin="-20, 0, 0, 0"
-                                FontAttributes="Bold"
-                                HorizontalOptions="FillAndExpand"
-                                VerticalOptions="Center" />
-                            <xamarinJkh:IconView
-                                x:Name="IconViewForvardOss"
-                                Source="ic_arrow_forward"
-                                HeightRequest="25"
-                                WidthRequest="25"
-                                Margin="0,0,15,0"
-                                HorizontalOptions="End"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </customRenderers:MaterialFrame>
-                    
-                    
-                    <Frame x:Name="FrameShop"
-                           CornerRadius="30"
-                           Margin="10, 10, 10, 10"
-                           IsVisible="False"
-                           HorizontalOptions="FillAndExpand"
-                           VerticalOptions="Start"
-                           BackgroundColor="White"
-                           Padding="0, 25, 0, 25">
-                        <StackLayout
-                            Orientation="Horizontal">
-                            <xamarinJkh:IconView
-                                x:Name="IconViewShop"
-                                Source="ic_shop"
-                                HeightRequest="30"
-                                WidthRequest="60"
-                                Margin="0, 0, 20, 0"
-                                HorizontalOptions="Start"
-                                VerticalOptions="Center" />
-                            <Label
-                                Text="Магазин"
-                                FontSize="20"
-                                TextColor="Black"
-                                Margin="0, 0, 0, 0"
-                                FontAttributes="Bold"
-                                HorizontalOptions="FillAndExpand"
-                                VerticalOptions="Center" />
-                            <xamarinJkh:IconView
-                                x:Name="IconViewForvardShop"
-                                Source="ic_arrow_forward"
-                                HeightRequest="25"
-                                WidthRequest="25"
-                                Margin="0,0,15,0"
-                                HorizontalOptions="End"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </Frame>
+                    </ScrollView>
                 </StackLayout>
-            </ScrollView>
+            </Grid>
+
+
         </StackLayout>
 
     </ContentPage.Content>

@@ -290,6 +290,8 @@
     <BundleResource Include="Resources\ic_author.png" />
     <BundleResource Include="Resources\ic_background.png" />
     <BundleResource Include="Resources\ic_background_counter.png" />
+    <BundleResource Include="Resources\ic_background_event.png" />
+    <BundleResource Include="Resources\ic_background_profile.png" />
     <BundleResource Include="Resources\ic_bottom_login.png" />
     <BundleResource Include="Resources\ic_calendar.png" />
     <BundleResource Include="Resources\ic_call_app.png" />
@@ -351,7 +353,6 @@
     <BundleResource Include="Resources\ic_top_event.png" />
     <BundleResource Include="Resources\top_fon_login.png" />
     <BundleResource Include="Resources\ic_background_pay.png" />
-    <BundleResource Include="Resources\ic_background_profile.png" />
     <BundleResource Include="Resources\ic_profile_email.png" />
     <BundleResource Include="Resources\ic_check_mark.png" />
     <BundleResource Include="Resources\ic_exit.png" />
@@ -372,13 +373,6 @@
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork%402x" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_background_event.png">
-      <SubType>Designer</SubType>
-      <Generator>
-      </Generator>
-    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_shop_minus.png" />

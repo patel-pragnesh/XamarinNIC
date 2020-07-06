@@ -33,16 +33,16 @@ namespace xamarinJKH.Questions
             {
                 case Device.iOS:
                     BackgroundColor = Color.White;
-                    ImageTop.Margin = new Thickness(0, 0, 0, 0);
-                    StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
+                    // ImageTop.Margin = new Thickness(0, 0, 0, 0);
+                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
+                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
-                    if (Math.Abs(or - 0.5) < 0.02)
-                    {
-                        LabelPrev.FontSize = LabelFinish.FontSize = LabelNext.FontSize = 13;
-                    }
+                    // if (Math.Abs(or - 0.5) < 0.02)
+                    // {
+                    //     LabelPrev.FontSize = LabelFinish.FontSize = LabelNext.FontSize = 13;
+                    // }
                     break;
                 default:
                     break;

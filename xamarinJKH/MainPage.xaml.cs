@@ -103,10 +103,10 @@ namespace xamarinJKH
             Settings.MobileSettings = await server.MobileAppSettings("2.303", "1");
             if (Settings.MobileSettings.Error == null)
             {
-                if (RestClientMP.SERVER_ADDR.Contains("dgservicnew"))
-                {
-                    Settings.MobileSettings.main_name = "ООО \"ДОМЖИЛСЕРВИС\"";
-                }
+                // if (RestClientMP.SERVER_ADDR.Contains("dgservicnew"))
+                // {
+                //     Settings.MobileSettings.main_name = "ООО \"ДОМЖИЛСЕРВИС\"";
+                // }
                 UkName.Text = Settings.MobileSettings.main_name;
 
                 hex = Color.FromHex(Settings.MobileSettings.color);
