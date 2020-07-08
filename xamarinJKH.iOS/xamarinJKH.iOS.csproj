@@ -244,7 +244,7 @@
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="PCLStorage" Version="1.0.2" />
     <PackageReference Include="Plugin.FirebaseCrashlytics" Version="2.0.0" />
-    <PackageReference Include="Plugin.FirebasePushNotification" Version="3.3.13-beta" />
+    <PackageReference Include="Plugin.FirebasePushNotification" Version="3.1.6" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
     <PackageReference Include="SimpleImageButton" Version="1.0.3" />
@@ -273,9 +273,9 @@
     <Folder Include="Assets.xcassets\ic_apps.imageset\" />
     <Folder Include="Assets.xcassets\ic_counters.imageset\" />
     <Folder Include="Assets.xcassets\ic_events.imageset\" />
+    <Folder Include="Assets.xcassets\ic_monitor.imageset\" />
     <Folder Include="Assets.xcassets\ic_pays.imageset\" />
     <Folder Include="Assets.xcassets\ic_profile.imageset\" />
-    <Folder Include="Assets.xcassets\ic_monitor.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon_login.png" />

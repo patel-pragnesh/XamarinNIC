@@ -33,8 +33,8 @@ namespace xamarinJKH.iOS
             //SimpleImageButton.SimpleImageButton.Initializator.Initializator.Init();
             LoadApplication(new App());
             UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;
-            Firebase.Core.App.Configure();
-            Firebase.Crashlytics.Crashlytics.Configure();
+            //Firebase.Core.App.Configure();
+            //Firebase.Crashlytics.Crashlytics.Configure();
             return base.FinishedLaunching(app, options);
         }
     }
