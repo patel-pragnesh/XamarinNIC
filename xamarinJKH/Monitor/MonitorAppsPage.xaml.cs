@@ -11,6 +11,7 @@ using xamarinJKH.Apps;
 using xamarinJKH.AppsConst;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Monitor
@@ -50,6 +51,9 @@ namespace xamarinJKH.Monitor
                 default:
                     break;
             }
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            LabelTech.GestureRecognizers.Add(techSend);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);

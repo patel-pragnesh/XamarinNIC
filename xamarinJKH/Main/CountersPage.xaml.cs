@@ -10,6 +10,7 @@ using xamarinJKH.Counters;
 using xamarinJKH.Main;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Main
@@ -109,7 +110,9 @@ namespace xamarinJKH.Main
                 default:
                     break;
             }
-            
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            LabelTech.GestureRecognizers.Add(techSend);
             SetTextAndColor();
             getInfo();
             if (Settings.Person.Accounts.Count > 0)

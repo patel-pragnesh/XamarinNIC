@@ -14,13 +14,16 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-         public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
-        //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
+         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
+        public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
         //public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
         // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Челябинск
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
-
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_yegkh"; //Легкая жизнъ
+        
+        public const string SEND_TEACH_MAIL = "Public/TechSupportAppeal"; // Создание обращения в тех поддержк
+        
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
         public const string LOGIN = "auth/Login"; // Аунтификация пользователя
         public const string REQUEST_CODE = "auth/RequestAccessCode"; // Запрос кода подтверждения
@@ -177,6 +180,42 @@ namespace xamarinJKH.Server
             restRequest.AddBody(new
             {
                 phone
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            Console.WriteLine(response.Data.Error);
+            return response.Data;
+        }
+        
+        /// <summary>
+        /// Создание обращения в тех поддержку.
+        /// </summary>
+        /// <param name="appeal"></param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> TechSupportAppeal(TechSupportAppealArguments appeal)
+        {
+            Console.WriteLine("Запрос кода подтверждения");
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(SEND_TEACH_MAIL, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddBody(new
+            {
+                appeal.Login,
+                appeal.Phone,
+                appeal.Mail,
+                appeal.Text,
+                appeal.Address,
+                appeal.OS,
+                appeal.Info,
+                appeal.AppVersion
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус

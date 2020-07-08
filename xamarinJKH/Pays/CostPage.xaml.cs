@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Pays
@@ -24,6 +25,9 @@ namespace xamarinJKH.Pays
             this.account = account;
             Accounts = accounts;
             InitializeComponent();
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            LabelTech.GestureRecognizers.Add(techSend);
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:

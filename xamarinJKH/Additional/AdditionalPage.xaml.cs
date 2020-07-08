@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Shop;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Additional
@@ -84,6 +85,9 @@ namespace xamarinJKH.Additional
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            LabelTech.GestureRecognizers.Add(techSend);
             SetText();
             SetAdditional();
             this.BindingContext = this;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Plugin.FirebaseCrashlytics;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -12,6 +13,7 @@ using xamarinJKH.News;
 using xamarinJKH.Questions;
 using xamarinJKH.Server;
 using xamarinJKH.Shop;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 using Application = Xamarin.Forms.Application;
 using NavigationPage = Xamarin.Forms.NavigationPage;
@@ -43,6 +45,7 @@ namespace xamarinJKH.Main
                         ScrollViewContainer.Margin = new Thickness(10, -185, 10, 0);
                         // BackStackLayout.Margin = new Thickness(5, 35, 0, 0);
                     }
+
                     break;
                 case Device.Android:
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
@@ -56,6 +59,14 @@ namespace xamarinJKH.Main
                     break;
             }
 
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) =>
+            {
+                if (Settings.MobileSettings.сheckCrashSystem)
+                    CrossFirebaseCrashlytics.Current.Crash();
+                await Navigation.PushAsync(new TechSendPage());
+            };
+            LabelTech.GestureRecognizers.Add(techSend);
             SetText();
             SetColor();
             StartNews();
@@ -64,16 +75,18 @@ namespace xamarinJKH.Main
             StartQuestions();
             // SetVisibleControls();
             StartOSS();
-
+            CrossFirebaseCrashlytics.Current.SetUserIdentifier(Settings.Person.Login);
+            CrossFirebaseCrashlytics.Current.SetUserName(Settings.Person.FIO);
+            CrossFirebaseCrashlytics.Current.SetUserEmail(Settings.Person.Email);
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            
+
             new Task(SyncSetup).Start(); // This could be an await'd task if need be
         }
-        
+
         async void SyncSetup()
         {
             Device.BeginInvokeOnMainThread(SetVisibleControls);
@@ -91,8 +104,6 @@ namespace xamarinJKH.Main
 
             //для ОСС
             setVisible(false, StartOSS, FrameOSS);
-
-
         }
 
         void setVisible(bool visible, Action funk, VisualElement frame)
@@ -141,6 +152,10 @@ namespace xamarinJKH.Main
             //startOSSTGR.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSMain()); };
             startOSSTGR.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSAuth()); };
             FrameOSS.GestureRecognizers.Add(startOSSTGR);
+            if (!Settings.MobileSettings.enableOSS)
+            {
+                FrameOSS.IsVisible = false;
+            }
         }
 
         private void StartShop()
@@ -174,7 +189,6 @@ namespace xamarinJKH.Main
 
             IconViewOss.Foreground = hexColor;
             IconViewForvardOss.Foreground = hexColor;
-
 
 
             // LabelTech.TextColor = hexColor;

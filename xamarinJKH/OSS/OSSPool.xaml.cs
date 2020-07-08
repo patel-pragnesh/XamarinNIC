@@ -9,6 +9,7 @@ using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH
@@ -33,6 +34,9 @@ namespace xamarinJKH
             InitializeComponent();
 
             NavigationPage.SetHasNavigationBar(this, false);
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            LabelTech.GestureRecognizers.Add(techSend);
             //switch (Device.RuntimePlatform)
             //{
             //    case Device.iOS:

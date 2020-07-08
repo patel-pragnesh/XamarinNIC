@@ -11,6 +11,7 @@ using xamarinJKH.Server.RequestModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms.PlatformConfiguration;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH
@@ -57,6 +58,9 @@ namespace xamarinJKH
                     break;
             }
             NavigationPage.SetHasNavigationBar(this, false);
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {     await Navigation.PushModalAsync(new TechSendPage(false)); };
+            FrameTech.GestureRecognizers.Add(techSend);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += BackClick;
             BackStackLayout.GestureRecognizers.Add(backClick);

@@ -16,6 +16,7 @@ using Xamarin.Forms.Xaml;
 using xamarinJKH.MainConst;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.AppsConst
@@ -73,7 +74,9 @@ namespace xamarinJKH.AppsConst
             var addFile = new TapGestureRecognizer();
             addFile.Tapped += async (s, e) => { AddFile(); };
             StackLayoutAddFile.GestureRecognizers.Add(addFile);
-
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            LabelTech.GestureRecognizers.Add(techSend);
             SetText();
             files = new List<FileData>();
             if (Settings.TypeApp == null)

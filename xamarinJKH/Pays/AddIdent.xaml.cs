@@ -10,6 +10,7 @@ using xamarinJKH.Server;
 using xamarinJKH.Main;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Pays
@@ -23,6 +24,9 @@ namespace xamarinJKH.Pays
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            LabelTech.GestureRecognizers.Add(techSend);
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:

@@ -11,6 +11,7 @@ using Xamarin.Forms.Xaml;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.MainConst
@@ -32,6 +33,9 @@ namespace xamarinJKH.MainConst
                 _ = await Navigation.PopModalAsync();
             };
             FrameBtnExit.GestureRecognizers.Add(exitClick);
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            LabelTech.GestureRecognizers.Add(techSend);
             var saveClick = new TapGestureRecognizer();
             saveClick.Tapped += async (s, e) => { ButtonClick(FrameBtnLogin, null); };
             FrameBtnLogin.GestureRecognizers.Add(saveClick);

@@ -11,6 +11,7 @@ using xamarinJKH.AppsConst;
 using xamarinJKH.Server;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.MainConst
@@ -82,6 +83,9 @@ namespace xamarinJKH.MainConst
                 default:
                     break;
             }
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            LabelTech.GestureRecognizers.Add(techSend);
             var addClick = new TapGestureRecognizer();
             addClick.Tapped += async (s, e) => { startNewApp(FrameBtnAdd, null); };
             FrameBtnAdd.GestureRecognizers.Add(addClick);

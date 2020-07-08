@@ -14,6 +14,7 @@
     <PackageReference Include="AiForms.Dialogs" Version="1.0.3" />
     <PackageReference Include="Messier16.Forms.Controls" Version="2.2.0" />
     <PackageReference Include="PCLStorage" Version="1.0.2" />
+    <PackageReference Include="Plugin.FirebaseCrashlytics" Version="2.0.0" />
     <PackageReference Include="Plugin.FirebasePushNotification" Version="3.3.13-beta" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
@@ -174,6 +175,10 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Tech\TechSendPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -285,6 +290,9 @@
     </Compile>
     <Compile Update="Pays\PayServicePage.xaml.cs">
       <DependentUpon>PayServicePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Tech\TechSendPage.xaml.cs">
+      <DependentUpon>TechSendPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

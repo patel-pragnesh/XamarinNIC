@@ -116,7 +116,7 @@
                                                            VerticalOptions="Start"
                                                            BackgroundColor="White"
                                                            Padding="0, 25, 0, 25"
-                                                           Margin="10,10,10,0">
+                                                           Margin="10,10,10,10">
                                 <StackLayout
                                     Orientation="Horizontal">
                                     <xamarinJkh:IconView
@@ -149,7 +149,7 @@
                                                            HorizontalOptions="FillAndExpand"
                                                            VerticalOptions="Start"
                                                            BackgroundColor="White"
-                                                           Margin="10, 10, 10, 0"
+                                                           Margin="10, 0, 10, 10"
                                                            Padding="0, 25, 0, 25">
                                 <StackLayout
                                     Orientation="Horizontal">
@@ -180,7 +180,7 @@
                             </customRenderers:MaterialFrame>
                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameQuestions"
                                                            CornerRadius="30"
-                                                           Margin="10, 10, 10, 0"
+                                                           Margin="10, 0, 10, 10"
                                                            HorizontalOptions="FillAndExpand"
                                                            VerticalOptions="Start"
                                                            BackgroundColor="White"
@@ -215,7 +215,7 @@
                             </customRenderers:MaterialFrame>
                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOffers"
                                                            CornerRadius="30"
-                                                           Margin="10, 10, 10, 0"
+                                                           Margin="10, 0, 10, 10"
                                                            HorizontalOptions="FillAndExpand"
                                                            VerticalOptions="Start"
                                                            BackgroundColor="White"
@@ -249,7 +249,7 @@
                             </customRenderers:MaterialFrame>
                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOSS"
                                                            CornerRadius="30"
-                                                           Margin="10, 10, 10, 10"
+                                                           Margin="10, 0, 10, 10"
                                                            HorizontalOptions="FillAndExpand"
                                                            VerticalOptions="Start"
                                                            BackgroundColor="White"

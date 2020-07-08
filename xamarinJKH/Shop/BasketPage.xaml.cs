@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Markup;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Shop
@@ -60,6 +61,9 @@ namespace xamarinJKH.Shop
             };
 
             BackStackLayout.GestureRecognizers.Add(backClick);
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            LabelTech.GestureRecognizers.Add(techSend);
             //var PayPageShop = new TapGestureRecognizer();
             //PayPageShop.Tapped += async (s, e) =>
             //{

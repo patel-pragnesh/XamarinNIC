@@ -4,10 +4,10 @@ namespace xamarinJKH.Server.RequestModel
 {
     public class LoginResult
     {
-        public string Login { get; set; }
+        public string Login { get; set; } = "";
         public bool IsDispatcher { get; set; }
         public string Email { get; set; }
-        public string Phone { get; set; }
+        public string Phone { get; set; } = "";
         
         public string Birthday { get; set; }
         public string FIO { get; set; }
@@ -44,14 +44,18 @@ namespace xamarinJKH.Server.RequestModel
         }
 
         public int ID { get; set; }
-        public string Ident { get; set; }
-        public string FIO { get; set; }
-        public string Address { get; set; }
+        public string Ident { get; set; } = "";
+        public string FIO { get; set; } = "";
+        public string Address { get; set; } = "";
         public string Company { get; set; }
         public int MetersStartDay { get; set; }
         public int MetersEndDay { get; set; }
         public bool MetersAccessFlag { get; set; }
 
+        public override string ToString()
+        {
+            return Ident;
+        }
     }
     
    

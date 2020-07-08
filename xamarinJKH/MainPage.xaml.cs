@@ -15,6 +15,7 @@ using Xamarin.Forms.Xaml;
 using Xamarin.Forms.Internals;
 using xamarinJKH.Main;
 using xamarinJKH.MainConst;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 using XamEffects;
 using NavigationPage = Xamarin.Forms.NavigationPage;
@@ -43,7 +44,11 @@ namespace xamarinJKH
 
             var authConst = new TapGestureRecognizer();
             authConst.Tapped += ChoiceAuth;
-            LabelSotr.GestureRecognizers.Add(authConst);
+            LabelSotr.GestureRecognizers.Add(authConst); 
+            
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += TechSend;
+            LabelTech.GestureRecognizers.Add(techSend);
 
             var startLogin = new TapGestureRecognizer();
             startLogin.Tapped += ButtonClick;
@@ -118,7 +123,7 @@ namespace xamarinJKH
         private async void getSettings()
         {
             
-            Settings.MobileSettings = await server.MobileAppSettings("2.303", "1");
+            Settings.MobileSettings = await server.MobileAppSettings("3.02", "1");
             if (Settings.MobileSettings.Error == null)
             {
                 // if (RestClientMP.SERVER_ADDR.Contains("dgservicnew"))
@@ -224,6 +229,11 @@ namespace xamarinJKH
                 EntryPassConst.IsVisible = true;
                 IconViewLogin.Source = "ic_fio_reg";
             }
+        }
+
+        private async void TechSend(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new TechSendPage(false));
         }
 
         private async void ButtonClick(object sender, EventArgs e)

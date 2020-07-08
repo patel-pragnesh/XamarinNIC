@@ -16,6 +16,7 @@ using xamarinJKH.Utils;
 using Xamarin.Forms.Internals;
 using System.Security.Cryptography;
 using Xamarin.Forms.Markup;
+using xamarinJKH.Tech;
 
 namespace xamarinJKH.Counters
 {
@@ -66,7 +67,9 @@ namespace xamarinJKH.Counters
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
-
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            LabelTech.GestureRecognizers.Add(techSend);
             var saveClick = new TapGestureRecognizer();
             saveClick.Tapped += async (s, e) => { ButtonClick(FrameBtnLogin, null); };
             FrameBtnLogin.GestureRecognizers.Add(saveClick);

@@ -27,6 +27,7 @@ namespace xamarinJKH.Server.RequestModel
         public string Ident { get; set; }
         public string Period { get; set; }
         public bool HasFile { get; set; }
+        public string FileLink { get; set; }
         public decimal Total { get; set; }
         
     }

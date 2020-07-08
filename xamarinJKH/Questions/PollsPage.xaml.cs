@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Questions
@@ -61,6 +62,9 @@ namespace xamarinJKH.Questions
             var finishClick = new TapGestureRecognizer();
             finishClick.Tapped += async (s, e) => { FinishClick(); };
             FrameBtnFinish.GestureRecognizers.Add(finishClick);
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            LabelTech.GestureRecognizers.Add(techSend);
             SetText();
             setQuest();
             setQuestVisible();

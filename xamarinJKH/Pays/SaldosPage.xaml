@@ -103,7 +103,7 @@
                                HeightRequest="15"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="История платежей"
+                            Text="Квитанции"
                             FontSize="18"
                             TextColor="White"
                             FontAttributes="Bold"

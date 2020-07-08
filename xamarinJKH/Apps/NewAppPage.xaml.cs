@@ -16,6 +16,7 @@ using Xamarin.Forms.Xaml;
 using xamarinJKH.Main;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Apps
@@ -36,9 +37,8 @@ namespace xamarinJKH.Apps
         public int PikerLsItem = 0;
         public int PikerTypeItem = 0;
 
-        public NewAppPage(AppsPage appsPage)
+        public NewAppPage()
         {
-            _appsPage = appsPage;
             InitializeComponent();
             switch (Device.RuntimePlatform)
             {
@@ -71,6 +71,9 @@ namespace xamarinJKH.Apps
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            LabelTech.GestureRecognizers.Add(techSend);
             var addFile = new TapGestureRecognizer();
             addFile.Tapped += async (s, e) => { AddFile(); };
             StackLayoutAddFile.GestureRecognizers.Add(addFile);

@@ -12,6 +12,7 @@ using Xamarin.Forms.Xaml;
 using xamarinJKH.Pays;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Main
@@ -94,6 +95,9 @@ namespace xamarinJKH.Main
             }
 
             hex = Color.FromHex(Settings.MobileSettings.color);
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            LabelTech.GestureRecognizers.Add(techSend);
             SetTextAndColor();
             getInfo();
             additionalList.BackgroundColor = Color.Transparent;

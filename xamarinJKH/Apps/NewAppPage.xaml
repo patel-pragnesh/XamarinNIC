@@ -12,7 +12,7 @@
         <StackLayout>
             <Grid>
                 <Image x:Name="ImageFon"
-                       Source="ic_history_pay_top"
+                       Source="ic_app_top"
                        VerticalOptions="Start"
                        Margin="0,20,0,0"
                        Aspect="AspectFill"

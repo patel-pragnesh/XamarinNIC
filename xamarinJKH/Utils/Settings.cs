@@ -18,6 +18,7 @@ namespace xamarinJKH.Utils
         public static HashSet<Page> AppPAge = new HashSet<Page>();
         public static string UpdateKey = "";
         public static string DateUniq = "";
+        public static string AppVersion = "3.2";
         public static bool TimerStart = false;
         public static int TimerTime = 59;
 

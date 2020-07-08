@@ -11,6 +11,7 @@ using xamarinJKH.Apps;
 using xamarinJKH.Server;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Main
@@ -98,6 +99,9 @@ namespace xamarinJKH.Main
                 default:
                     break;
             }
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            LabelTech.GestureRecognizers.Add(techSend);
             var addClick = new TapGestureRecognizer();
             addClick.Tapped += async (s, e) => { startNewApp(FrameBtnAdd, null); };
             FrameBtnAdd.GestureRecognizers.Add(addClick);
@@ -187,7 +191,7 @@ namespace xamarinJKH.Main
         {
             if (Settings.Person.Accounts.Count > 0)
             {
-                await Navigation.PushAsync(new NewAppPage(this));
+                await Navigation.PushAsync(new NewAppPage());
             }
             else
             {

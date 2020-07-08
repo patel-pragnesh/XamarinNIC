@@ -28,7 +28,7 @@ namespace xamarinJKH.Pays
                 {
                     VerticalOptions = LayoutOptions.FillAndExpand,
                     HorizontalOptions = LayoutOptions.FillAndExpand,
-                    Uri = "http://www.africau.edu/images/default/sample.pdf"
+                    Uri = vm.Bill.FileLink
                 };
                 Content.Children.Add(pdfview);
             }
@@ -38,7 +38,7 @@ namespace xamarinJKH.Pays
                 {
                     VerticalOptions = LayoutOptions.FillAndExpand,
                     HorizontalOptions = LayoutOptions.FillAndExpand,
-                    Source = "http://www.africau.edu/images/default/sample.pdf"
+                    Source = vm.Bill.FileLink
                 };
                 Content.Children.Add(pdfview);
             }
@@ -116,7 +116,7 @@ namespace xamarinJKH.Pays
             LoadPdf = new Command(async () =>
             {
                //TODO: Получение ссылки на настоящий файл квитанции с бека
-                Path = "http://www.africau.edu/images/default/sample.pdf";//"file:///" + DependencyService.Get<IFileWorker>().GetFilePath(filename);
+                Path = info.FileLink;//"file:///" + DependencyService.Get<IFileWorker>().GetFilePath(filename);
             });
         }
     }
