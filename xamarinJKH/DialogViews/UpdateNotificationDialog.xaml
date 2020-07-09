@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<abstractions:DialogView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:abstractions="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
+             xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             x:Class="xamarinJKH.DialogViews.UpdateNotificationDialog">
+    <Frame CornerRadius="30" Margin="40" Padding="20">
+        <StackLayout>
+            <Label Text="Текущая версия приложения устарела и может работать настабильно. Для корректной работы обновите приложение"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"/>
+            <Button BackgroundColor="{Binding ButtonColor}"
+                    HeightRequest="40"
+                    CornerRadius="20"
+                    TextColor="White"
+                    Clicked="OpenMarket"
+                    Text="Обновить"/>
+            <Label Text="Продолжить работу в текущей версии"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   TextColor="{Binding ButtonColor}">
+
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CloseDialog"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </Frame>
+</abstractions:DialogView>
