@@ -64,6 +64,7 @@ namespace xamarinJKH.Shop
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
+            
             //var PayPageShop = new TapGestureRecognizer();
             //PayPageShop.Tapped += async (s, e) =>
             //{

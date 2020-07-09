@@ -77,6 +77,7 @@ namespace xamarinJKH.AppsConst
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
+            
             SetText();
             files = new List<FileData>();
             if (Settings.TypeApp == null)

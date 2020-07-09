@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Plugin.FirebaseCrashlytics;
+using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Additional;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.News;
 using xamarinJKH.Questions;
 using xamarinJKH.Server;
@@ -67,6 +69,21 @@ namespace xamarinJKH.Main
                 await Navigation.PushAsync(new TechSendPage());
             };
             LabelTech.GestureRecognizers.Add(techSend);
+            
+            var call = new TapGestureRecognizer();
+            call.Tapped += async (s, e) =>
+            {
+                if (Settings.Person.Phone != null)
+                {
+                    IPhoneCallTask phoneDialer;
+                    phoneDialer = CrossMessaging.Current.PhoneDialer;
+                    if (phoneDialer.CanMakePhoneCall) 
+                        phoneDialer.MakePhoneCall(Settings.Person.Phone);
+                }
+
+            
+            };
+            LabelPhone.GestureRecognizers.Add(call);
             SetText();
             SetColor();
             StartNews();
@@ -165,7 +182,7 @@ namespace xamarinJKH.Main
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.Phone;
+            LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+","");
             // LabelTech.TextColor = Color.FromHex(Settings.MobileSettings.color);
             // IconViewTech.Foreground = Color.FromHex(Settings.MobileSettings.color);
         }

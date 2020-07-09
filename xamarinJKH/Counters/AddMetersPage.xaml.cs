@@ -15,6 +15,7 @@ using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 using Xamarin.Forms.Internals;
 using System.Security.Cryptography;
+using Plugin.Messaging;
 using Xamarin.Forms.Markup;
 using xamarinJKH.Tech;
 
@@ -70,6 +71,20 @@ namespace xamarinJKH.Counters
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
+            var call = new TapGestureRecognizer();
+            call.Tapped += async (s, e) =>
+            {
+                if (Settings.Person.Phone != null)
+                {
+                    IPhoneCallTask phoneDialer;
+                    phoneDialer = CrossMessaging.Current.PhoneDialer;
+                    if (phoneDialer.CanMakePhoneCall) 
+                        phoneDialer.MakePhoneCall(Settings.Person.Phone);
+                }
+
+            
+            };
+            LabelPhone.GestureRecognizers.Add(call);
             var saveClick = new TapGestureRecognizer();
             saveClick.Tapped += async (s, e) => { ButtonClick(FrameBtnLogin, null); };
             FrameBtnLogin.GestureRecognizers.Add(saveClick);
@@ -325,7 +340,7 @@ namespace xamarinJKH.Counters
                 img.Source = ImageSource.FromFile("ic_electr");
             }
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.Phone;
+            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
             NameLbl.Text = meter.Resource;
             LabelseparatorFio.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             progress.Color = Color.FromHex(Settings.MobileSettings.color);

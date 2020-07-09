@@ -103,7 +103,7 @@
                                HorizontalOptions="Center" />
                         <Label
                             Text="Авторизация для участия в &#10;общих собраниях собственников"
-                            FontSize="23"
+                            FontSize="18"
                             TextColor="White"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />

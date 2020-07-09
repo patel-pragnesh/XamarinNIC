@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -37,6 +37,20 @@ namespace xamarinJKH
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
+            var call = new TapGestureRecognizer();
+            call.Tapped += async (s, e) =>
+            {
+                if (Settings.Person.Phone != null)
+                {
+                    IPhoneCallTask phoneDialer;
+                    phoneDialer = CrossMessaging.Current.PhoneDialer;
+                    if (phoneDialer.CanMakePhoneCall) 
+                        phoneDialer.MakePhoneCall(Settings.Person.Phone);
+                }
+
+            
+            };
+            LabelPhone.GestureRecognizers.Add(call);
             //switch (Device.RuntimePlatform)
             //{
             //    case Device.iOS:
@@ -102,7 +116,7 @@ namespace xamarinJKH
             BackStackLayout.GestureRecognizers.Add(backClick);
 
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.Phone;
+            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
 
             
             //FrameBack.BackgroundColor = colorFromMobileSettings;
@@ -303,8 +317,9 @@ namespace xamarinJKH
                 if (resultComplite.Error == null)
                 {
                     await DisplayAlert("Успешно", "Ответы успешно переданы", "OK");
-
                     await Navigation.PushAsync(new OSSPersonalVotingResult(_oss, true));
+                    Navigation.RemovePage(this);
+
                 }
                 else
                 {

@@ -100,7 +100,7 @@
                                HorizontalOptions="Center" />
                         <Label
                             Text="Результаты общего голосования в м.кв."
-                            FontSize="23"
+                            FontSize="18"
                             TextColor="White"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />

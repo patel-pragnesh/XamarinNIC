@@ -99,7 +99,7 @@
                                HorizontalOptions="Center" />
                         <Label
                             Text="Сообщения о проведении общего &#10;собрания собственников"
-                            FontSize="23"
+                            FontSize="18"
                             TextColor="White"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />

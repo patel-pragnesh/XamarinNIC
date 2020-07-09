@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Plugin.FirebaseCrashlytics;
+using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Pays
@@ -89,6 +92,27 @@ namespace xamarinJKH.Pays
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
+            var call = new TapGestureRecognizer();
+            call.Tapped += async (s, e) =>
+            {
+                if (Settings.Person.Phone != null)
+                {
+                    IPhoneCallTask phoneDialer;
+                    phoneDialer = CrossMessaging.Current.PhoneDialer;
+                    if (phoneDialer.CanMakePhoneCall) 
+                        phoneDialer.MakePhoneCall(Settings.Person.Phone);
+                }
+
+            
+            };
+            LabelPhone.GestureRecognizers.Add(call);
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) =>
+            {
+                await Navigation.PushAsync(new TechSendPage());
+            };
+            LabelTech.GestureRecognizers.Add(techSend);
+
             SetText();
             Payments = Accounts[0].Payments;
             SelectedAcc = Accounts[0];
@@ -99,7 +123,7 @@ namespace xamarinJKH.Pays
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.Phone;
+            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
         }
 
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
