@@ -19,6 +19,9 @@ using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 using XamEffects;
 using NavigationPage = Xamarin.Forms.NavigationPage;
+using AiForms.Dialogs.Abstractions;
+using AiForms.Dialogs;
+using xamarinJKH.DialogViews;
 
 namespace xamarinJKH
 {
@@ -36,8 +39,11 @@ namespace xamarinJKH
             InitializeComponent();
             
             NavigationPage.SetHasNavigationBar(this, false);
-            
-            getSettings();
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                getSettings();
+                CheckForUpdate();
+            });
             var startRegForm = new TapGestureRecognizer();
             startRegForm.Tapped += async (s, e) => { await Navigation.PushModalAsync(new RegistrForm(this)); };
             RegistLabel.GestureRecognizers.Add(startRegForm);
@@ -120,16 +126,28 @@ namespace xamarinJKH
             }
         }
 
+        async void CheckForUpdate()
+        {
+            var version = Xamarin.Essentials.AppInfo.VersionString;
+            var settings = await server.MobileAppSettings(version, "1");
+
+            if (settings.Error != null && settings.Error.Contains("обновить"))
+            {
+                Device.BeginInvokeOnMainThread(async () => await Dialog.Instance.ShowAsync<UpdateNotificationDialog>());
+            }
+        }
+
         private async void getSettings()
         {
             
-            Settings.MobileSettings = await server.MobileAppSettings("3.02", "1");
+            Settings.MobileSettings = await server.MobileAppSettings("3.02", "0");
             if (Settings.MobileSettings.Error == null)
             {
                 // if (RestClientMP.SERVER_ADDR.Contains("dgservicnew"))
                 // {
                 //     Settings.MobileSettings.main_name = "ООО \"ДОМЖИЛСЕРВИС\"";
                 // }
+                
                 UkName.Text = Settings.MobileSettings.main_name;
 
                 hex = Color.FromHex(Settings.MobileSettings.color);
@@ -169,8 +187,9 @@ namespace xamarinJKH
             }
             else
             {
-                await DisplayAlert("Ошибка", Settings.MobileSettings.Error, "OK");
-                getSettings();
+                    await DisplayAlert("Ошибка", Settings.MobileSettings.Error, "OK");
+                    getSettings();
+
                 // BtnLogin.IsEnabled = false;
             }
             if (Settings.ConstAuth)
