@@ -90,7 +90,7 @@ namespace xamarinJKH.Pays
         }
         public string Phone
         {
-            get => "+" + Settings.Person.Phone;
+            get =>  "+" + Settings.Person.companyPhone.Replace("+","");
         }
 
         public Command LoadPdf { get; set; }

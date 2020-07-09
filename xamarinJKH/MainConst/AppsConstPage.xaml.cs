@@ -63,6 +63,17 @@ namespace xamarinJKH.MainConst
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    break;
+                default:
+                    break;
+            }
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -86,6 +97,7 @@ namespace xamarinJKH.MainConst
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
+            
             var addClick = new TapGestureRecognizer();
             addClick.Tapped += async (s, e) => { startNewApp(FrameBtnAdd, null); };
             FrameBtnAdd.GestureRecognizers.Add(addClick);

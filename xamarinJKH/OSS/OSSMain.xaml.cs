@@ -4,10 +4,11 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Plugin.Messaging;
 using Xamarin.Forms;
 
 using Xamarin.Forms.Xaml;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
@@ -23,65 +24,38 @@ namespace xamarinJKH
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
-            //switch (Device.RuntimePlatform)
-            //{
-            //    case Device.iOS:
-            //        BackgroundColor = Color.White;
-            //        BackgroundColor = Color.White;
-            //        ImageTop.Margin = new Thickness(0, 0, 0, 0);
-            //        StackLayout.Margin = new Thickness(0, 33, 0, 0);
-            //        IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
-            //        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, 0);
-            //        if (App.ScreenHeight <= 667)//iPhone6
-            //        {
-            //            RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -110);
-            //        }
-            //        else if (App.ScreenHeight <= 736)//iPhone8Plus Height=736
-            //        {
-            //            RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -145);
-            //        }
-            //        else
-            //        {
-            //            RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -145);
-            //        }
+            var call = new TapGestureRecognizer();
+            call.Tapped += async (s, e) =>
+            {
+                if (Settings.Person.Phone != null)
+                {
+                    IPhoneCallTask phoneDialer;
+                    phoneDialer = CrossMessaging.Current.PhoneDialer;
+                    if (phoneDialer.CanMakePhoneCall) 
+                        phoneDialer.MakePhoneCall(Settings.Person.Phone);
+                }
 
+            
+            };
+            LabelPhone.GestureRecognizers.Add(call);
+            
 
-            //        break;
-            //    case Device.Android:
-            //        RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -135);
-            //        double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
-            //        if (Math.Abs(or - 0.5) < 0.02)
-            //        {
-            //            RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -90);
-            //        }
-            //        else
-            //        {
-            //            ossContent.Margin = new Thickness(20, 30, 20, 0);
-            //        }                           
-
-            //        break;
-            //    default:
-            //        break;
-            //}
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    BackgroundColor = Color.White;
-                    if (Application.Current.MainPage.Height < 800)
-                    {
-                        ossContent.Margin = new Thickness(10, -180, 10, 0);
-                    }
-                    else
-                    {
-                        ossContent.Margin = new Thickness(10, -185, 10, 0);
-                    }
-                    break;
-                case Device.Android:
-                    double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
-                    //ossContent.Margin = new Thickness(10, 45, 10, 0);
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    //BackgroundColor = Color.White;
+                    OSSList.Padding = new Thickness(10,0);
+                    OSSList.Margin = new Thickness(-10, -80, -10, 0);
                     break;
                 default:
                     break;
+            }
+            var dH = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Height;
+            if (dH<1400)
+            {
+                titleLabel.FontSize = 18;
             }
 
             var backClick = new TapGestureRecognizer();
@@ -99,7 +73,7 @@ namespace xamarinJKH
             BackStackLayout.GestureRecognizers.Add(backClick);
 
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.Phone;
+            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
 
             ButtonActive.TextColor = colorFromMobileSettings;
             GetOssData(1);
@@ -178,12 +152,13 @@ namespace xamarinJKH
 
                 //Device.BeginInvokeOnMainThread(async () =>
                 //{
-                    if(result.Data.Count>10)
-                    {
-                        OSSList.Margin = new Thickness(0, -65, 0, 0);
-                    }
 
-                    OSSListContent.Children.Clear();
+                //    if(result.Data.Count>10)
+                //    {
+                //        OSSList.Margin =  new Thickness(0, -65, 0, 0);
+                //}
+
+                OSSListContent.Children.Clear();
                     
                     bool isFirst = true;
                     
@@ -215,7 +190,8 @@ namespace xamarinJKH
                         Frame f = new Frame();
                         f.MinimumHeightRequest = 50;
                         f.BackgroundColor = Color.White;
-                        f.CornerRadius = 40;
+
+                        f.CornerRadius = Device.RuntimePlatform==Device.iOS? 20: 40;
                         f.HorizontalOptions = LayoutOptions.FillAndExpand;
                         f.Margin = new Thickness(0, 10);                        
 

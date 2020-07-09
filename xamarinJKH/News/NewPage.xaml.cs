@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Additional;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
@@ -27,23 +29,36 @@ namespace xamarinJKH.News
         {
             this.newsInfo = newsInfo;
             InitializeComponent();
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     BackgroundColor = Color.White;
-                    BackgroundColor = Color.White;
-                    // ImageTop.Margin = new Thickness(0, 0, 0, 0);
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
-                case Device.Android:
                 default:
                     break;
             }
+            
             NavigationPage.SetHasNavigationBar(this, false);
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
+            var call = new TapGestureRecognizer();
+            call.Tapped += async (s, e) =>
+            {
+                if (Settings.Person.Phone != null)
+                {
+                    IPhoneCallTask phoneDialer;
+                    phoneDialer = CrossMessaging.Current.PhoneDialer;
+                    if (phoneDialer.CanMakePhoneCall) 
+                        phoneDialer.MakePhoneCall(Settings.Person.Phone);
+                }
+
+            
+            };
+            LabelPhone.GestureRecognizers.Add(call);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
@@ -53,7 +68,7 @@ namespace xamarinJKH.News
         async void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.Phone;
+            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
             LabelTitle.Text = newsInfo.Header;
             LabelDate.Text = newsInfo.Created;
             newsInfoFull = await _server.GetNewsFull(newsInfo.ID.ToString());

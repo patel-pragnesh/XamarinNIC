@@ -11,8 +11,10 @@ using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Main;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
@@ -40,6 +42,16 @@ namespace xamarinJKH.Apps
         public NewAppPage()
         {
             InitializeComponent();
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    break;
+                default:
+                    break;
+            }
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -74,6 +86,20 @@ namespace xamarinJKH.Apps
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
+            var call = new TapGestureRecognizer();
+            call.Tapped += async (s, e) =>
+            {
+                if (Settings.Person.Phone != null)
+                {
+                    IPhoneCallTask phoneDialer;
+                    phoneDialer = CrossMessaging.Current.PhoneDialer;
+                    if (phoneDialer.CanMakePhoneCall) 
+                        phoneDialer.MakePhoneCall(Settings.Person.Phone);
+                }
+
+            
+            };
+            LabelPhone.GestureRecognizers.Add(call);
             var addFile = new TapGestureRecognizer();
             addFile.Tapped += async (s, e) => { AddFile(); };
             StackLayoutAddFile.GestureRecognizers.Add(addFile);
@@ -304,7 +330,7 @@ namespace xamarinJKH.Apps
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.Phone;
+            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
         }
 
         void setBinding()

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="3" android:versionName="3.2" 
-		  package="sys_rom.occ" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="4" android:versionName="3.3" 
+		  package="sys_rom.ru.sib_aliance_uk_app" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="18" android:targetSdkVersion="28" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
@@ -9,6 +9,7 @@
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.READ_CALENDAR" />
+	<uses-permission android:name="android.permission.CALL_PHONE" />
 	<uses-permission android:name="android.permission.WRITE_CALENDAR" />
 	<uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
 	<uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />
@@ -26,7 +27,7 @@
 	<uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" />
 	<uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
 	<uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
-	<application android:label="Управдом Чебоксары" android:icon="@drawable/icon_login" android:launchMode="singleTop">
+	<application android:label="УК Сибирский Альянс" android:icon="@drawable/icon_login" android:launchMode="singleTop">
 		<provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
 			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" android:exported="true" />
 		</provider>

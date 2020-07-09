@@ -102,7 +102,7 @@
                                HorizontalOptions="Center" />
                         <Label
                             Text="Регистрация пин-кода"
-                            FontSize="23"
+                            FontSize="18"
                             TextColor="White"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
@@ -30,20 +32,13 @@ namespace xamarinJKH.Questions
             _pollInfo = pollInfo;
             _isComplite = isComplite;
             InitializeComponent();
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     BackgroundColor = Color.White;
-                    // ImageTop.Margin = new Thickness(0, 0, 0, 0);
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
-                    break;
-                case Device.Android:
-                    double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
-                    // if (Math.Abs(or - 0.5) < 0.02)
-                    // {
-                    //     LabelPrev.FontSize = LabelFinish.FontSize = LabelNext.FontSize = 13;
-                    // }
                     break;
                 default:
                     break;
@@ -65,6 +60,20 @@ namespace xamarinJKH.Questions
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
+            var call = new TapGestureRecognizer();
+            call.Tapped += async (s, e) =>
+            {
+                if (Settings.Person.Phone != null)
+                {
+                    IPhoneCallTask phoneDialer;
+                    phoneDialer = CrossMessaging.Current.PhoneDialer;
+                    if (phoneDialer.CanMakePhoneCall) 
+                        phoneDialer.MakePhoneCall(Settings.Person.Phone);
+                }
+
+            
+            };
+            LabelPhone.GestureRecognizers.Add(call);
             SetText();
             setQuest();
             setQuestVisible();
@@ -125,7 +134,7 @@ namespace xamarinJKH.Questions
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.Phone;
+            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
             LabelTitle.Text = _pollInfo.Name;
 
             FrameBack.BackgroundColor = Color.FromHex("#4A4A4A");

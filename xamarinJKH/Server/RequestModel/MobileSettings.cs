@@ -11,6 +11,7 @@ namespace xamarinJKH.Server.RequestModel
         public bool enableOSS { get; set; }    
         public bool useDispatcherAuth { get; set; }
         public string color { get; set; }
+        
         public double servicePercent { get; set; }
         public bool DontShowDebt { get; set; }
         public bool registerWithoutSMS { get; set; }

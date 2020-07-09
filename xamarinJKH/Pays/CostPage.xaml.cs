@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
@@ -28,6 +30,31 @@ namespace xamarinJKH.Pays
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
+            var call = new TapGestureRecognizer();
+            call.Tapped += async (s, e) =>
+            {
+                if (Settings.Person.Phone != null)
+                {
+                    IPhoneCallTask phoneDialer;
+                    phoneDialer = CrossMessaging.Current.PhoneDialer;
+                    if (phoneDialer.CanMakePhoneCall) 
+                        phoneDialer.MakePhoneCall(Settings.Person.Phone);
+                }
+
+            
+            };
+            LabelPhone.GestureRecognizers.Add(call);
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    break;
+                default:
+                    break;
+            }
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -70,7 +97,7 @@ namespace xamarinJKH.Pays
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.Phone;
+            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
             Picker.Title = account.Ident;
             IconViewUslugi.Foreground = Color.FromHex(Settings.MobileSettings.color);
             Labelseparator.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);

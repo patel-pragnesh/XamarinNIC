@@ -23,6 +23,7 @@
                         CornerRadius="0,0,25,25"
                         BackgroundColor="#131313"
                         HorizontalOptions="Fill"
+                        MinimumHeightRequest="102"
                         VerticalOptions="Start"
                         x:Name="Pancake"
                         IsClippedToBounds="True">
@@ -100,7 +101,7 @@
                                HorizontalOptions="Center" />
                         <Label
                             Text="Вопросы для голосования"
-                            FontSize="23"
+                            FontSize="18"
                             TextColor="White"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />

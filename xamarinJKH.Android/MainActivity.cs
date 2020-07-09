@@ -18,7 +18,7 @@ using xamarinJKH.Utils;
 
 namespace xamarinJKH.Droid
 {
-    [Activity(Label = "Управдом Чебоксары", Icon = "@drawable/icon_login", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "УК Сибирский Альянс", Icon = "@drawable/icon_login", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity 
     {
         protected override async void OnCreate(Bundle savedInstanceState)
@@ -43,7 +43,7 @@ namespace xamarinJKH.Droid
             ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera);
             ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadExternalStorage);
             LoadApplication(new App());
-            FirebasePushNotificationManager.ProcessIntent(this,Intent);
+            // FirebasePushNotificationManager.ProcessIntent(this,Intent);
             Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
 
         }
@@ -53,10 +53,10 @@ namespace xamarinJKH.Droid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
         
-        protected override void OnNewIntent(Intent intent)
-        {
-            base.OnNewIntent(intent);
-            FirebasePushNotificationManager.ProcessIntent(this, intent);
-        }
+        // protected override void OnNewIntent(Intent intent)
+        // {
+        //     base.OnNewIntent(intent);
+        //     FirebasePushNotificationManager.ProcessIntent(this, intent);
+        // }
     }
 }

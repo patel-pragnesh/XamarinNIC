@@ -13,6 +13,7 @@ using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.MainConst;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
@@ -40,6 +41,17 @@ namespace xamarinJKH.AppsConst
         {
             _appsPage = appsPage;
             InitializeComponent();
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    break;
+                default:
+                    break;
+            }
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -77,6 +89,7 @@ namespace xamarinJKH.AppsConst
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
+            
             SetText();
             files = new List<FileData>();
             if (Settings.TypeApp == null)

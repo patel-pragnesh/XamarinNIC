@@ -28,6 +28,9 @@
                         VerticalOptions="Start"
                         x:Name="Pancake"
                         IsClippedToBounds="True">
+                        <!--<pancakeView:PancakeView.Padding>
+                            <OnPlatform x:TypeArguments="Thickness" iOS="0, 25, 0, 0" ></OnPlatform>
+                        </pancakeView:PancakeView.Padding>-->
                         <Grid IsClippedToBounds="True">
                             <StackLayout Orientation="Horizontal"
                                          VerticalOptions="Fill"

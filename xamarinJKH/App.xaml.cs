@@ -45,70 +45,70 @@ namespace xamarinJKH
                 default:
                     break;
             }
-            // CrossFirebasePushNotification.Current.Subscribe("general");
-            CrossFirebasePushNotification.Current.OnTokenRefresh += async (s, p) =>
-            {
-                System.Diagnostics.Debug.WriteLine($"TOKEN : {p.Token}");
-                token = p.Token;
-                await server.RegisterDevice(isCons);
-            };
-            CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
-            {
-
-                System.Diagnostics.Debug.WriteLine("Received");
-
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    bool displayAlert = await MainPage.DisplayAlert(p.Data["title"].ToString(), p.Data["body"].ToString(), "OK", "Отмена");
-                    string o = p.Data["type_push"].ToString();
-                    // if (displayAlert && o.ToLower().Equals("осс"))
-                    // {
-                    //     await MainPage.Navigation.PushModalAsync(new OSSMain());
-                    // }
-                });
-
-            };
-            CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
-            {
-
-                System.Diagnostics.Debug.WriteLine("Opened");
-                string o = p.Data["type_push"].ToString();
-                if (o.ToLower().Equals("осс"))
-                {
-                    Device.BeginInvokeOnMainThread(async () =>
-                    {
-                        string login = Preferences.Get("login", "");
-                        string pass = Preferences.Get("pass", "");
-                        if (!pass.Equals("") && !login.Equals(""))
-                        {
-                            LoginResult loginResult = await server.Login(login, pass);
-                            if (loginResult.Error == null)
-                            {
-                                Settings.Person = loginResult;
-                                await MainPage.Navigation.PushModalAsync(new OSSMain());
-                            }
-
-                        }
-                    });
-                }
-
-
-            };
-            CrossFirebasePushNotification.Current.OnNotificationAction += (s, p) =>
-            {
-                System.Diagnostics.Debug.WriteLine("Action");
-
-                if (!string.IsNullOrEmpty(p.Identifier))
-                {
-                    System.Diagnostics.Debug.WriteLine($"ActionId: {p.Identifier}");
-                    foreach (var data in p.Data)
-                    {
-                        System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
-                    }
-
-                }
-
-            };
+            // // CrossFirebasePushNotification.Current.Subscribe("general");
+            // CrossFirebasePushNotification.Current.OnTokenRefresh += async (s, p) =>
+            // {
+            //     System.Diagnostics.Debug.WriteLine($"TOKEN : {p.Token}");
+            //     token = p.Token;
+            //     await server.RegisterDevice(isCons);
+            // };
+            // CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
+            // {
+            //
+            //     System.Diagnostics.Debug.WriteLine("Received");
+            //
+            //     Device.BeginInvokeOnMainThread(async () =>
+            //     {
+            //         bool displayAlert = await MainPage.DisplayAlert(p.Data["title"].ToString(), p.Data["body"].ToString(), "OK", "Отмена");
+            //         string o = p.Data["type_push"].ToString();
+            //         // if (displayAlert && o.ToLower().Equals("осс"))
+            //         // {
+            //         //     await MainPage.Navigation.PushModalAsync(new OSSMain());
+            //         // }
+            //     });
+            //
+            // };
+            // CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
+            // {
+            //
+            //     System.Diagnostics.Debug.WriteLine("Opened");
+            //     string o = p.Data["type_push"].ToString();
+            //     if (o.ToLower().Equals("осс"))
+            //     {
+            //         Device.BeginInvokeOnMainThread(async () =>
+            //         {
+            //             string login = Preferences.Get("login", "");
+            //             string pass = Preferences.Get("pass", "");
+            //             if (!pass.Equals("") && !login.Equals(""))
+            //             {
+            //                 LoginResult loginResult = await server.Login(login, pass);
+            //                 if (loginResult.Error == null)
+            //                 {
+            //                     Settings.Person = loginResult;
+            //                     await MainPage.Navigation.PushModalAsync(new OSSMain());
+            //                 }
+            //
+            //             }
+            //         });
+            //     }
+            //
+            //
+            // };
+            // CrossFirebasePushNotification.Current.OnNotificationAction += (s, p) =>
+            // {
+            //     System.Diagnostics.Debug.WriteLine("Action");
+            //
+            //     if (!string.IsNullOrEmpty(p.Identifier))
+            //     {
+            //         System.Diagnostics.Debug.WriteLine($"ActionId: {p.Identifier}");
+            //         foreach (var data in p.Data)
+            //         {
+            //             System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
+            //         }
+            //
+            //     }
+            //
+            // };
 
         }
 

@@ -25,7 +25,7 @@
 						MinimumHeightRequest="102"
                         VerticalOptions="Start"
                         x:Name="Pancake"
-                        IsClippedToBounds="True">
+                        IsClippedToBounds="True">                        
                         <Grid IsClippedToBounds="True">
                             <StackLayout Orientation="Horizontal"
                                          VerticalOptions="Fill"

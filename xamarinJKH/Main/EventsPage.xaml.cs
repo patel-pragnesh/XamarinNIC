@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Plugin.FirebaseCrashlytics;
+using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Additional;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.News;
 using xamarinJKH.Questions;
 using xamarinJKH.Server;
@@ -31,30 +33,10 @@ namespace xamarinJKH.Main
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    BackgroundColor = Color.White;
-                    // ImageFon.Margin = new Thickness(0, 0, 0, 0);
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
-                    if (Application.Current.MainPage.Height < 800)
-                    {
-                        ScrollViewContainer.Margin = new Thickness(10, -180, 10, 0);
-                        // BackStackLayout.Margin = new Thickness(5, 15, 0, 0);
-                    }
-                    else
-                    {
-                        ScrollViewContainer.Margin = new Thickness(10, -185, 10, 0);
-                        // BackStackLayout.Margin = new Thickness(5, 35, 0, 0);
-                    }
-
-                    break;
-                case Device.Android:
-                    double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
-                    // if (Math.Abs(or - 0.5) < 0.02)
-                    // {
-                    //     ScrollViewContainer.Margin = new Thickness(10, -135, 10, 0);
-                    //     // BackStackLayout.Margin = new Thickness(5, 25, 0, 0);
-                    // }
-                    break;
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();                    
+                    Pancake.Padding = new Thickness(0,statusBarHeight,0,0);
+                    //BackgroundColor = Color.White;                    
+                    break;                
                 default:
                     break;
             }
@@ -67,6 +49,21 @@ namespace xamarinJKH.Main
                 await Navigation.PushAsync(new TechSendPage());
             };
             LabelTech.GestureRecognizers.Add(techSend);
+            
+            var call = new TapGestureRecognizer();
+            call.Tapped += async (s, e) =>
+            {
+                if (Settings.Person.Phone != null)
+                {
+                    IPhoneCallTask phoneDialer;
+                    phoneDialer = CrossMessaging.Current.PhoneDialer;
+                    if (phoneDialer.CanMakePhoneCall) 
+                        phoneDialer.MakePhoneCall(Settings.Person.Phone);
+                }
+
+            
+            };
+            LabelPhone.GestureRecognizers.Add(call);
             SetText();
             SetColor();
             StartNews();
@@ -165,7 +162,7 @@ namespace xamarinJKH.Main
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.Phone;
+            LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+","");
             // LabelTech.TextColor = Color.FromHex(Settings.MobileSettings.color);
             // IconViewTech.Foreground = Color.FromHex(Settings.MobileSettings.color);
         }
