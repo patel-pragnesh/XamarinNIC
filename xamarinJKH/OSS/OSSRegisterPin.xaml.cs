@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
@@ -41,17 +42,9 @@ namespace xamarinJKH
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    BackgroundColor = Color.White;
-                    if (Application.Current.MainPage.Height < 800)
-                    {
-                        ScrollViewContainer.Margin = new Thickness(10, -180, 10, 0);
-                    }
-                    else
-                    {
-                        ScrollViewContainer.Margin = new Thickness(10, -185, 10, 0);
-                    }
-                    break;
-                case Device.Android:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    //BackgroundColor = Color.White;
                     break;
                 default:
                     break;

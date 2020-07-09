@@ -38,6 +38,17 @@ namespace xamarinJKH.Counters
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             _countersPage = countersPage;
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    break;
+                default:
+                    break;
+            }
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:

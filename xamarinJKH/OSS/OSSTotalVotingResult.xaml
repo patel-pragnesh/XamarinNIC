@@ -18,11 +18,12 @@
                        Aspect="AspectFill"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout>
-                    <yummy:PancakeView
+                    <yummy:PancakeView                        
                         Padding="0"
                         CornerRadius="0,0,25,25"
                         BackgroundColor="#131313"
                         HorizontalOptions="Fill"
+                        MinimumHeightRequest="102"
                         VerticalOptions="Start"
                         x:Name="Pancake"
                         IsClippedToBounds="True">
@@ -98,7 +99,7 @@
                         <Image Source="ic_arrow_back"
                                HeightRequest="15"
                                HorizontalOptions="Center" />
-                        <Label
+                        <Label x:Name="titleLabel"
                             Text="Результаты общего голосования в м.кв."
                             FontSize="18"
                             TextColor="White"

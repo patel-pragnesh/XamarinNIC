@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Apps;
 using xamarinJKH.AppsConst;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
@@ -31,6 +32,15 @@ namespace xamarinJKH.Monitor
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    break;
+                default:
+                    break;
+            }
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:

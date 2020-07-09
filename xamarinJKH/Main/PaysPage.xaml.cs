@@ -10,6 +10,7 @@ using AiForms.Dialogs.Abstractions;
 using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Pays;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
@@ -64,6 +65,17 @@ namespace xamarinJKH.Main
             InitializeComponent();
             Settings.mainPage = this;
             NavigationPage.SetHasNavigationBar(this, false);
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    break;
+                default:
+                    break;
+            }
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:

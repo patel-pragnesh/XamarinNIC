@@ -6,11 +6,9 @@
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="#F3F3F3"
-             x:Class="xamarinJKH.Main.EventsPage">
+             x:Class="xamarinJKH.Main.EventsPage">    
     <ContentPage.Content>
         <StackLayout>
-           
-
             <Grid>
                 <Image x:Name="ImageFon"
                        Margin="0,20,0,0"
@@ -18,7 +16,7 @@
                        VerticalOptions="Start"
                        Aspect="AspectFill"
                        HorizontalOptions="FillAndExpand" />
-                <StackLayout>
+                <StackLayout>                    
                     <pancakeView:PancakeView
                         Padding="0"
                         CornerRadius="0,0,25,25"
@@ -27,6 +25,9 @@
                         VerticalOptions="Start"
                         x:Name="Pancake"
                         IsClippedToBounds="True">
+                        <!--<pancakeView:PancakeView.Padding>
+                            <OnPlatform x:TypeArguments="Thickness" iOS="0, 40, 0, 0" ></OnPlatform>
+                        </pancakeView:PancakeView.Padding>-->
                         <Grid IsClippedToBounds="True">
                             <StackLayout Orientation="Horizontal"
                                          VerticalOptions="Fill"

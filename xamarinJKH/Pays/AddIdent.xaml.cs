@@ -44,15 +44,14 @@ namespace xamarinJKH.Pays
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     BackgroundColor = Color.White;
-                    // ImageFon.Margin = new Thickness(0, 0, 0, 0);
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
-                case Device.Android:
                 default:
                     break;
             }
+
             _paysPage = paysPage;
             SetText();
             var backClick = new TapGestureRecognizer();

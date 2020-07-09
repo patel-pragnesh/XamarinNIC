@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
@@ -31,20 +32,13 @@ namespace xamarinJKH.Questions
             _pollInfo = pollInfo;
             _isComplite = isComplite;
             InitializeComponent();
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     BackgroundColor = Color.White;
-                    // ImageTop.Margin = new Thickness(0, 0, 0, 0);
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
-                    break;
-                case Device.Android:
-                    double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
-                    // if (Math.Abs(or - 0.5) < 0.02)
-                    // {
-                    //     LabelPrev.FontSize = LabelFinish.FontSize = LabelNext.FontSize = 13;
-                    // }
                     break;
                 default:
                     break;

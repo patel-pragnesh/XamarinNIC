@@ -23,6 +23,7 @@
                         CornerRadius="0,0,25,25"
                         BackgroundColor="#131313"
                         HorizontalOptions="Fill"
+                        MinimumHeightRequest="102"
                         VerticalOptions="Start"
                         x:Name="Pancake"
                         IsClippedToBounds="True">

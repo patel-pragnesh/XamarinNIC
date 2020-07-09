@@ -33,30 +33,10 @@ namespace xamarinJKH.Main
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    BackgroundColor = Color.White;
-                    // ImageFon.Margin = new Thickness(0, 0, 0, 0);
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
-                    if (Application.Current.MainPage.Height < 800)
-                    {
-                        ScrollViewContainer.Margin = new Thickness(10, -180, 10, 0);
-                        // BackStackLayout.Margin = new Thickness(5, 15, 0, 0);
-                    }
-                    else
-                    {
-                        ScrollViewContainer.Margin = new Thickness(10, -185, 10, 0);
-                        // BackStackLayout.Margin = new Thickness(5, 35, 0, 0);
-                    }
-
-                    break;
-                case Device.Android:
-                    double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
-                    // if (Math.Abs(or - 0.5) < 0.02)
-                    // {
-                    //     ScrollViewContainer.Margin = new Thickness(10, -135, 10, 0);
-                    //     // BackStackLayout.Margin = new Thickness(5, 25, 0, 0);
-                    // }
-                    break;
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();                    
+                    Pancake.Padding = new Thickness(0,statusBarHeight,0,0);
+                    //BackgroundColor = Color.White;                    
+                    break;                
                 default:
                     break;
             }

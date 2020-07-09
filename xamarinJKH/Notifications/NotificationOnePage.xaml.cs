@@ -8,6 +8,7 @@ using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Additional;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Questions;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
@@ -29,18 +30,18 @@ namespace xamarinJKH.Notifications
             
             _announcementInfo = announcementInfo;
             InitializeComponent();
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     BackgroundColor = Color.White;
-                    // ImageTop.Margin = new Thickness(0, 0, 0, 0);
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
-                case Device.Android:
                 default:
                     break;
             }
+
             NavigationPage.SetHasNavigationBar(this, false);
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };

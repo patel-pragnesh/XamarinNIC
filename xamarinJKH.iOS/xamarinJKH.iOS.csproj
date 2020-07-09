@@ -88,6 +88,7 @@
     <Compile Include="CustomRenderers\TapHighlightRemoveAdditionalCellRenderer.cs" />
     <Compile Include="CustomRenderers\TapHighlightRemoveNotificationCellRenderer.cs" />
     <Compile Include="CustomRenderers\RadioButtonEffect.cs" />
+    <Compile Include="DependencyImplementation\StatusBar.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -389,7 +390,9 @@
     <BundleResource Include="Resources\ic_counter.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_background_OSS.png" />
+    <BundleResource Include="Resources\ic_background_OSS.png">
+      <SubType>Designer</SubType>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_OssCircleStatus.png" />
@@ -423,9 +426,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_share.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_background_OSSPool.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_ossEnd.png" />

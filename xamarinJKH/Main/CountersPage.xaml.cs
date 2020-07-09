@@ -8,6 +8,7 @@ using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Counters;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Main;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
@@ -82,31 +83,9 @@ namespace xamarinJKH.Main
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    BackgroundColor = Color.White;
-                    // ImageFon.Margin = new Thickness(0, 0, 0, 0);
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
-                    // if (Application.Current.MainPage.Height < 800)
-                    // {
-                    //     RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -170);
-                    //     BackStackLayout.Margin = new Thickness(5, 15, 0, 0);
-                    // }
-                    // else
-                    // {
-                    //     RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -180);
-                    //     BackStackLayout.Margin = new Thickness(5, 35, 0, 0);
-                    // }
-                    break;
-                case Device.Android:
-                    // RelativeLayoutTop.Margin = new Thickness(0,0,0,-170);
-                    // BackStackLayout.Margin = new Thickness(5,25,0,0);
-                    // double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
-                    // if (Math.Abs(or - 0.5) < 0.02)
-                    // {
-                    //     RelativeLayoutTop.Margin = new Thickness(0, 0, 0, -125);
-                    //     BackStackLayout.Margin = new Thickness(5, 25, 0, 0);
-                    // }
-
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    BackgroundColor = Color.White;                    
                     break;
                 default:
                     break;

@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.CustomRenderers;
 using xamarinJKH.DialogViews;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Monitor;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
@@ -45,6 +46,17 @@ namespace xamarinJKH.MainConst
             StarSize = 33;
             IconViewNotComplite = new Thickness(0, 5, 0, 0);
             IconViewPrMargin = new Thickness(0, 5, 0, 0);
+            
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    break;
+                default:
+                    break;
+            }
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:

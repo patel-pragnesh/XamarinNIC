@@ -54,6 +54,16 @@ namespace xamarinJKH.Main
             var saveClick = new TapGestureRecognizer();
             saveClick.Tapped += async (s, e) => { ButtonClick(FrameBtnLogin, null); };
             FrameBtnLogin.GestureRecognizers.Add(saveClick);
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    break;
+                default:
+                    break;
+            }
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
