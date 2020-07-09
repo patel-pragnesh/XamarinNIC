@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.Utils;
 
 namespace xamarinJKH.Main
 {
@@ -19,7 +20,15 @@ namespace xamarinJKH.Main
             NavigationPage.SetHasNavigationBar(this, false);
             SelectedTabColor = Color.FromHex(Utils.Settings.MobileSettings.color);
             UnselectedTabColor = Color.Gray;
-           
+            CheckAccounts();
+        }
+
+        public async void CheckAccounts()
+        {
+            if (Settings.Person.Accounts.Count == 0)
+            {
+                await AiForms.Dialogs.Dialog.Instance.ShowAsync<xamarinJKH.DialogViews.AddAccountDialogView>();
+            }
         }
     }
 }

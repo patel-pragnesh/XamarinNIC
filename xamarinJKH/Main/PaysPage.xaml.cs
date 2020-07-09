@@ -102,7 +102,7 @@ namespace xamarinJKH.Main
             getInfo();
             additionalList.BackgroundColor = Color.Transparent;
             var goAddIdent = new TapGestureRecognizer();
-            goAddIdent.Tapped += async (s, e) => { await Navigation.PushAsync(new AddIdent(this)); };
+            goAddIdent.Tapped += async (s, e) => { await Dialog.Instance.ShowAsync(new xamarinJKH.DialogViews.AddAccountDialogView()); };
             FrameAddIdent.GestureRecognizers.Add(goAddIdent);
             var openSaldos = new TapGestureRecognizer();
             openSaldos.Tapped += async (s, e) => { await Navigation.PushAsync(new SaldosPage(_accountingInfo)); };
