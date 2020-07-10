@@ -1,7 +1,7 @@
 ﻿using System;
 using Android;
 using Android.App;
-using Android.Content;
+using Context = Android.Content.Context;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.Views;
@@ -14,6 +14,8 @@ using Plugin.Media;
 using Xamarin.Forms;
 using xamarinJKH.Android;
 using xamarinJKH.Utils;
+
+using Firebase.Iid;
 
 
 namespace xamarinJKH.Droid
@@ -42,6 +44,7 @@ namespace xamarinJKH.Droid
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera);
             ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadExternalStorage);
+            CreateNotificationChannel();
             LoadApplication(new App());
             // FirebasePushNotificationManager.ProcessIntent(this,Intent);
             Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
@@ -52,7 +55,46 @@ namespace xamarinJKH.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        
+
+        void CreateNotificationChannel()
+        {
+            if (Build.VERSION.SdkInt < BuildVersionCodes.O)
+            {
+                // Notification channels are new in API 26 (and not a part of the
+                // support library). There is no need to create a notification
+                // channel on older versions of Android.
+                return;
+            }
+
+            var channel = new NotificationChannel("work_flow",
+                                                  "Work Flow",
+                                                  NotificationImportance.Default)
+            {
+
+                Description = "Firebase Cloud Messages appear in this channel"
+            };
+
+
+            var notificationManager = (NotificationManager)GetSystemService(Context.NotificationService);
+            notificationManager.CreateNotificationChannel(channel);
+        }
+
+        [Service]
+        [IntentFilter(new[] { "com.google.firebase.INSTANCE_ID_EVENT" })]
+        public class MyFirebaseIIDService : FirebaseInstanceIdService
+        {
+            const string TAG = "MyFirebaseIIDService";
+            public override void OnTokenRefresh()
+            {
+                var refreshedToken = FirebaseInstanceId.Instance.Token;
+                SendRegistrationToServer(refreshedToken);
+            }
+            void SendRegistrationToServer(string token)
+            {
+                // Add custom implementation, as needed.
+            }
+        }
+
         // protected override void OnNewIntent(Intent intent)
         // {
         //     base.OnNewIntent(intent);
