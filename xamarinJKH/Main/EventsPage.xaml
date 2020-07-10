@@ -112,6 +112,7 @@
                             VerticalOptions="FillAndExpand">
 
                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameNotification"
+                                                           IsVisible="{Binding ShowAnnouncements}"
                                                            CornerRadius="30"
                                                            HorizontalOptions="FillAndExpand"
                                                            VerticalOptions="Start"
@@ -146,6 +147,7 @@
                                 </StackLayout>
                             </customRenderers:MaterialFrame>
                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameNews"
+                                                           IsVisible="{Binding ShowNews}"
                                                            CornerRadius="30"
                                                            HorizontalOptions="FillAndExpand"
                                                            VerticalOptions="Start"
@@ -180,6 +182,7 @@
                                 </StackLayout>
                             </customRenderers:MaterialFrame>
                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameQuestions"
+                                                           IsVisible="{Binding ShowPolls}"
                                                            CornerRadius="30"
                                                            Margin="10, 0, 10, 10"
                                                            HorizontalOptions="FillAndExpand"
@@ -215,6 +218,7 @@
                                 </StackLayout>
                             </customRenderers:MaterialFrame>
                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOffers"
+                                                           IsVisible="{Binding ShowAdditionalServices}"
                                                            CornerRadius="30"
                                                            Margin="10, 0, 10, 10"
                                                            HorizontalOptions="FillAndExpand"

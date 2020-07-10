@@ -26,9 +26,11 @@ namespace xamarinJKH.Main
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EventsPage : ContentPage
     {
+        EventsPageViewModel viewModel { get; set; }
         public EventsPage()
         {
             InitializeComponent();
+            BindingContext = viewModel = new EventsPageViewModel();
             NavigationPage.SetHasNavigationBar(this, false);
             switch (Device.RuntimePlatform)
             {
@@ -75,13 +77,14 @@ namespace xamarinJKH.Main
             CrossFirebaseCrashlytics.Current.SetUserIdentifier(Settings.Person.Login);
             CrossFirebaseCrashlytics.Current.SetUserName(Settings.Person.FIO);
             CrossFirebaseCrashlytics.Current.SetUserEmail(Settings.Person.Email);
+            MessagingCenter.Subscribe<Object>(this, "UpdateEvents", (sender) => viewModel.LoadData.Execute(null));
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            new Task(SyncSetup).Start(); // This could be an await'd task if need be
+            //new Task(SyncSetup).Start(); // This could be an await'd task if need be
         }
 
         async void SyncSetup()
@@ -111,7 +114,7 @@ namespace xamarinJKH.Main
             }
             else
             {
-                // funk();
+                //funk();
             }
         }
 
@@ -189,6 +192,65 @@ namespace xamarinJKH.Main
 
 
             // LabelTech.TextColor = hexColor;
+        }
+    }
+
+    public class EventsPageViewModel : xamarinJKH.ViewModels.BaseViewModel
+    {
+        bool _showNews;
+        public bool ShowNews
+        {
+            get => _showNews;
+            set
+            {
+                _showNews = value;
+                OnPropertyChanged("ShowNews");
+            }
+        }
+
+        bool _showPolls;
+        public bool ShowPolls
+        {
+            get => _showPolls;
+            set
+            {
+                _showPolls = value;
+                OnPropertyChanged("ShowPolls");
+            }
+        }
+        bool _showAnnouncements;
+        public bool ShowAnnouncements
+        {
+            get => _showAnnouncements;
+            set
+            {
+                _showAnnouncements = value;
+                OnPropertyChanged("ShowAnnouncements");
+            }
+        }
+        bool _showAddService;
+        public bool ShowAdditionalServices
+        {
+            get => _showAddService;
+            set
+            {
+                _showAddService = value;
+                OnPropertyChanged("ShowAdditionalServices");
+            }
+        }
+        public Command LoadData { get; set; }
+        public EventsPageViewModel()
+        {
+            LoadData = new Command(async () =>
+            {
+                var server = new RestClientMP();
+                var data = Settings.EventBlockData;
+                data = await server.GetEventBlockData();
+                ShowNews = data.News.Count == 0;
+                ShowPolls = data.Polls.Count == 0;
+                ShowAdditionalServices = data.AdditionalServices.Count == 0;
+                ShowAnnouncements = data.Announcements.Count == 0;
+            });
         }
     }
 }
