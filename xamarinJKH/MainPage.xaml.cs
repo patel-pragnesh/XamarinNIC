@@ -37,12 +37,13 @@ namespace xamarinJKH
         public MainPage()
         {
             InitializeComponent();
-            
+            getSettings();
+           
             NavigationPage.SetHasNavigationBar(this, false);
             Device.BeginInvokeOnMainThread(() =>
             {
-                getSettings();
-                CheckForUpdate();
+               ;
+
             });
             var startRegForm = new TapGestureRecognizer();
             startRegForm.Tapped += async (s, e) => { await Navigation.PushModalAsync(new RegistrForm(this)); };
@@ -140,9 +141,10 @@ namespace xamarinJKH
         private async void getSettings()
         {
             
-            Settings.MobileSettings = await server.MobileAppSettings("3.02", "0");
+            Settings.MobileSettings = await server.MobileAppSettings("4.02", "0");
             if (Settings.MobileSettings.Error == null)
             {
+                CheckForUpdate();
                 // if (RestClientMP.SERVER_ADDR.Contains("dgservicnew"))
                 // {
                 //     Settings.MobileSettings.main_name = "ООО \"ДОМЖИЛСЕРВИС\"";

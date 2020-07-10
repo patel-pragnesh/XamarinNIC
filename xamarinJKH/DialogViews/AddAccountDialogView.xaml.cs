@@ -24,10 +24,10 @@ namespace xamarinJKH.DialogViews
         public AddAccountDialogView()
         {
             InitializeComponent();
-            BindingContext = new AddAccountDialogViewModel();
+            BindingContext = new AddAccountDialogViewModel(this);
         }
 
-        void CloseDialog()
+        public void CloseDialog()
         {
             DialogNotifier.Cancel();
         }
@@ -39,7 +39,13 @@ namespace xamarinJKH.DialogViews
     }
 
     public class AddAccountDialogViewModel : xamarinJKH.ViewModels.BaseViewModel
-    { 
+    {
+        private AddAccountDialogView accountDialogView;
+        public AddAccountDialogViewModel(AddAccountDialogView accountDialogView)
+        {
+            this.accountDialogView = accountDialogView;
+        }
+
         public Color ButtonColor
         {
             get => Color.FromHex(xamarinJKH.Utils.Settings.MobileSettings.color);
@@ -138,7 +144,7 @@ namespace xamarinJKH.DialogViews
                     Button = true;
                     Progress = false;
 
-                    await Navigation.PopAsync();
+                    accountDialogView.CloseDialog();
                     //_paysPage.RefreshPaysData();
                 }
                 else

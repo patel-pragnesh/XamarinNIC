@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -8,10 +9,10 @@
              xmlns:local="clr-namespace:xamarinJKH"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             BackgroundColor="#F3F3F3"   
+             BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.OSSRegisterPin">
     <ContentPage.Content>
-        <StackLayout>           
+        <StackLayout>
             <Grid>
                 <Image x:Name="ImageFon"
                        Margin="0,20,0,0"
@@ -113,11 +114,11 @@
                                 Margin="10, 0, 10, 10">
                         <StackLayout
                             VerticalOptions="FillAndExpand">
-                            <customRenderers:MaterialFrame Elevation="20"  CornerRadius="50"
-                                                       Margin="15, 15, 15, 15"
-                                                       BackgroundColor="White"
-                                                       Padding="10"
-                                               HorizontalOptions="FillAndExpand">
+                            <customRenderers:MaterialFrame Elevation="20" CornerRadius="50"
+                                                           Margin="15, 15, 15, 15"
+                                                           BackgroundColor="White"
+                                                           Padding="10"
+                                                           HorizontalOptions="FillAndExpand">
                                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="10">
                                     <StackLayout Margin="-15, 20, 0, 0" Orientation="Horizontal">
                                         <local:IconView x:Name="IconViewCode"
@@ -130,10 +131,17 @@
                                                TextColor="#A2A2A2"
                                                BackgroundColor="Transparent"
                                                HorizontalOptions="FillAndExpand"
-                                   Keyboard="Numeric"
-                                   Placeholder="Проверочный код" PlaceholderColor="#A2A2A2"/>
+                                               Keyboard="Numeric"
+                                               Placeholder="Проверочный код" PlaceholderColor="#A2A2A2" />
                                     </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                            x:Name="LabelseparatorPass4"
+                                            HeightRequest="2"                                            
+                                            BackgroundColor="Red"
+                                            HorizontalOptions="FillAndExpand" />
 
+                                    </StackLayout>
                                     <StackLayout Margin="0, 20, 0, 0" Orientation="Horizontal">
                                         <local:IconView x:Name="IconViewPass0"
                                                         Source="ic_password_login"
@@ -144,10 +152,10 @@
                                                IsPassword="True"
                                                TextColor="#A2A2A2"
                                                BackgroundColor="Transparent"
-                                               HorizontalOptions="FillAndExpand" 
-                                    Keyboard="Numeric"
-                                   Placeholder="Задайте пин-код"  PlaceholderColor="#A2A2A2"
-                                   Margin="19,0,0,0"/>
+                                               HorizontalOptions="FillAndExpand"
+                                               Keyboard="Numeric"
+                                               Placeholder="Задайте пин-код" PlaceholderColor="#A2A2A2"
+                                               Margin="19,0,0,0" />
                                         <local:IconView x:Name="ImageClosePass0"
                                                         Source="ic_close_password"
                                                         HeightRequest="15"
@@ -158,7 +166,7 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Label
                                             x:Name="LabelseparatorPass0"
-                                            HeightRequest="2"                                            
+                                            HeightRequest="2"
                                             BackgroundColor="Red"
                                             HorizontalOptions="FillAndExpand" />
 
@@ -174,9 +182,9 @@
                                                TextColor="#A2A2A2"
                                                BackgroundColor="Transparent"
                                                HorizontalOptions="FillAndExpand"
-                                    Keyboard="Numeric"
-                                   Placeholder="Подтвердите пин-код" PlaceholderColor="#A2A2A2"
-                                   Margin="19,0,0,0"/>
+                                               Keyboard="Numeric"
+                                               Placeholder="Подтвердите пин-код" PlaceholderColor="#A2A2A2"
+                                               Margin="19,0,0,0" />
                                         <local:IconView x:Name="ImageClosePass"
                                                         Source="ic_close_password"
                                                         HeightRequest="15"
@@ -187,37 +195,37 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Label
                                             x:Name="LabelseparatorPass"
-                                            HeightRequest="2"                                            
+                                            HeightRequest="2"
                                             BackgroundColor="Red"
                                             HorizontalOptions="FillAndExpand" />
                                     </StackLayout>
                                     <ActivityIndicator x:Name="progress"
-                                                   IsRunning="true"
-                                                   IsVisible="False"
-                                                   Color="Red" />
+                                                       IsRunning="true"
+                                                       IsVisible="False"
+                                                       Color="Red" />
                                     <Frame CornerRadius="15"
-                                       BackgroundColor="Red"
-                                       Margin="0, 10, 0, 0"
-                                       x:Name="FrameBtnLogin"
-                                       Padding="12">
+                                           BackgroundColor="Red"
+                                           Margin="0, 10, 0, 0"
+                                           x:Name="FrameBtnLogin"
+                                           Padding="12">
                                         <StackLayout
-                                        Orientation="Horizontal"
-                                        Spacing="0"
-                                        HorizontalOptions="Center">
+                                            Orientation="Horizontal"
+                                            Spacing="0"
+                                            HorizontalOptions="Center">
                                             <Label
-                                            Text="Подтвердить "
-                                            FontSize="15"
-                                            TextColor="White"
-                                            FontAttributes="Bold"
-                                            VerticalOptions="Center"
-                                            HorizontalOptions="Center" />
+                                                Text="Подтвердить "
+                                                FontSize="15"
+                                                TextColor="White"
+                                                FontAttributes="Bold"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Center" />
                                             <local:IconView Source="ic_arrow_forward"
-                                                        HeightRequest="12"
-                                                        WidthRequest="12"
-                                                        Margin="0,0,0,-3"
-                                                        Foreground="White"
-                                                        VerticalOptions="Center"
-                                                        HorizontalOptions="Center" />
+                                                            HeightRequest="12"
+                                                            WidthRequest="12"
+                                                            Margin="0,0,0,-3"
+                                                            Foreground="White"
+                                                            VerticalOptions="Center"
+                                                            HorizontalOptions="Center" />
                                         </StackLayout>
                                     </Frame>
 

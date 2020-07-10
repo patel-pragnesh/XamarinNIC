@@ -37,7 +37,8 @@ namespace xamarinJKH.DialogViews
             string name = Xamarin.Essentials.AppInfo.Name.ToLower().Trim().Replace(" ","-");
             if (Device.RuntimePlatform == "Android")
             {
-                uri = $"market://details?{app_name}";
+                // uri = $"market://details?{app_name}";
+                uri = $"https://play.google.com/store/apps/details?id={app_name}";
             }
 
             if (Device.RuntimePlatform == "iOS")

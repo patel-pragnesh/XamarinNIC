@@ -70,6 +70,7 @@ namespace xamarinJKH
             FrameBtnLogin.BackgroundColor = hex;
             LabelseparatorPass0.BackgroundColor = hex;
             LabelseparatorPass.BackgroundColor = hex;
+            LabelseparatorPass4.BackgroundColor = hex;
             
             progress.Color = hex;
 
