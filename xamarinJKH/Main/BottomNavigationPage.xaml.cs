@@ -30,5 +30,13 @@ namespace xamarinJKH.Main
                 await AiForms.Dialogs.Dialog.Instance.ShowAsync<xamarinJKH.DialogViews.AddAccountDialogView>();
             }
         }
+
+        protected override void OnCurrentPageChanged()
+        {
+            base.OnCurrentPageChanged();
+            var i = Children.IndexOf(CurrentPage);
+            if (i == 0)
+                MessagingCenter.Send<Object>(this, "UpdateEvents");
+        }
     }
 }
