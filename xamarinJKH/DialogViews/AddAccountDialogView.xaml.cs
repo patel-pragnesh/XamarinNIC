@@ -145,6 +145,8 @@ namespace xamarinJKH.DialogViews
                     Progress = false;
 
                     accountDialogView.CloseDialog();
+                    MessagingCenter.Send<AddAccountDialogViewModel>(this, "UpdateIdent");
+                    MessagingCenter.Send<AddAccountDialogViewModel>(this, "UpdateEvents");
                     //_paysPage.RefreshPaysData();
                 }
                 else
