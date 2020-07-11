@@ -32,7 +32,7 @@ namespace xamarinJKH
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
                     if (phoneDialer.CanMakePhoneCall) 
-                        phoneDialer.MakePhoneCall(Settings.Person.Phone);
+                        phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
                 }
 
             
@@ -121,8 +121,8 @@ namespace xamarinJKH
         {
             //получаем данные от сервера по ОСС
             var result = await rc.GetOss(0);
-
-            var haveP =result.Data.Where(_ => _.HasProtocolFile).ToList();
+            //var result1 = await rc.GetOss(1);
+            //var haveP =result.Data.Where(_ => _.HasProtocolFile).ToList();
 
 
             if(result.Error==null)

@@ -14,12 +14,12 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-          // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
+           public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
         //public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
         // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
-        public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
         // public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_yegkh"; //Легкая жизнъ
         
         public const string SEND_TEACH_MAIL = "Public/TechSupportAppeal"; // Создание обращения в тех поддержк
@@ -32,7 +32,7 @@ namespace xamarinJKH.Server
         public const string SEND_CHECK_CODE = "auth/SendCheckCode"; // Запрос проверочного кода
         public const string VALIDATE_CHECK_CODE = "auth/ValidateCheckCode "; // Проверка кода из смс
 
-        public const string GET_MOBILE_SETTINGS = "Config/MobileAppSettings "; // Регистрация по телефону
+        public const string GET_MOBILE_SETTINGS = "Config/MobileAppSettings "; // Получение настроек приложения
         public const string GET_EVENT_BLOCK_DATA = "Common/EventBlockData"; // Блок события
         
         public const string GET_PHOTO_ADDITIONAL = "AdditionalServices/logo"; // Картинка доп услуги

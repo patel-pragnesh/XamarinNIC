@@ -41,6 +41,9 @@ namespace xamarinJKH.Questions
             {
                 return new Command(async () =>
                 {
+                    if (IsRefreshing)
+                        return;
+
                     IsRefreshing = true;
 
                     await RefreshData();
@@ -88,7 +91,7 @@ namespace xamarinJKH.Questions
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
                     if (phoneDialer.CanMakePhoneCall) 
-                        phoneDialer.MakePhoneCall(Settings.Person.Phone);
+                        phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
                 }
 
             
@@ -99,7 +102,7 @@ namespace xamarinJKH.Questions
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
-                    BackgroundColor = Color.White;
+                   //BackgroundColor = Color.White;
                     break;
                 default:
                     break;
@@ -126,10 +129,15 @@ namespace xamarinJKH.Questions
 
         async void SyncSetup()
         {
-            Device.BeginInvokeOnMainThread(() =>
+            Device.BeginInvokeOnMainThread(async () =>
             {
+                if (IsRefreshing)
+                    return;
+
+                IsRefreshing = true;
                 // Assuming this function needs to use Main/UI thread to move to your "Main Menu" Page
-                RefreshData();
+                await RefreshData();
+                IsRefreshing = false;
             });
         }
 

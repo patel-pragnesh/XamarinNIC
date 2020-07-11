@@ -38,7 +38,7 @@ namespace xamarinJKH.Questions
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
-                    BackgroundColor = Color.White;
+                    //BackgroundColor = Color.White;
                     break;
                 default:
                     break;
@@ -68,7 +68,7 @@ namespace xamarinJKH.Questions
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
                     if (phoneDialer.CanMakePhoneCall) 
-                        phoneDialer.MakePhoneCall(Settings.Person.Phone);
+                        phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
                 }
 
             
