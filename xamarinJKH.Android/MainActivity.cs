@@ -20,7 +20,7 @@ using Firebase.Iid;
 
 namespace xamarinJKH.Droid
 {
-    [Activity(Label = "УК Сибирский Альянс", Icon = "@drawable/icon_login", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "УК Сибирский Альянс" /*"УК Сибирский Альянс"*/, Icon = "@drawable/icon_login", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity 
     {
         protected override async void OnCreate(Bundle savedInstanceState)
@@ -47,7 +47,7 @@ namespace xamarinJKH.Droid
             CreateNotificationChannel();
             LoadApplication(new App());
             // FirebasePushNotificationManager.ProcessIntent(this,Intent);
-            Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
+             Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
 
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
@@ -66,8 +66,8 @@ namespace xamarinJKH.Droid
                 return;
             }
 
-            var channel = new NotificationChannel("work_flow",
-                                                  "Work Flow",
+            var channel = new NotificationChannel("occ_test_notification_channel",
+                                                  "OCC",
                                                   NotificationImportance.Default)
             {
 
@@ -91,7 +91,7 @@ namespace xamarinJKH.Droid
             }
             void SendRegistrationToServer(string token)
             {
-                // Add custom implementation, as needed.
+                App.token = token;
             }
         }
 
