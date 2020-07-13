@@ -280,6 +280,7 @@ namespace xamarinJKH.Main
     {
         public ObservableCollection<AccountAccountingInfo> Accounts { get; set; }
         public Command LoadAccounts { get; set; }
+        public Color hex { get; set; }
         public Command RemoveAccount 
         {
             get => new Command<string>(ident =>
@@ -295,6 +296,7 @@ namespace xamarinJKH.Main
 
         public PaysPageViewModel()
         {
+            hex = Color.FromHex(Settings.MobileSettings.color);
             Accounts = new ObservableCollection<AccountAccountingInfo>();
             LoadAccounts = new Command<List<AccountAccountingInfo>>((accounts) =>
             {

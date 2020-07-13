@@ -6,7 +6,7 @@ namespace xamarinJKH.Server.RequestModel
     {
         public string Login { get; set; } = "";
         public bool IsDispatcher { get; set; }
-        public bool AccessOSS { get; set; }
+        public bool accessOSS { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; } = "";
         public string companyPhone { get; set; } = "";
