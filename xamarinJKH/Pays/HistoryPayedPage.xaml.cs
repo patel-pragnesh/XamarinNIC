@@ -13,6 +13,7 @@ using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
+using xamarinJKH.Utils.Compatator;
 
 namespace xamarinJKH.Pays
 {
@@ -93,31 +94,60 @@ namespace xamarinJKH.Pays
                 {
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
-                    if (phoneDialer.CanMakePhoneCall) 
+                    if (phoneDialer.CanMakePhoneCall)
                         phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
                 }
-
-            
             };
             LabelPhone.GestureRecognizers.Add(call);
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) =>
-            {
-                await Navigation.PushAsync(new TechSendPage());
-            };
+            techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
 
             SetText();
-            Payments = Accounts[0].Payments;
+            Payments = setPays(Accounts[0]);
             SelectedAcc = Accounts[0];
             BindingContext = this;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
+
+        List<PaymentInfo> setPays(AccountAccountingInfo accountingInfo)
+        {
+            List<PaymentInfo> paymentInfo = new List<PaymentInfo>(accountingInfo.Payments);
+            List<MobilePayment> mobile = new List<MobilePayment>(accountingInfo.MobilePayments);
+
+            foreach (var each in mobile)
+            {
+                paymentInfo.Add(new PaymentInfo()
+                {
+                    Date = each.Date.Split(' ')[0],
+                    Ident = each.Ident,
+                    Period = "Мобильный",
+                    Sum = each.Sum
+                });
+            }
+            
+            HistoryPayComparable comparable = new HistoryPayComparable();
+            
+            paymentInfo.Sort(comparable);
+
+            return paymentInfo;
+        }
+
+
+        string period(string date)
+        {
+            string[] split = date.Split(' ')[0].Split('.');
+            int month = Int32.Parse(split[0]);
+            if (month > 0)
+                return Settings.months[month - 1] + " " + split[2];
+            return "";
+        }
+
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
+            LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
         }
 
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
@@ -128,7 +158,7 @@ namespace xamarinJKH.Pays
             //     Picker.WidthRequest = identLength * 9;
             // }
             additionalList.ItemsSource = null;
-            additionalList.ItemsSource = Accounts[Picker.SelectedIndex].Payments;
+            additionalList.ItemsSource = setPays(Accounts[Picker.SelectedIndex]);
         }
 
         private void OnItemTapped(object sender, ItemTappedEventArgs e)

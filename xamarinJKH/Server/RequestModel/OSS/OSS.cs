@@ -7,6 +7,7 @@ namespace xamarinJKH.Server.RequestModel
     {
         public int ID { get; set; }
         public string MeetingTitle { get; set; } // Заголовок собрания
+        public string Status  { get; set; } // Заголовок собрания
         public string DateStart { get; set; } // дата начала собрания
         public string DateEnd { get; set; } // дата окончания собрания
         public string DateRealPart { get; set; } // дата начала очного собрания

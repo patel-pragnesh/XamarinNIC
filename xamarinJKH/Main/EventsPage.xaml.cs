@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -149,10 +149,10 @@ namespace xamarinJKH.Main
         private void StartOSS()
         {
             var startOSSTGR = new TapGestureRecognizer();
-            //startOSSTGR.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSMain()); };
-            startOSSTGR.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSAuth()); };
+            startOSSTGR.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSMain()); };
+            // startOSSTGR.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSAuth()); };
             FrameOSS.GestureRecognizers.Add(startOSSTGR);
-            if (!Settings.MobileSettings.enableOSS)
+            if (!Settings.MobileSettings.enableOSS || !Settings.Person.accessOSS)
             {
                 FrameOSS.IsVisible = false;
             }
@@ -246,10 +246,10 @@ namespace xamarinJKH.Main
                 var server = new RestClientMP();
                 var data = Settings.EventBlockData;
                 data = await server.GetEventBlockData();
-                ShowNews = data.News.Count == 0;
-                ShowPolls = data.Polls.Count == 0;
-                ShowAdditionalServices = data.AdditionalServices.Count == 0;
-                ShowAnnouncements = data.Announcements.Count == 0;
+                ShowNews = data.News.Count != 0;
+                ShowPolls = data.Polls.Count != 0;
+                ShowAdditionalServices = data.AdditionalServices.Count != 0;
+                ShowAnnouncements = data.Announcements.Count != 0;
             });
         }
     }

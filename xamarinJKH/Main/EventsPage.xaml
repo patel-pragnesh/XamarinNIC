@@ -107,7 +107,7 @@
                     <ScrollView x:Name="ScrollViewContainer"
                                 Orientation="Vertical"
                                 VerticalOptions="FillAndExpand"
-                                Margin="10, 0, 10, 10">
+                                Margin="10, 10, 10, 10">
                         <StackLayout
                             VerticalOptions="FillAndExpand">
 
@@ -118,7 +118,7 @@
                                                            VerticalOptions="Start"
                                                            BackgroundColor="White"
                                                            Padding="0, 25, 0, 25"
-                                                           Margin="10,10,10,10">
+                                                           Margin="10,0,10,10">
                                 <StackLayout
                                     Orientation="Horizontal">
                                     <xamarinJkh:IconView
