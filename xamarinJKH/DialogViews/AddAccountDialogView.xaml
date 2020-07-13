@@ -5,7 +5,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:abstractions="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
-             IsCanceledOnTouchOutside="False"
              xmlns:xamarinJKH="clr-namespace:xamarinJKH"
              xmlns:local="clr-namespace:xamarinJKH"
                          HorizontalOptions="FillAndExpand"

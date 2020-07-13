@@ -53,7 +53,7 @@ namespace xamarinJKH.News
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
                     if (phoneDialer.CanMakePhoneCall) 
-                        phoneDialer.MakePhoneCall(Settings.Person.Phone);
+                        phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
                 }
 
             

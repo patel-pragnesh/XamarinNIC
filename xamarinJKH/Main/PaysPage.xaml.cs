@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +11,14 @@ using AiForms.Dialogs.Abstractions;
 using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Pays;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
+using xamarinJKH.ViewModels;
 
 namespace xamarinJKH.Main
 {
@@ -56,13 +59,16 @@ namespace xamarinJKH.Main
         public async Task RefreshPaysData()
         {
             getInfo();
-            additionalList.ItemsSource = null;
-            additionalList.ItemsSource = _accountingInfo;
+            //additionalList.ItemsSource = null;
+            //additionalList.ItemsSource = _accountingInfo;
         }
+
+        PaysPageViewModel viewModel { get; set; }
 
         public PaysPage()
         {
             InitializeComponent();
+            BindingContext = viewModel = new PaysPageViewModel();
             Settings.mainPage = this;
             NavigationPage.SetHasNavigationBar(this, false);
 
@@ -119,22 +125,23 @@ namespace xamarinJKH.Main
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
                     if (phoneDialer.CanMakePhoneCall) 
-                        phoneDialer.MakePhoneCall(Settings.Person.Phone);
+                        phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
                 }
 
             
             };
             LabelPhone.GestureRecognizers.Add(call);
             SetTextAndColor();
-            getInfo();
+            //getInfo();
             additionalList.BackgroundColor = Color.Transparent;
             var goAddIdent = new TapGestureRecognizer();
-            goAddIdent.Tapped += async (s, e) => {  await Navigation.PushAsync(new AddIdent(this)); };
+            goAddIdent.Tapped += async (s, e) => { /*await Dialog.Instance.ShowAsync<AddAccountDialogView>();*/await Navigation.PushAsync(new AddIdent(this)); };
             FrameAddIdent.GestureRecognizers.Add(goAddIdent);
             var openSaldos = new TapGestureRecognizer();
             openSaldos.Tapped += async (s, e) => { await Navigation.PushAsync(new SaldosPage(_accountingInfo)); };
             FrameBtnSaldos.GestureRecognizers.Add(openSaldos);
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+            MessagingCenter.Subscribe<xamarinJKH.DialogViews.AddAccountDialogViewModel>(this, "UpdateIdent", (sender) => SyncSetup());
         }
 
         protected override void OnAppearing()
@@ -170,7 +177,8 @@ namespace xamarinJKH.Main
             if (info.Error == null)
             {
                 _accountingInfo = info.Data;
-                this.BindingContext = this;
+                viewModel.LoadAccounts.Execute(info.Data);
+                //this.BindingContext = this;
             }
             else
             {
@@ -244,7 +252,7 @@ namespace xamarinJKH.Main
                 // Settings.EventBlockData = await server.GetEventBlockData();
                 ItemsList<NamedValue> resultN = await server.GetRequestsTypes();
                 Settings.TypeApp = resultN.Data;
-                removeLs(ident);
+                viewModel.RemoveAccount.Execute(ident);//removeLs(ident);
             }
             else
             {
@@ -265,6 +273,37 @@ namespace xamarinJKH.Main
 
             additionalList.ItemsSource = null;
             additionalList.ItemsSource = _accountingInfo;
+        }
+    }
+
+    public class PaysPageViewModel : BaseViewModel
+    {
+        public ObservableCollection<AccountAccountingInfo> Accounts { get; set; }
+        public Command LoadAccounts { get; set; }
+        public Command RemoveAccount 
+        {
+            get => new Command<string>(ident =>
+            {
+                var account_to_delete = Accounts.FirstOrDefault(x => x.Ident == ident);
+                if (account_to_delete != null)
+                {
+                    Accounts.Remove(account_to_delete);
+                    OnPropertyChanged("Accounts");
+                }
+            });
+        }
+
+        public PaysPageViewModel()
+        {
+            Accounts = new ObservableCollection<AccountAccountingInfo>();
+            LoadAccounts = new Command<List<AccountAccountingInfo>>((accounts) =>
+            {
+                Accounts.Clear();
+                foreach (var account in accounts)
+                {
+                    Device.BeginInvokeOnMainThread(() => Accounts.Add(account));
+                }
+            });
         }
     }
 }

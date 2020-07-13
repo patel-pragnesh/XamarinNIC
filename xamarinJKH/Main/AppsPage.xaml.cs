@@ -53,11 +53,37 @@ namespace xamarinJKH.Main
             }
         }
 
+        static bool inUpdateNow = false;
         public async Task RefreshData()
         {
-            getApps();
-            additionalList.ItemsSource = null;
-            additionalList.ItemsSource = RequestInfos;
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                try
+                {
+                    if (inUpdateNow)
+                        return;
+                    inUpdateNow = true;
+
+                    RequestInfos = null;
+
+                    await getAppsAsync();
+
+                    additionalList.ItemsSource = null;
+                    additionalList.ItemsSource = RequestInfos;
+
+                    inUpdateNow = false;
+                }
+                catch (Exception e)
+                {
+                    inUpdateNow = false;
+                }
+                finally
+                {
+                    inUpdateNow = false;
+                }
+            });
+            
+            
         }
 
         public AppsPage()
@@ -69,7 +95,7 @@ namespace xamarinJKH.Main
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
-                    BackgroundColor = Color.White;
+                    //BackgroundColor = Color.White;
                     break;
                 default:
                     break;
@@ -80,7 +106,7 @@ namespace xamarinJKH.Main
                 case Device.iOS:
                     FrameBtnAdd.IsVisible = false;
                     FrameBtnAddIos.IsVisible = true;
-                    BackgroundColor = Color.White;
+                    //BackgroundColor = Color.White;
                     // ImageFon.Margin = new Thickness(0, 0, 0, 0);
                     // StackLayout.Margin = new Thickness(0, 33, 0, 0);
                     // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
@@ -122,7 +148,7 @@ namespace xamarinJKH.Main
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
                     if (phoneDialer.CanMakePhoneCall) 
-                        phoneDialer.MakePhoneCall(Settings.Person.Phone);
+                        phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
                 }
 
             
@@ -150,11 +176,11 @@ namespace xamarinJKH.Main
 
         async void SyncSetup()
         {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                // Assuming this function needs to use Main/UI thread to move to your "Main Menu" Page
-                RefreshData();
-            });
+            //Device.BeginInvokeOnMainThread(() =>
+            //{
+            // Assuming this function needs to use Main/UI thread to move to your "Main Menu" Page
+            await RefreshData();
+            //});
         }
 
         void SetText()
@@ -165,6 +191,20 @@ namespace xamarinJKH.Main
             IconAddApp.Foreground = Color.White;
         }
 
+        async Task getAppsAsync()
+        {
+            _requestList = await _server.GetRequestsList();
+            if (_requestList.Error == null)
+            {
+                setCloses(_requestList.Requests);
+                Settings.UpdateKey = _requestList.UpdateKey;
+                this.BindingContext = this;
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Не удалось получить информацию о заявках", "OK");
+            }
+        }
 
         async void getApps()
         {

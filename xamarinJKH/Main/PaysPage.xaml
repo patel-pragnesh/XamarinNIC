@@ -130,7 +130,7 @@
                                   IsRefreshing="{Binding IsRefreshing}"
                                   SelectionMode="None"
                                   ItemTapped="OnItemTapped"
-                                  ItemsSource="{Binding _accountingInfo}">
+                                  ItemsSource="{Binding Accounts}">
                             <ListView.Header>
 
                             </ListView.Header>
