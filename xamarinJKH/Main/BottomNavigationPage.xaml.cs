@@ -8,6 +8,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Utils;
 
+using xamarinJKH.Server;
+
 namespace xamarinJKH.Main
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -21,6 +23,7 @@ namespace xamarinJKH.Main
             SelectedTabColor = Color.FromHex(Utils.Settings.MobileSettings.color);
             UnselectedTabColor = Color.Gray;
             CheckAccounts();
+            RegisterNewDevice();
         }
 
         public async void CheckAccounts()
@@ -37,6 +40,13 @@ namespace xamarinJKH.Main
             var i = Children.IndexOf(CurrentPage);
             if (i == 0)
                 MessagingCenter.Send<Object>(this, "UpdateEvents");
+        }
+
+
+        async void RegisterNewDevice()
+        {
+            App.token = DependencyService.Get<xamarinJKH.InterfacesIntegration.IFirebaseTokenObtainer>().GetToken();
+            var response = await (new RestClientMP()).RegisterDevice();
         }
     }
 }
