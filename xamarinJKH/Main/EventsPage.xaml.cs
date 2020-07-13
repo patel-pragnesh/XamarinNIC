@@ -149,7 +149,7 @@ namespace xamarinJKH.Main
             //startOSSTGR.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSMain()); };
             startOSSTGR.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSAuth()); };
             FrameOSS.GestureRecognizers.Add(startOSSTGR);
-            if (!Settings.MobileSettings.enableOSS)
+            if (!Settings.MobileSettings.enableOSS || !Settings.Person.AccessOSS)
             {
                 FrameOSS.IsVisible = false;
             }

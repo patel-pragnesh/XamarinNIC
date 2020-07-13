@@ -32,7 +32,7 @@ namespace xamarinJKH.Server
         public const string SEND_CHECK_CODE = "auth/SendCheckCode"; // Запрос проверочного кода
         public const string VALIDATE_CHECK_CODE = "auth/ValidateCheckCode "; // Проверка кода из смс
 
-        public const string GET_MOBILE_SETTINGS = "Config/MobileAppSettings "; // Регистрация по телефону
+        public const string GET_MOBILE_SETTINGS = "Config/MobileAppSettings"; // Регистрация по телефону
         public const string GET_EVENT_BLOCK_DATA = "Common/EventBlockData"; // Блок события
         
         public const string GET_PHOTO_ADDITIONAL = "AdditionalServices/logo"; // Картинка доп услуги
