@@ -19,5 +19,13 @@ namespace xamarinJKH.MainConst
             SelectedTabColor = Color.FromHex(Utils.Settings.MobileSettings.color);
             UnselectedTabColor = Color.Gray;
         }
+        
+        protected override void OnCurrentPageChanged()
+        {
+            base.OnCurrentPageChanged();
+            var i = Children.IndexOf(CurrentPage);
+            if (i == 0)
+                MessagingCenter.Send<Object>(this, "UpdateAppCons");
+        }
     }
 }

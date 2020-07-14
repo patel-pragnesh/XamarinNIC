@@ -246,6 +246,7 @@ namespace xamarinJKH.Main
                 var server = new RestClientMP();
                 var data = Settings.EventBlockData;
                 data = await server.GetEventBlockData();
+                Settings.EventBlockData = data;
                 ShowNews = data.News.Count != 0;
                 ShowPolls = data.Polls.Count != 0;
                 ShowAdditionalServices = data.AdditionalServices.Count != 0;
