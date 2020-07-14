@@ -2,6 +2,7 @@
 using Android;
 using Android.App;
 using Context = Android.Content.Context;
+using Intent = Android.Content.Intent;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.Views;
@@ -44,9 +45,9 @@ namespace xamarinJKH.Droid
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera);
             ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadExternalStorage);
-            CreateNotificationChannel();
+            //CreateNotificationChannel();
             LoadApplication(new App());
-            // FirebasePushNotificationManager.ProcessIntent(this,Intent);
+            FirebasePushNotificationManager.ProcessIntent(this,Intent);
              Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
 
         }
@@ -79,26 +80,26 @@ namespace xamarinJKH.Droid
             notificationManager.CreateNotificationChannel(channel);
         }
 
-        [Service]
-        [IntentFilter(new[] { "com.google.firebase.INSTANCE_ID_EVENT" })]
-        public class MyFirebaseIIDService : FirebaseInstanceIdService
-        {
-            const string TAG = "MyFirebaseIIDService";
-            public override void OnTokenRefresh()
-            {
-                var refreshedToken = FirebaseInstanceId.Instance.Token;
-                SendRegistrationToServer(refreshedToken);
-            }
-            void SendRegistrationToServer(string token)
-            {
-                App.token = token;
-            }
-        }
+        //[Service]
+        //[IntentFilter(new[] { "com.google.firebase.INSTANCE_ID_EVENT" })]
+        //public class MyFirebaseIIDService : FirebaseInstanceIdService
+        //{
+        //    const string TAG = "MyFirebaseIIDService";
+        //    public override void OnTokenRefresh()
+        //    {
+        //        var refreshedToken = FirebaseInstanceId.Instance.Token;
+        //        SendRegistrationToServer(refreshedToken);
+        //    }
+        //    void SendRegistrationToServer(string token)
+        //    {
+        //        App.token = token;
+        //    }
+        //}
 
-        // protected override void OnNewIntent(Intent intent)
-        // {
-        //     base.OnNewIntent(intent);
-        //     FirebasePushNotificationManager.ProcessIntent(this, intent);
-        // }
+        protected override void OnNewIntent(Intent intent)
+        {
+            base.OnNewIntent(intent);
+            FirebasePushNotificationManager.ProcessIntent(this, intent);
+        }
     }
 }

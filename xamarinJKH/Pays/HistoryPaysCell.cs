@@ -94,7 +94,17 @@ namespace xamarinJKH.Pays
             if (BindingContext != null)
             {
                 LabelDate.Text = DatePay;
-                LabelPeriod.Text = Period;
+                string str = Period;
+                FontAttributes fontAttributes = FontAttributes.Bold;
+                double fontsize = 15;
+                if (Period.Equals(""))
+                {
+                    str = "Обрабатывается";
+                    LabelPeriod.FontAttributes = FontAttributes.None;
+                    LabelPeriod.FontSize = 13;
+                }
+                LabelPeriod.Text = str;
+                
                 FormattedString formattedIdent = new FormattedString();
                 double sum2 = Double.Parse(SumPay);
                 formattedIdent.Spans.Add(new Span

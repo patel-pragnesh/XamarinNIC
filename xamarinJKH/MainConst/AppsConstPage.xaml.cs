@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -13,15 +14,16 @@ using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
+using xamarinJKH.ViewModels;
 
 namespace xamarinJKH.MainConst
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AppsConstPage : ContentPage
     {
-        public List<RequestInfo> RequestInfos { get; set; }
-        public List<RequestInfo> RequestInfosAlive { get; set; }
-        public List<RequestInfo> RequestInfosClose { get; set; }
+        public ObservableCollection<RequestInfo> RequestInfos { get; set; }
+        public ObservableCollection<RequestInfo> RequestInfosAlive { get; set; }
+        public ObservableCollection<RequestInfo> RequestInfosClose { get; set; }
         private RequestList _requestList;
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
@@ -63,6 +65,7 @@ namespace xamarinJKH.MainConst
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            this.BindingContext = this;
 
             switch (Device.RuntimePlatform)
             {
@@ -103,16 +106,20 @@ namespace xamarinJKH.MainConst
             FrameBtnAdd.GestureRecognizers.Add(addClick);
             hex = Color.FromHex(Settings.MobileSettings.color);
             SetText();
-            getApps();
             additionalList.BackgroundColor = Color.Transparent;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+            MessagingCenter.Subscribe<Object>(this, "UpdateAppCons", (sender) => RefreshData());
+            // Assuming this function needs to use Main/UI thread to move to your "Main Menu" Page
+            getApps();
+
+
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            new Task(SyncSetup).Start(); // This could be an await'd task if need be
+            // new Task(SyncSetup).Start(); // This could be an await'd task if need be
         }
 
         async void SyncSetup()
@@ -121,6 +128,7 @@ namespace xamarinJKH.MainConst
             {
                 // Assuming this function needs to use Main/UI thread to move to your "Main Menu" Page
                 RefreshData();
+
             });
         }
 
@@ -156,7 +164,6 @@ namespace xamarinJKH.MainConst
             {
                 setCloses(_requestList.Requests);
                 Settings.UpdateKey = _requestList.UpdateKey;
-                this.BindingContext = this;
             }
             else
             {
@@ -166,8 +173,8 @@ namespace xamarinJKH.MainConst
 
         void setCloses(List<RequestInfo> infos)
         {
-            RequestInfosAlive = new List<RequestInfo>();
-            RequestInfosClose = new List<RequestInfo>();
+            RequestInfosAlive = new ObservableCollection<RequestInfo>();
+            RequestInfosClose = new ObservableCollection<RequestInfo>();
             foreach (var each in infos)
             {
                 if (each.IsClosed)
@@ -187,6 +194,13 @@ namespace xamarinJKH.MainConst
             else
             {
                 RequestInfos = RequestInfosAlive;
+            }
+
+            if (RequestInfos != null)
+            {
+                BindingContext = this;
+                additionalList.ItemsSource = null;
+                additionalList.ItemsSource = RequestInfos;
             }
         }
 
