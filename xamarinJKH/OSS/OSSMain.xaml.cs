@@ -119,6 +119,9 @@ namespace xamarinJKH
         
         private async Task<bool> GetOssData(int type=0)
         {
+            ButtonActive.IsEnabled = false;
+            ButtonArchive.IsEnabled = false;
+
             //получаем данные от сервера по ОСС
             var result = await rc.GetOss(0);
             //var result1 = await rc.GetOss(1);
@@ -143,20 +146,6 @@ namespace xamarinJKH
 
                 frames.Clear();
                 arrows.Clear();
-#if DEBUG
-                //var ossf = new List<int>() { 128 ,83 ,80 ,78 ,57 };
-
-                //var g = result.Data.Where(_ => Convert.ToDateTime(_.DateEnd, new CultureInfo("ru-RU")) > DateTime.Now.AddDays(-31));
-                //var g1 = 0;
-#endif
-
-                //Device.BeginInvokeOnMainThread(async () =>
-                //{
-
-                //    if(result.Data.Count>10)
-                //    {
-                //        OSSList.Margin =  new Thickness(0, -65, 0, 0);
-                //}
 
                 OSSListContent.Children.Clear();
                     
@@ -164,28 +153,6 @@ namespace xamarinJKH
                     
                     foreach (var oss in result.Data)
                     {
-
-#if DEBUG
-                        if(oss.Accounts.Count>1)
-                        {
-
-                        }
-                        //отладочная инфа                    
-                        if(!oss.Questions.Any(_=>string.IsNullOrWhiteSpace(_.Answer)))
-                        {
-
-                        }
-                        else
-                        {
-
-                        }
-                        if (oss.HouseAddress!=null)
-                        {
-
-                        }
-                        //if (!ossf.Contains(oss.ID)  )
-                        //    continue;
-#endif
 
                         Frame f = new Frame();
                         f.MinimumHeightRequest = 50;
@@ -280,7 +247,7 @@ namespace xamarinJKH
                         rootStack.Children.Add(stack);
 
                         //невидимые на старте элементы фрейма, кроме 1го фрейма                                              
-                        StackLayout additionslData = new StackLayout() { IsVisible = isFirst , Orientation= StackOrientation.Vertical};
+                        StackLayout additionslData = new StackLayout() { IsVisible = false , Orientation= StackOrientation.Vertical};
                         if (isFirst)
                         {
                             prevAddtionlExpanded = f;
@@ -453,7 +420,11 @@ namespace xamarinJKH
 
 
                         OSSListContent.Children.Add(f);
-                    }     
+                    }
+                action(prevAddtionlExpanded);
+
+                ButtonActive.IsEnabled = true;
+                ButtonArchive.IsEnabled = true;
                 //});
                 return true;
             }
@@ -473,8 +444,8 @@ namespace xamarinJKH
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    ButtonActive.IsEnabled = false;                   
-                    ButtonArchive.IsEnabled = false;
+                    //ButtonActive.IsEnabled = false;                   
+                    //ButtonArchive.IsEnabled = false;
 
                     frames.Clear();
                     arrows.Clear();
@@ -485,8 +456,8 @@ namespace xamarinJKH
                     ((Button)sender).TextColor = colorFromMobileSettings;
                     ButtonArchive.TextColor = Color.White;
 
-                    ButtonActive.IsEnabled = true;
-                    ButtonArchive.IsEnabled = true;
+                    //ButtonActive.IsEnabled = true;
+                    //ButtonArchive.IsEnabled = true;
                 });
             }
             catch(Exception ex)
@@ -502,8 +473,8 @@ namespace xamarinJKH
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    ButtonActive.IsEnabled = false;
-                    ButtonArchive.IsEnabled = false;
+                    //ButtonActive.IsEnabled = false;
+                    //ButtonArchive.IsEnabled = false;
 
                     frames.Clear();
                     arrows.Clear();
@@ -514,8 +485,8 @@ namespace xamarinJKH
                     ((Button)sender).TextColor = colorFromMobileSettings;
                     ButtonActive.TextColor = Color.White;
 
-                    ButtonActive.IsEnabled = true;
-                    ButtonArchive.IsEnabled = true;
+                    //ButtonActive.IsEnabled = true;
+                    //ButtonArchive.IsEnabled = true;
                 });
             }
             catch (Exception ex)

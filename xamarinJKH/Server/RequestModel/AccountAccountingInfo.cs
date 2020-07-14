@@ -18,6 +18,8 @@ namespace xamarinJKH.Server.RequestModel
         public List<BillInfo> Bills { get; set; }
         public List<MobilePayment> MobilePayments { get; set; }
         public List<PaymentInfo> Payments { get; set; }
+        // Оплаты, не обработанные УО
+        public List<PaymentInfo> PendingPayments { get; set; }
         public string Error { get; set; }
     }
     

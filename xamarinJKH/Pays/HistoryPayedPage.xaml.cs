@@ -114,8 +114,9 @@ namespace xamarinJKH.Pays
         List<PaymentInfo> setPays(AccountAccountingInfo accountingInfo)
         {
             List<PaymentInfo> paymentInfo = new List<PaymentInfo>(accountingInfo.Payments);
+            List<PaymentInfo> paymentUO = new List<PaymentInfo>(accountingInfo.PendingPayments);
             List<MobilePayment> mobile = new List<MobilePayment>(accountingInfo.MobilePayments);
-
+            paymentInfo.AddRange(paymentUO);
             foreach (var each in mobile)
             {
                 paymentInfo.Add(new PaymentInfo()
@@ -130,7 +131,7 @@ namespace xamarinJKH.Pays
             HistoryPayComparable comparable = new HistoryPayComparable();
             
             paymentInfo.Sort(comparable);
-
+            paymentInfo.Reverse();
             return paymentInfo;
         }
 
