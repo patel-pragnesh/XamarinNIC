@@ -14,6 +14,7 @@ using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
+using System.Threading;
 
 namespace xamarinJKH.Main
 {
@@ -45,46 +46,66 @@ namespace xamarinJKH.Main
                 return new Command(async () =>
                 {
                     IsRefreshing = true;
+                    CancellationTokenSource.Cancel();
+                    CancellationTokenSource.Dispose();
 
-                    await RefreshData();
+                    //await RefreshData();
+                    StartAutoUpdate();
 
                     IsRefreshing = false;
                 });
             }
         }
 
+        void StartAutoUpdate()
+        {
+            CancellationTokenSource = new CancellationTokenSource();
+            this.CancellationToken = CancellationTokenSource.Token;
+            Task.Run(async () =>
+            {
+                while (!this.CancellationToken.IsCancellationRequested)
+                {
+                    await RefreshData();
+                    await Task.Delay(TimeSpan.FromSeconds(5));
+                }
+            }, this.CancellationToken);
+        }
+
         static bool inUpdateNow = false;
         public async Task RefreshData()
         {
-            Device.BeginInvokeOnMainThread(async () =>
+
+            try
             {
-                try
+                if (inUpdateNow)
+                    return;
+                inUpdateNow = true;
+
+                RequestInfos = null;
+
+                await getAppsAsync();
+                Device.BeginInvokeOnMainThread(() =>
                 {
-                    if (inUpdateNow)
-                        return;
-                    inUpdateNow = true;
-
-                    RequestInfos = null;
-
-                    await getAppsAsync();
-
                     additionalList.ItemsSource = null;
                     additionalList.ItemsSource = RequestInfos;
+                });
 
-                    inUpdateNow = false;
-                }
-                catch (Exception e)
-                {
-                    inUpdateNow = false;
-                }
-                finally
-                {
-                    inUpdateNow = false;
-                }
-            });
-            
-            
+                inUpdateNow = false;
+            }
+            catch (Exception e)
+            {
+                inUpdateNow = false;
+            }
+            finally
+            {
+                inUpdateNow = false;
+            }
+
+
         }
+
+        public CancellationTokenSource CancellationTokenSource { get; set; }
+        public CancellationToken CancellationToken { get; set; }
 
         public AppsPage()
         {
@@ -138,7 +159,7 @@ namespace xamarinJKH.Main
                     break;
             }
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
@@ -147,11 +168,11 @@ namespace xamarinJKH.Main
                 {
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
-                    if (phoneDialer.CanMakePhoneCall) 
+                    if (phoneDialer.CanMakePhoneCall)
                         phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
                 }
 
-            
+
             };
             LabelPhone.GestureRecognizers.Add(call);
             var addClick = new TapGestureRecognizer();
@@ -162,16 +183,63 @@ namespace xamarinJKH.Main
             FrameBtnAddIos.GestureRecognizers.Add(addClickIOS);
             hex = Color.FromHex(Settings.MobileSettings.color);
             SetText();
-            getApps();
+            //getApps();
             additionalList.BackgroundColor = Color.Transparent;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+            this.CancellationTokenSource = new CancellationTokenSource();
+            MessagingCenter.Subscribe<Object>(this, "AutoUpdate", (sender) =>
+            {
+                StartAutoUpdate();
+            });
+
+            MessagingCenter.Subscribe<Object, int>(this, "OpenApp", async (sender, args) =>
+            {
+                await RefreshData();
+                var request = RequestInfos?.Find(x => x.ID == args);
+                if (request != null)
+                {
+                    try
+                    {
+                        CancellationTokenSource.Cancel();
+                        CancellationTokenSource.Dispose();
+                    }
+                    catch
+                    {
+
+                    }
+                    Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(new AppPage(request)));
+                }
+            });
+        }
+        public AppsPage(string app_id) : base ()
+        {
+            var request = RequestInfos.Find(x => x.ID == int.Parse(app_id));
+            if (request != null)
+            {
+                Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(new AppPage(request)));
+            }
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            try
+            {
+
+                CancellationTokenSource.Cancel();
+                CancellationTokenSource.Dispose();
+            }
+            catch
+            {
+
+            }
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            new Task(SyncSetup).Start(); // This could be an await'd task if need be
+            //new Task(SyncSetup).Start(); // This could be an await'd task if need be
         }
 
         async void SyncSetup()
@@ -179,14 +247,18 @@ namespace xamarinJKH.Main
             //Device.BeginInvokeOnMainThread(() =>
             //{
             // Assuming this function needs to use Main/UI thread to move to your "Main Menu" Page
-            await RefreshData();
+            while (true)
+            {
+                await Task.Delay(TimeSpan.FromSeconds(5));
+                await RefreshData();
+            }
             //});
         }
 
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
+            LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
             SwitchApp.OnColor = hex;
             IconAddApp.Foreground = Color.White;
         }
