@@ -11,6 +11,7 @@ using xamarinJKH.Utils;
 using Application = Xamarin.Forms.Application;
 using System.Linq;
 using xamarinJKH.Apps;
+using xamarinJKH.Main;
 
 namespace xamarinJKH
 {
@@ -65,10 +66,14 @@ namespace xamarinJKH
                     string o = string.Empty;
                     if (p.Data.ContainsKey("title") && p.Data.ContainsKey("body"))
                     {
-                        displayAlert = await MainPage.DisplayAlert(p.Data["title"].ToString(), p.Data["body"].ToString(), "OK", "Отмена");
-                        o = string.Empty;
-                        if (p.Data.ContainsKey("type_push"))
-                            o = p.Data["type_push"].ToString();
+                        var current_page = (App.Current.MainPage.Navigation.ModalStack.ToList()[0] as Xamarin.Forms.TabbedPage).CurrentPage;
+                        if (!(current_page is AppPage))
+                        {
+                            displayAlert = await MainPage.DisplayAlert(p.Data["title"].ToString(), p.Data["body"].ToString(), "OK", "Отмена");
+                            if (p.Data.ContainsKey("type_push"))
+                                o = p.Data["type_push"].ToString();
+                        }
+                        
                     }
 
                     if (displayAlert && o.ToLower().Equals("осс"))
