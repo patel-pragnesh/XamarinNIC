@@ -144,6 +144,7 @@
                           IsRefreshing="{Binding IsRefreshing}"
                           SelectionMode="None"
                           ItemTapped="OnItemTapped"
+                          BackgroundColor="Transparent"
 
                           ItemsSource="{Binding messages}">
                     <ListView.Header>

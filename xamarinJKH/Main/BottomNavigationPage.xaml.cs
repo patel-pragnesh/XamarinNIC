@@ -23,6 +23,8 @@ namespace xamarinJKH.Main
             SelectedTabColor = Color.FromHex(Utils.Settings.MobileSettings.color);
             UnselectedTabColor = Color.Gray;
             CheckAccounts();
+
+            if(Device.RuntimePlatform==Device.Android)
             RegisterNewDevice();
         }
 

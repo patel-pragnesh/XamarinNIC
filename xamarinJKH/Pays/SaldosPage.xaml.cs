@@ -79,7 +79,7 @@ namespace xamarinJKH.Pays
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
-                    BackgroundColor = Color.White;
+                    //BackgroundColor = Color.White;
                     break;
                 default:
                     break;

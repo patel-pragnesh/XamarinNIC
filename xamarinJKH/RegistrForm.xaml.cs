@@ -43,7 +43,7 @@ namespace xamarinJKH
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    BackgroundColor = Color.White;
+                    //BackgroundColor = Color.White;
                     BackStackLayout.Margin = new Thickness(10, 20, 0, 0);
                     RegLbl.Margin = new Thickness(20, 60, 0, 0);
                     break;

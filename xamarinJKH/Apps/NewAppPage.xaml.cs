@@ -55,7 +55,7 @@ namespace xamarinJKH.Apps
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    BackgroundColor = Color.White;
+                    //BackgroundColor = Color.White;
                     // ImageTop.Margin = new Thickness(0, 0, 0, 0);
                     // StackLayout.Margin = new Thickness(0, 33, 0, 0);
                     // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);

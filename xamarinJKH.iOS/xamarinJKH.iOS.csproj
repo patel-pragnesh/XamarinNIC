@@ -69,9 +69,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Distribution: Evgeny Yurtaykin (UK4AR963E7)</CodesignKey>
+    <CodesignKey>Apple Distribution: Evgeny Yurtaykin (UK4AR963E7)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <CodesignProvision>xamarinDistribution</CodesignProvision>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
     <MtouchLink>SdkOnly</MtouchLink>
     <BuildIpa>true</BuildIpa>
@@ -312,7 +312,7 @@
     <Folder Include="Assets.xcassets\ic_profile.imageset\" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\icon_login.png" />
+    <BundleResource Include="Resources\icon_login0.png" />
     <BundleResource Include="Resources\ic_additional_top.png" />
     <BundleResource Include="Resources\ic_add_file.png" />
     <BundleResource Include="Resources\ic_add_ident.png" />
@@ -464,5 +464,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_export_pdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_login.png" />
   </ItemGroup>
 </Project>
