@@ -47,9 +47,9 @@ namespace xamarinJKH.Shop
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    BackgroundColor = Color.White;
-                    ImageTop.Margin = new Thickness(0, 0, 0, 0);
-                    StackLayout.Margin = new Thickness(0, 20, 0, 0);
+                    // BackgroundColor = Color.White;
+                    // ImageTop.Margin = new Thickness(0, 0, 0, 0);
+                    // StackLayout.Margin = new Thickness(0, 20, 0, 0);
                     //IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
@@ -340,7 +340,7 @@ namespace xamarinJKH.Shop
             head.Children.Add(SortByPriceLayout);
 
             StackLayout rootStackLayout = new StackLayout();
-
+            rootStackLayout.VerticalOptions = LayoutOptions.FillAndExpand;
             var goods = goodsListOrderedByPriceGrowing?  CategoriesGoods[i].OrderBy(_ => _.Price).ToList() : CategoriesGoods[i].OrderByDescending(_ => _.Price).ToList();            
 
             var stackLayout = GetOrderedGoodsList(goods);
@@ -349,6 +349,7 @@ namespace xamarinJKH.Shop
             ScrollView scrollView = new ScrollView();
             scrollView.VerticalScrollBarVisibility = ScrollBarVisibility.Never;
             scrollView.Content = stackLayout;
+            scrollView.VerticalOptions = LayoutOptions.FillAndExpand;
             rootStackLayout.Children.Add(scrollView);
 
             GoodsLayot.Content = rootStackLayout;
