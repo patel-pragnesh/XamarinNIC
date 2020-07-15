@@ -258,7 +258,6 @@ namespace xamarinJKH.Apps
                     catch (Exception e)
                     {
                         Console.WriteLine(e);
-                        throw;
                     }
                    
                     break;

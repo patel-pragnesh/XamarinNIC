@@ -118,13 +118,13 @@ namespace xamarinJKH.AppsConst
             switch (action)
             {
                 case TAKE_PHOTO:
-                    await startLoadFile(CAMERA);
+                    await getCameraFile();
                     break;
                 case TAKE_GALRY:
-                    await startLoadFile(GALERY);
+                    await GetGalaryFile();
                     break;
                 case TAKE_FILE:
-                    await startLoadFile(FILE);
+                    await PickAndShowFile(null);
                     break;
             }
         }

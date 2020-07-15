@@ -244,42 +244,66 @@ namespace xamarinJKH.AppsConst
             // // GetGalaryFile();
             //
             // // PickAndShowFile(null);
-
+            MediaFile file = null;
             var action = await DisplayActionSheet("Добавить вложение", "Отмена", null,
                 TAKE_PHOTO,
                 TAKE_GALRY, TAKE_FILE);
             switch (action)
             {
                 case TAKE_PHOTO:
-                    await startLoadFile(CAMERA);
+                    if (!CrossMedia.Current.IsTakePhotoSupported || !CrossMedia.Current.IsCameraAvailable)
+                    {
+                        await DisplayAlert("Ошибка", "Камера не доступна", "OK");
+
+                        return;
+                    }
+
+                    try
+                    {
+                        file = await CrossMedia.Current.TakePhotoAsync(
+                            new StoreCameraMediaOptions
+                            {
+                                SaveToAlbum = false,
+                                Directory = "Demo"
+                            });
+                        if (file != null)
+                            await startLoadFile(CAMERA, file);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
                     break;
                 case TAKE_GALRY:
-                    await startLoadFile(GALERY);
+                    if (!CrossMedia.Current.IsPickPhotoSupported)
+                    {
+                        await DisplayAlert("Ошибка", "Галерея не доступна", "OK");
+
+                        return;
+                    }
+
+                    try
+                    {
+                        file = await CrossMedia.Current.PickPhotoAsync();
+                        if (file == null)
+                            return;
+                        await startLoadFile(GALERY, file);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                   
                     break;
                 case TAKE_FILE:
-                    await startLoadFile(FILE);
+                    await startLoadFile(FILE, null);
                     break;
             }
         }
 
-        async Task getCameraFile()
+        async Task getCameraFile(MediaFile file)
         {
-            await CrossMedia.Current.Initialize();
-
-            if (!CrossMedia.Current.IsTakePhotoSupported || !CrossMedia.Current.IsCameraAvailable)
-            {
-                await DisplayAlert("Ошибка", "Камера не доступна", "OK");
-
-                return;
-            }
-
-            MediaFile file = await CrossMedia.Current.TakePhotoAsync(
-                new StoreCameraMediaOptions
-                {
-                    SaveToAlbum = true,
-                    Directory = "Demo"
-                });
-
+           
             if (file == null)
                 return;
             CommonResult commonResult = await _server.AddFileAppsConst(_requestInfo.ID.ToString(),
@@ -292,7 +316,7 @@ namespace xamarinJKH.AppsConst
             }
         }
 
-        public async Task startLoadFile(string metod)
+        public async Task startLoadFile(string metod, MediaFile file)
         {
             // Loading settings
             Configurations.LoadingConfig = new LoadingConfig
@@ -308,10 +332,10 @@ namespace xamarinJKH.AppsConst
                 switch (metod)
                 {
                     case CAMERA:
-                        await getCameraFile();
+                        await getCameraFile(file);
                         break;
                     case GALERY:
-                        await GetGalaryFile();
+                        await GetGalaryFile(file);
                         break;
                     case FILE:
                         await PickAndShowFile(null);
@@ -320,20 +344,8 @@ namespace xamarinJKH.AppsConst
             });
         }
 
-        async Task GetGalaryFile()
+        async Task GetGalaryFile(MediaFile file)
         {
-            await CrossMedia.Current.Initialize();
-
-            if (!CrossMedia.Current.IsPickPhotoSupported)
-            {
-                await DisplayAlert("Ошибка", "Галерея не доступна", "OK");
-
-                return;
-            }
-
-            var file = await CrossMedia.Current.PickPhotoAsync();
-            if (file == null)
-                return;
             CommonResult commonResult = await _server.AddFileAppsConst(_requestInfo.ID.ToString(),
                 getFileName(file.Path), StreamToByteArray(file.GetStream()),
                 file.Path);
