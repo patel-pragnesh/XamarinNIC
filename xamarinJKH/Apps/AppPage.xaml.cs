@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AiForms.Dialogs;
@@ -67,6 +68,56 @@ namespace xamarinJKH.Apps
             }
         }
 
+        CancellationTokenSource TokenSource { get; set; }
+        CancellationToken Token { get; set; }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            getMessage();
+            TokenSource = new CancellationTokenSource();
+            Token = TokenSource.Token;
+            var UpdateTask = new Task(async () =>
+            {
+                while (!Token.IsCancellationRequested)
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(2));
+                    var update = await _server.GetRequestsUpdates(Settings.UpdateKey, _requestInfo.ID.ToString());
+                    if (update.Error == null)
+                    {
+                        Settings.UpdateKey = update.NewUpdateKey;
+                        if (update.CurrentRequestUpdates != null)
+                        {
+                            Settings.DateUniq = "";
+                            request = update.CurrentRequestUpdates;
+                            foreach (var each in update.CurrentRequestUpdates.Messages)
+                            {
+                                if (!messages.Contains(each))
+                                    Device.BeginInvokeOnMainThread(() => messages.Add(each));
+                            }
+                            Device.BeginInvokeOnMainThread(() => additionalList.ScrollTo(messages[messages.Count - 1], 0, true));
+                        }
+                    }
+                }
+            }, Token);
+            UpdateTask.Start();
+        }
+
+        protected override void OnDisappearing()
+        {
+            try
+            {
+                TokenSource.Cancel();
+                TokenSource.Dispose();
+            }
+            catch
+            {
+
+            }
+            base.OnDisappearing();
+
+        }
+
         private async Task RefreshData()
         {
             RequestsUpdate requestsUpdate =
@@ -82,9 +133,6 @@ namespace xamarinJKH.Apps
                     {
                         messages.Add(each);
                     }
-
-                    additionalList.ItemsSource = null;
-                    additionalList.ItemsSource = messages;
                     additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
                 }
             }
@@ -96,7 +144,7 @@ namespace xamarinJKH.Apps
             additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
         }
 
-        public List<RequestMessage> messages { get; set; }
+        public System.Collections.ObjectModel.ObservableCollection<RequestMessage> messages { get; set; }
         public Color hex { get; set; }
 
         public bool close = false;
@@ -106,6 +154,8 @@ namespace xamarinJKH.Apps
             close = closeAll;
             _requestInfo = requestInfo;
             InitializeComponent();
+            messages = new System.Collections.ObjectModel.ObservableCollection<RequestMessage>();
+            this.BindingContext = this;
 
             switch (Device.RuntimePlatform)
             {
@@ -115,7 +165,7 @@ namespace xamarinJKH.Apps
                     // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
-                    double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
+                    double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
                         ScrollViewContainer.Margin = new Thickness(0, 0, 0, -150);
@@ -160,9 +210,7 @@ namespace xamarinJKH.Apps
             };
             StackLayoutClose.GestureRecognizers.Add(closeApp);
             hex = Color.FromHex(Settings.MobileSettings.color);
-
             setText();
-            getMessage();
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
@@ -259,7 +307,7 @@ namespace xamarinJKH.Apps
                     {
                         Console.WriteLine(e);
                     }
-                   
+
                     break;
                 case TAKE_GALRY:
 
@@ -281,7 +329,7 @@ namespace xamarinJKH.Apps
                     {
                         Console.WriteLine(e);
                     }
-                   
+
                     break;
                 case TAKE_FILE:
                     await startLoadFile(FILE, null);
@@ -349,7 +397,7 @@ namespace xamarinJKH.Apps
         {
             if (stream is MemoryStream)
             {
-                return ((MemoryStream) stream).ToArray();
+                return ((MemoryStream)stream).ToArray();
             }
             else
             {
@@ -456,13 +504,16 @@ namespace xamarinJKH.Apps
 
         async void getMessage()
         {
+
             request = await _server.GetRequestsDetailList(_requestInfo.ID.ToString());
             if (request.Error == null)
             {
                 Settings.DateUniq = "";
-                messages = request.Messages;
+                foreach (var message in request.Messages)
+                {
+                    Device.BeginInvokeOnMainThread(() => messages.Add(message));
+                }
                 LabelNumber.Text = "№ " + request.RequestNumber;
-                this.BindingContext = this;
             }
             else
             {
@@ -470,6 +521,7 @@ namespace xamarinJKH.Apps
             }
 
             await MethodWithDelayAsync(1000);
+
         }
 
         public async Task MethodWithDelayAsync(int milliseconds)
