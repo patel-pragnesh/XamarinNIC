@@ -34,9 +34,9 @@ namespace xamarinJKH.Shop
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                   // BackgroundColor = Color.White;
-                    ImageTop.Margin = new Thickness(0, 0, 0, 0);
-                    StackLayout.Margin = new Thickness(0, 33, 0, 0);
+                    // BackgroundColor = Color.White;
+                    // ImageTop.Margin = new Thickness(0, 0, 0, 0);
+                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
                     //IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
@@ -133,7 +133,7 @@ namespace xamarinJKH.Shop
                 }
             }
 
-            stringBuilder.Append("Итого: ").Append(LabelPriceBuscket.Text.Replace("\u20BD", "Р")).Append(" ").Append(LabelWeightBuscket.Text);
+            stringBuilder.Append("Итого: ").Append(LabelPriceBuscket.Text).Append(" руб.\n").Append(LabelWeightBuscket.Text).Append(" г.");
             stringBuilder.Append("\nБезналичный расчет.");
 
             return stringBuilder.ToString();

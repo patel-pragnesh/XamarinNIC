@@ -407,6 +407,9 @@ namespace xamarinJKH.Apps
                     {
                         await DisplayAlert("Ошибка", result.Error, "OK");
                     }
+                    MessagingCenter.Send<Object>(this, "UpdateIdent");
+                    MessagingCenter.Send<Object>(this, "UpdateEvents");
+                    MessagingCenter.Send<Object>(this, "AutoUpdate");
                 }
                 catch (Exception ex)
                 {

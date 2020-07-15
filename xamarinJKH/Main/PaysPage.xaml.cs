@@ -141,7 +141,7 @@ namespace xamarinJKH.Main
             openSaldos.Tapped += async (s, e) => { await Navigation.PushAsync(new SaldosPage(_accountingInfo)); };
             FrameBtnSaldos.GestureRecognizers.Add(openSaldos);
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
-            MessagingCenter.Subscribe<xamarinJKH.DialogViews.AddAccountDialogViewModel>(this, "UpdateIdent", (sender) => SyncSetup());
+            MessagingCenter.Subscribe<Object>(this, "UpdateIdent", (sender) => SyncSetup());
         }
 
         protected override void OnAppearing()
@@ -294,17 +294,41 @@ namespace xamarinJKH.Main
             });
         }
 
+        bool _isRefreshing;
+        public bool IsRefreshing
+        {
+            get => _isRefreshing;
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+
+        public Command RefreshCommand
+        {
+            get => new Command(() =>
+            {
+                IsRefreshing = true;
+                LoadAccounts.Execute(null);
+
+            });
+        }
+
         public PaysPageViewModel()
         {
             hex = Color.FromHex(Settings.MobileSettings.color);
             Accounts = new ObservableCollection<AccountAccountingInfo>();
-            LoadAccounts = new Command<List<AccountAccountingInfo>>((accounts) =>
+            LoadAccounts = new Command<List<AccountAccountingInfo>>(async (accounts) =>
             {
                 Accounts.Clear();
+                if (accounts == null)
+                    accounts = (await (new RestClientMP()).GetAccountingInfo()).Data;
                 foreach (var account in accounts)
                 {
                     Device.BeginInvokeOnMainThread(() => Accounts.Add(account));
                 }
+                IsRefreshing = false;
             });
         }
     }

@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using xamarinJKH.Utils;
 
 using xamarinJKH.Server;
+using System.Runtime.CompilerServices;
 
 namespace xamarinJKH.Main
 {
@@ -26,6 +27,11 @@ namespace xamarinJKH.Main
 
             if(Device.RuntimePlatform==Device.Android)
             RegisterNewDevice();
+            MessagingCenter.Subscribe<Object, int>(this, "SwitchToApps", (sender, index) =>
+            {
+                this.CurrentPage = this.Children[3];
+                MessagingCenter.Send<Object, int>(this, "OpenApp", index);
+            });
         }
 
         public async void CheckAccounts()
@@ -42,6 +48,9 @@ namespace xamarinJKH.Main
             var i = Children.IndexOf(CurrentPage);
             if (i == 0)
                 MessagingCenter.Send<Object>(this, "UpdateEvents");
+
+            if (i == 3)
+                MessagingCenter.Send<Object>(this, "AutoUpdate");
         }
 
 
@@ -50,5 +59,6 @@ namespace xamarinJKH.Main
             App.token = DependencyService.Get<xamarinJKH.InterfacesIntegration.IFirebaseTokenObtainer>().GetToken();
             var response = await (new RestClientMP()).RegisterDevice();
         }
+
     }
 }

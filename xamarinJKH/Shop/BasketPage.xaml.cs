@@ -34,9 +34,9 @@ namespace xamarinJKH.Shop
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    //BackgroundColor = Color.White;
-                    ImageTop.Margin = new Thickness(0, 0, 0, 0);
-                    StackLayout.Margin = new Thickness(0, 33, 0, 0);
+                    // BackgroundColor = Color.White;
+                    // ImageTop.Margin = new Thickness(0, 0, 0, 0);
+                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
                 default:

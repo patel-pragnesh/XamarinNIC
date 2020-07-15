@@ -8,38 +8,29 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <RelativeLayout HorizontalOptions="FillAndExpand"
-                            VerticalOptions="Start">
-                <Image x:Name="ImageTop"
+            <Grid VerticalOptions="FillAndExpand">
+                <Image x:Name="ImageFon"
                        Source="ic_basket_top"
-                       VerticalOptions="Fill"
-                       HorizontalOptions="FillAndExpand"
-                       Margin="0, -26, 0 ,0"
-                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0,
-                             Constant=0}"
-                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Height,
-                             Factor=0,
-                             Constant=0}" />
-
-
-                <StackLayout x:Name="StackLayout"
-                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0,
-                             Constant=15}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Height,
-                             Factor=0,
-                             Constant=10}"
-                    Orientation="Vertical">
-                    <Label x:Name="OrderManage"
-                           Text="Подтверждение заказа"
-                           FontAttributes="Bold"
-                           FontSize="20"
-                           TextColor="White" />
+                       Margin="0,0,0,0"
+                       VerticalOptions="Start"
+                       Aspect="AspectFill"
+                       HorizontalOptions="FillAndExpand" />
+                <StackLayout Margin="0,10,0,0" VerticalOptions="FillAndExpand">
+                    <StackLayout
+                        x:Name="BackStackLayout"
+                        Orientation="Horizontal"
+                        Margin="0, 20, 0, 0"
+                        HorizontalOptions="Start">
+                        <xamarinJkh:IconView Source="ic_arrow_back"
+                                             HeightRequest="15"
+                                             Foreground="White"
+                                             HorizontalOptions="Center" />
+                        <Label
+                            Text="Подтверждение заказа "
+                            FontSize="20"
+                            TextColor="White"
+                            HorizontalOptions="Start" />
+                    </StackLayout>
                     <StackLayout
                         Orientation="Horizontal">
                         <xamarinJkh:IconView x:Name="IconViewTech"
@@ -57,114 +48,126 @@
                                Margin="-10, 10, 0, 0"
                                VerticalOptions="Center" />
                     </StackLayout>
-                    <StackLayout
-                        x:Name="BackStackLayout"
-                        Orientation="Horizontal"
-                        Margin="0, 20, 0, 0"
-                        HorizontalOptions="Start">
-                        <xamarinJkh:IconView Source="ic_arrow_back"
-                                             HeightRequest="15"
-                                             Foreground="White"
-                                             HorizontalOptions="Center" />
-                        <Label
-                            Text="Назад "
-                            FontSize="15"
-                            TextColor="White"
-                            HorizontalOptions="Start" />
-                    </StackLayout>
-                </StackLayout>
-            </RelativeLayout>
+                    <ScrollView Margin="10,10,10,10">
+                        <Frame CornerRadius="40" BackgroundColor="White">
+                            <StackLayout Orientation="Vertical">
+                                <Label HorizontalOptions="Center" Margin="10">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Заказ" FontSize="20" TextColor="Black" FontAttributes="Bold" />
+                                            <Span Text="{Binding orderNum}" FontSize="20" TextColor="{Binding hex}"
+                                                  FontAttributes="Bold" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10,0">
 
-            <Frame CornerRadius="40" BackgroundColor="White" Margin="10,-60,10,10">
-                <StackLayout Orientation="Vertical">
-                    <Label HorizontalOptions="Center" Margin="10">
-                        <Label.FormattedText>
-                            <FormattedString >
-                                <Span Text="Заказ" FontSize="20" TextColor="Black" FontAttributes="Bold" >
-                                </Span>
-                                <Span Text="{Binding orderNum}" FontSize="20" TextColor="{Binding hex}" FontAttributes="Bold" ></Span>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10,0">
-                        
-                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="-20,0,15,0"  >
-                            <Label Text="Вес:" HorizontalOptions="End"
-                           TextColor="Black"
-                                   FontAttributes="Bold"
-                           FontSize="14" />
-                            <Label HorizontalOptions="End">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span x:Name="LabelWeightBuscket" Text="0" 
-                           TextColor="Black"
-                           FontAttributes="Bold"
-                           FontSize="24"></Span>
-                                        <Span Text=" г" TextColor="Gray" FontSize="12"></Span>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </StackLayout>
-                       <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" Padding="0,0,10,10"  >
-                            <Label HorizontalOptions="Start" Text="Цена:" TextColor="Black" FontAttributes="Bold" FontSize="14" />
-                            <Label HorizontalOptions="Start">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span x:Name="LabelPriceBuscket" Text="0" 
-                           TextColor="{Binding hex}"
-                           FontAttributes="Bold"
-                           FontSize="24"></Span>
-                                        <Span Text=" руб." TextColor="Gray" FontSize="12"></Span>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </StackLayout>
-                       
-                    </StackLayout>
-                    <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="10,0"></BoxView>
-                    <Label FontSize="20" TextColor="Black"  Text="Способ оплаты:" HorizontalOptions="Center" Margin="10,10" FontAttributes="Bold"></Label>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
-                        <Frame x:Name="frameBtnCardPay" BackgroundColor="White" CornerRadius="10" BorderColor="Gray" Padding="0" MinimumWidthRequest="250" Margin="5,0" HorizontalOptions="FillAndExpand" >
-                            <Button x:Name="btnCardPay"  Text="      Картой      " FontAttributes="Bold" TextColor="Gray" 
-                                        BackgroundColor="Transparent"  FontSize="15" Clicked="btnCardPay_Clicked" HorizontalOptions="FillAndExpand" ></Button>
-                        </Frame>
-                        <Frame  x:Name="frameBtnCashPay" BackgroundColor="White" CornerRadius="10" BorderColor="{Binding hex}"  Padding="0" MinimumWidthRequest="250" Margin="5,0" HorizontalOptions="FillAndExpand" >
-                            <Button x:Name="btnCashPay" IsEnabled="True" Text="При получении" FontAttributes="Bold" FontSize="15" TextColor="{Binding hex}" 
-                                    BackgroundColor="Transparent" Clicked="btnCashPay_Clicked" HorizontalOptions="FillAndExpand"></Button>
-                        </Frame>
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand"
+                                                 Padding="-20,0,15,0">
+                                        <Label Text="Вес:" HorizontalOptions="End"
+                                               TextColor="Black"
+                                               FontAttributes="Bold"
+                                               FontSize="14" />
+                                        <Label HorizontalOptions="End">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span x:Name="LabelWeightBuscket" Text="0"
+                                                          TextColor="Black"
+                                                          FontAttributes="Bold"
+                                                          FontSize="24" />
+                                                    <Span Text=" г" TextColor="Gray" FontSize="12" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical"
+                                                 Padding="0,0,10,10">
+                                        <Label HorizontalOptions="Start" Text="Цена:" TextColor="Black"
+                                               FontAttributes="Bold"
+                                               FontSize="14" />
+                                        <Label HorizontalOptions="Start">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span x:Name="LabelPriceBuscket" Text="0"
+                                                          TextColor="{Binding hex}"
+                                                          FontAttributes="Bold"
+                                                          FontSize="24" />
+                                                    <Span Text=" руб." TextColor="Gray" FontSize="12" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
 
-                    </StackLayout>
-                    <Label x:Name="PaymentDescription0" Text="Оплата наличными при получении" FontSize="18" FontAttributes="Bold"  TextColor="Black"
-                           HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="10,5">
-                    </Label>
-                    <Label x:Name="PaymentDescription1" Text="В момент получения товара передайте курьеру код подтверждения и оплатите заказ" FontSize="14" FontAttributes="Bold" 
-                            TextColor="Black" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" LineBreakMode="WordWrap"  Margin="13,0">
-                    </Label>
-                    <Label x:Name="PaymentDescription2" Text="Электронный чек будет доступен в личном кабинете" FontSize="13" TextColor="Gray" 
-                           HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" LineBreakMode="WordWrap"  Margin="5,5">
-                    </Label>
-                    <ActivityIndicator x:Name="progress"
-                               IsRunning="true"
-                               HeightRequest="40"
-                               WidthRequest="40"
-                               Margin="0,0,0,15"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"
-                               IsVisible="False"
-                               Color="{Binding hex}" />
-                    <Frame CornerRadius="10"                                                              
-                               x:Name="FrameBtn"
-                               Padding="0"
-                               Margin="5,20">
-                        <Button x:Name="BtnCheckOut" 
-                                BackgroundColor="{Binding hex}" HorizontalOptions="FillAndExpand"
-                            VerticalOptions="FillAndExpand"                                    
-                            TextColor="White"
-                            FontAttributes="Bold"
-                            Text="Подтвердить заказ" Font="18" Clicked="BtnCheckOut_Clicked"></Button>
-                    </Frame>
+                                </StackLayout>
+                                <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand"
+                                         Margin="10,0" />
+                                <Label FontSize="20" TextColor="Black" Text="Способ оплаты:" HorizontalOptions="Center"
+                                       Margin="10,10" FontAttributes="Bold" />
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Frame x:Name="frameBtnCardPay" BackgroundColor="White" CornerRadius="10"
+                                           BorderColor="Gray" Padding="0" MinimumWidthRequest="250" Margin="5,0"
+                                           HorizontalOptions="FillAndExpand">
+                                        <Button x:Name="btnCardPay" Text="      Картой      " FontAttributes="Bold"
+                                                TextColor="Gray"
+                                                BackgroundColor="Transparent" FontSize="15"
+                                                Clicked="btnCardPay_Clicked"
+                                                HorizontalOptions="FillAndExpand" />
+                                    </Frame>
+                                    <Frame x:Name="frameBtnCashPay" BackgroundColor="White" CornerRadius="10"
+                                           BorderColor="{Binding hex}" Padding="0" MinimumWidthRequest="250"
+                                           Margin="5,0"
+                                           HorizontalOptions="FillAndExpand">
+                                        <Button x:Name="btnCashPay" IsEnabled="True" Text="При получении"
+                                                FontAttributes="Bold"
+                                                FontSize="15" TextColor="{Binding hex}"
+                                                BackgroundColor="Transparent" Clicked="btnCashPay_Clicked"
+                                                HorizontalOptions="FillAndExpand" />
+                                    </Frame>
+
+                                </StackLayout>
+                                <Label x:Name="PaymentDescription0" Text="Оплата наличными при получении" FontSize="18"
+                                       FontAttributes="Bold" TextColor="Black"
+                                       HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                                       Margin="10,5" />
+                                <Label x:Name="PaymentDescription1"
+                                       Text="В момент получения товара передайте курьеру код подтверждения и оплатите заказ"
+                                       FontSize="14" FontAttributes="Bold"
+                                       TextColor="Black" HorizontalOptions="CenterAndExpand"
+                                       HorizontalTextAlignment="Center"
+                                       LineBreakMode="WordWrap" Margin="13,0" />
+                                <Label x:Name="PaymentDescription2"
+                                       Text="Электронный чек будет доступен в личном кабинете"
+                                       FontSize="13" TextColor="Gray"
+                                       HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                                       LineBreakMode="WordWrap" Margin="5,5" />
+                                <ActivityIndicator x:Name="progress"
+                                                   IsRunning="true"
+                                                   HeightRequest="40"
+                                                   WidthRequest="40"
+                                                   Margin="0,0,0,15"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"
+                                                   IsVisible="False"
+                                                   Color="{Binding hex}" />
+                                <Frame CornerRadius="10"
+                                       x:Name="FrameBtn"
+                                       Padding="0"
+                                       Margin="5,20">
+                                    <Button x:Name="BtnCheckOut"
+                                            BackgroundColor="{Binding hex}" HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="FillAndExpand"
+                                            TextColor="White"
+                                            FontAttributes="Bold"
+                                            Text="Подтвердить заказ" Font="18" Clicked="BtnCheckOut_Clicked" />
+                                </Frame>
+                            </StackLayout>
+                        </Frame>
+                    </ScrollView>
                 </StackLayout>
-            </Frame>
+
+            </Grid>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

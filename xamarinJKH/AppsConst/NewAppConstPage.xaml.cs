@@ -118,13 +118,13 @@ namespace xamarinJKH.AppsConst
             switch (action)
             {
                 case TAKE_PHOTO:
-                    await startLoadFile(CAMERA);
+                    await getCameraFile();
                     break;
                 case TAKE_GALRY:
-                    await startLoadFile(GALERY);
+                    await GetGalaryFile();
                     break;
                 case TAKE_FILE:
-                    await startLoadFile(FILE);
+                    await PickAndShowFile(null);
                     break;
             }
         }
@@ -198,56 +198,72 @@ namespace xamarinJKH.AppsConst
 
         async Task getCameraFile()
         {
-            await CrossMedia.Current.Initialize();
-
-            if (!CrossMedia.Current.IsTakePhotoSupported || !CrossMedia.Current.IsCameraAvailable)
+            try
             {
-                await DisplayAlert("Ошибка", "Камера не доступна", "OK");
+                await CrossMedia.Current.Initialize();
 
-                return;
-            }
-
-            MediaFile file = await CrossMedia.Current.TakePhotoAsync(
-                new StoreCameraMediaOptions
+                if (!CrossMedia.Current.IsTakePhotoSupported || !CrossMedia.Current.IsCameraAvailable)
                 {
-                    SaveToAlbum = true,
-                    Directory = "Demo"
-                });
+                    await DisplayAlert("Ошибка", "Камера не доступна", "OK");
 
-            if (file == null)
-                return;
-            FileData fileData = new FileData(file.Path, getFileName(file.Path), () => file.GetStream());
-            Byteses.Add(StreamToByteArray(file.GetStream()));
-            files.Add(fileData);
-            ListViewFiles.IsVisible = true;
-            if (ListViewFiles.HeightRequest < 120)
-                ListViewFiles.HeightRequest += 30;
-            setBinding();
+                    return;
+                }
+
+                MediaFile file = await CrossMedia.Current.TakePhotoAsync(
+                    new StoreCameraMediaOptions
+                    {
+                        SaveToAlbum = true,
+                        Directory = "Demo"
+                    });
+
+                if (file == null)
+                    return;
+                FileData fileData = new FileData(file.Path, getFileName(file.Path), () => file.GetStream());
+                Byteses.Add(StreamToByteArray(file.GetStream()));
+                files.Add(fileData);
+                ListViewFiles.IsVisible = true;
+                if (ListViewFiles.HeightRequest < 120)
+                    ListViewFiles.HeightRequest += 30;
+                setBinding();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Ошибка", $"{ex.Message}\n{ex.StackTrace}", "ОК");
+            }
+            
         }
 
         async Task GetGalaryFile()
         {
-            await CrossMedia.Current.Initialize();
-
-            if (!CrossMedia.Current.IsPickPhotoSupported)
+            try
             {
-                await DisplayAlert("Ошибка", "Галерея не доступна", "OK");
+                await CrossMedia.Current.Initialize();
 
-                return;
+                if (!CrossMedia.Current.IsPickPhotoSupported)
+                {
+                    await DisplayAlert("Ошибка", "Галерея не доступна", "OK");
+
+                    return;
+                }
+
+                var file = await CrossMedia.Current.PickPhotoAsync();
+                if (file == null)
+                    return;
+                FileData fileData = new FileData(file.Path, getFileName(file.Path), () => file.GetStream());
+                Byteses.Add(StreamToByteArray(file.GetStream()));
+                files.Add(fileData);
+                ListViewFiles.IsVisible = true;
+                if (ListViewFiles.HeightRequest < 120)
+                    ListViewFiles.HeightRequest += 30;
+                setBinding();
+                //PickerLs.SelectedIndex = PikerLsItem;
+                PickerType.SelectedIndex = PikerTypeItem;
             }
-
-            var file = await CrossMedia.Current.PickPhotoAsync();
-            if (file == null)
-                return;
-            FileData fileData = new FileData(file.Path, getFileName(file.Path), () => file.GetStream());
-            Byteses.Add(StreamToByteArray(file.GetStream()));
-            files.Add(fileData);
-            ListViewFiles.IsVisible = true;
-            if (ListViewFiles.HeightRequest < 120)
-                ListViewFiles.HeightRequest += 30;
-            setBinding();
-            //PickerLs.SelectedIndex = PikerLsItem;
-            PickerType.SelectedIndex = PikerTypeItem;
+            catch (Exception ex)
+            {
+                await DisplayAlert("Ошибка", $"{ex.Message}\n{ex.StackTrace}", "ОК");
+            }
+            
         }
 
         public async Task startLoadFile(string metod)

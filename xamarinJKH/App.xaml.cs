@@ -9,6 +9,9 @@ using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 using Application = Xamarin.Forms.Application;
+using System.Linq;
+using xamarinJKH.Apps;
+using xamarinJKH.Main;
 
 namespace xamarinJKH
 {
@@ -59,19 +62,44 @@ namespace xamarinJKH
 
                 Device.BeginInvokeOnMainThread(async () =>
                 {
+                    bool displayAlert = false;
+                    string o = string.Empty;
                     if (p.Data.ContainsKey("title") && p.Data.ContainsKey("body"))
                     {
-                        bool displayAlert = await MainPage.DisplayAlert(p.Data["title"].ToString(), p.Data["body"].ToString(), "OK", "Отмена");
-                        string o = string.Empty;
-                        if (p.Data.ContainsKey("type_push"))
-                            o = p.Data["type_push"].ToString();
+                        var current_page = (App.Current.MainPage.Navigation.ModalStack.ToList()[0] as Xamarin.Forms.TabbedPage).CurrentPage;
+                        if (!(current_page is AppPage))
+                        {
+                            displayAlert = await MainPage.DisplayAlert(p.Data["title"].ToString(), p.Data["body"].ToString(), "OK", "Отмена");
+                            if (p.Data.ContainsKey("type_push"))
+                                o = p.Data["type_push"].ToString();
+                        }
+                        
                     }
-                    
-                     // if (displayAlert && o.ToLower().Equals("осс"))
-                     // {
-                     //     await MainPage.Navigation.PushModalAsync(new OSSMain());
-                     // }
-                 });
+
+                    if (displayAlert && o.ToLower().Equals("осс"))
+                    {
+                        await MainPage.Navigation.PushModalAsync(new OSSMain());
+                    }
+
+                    if (displayAlert && o.ToLower().Equals("comment"))
+                    {
+                        var tabbedpage = App.Current.MainPage.Navigation.ModalStack.ToList()[0];
+                        if (tabbedpage is xamarinJKH.Main.BottomNavigationPage)
+                        {
+                            var stack = (tabbedpage as Xamarin.Forms.TabbedPage).Children[3].Navigation.NavigationStack;
+                            if (stack.Count == 2)
+                            {
+                                var app_page = stack.ToList()[0];
+                            }
+                            else
+                            {
+                                MessagingCenter.Send<Object, int>(this, "SwitchToApps", int.Parse(p.Data["id_request"].ToString()));
+                            }
+                            
+                        }
+                        
+                    }
+                });
 
             };
             CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
