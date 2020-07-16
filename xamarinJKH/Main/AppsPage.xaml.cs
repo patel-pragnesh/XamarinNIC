@@ -329,7 +329,14 @@ namespace xamarinJKH.Main
         {
             if (Settings.Person.Accounts.Count > 0)
             {
-                await Navigation.PushAsync(new NewAppPage());
+                if (Settings.TypeApp.Count > 0)
+                {
+                    await Navigation.PushAsync(new NewAppPage());
+                }
+                else
+                {
+                    await DisplayAlert("Ошибка", "Отсутствуют типы заявок", "OK");
+                }
             }
             else
             {

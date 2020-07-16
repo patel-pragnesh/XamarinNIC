@@ -74,7 +74,7 @@ namespace xamarinJKH.Apps
         {
             base.OnAppearing();
 
-            getMessage();
+            
             TokenSource = new CancellationTokenSource();
             Token = TokenSource.Token;
             var UpdateTask = new Task(async () =>
@@ -155,6 +155,8 @@ namespace xamarinJKH.Apps
             _requestInfo = requestInfo;
             InitializeComponent();
             messages = new System.Collections.ObjectModel.ObservableCollection<RequestMessage>();
+            hex = Color.FromHex(Settings.MobileSettings.color);
+            getMessage();
             this.BindingContext = this;
 
             switch (Device.RuntimePlatform)
@@ -209,7 +211,6 @@ namespace xamarinJKH.Apps
                 await RefreshData();
             };
             StackLayoutClose.GestureRecognizers.Add(closeApp);
-            hex = Color.FromHex(Settings.MobileSettings.color);
             setText();
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }

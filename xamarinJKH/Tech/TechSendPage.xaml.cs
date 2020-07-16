@@ -41,7 +41,7 @@ namespace xamarinJKH.Tech
 
             UkName.Text = Settings.MobileSettings.main_name;
             StackLayoutApp.IsVisible = isVisibleApp;
-            if (Settings.Person.IsDispatcher)
+            if (Settings.Person.IsDispatcher || !Settings.AppIsVisible)
             {
                 StackLayoutApp.IsVisible = false;
             }
@@ -58,7 +58,21 @@ namespace xamarinJKH.Tech
             {
                 if (isVisibleApp)
                 {
-                    await Navigation.PushAsync(new NewAppPage());
+                    if (Settings.Person.Accounts.Count > 0)
+                    {
+                        if (Settings.TypeApp.Count > 0)
+                        {
+                            await Navigation.PushAsync(new NewAppPage());
+                        }
+                        else
+                        {
+                            await DisplayAlert("Ошибка", "Отсутствуют типы заявок", "OK");
+                        }
+                    }
+                    else
+                    {
+                        await DisplayAlert("Ошибка", "Лицевые счета не подключены", "OK");
+                    }
                 }
             };
             FrameBtnApp.GestureRecognizers.Add(appOpen);

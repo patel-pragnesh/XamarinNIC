@@ -21,7 +21,7 @@ using Firebase.Iid;
 
 namespace xamarinJKH.Droid
 {
-    [Activity(Label = "УК Сибирский Альянс" /*"УК Сибирский Альянс"*/, Icon = "@drawable/icon_login", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "Дом 24" /*"УК Сибирский Альянс"*/, Icon = "@drawable/icon_login", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity 
     {
         protected override async void OnCreate(Bundle savedInstanceState)

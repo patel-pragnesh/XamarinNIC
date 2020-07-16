@@ -151,7 +151,7 @@ namespace xamarinJKH
                 // }
                 
                 UkName.Text = Settings.MobileSettings.main_name;
-
+                Version.Text ="ver " + Xamarin.Essentials.AppInfo.VersionString;
                 hex = Color.FromHex(Settings.MobileSettings.color);
                 IconViewLogin.Foreground = hex;
                 IconViewPass.Foreground = hex;

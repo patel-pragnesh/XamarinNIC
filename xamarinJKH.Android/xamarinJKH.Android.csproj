@@ -155,7 +155,6 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icon_login.png" />
     <AndroidResource Include="Resources\drawable\ic_additional_top.png" />
     <AndroidResource Include="Resources\drawable\ic_add_file.png" />
     <AndroidResource Include="Resources\drawable\ic_add_ident.png" />
@@ -212,6 +211,7 @@
     <AndroidResource Include="Resources\drawable\ic_status_wait.png" />
     <AndroidResource Include="Resources\drawable\ic_time.png" />
     <AndroidResource Include="Resources\drawable\ic_top_event_back.png" />
+    <AndroidResource Include="Resources\drawable\icon_login.png" />
     <AndroidResource Include="Resources\drawable\up_arrow.png" />
     <AndroidResource Include="Resources\layout\Tabbar.xml" />
     <AndroidResource Include="Resources\layout\Toolbar.xml" />

@@ -24,14 +24,23 @@
             <StackLayout Grid.RowSpan="2">
                 <Image Source="top_fon_login"
                        HorizontalOptions="Center" />
-                <Label
-                    x:Name="EntryLabel"
-                    Text="Вход"
-                    FontAttributes="Bold"
-                    FontSize="27"
+                <StackLayout
                     Margin="20, -120, 0, 0"
-                    TextColor="White"
-                    HorizontalOptions="Start" />
+                    Orientation="Horizontal">
+                    <Label
+                        x:Name="EntryLabel"
+                        Text="Вход"
+                        FontAttributes="Bold"
+                        FontSize="27"
+                        TextColor="White"
+                        HorizontalOptions="Start" />
+                    <Label x:Name="Version"
+                           HorizontalOptions="EndAndExpand"
+                           VerticalOptions="Center"
+                           Margin="0,0,20,0"
+                           TextColor="White"
+                           Text="ver 2.1" />
+                </StackLayout>
                 <!-- Place new controls here -->
                 <ScrollView x:Name="StackLayoutContent"
                             IsVisible="False">
@@ -52,7 +61,7 @@
                                TextColor="Black"
                                HorizontalOptions="Center" />
 
-                        <customRenderers:MaterialFrame Elevation="20"  CornerRadius="50"
+                        <customRenderers:MaterialFrame Elevation="20" CornerRadius="50"
                                                        Margin="15, 15, 15, 15"
                                                        BackgroundColor="White"
                                                        Padding="10" HasShadow="True">
@@ -111,8 +120,7 @@
                                                HorizontalTextAlignment="Center"
                                                TextColor="#A2A2A2"
                                                HorizontalOptions="FillAndExpand"
-                                               Keyboard="Email">
-                                        </Entry>
+                                               Keyboard="Email" />
                                     </StackLayout>
 
                                     <StackLayout

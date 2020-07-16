@@ -21,7 +21,7 @@
             <local:CountersPage Title="Показания" IconImageSource="ic_counters" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Заявки" IconImageSource="ic_apps" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage x:Name="AppPage"  Title="Заявки" IconImageSource="ic_apps" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
             <local:AppsPage Title="Заявки" IconImageSource="ic_apps" />
         </x:Arguments>
