@@ -48,6 +48,13 @@ namespace xamarinJKH
             var startRegForm = new TapGestureRecognizer();
             startRegForm.Tapped += async (s, e) => { await Navigation.PushModalAsync(new RegistrForm(this)); };
             RegistLabel.GestureRecognizers.Add(startRegForm);
+            
+            var forgotPass = new TapGestureRecognizer();
+            forgotPass.Tapped += async (s, e) =>
+            {
+                await DisplayAlert("Информация", "Для восстановления пароля, пройдите регистрацию повторно", "OK");
+            };
+            ForgotPass.GestureRecognizers.Add(forgotPass);
 
             var authConst = new TapGestureRecognizer();
             authConst.Tapped += ChoiceAuth;

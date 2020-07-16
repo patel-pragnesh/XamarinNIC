@@ -338,11 +338,11 @@ namespace xamarinJKH.Counters
 
         void SetTextAndColor()
         {
-            if (meter.Resource.ToLower().Contains("холодное"))
+            if (meter.Resource.ToLower().Contains("холодное") || meter.Resource.ToLower().Contains("хвс"))
             {
                 img.Source = ImageSource.FromFile("ic_cold_water");
             }
-            else if (meter.Resource.ToLower().Contains("горячее"))
+            else if (meter.Resource.ToLower().Contains("горячее") || meter.Resource.ToLower().Contains("гвс"))
             {
                 img.Source = ImageSource.FromFile("ic_heat_water");
             }
