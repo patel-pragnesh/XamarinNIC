@@ -7,6 +7,26 @@
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.Additional.AdditionalPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--<Style TargetType="Label">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                        Value="Gray" />
+
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
            <Grid>
@@ -109,6 +129,49 @@
                     <StackLayout
                         Margin="10, 10, 10, 0"
                         VerticalOptions="FillAndExpand">
+                        <Frame CornerRadius="40"
+                               Margin="10,0,-50,-70"
+                               BackgroundColor="#494949"
+                               Padding="20, 20, 80, 70">
+                            <CollectionView ItemsSource="{Binding Groups}"
+                                        HeightRequest="30"
+                                        
+                                        SelectionMode="Single"
+                                        SelectionChanged="GroupChanged">
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="30"/>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding}"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Start"
+                                           TextColor="#FF0713"
+                                           FontSize="Medium"
+                                           Margin="5">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="CommonStates">
+                                                    <VisualState x:Name="Normal">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="TextColor" Value="White"/>
+                                                            <Setter Property="BackgroundColor" Value="#494949"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                    <VisualState x:Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="TextColor" Value="{Binding MainColor}"/>
+                                                            <Setter Property="BackgroundColor" Value="#494949"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                        </Label>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Frame>
+                        
                         <ListView x:Name="additionalList"
                                   HasUnevenRows="True"
                                   SeparatorVisibility="None"

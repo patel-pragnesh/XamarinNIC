@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace xamarinJKH.Additional
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AdditionalPage : ContentPage
     {
-        public List<AdditionalService> Additional { get; set; }
+        public ObservableCollection<AdditionalService> Additional { get; set; }
         private bool _isRefreshing = false;
         private RestClientMP server = new RestClientMP();
 
@@ -33,6 +34,17 @@ namespace xamarinJKH.Additional
             }
         }
 
+        public ObservableCollection<string> Groups { get; set; }
+        string _mainColor;
+        public string MainColor
+        {
+            get => _mainColor;
+            set
+            {
+                _mainColor = value;
+                OnPropertyChanged(nameof(MainColor));
+            }
+        }
         public ICommand RefreshCommand
         {
             get
@@ -98,7 +110,7 @@ namespace xamarinJKH.Additional
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
@@ -107,37 +119,55 @@ namespace xamarinJKH.Additional
                 {
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
-                    if (phoneDialer.CanMakePhoneCall) 
+                    if (phoneDialer.CanMakePhoneCall)
                         phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
                 }
 
-            
+
             };
             LabelPhone.GestureRecognizers.Add(call);
-            SetText();
-            SetAdditional();
-            this.BindingContext = this;
             additionalList.BackgroundColor = Color.Transparent;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+            MainColor = "#" + Settings.MobileSettings.color;
+            Additional = new ObservableCollection<AdditionalService>();
+            Groups = new ObservableCollection<string>();
+            this.BindingContext = this;
         }
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
-            
+            LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
+
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            SetText();
+            SetAdditional();
         }
 
         void SetAdditional()
         {
-            Additional = new List<AdditionalService>();
+            Groups.Clear();
+            Additional.Clear();
             foreach (var each in Settings.EventBlockData.AdditionalServices)
             {
                 if (each.HasLogo)
-                {
                     Additional.Add(each);
-                }
             }
+
+            var groups = Additional.GroupBy(x => x.Group).Select(x => x.First()).Select(y => y.Group).ToList();
+
+            foreach (var group in groups)
+            {
+                Groups.Add(group);
+            }
+
         }
+
+
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
@@ -148,7 +178,17 @@ namespace xamarinJKH.Additional
             }
             else
             {
-                await Navigation.PushAsync (new ShopPage(select));
+                await Navigation.PushAsync(new ShopPage(select));
+            }
+        }
+
+        private void GroupChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string group = e.CurrentSelection[0] as string;
+            Additional.Clear();
+            foreach (var service in Settings.EventBlockData.AdditionalServices.Where(x => x.Group == group))
+            {
+                Additional.Add(service);
             }
         }
     }
