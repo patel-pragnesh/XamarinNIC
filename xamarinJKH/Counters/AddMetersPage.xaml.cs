@@ -33,6 +33,7 @@ namespace xamarinJKH.Counters
 
         decimal PrevValue;
         bool SetPrev;
+        int DecimalPoint { get; set; }
         public AddMetersPage(MeterInfo meter, List<MeterInfo> meters, CountersPage countersPage, decimal counterThisMonth = 0, decimal counterPrevMonth = 0)
         {            
             InitializeComponent();
@@ -144,6 +145,31 @@ namespace xamarinJKH.Counters
             d6.Focused += Entry_Focused;
             d7.Focused += Entry_Focused;
             d8.Focused += Entry_Focused;
+
+            DecimalPoint = 2;
+            switch (DecimalPoint)
+            {
+                case 0: Divider.IsVisible = false;
+                    (d6.Parent.Parent as VisualElement).IsVisible = (d7.Parent.Parent as VisualElement).IsVisible = (d8.Parent.Parent as VisualElement).IsVisible = false;
+                    d6.IsVisible = d7.IsVisible = d8.IsVisible = false;
+                    break;
+                case 1: Divider.IsVisible = true;
+                    (d7.Parent.Parent as VisualElement).IsVisible = (d8.Parent.Parent as VisualElement).IsVisible = false;
+                    (d6.Parent.Parent as VisualElement).IsVisible = d6.IsVisible = true;
+                    d7.IsVisible = d8.IsVisible = false;
+                    break;
+                case 2: Divider.IsVisible = true;
+                    (d6.Parent.Parent as VisualElement).IsVisible = d6.IsVisible = (d7.Parent.Parent as VisualElement).IsVisible = d7.IsVisible = true;
+                    (d8.Parent.Parent as VisualElement).IsVisible = false;
+                    d8.IsVisible = false;
+                    break;
+                case 3: Divider.IsVisible = true;
+                    (d6.Parent.Parent as VisualElement).IsVisible = 
+                        d6.IsVisible = (d7.Parent.Parent as VisualElement).IsVisible = 
+                        d7.IsVisible = (d8.Parent.Parent as VisualElement).IsVisible = d8.IsVisible = true;
+                    break;
+                    
+            }
         }
 
         private async void Entry_Focused(object sender, FocusEventArgs e)
@@ -574,7 +600,10 @@ namespace xamarinJKH.Counters
                 }
 
                 d6.Unfocus();
-                d6.Focus();
+                if (DecimalPoint == 1)
+                {
+                    d6.Focus();
+                }
             });
         }
         private void d6_Completed(object sender, EventArgs e)
@@ -595,7 +624,8 @@ namespace xamarinJKH.Counters
                 }
 
                 d7.Unfocus();
-                d7.Focus();
+                if (DecimalPoint == 2)
+                    d7.Focus();
             });
         }
         private void d7_Completed(object sender, EventArgs e)
@@ -616,7 +646,8 @@ namespace xamarinJKH.Counters
                 }
 
                 d8.Unfocus();
-                d8.Focus();
+                if (DecimalPoint == 3)
+                    d8.Focus();
             });
         }
 
