@@ -490,11 +490,11 @@ namespace xamarinJKH.Main
                     SetEditButton();
                 }
 
-                if (Resource.ToLower().Contains("холодное"))
+                if (Resource.ToLower().Contains("холодное") || Resource.ToLower().Contains("хвс"))
                 {
                     img.Source = ImageSource.FromFile("ic_cold_water");
                 }
-                else if (Resource.ToLower().Contains("горячее"))
+                else if (Resource.ToLower().Contains("горячее") || Resource.ToLower().Contains("гвс"))
                 {
                     img.Source = ImageSource.FromFile("ic_heat_water");
                 }

@@ -58,9 +58,7 @@ namespace xamarinJKH
                     break;
             }
             NavigationPage.SetHasNavigationBar(this, false);
-            var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => {     await Navigation.PushModalAsync(new TechSendPage(false)); };
-            FrameTech.GestureRecognizers.Add(techSend);
+        
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += BackClick;
             BackStackLayout.GestureRecognizers.Add(backClick);
@@ -118,6 +116,10 @@ namespace xamarinJKH
         private void NextReg(object sender, EventArgs e)
         {
             FirstStepReg();
+        } 
+        private async void Tech(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new TechSendPage(false));
         }
 
         private void setColors()

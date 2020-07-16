@@ -59,7 +59,7 @@ namespace xamarinJKH.Pays
             {
                 Accounts = info.Data;
                 additionalList.ItemsSource = null;
-                additionalList.ItemsSource = Accounts[Picker.SelectedIndex].Payments;
+                additionalList.ItemsSource = setPays(Accounts[Picker.SelectedIndex]);
             }
             else
             {

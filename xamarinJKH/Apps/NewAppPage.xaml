@@ -202,7 +202,7 @@
                                                                FontSize="18"
                                                                VerticalOptions="FillAndExpand"
                                                                Text=""
-                                                               WidthRequest="100"
+                                                               WidthRequest="300"
                                                                AutoSize="TextChanges"
                                                                Placeholder="Введите описание заявки..."
                                                                TextColor="#A2A2A2"
