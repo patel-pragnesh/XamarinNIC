@@ -24,6 +24,17 @@ namespace xamarinJKH.Additional
         private bool _isRefreshing = false;
         private RestClientMP server = new RestClientMP();
 
+        string _selectedGroup;
+        public string SelectedGroup
+        {
+            get => _selectedGroup;
+            set
+            {
+                _selectedGroup = value;
+                OnPropertyChanged(nameof(SelectedGroup));
+            }
+        }
+
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -164,7 +175,7 @@ namespace xamarinJKH.Additional
             {
                 Groups.Add(group);
             }
-
+            SelectedGroup = Groups[0];
         }
 
 
