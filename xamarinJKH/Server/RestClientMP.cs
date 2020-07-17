@@ -109,6 +109,8 @@ namespace xamarinJKH.Server
 
         public const string PAY_ONLINE = "PayOnline/GetPayLink"; // Метод возвращает ссылку на оплату
 
+        public const string SEND_CODE = "RequestsDispatcher/CheckPaidRequestCompleteCode";
+
         /// <summary>
         /// Аунтификация сотрудника
         /// </summary>
@@ -1842,7 +1844,16 @@ namespace xamarinJKH.Server
             return response.Data;
         }
 
-
+        public async Task<bool> SendCodeRequestForpaidService(PaidRequestCodeModel data)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(SEND_CODE, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(data);
+            var response = await restClientMp.ExecuteTaskAsync<PaidRequestResponse>(restRequest);
+            return response.Data.IsCorrect;
+        }
 
 
     }
