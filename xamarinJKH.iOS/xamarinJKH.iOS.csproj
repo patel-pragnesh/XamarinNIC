@@ -469,4 +469,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\icon_login_24.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_send_code.png" />
+  </ItemGroup>
 </Project>
