@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<abstractions:DialogView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:abstractions="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
+             xmlns:xamarinJKH="clr-namespace:xamarinJKH"
+             x:Class="xamarinJKH.DialogViews.EnterCodeDialogView">
+    <Frame CornerRadius="40">
+        <StackLayout WidthRequest="250" Spacing="30">
+            <Entry Placeholder="Код"
+                   Keyboard="Numeric"
+                   x:Name="Code"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"/>
+            <Button Text="Отправить"
+                    CornerRadius="20"
+                    TextColor="White"
+                    Command="{Binding SendCode}"
+                    CommandParameter="{Binding Path=Text, Source={x:Reference Code}}"
+                    BackgroundColor="{Binding MainColor}"/>
+        </StackLayout>
+    </Frame>
+</abstractions:DialogView>
