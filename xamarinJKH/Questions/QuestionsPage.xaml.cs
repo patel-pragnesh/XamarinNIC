@@ -102,7 +102,13 @@ namespace xamarinJKH.Questions
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
-                   //BackgroundColor = Color.White;
+                    if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
+                    {
+                        labelShowClosed.FontSize = 14;
+                        
+                    }
+                    
+
                     break;
                 default:
                     break;

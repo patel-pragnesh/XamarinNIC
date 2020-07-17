@@ -116,7 +116,7 @@
                 <StackLayout VerticalOptions="FillAndExpand"
                              Spacing="15">
                     <StackLayout Orientation="Horizontal">
-                        <Label
+                        <Label x:Name="kvitLabel2"
                             Text="Квитанции"
                             TextColor="Black"
                             FontAttributes="Bold"

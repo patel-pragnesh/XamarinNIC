@@ -50,6 +50,11 @@ namespace xamarinJKH.Pays
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
+                    {
+                        LabelHistory.FontSize = 10;
+                        LabelSaldos.FontSize = 10;
+                    }
                     break;
                 default:
                     break;
@@ -186,8 +191,8 @@ namespace xamarinJKH.Pays
             string sumText = EntrySum.Text.Equals("") ? "0" : EntrySum.Text;
             string totalSum = sumText;
 
-            if (isComission)
-            {
+            // if (isComission)
+            // {
                 ComissionModel result = await server.GetSumWithComission(sumText);
                 if (result.Error == null && !result.Comission.Equals("0"))
                 {
@@ -195,7 +200,7 @@ namespace xamarinJKH.Pays
                     LabelCommision.Text = "Комиссия " + result.Comission + " руб.";
                     totalSum = result.TotalSum.ToString();
                 }
-            }
+            // }
 
             formatted.Spans.Add(new Span
             {

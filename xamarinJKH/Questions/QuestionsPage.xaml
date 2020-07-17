@@ -155,11 +155,11 @@
                                         PropertyChanged="chage"
                                         x:Name="SwitchQuest" />
 
-                                    <Label Text="Показать пройденные опросы"
+                                    <Label x:Name="labelShowClosed" Text="Показать пройденные опросы"
                                            FontAttributes="Bold"
                                            FontSize="17"
                                            TextColor="White"
-                                           HorizontalOptions="Center" />
+                                           HorizontalOptions="Center" VerticalOptions="Center" />
                                 </StackLayout>
                             </pancakeView:PancakeView>
                         </StackLayout>

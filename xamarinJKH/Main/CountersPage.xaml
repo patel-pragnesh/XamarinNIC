@@ -166,6 +166,8 @@
                           RefreshCommand="{Binding RefreshCommand}"
                           IsRefreshing="{Binding IsRefreshing}"
                           ItemTapped="OnItemTapped"
+                          BackgroundColor="Transparent"
+                          CachingStrategy="RecycleElement"
                           ItemsSource="{Binding _meterInfo}">
                     <ListView.Header>
 

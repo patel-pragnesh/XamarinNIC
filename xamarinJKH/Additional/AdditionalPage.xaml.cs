@@ -35,16 +35,6 @@ namespace xamarinJKH.Additional
         }
 
         public ObservableCollection<string> Groups { get; set; }
-        string _selectedGroup;
-        public string SelectedGroup
-        {
-            get => _selectedGroup;
-            set
-            {
-                _selectedGroup = value;
-                OnPropertyChanged("SelectedGroup");
-            }
-        }
         string _mainColor;
         public string MainColor
         {
@@ -164,7 +154,7 @@ namespace xamarinJKH.Additional
             Additional.Clear();
             foreach (var each in Settings.EventBlockData.AdditionalServices)
             {
-                if (each.HasLogo)
+                if (each.HasLogo && !each.ShowInAdBlock.ToLower().Equals("не отображать"))
                     Additional.Add(each);
             }
 
@@ -174,7 +164,6 @@ namespace xamarinJKH.Additional
             {
                 Groups.Add(group);
             }
-            SelectedGroup = Groups[0];
 
         }
 
@@ -199,7 +188,8 @@ namespace xamarinJKH.Additional
             Additional.Clear();
             foreach (var service in Settings.EventBlockData.AdditionalServices.Where(x => x.Group == group))
             {
-                Additional.Add(service);
+                if (service.HasLogo && !service.ShowInAdBlock.ToLower().Equals("не отображать"))
+                    Additional.Add(service);
             }
         }
     }
