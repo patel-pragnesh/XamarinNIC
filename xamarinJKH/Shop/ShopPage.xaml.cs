@@ -90,6 +90,16 @@ namespace xamarinJKH.Shop
 
             SetText();
             GetGoods();
+            MessagingCenter.Subscribe<Object, Dictionary<string, Goods>>(this, "UpdateGoods", (sender, goods) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    this.Goodset = goods;
+                    SetPriceAndWeight();
+                    updateGoods(position);
+                });
+                
+            });
         }
 
         async void GetGoods()
@@ -784,6 +794,9 @@ namespace xamarinJKH.Shop
             //content.CornerRadius = 30;
 
             StackLayout stackLayout = new StackLayout();
+            GoodsLayot.Content = null;
+            SetCategories();
+            return;
 
             foreach (var each in Keys[i].Goodses)
             {
