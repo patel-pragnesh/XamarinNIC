@@ -2,7 +2,7 @@
 
 namespace xamarinJKH.Server.RequestModel
 {
-    public class Goods
+    public class Goods:xamarinJKH.ViewModels.BaseViewModel
     {
         public int ID { get; set; }
         public string Name { get; set; }
@@ -11,7 +11,16 @@ namespace xamarinJKH.Server.RequestModel
         public decimal? Weight { get; set; }
         public bool HasImage { get; set; }
         public decimal? Price { get; set; }
-        public int ColBusket = 0;
+        int _colBasket;
+        public int ColBusket
+        {
+            get => _colBasket;
+            set
+            {
+                _colBasket = value;
+                OnPropertyChanged("ColBusket");
+            }
+        }
         public decimal priceBusket = 0;
         public decimal weightBusket = 0;
         
