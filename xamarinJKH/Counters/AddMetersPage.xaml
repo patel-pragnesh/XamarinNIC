@@ -170,7 +170,7 @@
                            BackgroundColor="White"
                            Padding="0">
 
-                    <StackLayout
+                    <StackLayout x:Name="meterRootStack"
                             Margin="10, 10, 10, 10">
 
                         <Label x:Name="meterReadingName" Text="Новые показания"

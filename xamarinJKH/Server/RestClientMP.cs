@@ -94,8 +94,6 @@ namespace xamarinJKH.Server
         public const string GET_OSS = "OSS/GetOSS"; // Получить список ОСС. 
         public const string SAVE_ANSWER_OSS = "OSS/SaveAnswer"; // Сохранить ответ на вопрос.
         public const string FINISH_OSS = "OSS/CompleteVote"; // Завершить голосование 
-        public const string GET_OSS_BASE = "OSS/List"; // Получить список ОСС (краткая информация). 
-        public const string GET_OSS_BY_ID = "OSS/OssById"; // Возвращает данные по осс с указанным id. Результат вызова – OSS (см. выше) 
 
         public const string
             SET_ACQUAINTED_OSS =
@@ -1163,46 +1161,6 @@ namespace xamarinJKH.Server
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 return new ItemsList<OSS>()
-                {
-                    Error = $"Ошибка {response.StatusDescription}"
-                };
-            }
-
-            return response.Data;
-        } 
-        
-        
-        public async Task<ItemsList<OSSBase>> GetOss()
-        {
-            RestClient restClientMp = new RestClient(SERVER_ADDR);
-            RestRequest restRequest = new RestRequest(GET_OSS_BASE, Method.GET);
-            restRequest.RequestFormat = DataFormat.Json;
-            restRequest.AddHeader("acx", Settings.Person.acx);
-         
-            var response = await restClientMp.ExecuteTaskAsync<ItemsList<OSSBase>>(restRequest);
-            // Проверяем статус
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                return new ItemsList<OSSBase>()
-                {
-                    Error = $"Ошибка {response.StatusDescription}"
-                };
-            }
-
-            return response.Data;
-        }
-        public async Task<OSS> GetOssById(string id)
-        {
-            RestClient restClientMp = new RestClient(SERVER_ADDR);
-            RestRequest restRequest = new RestRequest(GET_OSS_BY_ID+"/"+id, Method.GET);
-            restRequest.RequestFormat = DataFormat.Json;
-            restRequest.AddHeader("acx", Settings.Person.acx);
-         
-            var response = await restClientMp.ExecuteTaskAsync<OSS>(restRequest);
-            // Проверяем статус
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                return new OSS()
                 {
                     Error = $"Ошибка {response.StatusDescription}"
                 };

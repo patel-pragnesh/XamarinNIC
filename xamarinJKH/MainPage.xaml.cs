@@ -151,7 +151,9 @@ namespace xamarinJKH
             Settings.MobileSettings = await server.MobileAppSettings("4.02", "0");
             if (Settings.MobileSettings.Error == null)
             {
-                CheckForUpdate();
+                if (Device.RuntimePlatform == Device.Android)
+                    CheckForUpdate();
+
                 // if (RestClientMP.SERVER_ADDR.Contains("dgservicnew"))
                 // {
                 //     Settings.MobileSettings.main_name = "ООО \"ДОМЖИЛСЕРВИС\"";

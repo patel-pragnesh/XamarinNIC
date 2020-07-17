@@ -171,7 +171,8 @@ namespace xamarinJKH.Main
             }
 
             countersList.BackgroundColor = Color.Transparent;
-            countersList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+            if(Device.RuntimePlatform!=Device.iOS)
+                countersList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
         protected override void OnAppearing()

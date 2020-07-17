@@ -329,7 +329,7 @@
                                     Text="Квитанции"
                                     FontSize="12"
                                     Padding="0"
-                                    Margin="-5,0,0,0"
+                                    
                                     FontAttributes="Bold"
                                     TextColor="White"
                                     Clicked="openSaldo"
