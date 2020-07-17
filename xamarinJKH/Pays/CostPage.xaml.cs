@@ -186,8 +186,8 @@ namespace xamarinJKH.Pays
             string sumText = EntrySum.Text.Equals("") ? "0" : EntrySum.Text;
             string totalSum = sumText;
 
-            if (isComission)
-            {
+            // if (isComission)
+            // {
                 ComissionModel result = await server.GetSumWithComission(sumText);
                 if (result.Error == null && !result.Comission.Equals("0"))
                 {
@@ -195,7 +195,7 @@ namespace xamarinJKH.Pays
                     LabelCommision.Text = "Комиссия " + result.Comission + " руб.";
                     totalSum = result.TotalSum.ToString();
                 }
-            }
+            // }
 
             formatted.Spans.Add(new Span
             {
