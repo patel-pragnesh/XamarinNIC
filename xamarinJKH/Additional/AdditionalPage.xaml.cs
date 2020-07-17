@@ -35,6 +35,16 @@ namespace xamarinJKH.Additional
         }
 
         public ObservableCollection<string> Groups { get; set; }
+        string _selectedGroup;
+        public string SelectedGroup
+        {
+            get => _selectedGroup;
+            set
+            {
+                _selectedGroup = value;
+                OnPropertyChanged("SelectedGroup");
+            }
+        }
         string _mainColor;
         public string MainColor
         {
@@ -164,6 +174,7 @@ namespace xamarinJKH.Additional
             {
                 Groups.Add(group);
             }
+            SelectedGroup = Groups[0];
 
         }
 
