@@ -146,7 +146,7 @@ namespace xamarinJKH.Counters
             d7.Focused += Entry_Focused;
             d8.Focused += Entry_Focused;
 
-            DecimalPoint = 2;
+            DecimalPoint = meter.NumberOfDecimalPlaces;
             switch (DecimalPoint)
             {
                 case 0: Divider.IsVisible = false;
@@ -336,15 +336,15 @@ namespace xamarinJKH.Counters
                 var p8 = -1;
 
                 if (int.TryParse(d1.Text,out p1) && int.TryParse(d2.Text, out p2) && int.TryParse(d3.Text, out p3) 
-                    && int.TryParse(d4.Text, out p4) && int.TryParse(d5.Text, out p5) && int.TryParse(d6.Text, out p6)
-                    && int.TryParse(d7.Text, out p7) && int.TryParse(d8.Text, out p8))
+                    && int.TryParse(d4.Text, out p4) && int.TryParse(d5.Text, out p5) && int.TryParse(d6.Text == null ? "0" : d6.Text, out p6)
+                    && int.TryParse(d7.Text == null ? "0" : d7.Text, out p7) && int.TryParse(d8.Text == null ? "0" : d8.Text, out p8))
                 {
                     count += d1.Text != "0" ? d1.Text : "";
                     count += d2.Text != "0" ? d2.Text : "";
                     count += d3.Text != "0" ? d3.Text : "";
                     count += d4.Text != "0" ? d4.Text : "";
-                    count += d5.Text+ "." ;
-                    count += d6.Text;
+                    count += d5.Text + (this.DecimalPoint == 0 ? "" : ".");
+                    count += d6.Text != "0" ? d6.Text : "";
                     count += d7.Text != "0" ? d7.Text : "";
                     count += d8.Text != "0" ? d8.Text : "";
                     
