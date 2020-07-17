@@ -135,7 +135,7 @@
                                Padding="20, 20, 80, 70">
                             <CollectionView ItemsSource="{Binding Groups}"
                                         HeightRequest="30"
-                                        
+                                        SelectedItem="{Binding SelectedGroup}"
                                         SelectionMode="Single"
                                         SelectionChanged="GroupChanged">
                                 <CollectionView.ItemsLayout>

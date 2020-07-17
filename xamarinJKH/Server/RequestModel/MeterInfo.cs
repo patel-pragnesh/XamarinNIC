@@ -20,6 +20,8 @@ namespace xamarinJKH.Server.RequestModel
         public string Address { get; set; }
         // Уникальный номер
         public string UniqueNum { get; set; }
+        // Количество знаков после запятой
+        public int NumberOfDecimalPlaces { get; set; }
         // Показания
         public List<MeterValueInfo> Values { get; set; }
     }

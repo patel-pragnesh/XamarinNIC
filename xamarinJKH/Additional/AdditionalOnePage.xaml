@@ -116,7 +116,12 @@
                                HorizontalOptions="Start"
                                TextColor="Black"
                                FontSize="15"
-                               Text="23.05.2020" />
+                               Text="23.05.2020" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ClickCommand}"
+                                                      CommandParameter="{Binding adress}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Label x:Name="LabelDesc"
                                HorizontalOptions="Start"
                                Margin="0, 10, 0, 0"

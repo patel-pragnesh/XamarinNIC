@@ -181,6 +181,11 @@ namespace xamarinJKH.AppsConst
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
+        protected async void SendCode(object sender, EventArgs args)
+        {
+            await AiForms.Dialogs.Dialog.Instance.ShowAsync(new EnterCodeDialogView(this._requestInfo.ID.ToString()));
+        }
+
         protected override bool OnBackButtonPressed()
         {
             if (close)

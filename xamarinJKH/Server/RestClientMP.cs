@@ -14,10 +14,10 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-        public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
         //public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
+         public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
         // public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_yegkh"; //Легкая жизнъ
@@ -94,7 +94,8 @@ namespace xamarinJKH.Server
         public const string GET_OSS = "OSS/GetOSS"; // Получить список ОСС. 
         public const string SAVE_ANSWER_OSS = "OSS/SaveAnswer"; // Сохранить ответ на вопрос.
         public const string FINISH_OSS = "OSS/CompleteVote"; // Завершить голосование 
-
+        public const string GET_OSS_BASE = "OSS/List"; // Получить список ОСС (краткая информация). 
+        public const string GET_OSS_BY_ID = "OSS/OssById"; // Возвращает данные по осс с указанным id. Результат вызова – OSS (см. выше)
         public const string
             SET_ACQUAINTED_OSS =
                 "OSS/SetAcquainted"; // Записывает в лог, что участник голосования ознакомился с повесткой собрания 
@@ -107,6 +108,8 @@ namespace xamarinJKH.Server
         public const string OSS_SAVE_PIN = "OSS/ValidateCheckCode"; // Проверка кода из смс и установка пин-кода аккаунта (если проверка пройдена).
 
         public const string PAY_ONLINE = "PayOnline/GetPayLink"; // Метод возвращает ссылку на оплату
+
+        public const string SEND_CODE = "RequestsDispatcher/CheckPaidRequestCompleteCode";
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -1169,6 +1172,46 @@ namespace xamarinJKH.Server
             return response.Data;
         }
 
+        
+        
+        public async Task<ItemsList<OSSBase>> GetOss()
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_OSS_BASE, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+         
+            var response = await restClientMp.ExecuteTaskAsync<ItemsList<OSSBase>>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new ItemsList<OSSBase>()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        public async Task<OSS> GetOssById(string id)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_OSS_BY_ID+"/"+id, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+         
+            var response = await restClientMp.ExecuteTaskAsync<OSS>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new OSS()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
         /// <summary>
         /// Проверка пин-кода аккаунта.
         /// </summary>
@@ -1801,7 +1844,16 @@ namespace xamarinJKH.Server
             return response.Data;
         }
 
-
+        public async Task<bool> SendCodeRequestForpaidService(PaidRequestCodeModel data)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(SEND_CODE, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(data);
+            var response = await restClientMp.ExecuteTaskAsync<PaidRequestResponse>(restRequest);
+            return response.Data.IsCorrect;
+        }
 
 
     }

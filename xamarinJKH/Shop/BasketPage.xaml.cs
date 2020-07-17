@@ -101,8 +101,14 @@ namespace xamarinJKH.Shop
 
         protected override bool OnBackButtonPressed()
         {
-            UpdateShop();
             return base.OnBackButtonPressed();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            MessagingCenter.Send<Object, Dictionary<string, Goods>>(this, "UpdateGoods", Goodset);
         }
 
         Color colorFromMobileSettings = Color.FromHex(Settings.MobileSettings.color);

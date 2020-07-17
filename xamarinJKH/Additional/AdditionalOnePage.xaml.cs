@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Plugin.Messaging;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Apps;
@@ -21,7 +23,20 @@ namespace xamarinJKH.Additional
     {
         private AdditionalService additionalService;
         private RestClientMP _server = new RestClientMP();
+        public  string adress { get; set; }
+        public ICommand ClickCommand => new Command<string>(async (url) =>
+        {
+            try
+            {
+                await Launcher.OpenAsync("https://" + url.Replace("https://", "").Replace("http://", ""));
 
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                await DisplayAlert("Ошибка", "Не удалось открыть ссылку", "OK");
+            }
+        });
         public AdditionalOnePage(AdditionalService additionalService)
         {
             this.additionalService = additionalService;
@@ -71,6 +86,7 @@ namespace xamarinJKH.Additional
             LabelPhone.GestureRecognizers.Add(call);
             
             SetText();
+            BindingContext = this;
         }
 
         async void SetText()
@@ -90,6 +106,7 @@ namespace xamarinJKH.Additional
             if (additionalService.Address != null && !additionalService.Address.Equals(""))
             {
                 LabelAdress.Text = additionalService.Address;
+                adress = additionalService.Address;
             }
             else
             {

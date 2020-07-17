@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
+using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
@@ -123,7 +124,7 @@ namespace xamarinJKH
             ButtonArchive.IsEnabled = false;
 
             //получаем данные от сервера по ОСС
-            var result = await rc.GetOss(0);
+            var result = await rc.GetOss();
             //var result1 = await rc.GetOss(1);
             //var haveP =result.Data.Where(_ => _.HasProtocolFile).ToList();
 
@@ -201,7 +202,7 @@ namespace xamarinJKH
                         if (Convert.ToDateTime(oss.DateStart, new CultureInfo("ru-RU")) < DateTime.Now && Convert.ToDateTime(oss.DateEnd, new CultureInfo("ru-RU")) > DateTime.Now)
                         {
                             //статус - идет голосование
-                            if (!oss.Questions.Any(_ => string.IsNullOrWhiteSpace(_.Answer)))
+                            if (oss.IsComplete)
                             {
                                 // Ваш голос учтен - страница личных результатов голосования
                                 statusInt = 2;//желтый(стоит сейчас) или какой еще цвет?
@@ -262,7 +263,7 @@ namespace xamarinJKH
                         FormattedString text = new FormattedString();
                         Span t1 = new Span() { TextColor =Color.FromHex("#545454"), FontSize=14, Text="Инициатор собрания: "};
                         text.Spans.Add(t1);
-                        Span t2 = new Span() { TextColor = Color.Black, FontSize = 14, Text = oss.Author };
+                        Span t2 = new Span() { TextColor = Color.Black, FontSize = 14, Text = oss.InitiatorNames };
                         text.Spans.Add(t2);
                         initiator.FormattedText = text;
 
@@ -375,15 +376,16 @@ namespace xamarinJKH
                         buttonFrame.Content = iconViewArrowButton;
 
                         TapGestureRecognizer buttonFrametapGesture = new TapGestureRecognizer();
-                        buttonFrametapGesture.Tapped += async (s, e) => { 
-
+                        buttonFrametapGesture.Tapped += async (s, e) =>
+                        {
+                            OSS result = await rc.GetOssById(oss.ID.ToString());
                             switch (statusInt){
                                 case 0: 
                                 case 1:
                                    var setAcquintedResult = await rc.SetAcquainted(oss.ID);
                                     if(string.IsNullOrWhiteSpace( setAcquintedResult.Error) )
                                     {
-                                        OpenPage(new OSSInfo(oss));
+                                        OpenPage(new OSSInfo(result));
                                     }
                                     else
                                     {
@@ -393,14 +395,14 @@ namespace xamarinJKH
 
                                     break;
                                 case 3: //"Итоги голосования"/"завершено" - открываем форму общих результатов голосования
-                                     OpenPage(new OSSTotalVotingResult(oss));
+                                     OpenPage(new OSSTotalVotingResult(result));
 
                                     break;
                                 case 2: //"Ваш голос учтен"  - открываем форму личных результатов голосования
-                                     OpenPage(new OSSPersonalVotingResult(oss));
+                                     OpenPage(new OSSPersonalVotingResult(result));
 
                                     break;
-                                default: OpenPage(new OSSInfo(oss));
+                                default: OpenPage(new OSSInfo(result));
                                     return;
                             } 
                             //await Navigation.PushAsync(new OSSInfo(oss)); 

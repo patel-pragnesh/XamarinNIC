@@ -410,6 +410,7 @@ namespace xamarinJKH.Main
             frameBtn.IsVisible = false;
             var stack = (View as Frame).Content as StackLayout;
             stack.Children.RemoveAt(stack.Children.Count - 2);
+            stack.Children.RemoveAt(stack.Children.Count - 1);
 
             stack.Children.Add(new Label()
             {

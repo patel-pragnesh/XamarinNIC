@@ -91,7 +91,7 @@
                                 HeightRequest="100"
                                 Padding="20,0,20,0">
                         <StackLayout Orientation="Horizontal"
-                                 WidthRequest="300"
+                                 WidthRequest="350"
                                  HeightRequest="100">
                         
                             <StackLayout
@@ -166,7 +166,23 @@
                                        FontAttributes="Bold"
                                        FontSize="10" />
                             </StackLayout>
-                        
+
+                            <StackLayout
+                                Margin="0,5,0,0"
+                                VerticalOptions="Center"
+                                HorizontalOptions="EndAndExpand">
+                                <Image Source="ic_send_code"
+                                       HeightRequest="25"
+                                       WidthRequest="25" />
+                                <Label Text="Отправить код"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       FontSize="10" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SendCode"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+
                         </StackLayout>
                     </ScrollView>
                 </Frame>
