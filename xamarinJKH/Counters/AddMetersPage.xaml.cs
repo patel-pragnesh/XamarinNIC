@@ -53,6 +53,13 @@ namespace xamarinJKH.Counters
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
+                    //для iphone5,5s,se,5c
+                    if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
+                    {
+                        CounterLayout.Margin = new Thickness(5, 0);
+                        meterRootStack.Margin = new Thickness(5);
+                    }
+
                     //BackgroundColor = Color.White;
                     // ImageFon.Margin = new Thickness(0, 0, 0, 0);
                     // StackLayout.Margin = new Thickness(0, 33, 0, 0);

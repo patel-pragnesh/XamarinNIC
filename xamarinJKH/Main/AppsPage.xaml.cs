@@ -111,6 +111,9 @@ namespace xamarinJKH.Main
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+
+            hex = Color.FromHex(Settings.MobileSettings.color);
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -127,6 +130,7 @@ namespace xamarinJKH.Main
                 case Device.iOS:
                     FrameBtnAdd.IsVisible = false;
                     FrameBtnAddIos.IsVisible = true;
+                    FrameBtnAddIos.BackgroundColor = hex;
                     //BackgroundColor = Color.White;
                     // ImageFon.Margin = new Thickness(0, 0, 0, 0);
                     // StackLayout.Margin = new Thickness(0, 33, 0, 0);
@@ -181,7 +185,6 @@ namespace xamarinJKH.Main
             var addClickIOS = new TapGestureRecognizer();
             addClickIOS.Tapped += async (s, e) => { startNewApp(FrameBtnAddIos, null); };
             FrameBtnAddIos.GestureRecognizers.Add(addClickIOS);
-            hex = Color.FromHex(Settings.MobileSettings.color);
             SetText();
             //getApps();
             additionalList.BackgroundColor = Color.Transparent;
