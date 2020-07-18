@@ -48,7 +48,12 @@ namespace xamarinJKH
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     //BackgroundColor = Color.White;
                     OSSList.Padding = new Thickness(10,0);
+                    var dw = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width;
+                    if(dw>800)
                     OSSList.Margin = new Thickness(-10, -80, -10, 0);
+                    else
+                        OSSList.Margin = new Thickness(-10, -60, -10, 0);
+
                     break;
                 default:
                     break;
