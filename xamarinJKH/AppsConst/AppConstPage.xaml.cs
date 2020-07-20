@@ -41,6 +41,16 @@ namespace xamarinJKH.AppsConst
         const string CAMERA = "camera";
         const string GALERY = "galery";
         const string FILE = "file";
+        bool isPaid;
+        public bool IsRequestPaid
+        {
+            get => isPaid;
+            set
+            {
+                isPaid = value;
+                OnPropertyChanged(nameof(IsRequestPaid));
+            }
+        }
 
         public bool IsRefreshing
         {
@@ -478,6 +488,7 @@ namespace xamarinJKH.AppsConst
                 Settings.DateUniq = "";
                 messages = request.Messages;
                 LabelNumber.Text = "№ " + request.RequestNumber;
+                IsRequestPaid = request.IsPaid;
                 this.BindingContext = this;
             }
             else
