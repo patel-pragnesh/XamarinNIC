@@ -84,8 +84,21 @@
             </StackLayout>
             <StackLayout
                 Orientation="Horizontal">
+                <Label TextColor="Black"
+                      FontSize="15"
+                      HorizontalOptions="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Статус заказа: "
+                                      FontAttributes="Bold"/>
+                                <Span Text="{Binding _Request.Status}"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-                <xamarinJkh:IconView x:Name="IconViewStatus"
+                <!--<xamarinJkh:IconView x:Name="IconViewStatus"
                                      Source="{Binding SourceApp}"
                                      HeightRequest="17"
                                      WidthRequest="17"
@@ -97,7 +110,7 @@
                     TextColor="Black"
                     FontSize="15"
                     HorizontalOptions="Start"
-                    Text="{Binding _Request.Status}" />
+                    Text="{Binding _Request.Status}" />-->
             </StackLayout>
             
         </StackLayout>
