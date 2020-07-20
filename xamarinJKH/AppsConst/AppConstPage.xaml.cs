@@ -279,13 +279,15 @@ namespace xamarinJKH.AppsConst
                             new StoreCameraMediaOptions
                             {
                                 SaveToAlbum = false,
-                                Directory = "Demo"
+                                Directory = "Demo",
+                                PhotoSize = PhotoSize.Medium,
                             });
                         if (file != null)
                             await startLoadFile(CAMERA, file);
                     }
                     catch (Exception e)
                     {
+                        await DisplayAlert("Ошибка", $"{e.Message}\n{e.StackTrace}", "OK");
                         Console.WriteLine(e);
                     }
                     break;
@@ -299,13 +301,14 @@ namespace xamarinJKH.AppsConst
 
                     try
                     {
-                        file = await CrossMedia.Current.PickPhotoAsync();
+                        file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions { PhotoSize = PhotoSize.Medium });
                         if (file == null)
                             return;
                         await startLoadFile(GALERY, file);
                     }
                     catch (Exception e)
                     {
+                        await DisplayAlert("Ошибка", $"{e.Message}\n{e.StackTrace}", "OK");
                         Console.WriteLine(e);
                     }
                    
@@ -333,30 +336,39 @@ namespace xamarinJKH.AppsConst
 
         public async Task startLoadFile(string metod, MediaFile file)
         {
-            // Loading settings
-            Configurations.LoadingConfig = new LoadingConfig
+            try
             {
-                IndicatorColor = hex,
-                OverlayColor = Color.Black,
-                Opacity = 0.8,
-                DefaultMessage = "Отправка файла",
-            };
-
-            await Loading.Instance.StartAsync(async progress =>
-            {
-                switch (metod)
+                // Loading settings
+                Configurations.LoadingConfig = new LoadingConfig
                 {
-                    case CAMERA:
-                        await getCameraFile(file);
-                        break;
-                    case GALERY:
-                        await GetGalaryFile(file);
-                        break;
-                    case FILE:
-                        await PickAndShowFile(null);
-                        break;
-                }
-            });
+                    IndicatorColor = hex,
+                    OverlayColor = Color.Black,
+                    Opacity = 0.8,
+                    DefaultMessage = "Отправка файла",
+                };
+
+                await Loading.Instance.StartAsync(async progress =>
+                {
+                    switch (metod)
+                    {
+                        case CAMERA:
+                            await getCameraFile(file);
+                            break;
+                        case GALERY:
+                            await GetGalaryFile(file);
+                            break;
+                        case FILE:
+                            await PickAndShowFile(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert(null, $"{ex.Message}\n{ex.StackTrace}", "OK");
+                Console.WriteLine(ex.Message);
+            }
+            
         }
 
         async Task GetGalaryFile(MediaFile file)
