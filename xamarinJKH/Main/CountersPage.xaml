@@ -180,6 +180,7 @@
                                 UniqueNum="{Binding FactoryNumber}"
                                 CheckupDate="{Binding LastCheckupDate}"
                                 RecheckInterval="{Binding RecheckInterval}"
+                                DecimalPoint="{Binding NumberOfDecimalPlaces}"
                                 Values="{Binding Values}" />
                         </DataTemplate>
 
