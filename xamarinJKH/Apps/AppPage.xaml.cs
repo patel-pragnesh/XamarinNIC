@@ -114,8 +114,8 @@ namespace xamarinJKH.Apps
             {
 
             }
+            MessagingCenter.Send<Object>(this, "AutoUpdate");
             base.OnDisappearing();
-
         }
 
         private async Task RefreshData()
@@ -230,6 +230,7 @@ namespace xamarinJKH.Apps
             }
         }
 
+        
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             RequestMessage select = e.Item as RequestMessage;

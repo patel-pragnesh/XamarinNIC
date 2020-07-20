@@ -46,8 +46,15 @@ namespace xamarinJKH.Main
                 return new Command(async () =>
                 {
                     IsRefreshing = true;
-                    CancellationTokenSource.Cancel();
-                    CancellationTokenSource.Dispose();
+                    try
+                    {
+                        CancellationTokenSource.Cancel();
+                        CancellationTokenSource.Dispose();
+                    }
+                    catch
+                    {
+
+                    }
 
                     //await RefreshData();
                     StartAutoUpdate();
@@ -56,19 +63,23 @@ namespace xamarinJKH.Main
                 });
             }
         }
+        Task UpdateTask;
 
         void StartAutoUpdate()
         {
             CancellationTokenSource = new CancellationTokenSource();
             this.CancellationToken = CancellationTokenSource.Token;
-            Task.Run(async () =>
+            UpdateTask = null;
+            UpdateTask = new Task(async () =>
             {
                 while (!this.CancellationToken.IsCancellationRequested)
                 {
                     await RefreshData();
                     await Task.Delay(TimeSpan.FromSeconds(5));
                 }
+                return;
             }, this.CancellationToken);
+            UpdateTask.Start();
         }
 
         static bool inUpdateNow = false;
@@ -231,6 +242,7 @@ namespace xamarinJKH.Main
 
                 CancellationTokenSource.Cancel();
                 CancellationTokenSource.Dispose();
+                
             }
             catch
             {
@@ -241,8 +253,6 @@ namespace xamarinJKH.Main
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            //new Task(SyncSetup).Start(); // This could be an await'd task if need be
         }
 
         async void SyncSetup()
