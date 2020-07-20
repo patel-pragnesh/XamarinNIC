@@ -138,41 +138,42 @@
                                         SelectedItem="{Binding SelectedGroup}"
                                         SelectionMode="Single"
                                         SelectionChanged="GroupChanged">
-                                <CollectionView.ItemsLayout>
-                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="30"/>
-                                </CollectionView.ItemsLayout>
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Label Text="{Binding}"
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="30"/>
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Text="{Binding}"
                                            VerticalTextAlignment="Center"
                                            HorizontalTextAlignment="Start"
                                            TextColor="#FF0713"
                                            FontSize="Medium"
                                            Margin="5">
-                                            <VisualStateManager.VisualStateGroups>
-                                                <VisualStateGroup x:Name="CommonStates">
-                                                    <VisualState x:Name="Normal">
-                                                        <VisualState.Setters>
-                                                            <Setter Property="TextColor" Value="White"/>
-                                                            <Setter Property="BackgroundColor" Value="#494949"/>
-                                                        </VisualState.Setters>
-                                                    </VisualState>
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="TextColor" Value="White"/>
+                                                                <Setter Property="BackgroundColor" Value="#494949"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
 
-                                                    <VisualState x:Name="Selected">
-                                                        <VisualState.Setters>
-                                                            <Setter Property="TextColor" Value="{Binding MainColor}"/>
-                                                            <Setter Property="BackgroundColor" Value="#494949"/>
-                                                        </VisualState.Setters>
-                                                    </VisualState>
-                                                </VisualStateGroup>
-                                            </VisualStateManager.VisualStateGroups>
-                                        </Label>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
+                                                        <VisualState x:Name="Selected">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="TextColor" Value="{Binding MainColor}"/>
+                                                                <Setter Property="BackgroundColor" Value="#494949"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                            </Label>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+
                         </Frame>
-                        
-                        <ListView x:Name="additionalList"
+                        <Grid>
+                            <ListView x:Name="additionalList"
                                   HasUnevenRows="True"
                                   SeparatorVisibility="None"
                                   VerticalScrollBarVisibility="Never"
@@ -183,18 +184,24 @@
                                   ItemTapped="OnItemTapped"
                                   CachingStrategy="RecycleElement"
                                   ItemsSource="{Binding Additional}">
-                            <ListView.ItemTemplate>
+                                <ListView.ItemTemplate>
 
-                                <DataTemplate>
+                                    <DataTemplate>
 
-                                    <additional:AdditionalCell
+                                        <additional:AdditionalCell
                                         ImageWidth="45"
                                         ImageHeight="160"
                                         Detail="{Binding ID}" />
-                                </DataTemplate>
+                                    </DataTemplate>
 
-                            </ListView.ItemTemplate>
-                        </ListView>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ActivityIndicator Color="{Binding MainColor}"
+                                                   IsRunning="{Binding IsBusy}"
+                                                   IsEnabled="{Binding IsBusy}"
+                                                   IsVisible="{Binding IsBusy}"/>
+                        </Grid>
+                        
                     </StackLayout>
                 </StackLayout>
             </Grid>
