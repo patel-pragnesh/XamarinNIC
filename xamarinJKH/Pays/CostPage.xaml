@@ -322,6 +322,7 @@
                             HorizontalOptions="Center">
                             <xamarinJkh:IconView
                                 Source="ic_saldos"
+                                x:Name="IconViewSaldos"
                                 Foreground="{Binding hex}"
                                 HeightRequest="24"
                                 WidthRequest="20" />

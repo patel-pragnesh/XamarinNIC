@@ -13,6 +13,7 @@
              xmlns:controls="clr-namespace:xamarinJKH.CustomRenderers"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:converters="clr-namespace:xamarinJKH.Converters"
+             xmlns:behaviors="clr-namespace:xamarinJKH.InterfacesIntegration"
              x:Class="xamarinJKH.Counters.AddMetersPage">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -196,7 +197,11 @@
                                                             <RowDefinition Height="0.85*"></RowDefinition>
                                                             <RowDefinition Height="0.15*"></RowDefinition>
                                                         </Grid.RowDefinitions>
-                                                        <xamarinJkh:CounterEntryNew x:Name="d1" TextChanged="d1_Completed" ></xamarinJkh:CounterEntryNew>
+                                                        <xamarinJkh:CounterEntryNew x:Name="d1" TextChanged="d1_Completed" >
+                                                            <Entry.Behaviors>
+                                                                <behaviors:EntryLengthValidatorBehavior MaxLength="1" />
+                                                            </Entry.Behaviors>
+                                                        </xamarinJkh:CounterEntryNew>
                                                         <xamarinJkh:BoxForCounter/>
                                                     </Grid>
                                                 </pancake:PancakeView>
@@ -210,7 +215,11 @@
                                                             <RowDefinition Height="0.85*"></RowDefinition>
                                                             <RowDefinition Height="0.15*"></RowDefinition>
                                                         </Grid.RowDefinitions>
-                                                        <xamarinJkh:CounterEntryNew x:Name="d2" TextChanged="d2_Completed" ></xamarinJkh:CounterEntryNew>
+                                                        <xamarinJkh:CounterEntryNew x:Name="d2" TextChanged="d2_Completed" >
+                                                            <Entry.Behaviors>
+                                                                <behaviors:EntryLengthValidatorBehavior MaxLength="1" />
+                                                            </Entry.Behaviors>
+                                                        </xamarinJkh:CounterEntryNew>
                                                         <xamarinJkh:BoxForCounter/>
                                                     </Grid>
                                                 </pancake:PancakeView>
@@ -224,7 +233,11 @@
                                                             <RowDefinition Height="0.85*"></RowDefinition>
                                                             <RowDefinition Height="0.15*"></RowDefinition>
                                                         </Grid.RowDefinitions>
-                                                        <xamarinJkh:CounterEntryNew x:Name="d3" TextChanged="d3_Completed" ></xamarinJkh:CounterEntryNew>
+                                                        <xamarinJkh:CounterEntryNew x:Name="d3" TextChanged="d3_Completed" >
+                                                            <Entry.Behaviors>
+                                                                <behaviors:EntryLengthValidatorBehavior MaxLength="1" />
+                                                            </Entry.Behaviors>
+                                                        </xamarinJkh:CounterEntryNew>
                                                         <xamarinJkh:BoxForCounter/>
                                                     </Grid>
                                                 </pancake:PancakeView>
@@ -238,7 +251,11 @@
                                                             <RowDefinition Height="0.85*"></RowDefinition>
                                                             <RowDefinition Height="0.15*"></RowDefinition>
                                                         </Grid.RowDefinitions>
-                                                        <xamarinJkh:CounterEntryNew x:Name="d4" TextChanged="d4_Completed" ></xamarinJkh:CounterEntryNew>
+                                                        <xamarinJkh:CounterEntryNew x:Name="d4" TextChanged="d4_Completed" >
+                                                            <Entry.Behaviors>
+                                                                <behaviors:EntryLengthValidatorBehavior MaxLength="1" />
+                                                            </Entry.Behaviors>
+                                                        </xamarinJkh:CounterEntryNew>
                                                         <xamarinJkh:BoxForCounter/>
                                                     </Grid>
                                                 </pancake:PancakeView>
@@ -252,7 +269,11 @@
                                                             <RowDefinition Height="0.85*"></RowDefinition>
                                                             <RowDefinition Height="0.15*"></RowDefinition>
                                                         </Grid.RowDefinitions>
-                                                        <xamarinJkh:CounterEntryNew x:Name="d5" TextChanged="d5_Completed" ></xamarinJkh:CounterEntryNew>
+                                                        <xamarinJkh:CounterEntryNew x:Name="d5" TextChanged="d5_Completed" >
+                                                            <Entry.Behaviors>
+                                                                <behaviors:EntryLengthValidatorBehavior MaxLength="1" />
+                                                            </Entry.Behaviors>
+                                                        </xamarinJkh:CounterEntryNew>
                                                         <xamarinJkh:BoxForCounter/>
                                                     </Grid>
                                                 </pancake:PancakeView>
@@ -280,7 +301,11 @@
                                                             <RowDefinition Height="0.85*"></RowDefinition>
                                                             <RowDefinition Height="0.15*"></RowDefinition>
                                                         </Grid.RowDefinitions>
-                                                        <xamarinJkh:CounterEntryNew x:Name="d6" TextChanged="d6_Completed" ></xamarinJkh:CounterEntryNew>
+                                                        <xamarinJkh:CounterEntryNew x:Name="d6" TextChanged="d6_Completed" >
+                                                            <Entry.Behaviors>
+                                                                <behaviors:EntryLengthValidatorBehavior MaxLength="1" />
+                                                            </Entry.Behaviors>
+                                                        </xamarinJkh:CounterEntryNew>
                                                         <xamarinJkh:BoxForCounter/>
                                                     </Grid>
                                                 </pancake:PancakeView>
@@ -294,7 +319,11 @@
                                                             <RowDefinition Height="0.85*"></RowDefinition>
                                                             <RowDefinition Height="0.15*"></RowDefinition>
                                                         </Grid.RowDefinitions>
-                                                        <xamarinJkh:CounterEntryNew x:Name="d7" TextChanged="d7_Completed" ></xamarinJkh:CounterEntryNew>
+                                                        <xamarinJkh:CounterEntryNew x:Name="d7" TextChanged="d7_Completed" >
+                                                            <Entry.Behaviors>
+                                                                <behaviors:EntryLengthValidatorBehavior MaxLength="1" />
+                                                            </Entry.Behaviors>
+                                                        </xamarinJkh:CounterEntryNew>
                                                         <xamarinJkh:BoxForCounter/>
                                                     </Grid>
                                                 </pancake:PancakeView>
@@ -308,7 +337,11 @@
                                                             <RowDefinition Height="0.85*"></RowDefinition>
                                                             <RowDefinition Height="0.15*"></RowDefinition>
                                                         </Grid.RowDefinitions>
-                                                        <xamarinJkh:CounterEntryNew x:Name="d8" TextChanged="d8_Completed" ></xamarinJkh:CounterEntryNew>
+                                                        <xamarinJkh:CounterEntryNew x:Name="d8" TextChanged="d8_Completed" >
+                                                            <Entry.Behaviors>
+                                                                <behaviors:EntryLengthValidatorBehavior MaxLength="1" />
+                                                            </Entry.Behaviors>
+                                                        </xamarinJkh:CounterEntryNew>
                                                         <xamarinJkh:BoxForCounter/>
                                                     </Grid>
                                                 </pancake:PancakeView>

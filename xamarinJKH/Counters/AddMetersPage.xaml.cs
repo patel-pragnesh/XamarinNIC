@@ -183,7 +183,10 @@ namespace xamarinJKH.Counters
         {            
             Device.BeginInvokeOnMainThread(async () =>
             {                
+                if(Device.RuntimePlatform==Device.Android)
                 await Task.Delay(100);
+                else
+                    await Task.Delay(900);
                 var entry = (CounterEntryNew)sender;
                 if (!string.IsNullOrWhiteSpace(entry.Text))
                 {
