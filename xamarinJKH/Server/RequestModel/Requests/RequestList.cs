@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace xamarinJKH.Server.RequestModel
 {
@@ -19,6 +20,10 @@ namespace xamarinJKH.Server.RequestModel
         public int StatusID { get; set; }
         public bool IsClosed { get; set; }
         public bool IsPerformed { get; set; }
+        public string PaidRequestStatus { get; set; } //- статус заказа
+        public string PaidRequestCompleteCode { get; set; }//  - код подтверждения(подтягивается только для жителя)
+        public bool IsPaidByUser { get; set; }
+        public bool IsPaid { get; set; }
     }
 
     public class RequestContent : RequestInfo
@@ -27,7 +32,6 @@ namespace xamarinJKH.Server.RequestModel
         public string Address { get; set; }
         public int TypeID { get; set; }
         public string TypeName { get; set; }
-
         public List<RequestMessage> Messages { get; set; }
         public List<RequestFile> Files { get; set; }
         public string Error { get; set; }
