@@ -46,9 +46,9 @@ namespace xamarinJKH.Droid
             ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera);
             ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadExternalStorage);
             //CreateNotificationChannel();
+            FirebasePushNotificationManager.ProcessIntent(this, Intent);
+            Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
             LoadApplication(new App());
-            FirebasePushNotificationManager.ProcessIntent(this,Intent);
-             Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
 
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
@@ -100,6 +100,25 @@ namespace xamarinJKH.Droid
         {
             base.OnNewIntent(intent);
             FirebasePushNotificationManager.ProcessIntent(this, intent);
+        }
+
+        protected override void OnPause()
+        {
+            if (AiForms.Dialogs.Dialog.Instance == null)
+            {
+                AiForms.Dialogs.Dialogs.Init(this.ApplicationContext);
+            }
+            base.OnPause();
+
+        }
+
+        protected override void OnResume()
+        {
+            if (AiForms.Dialogs.Dialog.Instance == null || AiForms.Dialogs.Loading.Instance == null) 
+            {
+                AiForms.Dialogs.Dialogs.Init(this.ApplicationContext);
+            }
+            base.OnResume();
         }
     }
 }
