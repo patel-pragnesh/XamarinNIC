@@ -364,10 +364,18 @@ namespace xamarinJKH.Main
             BindableProperty.Create("Values", typeof(List<MeterValueInfo>), typeof(MetersThreeCell),
                 new List<MeterValueInfo>());
 
+        public static readonly BindableProperty DecimalPointProperty =
+            BindableProperty.Create("DecimalPoint", typeof(int), typeof(MetersThreeCell), 3);
+
         public List<MeterValueInfo> Values
         {
             get { return (List<MeterValueInfo>) GetValue(ValuesProperty); }
             set { SetValue(ValuesProperty, value); }
+        }
+        public int DecimalPoint
+        {
+            get => Convert.ToInt32(GetValue(DecimalPointProperty));
+            set => SetValue(DecimalPointProperty, value);
         }
 
         public string Resource
@@ -430,6 +438,19 @@ namespace xamarinJKH.Main
             };
             stack.Children.Add(editLabel);
         }
+        string GetFormat()
+        {
+            var dec = DecimalPoint;
+            switch (dec)
+            {
+                case 0: return "{0}";
+                case 1: return "{0.0}";
+                case 2: return "{0.00}";
+                case 3: return "{0.000}";
+                
+            }
+            return "{0.000}";
+        }
 
         protected override async void OnBindingContextChanged()
         {
@@ -451,34 +472,35 @@ namespace xamarinJKH.Main
                 number.Text = UniqueNum;
                 checkup_date.Text = CheckupDate;
                 recheckup.Text = RecheckInterval + " лет";
+                GetFormat();
                 if (Values.Count == 1)
                 {
                     counterDate1.Text = Values[0].Period;
                     count1.Text =
-                        String.Format("{0:0.000}", Values[0].Value); //.ToString(CultureInfo.InvariantCulture);
+                        String.Format(GetFormat(), Values[0].Value); //.ToString(CultureInfo.InvariantCulture);
                     count2Stack.IsVisible = count3Stack.IsVisible = false;
                 }
                 else if (Values.Count == 2)
                 {
                     counterDate1.Text = Values[0].Period;
                     count1.Text =
-                        String.Format("{0:0.000}", Values[0].Value); //.ToString(CultureInfo.InvariantCulture);
+                        String.Format(GetFormat(), Values[0].Value); //.ToString(CultureInfo.InvariantCulture);
                     counterDate2.Text = Values[1].Period;
                     count2.Text =
-                        String.Format("{0:0.000}", Values[1].Value); //.ToString(CultureInfo.InvariantCulture);
+                        String.Format(GetFormat(), Values[1].Value); //.ToString(CultureInfo.InvariantCulture);
                     count3Stack.IsVisible = false;
                 }
                 else if (Values.Count == 3)
                 {
                     counterDate1.Text = Values[0].Period;
                     count1.Text =
-                        String.Format("{0:0.000}", Values[0].Value); //.ToString(CultureInfo.InvariantCulture);
+                        String.Format(GetFormat(), Values[0].Value); //.ToString(CultureInfo.InvariantCulture);
                     counterDate2.Text = Values[1].Period;
                     count2.Text =
-                        String.Format("{0:0.000}", Values[1].Value); //.ToString(CultureInfo.InvariantCulture);
+                        String.Format(GetFormat(), Values[1].Value); //.ToString(CultureInfo.InvariantCulture);
                     counterDate3.Text = Values[2].Period;
                     count3.Text =
-                        String.Format("{0:0.000}", Values[2].Value); //.ToString(CultureInfo.InvariantCulture);
+                        String.Format(GetFormat(), Values[2].Value); //.ToString(CultureInfo.InvariantCulture);
                 }
                 else if (Values.Count == 0)
                 {

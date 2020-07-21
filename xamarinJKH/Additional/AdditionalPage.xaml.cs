@@ -71,6 +71,17 @@ namespace xamarinJKH.Additional
             }
         }
 
+        bool _busy;
+        public bool IsBusy
+        {
+            get => _busy;
+            set
+            {
+                _busy = value;
+                OnPropertyChanged("IsBusy");
+            }
+        }
+
         private async Task RefreshData()
         {
             Settings.EventBlockData = await server.GetEventBlockData();
@@ -116,7 +127,6 @@ namespace xamarinJKH.Additional
                 default:
                     break;
             }
-
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
@@ -151,10 +161,13 @@ namespace xamarinJKH.Additional
 
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
-
+            //AiForms.Dialogs.Loading.Instance.Show();
+            IsBusy = true;
+            
+            await Task.Delay(TimeSpan.FromMilliseconds(200));
             SetText();
             SetAdditional();
         }
@@ -166,16 +179,33 @@ namespace xamarinJKH.Additional
             foreach (var each in Settings.EventBlockData.AdditionalServices)
             {
                 if (each.HasLogo && !each.ShowInAdBlock.ToLower().Equals("не отображать"))
-                    Additional.Add(each);
+                {
+                    if (SelectedGroup != null)
+                    {
+                        if (each.Group == SelectedGroup)
+                        {
+                            Additional.Add(each);
+                        }
+                    }
+                    else
+                    {
+                        Additional.Add(each);
+                    }
+                }
             }
 
-            var groups = Additional.GroupBy(x => x.Group).Select(x => x.First()).Select(y => y.Group).ToList();
+            var groups = Settings.EventBlockData.AdditionalServices.GroupBy(x => x.Group).Select(x => x.First()).Select(y => y.Group).ToList();
 
             foreach (var group in groups)
             {
                 Groups.Add(group);
             }
-            SelectedGroup = Groups[0];
+            if (SelectedGroup == null)
+            {
+                SelectedGroup = Groups[0];
+            }
+            IsBusy = false;
+            //AiForms.Dialogs.Loading.Instance.Hide();
         }
 
 

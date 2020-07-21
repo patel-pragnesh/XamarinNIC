@@ -55,6 +55,7 @@ namespace xamarinJKH.DialogViews
                     if (success)
                     {
                         dialog.CloseDialog();
+                        MessagingCenter.Send<Object>(this, "UpdateEvents");
                     }
                     else
                     {

@@ -82,6 +82,7 @@ namespace xamarinJKH.Main
                         LabelHistory.FontSize = 10;
                         LabelSaldos.FontSize = 10;
                     }
+                    IconViewSaldos.Margin = new Thickness(0, 0, 5, 0);
                     break;
                 default:
                     break;
