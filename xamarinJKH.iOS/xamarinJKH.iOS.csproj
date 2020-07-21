@@ -387,6 +387,7 @@
     <BundleResource Include="Resources\ic_time.png" />
     <BundleResource Include="Resources\ic_top_event_back.png" />
     <BundleResource Include="Resources\ic_top_event.png" />
+    <BundleResource Include="Resources\pay.png" />
     <BundleResource Include="Resources\top_fon_login.png" />
     <BundleResource Include="Resources\ic_background_pay.png" />
     <BundleResource Include="Resources\ic_profile_email.png" />

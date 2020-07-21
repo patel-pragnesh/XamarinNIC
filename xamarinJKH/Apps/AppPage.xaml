@@ -84,47 +84,57 @@
                        Margin="0, 0, 15, -95"
                        HorizontalOptions="End"
                        BackgroundColor="#B5B5B5"
-                       Padding="25,0,25,80">
-                    <StackLayout Orientation="Horizontal"
-                                 WidthRequest="100"
-                                 HeightRequest="100">
-                        <StackLayout
-                            Margin="0,5,0,0"
-                            x:Name="StackLayoutInfo"
-                            VerticalOptions="Center"
-                            HorizontalOptions="StartAndExpand">
-                            <Image Source="ic_info_app1"
-                                   HeightRequest="25" />
-                            <Label Text="Инфо"
-                                   TextColor="White"
-                                   FontAttributes="Bold"
-                                   FontSize="10" />
+                       Padding="20,0,20,80">
+                    <ScrollView
+                        x:Name="ScrollView"
+                        Orientation="Horizontal"
+                                WidthRequest="125"
+                                HeightRequest="100">
+                        <StackLayout Orientation="Horizontal"
+                                     >
+                            <StackLayout
+                                Margin="0,5,0,0"
+                                x:Name="StackLayoutInfo"
+                                VerticalOptions="Center"
+                                HorizontalOptions="StartAndExpand">
+                                <Image Source="ic_info_app1"
+                                       HeightRequest="25" />
+                                <Label Text="Инфо"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       FontSize="10" />
+                            </StackLayout>
+                            
+                            <StackLayout
+                                Margin="0,5,0,0"
+                                VerticalOptions="Center"
+                                x:Name="StackLayoutClose"
+                                HorizontalOptions="EndAndExpand">
+                                <Image Source="ic_close_app1"
+                                       HeightRequest="25"
+                                       WidthRequest="25" />
+                                <Label Text="Закрыть"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       FontSize="10" />
+                            </StackLayout> 
+                            <StackLayout
+                                IsVisible="{Binding isPayd}"
+                                Margin="0,5,0,0"
+                                VerticalOptions="Center"
+                                x:Name="StackLayoutPlay"
+                                HorizontalOptions="EndAndExpand">
+                                <Image Source="pay"
+                                       HeightRequest="25"
+                                       WidthRequest="25" />
+                                <Label Text="Оплатить"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       FontSize="10" />
+                            </StackLayout>
+                           
                         </StackLayout>
-                        <!-- <StackLayout -->
-                        <!--     Margin="10,15,0,0" -->
-                        <!--     VerticalOptions="Center" -->
-                        <!--     HorizontalOptions="CenterAndExpand"> -->
-                        <!--     <Image Source="ic_files_app1" -->
-                        <!--            HeightRequest="25" /> -->
-                        <!--     <Label Text="Файлы" -->
-                        <!--            TextColor="White" -->
-                        <!--            FontAttributes="Bold" -->
-                        <!--            FontSize="10" /> -->
-                        <!-- </StackLayout> -->
-                        <StackLayout
-                            Margin="0,5,0,0"
-                            VerticalOptions="Center"
-                            x:Name="StackLayoutClose"
-                            HorizontalOptions="EndAndExpand">
-                            <Image Source="ic_close_app1"
-                                   HeightRequest="25"
-                                   WidthRequest="25" />
-                            <Label Text="Закрыть"
-                                   TextColor="White"
-                                   FontAttributes="Bold"
-                                   FontSize="10" />
-                        </StackLayout>
-                    </StackLayout>
+                    </ScrollView>
                 </Frame>
             </StackLayout>
 
@@ -145,9 +155,9 @@
                           SelectionMode="None"
                           ItemTapped="OnItemTapped"
                           BackgroundColor="Transparent"
-                            CachingStrategy="RecycleElement"
+                          CachingStrategy="RecycleElement"
                           ItemsSource="{Binding messages}">
-                    
+
                     <ListView.ItemTemplate>
 
                         <DataTemplate>

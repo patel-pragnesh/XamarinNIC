@@ -203,6 +203,9 @@ namespace xamarinJKH
 
                 // BtnLogin.IsEnabled = false;
             }
+
+            if (!Settings.MobileSettings.useDispatcherAuth)
+                LabelSotr.IsVisible = false;
             if (Settings.ConstAuth)
             {
                 Settings.ConstAuth = true;

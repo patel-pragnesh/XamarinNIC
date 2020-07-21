@@ -146,14 +146,20 @@ namespace xamarinJKH.Apps
 
         public System.Collections.ObjectModel.ObservableCollection<RequestMessage> messages { get; set; }
         public Color hex { get; set; }
+        public bool isPayd { get; set; }
 
         public bool close = false;
 
         public AppPage(RequestInfo requestInfo, bool closeAll = false)
         {
             close = closeAll;
+            isPayd = requestInfo.IsPaid;
             _requestInfo = requestInfo;
             InitializeComponent();
+            if (!isPayd)
+            {
+                ScrollView.WidthRequest = 100;
+            }
             messages = new System.Collections.ObjectModel.ObservableCollection<RequestMessage>();
             hex = Color.FromHex(Settings.MobileSettings.color);
             getMessage();
@@ -211,6 +217,14 @@ namespace xamarinJKH.Apps
                 await RefreshData();
             };
             StackLayoutClose.GestureRecognizers.Add(closeApp);
+            
+            var pay = new TapGestureRecognizer();
+            pay.Tapped += async (s, e) =>
+            {
+                await PopupNavigation.Instance.PushAsync(new PayAppDialog(hex, request, this));
+                await RefreshData();
+            };
+            StackLayoutPlay.GestureRecognizers.Add(pay);
             setText();
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }

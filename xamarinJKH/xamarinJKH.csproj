@@ -189,6 +189,10 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="DialogViews\PayAppDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -303,6 +307,9 @@
     </Compile>
     <Compile Update="Tech\TechSendPage.xaml.cs">
       <DependentUpon>TechSendPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="DialogViews\PayAppDialog.xaml.cs">
+      <DependentUpon>PayAppDialog.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -230,7 +230,7 @@ namespace xamarinJKH.Apps
             BindableProperty.Create("Name", typeof(string), typeof(MessageCell), "");
 
         public static readonly BindableProperty FileIDProperty =
-            BindableProperty.Create("FileID", typeof(string), typeof(MessageCell), "");
+            BindableProperty.Create("FileID", typeof(int), typeof(MessageCell), -1);
 
         public static readonly BindableProperty TimeProperty =
             BindableProperty.Create("Time", typeof(string), typeof(MessageCell), "");
@@ -250,9 +250,9 @@ namespace xamarinJKH.Apps
             set { SetValue(NameProperty, value); }
         }
 
-        public string FileID
+        public int FileID
         {
-            get { return (string) GetValue(FileIDProperty); }
+            get { return (int) GetValue(FileIDProperty); }
             set { SetValue(FileIDProperty, value); }
         }
 
@@ -340,9 +340,13 @@ namespace xamarinJKH.Apps
                 LabelName.Text = LabelNameA.Text = Name;
                 LabelText.Text = LabelTextA.Text = TextApp;
                 Labeltime.Text = LabeltimeA.Text = strings[1].Substring(0, 5);
-                if (!FileID.Equals("-1"))
+                if (FileID != -1)
                 {
                     image.IsVisible = imageA.IsVisible = true;
+                }
+                else
+                {
+                    image.IsVisible = imageA.IsVisible = false;
                 }
             }
         }

@@ -34,6 +34,8 @@ namespace xamarinJKH.Server.RequestModel
         public string TypeName { get; set; }
         public List<RequestMessage> Messages { get; set; }
         public List<RequestFile> Files { get; set; }
+        public decimal PaidSumm { get; set; }
+        public string PaidServiceText { get; set; }
         public string Error { get; set; }
     }
 

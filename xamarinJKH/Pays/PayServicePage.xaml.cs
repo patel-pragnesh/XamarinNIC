@@ -19,7 +19,7 @@ namespace xamarinJKH.Pays
     {
         private RestClientMP server = new RestClientMP();
 
-        public PayServicePage(string ident, decimal sum)
+        public PayServicePage(string ident, decimal sum, int? idRequset = null)
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
@@ -53,13 +53,35 @@ namespace xamarinJKH.Pays
 
             SetText();
 
-            GetPayLink(ident, sum);
+            if (idRequset == null)
+            {
+                GetPayLink(ident, sum);
+            }
+            else
+            {
+                GetPayLinkRequest(idRequset, sum);
+            }
         }
 
         async void GetPayLink(string ident, decimal sum)
         {
             await Settings.StartProgressBar();
             PayService payLink = await server.GetPayLink(ident, sum);
+            if (payLink.payLink != null)
+            {
+                webView.Source = payLink.payLink;
+            }
+            else
+            {
+                Loading.Instance.Hide();
+                await DisplayAlert("Ошибка", payLink.Error, "OK");
+                await Navigation.PopAsync();
+            }
+        } 
+        async void GetPayLinkRequest(int? id, decimal sum)
+        {
+            await Settings.StartProgressBar();
+            PayService payLink = await server.GetPayLink(id, sum);
             if (payLink.payLink != null)
             {
                 webView.Source = payLink.payLink;

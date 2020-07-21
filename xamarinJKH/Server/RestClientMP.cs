@@ -14,10 +14,10 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-        //public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        //public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
-         public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
+        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+         // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
         // public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_yegkh"; //Легкая жизнъ
@@ -1715,7 +1715,31 @@ namespace xamarinJKH.Server
             {
                 Ident,
                 Sum,
-                Services
+                Services,
+            });
+            var response = await restClientMp.ExecuteTaskAsync<PayService>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new PayService()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        public async Task<PayService> GetPayLink(int? PaidRequestId , decimal Sum)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(PAY_ONLINE, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                Sum,
+                PaidRequestId
+               
             });
             var response = await restClientMp.ExecuteTaskAsync<PayService>(restRequest);
             // Проверяем статус

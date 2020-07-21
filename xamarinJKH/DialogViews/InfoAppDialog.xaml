@@ -83,6 +83,38 @@
                                      VerticalOptions="Center" />-->
             </StackLayout>
             <StackLayout
+                IsVisible="{Binding _Request.IsPaid}"
+                Orientation="Horizontal">
+                <Label
+                    TextColor="Black"
+                    HorizontalOptions="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Статус заказа: " TextColor="Black" FontAttributes="Bold" FontSize="15" />
+                            <Span Text=" {Binding _Request.PaidRequestStatus}" FontSize="15" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                
+            </StackLayout>
+            <StackLayout
+                IsVisible="{Binding _Request.IsPaid}"
+                Orientation="Horizontal">
+                <Label
+                    x:Name="LabelCode"
+                    TextColor="Black"
+                    HorizontalOptions="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Код подтверждения: " TextColor="Black" FontAttributes="Bold" FontSize="15" />
+                            <Span Text=" {Binding _Request.PaidRequestCompleteCode}" FontSize="15" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                
+            </StackLayout> 
+            
+            <StackLayout
                 Orientation="Horizontal">
 
                 <xamarinJkh:IconView x:Name="IconViewStatus"
