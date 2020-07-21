@@ -8,17 +8,22 @@
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.MainConst.MonitorPage">
     <ContentPage.Content>
-        <StackLayout>
-           
-             <Grid>
-                <Image x:Name="ImageFon"
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="0.15*"/>
+                <RowDefinition Height="0.55*"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="ImageFon"
+                       Grid.Row="0"
+                       Grid.RowSpan="3"
                        Source="ic_monitor_top"
                        VerticalOptions="Start"
 					   Margin="0,20,0,0"
                        Aspect="AspectFill"
                        HorizontalOptions="FillAndExpand" />
-                <StackLayout>
-                    <pancakeView:PancakeView
+            <StackLayout>
+                <pancakeView:PancakeView
                         Padding="0"
                         CornerRadius="0,0,25,25"
                         BackgroundColor="#131313"
@@ -27,21 +32,21 @@
                         VerticalOptions="Start"
                         x:Name="Pancake"
                         IsClippedToBounds="True">
-                        <Grid IsClippedToBounds="True">
-                            <StackLayout Orientation="Horizontal"
+                    <Grid IsClippedToBounds="True">
+                        <StackLayout Orientation="Horizontal"
                                          VerticalOptions="Fill"
                                          HorizontalOptions="FillAndExpand">
-                                <StackLayout Padding="10"
+                            <StackLayout Padding="10"
                                              HorizontalOptions="FillAndExpand">
-                                    <Label x:Name="UkName"
+                                <Label x:Name="UkName"
                                            Text="Название"
                                            FontAttributes="Bold"
                                            FontSize="16"
                                            TextColor="White" />
-                                    <StackLayout
+                                <StackLayout
                                         Spacing="0"
                                         Orientation="Horizontal">
-                                        <xamarinJkh:IconView x:Name="IconViewLogin"
+                                    <xamarinJkh:IconView x:Name="IconViewLogin"
                                                              Source="ic_phone"
                                                              HeightRequest="15"
                                                              IsVisible="False"
@@ -49,15 +54,15 @@
                                                              Margin="-10, 0,0,0"
                                                              HorizontalOptions="Start"
                                                              VerticalOptions="Center" />
-                                        <Label x:Name="LabelPhone"
+                                    <Label x:Name="LabelPhone"
                                                Text="Телефон"
                                                FontSize="14"
                                                TextColor="White"
                                                Margin="0, 0, 0, 0"
                                                VerticalOptions="Center" />
-                                    </StackLayout>
                                 </StackLayout>
-                                <pancakeView:PancakeView
+                            </StackLayout>
+                            <pancakeView:PancakeView
                                     BorderColor="Gray"
                                     x:Name="PancakeViewIcon"
                                     BorderThickness="1"
@@ -66,46 +71,49 @@
                                     BackgroundColor="White"
                                     HorizontalOptions="End"
                                     IsClippedToBounds="True">
-                                    <Image x:Name="IconViewNameUk"
+                                <Image x:Name="IconViewNameUk"
                                            Source="icon_login"
                                            HeightRequest="50" />
-                                </pancakeView:PancakeView>
-                            </StackLayout>
-                        </Grid>
-                    </pancakeView:PancakeView>
-                    <StackLayout
+                            </pancakeView:PancakeView>
+                        </StackLayout>
+                    </Grid>
+                </pancakeView:PancakeView>
+                <StackLayout
                         HorizontalOptions="End"
                         Margin="0,0,15,0"
                         Orientation="Horizontal">
-                        <xamarinJkh:IconView x:Name="IconViewTech"
+                    <xamarinJkh:IconView x:Name="IconViewTech"
                                              Source="ic_tech"
                                              HeightRequest="20"
                                              Foreground="White"
                                              Margin="0, 0,0,0"
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
-                        <Label x:Name="LabelTech"
+                    <Label x:Name="LabelTech"
                                Text="Написать в тех.поддержку"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
                                Margin="-10, 0, 0, 0"
                                VerticalOptions="Center" />
-                    </StackLayout>
-                    <StackLayout
+                </StackLayout>
+                <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
                         Margin="25, 0, 0, 0"
                         HorizontalOptions="Start">
-                        <Label
+                    <Label
                             Text="Монитор"
                             FontSize="23"
                             TextColor="White"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
-                    </StackLayout>
-                    
-                    <StackLayout
+                </StackLayout>
+
+
+
+            </StackLayout>
+            <StackLayout Grid.Row="1" Grid.RowSpan="2"
                 VerticalOptions="FillAndExpand">
                 <Frame CornerRadius="40"
                        Margin="20, 10, 20, -70"
@@ -179,11 +187,14 @@
 
                     </StackLayout>
                 </Frame>
-                <ScrollView VerticalOptions="FillAndExpand"
+                
+            </StackLayout>
+            <ScrollView VerticalOptions="FillAndExpand"
+                            Grid.Row="2"
                             Orientation="Vertical">
-                    <StackLayout Spacing="0">
-                        <StackLayout x:Name="LayoutContent" Spacing="0" />
-                        <customRenderers:MaterialFrame
+                <StackLayout Spacing="0">
+                    <StackLayout x:Name="LayoutContent" Spacing="0" />
+                    <customRenderers:MaterialFrame
                             Elevation="20"
                             x:Name="MaterialFrameNotDoingContainer"
                             IsVisible="False"
@@ -191,23 +202,23 @@
                             CornerRadius="35"
                             BackgroundColor="White"
                             Padding="0,0,0,25">
-                            <StackLayout Spacing="0">
-                                <customRenderers:MaterialFrame
+                        <StackLayout Spacing="0">
+                            <customRenderers:MaterialFrame
                                     Elevation="20"
                                     CornerRadius="35"
                                     x:Name="MaterialFrameNotDoing"
                                     BackgroundColor="White"
                                     Padding="0, 25, 0, 25">
-                                    <StackLayout
+                                <StackLayout
                                         Orientation="Horizontal">
-                                        <xamarinJkh:IconView
+                                    <xamarinJkh:IconView
                                             Source="ic_dislike"
                                             Foreground="{Binding hex}"
                                             HeightRequest="30"
                                             Margin="15, 0, 0, 0"
                                             HorizontalOptions="Start"
                                             VerticalOptions="Center" />
-                                        <Label
+                                    <Label
                                             x:Name="LabelNotDoingCount"
                                             Text="Невыполненные заявки: 440"
                                             FontSize="15"
@@ -216,7 +227,7 @@
                                             Margin="0, 0, 0, 0"
                                             HorizontalOptions="FillAndExpand"
                                             VerticalOptions="Center" />
-                                        <xamarinJkh:IconView
+                                    <xamarinJkh:IconView
                                             x:Name="IconViewArrow"
                                             Source="ic_arrow_down_monitor"
                                             HeightRequest="25"
@@ -225,20 +236,14 @@
                                             Margin="0,0,15,0"
                                             HorizontalOptions="End"
                                             VerticalOptions="Center" />
-                                    </StackLayout>
-                                </customRenderers:MaterialFrame>
-                                <StackLayout x:Name="LayoutGrid" Margin="20,15,20,0" />
-                            </StackLayout>
-                        </customRenderers:MaterialFrame>
+                                </StackLayout>
+                            </customRenderers:MaterialFrame>
+                            <StackLayout x:Name="LayoutGrid" Margin="20,15,20,0" />
+                        </StackLayout>
+                    </customRenderers:MaterialFrame>
 
-                    </StackLayout>
-                </ScrollView>
-            </StackLayout>
-                    
                 </StackLayout>
-            </Grid>
-            
-            
-        </StackLayout>
+            </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
