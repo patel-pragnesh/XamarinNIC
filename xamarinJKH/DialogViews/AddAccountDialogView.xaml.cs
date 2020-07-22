@@ -140,7 +140,7 @@ namespace xamarinJKH.DialogViews
                 {
                     Console.WriteLine(result.Address);
                     Console.WriteLine("Отправлено");
-                    await Application.Current.MainPage.DisplayAlert("", "Лс/ч " + ident + " успешно подключён", "ОК");
+                    await Application.Current.MainPage.DisplayAlert("", "Лс/ч " + ident + " успешно подключён, для дальнейшей работы перезагрузите приложение", "ОК");
                     Button = true;
                     Progress = false;
 

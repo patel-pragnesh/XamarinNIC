@@ -317,14 +317,17 @@ namespace xamarinJKH.Main
                  Settings.Person.Accounts[0].MetersEndDay == 0))
             {
                 MeterInfo select = e.Item as MeterInfo;
-                if (select.Values.Count > 1 && int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
+                if (select.Values.Count >= 1 && int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
                 {
-                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, select.Values[0].Value,
-                        select.Values[1].Value));
+                    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0 ;
+                    var counterThisMonth2 = (select.Values.Count >= 2) ? select.Values[1].Value : 0 ;
+                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, counterThisMonth,
+                        counterThisMonth2));
                 }
                 else
                 {
-                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this));
+                    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0 ;
+                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0, counterThisMonth));
                 }
             }
         }

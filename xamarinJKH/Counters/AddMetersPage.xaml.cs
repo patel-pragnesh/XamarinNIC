@@ -349,14 +349,14 @@ namespace xamarinJKH.Counters
                     && int.TryParse(d4.Text, out p4) && int.TryParse(d5.Text, out p5) && int.TryParse(d6.Text == null ? "0" : d6.Text, out p6)
                     && int.TryParse(d7.Text == null ? "0" : d7.Text, out p7) && int.TryParse(d8.Text == null ? "0" : d8.Text, out p8))
                 {
-                    count += d1.Text != "0" ? d1.Text : "";
-                    count += d2.Text != "0" ? d2.Text : "";
-                    count += d3.Text != "0" ? d3.Text : "";
-                    count += d4.Text != "0" ? d4.Text : "";
-                    count += d5.Text + (this.DecimalPoint == 0 ? "" : ".");
-                    count += d6.Text != "0" ? d6.Text : "";
-                    count += d7.Text != "0" ? d7.Text : "";
-                    count += d8.Text != "0" ? d8.Text : "";
+                    count += d1.Text;// != "0" ? d1.Text : "";
+                    count += d2.Text;// != "0" ? d2.Text : "";
+                    count += d3.Text;// != "0" ? d3.Text : "";
+                    count += d4.Text;// != "0" ? d4.Text : "";
+                    count += d5.Text+ ",";
+                    count += d6.Text;// != "0" ? d6.Text : "";
+                    count += d7.Text;// != "0" ? d7.Text : "";
+                    count += d8.Text;// != "0" ? d8.Text : "";
                     
                     SaveInfoAccount(count);
                 }
@@ -378,13 +378,17 @@ namespace xamarinJKH.Counters
             {
                 img.Source = ImageSource.FromFile("ic_cold_water");
             }
-            else if (meter.Resource.ToLower().Contains("горячее") || meter.Resource.ToLower().Contains("гвс"))
+            else if (meter.Resource.ToLower().Contains("горячее") || meter.Resource.ToLower().Contains("гвс")|| meter.Resource.ToLower().Contains("подог")|| meter.Resource.ToLower().Contains("отопл"))
             {
                 img.Source = ImageSource.FromFile("ic_heat_water");
             }
-            else
+            else if (meter.Resource.ToLower().Contains("эле"))
             {
                 img.Source = ImageSource.FromFile("ic_electr");
+            }
+            else
+            {
+                img.Source = ImageSource.FromFile("ic_cold_water");
             }
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
@@ -453,10 +457,11 @@ namespace xamarinJKH.Counters
         {
             if (!string.IsNullOrEmpty(count))
             {
+                double d = Double.Parse(count.Replace('.',','));
                 progress.IsVisible = true;
                 FrameBtnLogin.IsVisible = false;
                 progress.IsVisible = true;
-                CommonResult result = await _server.SaveMeterValue(meter.ID.ToString(), count, "", "");
+                CommonResult result = await _server.SaveMeterValue(meter.ID.ToString(), d.ToString(CultureInfo.InvariantCulture), "", "");
                 if (result.Error == null)
                 {
                     Console.WriteLine(result.ToString());

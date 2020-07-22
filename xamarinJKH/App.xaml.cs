@@ -23,6 +23,7 @@ namespace xamarinJKH
         public static string model { get; set; }
         public static string token { get; set; }
         public static bool isCons { get; set; } = false;
+        public static bool  isConnected { get; set; } = true;
         private RestClientMP server = new RestClientMP();
         public App()
         {
@@ -48,7 +49,7 @@ namespace xamarinJKH
                 default:
                     break;
             }
-            // // CrossFirebasePushNotification.Current.Subscribe("general");
+            CrossFirebasePushNotification.Current.Subscribe("general");
             CrossFirebasePushNotification.Current.OnTokenRefresh += async (s, p) =>
             {
                 System.Diagnostics.Debug.WriteLine($"TOKEN : {p.Token}");

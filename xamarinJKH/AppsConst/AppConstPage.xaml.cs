@@ -433,6 +433,8 @@ namespace xamarinJKH.AppsConst
                     if (pickedFile.DataArray.Length > 10000000)
                     {
                         await DisplayAlert("Ошибка", "Размер файла превышает 10мб", "OK");
+                        IconViewAddFile.IsVisible = true;
+                        progressFile.IsVisible = false;
                         return;
                     }
 

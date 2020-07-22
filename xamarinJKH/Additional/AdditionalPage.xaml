@@ -172,6 +172,10 @@
                                 </CollectionView>
 
                         </Frame>
+                        <ActivityIndicator Color="{Binding MainColor}"
+                                           IsRunning="{Binding IsBusy}"
+                                           IsEnabled="{Binding IsBusy}"
+                                           IsVisible="{Binding IsBusy}"/>
                         <Grid>
                             <ListView x:Name="additionalList"
                                   HasUnevenRows="True"
@@ -196,12 +200,9 @@
 
                                 </ListView.ItemTemplate>
                             </ListView>
-                            <ActivityIndicator Color="{Binding MainColor}"
-                                                   IsRunning="{Binding IsBusy}"
-                                                   IsEnabled="{Binding IsBusy}"
-                                                   IsVisible="{Binding IsBusy}"/>
+                            
                         </Grid>
-                        
+                       
                     </StackLayout>
                 </StackLayout>
             </Grid>

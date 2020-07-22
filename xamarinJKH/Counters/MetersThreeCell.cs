@@ -517,13 +517,17 @@ namespace xamarinJKH.Main
                 {
                     img.Source = ImageSource.FromFile("ic_cold_water");
                 }
-                else if (Resource.ToLower().Contains("горячее") || Resource.ToLower().Contains("гвс"))
+                else if (Resource.ToLower().Contains("горячее") || Resource.ToLower().Contains("гвс") || Resource.ToLower().Contains("подог") || Resource.ToLower().Contains("отопл"))
                 {
                     img.Source = ImageSource.FromFile("ic_heat_water");
                 }
-                else
+                else if (Resource.ToLower().Contains("эле"))
                 {
                     img.Source = ImageSource.FromFile("ic_electr");
+                }
+                else
+                {
+                    img.Source = ImageSource.FromFile("ic_cold_water");
                 }
 
                 int currDay = DateTime.Now.Day;

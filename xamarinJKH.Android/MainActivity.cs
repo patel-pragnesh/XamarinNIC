@@ -4,6 +4,7 @@ using Android.App;
 using Context = Android.Content.Context;
 using Intent = Android.Content.Intent;
 using Android.Content.PM;
+using Android.Net;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
@@ -21,7 +22,7 @@ using Firebase.Iid;
 
 namespace xamarinJKH.Droid
 {
-    [Activity(Label = "Дом 24" /*"УК Сибирский Альянс"*/, Icon = "@drawable/icon_login", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "УК Эго - Комфорт", Icon = "@drawable/icon_login", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity 
     {
         protected override async void OnCreate(Bundle savedInstanceState)
@@ -48,7 +49,7 @@ namespace xamarinJKH.Droid
             //CreateNotificationChannel();
             LoadApplication(new App());
             FirebasePushNotificationManager.ProcessIntent(this,Intent);
-             Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
+            Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
 
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)

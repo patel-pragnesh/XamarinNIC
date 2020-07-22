@@ -68,7 +68,6 @@
                                                    VerticalOptions="Center" />
 
                     <Entry x:Name="EntryIdent"
-                           Keyboard="Numeric"
                                                    FontSize="15"
                                                    VerticalOptions="End"
                                                    HorizontalTextAlignment="Center"

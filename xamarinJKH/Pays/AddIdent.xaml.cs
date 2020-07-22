@@ -137,7 +137,7 @@ namespace xamarinJKH.Pays
                 {
                     Console.WriteLine(result.Address);
                     Console.WriteLine("Отправлено");
-                    await DisplayAlert("", "Лс/ч " + ident + " успешно подключён", "ОК");
+                    await DisplayAlert("", "Лс/ч " + ident + " успешно подключён, для дальнейшей работы перезагрузите приложение", "ОК");
                     FrameBtnAdd.IsVisible = true;
                     progress.IsVisible = false;
                    
