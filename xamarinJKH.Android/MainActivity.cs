@@ -47,9 +47,9 @@ namespace xamarinJKH.Droid
             ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera);
             ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadExternalStorage);
             //CreateNotificationChannel();
-            LoadApplication(new App());
-            FirebasePushNotificationManager.ProcessIntent(this,Intent);
+            FirebasePushNotificationManager.ProcessIntent(this, Intent);
             Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
+            LoadApplication(new App());
 
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
