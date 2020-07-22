@@ -238,7 +238,7 @@ namespace xamarinJKH.Apps
         IconView imageA = new IconView();
         Frame frameA = new Frame();
 
-        public MessageCellAuthor(RequestMessage message, Page p)
+        public MessageCellAuthor(RequestMessage message, Page p, string DateUniq, out string newDate)
         {
             frameA.HorizontalOptions = LayoutOptions.Start;
             frameA.VerticalOptions = LayoutOptions.Start;
@@ -379,7 +379,8 @@ namespace xamarinJKH.Apps
             ConteinerA.Children.Add(containerDateA);
 
             var dateMess = message.DateAdd;
-            if (Settings.DateUniq.Equals(dateMess))
+            //if (Settings.DateUniq.Equals(dateMess))
+            if (DateUniq.Equals(dateMess))
             {
                 frameDateA.IsVisible = false;
                 frameA.Content = new Label()
@@ -393,8 +394,11 @@ namespace xamarinJKH.Apps
             else
             {
                 frameDateA.IsVisible = true;
-                Settings.DateUniq = dateMess;
+                //Settings.DateUniq = dateMess;
+                DateUniq = dateMess;
             }
+
+            newDate = dateMess;
 
             LabelDateA.Text = dateMess;
             //LabelNameA.Text = Name;
@@ -744,7 +748,10 @@ namespace xamarinJKH.Apps
         IconView image = new IconView();
         Frame frame = new Frame();
 
-        public MessageCellService(RequestMessage message, Page p)
+        private RestClientMP _server = new RestClientMP();
+
+
+        public MessageCellService(RequestMessage message, Page p, string DateUniq, out string newDate)
         {
             frame.HorizontalOptions = LayoutOptions.Start;
             frame.VerticalOptions = LayoutOptions.Start;
@@ -797,6 +804,47 @@ namespace xamarinJKH.Apps
             image.Foreground = Color.White;
             image.Source = "ic_file_download";
 
+            if (message.FileID != -1)
+            {
+                var tgr = new TapGestureRecognizer();
+
+                tgr.Tapped += async (s, e) =>
+                {
+                    string fileName = message.Text.Replace("Отправлен новый файл: ", "")
+                .Replace("\"", "")
+                .Replace("\"", "");
+                    if (await DependencyService.Get<IFileWorker>().ExistsAsync(fileName))
+                    {
+                        await Launcher.OpenAsync(new OpenFileRequest
+                        {
+                            File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+                        });
+                    }
+                    else
+                    {
+                        await Settings.StartProgressBar("Загрузка", 0.8);
+                        byte[] memoryStream = await _server.GetFileAPP(message.FileID.ToString());
+                        if (memoryStream != null)
+                        {
+                            await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
+                            Loading.Instance.Hide();
+                            await Launcher.OpenAsync(new OpenFileRequest
+                            {
+                                File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+                            });
+                        }
+                        else
+                        {
+                            await p.DisplayAlert("Ошибка", "Не удалось скачать файл", "OK");
+                        }
+                    }
+                    //// await ShowRating();
+                    //await PopupNavigation.Instance.PushAsync(new RatingBarContentView(hex, _requestInfo, false));
+                    //await RefreshData();
+                };
+                image.GestureRecognizers.Add(tgr);
+            }
+
             LabelText.TextColor = Color.Black;
             LabelText.FontSize = 15;
             LabelText.HorizontalTextAlignment = TextAlignment.Start;            
@@ -845,7 +893,7 @@ namespace xamarinJKH.Apps
             containerDate.Margin = new Thickness(0, 0, 60, 0);
                         
             var dateMess = message.DateAdd;
-            if (Settings.DateUniq.Equals(dateMess))
+            if (DateUniq.Equals(dateMess))
             {
                 frameDate.IsVisible = false;
                 
@@ -866,6 +914,9 @@ namespace xamarinJKH.Apps
                 frameDate.IsVisible = true;
                 Settings.DateUniq = dateMess;
             }
+
+            newDate = dateMess;
+
 
             LabelDate.Text = dateMess;
             LabelName.Text = message.AuthorName;

@@ -80,36 +80,47 @@ namespace xamarinJKH.Apps
             Token = TokenSource.Token;
             var UpdateTask = new Task(async () =>
             {
-                while (!Token.IsCancellationRequested)
+                try
                 {
-                    await Task.Delay(TimeSpan.FromSeconds(2));
-                    var update = await _server.GetRequestsUpdates(Settings.UpdateKey, _requestInfo.ID.ToString());
-                    if (update.Error == null)
+                    while (!Token.IsCancellationRequested)
                     {
-                        Settings.UpdateKey = update.NewUpdateKey;
-                        if (update.CurrentRequestUpdates != null)
+                        await Task.Delay(TimeSpan.FromSeconds(2));
+                        var update = await _server.GetRequestsUpdates(Settings.UpdateKey, _requestInfo.ID.ToString());
+                        if (update.Error == null)
                         {
-                            Settings.DateUniq = "";
-                            request = update.CurrentRequestUpdates;
-                            foreach (var each in update.CurrentRequestUpdates.Messages)
+                            Settings.UpdateKey = update.NewUpdateKey;
+                            if (update.CurrentRequestUpdates != null)
                             {
-                                if (!messages.Contains(each))
-                                    //Device.BeginInvokeOnMainThread(() => messages.Add(each));
-                                    Device.BeginInvokeOnMainThread(() => addAppMessage(each));
+                                //Settings.DateUniq = "";
+                                
+                                request = update.CurrentRequestUpdates;
+                                foreach (var each in update.CurrentRequestUpdates.Messages)
+                                {
+                                    if (!messages.Contains(each))
+                                        //Device.BeginInvokeOnMainThread(() => messages.Add(each));
+                                        Device.BeginInvokeOnMainThread(() => addAppMessage(each));
+                                }
+                                //Device.BeginInvokeOnMainThread(() => additionalList.ScrollTo(messages[messages.Count - 1], 0, true));
+                                var lastChild = baseForApp.Children.LastOrDefault();
+                                Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(0, lastChild.Y + 30, true));
+
                             }
-
-                            //Device.BeginInvokeOnMainThread(() => additionalList.ScrollTo(messages[messages.Count - 1], 0, true));
-                            var lastChild = baseForApp.Children.LastOrDefault();
-
-                            //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(baseForApp.Children.Last().X, baseForApp.Height baseForApp.Children.Last().Y, true));
-                            Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.MakeVisible, true));
-
                         }
                     }
+
                 }
+                catch(Exception e)
+                {
+
+                }
+                
             }, Token);
             UpdateTask.Start();
         }
+
+        public static string DateUniq = "";
+        //public static string DateUniqeServ = "";
+
 
         protected override void OnDisappearing()
         {
@@ -135,20 +146,18 @@ namespace xamarinJKH.Apps
                 Settings.UpdateKey = requestsUpdate.NewUpdateKey;
                 if (requestsUpdate.CurrentRequestUpdates != null)
                 {
-                    Settings.DateUniq = "";
+                    //Settings.DateUniq = "";
                     request = requestsUpdate.CurrentRequestUpdates;
                     foreach (var each in requestsUpdate.CurrentRequestUpdates.Messages)
                     {
-                        each.IsSelf = false;
-
                         Device.BeginInvokeOnMainThread(() => addAppMessage(each));
                         messages.Add(each);
                     }
                     // additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
-                }
-                var lastChild = baseForApp.Children.LastOrDefault();
-
-                await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.MakeVisible, true);
+                    var lastChild = baseForApp.Children.LastOrDefault();
+                    Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(0, lastChild.Y + 30, true));
+                    //await scrollFroAppMessages.ScrollToAsync(0, lastChild.Y + 30, true);
+                }                
 
             }
             else
@@ -160,7 +169,7 @@ namespace xamarinJKH.Apps
         }
 
         //public System.Collections.ObjectModel.ObservableCollection<RequestMessage> messages { get; set; }
-        List<RequestMessage> messages { get; set; }
+        List<RequestMessage> messages = new List<RequestMessage>();
 
         public Color hex { get; set; }
         public bool isPayd { get; set; }
@@ -177,7 +186,7 @@ namespace xamarinJKH.Apps
             {
                 ScrollView.WidthRequest = 100;
             }
-            //messages = new System.Collections.ObjectModel.ObservableCollection<RequestMessage>();
+            messages = new List<RequestMessage>();// System.Collections.ObjectModel.ObservableCollection<RequestMessage>();
 
 
 
@@ -592,7 +601,8 @@ namespace xamarinJKH.Apps
             {
                 Settings.DateUniq = "";
                 foreach (var message in request.Messages)
-                {                    
+                {
+                    messages.Add(message);
                     Device.BeginInvokeOnMainThread(() =>addAppMessage(message));
                 }
                 LabelNumber.Text = "№ " + request.RequestNumber;
@@ -608,15 +618,18 @@ namespace xamarinJKH.Apps
 
         void addAppMessage(RequestMessage message)
         {
-            StackLayout data = new StackLayout();
+            StackLayout data;
+            string newDate;
             if(message.IsSelf)
-            {
-                data = new MessageCellAuthor(message, this);
+            {                
+                data = new MessageCellAuthor(message, this,  DateUniq, out newDate);
             }
             else
             {
-                data = new MessageCellService(message, this);
+                data = new MessageCellService(message, this,  DateUniq, out newDate);
             }
+
+            DateUniq = newDate;
 
             baseForApp.Children.Add(data);
         }
@@ -631,7 +644,7 @@ namespace xamarinJKH.Apps
             //additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
             var lastChild = baseForApp.Children.LastOrDefault();
 
-            await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.MakeVisible, true);
+            await scrollFroAppMessages.ScrollToAsync(0, lastChild.Y + 30, true);// (0, lastChild.Y + 30, true);
 
         }
 

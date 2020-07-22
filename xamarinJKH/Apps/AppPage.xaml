@@ -12,9 +12,9 @@
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.Apps.AppPage">
     <ContentPage.Resources>
-        <ResourceDictionary>
+        <!--<ResourceDictionary>
             <DataTemplate x:Key="authorTmplate">
-                <!--<ViewCell>
+                --><!--<ViewCell>
                     <StackLayout>
                         <StackLayout x:Name="ConteinerA">
                             <Frame x:Name="frameDateA" IsVisible="{Binding dateVisible}" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="#E2E2E2" Margin="0, 2, 0, 10" Padding="5"
@@ -70,7 +70,7 @@
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>
-                </ViewCell>-->
+                </ViewCell>--><!--
                 <apps:MessageCellA
                                 Name="{Binding AuthorName}"
                                 Time="{Binding Status}"
@@ -91,7 +91,7 @@
             <selector:UserDataTemplateSelector x:Key="usrDataTemplateSelector"  authorTmp="{StaticResource authorTmplate}" 
                                                jkhUserTmp="{StaticResource jkhUserTmplate}" />
 
-        </ResourceDictionary>
+        </ResourceDictionary>-->
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
