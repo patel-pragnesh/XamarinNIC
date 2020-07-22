@@ -6,8 +6,93 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:dialogViews="clr-namespace:xamarinJKH.DialogViews;assembly=xamarinJKH"
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
+             xmlns:selector ="clr-namespace:xamarinJKH.Apps"
+             xmlns:datatypes ="clr-namespace:xamarinJKH.Server.RequestModel"
+             
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.Apps.AppPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="authorTmplate">
+                <!--<ViewCell>
+                    <StackLayout>
+                        <StackLayout x:Name="ConteinerA">
+                            <Frame x:Name="frameDateA" IsVisible="{Binding dateVisible}" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColor="#E2E2E2" Margin="0, 2, 0, 10" Padding="5"
+                                   CornerRadius="15">
+                                <Label FontSize="15" TextColor="#777777" Text="{Binding DateAdd}"></Label>
+                            </Frame>
+                            <StackLayout x:Name="containerDateA" Spacing="3" Margin="60, 0, 0, 0" HorizontalOptions="FillAndExpand" >
+                                <StackLayout >
+                                    <Frame x:Name="frameTextA">
+                                        <StackLayout HorizontalOptions="End">
+                                            <Label Text="{Binding Text}" x:Name="LabelTextA" TextColor="White" FontSize="15" HorizontalOptions="Center" HorizontalTextAlignment="Start"></Label>
+                                            <xamarinJkh:IconView x:Name="imageA" HorizontalOptions="CenterAndExpand" 
+                                                                 HeightRequest="40" WidthRequest="40"
+                                                                 Foreground="White" Source="ic_file_download">
+                                                <xamarinJkh:IconView.Triggers>
+                                                    <DataTrigger TargetType="xamarinJkh:IconView" Binding="{Binding FileID}" Value="-1">
+                                                        <Setter Property="IsVisible" Value="False"></Setter>
+                                                    </DataTrigger>
+                                                </xamarinJkh:IconView.Triggers>
+                                            </xamarinJkh:IconView>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame x:Name="frameA" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="White"
+                                           Margin="-15, -30, 5, 0" Padding="10" CornerRadius="23">
+                                        <StackLayout>
+                                            <Image IsVisible="{Binding dateVisible}" x:Name="ImagePersonA" HeightRequest="25" WidthRequest="25" VerticalOptions="Start" Source="ic_author">
+                                                <Image.Triggers>
+                                                    <DataTrigger TargetType="Image" Binding="{Binding dateVisible}" Value="True">
+                                                        <Setter Property="IsVisible" Value="True"></Setter>
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Image" Binding="{Binding dateVisible}" Value="False">
+                                                        <Setter Property="IsVisible" Value="False"></Setter>
+                                                    </DataTrigger>
+                                                </Image.Triggers>
+                                            </Image>
+                                            <Label  IsVisible="{Binding dateVisible}" HeightRequest="25" WidthRequest="25" BackgroundColor="Transparent">
+                                                <Label.Triggers>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding dateVisible}" Value="True">
+                                                        <Setter Property="IsVisible" Value="False"></Setter>
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding dateVisible}" Value="False">
+                                                        <Setter Property="IsVisible" Value="True"></Setter>
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                        </StackLayout>                                            
+                                    </Frame>
+                                    
+                                </StackLayout>
+                                <Label x:Name="LabeltimeA" VerticalOptions="End" HorizontalTextAlignment="End" Margin="0, -10, 5, 0" 
+                                       TextColor="Gray" FontSize="15" HorizontalOptions="End">                                    
+                                </Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>-->
+                <apps:MessageCellA
+                                Name="{Binding AuthorName}"
+                                Time="{Binding Status}"
+                                DateApp="{Binding Added}"
+                                TextApp="{Binding Text}"
+                                FileID="{Binding FileID}"
+                                IsSelf="{Binding IsSelf}" />
+            </DataTemplate>
+            <DataTemplate x:Key="jkhUserTmplate">
+                <apps:MessageCellU
+                                Name="{Binding AuthorName}"
+                                Time="{Binding Status}"
+                                DateApp="{Binding Added}"
+                                TextApp="{Binding Text}"
+                                FileID="{Binding FileID}"
+                                IsSelf="{Binding IsSelf}" />
+            </DataTemplate>
+            <selector:UserDataTemplateSelector x:Key="usrDataTemplateSelector"  authorTmp="{StaticResource authorTmplate}" 
+                                               jkhUserTmp="{StaticResource jkhUserTmplate}" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <RelativeLayout
@@ -144,26 +229,43 @@
                                            Margin="15, 0, 15, -30"
                                            BackgroundColor="White"
                                            Padding="5,0,5,70">
-                <ListView x:Name="additionalList"
+                <RefreshView x:Name="messageRefreshView" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}">
+                    <ScrollView x:Name="scrollFroAppMessages" VerticalScrollBarVisibility="Never" >
+                        <StackLayout x:Name="baseForApp"></StackLayout>
+                    </ScrollView>
+                </RefreshView>
+                
+                
+                <!--
+                IsPullToRefreshEnabled="True"
+                          RefreshCommand="{Binding RefreshCommand}"
+                          IsRefreshing="{Binding IsRefreshing}"
+                -->
+                
+                
+                
+                <!--<ListView x:Name="additionalList"
                           HasUnevenRows="True"
                           Margin="0, 0, 0, 0"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
-                          IsPullToRefreshEnabled="True"
-                          RefreshCommand="{Binding RefreshCommand}"
-                          IsRefreshing="{Binding IsRefreshing}"
+                          
                           SelectionMode="None"
                           ItemTapped="OnItemTapped"
                           BackgroundColor="Transparent"
                           CachingStrategy="RecycleElement"
                           ItemsSource="{Binding messages}">
-
+                    --><!--ItemTemplate="{StaticResource usrDataTemplateSelector}">
+                    
+                    Time="{Binding Status}"
+                    --><!--
+                    
                     <ListView.ItemTemplate>
 
-                        <DataTemplate>
+                        <DataTemplate x:DataType="datatypes:RequestMessage">                            
                             <apps:MessageCell
                                 Name="{Binding AuthorName}"
-                                Time="{Binding Status}"
+                                
                                 DateApp="{Binding Added}"
                                 TextApp="{Binding Text}"
                                 FileID="{Binding FileID}"
@@ -171,7 +273,7 @@
                         </DataTemplate>
 
                     </ListView.ItemTemplate>
-                </ListView>
+                </ListView>-->
             </customRenderers:MaterialFrame>
             <Frame CornerRadius="30"
                    Margin="15, -30, 15, 5"

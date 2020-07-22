@@ -17,6 +17,7 @@ using Plugin.Permissions.Abstractions;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Markup;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
@@ -93,9 +94,16 @@ namespace xamarinJKH.Apps
                             foreach (var each in update.CurrentRequestUpdates.Messages)
                             {
                                 if (!messages.Contains(each))
-                                    Device.BeginInvokeOnMainThread(() => messages.Add(each));
+                                    //Device.BeginInvokeOnMainThread(() => messages.Add(each));
+                                    Device.BeginInvokeOnMainThread(() => addAppMessage(each));
                             }
-                            Device.BeginInvokeOnMainThread(() => additionalList.ScrollTo(messages[messages.Count - 1], 0, true));
+
+                            //Device.BeginInvokeOnMainThread(() => additionalList.ScrollTo(messages[messages.Count - 1], 0, true));
+                            var lastChild = baseForApp.Children.LastOrDefault();
+
+                            //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(baseForApp.Children.Last().X, baseForApp.Height baseForApp.Children.Last().Y, true));
+                            Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.MakeVisible, true));
+
                         }
                     }
                 }
@@ -131,20 +139,29 @@ namespace xamarinJKH.Apps
                     request = requestsUpdate.CurrentRequestUpdates;
                     foreach (var each in requestsUpdate.CurrentRequestUpdates.Messages)
                     {
+                        each.IsSelf = false;
+
+                        Device.BeginInvokeOnMainThread(() => addAppMessage(each));
                         messages.Add(each);
                     }
-                    additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
+                    // additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
                 }
+                var lastChild = baseForApp.Children.LastOrDefault();
+
+                await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.MakeVisible, true);
+
             }
             else
             {
                 await DisplayAlert("Ошибка", "Не удалось получить информацию по комментариям", "OK");
             }
 
-            additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
+           // additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
         }
 
-        public System.Collections.ObjectModel.ObservableCollection<RequestMessage> messages { get; set; }
+        //public System.Collections.ObjectModel.ObservableCollection<RequestMessage> messages { get; set; }
+        List<RequestMessage> messages { get; set; }
+
         public Color hex { get; set; }
         public bool isPayd { get; set; }
 
@@ -160,16 +177,23 @@ namespace xamarinJKH.Apps
             {
                 ScrollView.WidthRequest = 100;
             }
-            messages = new System.Collections.ObjectModel.ObservableCollection<RequestMessage>();
+            //messages = new System.Collections.ObjectModel.ObservableCollection<RequestMessage>();
+
+
+
+            
             hex = Color.FromHex(Settings.MobileSettings.color);
-            getMessage();
+            getMessage2();
             this.BindingContext = this;
 
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    ScrollViewContainer.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    if(DeviceDisplay.MainDisplayInfo.Width<700)
+                    ScrollViewContainer.Padding = new Thickness(0, statusBarHeight*2, 0, 0);
+                    else
+                        ScrollViewContainer.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     // ImageTop.Margin = new Thickness(0, 33, 0, 0);
                     // StackLayout.Margin = new Thickness(0, 33, 0, 0);
                     // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
@@ -228,7 +252,7 @@ namespace xamarinJKH.Apps
             };
             StackLayoutPlay.GestureRecognizers.Add(pay);
             setText();
-            additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+            //additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
         protected override bool OnBackButtonPressed()
@@ -247,47 +271,47 @@ namespace xamarinJKH.Apps
         }
 
         
-        private async void OnItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            RequestMessage select = e.Item as RequestMessage;
-            if (@select != null && @select.FileID != -1)
-            {
-                string fileName = FileName(@select.Text);
-                if (await DependencyService.Get<IFileWorker>().ExistsAsync(fileName))
-                {
-                    await Launcher.OpenAsync(new OpenFileRequest
-                    {
-                        File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
-                    });
-                }
-                else
-                {
-                    await Settings.StartProgressBar("Загрузка", 0.8);
-                    byte[] memoryStream = await _server.GetFileAPP(select.FileID.ToString());
-                    if (memoryStream != null)
-                    {
-                        await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
-                        Loading.Instance.Hide();
-                        await Launcher.OpenAsync(new OpenFileRequest
-                        {
-                            File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
-                        });
-                    }
-                    else
-                    {
-                        await DisplayAlert("Ошибка", "Не удалось скачать файл", "OK");
-                    }
-                }
-            }
-        }
+        //private async void OnItemTapped(object sender, ItemTappedEventArgs e)
+        //{
+        //    RequestMessage select = e.Item as RequestMessage;
+        //    if (@select != null && @select.FileID != -1)
+        //    {
+        //        string fileName = FileName(@select.Text);
+        //        if (await DependencyService.Get<IFileWorker>().ExistsAsync(fileName))
+        //        {
+        //            await Launcher.OpenAsync(new OpenFileRequest
+        //            {
+        //                File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+        //            });
+        //        }
+        //        else
+        //        {
+        //            await Settings.StartProgressBar("Загрузка", 0.8);
+        //            byte[] memoryStream = await _server.GetFileAPP(select.FileID.ToString());
+        //            if (memoryStream != null)
+        //            {
+        //                await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
+        //                Loading.Instance.Hide();
+        //                await Launcher.OpenAsync(new OpenFileRequest
+        //                {
+        //                    File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+        //                });
+        //            }
+        //            else
+        //            {
+        //                await DisplayAlert("Ошибка", "Не удалось скачать файл", "OK");
+        //            }
+        //        }
+        //    }
+        //}
 
-        string FileName(string text)
-        {
-            return text
-                .Replace("Отправлен новый файл: ", "")
-                .Replace("\"", "")
-                .Replace("\"", "");
-        }
+        //string FileName(string text)
+        //{
+        //    return text
+        //        .Replace("Отправлен новый файл: ", "")
+        //        .Replace("\"", "")
+        //        .Replace("\"", "");
+        //}
 
         async void addFileApp()
         {
@@ -486,26 +510,38 @@ namespace xamarinJKH.Apps
 
         async void sendMessage()
         {
-            string message = EntryMess.Text;
-            if (!message.Equals(""))
+            try
             {
-                progress.IsVisible = true;
-                IconViewSend.IsVisible = false;
-                CommonResult result = await _server.AddMessage(message, _requestInfo.ID.ToString());
-                if (result.Error == null)
+                string message = EntryMess.Text;
+                if (!message.Equals(""))
                 {
-                    EntryMess.Text = "";
-                    await ShowToast("Сообщение отправлено");
-                    await RefreshData();
+                    progress.IsVisible = true;
+                    IconViewSend.IsVisible = false;
+                    CommonResult result = await _server.AddMessage(message, _requestInfo.ID.ToString());
+                    if (result.Error == null)
+                    {
+                        EntryMess.Text = "";
+                        await ShowToast("Сообщение отправлено");
+                        await RefreshData();
+                    }
                 }
-            }
-            else
-            {
-                await ShowToast("Введите текст сообщения");
-            }
+                else
+                {
+                    await ShowToast("Введите текст сообщения");
+                }
 
-            progress.IsVisible = false;
-            IconViewSend.IsVisible = true;
+                progress.IsVisible = false;
+                IconViewSend.IsVisible = true;
+            }
+            catch(Exception e)
+            {
+                await ShowToast("Сообщение не отправлено");
+
+
+                progress.IsVisible = false;
+                IconViewSend.IsVisible = true;
+            }
+            
         }
 
         private async Task ShowToast(string text)
@@ -520,7 +556,35 @@ namespace xamarinJKH.Apps
             }
         }
 
-        async void getMessage()
+        //async void getMessage()
+        //{
+
+        //    request = await _server.GetRequestsDetailList(_requestInfo.ID.ToString());
+        //    if (request.Error == null)
+        //    {
+        //        Settings.DateUniq = "";
+        //        foreach (var message in request.Messages)
+        //        {
+        //            //if (message.IsSelf)
+        //            //    message.IsSelf = false;
+
+        //            //if (!message.IsSelf)
+        //            message.IsSelf = false;
+        //                Device.BeginInvokeOnMainThread(() => messages.Add(message));
+        //        }
+        //        LabelNumber.Text = "№ " + request.RequestNumber;
+        //    }
+        //    else
+        //    {
+        //        await DisplayAlert("Ошибка", "Не удалось получить информацию по комментариям", "OK");
+        //    }
+
+        //    await MethodWithDelayAsync(1000);
+
+        //}
+
+
+        async void getMessage2()
         {
 
             request = await _server.GetRequestsDetailList(_requestInfo.ID.ToString());
@@ -528,8 +592,8 @@ namespace xamarinJKH.Apps
             {
                 Settings.DateUniq = "";
                 foreach (var message in request.Messages)
-                {
-                    Device.BeginInvokeOnMainThread(() => messages.Add(message));
+                {                    
+                    Device.BeginInvokeOnMainThread(() =>addAppMessage(message));
                 }
                 LabelNumber.Text = "№ " + request.RequestNumber;
             }
@@ -542,11 +606,33 @@ namespace xamarinJKH.Apps
 
         }
 
+        void addAppMessage(RequestMessage message)
+        {
+            StackLayout data = new StackLayout();
+            if(message.IsSelf)
+            {
+                data = new MessageCellAuthor(message, this);
+            }
+            else
+            {
+                data = new MessageCellService(message, this);
+            }
+
+            baseForApp.Children.Add(data);
+        }
+
+
+
         public async Task MethodWithDelayAsync(int milliseconds)
         {
             await Task.Delay(milliseconds);
 
-            additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
+
+            //additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
+            var lastChild = baseForApp.Children.LastOrDefault();
+
+            await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.MakeVisible, true);
+
         }
 
         async void setText()
