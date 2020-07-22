@@ -26,6 +26,29 @@ namespace xamarinJKH.DialogViews
             HexColor = hexColor;
             _Request = request;
             InitializeComponent();
+
+            if(Device.RuntimePlatform==Device.iOS)
+            {
+                commentFrame.BackgroundColor = Color.White;
+                if(Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width<700)
+                {
+                    LabelDate.FontSize = 12;
+                    ls1.FontSize = 10;
+                    ls2.FontSize = 10;
+                    ls3.FontSize = 10;
+                    BordlessEditor.FontSize = 10;
+                }
+                if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
+                {
+                    LabelDate.FontSize = 14;
+                    ls1.FontSize = 12;
+                    ls2.FontSize = 12;
+                    ls3.FontSize = 12;
+                    BordlessEditor.FontSize = 12;
+                }
+
+            }
+
             IsConst = isConst;
             var close = new TapGestureRecognizer();
             close.Tapped += async (s, e) => { await PopupNavigation.Instance.PopAsync(); };
