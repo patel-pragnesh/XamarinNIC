@@ -121,7 +121,7 @@ namespace xamarinJKH.Apps
             UpdateTask.Start();
         }
 
-        public static string DateUniq = "";
+        public string DateUniq = "";
         //public static string DateUniqeServ = "";
 
 
