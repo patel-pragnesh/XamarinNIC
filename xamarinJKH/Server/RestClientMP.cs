@@ -14,9 +14,9 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
+         public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
          // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс

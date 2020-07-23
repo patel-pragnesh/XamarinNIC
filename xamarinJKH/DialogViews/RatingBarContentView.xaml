@@ -56,10 +56,10 @@
                     HorizontalTextAlignment="Center">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Помогите нам стать лучше.
+                            <Span x:Name="ls1" Text="Помогите нам стать лучше.
                         " FontSize="17" />
-                            <Span Text="Оцените " TextColor="Black" FontAttributes="Bold" FontSize="17" />
-                            <Span Text="работу службы поддержки:" TextColor="Black" FontSize="17" />
+                        <Span x:Name="ls2" Text="Оцените " TextColor="Black" FontAttributes="Bold" FontSize="17" />
+                        <Span x:Name="ls3" Text="работу службы поддержки:" TextColor="Black" FontSize="17" />
 
                         </FormattedString>
                     </Label.FormattedText>
@@ -74,7 +74,7 @@
                                     Margin="35,0,35,0"
                                     HeightRequest="45" />
 
-                <Frame CornerRadius="15"
+                <Frame CornerRadius="15" x:Name="commentFrame"
                        BackgroundColor="Transparent"
                        BorderColor="{Binding HexColor}"
                        Margin="0, 25, 0, 0"

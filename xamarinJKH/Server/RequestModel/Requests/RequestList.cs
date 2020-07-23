@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using xamarinJKH.Utils;
 
 namespace xamarinJKH.Server.RequestModel
 {
@@ -41,6 +42,10 @@ namespace xamarinJKH.Server.RequestModel
 
     public class RequestMessage
     {
+        private string dateAdd;
+        private string timeAdd;
+        private bool dateVisible1;
+
         public int ID { get; set; }
         public string Added { get; set; }
         public string AuthorName { get; set; }
@@ -48,6 +53,23 @@ namespace xamarinJKH.Server.RequestModel
         public int FileID { get; set; }
         // сообщение создано текущим пользователем
         public bool IsSelf { get; set; }
+        public string DateAdd { get => Added.Split(' ')[0]; set => dateAdd = value; }
+        public string TimeAdd { get => Added.Split(' ')[1].Substring(0, 5); set => timeAdd = value; }
+        public bool dateVisible
+        {
+            get
+            {
+                if (Settings.DateUniq.Equals(DateAdd))
+                    return false;
+                else
+                {
+                    Settings.DateUniq = DateAdd;
+                    return true;
+                }
+
+            }
+            set => dateVisible1 = value;
+        }
     }
 
     public class RequestFile
