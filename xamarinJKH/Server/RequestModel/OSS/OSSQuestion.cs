@@ -12,7 +12,8 @@ namespace xamarinJKH.Server.RequestModel
         public string QuestionMessage { get; set; } // Полный текст вопроса
         public bool DoNotVoite { get; set; }
         public List<OSSAnswerStats> AnswersStats { get; set; }
-
+        public bool HasFile { get; set; }
+        public string FileLink { get; set; }
         public int CountWhyVoiteYes { get; set; } // Кол-во ответов за
         public int CountWhyVoiteNo { get; set; } // Кол-во ответов против
         public int CountWhyVoiteUnknow { get; set; } // Кол-во ответов воздержался

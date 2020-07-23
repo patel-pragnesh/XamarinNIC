@@ -330,10 +330,14 @@ namespace xamarinJKH.Main
                 Accounts.Clear();
                 if (accounts == null)
                     accounts = (await (new RestClientMP()).GetAccountingInfo()).Data;
-                foreach (var account in accounts)
+                if (accounts != null)
                 {
-                    Device.BeginInvokeOnMainThread(() => Accounts.Add(account));
+                    foreach (var account in accounts)
+                    {
+                        Device.BeginInvokeOnMainThread(() => Accounts.Add(account));
+                    }
                 }
+
                 IsRefreshing = false;
             });
         }

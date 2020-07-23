@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Plugin.Messaging;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -21,7 +22,7 @@ namespace xamarinJKH
         Color colorFromMobileSettings = Color.FromHex(Settings.MobileSettings.color);
 
         OSS _oss = null;
-
+        private string fileLink = "";
 
         private List<Label> indicators = new List<Label>();
         private RestClientMP server = new RestClientMP();
@@ -109,7 +110,16 @@ namespace xamarinJKH
             SetQuestion(quest);
             if (quest > 0)
                 visibleIndicator(quest, true);
-                
+            if(ProtokolStackL.IsVisible)
+            {
+                urlProtokol.TextColor = colorFromMobileSettings;
+                urlProtokol.GestureRecognizers.Add(new TapGestureRecognizer
+                {
+                    Command = new Command(async () => await Launcher.OpenAsync(fileLink))
+                });
+            }
+
+            pdf2.Foreground = colorFromMobileSettings;
         }
 
         
@@ -218,6 +228,9 @@ namespace xamarinJKH
                 });
 
                 questionLabel.FormattedText = formattedString;
+                ProtokolStackL.IsVisible = _oss.Questions[q].HasFile;
+                fileLink = _oss.Questions[q].FileLink;
+
             });
             
             

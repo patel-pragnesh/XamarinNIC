@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -9,7 +10,7 @@
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.OSSPool">
     <ContentPage.Content>
-        <StackLayout>            
+        <StackLayout>
             <Grid>
                 <Image x:Name="ImageFon"
                        Margin="0,20,0,0"
@@ -107,105 +108,121 @@
                             HorizontalOptions="Start" />
                     </StackLayout>
                     <StackLayout x:Name="ScrollViewContainer"
-                                Orientation="Vertical"
-                                VerticalOptions="FillAndExpand"
-                                Margin="10, 0, 10, 10">
-                        <Frame CornerRadius="40" BackgroundColor="White" Margin="20,20" >
+                                 Orientation="Vertical"
+                                 VerticalOptions="FillAndExpand"
+                                 Margin="10, 0, 10, 10">
+                        <Frame CornerRadius="40" BackgroundColor="White" Margin="20,20">
                             <ScrollView>
                                 <StackLayout
-                            VerticalOptions="FillAndExpand">
-                                    <StackLayout x:Name="questionStack" Margin="40,30,40,10" HorizontalOptions="FillAndExpand">
-                                        <Label x:Name="questionLabel"></Label>
+                                    VerticalOptions="FillAndExpand">
+                                    <StackLayout x:Name="questionStack" Margin="40,30,40,10"
+                                                 HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="questionLabel" />
                                     </StackLayout>
                                     <StackLayout x:Name="StackLayoutIndicator"
-                         Orientation="Horizontal"
-                         HeightRequest="2"
-                         Margin="0,10,0,10"
-                         BackgroundColor="White"
-                         HorizontalOptions="FillAndExpand"
-                         Spacing="0" />
+                                                 Orientation="Horizontal"
+                                                 HeightRequest="2"
+                                                 Margin="0,10,0,10"
+                                                 BackgroundColor="White"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Spacing="0" />
                                     <ScrollView Orientation="Vertical"
-                        VerticalOptions="FillAndExpand"
-                        Padding="0,0,0,10"
-                        Margin="20, 0, 0, 0">
+                                                VerticalOptions="FillAndExpand"
+                                                Padding="0,0,0,10"
+                                                Margin="20, 0, 0, 0">
                                         <StackLayout
-                    VerticalOptions="StartAndExpand">
+                                            VerticalOptions="StartAndExpand">
                                             <StackLayout x:Name="Container"
-                                 VerticalOptions="FillAndExpand"
-                                 Margin="20,0,20,20" />
+                                                         VerticalOptions="FillAndExpand"
+                                                         Margin="20,0,20,20" />
 
                                         </StackLayout>
                                     </ScrollView>
                                     <StackLayout Orientation="Horizontal"
-                                 Margin="40, 0, 40, 50">
+                                                 Margin="40, 0, 40, 10">
                                         <Frame CornerRadius="10"
-                               BackgroundColor="Red"
-                               HorizontalOptions="EndAndExpand"
-                               Margin="0, 10, 0, 0"
-                               IsVisible="False"
-                               x:Name="FrameBtnNext"
-                               Padding="40,12,40,12">
+                                               BackgroundColor="Red"
+                                               HorizontalOptions="EndAndExpand"
+                                               Margin="0, 10, 0, 0"
+                                               IsVisible="False"
+                                               x:Name="FrameBtnNext"
+                                               Padding="40,12,40,12">
                                             <StackLayout
-                                Orientation="Horizontal"
-                                Spacing="0"
-                                HorizontalOptions="Center">
+                                                Orientation="Horizontal"
+                                                Spacing="0"
+                                                HorizontalOptions="Center">
                                                 <Label
-                                    x:Name="LabelNext"
-                                    Text="Далее "
-                                    FontSize="15"
-                                    TextColor="White"
-                                    FontAttributes="Bold"
-                                    VerticalOptions="Center"
-                                    HorizontalOptions="Center" />
+                                                    x:Name="LabelNext"
+                                                    Text="Далее "
+                                                    FontSize="15"
+                                                    TextColor="White"
+                                                    FontAttributes="Bold"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="Center" />
                                                 <xamarinJkh:IconView Source="ic_arrow_forward"
-                                                     HeightRequest="10"
-                                                     WidthRequest="10"
-                                                     Margin="0,0,0,-3"
-                                                     Foreground="White"
-                                                     VerticalOptions="Center"
-                                                     HorizontalOptions="Center" />
+                                                                     HeightRequest="10"
+                                                                     WidthRequest="10"
+                                                                     Margin="0,0,0,-3"
+                                                                     Foreground="White"
+                                                                     VerticalOptions="Center"
+                                                                     HorizontalOptions="Center" />
                                             </StackLayout>
                                         </Frame>
                                         <Frame CornerRadius="10"
-                               BackgroundColor="Red"
-                               Margin="0, 10, 0, 0"
-                               IsVisible="False"
-                               HorizontalOptions="EndAndExpand"
-                               x:Name="FrameBtnFinish"
-                               Padding="30,12,30,12">
+                                               BackgroundColor="Red"
+                                               Margin="0, 10, 0, 0"
+                                               IsVisible="False"
+                                               HorizontalOptions="EndAndExpand"
+                                               x:Name="FrameBtnFinish"
+                                               Padding="30,12,30,12">
                                             <StackLayout
-                                Orientation="Horizontal"
-                                Spacing="0"
-                                HorizontalOptions="Center">
+                                                Orientation="Horizontal"
+                                                Spacing="0"
+                                                HorizontalOptions="Center">
                                                 <xamarinJkh:IconView Source="ic_check_mark"
-                                                     HeightRequest="17"
-                                                     WidthRequest="17"
-                                                     Margin="0,0,0,-3"
-                                                     Foreground="White"
-                                                     VerticalOptions="Center"
-                                                     HorizontalOptions="Center" />
+                                                                     HeightRequest="17"
+                                                                     WidthRequest="17"
+                                                                     Margin="0,0,0,-3"
+                                                                     Foreground="White"
+                                                                     VerticalOptions="Center"
+                                                                     HorizontalOptions="Center" />
                                                 <Label
-                                    x:Name="LabelFinish"
-                                    Text=" Завершить"
-                                    FontSize="15"
-                                    TextColor="White"
-                                    FontAttributes="Bold"
-                                    VerticalOptions="Center"
-                                    HorizontalOptions="Center" />
+                                                    x:Name="LabelFinish"
+                                                    Text=" Завершить"
+                                                    FontSize="15"
+                                                    TextColor="White"
+                                                    FontAttributes="Bold"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="Center" />
 
                                             </StackLayout>
                                         </Frame>
                                     </StackLayout>
+                                    <StackLayout x:Name="ProtokolStackL" Orientation="Vertical">
+                                        <xamarinJkh:IconView  x:Name="pdf2" Source="ic_export_pdf"
+                                                              HeightRequest="30"
+                                                              WidthRequest="30"
+                                                              HorizontalOptions="Start"
+                                                              Margin="0,5" />
+                                        <Label Text="Файл для обсуждения.PDF" TextColor="Black" FontSize="14" Margin="0,5"></Label>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span x:Name="urlProtokol" TextDecorations="Underline" Text="Скачать" FontSize="14"></Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
                                 </StackLayout>
                             </ScrollView>
-                            
+
                         </Frame>
-                       
+
                     </StackLayout>
                 </StackLayout>
             </Grid>
 
-            
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
