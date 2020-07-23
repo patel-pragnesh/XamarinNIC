@@ -32,19 +32,26 @@ namespace xamarinJKH.DialogViews
                 commentFrame.BackgroundColor = Color.White;
                 if(Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width<700)
                 {
+                    //Frame.Margin = new Thickness(15, 80, 15, 15);
+                    Frame.Padding = new Thickness(15, 15, 15, 0);
                     LabelDate.FontSize = 12;
                     ls1.FontSize = 10;
                     ls2.FontSize = 10;
                     ls3.FontSize = 10;
                     BordlessEditor.FontSize = 10;
+                    commentFrame.Margin = new Thickness(0, 10, 0, 0);
                 }
                 if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
                 {
-                    LabelDate.FontSize = 14;
-                    ls1.FontSize = 12;
-                    ls2.FontSize = 12;
-                    ls3.FontSize = 12;
-                    BordlessEditor.FontSize = 12;
+                    //Frame.Margin = new Thickness(15, 100, 15, 15);
+                    Frame.Padding = new Thickness(15, 20, 15, 0);
+                    
+                    LabelDate.FontSize = 16;
+                    ls1.FontSize = 14;
+                    ls2.FontSize = 14;
+                    ls3.FontSize = 14;
+                    BordlessEditor.FontSize = 14;
+                    commentFrame.Margin = new Thickness(0, 10, 0, 0);
                 }
 
             }
@@ -113,6 +120,25 @@ namespace xamarinJKH.DialogViews
                     await ShowToast("Заполните комментарий к заявке");
                 }
             });
+        }
+
+        Thickness frameMargin = new Thickness();
+
+        private void BordlessEditor_Focused(object sender, FocusEventArgs e)
+        {
+            if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
+            {
+               frameMargin = Frame.Margin;
+               Device.BeginInvokeOnMainThread(()=> { Frame.Margin = new Thickness(15, 0, 15, 15); });
+            }
+        }
+
+        private void BordlessEditor_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
+            {
+                Device.BeginInvokeOnMainThread(() => { Frame.Margin = frameMargin; }) ;
+            }
         }
     }
 }
