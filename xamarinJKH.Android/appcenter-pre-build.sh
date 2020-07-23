@@ -49,7 +49,7 @@ fi
 if [ ${#LABEL} -gt 0 ]
  then
     if [ -a ${ACTIVITY} ]; then
-        sed "s/Label = \"[-a-zA-Z0-9 | _ | ' ' | А-Яа-я]*\"/Label = \"${LABEL}\"/" ${ACTIVITY}
+        sed -i "s/Label = \"[-a-zA-Z0-9 | _ | ' ' | А-Яа-я]*\"/Label = \"${LABEL}\"/" ${ACTIVITY}
         echo "##[section][Pre-Build] Label changed";
     else 
         echo ERROR: "##[section][Pre-Build] File MainActivity.cs not found. Check the path, aborting"
