@@ -49,7 +49,7 @@ fi
 if [ ${#LABEL} -gt 0 ]
  then
     if [ -a ${ACTIVITY} ]; then
-        sed "s/Label = \"[-a-zA-Z0-9 | _ | ' ' | А-Яа-я]*\"/Label = \"${LABEL}\"/" -i ${ACTIVITY} 
+        sed -i '' 's/Label = \"[-a-zA-Z0-9 | _ | ' ' | А-Яа-я]*\"/Label = \"$LABEL\"/'  $ACTIVITY
         echo "##[section][Pre-Build] Label changed";
     else 
         echo ERROR: "##[section][Pre-Build] File MainActivity.cs not found. Check the path, aborting"
@@ -64,8 +64,8 @@ if [ ${#PACKAGENAME} -gt 0 ]
  if [ -a ${MANIFEST} ]
  then
     echo "##[section][Pre-Build] Setting up Package name"
-    sed "s/android:label=\"[-a-zA-Z0-9а-яА-Я | ' ']*\"/android:label=\"${LABEL}\"/" -i ${MANIFEST}
-    sed "s/package=\"[a-z0-9 | . | _]*\"/package=\"${PACKAGENAME}\"/" -i ${MANIFEST}
+    sed -i '' 's/android:label=\"[-a-zA-Z0-9а-яА-Я | ' ']*\"/android:label=\"$LABEL\"/'  $MANIFEST
+    sed -i '' 's/package=\"[a-z0-9 | . | _]*\"/package=\"$PACKAGENAME\"/' $MANIFEST
  fi
     
     if [  -a ${ICON_PATH} ]
