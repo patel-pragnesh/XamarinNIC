@@ -3,16 +3,19 @@
 if [ ! ${APPCENTER_SOURCE_DIRECTORY} ]
 then
     echo "Скрипт запущен локально"
-    if [ ! $1 ] && [ ! $2 ]
+    if [ ! $1 ] && [ ! $2 ] && [ ! $3 ] && [ ! $4 ]
         then 
-            echo -e "Нет аргумента для задания имени пакета, отмена.\nИспользование: sh <скрипт> <имя пакета> <имя приложения>"
+            echo -e "Нет аргумента для задания имени пакета, отмена.\nИспользование: sh <скрипт> <имя пакета> <имя приложения> <версия> <база>"
             exit 1
     fi
 
     PACKAGENAME=$1
     LABEL=$2
+    VERSION=$3
+    BASE=$4
     ACTIVITY=MainActivity.cs
     MANIFEST=Properties/AndroidManifest.xml
+    CLIENT_SCRIPT=../xamarinJKH/Server/RestClientMP.cs
     ORIGINAL_GS=google-services.json
     GS_PATH=google-services_${PACKAGENAME//"."/"_"}.json
     ORIGINAL_ICON=Resources/drawable/icon_login.png 
@@ -34,8 +37,22 @@ else
         exit 1
     fi
 
-    ROOT=${APPCENTER_SOURCE_DIRECTORY}/xamarinJKH.Android
+    echo "##[section][Pre-Build] Getting data from variable VERSION_BUILD"
+    VERSION=${VERSION_BUILD}
+    if [ ! ${VERSION}]; then
+        echo "##[section][Pre-Build] No version provided. Aborting"
+        exit 1
+    fi
 
+    echo "##[section][Pre-Build] Getting data from variable DATABASE"
+    BASE=${DATABASE}
+    if [ ! ${BASE}]; then
+        echo "##[section][Pre-Build] No database name provided. Aborting"
+        exit 1
+    fi
+
+    ROOT=${APPCENTER_SOURCE_DIRECTORY}/xamarinJKH.Android
+    CLIENT_SCRIPT=${APPCENTER_SOURCE_DIRECTORY}/xamarinJKH/Server/RestClientMP.cs
     ACTIVITY=${ROOT}/MainActivity.cs
     MANIFEST=${ROOT}/Properties/AndroidManifest.xml
     ORIGINAL_ICON=${ROOT}/Resources/drawable/icon_login.png 
@@ -71,6 +88,11 @@ if [ ${#PACKAGENAME} -gt 0 ]
     rm -f ${MANIFEST}.bak
     sed -i.bak "s/package=\"[a-z0-9 | . | _]*\"/package=\"${PACKAGENAME}\"/" $MANIFEST
     rm -f ${MANIFEST}.bak
+    if [ ${VERSION} ]; then
+        echo "##[section][Pre-Build] Setting up version"
+        sed -i.bak "s/versionName=\"[0-9|.]*\"/versionName=\"${VERSION}\"/" $MANIFEST
+        rm -f ${MANIFEST}.bak
+    fi
     cat ${MANIFEST}
  fi
     
@@ -93,3 +115,18 @@ if [ ${#PACKAGENAME} -gt 0 ]
     fi
 
 fi
+
+if [ ${#CLIENT_SCRIPT} -gt 0 ]; then
+    if [ ${BASE} ]; then
+        sed -i.bak -e "s/public const string SERVER_ADDR = \"https:\/\/api.sm-center.ru\/[a-zA-Z|.|\/|:|-|_]*\";/public const string SERVER_ADDR = \"https:\/\/api.sm-center.ru\/${BASE}\";/" $CLIENT_SCRIPT
+        rm -f ${CLIENT_SCRIPT}.bak
+    else
+        echo ERROR: "##[section][Pre-Build] No base variable set. Aborting"
+        exit 1
+    fi
+else
+    echo ERROR: "##[section][Pre-Build] No RestClientMP.cs found. Aborting"
+    exit 1
+fi
+
+head -n 30 ${CLIENT_SCRIPT} | grep "public const string SERVER_ADDR = \"[a-zA-Z|.|\/|:|-]*\""
