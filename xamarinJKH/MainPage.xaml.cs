@@ -126,6 +126,12 @@ namespace xamarinJKH
                         RegStackLayout.Margin = new Thickness(0, 5, 0, 0);
                         BottomStackLayout.Margin = new Thickness(0, -20, 0, 20);
                     }
+
+                    if(Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width<700)
+                    {
+                        LabelPhone.FontSize = 13;
+                        LabelPassword.FontSize = 13;
+                    }
                     break;
                 case Device.Android:
                     break;
