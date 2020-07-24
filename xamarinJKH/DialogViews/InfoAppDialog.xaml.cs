@@ -21,6 +21,7 @@ namespace xamarinJKH.DialogViews
         public InfoAppDialog()
         {
             InitializeComponent();
+            code.IsVisible = !Settings.Person.IsDispatcher;
             switch (Device.RuntimePlatform)
             {
                 case Device.Android:

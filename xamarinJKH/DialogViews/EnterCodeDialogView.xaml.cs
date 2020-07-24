@@ -56,6 +56,7 @@ namespace xamarinJKH.DialogViews
                     {
                         dialog.CloseDialog();
                         MessagingCenter.Send<Object>(this, "UpdateEvents");
+                        DependencyService.Get<IMessage>().ShortAlert("Заказ успешно подтвержден");
                     }
                     else
                     {

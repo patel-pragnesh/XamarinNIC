@@ -136,6 +136,7 @@
                             <Entry
                                 x:Name="EntryLS"
                                 FontSize="15"
+                                Text=""
                                 VerticalOptions="End"
                                 Placeholder="12345678"
                                 HorizontalTextAlignment="Center"

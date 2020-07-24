@@ -8,12 +8,15 @@ using Xamarin.Forms.Xaml;
 using xamarinJKH.Utils;
 using xamarinJKH.Server;
 using System.Runtime.CompilerServices;
+using Xamarin.Essentials;
+using xamarinJKH.Server.RequestModel;
 
 namespace xamarinJKH.Main
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BottomNavigationPage : TabbedPage
     {
+        private RestClientMP server = new RestClientMP();
         public BottomNavigationPage()
         {
             InitializeComponent();
@@ -22,6 +25,7 @@ namespace xamarinJKH.Main
             UnselectedTabColor = Color.Gray;
             CheckAccounts();
             visibleMenu();
+            StartUpdateToken();
             if (Device.RuntimePlatform == Device.Android)
                 RegisterNewDevice();
             MessagingCenter.Subscribe<Object, int>(this, "SwitchToApps", (sender, index) =>
@@ -29,6 +33,30 @@ namespace xamarinJKH.Main
                 this.CurrentPage = this.Children[3];
                 MessagingCenter.Send<Object, int>(this, "OpenApp", index);
             });
+        }
+
+        void StartUpdateToken()
+        {
+            Device.StartTimer(TimeSpan.FromMinutes(5), OnTimerTick);
+        }
+
+        private  bool OnTimerTick()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                string login = Preferences.Get("login", "");
+                string pass = Preferences.Get("pass", "");
+                if (!pass.Equals("") && !login.Equals(""))
+                {
+                    LoginResult loginResult = await server.Login(login, pass);
+                    if (loginResult.Error == null)
+                    {
+                        Settings.Person = loginResult;
+                    }
+                }
+
+            });
+            return true;
         }
 
         void visibleMenu()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Crashes;
 using Plugin.FirebaseCrashlytics;
 using Plugin.Messaging;
 using Xamarin.Forms;
@@ -47,7 +48,7 @@ namespace xamarinJKH.Main
             techSend.Tapped += async (s, e) =>
             {
                 if (Settings.MobileSettings.сheckCrashSystem)
-                    CrossFirebaseCrashlytics.Current.Crash();
+                    Crashes.GenerateTestCrash();
                 await Navigation.PushAsync(new TechSendPage());
             };
             LabelTech.GestureRecognizers.Add(techSend);

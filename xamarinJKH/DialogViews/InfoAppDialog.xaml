@@ -98,7 +98,8 @@
                 
             </StackLayout>
             <StackLayout
-                IsVisible="{Binding _Request.IsPaid}"
+                x:Name="code"
+                IsVisible="{Binding _Request.IsPaid }"
                 Orientation="Horizontal">
                 <Label
                     x:Name="LabelCode"
