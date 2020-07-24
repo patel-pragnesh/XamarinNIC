@@ -402,11 +402,19 @@ namespace xamarinJKH.AppsConst
             string text = EntryMess.Text;
             FrameBtnAdd.IsVisible = false;
             progress.IsVisible = true;
+            string ident = EntryLS.Text;
+
+            if (ident.Equals(""))
+            {
+                await DisplayAlert("Ошибка", "Заполните лицевой счет", "OK");
+                FrameBtnAdd.IsVisible = true;
+                progress.IsVisible = false;
+                return;
+            }
             if (!text.Equals(""))
             {
                 try
                 {
-                    string ident = EntryLS.Text;
                     string typeId = Settings.TypeApp[PickerType.SelectedIndex].ID;
                     IDResult result = await _server.newAppConst(ident, typeId, text);
 
@@ -419,7 +427,12 @@ namespace xamarinJKH.AppsConst
                     }
                     else
                     {
-                        await DisplayAlert("Ошибка", result.Error, "OK");
+                        if (result.Error.Contains("Not"))
+                        {
+                            await DisplayAlert("Ошибка", "Лс не найден", "OK");
+                        }
+                        else
+                            await DisplayAlert("Ошибка", result.Error, "OK");
                     }
                 }
                 catch (Exception ex)

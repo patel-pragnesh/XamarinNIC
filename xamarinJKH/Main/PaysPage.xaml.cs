@@ -200,7 +200,7 @@ namespace xamarinJKH.Main
 
         private async void openSaldo(object sender, EventArgs e)
         {
-            if (_accountingInfo.Count > 0)
+            if (_accountingInfo!=null && _accountingInfo.Count > 0)
             {
                 await Navigation.PushAsync(new SaldosPage(_accountingInfo));
             }
@@ -212,7 +212,7 @@ namespace xamarinJKH.Main
 
         private async void OpenHistory(object sender, EventArgs e)
         {
-            if (_accountingInfo.Count > 0)
+            if (_accountingInfo!=null && _accountingInfo.Count > 0)
             {
                 await Navigation.PushAsync(new HistoryPayedPage(_accountingInfo));
             }

@@ -10,8 +10,12 @@ using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 using Application = Xamarin.Forms.Application;
 using System.Linq;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using xamarinJKH.Apps;
 using xamarinJKH.Main;
+using Device = Xamarin.Forms.Device;
 
 namespace xamarinJKH
 {
@@ -151,6 +155,11 @@ namespace xamarinJKH
         protected override void OnStart()
         {
 
+            AppCenter.Start("android=21216fbf-ac4c-4b3a-ace6-83d4ecc0a1a2;",
+                            // "uwp={Your UWP App secret here};" +
+                            // "ios={Your iOS App secret here}",
+                typeof(Analytics), typeof(Crashes));
+            
             // Handle when your app starts
             CrossFirebasePushNotification.Current.Subscribe("general");
             CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
