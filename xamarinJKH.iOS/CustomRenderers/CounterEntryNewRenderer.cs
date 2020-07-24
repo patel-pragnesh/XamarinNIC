@@ -37,8 +37,9 @@ namespace xamarinJKH.iOS.CustomRenderers
 
         public override void DeleteBackward()
         {
-            base.DeleteBackward();
+            //base.DeleteBackward();
             OnDeleteBackwardPressed();
+            base.DeleteBackward();
         }
     }
 

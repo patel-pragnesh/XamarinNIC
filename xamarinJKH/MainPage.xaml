@@ -150,7 +150,7 @@
 
                                                         VerticalOptions="Center" />
 
-                                        <Label Text=" Пароль  "
+                                        <Label x:Name="LabelPassword" Text=" Пароль  "
                                                FontSize="15"
                                                TextColor="Black"
                                                Margin="-5, 0, 0, 5"

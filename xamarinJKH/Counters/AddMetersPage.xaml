@@ -166,7 +166,7 @@
                     </StackLayout>
 
                 </Frame>
-                <Frame CornerRadius="30"
+                        <Frame CornerRadius="30" x:Name="FrameMeterReading"
                            Margin="20, 10, 20, 15"
                            BackgroundColor="White"
                            Padding="0">
@@ -197,7 +197,7 @@
                                                             <RowDefinition Height="0.85*"></RowDefinition>
                                                             <RowDefinition Height="0.15*"></RowDefinition>
                                                         </Grid.RowDefinitions>
-                                                        <xamarinJkh:CounterEntryNew x:Name="d1" TextChanged="d1_Completed" >
+                                                        <xamarinJkh:CounterEntryNew x:Name="d1" TextChanged="d1_Completed" Focused="Entry_Focused">
                                                             <Entry.Behaviors>
                                                                 <behaviors:EntryLengthValidatorBehavior MaxLength="1" />
                                                             </Entry.Behaviors>
@@ -215,7 +215,7 @@
                                                             <RowDefinition Height="0.85*"></RowDefinition>
                                                             <RowDefinition Height="0.15*"></RowDefinition>
                                                         </Grid.RowDefinitions>
-                                                        <xamarinJkh:CounterEntryNew x:Name="d2" TextChanged="d2_Completed" >
+                                                        <xamarinJkh:CounterEntryNew x:Name="d2" TextChanged="d2_Completed" Focused="Entry_Focused" >
                                                             <Entry.Behaviors>
                                                                 <behaviors:EntryLengthValidatorBehavior MaxLength="1" />
                                                             </Entry.Behaviors>

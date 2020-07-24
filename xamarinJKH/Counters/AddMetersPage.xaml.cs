@@ -142,16 +142,27 @@ namespace xamarinJKH.Counters
             d7.OnBackspace += D7_OnBackspace;
             d8.OnBackspace += D8_OnBackspace;
 
-            
+
 
             d1.Focused += Entry_Focused;
             d2.Focused += Entry_Focused;
             d3.Focused += Entry_Focused;
             d4.Focused += Entry_Focused;
-            d5.Focused += Entry_Focused; 
+            d5.Focused += Entry_Focused;
             d6.Focused += Entry_Focused;
             d7.Focused += Entry_Focused;
             d8.Focused += Entry_Focused;
+
+
+            //d1.Unfocused += Entry_Unfocused;
+            //d2.Unfocused += Entry_Unfocused;
+            //d3.Unfocused += Entry_Unfocused;
+            //d4.Unfocused += Entry_Unfocused;
+            //d5.Unfocused += Entry_Unfocused;
+            //d6.Unfocused += Entry_Unfocused;
+            //d7.Unfocused += Entry_Unfocused;
+            //d8.Unfocused += Entry_Unfocused;
+
 
             DecimalPoint = meter.NumberOfDecimalPlaces;
             switch (DecimalPoint)
@@ -179,12 +190,41 @@ namespace xamarinJKH.Counters
             }
         }
 
-        private async void Entry_Focused(object sender, FocusEventArgs e)
-        {            
+        //private void Entry_Unfocused(object sender, FocusEventArgs e)
+        //{
+        //    if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
+        //    {
+        //        if (Device.RuntimePlatform == Device.iOS)
+        //        {
+        //            Device.BeginInvokeOnMainThread(() =>
+        //            {
+        //                FrameMeterReading.Margin = frameCounterMargin;
+        //            });
+        //        }
+        //    }
+        //}
+
+        //Thickness frameCounterMargin = new Thickness();
+
+
+        private void Entry_Focused(object sender, FocusEventArgs e)
+        {
+            //if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
+            //{
+            //    if (Device.RuntimePlatform == Device.iOS)
+            //    {
+            //        Device.BeginInvokeOnMainThread(() =>
+            //        {
+            //            frameCounterMargin = FrameMeterReading.Margin;
+            //            FrameMeterReading.Margin = new Thickness(20, -150, 20, 15);
+            //        });
+            //    }
+            //}
+
             Device.BeginInvokeOnMainThread(async () =>
-            {                
-                if(Device.RuntimePlatform==Device.Android)
-                await Task.Delay(100);
+            {
+                if (Device.RuntimePlatform == Device.Android)
+                    await Task.Delay(100);
                 else
                     await Task.Delay(900);
                 var entry = (CounterEntryNew)sender;
@@ -192,8 +232,8 @@ namespace xamarinJKH.Counters
                 {
                     entry.CursorPosition = 0;
                     entry.SelectionLength = entry.Text.Length;
-                }                
-            });           
+                }
+            });
         }
 
         private void SetCurrent(decimal counterThisMonth)
