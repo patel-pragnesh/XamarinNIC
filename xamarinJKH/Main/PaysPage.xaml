@@ -10,7 +10,7 @@
              x:Class="xamarinJKH.Main.PaysPage">
     <ContentPage.Content>
         <StackLayout>
-            <Grid>
+            <Grid VerticalOptions="FillAndExpand">
                 <Image x:Name="ImageFon"
                        Source="ic_pays_top"
                        Margin="0,20,0,0"
@@ -24,7 +24,7 @@
                         BackgroundColor="#131313"
                         MinimumHeightRequest="102"
                         HorizontalOptions="Fill"
-                        VerticalOptions="StartAndExpand"
+                        VerticalOptions="Start"
                         x:Name="Pancake"
                         IsClippedToBounds="True">
                         <Grid IsClippedToBounds="True">
@@ -103,7 +103,7 @@
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
-                    <StackLayout
+                    <StackLayout VerticalOptions="FillAndExpand"
                        >
                         <Frame x:Name="FrameAddIdent"
                                CornerRadius="40"
@@ -120,7 +120,7 @@
                                 TextColor="White"
                                 FontSize="15" />
                         </Frame>
-                        <RefreshView x:Name="paysRefreshView" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" VerticalOptions="FillAndExpand">
+                        <RefreshView x:Name="paysRefreshView" Margin="10, 0, 10, 0" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" VerticalOptions="FillAndExpand">
                             <ScrollView x:Name="scrollForPays" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
                                 <StackLayout x:Name="baseForPays" VerticalOptions="FillAndExpand"></StackLayout>
                             </ScrollView>
@@ -147,7 +147,7 @@
 
                             </ListView.ItemTemplate>
                         </ListView>-->
-                        <StackLayout
+                        <StackLayout VerticalOptions="End"
                             >
                             <pancakeView:PancakeView x:Name="GoodsLayot" Elevation="20" CornerRadius="50,50,0,0"
                                                      BackgroundColor="#8D8D8D"
