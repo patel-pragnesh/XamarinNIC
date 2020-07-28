@@ -9,6 +9,7 @@ using xamarinJKH.InterfacesIntegration;
 using Xamarin.Essentials;
 using xamarinJKH.CustomRenderers;
 using System.Net.Http;
+using AiForms.Dialogs;
 
 namespace xamarinJKH.Pays
 {
@@ -58,7 +59,7 @@ namespace xamarinJKH.Pays
         {
             await Xamarin.Essentials.Share.RequestAsync(new ShareTextRequest()
             {
-                Uri = viewModel.Path,
+                Uri = viewModel.Bill.FileLink,
                 Text = "Поделиться квитанцией"
             });
         }
@@ -66,7 +67,23 @@ namespace xamarinJKH.Pays
         async void Print(object sender, EventArgs args)
         {
             HttpClient client = new HttpClient();
-            DependencyService.Get<xamarinJKH.InterfacesIntegration.IPrintManager>().SendFileToPrint(await client.GetByteArrayAsync("http://www.africau.edu/images/default/sample.pdf"));
+            Loading.Instance.Show("Подождите, идет загрузка");
+            try
+            {
+                var file = await client.GetByteArrayAsync(viewModel.Bill.FileLink);
+                if (file != null)
+                    DependencyService.Get<xamarinJKH.InterfacesIntegration.IPrintManager>().SendFileToPrint(file);
+                else
+                    await DisplayAlert(null, "Произошла ошибка при скачивании файла", "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert(null, "Произошла ошибка, попробуйте перезапустить приложение", "ОК");
+            }
+            finally
+            {
+                Loading.Instance.Hide();
+            }
         }
     }
 
