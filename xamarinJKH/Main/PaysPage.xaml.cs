@@ -11,6 +11,7 @@ using AiForms.Dialogs.Abstractions;
 using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.CustomRenderers;
 using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Pays;
@@ -63,12 +64,16 @@ namespace xamarinJKH.Main
             //additionalList.ItemsSource = _accountingInfo;
         }
 
-        PaysPageViewModel viewModel { get; set; }
+        //PaysPageViewModel viewModel { get; set; }
 
         public PaysPage()
         {
             InitializeComponent();
-            BindingContext = viewModel = new PaysPageViewModel();
+            //BindingContext = viewModel = new PaysPageViewModel(this.baseForPays, _accountingInfo);
+
+            
+
+            //PaysPageViewModel(this.baseForPays, _accountingInfo);
             Settings.mainPage = this;
             NavigationPage.SetHasNavigationBar(this, false);
 
@@ -138,16 +143,22 @@ namespace xamarinJKH.Main
             };
             LabelPhone.GestureRecognizers.Add(call);
             SetTextAndColor();
+
+            PaysPageViewModel(this.baseForPays, _accountingInfo);
+
+
             //getInfo();
-            additionalList.BackgroundColor = Color.Transparent;
+            //additionalList.BackgroundColor = Color.Transparent;
             var goAddIdent = new TapGestureRecognizer();
             goAddIdent.Tapped += async (s, e) => { /*await Dialog.Instance.ShowAsync<AddAccountDialogView>();*/await Navigation.PushAsync(new AddIdent(this)); };
             FrameAddIdent.GestureRecognizers.Add(goAddIdent);
             var openSaldos = new TapGestureRecognizer();
             openSaldos.Tapped += async (s, e) => { await Navigation.PushAsync(new SaldosPage(_accountingInfo)); };
             FrameBtnSaldos.GestureRecognizers.Add(openSaldos);
-            additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+            //additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
             MessagingCenter.Subscribe<Object>(this, "UpdateIdent", (sender) => SyncSetup());
+
+            BindingContext = this;
         }
 
         protected override void OnAppearing()
@@ -183,7 +194,7 @@ namespace xamarinJKH.Main
             if (info.Error == null)
             {
                 _accountingInfo = info.Data;
-                viewModel.LoadAccounts.Execute(info.Data);
+                /*viewModel.*/LoadAccounts.Execute(info.Data);
                 //this.BindingContext = this;
             }
             else
@@ -192,11 +203,11 @@ namespace xamarinJKH.Main
             }
         }
 
-        private async void OnItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            AccountAccountingInfo select = e.Item as AccountAccountingInfo;
-            await Navigation.PushAsync(new CostPage(select, _accountingInfo));
-        }
+        //private async void OnItemTapped(object sender, ItemTappedEventArgs e)
+        //{
+        //    AccountAccountingInfo select = e.Item as AccountAccountingInfo;
+        //    await Navigation.PushAsync(new CostPage(select, _accountingInfo));
+        //}
 
         private async void openSaldo(object sender, EventArgs e)
         {
@@ -258,35 +269,56 @@ namespace xamarinJKH.Main
                 // Settings.EventBlockData = await server.GetEventBlockData();
                 ItemsList<NamedValue> resultN = await server.GetRequestsTypes();
                 Settings.TypeApp = resultN.Data;
-                viewModel.RemoveAccount.Execute(ident);//removeLs(ident);
+                /*viewModel.*/RemoveAccount.Execute(ident);//removeLs(ident);
+
+
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    IsRefreshing = true;
+
+                    await RefreshPaysData();
+
+                    IsRefreshing = false;
+                });
+
+
             }
             else
             {
                 await DisplayAlert("Ошибка", result.Error, "ОК");
             }
+
+            //Device.BeginInvokeOnMainThread(async () =>
+            //{
+            //    IsRefreshing = true;
+
+            //    await RefreshPaysData();
+
+            //    IsRefreshing = false;
+            //});
         }
 
-        void removeLs(string ident)
-        {
-            foreach (var each in _accountingInfo)
-            {
-                if (each.Ident.Equals(ident))
-                {
-                    _accountingInfo.Remove(each);
-                    break;
-                }
-            }
+        //void removeLs(string ident)
+        //{
+        //    foreach (var each in _accountingInfo)
+        //    {
+        //        if (each.Ident.Equals(ident))
+        //        {
+        //            _accountingInfo.Remove(each);
+        //            break;
+        //        }
+        //    }
 
-            additionalList.ItemsSource = null;
-            additionalList.ItemsSource = _accountingInfo;
-        }
-    }
+        //    additionalList.ItemsSource = null;
+        //    additionalList.ItemsSource = _accountingInfo;
+        //}
+    //}
 
-    public class PaysPageViewModel : BaseViewModel
-    {
-        public ObservableCollection<AccountAccountingInfo> Accounts { get; set; }
+    //public class PaysPageViewModel : BaseViewModel
+    //{
+        public List<AccountAccountingInfo> Accounts { get; set; }
         public Command LoadAccounts { get; set; }
-        public Color hex { get; set; }
+        //public Color hex { get; set; }
         public Command RemoveAccount 
         {
             get => new Command<string>(ident =>
@@ -295,51 +327,299 @@ namespace xamarinJKH.Main
                 if (account_to_delete != null)
                 {
                     Accounts.Remove(account_to_delete);
-                    OnPropertyChanged("Accounts");
+
+                    //OnPropertyChanged("Accounts");
                 }
             });
         }
 
-        bool _isRefreshing;
-        public bool IsRefreshing
-        {
-            get => _isRefreshing;
-            set
-            {
-                _isRefreshing = value;
-                OnPropertyChanged(nameof(IsRefreshing));
-            }
-        }
+        //bool _isRefreshing;
+        //public bool IsRefreshing
+        //{
+        //    get => _isRefreshing;
+        //    set
+        //    {
+        //        _isRefreshing = value;
+        //        OnPropertyChanged(nameof(IsRefreshing));
+        //    }
+        //}
 
-        public Command RefreshCommand
-        {
-            get => new Command(() =>
-            {
-                IsRefreshing = true;
-                LoadAccounts.Execute(null);
+        //public Command RefreshCommand
+        //{
+        //    get => new Command(() =>
+        //    {
+        //        IsRefreshing = true;
+        //        LoadAccounts.Execute(null);
 
-            });
-        }
+        //    });
+        //}
 
-        public PaysPageViewModel()
+        public void PaysPageViewModel(StackLayout baseForPays, List<AccountAccountingInfo> _accountingInfo)
         {
             hex = Color.FromHex(Settings.MobileSettings.color);
-            Accounts = new ObservableCollection<AccountAccountingInfo>();
+            Accounts = new List<AccountAccountingInfo>();
             LoadAccounts = new Command<List<AccountAccountingInfo>>(async (accounts) =>
             {
                 Accounts.Clear();
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    baseForPays.Children.Clear();
+                });
+
                 if (accounts == null)
                     accounts = (await (new RestClientMP()).GetAccountingInfo()).Data;
+//#if DEBUG
+//                if (accounts.Count<2)
+//                {
+                    
+
+//                    for (int i = 0; i < 9; i++)
+//                    {
+//                        AccountAccountingInfo a = new AccountAccountingInfo();
+//                        a.Sum = accounts[i].Sum + i * 102;
+//                        a.Ident = (i * 9 + i * 2).ToString();
+//                        accounts.Add(a);
+//                    };
+
+//                }
+//#endif
                 if (accounts != null)
                 {
                     foreach (var account in accounts)
                     {
-                        Device.BeginInvokeOnMainThread(() => Accounts.Add(account));
+                        //Device.BeginInvokeOnMainThread(() => Accounts.Add(account));
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            Accounts.Add(account);
+                            baseForPays.Children.Add(AddAccountToList(account, _accountingInfo));
+                        }
+                        ) ;
+
+                        
                     }
                 }
 
                 IsRefreshing = false;
             });
+        }
+
+       
+
+        MaterialFrame AddAccountToList(AccountAccountingInfo info, List<AccountAccountingInfo> _accountingInfo)
+        {
+            Label ident = new Label();
+            Label adress = new Label();
+            StackLayout dell = new StackLayout();
+            Label sumPayDate = new Label();
+            Label sumPay = new Label();
+
+            MaterialFrame frame = new MaterialFrame();
+            frame.HorizontalOptions = LayoutOptions.FillAndExpand;
+            frame.Elevation = 20;
+            frame.VerticalOptions = LayoutOptions.Start;
+            frame.BackgroundColor = Color.White;
+            frame.Margin = new Thickness(10, 0, 10, 10);
+            frame.Padding = new Thickness(15, 15, 15, 15);
+            frame.CornerRadius = 30;
+
+            StackLayout container = new StackLayout();
+            container.Orientation = StackOrientation.Vertical;
+
+            StackLayout dateIdent = new StackLayout();
+            dateIdent.Orientation = StackOrientation.Horizontal;
+
+            StackLayout identAdress = new StackLayout();
+            identAdress.HorizontalOptions = LayoutOptions.StartAndExpand;
+            identAdress.Spacing = 0;
+
+            ident.FontSize = 15;
+            ident.TextColor = Color.Black;
+            adress.FontSize = 12;
+            adress.TextColor = Color.Gray;
+            adress.FontFamily = "Roboto";
+
+            identAdress.Children.Add(ident);
+            identAdress.Children.Add(adress);
+
+            IconView x = new IconView();
+            x.Source = "ic_close";
+            x.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            x.HeightRequest = 10;
+            x.WidthRequest = 10;
+
+            Label close = new Label();
+            close.Text = "Удалить";
+            close.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            close.FontSize = 15;
+            close.TextDecorations = TextDecorations.Underline;
+            dell.Orientation = StackOrientation.Horizontal;
+            dell.HorizontalOptions = LayoutOptions.EndAndExpand;
+            dell.VerticalOptions = LayoutOptions.Center;
+            dell.MinimumWidthRequest = 80;
+
+            dell.Children.Add(x);
+            dell.Children.Add(close);
+
+            dateIdent.Children.Add(identAdress);
+            dateIdent.Children.Add(dell);
+
+            Label separator = new Label();
+
+            separator.HeightRequest = 1;
+            separator.BackgroundColor = Color.Gray;
+            separator.Margin = new Thickness(0, 5, 0, 5);
+            container.Children.Add(dateIdent);
+            container.Children.Add(separator);
+
+            StackLayout sums = new StackLayout();
+            sums.Orientation = StackOrientation.Horizontal;
+            sums.Margin = new Thickness(30, 0, 30, 5);
+
+            sumPayDate.Text = string.Format("Сумма к оплате{0} на 31.05.2020", Environment.NewLine);
+            sumPayDate.FontSize = 15;
+            sumPayDate.TextColor = Color.Gray;
+            sumPayDate.HorizontalTextAlignment = TextAlignment.End;
+            sumPayDate.Margin = new Thickness(0, 0, 15, 0);
+
+            sumPay.Text = "4593.01 руб";
+            sumPay.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            sumPay.FontSize = 25;
+            sumPay.VerticalOptions = LayoutOptions.Center;
+
+            sums.Children.Add(sumPayDate);
+            sums.Children.Add(sumPay);
+
+            container.Children.Add(sums);
+
+            Frame frameBtn = new Frame();
+            frameBtn.HorizontalOptions = LayoutOptions.FillAndExpand;
+            frameBtn.VerticalOptions = LayoutOptions.Start;
+            frameBtn.Padding = 0;
+            frameBtn.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            frameBtn.CornerRadius = 10;
+
+            StackLayout containerBtn = new StackLayout();
+            containerBtn.Orientation = StackOrientation.Horizontal;
+            containerBtn.Spacing = 0;
+            containerBtn.HorizontalOptions = LayoutOptions.CenterAndExpand;
+
+            IconView image = new IconView();
+            image.Source = "ic_pays";
+            image.Foreground = Color.White;
+            // image.Margin = new Thickness(-45, 0, 0, 0);
+            image.HeightRequest = 30;
+            image.WidthRequest = 30;
+
+            Label btn = new Label();
+            // btn.Margin = new Thickness(-30, 0, 0, 0);
+            btn.TextColor = Color.White;
+            btn.BackgroundColor = Color.Transparent;
+            btn.HorizontalOptions = LayoutOptions.Center;
+            btn.Margin = new Thickness(13, 13, 0, 13);
+            btn.FontAttributes = FontAttributes.Bold;
+            btn.FontSize = 16;
+            btn.Text = "Оплатить";
+
+            containerBtn.Children.Add(image);
+            containerBtn.Children.Add(btn);
+
+            frameBtn.Content = containerBtn;
+
+            container.Children.Add(frameBtn);
+
+            Label payPeriod = new Label();
+
+            FormattedString formatted = new FormattedString();
+
+            formatted.Spans.Add(new Span
+            {
+                Text = "Платеж обрабатывается",
+                FontSize = 12
+            });
+            formatted.Spans.Add(new Span
+            {
+                Text = " 2-3 ",
+                FontSize = 12,
+                FontAttributes = FontAttributes.Bold
+            });
+            formatted.Spans.Add(new Span
+            {
+                Text = "рабочих дня",
+                FontSize = 12
+            });
+
+            payPeriod.FormattedText = formatted;
+            payPeriod.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            payPeriod.FontSize = 12;
+            payPeriod.HorizontalOptions = LayoutOptions.CenterAndExpand;
+
+            container.Children.Add(payPeriod);
+
+            frame.Content = container;
+
+            var openPayRec = new TapGestureRecognizer();
+            openPayRec.Tapped += async (s, e) =>
+              {
+                  await Navigation.PushAsync(new CostPage(info, _accountingInfo));
+              };
+            frameBtn.GestureRecognizers.Add(openPayRec);
+
+
+            var delLs = new TapGestureRecognizer();
+            delLs.Tapped += async (s, e) =>
+            {
+                Settings.mainPage.DellLs(info.Ident);
+            };
+            dell.GestureRecognizers.Add(delLs);
+
+            FormattedString formattedIdent = new FormattedString();
+            formattedIdent.Spans.Add(new Span
+            {
+                Text = "Л/сч: ",
+                TextColor = Color.Black,
+                FontSize = 15
+            });
+            formattedIdent.Spans.Add(new Span
+            {
+                Text = "№ " + info.Ident,
+                TextColor = Color.Black,
+                FontAttributes = FontAttributes.Bold,
+                FontSize = 15
+            });
+            ident.FormattedText = formattedIdent;
+            FormattedString formattedPayDate = new FormattedString();
+
+            formattedPayDate.Spans.Add(new Span
+            {
+                Text = "Сумма к оплате\n",
+                TextColor = Color.Gray,
+                FontSize = 15
+            });
+            formattedPayDate.Spans.Add(new Span
+            {
+                Text = "на " + info.DebtActualDate + ":",
+                TextColor = Color.Black,
+                FontSize = 15
+            });
+            adress.Text = info.Address;
+            sumPayDate.FormattedText = formattedPayDate;
+            FormattedString formattedPay = new FormattedString();
+            formattedPay.Spans.Add(new Span
+            {
+                Text = info.Sum.ToString(),
+                TextColor = Color.FromHex(Settings.MobileSettings.color),
+                FontAttributes = FontAttributes.Bold,
+                FontSize = 20
+            });
+            formattedPay.Spans.Add(new Span
+            {
+                Text = " руб.",
+                TextColor = Color.Gray,
+                FontSize = 15
+            });
+            sumPay.FormattedText = formattedPay;
+
+            return frame;
         }
     }
 }

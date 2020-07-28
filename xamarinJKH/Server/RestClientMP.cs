@@ -14,7 +14,7 @@ namespace xamarinJKH.Server
 {
     public class RestClientMP
     {
-         //public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
         //public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
           public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
@@ -26,8 +26,8 @@ namespace xamarinJKH.Server
         
         public const string SEND_TEACH_MAIL = "Public/TechSupportAppeal"; // Создание обращения в тех поддержк
         
-        public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутификация сотрудника
-        public const string LOGIN = "auth/Login"; // Аунтификация пользователя
+        public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутентификация сотрудника
+        public const string LOGIN = "auth/Login"; // Аутентификация пользователя
         public const string REQUEST_CODE = "auth/RequestAccessCode"; // Запрос кода подтверждения
         public const string REQUEST_CHECK_CODE = "auth/CheckAccessCode"; // Подтверждение кода подтверждения
         public const string REGISTR_BY_PHONE = "auth/RegisterByPhone"; // Регистрация по телефону

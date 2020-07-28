@@ -120,7 +120,12 @@
                                 TextColor="White"
                                 FontSize="15" />
                         </Frame>
-                        <ListView x:Name="additionalList"
+                        <RefreshView x:Name="paysRefreshView" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" VerticalOptions="FillAndExpand">
+                            <ScrollView x:Name="scrollForPays" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
+                                <StackLayout x:Name="baseForPays" VerticalOptions="FillAndExpand"></StackLayout>
+                            </ScrollView>
+                        </RefreshView>
+                        <!--<ListView x:Name="additionalList"
                                   HasUnevenRows="True"
                                   Margin="10, 0, 10, 0"
                                   SeparatorVisibility="None"
@@ -131,9 +136,6 @@
                                   SelectionMode="None"
                                   ItemTapped="OnItemTapped"
                                   ItemsSource="{Binding Accounts}">
-                            <ListView.Header>
-
-                            </ListView.Header>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <main:PaysCell
@@ -144,7 +146,7 @@
                                 </DataTemplate>
 
                             </ListView.ItemTemplate>
-                        </ListView>
+                        </ListView>-->
                         <StackLayout
                             >
                             <pancakeView:PancakeView x:Name="GoodsLayot" Elevation="20" CornerRadius="50,50,0,0"
