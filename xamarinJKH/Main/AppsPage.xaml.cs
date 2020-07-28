@@ -92,14 +92,13 @@ namespace xamarinJKH.Main
                     return;
                 inUpdateNow = true;
 
-                RequestInfos = null;
 
                 await getAppsAsync();
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    additionalList.ItemsSource = null;
-                    additionalList.ItemsSource = RequestInfos;
-                });
+                //Device.BeginInvokeOnMainThread(() =>
+                //{
+                //    additionalList.ItemsSource = null;
+                //    additionalList.ItemsSource = RequestInfos;
+                //});
 
                 inUpdateNow = false;
             }
@@ -284,9 +283,13 @@ namespace xamarinJKH.Main
             _requestList = await _server.GetRequestsList();
             if (_requestList.Error == null)
             {
-                setCloses(_requestList.Requests);
-                Settings.UpdateKey = _requestList.UpdateKey;
-                this.BindingContext = this;
+                if(Settings.UpdateKey != _requestList.UpdateKey)
+                {
+                    RequestInfos = null;
+                    setCloses(_requestList.Requests);
+                    Settings.UpdateKey = _requestList.UpdateKey;
+                    this.BindingContext = this;                    
+                }                
             }
             else
             {
@@ -333,6 +336,12 @@ namespace xamarinJKH.Main
             {
                 RequestInfos = RequestInfosAlive;
             }
+
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                additionalList.ItemsSource = null;
+                additionalList.ItemsSource = RequestInfos;
+            });
         }
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
