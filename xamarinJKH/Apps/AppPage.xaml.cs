@@ -71,7 +71,7 @@ namespace xamarinJKH.Apps
 
         CancellationTokenSource TokenSource { get; set; }
         CancellationToken Token { get; set; }
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
 
@@ -119,6 +119,22 @@ namespace xamarinJKH.Apps
                 
             }, Token);
             UpdateTask.Start();
+
+            if (Device.RuntimePlatform == "Android")
+            {
+                var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                if (camera_perm != PermissionStatus.Granted)
+                {
+                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
+                }
+
+                var file_perm = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                if (file_perm != PermissionStatus.Granted)
+                {
+                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                }
+
+            }
         }
 
         public string DateUniq = "";
