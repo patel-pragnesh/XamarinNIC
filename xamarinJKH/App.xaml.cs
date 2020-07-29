@@ -32,7 +32,7 @@ namespace xamarinJKH
         public App()
         {
             InitializeComponent();
-
+            DependencyService.Register<RestClientMP>();
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
