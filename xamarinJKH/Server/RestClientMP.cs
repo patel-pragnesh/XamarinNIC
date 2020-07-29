@@ -448,7 +448,7 @@ namespace xamarinJKH.Server
         /// <param name="paidServiceText">Текст для оплаты</param>
         /// <returns>id новой заявки</returns>
         public async Task<IDResult> newAppPay(string ident, string typeID, string Text, bool isPaid, decimal paidSum,
-            string paidServiceText, List<RequestsReceiptItem> ReceiptItems)
+            string paidServiceText)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(NEW_APP, Method.POST);
@@ -461,8 +461,7 @@ namespace xamarinJKH.Server
                 Text,
                 isPaid,
                 paidSum,
-                paidServiceText,
-                ReceiptItems
+                paidServiceText
             });
             var response = await restClientMp.ExecuteTaskAsync<IDResult>(restRequest);
             // Проверяем статус

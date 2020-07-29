@@ -368,21 +368,21 @@ namespace xamarinJKH.Main
 
                 if (accounts == null)
                     accounts = (await (new RestClientMP()).GetAccountingInfo()).Data;
-//#if DEBUG
-//                if (accounts.Count<2)
-//                {
-                    
+#if DEBUG
+                if (accounts.Count < 2)
+                {
 
-//                    for (int i = 0; i < 9; i++)
-//                    {
-//                        AccountAccountingInfo a = new AccountAccountingInfo();
-//                        a.Sum = accounts[i].Sum + i * 102;
-//                        a.Ident = (i * 9 + i * 2).ToString();
-//                        accounts.Add(a);
-//                    };
 
-//                }
-//#endif
+                    for (int i = 0; i < 9; i++)
+                    {
+                        AccountAccountingInfo a = new AccountAccountingInfo();
+                        a.Sum = accounts[i].Sum + i * 102;
+                        a.Ident = (i * 9 + i * 2).ToString();
+                        accounts.Add(a);
+                    };
+
+                }
+#endif
                 if (accounts != null)
                 {
                     foreach (var account in accounts)

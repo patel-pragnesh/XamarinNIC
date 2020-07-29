@@ -23,6 +23,9 @@ using AiForms.Dialogs.Abstractions;
 using AiForms.Dialogs;
 using xamarinJKH.DialogViews;
 
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+
 namespace xamarinJKH
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
@@ -137,6 +140,26 @@ namespace xamarinJKH
                     break;
                 default:
                     break;
+            }
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (Device.RuntimePlatform == "Android")
+            {
+                var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                if (camera_perm != PermissionStatus.Granted)
+                {
+                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
+                }
+
+                var file_perm = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                if (file_perm != PermissionStatus.Granted)
+                {
+                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                }
+
             }
         }
 
