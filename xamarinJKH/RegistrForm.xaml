@@ -23,7 +23,7 @@
                    Grid.Row="2"
                    Grid.RowSpan="2"
                    CornerRadius="40"
-                   Margin="0,-50,0,-30"/>
+                   Margin="0,-80,0,-30"/>
             <Image x:Name="TopFon"
                    Source="top_fon_login"
                    Grid.Row="0"
