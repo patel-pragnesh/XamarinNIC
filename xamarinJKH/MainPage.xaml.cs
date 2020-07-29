@@ -52,11 +52,6 @@ namespace xamarinJKH
             getSettings();
            
             NavigationPage.SetHasNavigationBar(this, false);
-            Device.BeginInvokeOnMainThread(() =>
-            {
-               ;
-
-            });
             var startRegForm = new TapGestureRecognizer();
             startRegForm.Tapped += async (s, e) => { await Navigation.PushModalAsync(new RegistrForm(this)); };
             RegistLabel.GestureRecognizers.Add(startRegForm);
