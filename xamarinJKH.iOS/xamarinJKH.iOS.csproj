@@ -476,9 +476,12 @@
     <BundleResource Include="Resources\ic_export_pdf.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\icon_login.png" />
+    <BundleResource Include="Resources\icon_login_dom24.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_send_code.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_login.png" />
   </ItemGroup>
 </Project>
