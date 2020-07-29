@@ -35,7 +35,16 @@ namespace xamarinJKH
     public partial class MainPage : ContentPage
     {
         private RestClientMP server = new RestClientMP();
-        public Color hex { get; set; }
+        Color _hex;
+        public Color hex
+        {
+            get => _hex;
+            set
+            {
+                _hex = value;
+                OnPropertyChanged("hex");
+            }
+        }
 
         public MainPage()
         {
@@ -191,17 +200,18 @@ namespace xamarinJKH
                 UkName.Text = Settings.MobileSettings.main_name;
                 Version.Text ="ver " + Xamarin.Essentials.AppInfo.VersionString;
                 hex = Color.FromHex(Settings.MobileSettings.color);
-                IconViewLogin.Foreground = hex;
-                IconViewPass.Foreground = hex;
-                ImageClosePass.Foreground = hex;
+                Application.Current.Resources["MainColor"] = hex;
+                //IconViewLogin.Foreground = hex;
+                //IconViewPass.Foreground = hex;
+                //ImageClosePass.Foreground = hex;
 
-                FrameBtnLogin.BackgroundColor = hex;
-                LabelseparatorPass.BackgroundColor = hex;
-                LabelseparatorLogin.BackgroundColor = hex;
-                SwitchLogin.OnColor = hex;
+                //FrameBtnLogin.BackgroundColor = hex;
+                //LabelseparatorPass.BackgroundColor = hex;
+                //LabelseparatorLogin.BackgroundColor = hex;
+                //SwitchLogin.OnColor = hex;
                 SwitchLogin.ThumbColor = Color.White;
-                RegistLabel.TextColor = hex;
-                progress.Color = hex;
+                //RegistLabel.TextColor = hex;
+                //progress.Color = hex;
                 Color.SetAccent(hex);
 
                 StackLayoutContent.IsVisible = true;
