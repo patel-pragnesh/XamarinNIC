@@ -16,8 +16,8 @@ namespace xamarinJKH.Server
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        //public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
-          public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
+        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+          // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
         // public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_yegkh"; //Легкая жизнъ
@@ -448,7 +448,7 @@ namespace xamarinJKH.Server
         /// <param name="paidServiceText">Текст для оплаты</param>
         /// <returns>id новой заявки</returns>
         public async Task<IDResult> newAppPay(string ident, string typeID, string Text, bool isPaid, decimal paidSum,
-            string paidServiceText)
+            string paidServiceText, List<RequestsReceiptItem> ReceiptItems)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(NEW_APP, Method.POST);
@@ -461,7 +461,8 @@ namespace xamarinJKH.Server
                 Text,
                 isPaid,
                 paidSum,
-                paidServiceText
+                paidServiceText,
+                ReceiptItems
             });
             var response = await restClientMp.ExecuteTaskAsync<IDResult>(restRequest);
             // Проверяем статус
