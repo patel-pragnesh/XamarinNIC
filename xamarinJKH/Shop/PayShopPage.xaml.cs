@@ -21,11 +21,12 @@ namespace xamarinJKH.Shop
         private RestClientMP _server = new RestClientMP();
         public Dictionary<String, Goods> Goodset { get; set; }
         public AdditionalService _Additional { get; set; }
-
+        List<RequestsReceiptItem> ReceiptItems = new List<RequestsReceiptItem>();
         public PayShopPage(Dictionary<string, Goods> goodset, AdditionalService additional)
         {
             Goodset = goodset;
             _Additional = additional;
+            GoodsIsVisible = Settings.GoodsIsVisible;
             InitializeComponent();
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
@@ -117,6 +118,7 @@ namespace xamarinJKH.Shop
 
         string getBuscketStr()
         {
+            ReceiptItems.Clear();
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append("Ваш заказ:\n");
             int i = 0;
@@ -125,6 +127,13 @@ namespace xamarinJKH.Shop
                 Goods value = each.Value;
                 if (value.ColBusket != 0)
                 {
+                    ReceiptItems.Add(new RequestsReceiptItem()
+                    {
+                        Name = value.Name,
+                        Price = value.Price,
+                        Quantity = value.ColBusket,
+                        Amount = value.priceBusket
+                    });
                     stringBuilder.Append(i + 1)
                         .Append(") ").Append(value.Name).Append(" кол-во: ")
                         .Append(value.ColBusket).Append(" цена: ").Append(value.priceBusket)
@@ -137,7 +146,9 @@ namespace xamarinJKH.Shop
             stringBuilder.Append("\nБезналичный расчет.");
 
             return stringBuilder.ToString();
-        }        
+        }
+
+        public bool GoodsIsVisible { get; set; }
 
         decimal SetPriceAndWeight()
         {
@@ -163,7 +174,7 @@ namespace xamarinJKH.Shop
                     if (Settings.Person.Accounts.Count > 0)
                     {
                         IDResult result = await _server.newAppPay(Settings.Person.Accounts[0].Ident,
-                            _Additional.id_RequestType.ToString(), getBuscketStr(), true, SetPriceAndWeight(), "Покупка в магазине " + _Additional.ShopName);
+                            _Additional.id_RequestType.ToString(), getBuscketStr(), true, SetPriceAndWeight(), "Покупка в магазине " + _Additional.ShopName, ReceiptItems);
 
                         if (result.Error == null)
                         {

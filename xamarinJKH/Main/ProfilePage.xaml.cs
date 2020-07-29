@@ -23,9 +23,11 @@ namespace xamarinJKH.Main
         private LoginResult Person = new LoginResult();
         private RestClientMP _server = new RestClientMP();
         public bool isSave  {get;set;}
+        public bool GoodsIsVisible  {get;set;}
         public ProfilePage()
         {
             InitializeComponent();
+            GoodsIsVisible = Settings.GoodsIsVisible;
             isSave = Preferences.Get("isPass", false);
             NavigationPage.SetHasNavigationBar(this, false);
             var exitClick = new TapGestureRecognizer();
