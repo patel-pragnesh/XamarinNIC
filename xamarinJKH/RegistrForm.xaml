@@ -23,7 +23,7 @@
                    Grid.Row="2"
                    Grid.RowSpan="2"
                    CornerRadius="40"
-                   Margin="0,-50,0,-30"/>
+                   Margin="0,-80,0,-30"/>
             <Image x:Name="TopFon"
                    Source="top_fon_login"
                    Grid.Row="0"
@@ -68,7 +68,7 @@
                            HorizontalOptions="Center" />
 
                     <Label x:Name="UkName"
-                           Text="Название"
+                           Text="{Binding Title}"
                            FontAttributes="Bold"
                            FontSize="16"
                            TextColor="Black"
@@ -93,7 +93,7 @@
                                                          Source="ic_phone_login"
                                                          HeightRequest="25"
                                                          WidthRequest="25"
-                                                         Foreground="Red"
+                                                         Foreground="{x:DynamicResource MainColor}"
                                                          VerticalOptions="Center" />
                                     <Label Text="Телефон"
                                            FontSize="14"
@@ -129,7 +129,7 @@
                                         x:Name="LabelseparatorPhone"
                                         HeightRequest="2"
                                         Margin="-10, 0, 0, 0"
-                                        BackgroundColor="Red"
+                                        BackgroundColor="{x:DynamicResource MainColor}"
                                         HorizontalOptions="FillAndExpand" />
 
                                 </StackLayout>
@@ -141,7 +141,7 @@
                                                          Source="ic_fio_reg"
                                                          HeightRequest="25"
                                                          WidthRequest="25"
-                                                         Foreground="Red"
+                                                         Foreground="{x:DynamicResource MainColor}"
                                                          VerticalOptions="Center" />
 
                                     <Label Text="ФИО  "
@@ -172,7 +172,7 @@
                                         x:Name="LabelseparatorFio"
                                         HeightRequest="2"
                                         Margin="-10, 0, 0, 0"
-                                        BackgroundColor="Red"
+                                        BackgroundColor="{x:DynamicResource MainColor}"
                                         HorizontalOptions="FillAndExpand" />
 
                                 </StackLayout>
@@ -184,7 +184,7 @@
                                                          Source="ic_date"
                                                          HeightRequest="25"
                                                          WidthRequest="25"
-                                                         Foreground="{Binding hex}"
+                                                         Foreground="{x:DynamicResource MainColor}"
                                                          VerticalOptions="Center" />
 
                                     <Label Text="Дата рождения"
@@ -220,7 +220,7 @@
                                         x:Name="Labelseparator"
                                         HeightRequest="2"
                                         Margin="-10, 0, 0, 0"
-                                        BackgroundColor="{Binding hex}"
+                                        BackgroundColor="{x:DynamicResource MainColor}"
                                         HorizontalOptions="FillAndExpand" />
 
                                 </StackLayout>
@@ -235,13 +235,14 @@
                                        TextColor="Black"
                                        HorizontalOptions="Center" />
                                 <Switch
-                                    OnColor="Red"
+                                    OnColor="{x:DynamicResource MainColor}"
+                                    ThumbColor="Black"
                                     IsToggled="false"
                                     x:Name="SwitchConsent" />
                             </StackLayout>
 
                             <Frame CornerRadius="15"
-                                   BackgroundColor="Red"
+                                   BackgroundColor="{x:DynamicResource MainColor}"
                                    Margin="5, 5, 5, 0"
                                    x:Name="FrameBtnLogin"
                                    Padding="12"
@@ -300,7 +301,7 @@
                                     <xamarinJkh:IconView x:Name="IconViewCode"
                                                          Source="ic_phone_login"
                                                          HeightRequest="25"
-                                                         Foreground="Red"
+                                                         Foreground="{x:DynamicResource MainColor}"
                                                          Margin="-10, 0, 0, 0"
                                                          VerticalOptions="Center" />
                                     <Label Text="Код доступа"
@@ -333,7 +334,7 @@
                                         x:Name="LabelseparatorCode"
                                         HeightRequest="2"
                                         Margin="-10, 0, 0, 0"
-                                        BackgroundColor="Red"
+                                        BackgroundColor="{x:DynamicResource MainColor}"
                                         HorizontalOptions="FillAndExpand" />
 
                                     </StackLayout>
@@ -356,7 +357,7 @@
                                 
                                 <Frame x:Name="FrameBtnReg"
                                        CornerRadius="10"
-                                       BackgroundColor="Red"
+                                       BackgroundColor="{x:DynamicResource MainColor}"
                                        Margin="0, 5, 0, 0"
                                        Padding="0">
                                     <Button x:Name="BtnRegCode"
@@ -370,7 +371,7 @@
                                 </Frame>
                                 <Frame x:Name="FrameTimer"
                                        CornerRadius="10"
-                                       BackgroundColor="Red"
+                                       BackgroundColor="{x:DynamicResource MainColor}"
                                        Margin="0, 5, 0, 0"
                                        Padding="0, 5, 0, 5">
                                     <Label x:Name="LabelTimer"
@@ -473,7 +474,7 @@
                                     <xamarinJkh:IconView x:Name="IconViewPassNew"
                                                          Source="ic_password_login"
                                                          HeightRequest="20"
-                                                         Foreground="Red"
+                                                         Foreground="{x:DynamicResource MainColor}"
                                                          VerticalOptions="Center" />
                                     <Label Text="Создайте пароль           "
                                            FontSize="12"
@@ -492,6 +493,7 @@
                                     <xamarinJkh:IconView x:Name="ImageClosePass"
                                                          Source="ic_close_password"
                                                          HeightRequest="15"
+                                                         Foreground="{x:DynamicResource MainColor}"
                                                          WidthRequest="15"
                                                          VerticalOptions="Center" />
                                 </StackLayout>
@@ -509,7 +511,7 @@
                                         x:Name="LabelseparatorPass"
                                         HeightRequest="2"
                                         Margin="-10, 0, 0, 0"
-                                        BackgroundColor="Red"
+                                        BackgroundColor="{x:DynamicResource MainColor}"
                                         HorizontalOptions="FillAndExpand" />
 
                                 </StackLayout>
@@ -519,6 +521,7 @@
                                     Orientation="Horizontal">
                                     <xamarinJkh:IconView x:Name="IconViewConfirmPass"
                                                          Source="ic_password_login"
+                                                         Foreground="{x:DynamicResource MainColor}"
                                                          HeightRequest="20"
                                                          VerticalOptions="Center" />
 
@@ -556,7 +559,7 @@
                                         x:Name="LabelseparatorPassConfirm"
                                         HeightRequest="2"
                                         Margin="-10, 0, 0, 0"
-                                        BackgroundColor="Red"
+                                        BackgroundColor="{x:DynamicResource MainColor}"
                                         HorizontalOptions="FillAndExpand" />
 
                                 </StackLayout>
@@ -566,7 +569,7 @@
 
                             <Frame x:Name="FrameBtnRegFinal"
                                    CornerRadius="15"
-                                   BackgroundColor="Red"
+                                   BackgroundColor="{x:DynamicResource MainColor}"
                                    Margin="5, 10, 5, 10"
                                    Padding="0">
                                 <!-- <Button x:Name="BtnRegFinalStep" -->

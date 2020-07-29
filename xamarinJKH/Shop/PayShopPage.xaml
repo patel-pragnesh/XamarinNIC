@@ -97,7 +97,30 @@
                                             </Label.FormattedText>
                                         </Label>
                                     </StackLayout>
-
+                                    
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             IsVisible="{Binding GoodsIsVisible}"
+                                             HorizontalOptions="Center">
+                                    
+                                    <CheckBox
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        Color="{Binding hex}" />
+                                    <Label
+                                        TextColor="Black"
+                                        HorizontalTextAlignment="Start"
+                                        HorizontalOptions="Start">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Зачесть бонусами" TextColor="Gray"  FontSize="12" />
+                                                <Span Text=" 493" TextColor ="Gray" FontAttributes="Bold" FontSize="15" />
+                                                <Span Text=" балла" TextColor ="Gray"  FontSize="12" />
+                                                <Span Text="&#10; * не более 20% от суммы" TextColor ="Gray" FontSize="10" />
+                                                
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                        </Label>
                                 </StackLayout>
                                 <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand"
                                          Margin="10,0" />

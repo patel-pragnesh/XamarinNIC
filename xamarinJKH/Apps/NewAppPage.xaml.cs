@@ -21,6 +21,9 @@ using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+
 namespace xamarinJKH.Apps
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -116,6 +119,26 @@ namespace xamarinJKH.Apps
                 Files = files
             };
             ListViewFiles.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (Device.RuntimePlatform == "Android")
+            {
+                var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                if (camera_perm != PermissionStatus.Granted)
+                {
+                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
+                }
+
+                var file_perm = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                if (file_perm != PermissionStatus.Granted)
+                {
+                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                }
+
+            }
         }
 
         private async void AddFile()

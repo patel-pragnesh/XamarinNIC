@@ -23,6 +23,9 @@ using AiForms.Dialogs.Abstractions;
 using AiForms.Dialogs;
 using xamarinJKH.DialogViews;
 
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+
 namespace xamarinJKH
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
@@ -32,7 +35,16 @@ namespace xamarinJKH
     public partial class MainPage : ContentPage
     {
         private RestClientMP server = new RestClientMP();
-        public Color hex { get; set; }
+        Color _hex;
+        public Color hex
+        {
+            get => _hex;
+            set
+            {
+                _hex = value;
+                OnPropertyChanged("hex");
+            }
+        }
 
         public MainPage()
         {
@@ -40,11 +52,6 @@ namespace xamarinJKH
             getSettings();
            
             NavigationPage.SetHasNavigationBar(this, false);
-            Device.BeginInvokeOnMainThread(() =>
-            {
-               ;
-
-            });
             var startRegForm = new TapGestureRecognizer();
             startRegForm.Tapped += async (s, e) => { await Navigation.PushModalAsync(new RegistrForm(this)); };
             RegistLabel.GestureRecognizers.Add(startRegForm);
@@ -140,6 +147,12 @@ namespace xamarinJKH
             }
         }
 
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+           
+        }
+
         async void CheckForUpdate()
         {
             var version = Xamarin.Essentials.AppInfo.VersionString;
@@ -168,17 +181,18 @@ namespace xamarinJKH
                 UkName.Text = Settings.MobileSettings.main_name;
                 Version.Text ="ver " + Xamarin.Essentials.AppInfo.VersionString;
                 hex = Color.FromHex(Settings.MobileSettings.color);
-                IconViewLogin.Foreground = hex;
-                IconViewPass.Foreground = hex;
-                ImageClosePass.Foreground = hex;
+                Application.Current.Resources["MainColor"] = hex;
+                //IconViewLogin.Foreground = hex;
+                //IconViewPass.Foreground = hex;
+                //ImageClosePass.Foreground = hex;
 
-                FrameBtnLogin.BackgroundColor = hex;
-                LabelseparatorPass.BackgroundColor = hex;
-                LabelseparatorLogin.BackgroundColor = hex;
-                SwitchLogin.OnColor = hex;
+                //FrameBtnLogin.BackgroundColor = hex;
+                //LabelseparatorPass.BackgroundColor = hex;
+                //LabelseparatorLogin.BackgroundColor = hex;
+                //SwitchLogin.OnColor = hex;
                 SwitchLogin.ThumbColor = Color.White;
-                RegistLabel.TextColor = hex;
-                progress.Color = hex;
+                //RegistLabel.TextColor = hex;
+                //progress.Color = hex;
                 Color.SetAccent(hex);
 
                 StackLayoutContent.IsVisible = true;

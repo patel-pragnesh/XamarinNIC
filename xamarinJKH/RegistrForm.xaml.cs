@@ -14,6 +14,8 @@ using Xamarin.Forms.PlatformConfiguration;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
+using xamarinJKH.ViewModels;
+
 namespace xamarinJKH
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -32,13 +34,12 @@ namespace xamarinJKH
         public Color hex { get; set; }
 
         private bool isNext = false;
+        RegistrFormViewModel viewModel { get; set; }
 
         public RegistrForm(MainPage mainPage)
         {
             InitializeComponent();
-            setColors();
-            hex = Color.FromHex(Settings.MobileSettings.color);
-            this.BindingContext = this;
+            this.BindingContext = viewModel = new RegistrFormViewModel(this.Navigation);
             
             switch (Device.RuntimePlatform)
             {
@@ -120,35 +121,6 @@ namespace xamarinJKH
         private async void Tech(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new TechSendPage(false));
-        }
-
-        private void setColors()
-        {
-            UkName.Text = Settings.MobileSettings.main_name;
-
-            IconViewLogin.Foreground = Color.FromHex(Settings.MobileSettings.color);
-            IconViewFio.Foreground = Color.FromHex(Settings.MobileSettings.color);
-            IconViewCode.Foreground = Color.FromHex(Settings.MobileSettings.color);
-            IconViewPassNew.Foreground = Color.FromHex(Settings.MobileSettings.color);
-            ImageClosePass.Foreground = Color.FromHex(Settings.MobileSettings.color);
-            IconViewConfirmPass.Foreground = Color.FromHex(Settings.MobileSettings.color);
-
-            SwitchConsent.OnColor = Color.FromHex(Settings.MobileSettings.color);
-            FrameBtnLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            FrameBtnReg.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            FrameTimer.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            // FrameBtnNextTwo.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            FrameBtnRegFinal.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            FrameTech.BorderColor = Color.FromHex(Settings.MobileSettings.color);
-            SwitchConsent.ThumbColor = Color.Black;
-            BtnTech.TextColor = Color.FromHex(Settings.MobileSettings.color);
-            progress.Color = Color.FromHex(Settings.MobileSettings.color);
-
-            LabelseparatorPassConfirm.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            LabelseparatorPass.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            LabelseparatorCode.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            LabelseparatorPhone.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            LabelseparatorFio.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
         }
 
         private async void FirstStepReg()

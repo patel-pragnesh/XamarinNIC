@@ -77,6 +77,26 @@ namespace xamarinJKH.AppsConst
             }
         }
 
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (Device.RuntimePlatform == "Android")
+            {
+                var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                if (camera_perm != PermissionStatus.Granted)
+                {
+                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
+                }
+
+                var file_perm = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                if (file_perm != PermissionStatus.Granted)
+                {
+                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                }
+
+            }
+        }
+
         private async Task RefreshData()
         {
             RequestsUpdate requestsUpdate =
@@ -259,6 +279,23 @@ namespace xamarinJKH.AppsConst
             // // GetGalaryFile();
             //
             // // PickAndShowFile(null);
+            if (Device.RuntimePlatform == "Android")
+            {
+                await CrossMedia.Current.Initialize();
+                var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                if (camera_perm != PermissionStatus.Granted)
+                {
+                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
+                }
+
+                var file_perm = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                if (file_perm != PermissionStatus.Granted)
+                {
+                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                }
+
+            }
+            
             MediaFile file = null;
             var action = await DisplayActionSheet("Добавить вложение", "Отмена", null,
                 TAKE_PHOTO,
@@ -282,6 +319,7 @@ namespace xamarinJKH.AppsConst
                                 Directory = "Demo",
                                 PhotoSize = PhotoSize.Medium,
                             });
+                        
                         if (file != null)
                             await startLoadFile(CAMERA, file);
                     }
@@ -334,21 +372,23 @@ namespace xamarinJKH.AppsConst
             }
         }
 
+        MediaFile photo { get; set; }
+
         public async Task startLoadFile(string metod, MediaFile file)
         {
             try
             {
                 // Loading settings
-                Configurations.LoadingConfig = new LoadingConfig
-                {
-                    IndicatorColor = hex,
-                    OverlayColor = Color.Black,
-                    Opacity = 0.8,
-                    DefaultMessage = "Отправка файла",
-                };
+                //Configurations.LoadingConfig = new LoadingConfig
+                //{
+                //    IndicatorColor = hex,
+                //    OverlayColor = Color.Black,
+                //    Opacity = 0.8,
+                //    DefaultMessage = "Отправка файла",
+                //};
 
-                await Loading.Instance.StartAsync(async progress =>
-                {
+                //await Loading.Instance.StartAsync(async progress =>
+                //{
                     switch (metod)
                     {
                         case CAMERA:
@@ -361,7 +401,7 @@ namespace xamarinJKH.AppsConst
                             await PickAndShowFile(null);
                             break;
                     }
-                });
+                //});
             }
             catch (Exception ex)
             {

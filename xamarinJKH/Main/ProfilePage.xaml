@@ -327,7 +327,59 @@
                     </ScrollView>
                 </StackLayout>
             </Grid>
-
+ <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0" BackgroundColor="#8D8D8D"
+                                     Padding="0,20,0,10"
+                                     IsVisible="{Binding GoodsIsVisible}"
+                                     VerticalOptions="EndAndExpand">
+                <!-- <StackLayout -->
+                <!--     HorizontalOptions="FillAndExpand" -->
+                <!--   -->
+                <!--     Orientation="Horizontal"> -->
+                <Grid HorizontalOptions="FillAndExpand"
+                      ColumnSpacing="10"
+                      Margin="30, 0, 30, 10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Orientation="Horizontal"
+                        HorizontalOptions="Start">
+                        <Label
+                            Text="Бонусные баллы"
+                            FontSize="20"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start" />
+                    </StackLayout>
+                    <StackLayout
+                        x:Name="code"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        Orientation="Horizontal">
+                        <Label
+                            TextColor="Black"
+                            HorizontalTextAlignment="End"
+                            HorizontalOptions="Start">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="493" TextColor="White" FontAttributes="Bold" FontSize="20" />
+                                    <Span Text=" баллов" TextColor ="White" FontSize="11" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                
+                    </StackLayout> 
+                    
+                </Grid>
+                <!-- </StackLayout> -->
+            </pancakeView:PancakeView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
