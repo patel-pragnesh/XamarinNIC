@@ -37,7 +37,7 @@
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.8</string>
+	<string>3.9</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
@@ -59,6 +59,6 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Вы можете приложить фото к заявке</string>
 	<key>CFBundleVersion</key>
-	<string>3.8</string>
+	<string>3.9</string>
 </dict>
 </plist>

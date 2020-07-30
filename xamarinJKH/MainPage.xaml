@@ -17,10 +17,6 @@
                 <RowDefinition Height="0.2*" />
 
             </Grid.RowDefinitions>
-            <Frame BackgroundColor="LightGray"
-                   Grid.Row="1"
-                   CornerRadius="40"
-                   Margin="0,-50,0,-30" />
             <StackLayout Grid.RowSpan="2">
                 <Image Source="top_fon_login"
                        HorizontalOptions="Center" />
@@ -61,109 +57,121 @@
                                TextColor="Black"
                                HorizontalOptions="Center" />
 
-                        <customRenderers:MaterialFrame Elevation="20" CornerRadius="50"
+                        <!--Фрейм для ввода данных для входа-->
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.6*"/>
+                                <RowDefinition Height="0.4*"/>
+                            </Grid.RowDefinitions>
+
+                            <Frame BackgroundColor="LightGray"
+                                   Grid.Row="1"
+                                   CornerRadius="40"
+                                   Margin="0,-50,0,-30" />
+                            <customRenderers:MaterialFrame Elevation="20" CornerRadius="50"
                                                        Margin="15, 15, 15, 15"
                                                        BackgroundColor="White"
                                                        Padding="10" HasShadow="True">
 
-                            <StackLayout
+                                <StackLayout
                                 Margin="10, 20, 10, 10">
 
-                                <StackLayout
+                                    <StackLayout
                                     IsVisible="False"
                                     Orientation="Horizontal">
 
-                                    <Switch
-                                        OnColor="Red"
+                                        <Switch
+                                        OnColor="{x:DynamicResource MainColor}"
                                         IsToggled="true"
                                         x:Name="SwitchLogin" />
 
-                                    <Label Text="Вход по номеру телефона"
+                                        <Label Text="Вход по номеру телефона"
                                            FontAttributes="Bold"
                                            FontSize="20"
                                            TextColor="Black"
                                            HorizontalOptions="Center" />
-                                </StackLayout>
+                                    </StackLayout>
 
-                                <StackLayout
+                                    <StackLayout
                                     Orientation="Vertical"
                                     Margin="5, 0, 5, 10">
 
-                                    <StackLayout
+                                        <StackLayout
                                         Orientation="Horizontal">
-                                        <local:IconView x:Name="IconViewLogin"
+                                            <local:IconView x:Name="IconViewLogin"
                                                         Source="ic_phone_login"
                                                         HeightRequest="25"
+                                                        Foreground="{x:DynamicResource MainColor}"
                                                         HorizontalOptions="Start"
                                                         VerticalOptions="Center" />
-                                        <Label x:Name="LabelPhone"
+                                            <Label x:Name="LabelPhone"
                                                Text="Телефон"
                                                FontSize="15"
                                                TextColor="Black"
                                                Margin="-5, 0, 0, 0"
                                                VerticalOptions="Center" />
 
-                                        <Entry x:Name="EntryLogin"
+                                            <Entry x:Name="EntryLogin"
                                                FontSize="15"
                                                VerticalOptions="End"
                                                HorizontalTextAlignment="Center"
                                                TextColor="#A2A2A2"
                                                HorizontalOptions="FillAndExpand"
                                                Keyboard="Numeric">
-                                            <Entry.Behaviors>
-                                                <mask:MaskedBehavior Mask="+7 (XXX) XXX-XXXX" />
-                                            </Entry.Behaviors>
-                                        </Entry>
-                                        <Entry x:Name="EntryLoginConst"
+                                                <Entry.Behaviors>
+                                                    <mask:MaskedBehavior Mask="+7 (XXX) XXX-XXXX" />
+                                                </Entry.Behaviors>
+                                            </Entry>
+                                            <Entry x:Name="EntryLoginConst"
                                                FontSize="15"
                                                VerticalOptions="End"
                                                HorizontalTextAlignment="Center"
                                                TextColor="#A2A2A2"
                                                HorizontalOptions="FillAndExpand"
                                                Keyboard="Email" />
-                                    </StackLayout>
+                                        </StackLayout>
 
-                                    <StackLayout
+                                        <StackLayout
                                         Orientation="Horizontal">
-                                        <!-- <Image Source="ic_separator" -->
-                                        <!--        VerticalOptions="Start" -->
-                                        <!--        HorizontalOptions="FillAndExpand" /> -->
-                                        <Label
+                                            <!-- <Image Source="ic_separator" -->
+                                            <!--        VerticalOptions="Start" -->
+                                            <!--        HorizontalOptions="FillAndExpand" /> -->
+                                            <Label
                                             HeightRequest="2"
                                             BackgroundColor="#DEDEDE"
                                             Margin="-3, 0, 0, 0"
                                             WidthRequest="120" />
-                                        <Label
+                                            <Label
                                             x:Name="LabelseparatorLogin"
                                             HeightRequest="2"
                                             Margin="-13, 0, 0, 0"
-                                            BackgroundColor="Red"
+                                            BackgroundColor="{x:DynamicResource MainColor}"
                                             HorizontalOptions="FillAndExpand" />
 
-                                    </StackLayout>
-                                    <StackLayout
+                                        </StackLayout>
+                                        <StackLayout 
                                         Margin="0, 20, 0, 0"
                                         Orientation="Horizontal">
-                                        <local:IconView x:Name="IconViewPass"
+                                            <local:IconView x:Name="IconViewPass"
                                                         Source="ic_password_login"
                                                         HeightRequest="25"
-
+                                                        Foreground="{x:DynamicResource MainColor}"
                                                         VerticalOptions="Center" />
 
-                                        <Label x:Name="LabelPassword" Text=" Пароль  "
+                                            <Label x:Name="LabelPassword" Text=" Пароль  "
                                                FontSize="15"
                                                TextColor="Black"
                                                Margin="-5, 0, 0, 5"
                                                VerticalOptions="Center" />
 
-                                        <Entry x:Name="EntryPass"
+                                            <Entry x:Name="EntryPass"
                                                FontSize="15"
                                                IsPassword="True"
                                                TextColor="#A2A2A2"
                                                BackgroundColor="Transparent"
                                                HorizontalTextAlignment="Center"
                                                HorizontalOptions="FillAndExpand" />
-                                        <Entry x:Name="EntryPassConst"
+                                            <Entry x:Name="EntryPassConst"
                                                FontSize="15"
                                                IsPassword="True"
                                                TextColor="#A2A2A2"
@@ -171,76 +179,77 @@
                                                HorizontalTextAlignment="Center"
                                                HorizontalOptions="FillAndExpand" />
 
-                                        <local:IconView x:Name="ImageClosePass"
+                                            <local:IconView x:Name="ImageClosePass"
                                                         Source="ic_close_password"
                                                         HeightRequest="15"
                                                         WidthRequest="15"
                                                         HorizontalOptions="End"
+                                                        Foreground="{x:DynamicResource MainColor}"
                                                         VerticalOptions="Center" />
 
-                                    </StackLayout>
-                                    <StackLayout
+                                        </StackLayout>
+                                        <StackLayout
                                         Orientation="Horizontal">
-                                        <!-- <Image Source="ic_separator" -->
-                                        <!--        VerticalOptions="Start" -->
-                                        <!--        HorizontalOptions="FillAndExpand" /> -->
-                                        <Label
+                                            <!-- <Image Source="ic_separator" -->
+                                            <!--        VerticalOptions="Start" -->
+                                            <!--        HorizontalOptions="FillAndExpand" /> -->
+                                            <Label
                                             HeightRequest="2"
                                             BackgroundColor="#DEDEDE"
                                             Margin="-3, 0, 0, 0"
                                             WidthRequest="120" />
-                                        <Label
+                                            <Label
                                             x:Name="LabelseparatorPass"
                                             HeightRequest="2"
                                             Margin="-13, 0, 0, 0"
-                                            BackgroundColor="Red"
+                                            BackgroundColor="{x:DynamicResource MainColor}"
                                             HorizontalOptions="FillAndExpand" />
 
-                                    </StackLayout>
+                                        </StackLayout>
 
-                                </StackLayout>
-                                <ActivityIndicator x:Name="progress"
+                                    </StackLayout>
+                                    <ActivityIndicator x:Name="progress"
                                                    IsRunning="true"
                                                    IsVisible="False"
                                                    Color="Red" />
-                                <Frame CornerRadius="15"
-                                       BackgroundColor="Red"
+                                    <Frame CornerRadius="15"
+                                       BackgroundColor="{x:DynamicResource MainColor}"
                                        Margin="0, 10, 0, 0"
                                        x:Name="FrameBtnLogin"
                                        HasShadow="False"
                                        Padding="12">
-                                    <!-- <Button x:Name="BtnLogin" -->
-                                    <!--         Text="Войти >" -->
-                                    <!--         TextColor="White" -->
-                                    <!--         FontAttributes="Bold" -->
-                                    <!--         BackgroundColor="Transparent" -->
-                                    <!--         Clicked="ButtonClick" /> -->
+                                        <!-- <Button x:Name="BtnLogin" -->
+                                        <!--         Text="Войти >" -->
+                                        <!--         TextColor="White" -->
+                                        <!--         FontAttributes="Bold" -->
+                                        <!--         BackgroundColor="Transparent" -->
+                                        <!--         Clicked="ButtonClick" /> -->
 
-                                    <StackLayout
+                                        <StackLayout
                                         Orientation="Horizontal"
                                         Spacing="0"
                                         HorizontalOptions="Center">
-                                        <Label
+                                            <Label
                                             Text="Войти "
                                             FontSize="15"
                                             TextColor="White"
                                             FontAttributes="Bold"
                                             VerticalOptions="Center"
                                             HorizontalOptions="Center" />
-                                        <local:IconView Source="ic_arrow_forward"
+                                            <local:IconView Source="ic_arrow_forward"
                                                         HeightRequest="12"
                                                         WidthRequest="12"
                                                         Margin="0,0,0,-3"
                                                         Foreground="White"
                                                         VerticalOptions="Center"
                                                         HorizontalOptions="Center" />
-                                    </StackLayout>
-                                </Frame>
-                                <StackLayout
+                                        </StackLayout>
+                                    </Frame>
+                                    <StackLayout
                                     x:Name="RegStackLayout"
                                     Margin="0, 15, 0, 10"
                                     Orientation="Horizontal">
-                                    <Label
+                                        <Label
                                         x:Name="ForgotPass"
                                         Text="Забыли пароль?"
                                         FontSize="15"
@@ -249,37 +258,37 @@
                                         VerticalOptions="Center"
                                         HorizontalOptions="StartAndExpand" />
 
-                                    <Label x:Name="RegistLabel"
+                                        <Label x:Name="RegistLabel"
                                            Text="Зарегистрироваться"
                                            FontSize="15"
                                            FontAttributes="Bold"
-                                           TextColor="Red"
+                                           TextColor="{x:DynamicResource MainColor}"
                                            TextDecorations="Underline"
                                            HorizontalOptions="EndAndExpand"
                                            VerticalOptions="Center" />
-                                </StackLayout>
+                                    </StackLayout>
 
-                            </StackLayout>
-                        </customRenderers:MaterialFrame>
-                        <StackLayout x:Name="BottomStackLayout" Spacing="5" Margin="0,-5,0,20">
-                            <StackLayout
+                                </StackLayout>
+                            </customRenderers:MaterialFrame>
+                            <StackLayout x:Name="BottomStackLayout" Spacing="5" Margin="0,-5,0,20" Grid.Row="1">
+                                <StackLayout
                                 x:Name="BackStackLayout"
                                 Orientation="Horizontal"
                                 Spacing="0"
                                 HorizontalOptions="Center">
-                                <local:IconView Source="ic_questions"
+                                    <local:IconView Source="ic_questions"
                                                 HeightRequest="15"
                                                 Foreground="{Binding hex}"
                                                 HorizontalOptions="Center" />
-                                <Label
+                                    <Label
                                     x:Name="LabelTech"
                                     Text="Возникли проблемы? "
                                     FontSize="10"
                                     TextColor="Black"
                                     HorizontalOptions="Start" />
-                            </StackLayout>
+                                </StackLayout>
 
-                            <Label
+                                <Label
                                 x:Name="LabelSotr"
                                 Text="Вход для сотрудника"
                                 FontSize="13"
@@ -287,10 +296,14 @@
                                 TextDecorations="Underline"
                                 HorizontalTextAlignment="Center"
                                 HorizontalOptions="Center" />
-                        </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                        
+                        
                     </StackLayout>
                 </ScrollView>
                 <StackLayout
+                    IsVisible="False"
                     VerticalOptions="CenterAndExpand"
                     Margin="0,-100,0,0"
                     HorizontalOptions="CenterAndExpand">
@@ -301,8 +314,8 @@
                            VerticalOptions="Center" />
                     <ActivityIndicator x:Name="progress2"
                                        IsRunning="true"
-
-                                       Color="Aqua" />
+                                        
+                                       Color="{x:DynamicResource MainColor}" />
                 </StackLayout>
             </StackLayout>
         </Grid>

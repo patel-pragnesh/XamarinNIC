@@ -428,15 +428,23 @@ namespace xamarinJKH.Main
                 HorizontalTextAlignment = TextAlignment.Center
             });
 
-            var editLabel = new Label()
+            int currDay = DateTime.Now.Day;
+            if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
+                 Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
+                (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                 Settings.Person.Accounts[0].MetersEndDay == 0))
             {
-                Text = "Изменить показания",
-                FontAttributes = FontAttributes.Bold,
-                TextColor = Color.FromHex(Settings.MobileSettings.color),
-                VerticalTextAlignment = TextAlignment.Center,
-                HorizontalTextAlignment = TextAlignment.Center
-            };
-            stack.Children.Add(editLabel);
+                var editLabel = new Label()
+                {
+                    Text = "Изменить показания",
+                    FontAttributes = FontAttributes.Bold,
+                    TextColor = Color.FromHex(Settings.MobileSettings.color),
+                    VerticalTextAlignment = TextAlignment.Center,
+                    HorizontalTextAlignment = TextAlignment.Center
+                };
+                stack.Children.Add(editLabel);
+            }    
+                
         }
         string GetFormat()
         {
