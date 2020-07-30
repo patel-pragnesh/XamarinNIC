@@ -157,6 +157,7 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\edit.png" />
     <AndroidResource Include="Resources\drawable\icon_login.png" />
     <AndroidResource Include="Resources\drawable\ic_additional_top.png" />
     <AndroidResource Include="Resources\drawable\ic_add_file.png" />

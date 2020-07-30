@@ -2,8 +2,10 @@ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Globalization;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using xamarinJKH.CustomRenderers;
+using xamarinJKH.DialogViews;
 using xamarinJKH.Utils;
 using xamarinJKH.Server.RequestModel;
 
@@ -12,6 +14,7 @@ namespace xamarinJKH.Main
     public class MetersThreeCell : ViewCell
     {
         private Image img = new Image();
+        private IconView imgEdit = new IconView();
         private Label resource = new Label();
         private Label adress = new Label();
         private Label number = new Label();
@@ -60,9 +63,16 @@ namespace xamarinJKH.Main
             resource.HorizontalTextAlignment = TextAlignment.Center;
 
             img.WidthRequest = 25;
+            imgEdit.WidthRequest = 20;
+            imgEdit.HeightRequest = 20;
+            imgEdit.Source = "edit";
+            imgEdit.Foreground = Color.FromHex(Settings.MobileSettings.color);
 
             header.Children.Add(img);
             header.Children.Add(resource);
+#if DEBUG
+            header.Children.Add(imgEdit);
+#endif
 
             StackLayout addressStack = new StackLayout();
             addressStack.Orientation = StackOrientation.Horizontal;
@@ -466,6 +476,22 @@ namespace xamarinJKH.Main
 
             if (BindingContext != null)
             {
+                var editName = new TapGestureRecognizer();
+                editName.Tapped += async (s, e) =>
+                {
+                   await  PopupNavigation.Instance.PushAsync(
+                       new EditCounterNameDialog(Color.FromHex(Settings.MobileSettings.color), UniqueNum));
+                };
+                if (imgEdit.GestureRecognizers.Count > 0)
+                {
+                    imgEdit.GestureRecognizers[0] = editName;
+                }
+                else
+                {
+                    imgEdit.GestureRecognizers.Add(editName);
+                }
+                
+                
                 FormattedString formattedResource = new FormattedString();
                 formattedResource.Spans.Add(new Span
                 {
