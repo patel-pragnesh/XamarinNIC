@@ -7,11 +7,29 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 using xamarinJKH.Server;
+using AiForms.Dialogs;
 
 namespace xamarinJKH.ViewModels
 {
     public class BaseViewModel:INotifyPropertyChanged
     {
+        bool _isLoading;
+        public bool IsLoading
+        {
+            set
+            {
+                _isLoading = value;
+                if (_isLoading)
+                {
+                    Loading.Instance.Show(LoadingMessage);
+                }
+                else
+                {
+                    Loading.Instance.Hide();
+                }
+            }
+        }
+        public string LoadingMessage { get; set; }
         bool _isBusy;
         public bool IsBusy
         {
@@ -20,6 +38,17 @@ namespace xamarinJKH.ViewModels
             {
                 _isBusy = value;
                 OnPropertyChanged("IsBusy");
+            }
+        }
+
+        bool isRefreshing;
+        public bool IsRefreshing
+        {
+            get => isRefreshing;
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged("IsRefreshing");
             }
         }
         string title;
