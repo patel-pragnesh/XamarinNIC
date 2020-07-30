@@ -195,6 +195,10 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="DialogViews\EditCounterNameDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -312,6 +316,9 @@
     </Compile>
     <Compile Update="DialogViews\PayAppDialog.xaml.cs">
       <DependentUpon>PayAppDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="DialogViews\EditCounterNameDialog.xaml.cs">
+      <DependentUpon>EditCounterNameDialog.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -321,6 +321,7 @@
     <Folder Include="Assets.xcassets\ic_profile.imageset\" />
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="Resources\edit.png" />
     <BundleResource Include="Resources\icon_login0.png" />
     <BundleResource Include="Resources\ic_additional_top.png" />
     <BundleResource Include="Resources\ic_add_file.png" />

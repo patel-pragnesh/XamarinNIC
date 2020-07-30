@@ -16,12 +16,12 @@ namespace xamarinJKH.Server
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        //public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
-         // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+         public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
         // public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_yegkh"; //Легкая жизнъ
-         public const string SERVER_ADDR = "https://api.sm-center.ru/vodokanal_narof"; // Водоканал
+         // public const string SERVER_ADDR = "https://api.sm-center.ru/vodokanal_narof"; // Водоканал
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_egokomfort"; // Эгокомфорт
         // public const string SERVER_ADDR = "https://api.sm-center.ru/tsg_sivtsev_vrazhek14"; // ТСЖ Сивцев Вражек 14
 
@@ -179,7 +179,6 @@ namespace xamarinJKH.Server
         /// <returns>CommonResult</returns>
         public async Task<CommonResult> RequestAccessCode(string phone)
         {
-            Console.WriteLine("Запрос кода подтверждения");
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(REQUEST_CODE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
@@ -197,7 +196,6 @@ namespace xamarinJKH.Server
                 };
             }
 
-            Console.WriteLine(response.Data.Error);
             return response.Data;
         }
         
@@ -208,7 +206,6 @@ namespace xamarinJKH.Server
         /// <returns>CommonResult</returns>
         public async Task<CommonResult> TechSupportAppeal(TechSupportAppealArguments appeal)
         {
-            Console.WriteLine("Запрос кода подтверждения");
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(SEND_TEACH_MAIL, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
@@ -233,7 +230,6 @@ namespace xamarinJKH.Server
                 };
             }
 
-            Console.WriteLine(response.Data.Error);
             return response.Data;
         }
 
@@ -281,7 +277,6 @@ namespace xamarinJKH.Server
         /// <returns>CommonResult</returns>
         public async Task<CheckResult> RequestChechCode(string phone, string code)
         {
-            Console.WriteLine("Запрос кода подтверждения");
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(REQUEST_CHECK_CODE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
@@ -311,7 +306,6 @@ namespace xamarinJKH.Server
         /// <returns>MobileSettings</returns>
         public async Task<MobileSettings> MobileAppSettings(string appVersion, string dontCheckAppBlocking)
         {
-            Console.WriteLine("Запрос кода подтверждения");
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(GET_MOBILE_SETTINGS, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
@@ -337,7 +331,6 @@ namespace xamarinJKH.Server
         /// <returns>EventBlockData</returns>
         public async Task<EventBlockData> GetEventBlockData()
         {
-            Console.WriteLine("Запрос кода подтверждения");
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(GET_EVENT_BLOCK_DATA, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
