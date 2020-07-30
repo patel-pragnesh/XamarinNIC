@@ -13,7 +13,16 @@ namespace xamarinJKH.ViewModels.Main
 {
     public class AppsPageViewModel:BaseViewModel
     {
-        public ObservableCollection<RequestInfo> Requests { get; set; }
+        ObservableCollection<RequestInfo> _requests;
+        public ObservableCollection<RequestInfo> Requests
+        {
+            get => _requests;
+            set
+            {
+                if (value != null) _requests = value;
+                OnPropertyChanged("Requests");
+            }
+        }
         public List<RequestInfo> AllRequests { get; set; }
         public Command LoadRequests { get; set; }
         public Command UpdateRequests { get; set; }
@@ -28,10 +37,10 @@ namespace xamarinJKH.ViewModels.Main
                 {
                     if (AllRequests != null)
                     {
-                        Requests.Clear();
+                        Requests = new ObservableCollection<RequestInfo>();
                         foreach (var App in AllRequests.Where(x => x.IsClosed).ToList())
                         {
-                            Requests.Add(App);
+                            Device.BeginInvokeOnMainThread(() => Requests.Add(App));
                         }
                     }
                 }
@@ -39,22 +48,21 @@ namespace xamarinJKH.ViewModels.Main
                 {
                     if (AllRequests != null)
                     {
-                        Requests.Clear();
+                        Requests = new ObservableCollection<RequestInfo>();
                         foreach (var App in AllRequests.Where(x => !x.IsClosed).ToList())
                         {
-                            Requests.Add(App);
+                            Device.BeginInvokeOnMainThread(() => Requests.Add(App));
                         }
                     }
                 }
+                OnPropertyChanged("ShowClosed");
             }
         }
         public AppsPageViewModel()
         {
             Requests = new ObservableCollection<RequestInfo>();
-            LoadRequests = new Command(() =>
+            LoadRequests = new Command(async () =>
             {
-                Task.Run(async () =>
-                {
                     var response = await Server.GetRequestsList();
                     AllRequests = new List<RequestInfo>();
                     AllRequests.AddRange(response.Requests);
@@ -69,15 +77,33 @@ namespace xamarinJKH.ViewModels.Main
                             Settings.UpdateKey = response.UpdateKey;
                         if (response.Requests != null)
                         {
+                            if (Requests == null) Requests = new ObservableCollection<RequestInfo>();
+                            Requests.Clear();
                             foreach (var App in response.Requests)
                             {
                                 Device.BeginInvokeOnMainThread(() => Requests.Add(App));
                             }
                         }
                     }
-                });
             });
-            
+        }
+
+        public async Task UpdateTask()
+        {
+            var response = await Server.GetRequestsList();
+            if (response.Error == null)
+            {
+                if (AllRequests != null)
+                {
+                    var ids = AllRequests.Select(x => x.ID);
+                    var newRequests = response.Requests.Where(x => !ids.Contains(x.ID)).ToList();
+                    foreach (var newApp in newRequests)
+                    {
+                        Device.BeginInvokeOnMainThread(() => Requests.Add(newApp));
+                    }
+                }
+                
+            }
         }
     }
 }

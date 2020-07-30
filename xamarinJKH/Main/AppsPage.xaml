@@ -113,12 +113,9 @@
                           Margin="10, 10, 10, 0"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
-                          IsPullToRefreshEnabled="True"
-                          RefreshCommand="{Binding RefreshCommand}"
-                          IsRefreshing="{Binding IsRefreshing}"
-                          SelectionMode="None"
                           ItemTapped="OnItemTapped"
                           CachingStrategy="RecycleElement"
+                          ItemsSource="{Binding Requests, Mode=TwoWay}"
                           >
                     
                     <ListView.ItemTemplate>
@@ -146,7 +143,7 @@
                             Orientation="Horizontal">
                             <Switch
                                 OnColor="{Binding hex}"
-                                IsToggled="False"
+                                IsToggled="{Binding ShowClosed, Mode=TwoWay}"
                                 PropertyChanged="change"
                                 x:Name="SwitchApp"
                                 VerticalOptions="Center" />
