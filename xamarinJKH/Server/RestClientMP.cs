@@ -25,7 +25,6 @@ namespace xamarinJKH.Server
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_egokomfort"; // Эгокомфорт
         
         public const string SEND_TEACH_MAIL = "Public/TechSupportAppeal"; // Создание обращения в тех поддержк
-        
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутентификация сотрудника
         public const string LOGIN = "auth/Login"; // Аутентификация пользователя
         public const string REQUEST_CODE = "auth/RequestAccessCode"; // Запрос кода подтверждения

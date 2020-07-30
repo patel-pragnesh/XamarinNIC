@@ -41,8 +41,8 @@ namespace xamarinJKH.Questions
             {
                 return new Command(async () =>
                 {
-                    if (IsRefreshing)
-                        return;
+                    // if (IsRefreshing)
+                    //     return;
 
                     IsRefreshing = true;
 

@@ -15,6 +15,7 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using xamarinJKH.Apps;
 using xamarinJKH.Main;
+using xamarinJKH.Notifications;
 using Device = Xamarin.Forms.Device;
 
 namespace xamarinJKH
@@ -109,11 +110,34 @@ namespace xamarinJKH
             };
             CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
             {
-
                 System.Diagnostics.Debug.WriteLine("Opened");
                 if (p.Data.ContainsKey("type_push"))
                 {
                     string o = p.Data["type_push"].ToString();
+                    if (o.ToLower().Equals("announcement"))
+                    {
+                        Device.BeginInvokeOnMainThread(async () =>
+                        {
+                            string login = Preferences.Get("login", "");
+                            string pass = Preferences.Get("pass", "");
+                            if (!pass.Equals("") && !login.Equals(""))
+                            {
+                                LoginResult loginResult = await server.Login(login, pass);
+                                if (loginResult.Error == null)
+                                {
+                                    Settings.EventBlockData = await server.GetEventBlockData();
+                                    foreach (var each in  Settings.EventBlockData.Announcements)
+                                    {
+                                        if (p.Data["title"].Equals(each.Header) & p.Data["body"].Equals(each.Text))
+                                        {
+                                            await MainPage.Navigation.PushModalAsync(new NotificationOnePage(each));
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+
                     if (o.ToLower().Equals("осс"))
                     {
                         Device.BeginInvokeOnMainThread(async () =>

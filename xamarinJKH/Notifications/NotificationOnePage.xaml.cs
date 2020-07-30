@@ -44,7 +44,7 @@ namespace xamarinJKH.Notifications
 
             NavigationPage.SetHasNavigationBar(this, false);
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            techSend.Tapped += async (s, e) => {  open(new TechSendPage());    };
             LabelTech.GestureRecognizers.Add(techSend);
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
@@ -61,7 +61,7 @@ namespace xamarinJKH.Notifications
             };
             LabelPhone.GestureRecognizers.Add(call);
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) => { close(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
             SetText();
         }
@@ -95,6 +95,29 @@ namespace xamarinJKH.Notifications
             {
                 _polls = Settings.GetPollInfo(_announcementInfo.QuestionGroupID);
                 FrameBtnQuest.IsVisible = true;
+            }
+        }
+
+        async void open(Page page)
+        {
+            try
+            {
+                await Navigation.PushAsync(page);
+            }
+            catch (Exception e)
+            {
+                await Navigation.PushModalAsync(page);
+            }
+        }
+        async void close()
+        {
+            try
+            {
+                await Navigation.PopAsync();
+            }
+            catch (Exception e)
+            {
+                await Navigation.PopModalAsync();
             }
         }
 

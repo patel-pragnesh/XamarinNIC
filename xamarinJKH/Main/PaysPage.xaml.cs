@@ -27,6 +27,7 @@ namespace xamarinJKH.Main
     public partial class PaysPage : ContentPage
     {
         public List<AccountAccountingInfo> _accountingInfo { get; set; }
+        public static List<AccountAccountingInfo> _accountingInfos { get; set; }
         public Color hex { get; set; }
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
@@ -144,7 +145,7 @@ namespace xamarinJKH.Main
             LabelPhone.GestureRecognizers.Add(call);
             SetTextAndColor();
 
-            PaysPageViewModel(this.baseForPays, _accountingInfo);
+            
 
 
             //getInfo();
@@ -157,7 +158,7 @@ namespace xamarinJKH.Main
             FrameBtnSaldos.GestureRecognizers.Add(openSaldos);
             //additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
             MessagingCenter.Subscribe<Object>(this, "UpdateIdent", (sender) => SyncSetup());
-
+            PaysPageViewModel(this.baseForPays, _accountingInfo);
             BindingContext = this;
         }
 
@@ -194,6 +195,7 @@ namespace xamarinJKH.Main
             if (info.Error == null)
             {
                 _accountingInfo = info.Data;
+                _accountingInfos = _accountingInfo;
                 /*viewModel.*/LoadAccounts.Execute(info.Data);
                 //this.BindingContext = this;
             }
@@ -391,7 +393,7 @@ namespace xamarinJKH.Main
                         Device.BeginInvokeOnMainThread(() =>
                         {
                             Accounts.Add(account);
-                            baseForPays.Children.Add(AddAccountToList(account, _accountingInfo));
+                            baseForPays.Children.Add(AddAccountToList(account, PaysPage._accountingInfos));
                         }
                         ) ;
 

@@ -202,10 +202,19 @@ namespace xamarinJKH.Pays
         void SetBills(List<AccountAccountingInfo> infos)
         {
             BillInfos = new List<BillInfo>();
+            if (infos == null)
+            {
+                return;
+            }
             foreach (var each in infos)
             {
+                if (each.Bills == null)
+                {
+                    continue;
+                }
                 foreach (var VARIABLE in each.Bills)
                 {
+                  
                     BillInfos.Add(VARIABLE);
                 }
             }
