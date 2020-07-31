@@ -121,6 +121,7 @@ namespace xamarinJKH.Main
 
         public AppsPage()
         {
+            hex = Color.FromHex(Settings.MobileSettings.color);
             BindingContext = viewModel = new AppsPageViewModel();
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
@@ -130,7 +131,6 @@ namespace xamarinJKH.Main
                 viewModel.LoadRequests.Execute(null);
             });
 
-            hex = Color.FromHex(Settings.MobileSettings.color);
 
             switch (Device.RuntimePlatform)
             {
