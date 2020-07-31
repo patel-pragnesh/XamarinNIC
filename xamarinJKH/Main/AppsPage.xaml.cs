@@ -16,6 +16,8 @@ using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 using System.Threading;
 
+using xamarinJKH.ViewModels.Main;
+
 namespace xamarinJKH.Main
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -28,7 +30,7 @@ namespace xamarinJKH.Main
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
         public Color hex { get; set; }
-
+        public AppsPageViewModel viewModel { get; set; }
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -74,7 +76,7 @@ namespace xamarinJKH.Main
             {
                 while (!this.CancellationToken.IsCancellationRequested)
                 {
-                    await RefreshData();
+                    await viewModel.UpdateTask();
                     await Task.Delay(TimeSpan.FromSeconds(5));
                 }
                 return;
@@ -119,8 +121,14 @@ namespace xamarinJKH.Main
 
         public AppsPage()
         {
+            BindingContext = viewModel = new AppsPageViewModel();
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            MessagingCenter.Subscribe<Object>(this, "AutoUpdate", (sender) =>
+            {
+                StartAutoUpdate();
+                viewModel.LoadRequests.Execute(null);
+            });
 
             hex = Color.FromHex(Settings.MobileSettings.color);
 
@@ -203,10 +211,6 @@ namespace xamarinJKH.Main
             additionalList.BackgroundColor = Color.Transparent;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
             this.CancellationTokenSource = new CancellationTokenSource();
-            MessagingCenter.Subscribe<Object>(this, "AutoUpdate", (sender) =>
-            {
-                StartAutoUpdate();
-            });
 
             MessagingCenter.Subscribe<Object, int>(this, "OpenApp", async (sender, args) =>
             {
