@@ -193,8 +193,9 @@
                                            HorizontalOptions="Start"
                                            Margin="-0, 0, 15, 5"
                                            VerticalOptions="Center" />
-                                    <StackLayout 
+                                    <StackLayout
                                         HorizontalOptions="FillAndExpand">
+                                        
                                         <xamarinJkh:BorderlessDatePicker
                                         x:Name="DatePicker"
                                         Margin="15,0,0,0"
@@ -204,6 +205,20 @@
                                         Date="6.01.2000"
                                         TextColor="#A2A2A2"
                                         DateSelected="datePicker_DateSelected" />
+                                        
+                                        <!-- <Entry x:Name="EntryDate" -->
+                                        <!--        FontSize="15" -->
+                                        <!--        VerticalOptions="End" -->
+                                        <!--        HorizontalTextAlignment="Center" -->
+                                        <!--        TextColor="#A2A2A2" -->
+                                        <!--        Text="" -->
+                                        <!--        Keyboard="Numeric" -->
+                                        <!--        HorizontalOptions="FillAndExpand"> -->
+                                        <!-- -->
+                                        <!--     <Entry.Behaviors> -->
+                                        <!--         <mask:MaskedBehavior Mask="XX.XX.XXXX" /> -->
+                                        <!--     </Entry.Behaviors> -->
+                                        <!-- </Entry> -->
                                     </StackLayout>
                                 </StackLayout>
                                 <StackLayout
@@ -421,9 +436,8 @@
                             </StackLayout>
 
                             <Frame CornerRadius="10"
-                                   BackgroundColor="{x:DynamicResource MainColor}"
+                                   BackgroundColor="#CFCFCF"
                                    Margin="5, 5, 5, 10"
-                                   IsVisible="False"
                                    x:Name="FrameBtnNextTwo"
                                    Padding="12">
                                 <!-- <Button x:Name="BtnNextTwo" -->
