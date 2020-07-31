@@ -158,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\edit.png" />
+    <AndroidResource Include="Resources\drawable\icon_image_sys_rom_ru_uk_zip.png" />
     <AndroidResource Include="Resources\drawable\icon_login.png" />
     <AndroidResource Include="Resources\drawable\ic_additional_top.png" />
     <AndroidResource Include="Resources\drawable\ic_add_file.png" />
@@ -538,6 +539,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_send_code.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="google-services_sys_rom_ru_uk_zip.json" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
