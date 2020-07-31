@@ -227,12 +227,12 @@ namespace xamarinJKH
         {
             if (!EntryCode.Text.Equals(""))
             {
-                FrameBtnNextTwo.BackgroundColor = hex;
+                FrameBtnNextTwo.IsVisible = true;
                 isNext = true;
             }
             else
             {
-                FrameBtnNextTwo.BackgroundColor = Color.FromHex("#CFCFCF");
+                FrameBtnNextTwo.IsVisible = false;
                 isNext = false;
             }
         }

@@ -111,6 +111,7 @@
                 <ListView x:Name="additionalList"
                           HasUnevenRows="True"
                           Margin="10, 10, 10, 0"
+                          SelectionMode="None"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
                           ItemTapped="OnItemTapped"
@@ -142,7 +143,7 @@
                         <StackLayout
                             Orientation="Horizontal">
                             <Switch
-                                OnColor="{Binding hex}"
+                                OnColor="{x:DynamicResource MainColor}"
                                 IsToggled="{Binding ShowClosed, Mode=TwoWay}"
                                 PropertyChanged="change"
                                 x:Name="SwitchApp"
@@ -164,7 +165,7 @@
                                MinimumWidthRequest="300"
                                MinimumHeightRequest="30"
                                HeightRequest="3"
-                               BackgroundColor="{Binding hex}"
+                               BackgroundColor="{x:DynamicResource MainColor}"
                                HorizontalOptions="FillAndExpand">
                             <StackLayout
                                 Orientation="Horizontal"

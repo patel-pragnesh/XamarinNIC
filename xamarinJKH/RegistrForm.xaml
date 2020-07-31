@@ -403,13 +403,13 @@
                                                                    CornerRadius="10"
                                                                    Margin="0,-10,0,0"
                                                                    HorizontalOptions="FillAndExpand"
-                                                                   BorderColor="Red"
+                                                                   BorderColor="{x:DynamicResource MainColor}"
                                                                    HeightRequest="35"
                                                                    VerticalOptions="Center"
                                                                    Padding="0">
                                         <Button x:Name="BtnTech"
                                                 Text="   Написать в тех. поддержку   "
-                                                TextColor="Red"
+                                                TextColor="{x:DynamicResource MainColor}"
                                                 FontSize="10"
                                                 FontAttributes="Bold"
                                                 Clicked="Tech"
@@ -421,8 +421,9 @@
                             </StackLayout>
 
                             <Frame CornerRadius="10"
-                                   BackgroundColor="#CFCFCF"
+                                   BackgroundColor="{x:DynamicResource MainColor}"
                                    Margin="5, 5, 5, 10"
+                                   IsVisible="False"
                                    x:Name="FrameBtnNextTwo"
                                    Padding="12">
                                 <!-- <Button x:Name="BtnNextTwo" -->

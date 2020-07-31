@@ -151,7 +151,7 @@ namespace xamarinJKH.Main
                 case Device.iOS:
                     FrameBtnAdd.IsVisible = false;
                     FrameBtnAddIos.IsVisible = true;
-                    FrameBtnAddIos.BackgroundColor = hex;
+                    // FrameBtnAddIos.BackgroundColor = hex;
                     //BackgroundColor = Color.White;
                     // ImageFon.Margin = new Thickness(0, 0, 0, 0);
                     // StackLayout.Margin = new Thickness(0, 33, 0, 0);
