@@ -26,6 +26,8 @@ namespace xamarinJKH
         public string LoginAuth { get; set; }
         public string passAuth { get; set; }
 
+        private int step = 0;
+
         bool TimerStart = false;
         int TimerTime = 59;
 
@@ -114,6 +116,8 @@ namespace xamarinJKH
             }
         }
 
+     
+
         private void NextReg(object sender, EventArgs e)
         {
             FirstStepReg();
@@ -123,6 +127,24 @@ namespace xamarinJKH
             await Navigation.PushModalAsync(new TechSendPage(false));
         }
 
+        void returnOneStep()
+        {
+            RegistrationFrameStep1.IsVisible = true;
+            RegistrationFrameStep2.IsVisible = false;
+            LabelSteps.Text = "Шаг 1";
+            StepsImage.Source = ImageSource.FromFile("ic_steps_one");
+            step = 0;
+        }
+
+        void returnTwoStep()
+        {
+            RegistrationFrameStep2.IsVisible = true;
+            RegistrationFrameStep3.IsVisible = false;
+            StepsImage.Source = ImageSource.FromFile("ic_steps_two");
+            LabelSteps.Text = "Шаг 2";
+            step = 1;
+        }
+        
         private async void FirstStepReg()
         {
             string phone = EntryPhone.Text
@@ -132,7 +154,7 @@ namespace xamarinJKH
                 .Replace(")", "")
                 .Replace("-", "");
             string fio = EntryFio.Text;
-            string date = DatePicker.Date.ToString("dd.MM.yyyy");
+            string date = "";// DatePicker.Date.ToString("dd.MM.yyyy");
 
             if (phone.Equals(""))
             {
@@ -174,6 +196,7 @@ namespace xamarinJKH
                 StepsImage.Source = ImageSource.FromFile("ic_steps_two");
                 RegistrationFrameStep1.IsVisible = false;
                 RegistrationFrameStep2.IsVisible = true;
+                step = 1;
                 LabelSteps.Text = "Шаг 2";
                 if (Settings.TimerStart)
                 {
@@ -190,15 +213,57 @@ namespace xamarinJKH
 
         private async void BackClick(object sender, EventArgs e)
         {
-            if (TimerStart)
+            switch (step)
             {
-                TimerStart = false;
-                Settings.TimerStart = true;
-                Settings.TimerTime = TimerTime;
-                Device.StartTimer(TimeSpan.FromSeconds(1), Settings.OnTimerTick);
+                case 0:
+                    if (TimerStart)
+                    {
+                        TimerStart = false;
+                        Settings.TimerStart = true;
+                        Settings.TimerTime = TimerTime;
+                        Device.StartTimer(TimeSpan.FromSeconds(1), Settings.OnTimerTick);
+                    }
+                    _ = await Navigation.PopModalAsync();
+                    break;
+                case 1:
+                    returnOneStep();
+                    break;
+                case 2:
+                    returnTwoStep();
+                    break;
             }
-            _ = await Navigation.PopModalAsync();
+            
         }
+        
+        protected override bool OnBackButtonPressed()
+        {
+         
+            switch (step)
+            {
+                case 0:
+                    if (TimerStart)
+                    {
+                        TimerStart = false;
+                        Settings.TimerStart = true;
+                        Settings.TimerTime = TimerTime;
+                        Device.StartTimer(TimeSpan.FromSeconds(1), Settings.OnTimerTick);
+                    }
+                    return base.OnBackButtonPressed();
+                    break;
+                case 1:
+                    returnOneStep();
+                    return true;
+                    break;
+                case 2:
+                    returnTwoStep();
+                    return true;
+                    break;
+                default:
+                    return true;
+            }
+            
+        }
+        
 
         private async void NextTwoReg(object sender, EventArgs e)
         {
@@ -214,6 +279,7 @@ namespace xamarinJKH
                 StepsImage.Source = ImageSource.FromFile("ic_steps_three");
                 RegistrationFrameStep2.IsVisible = false;
                 RegistrationFrameStep3.IsVisible = true;
+                step = 2;
                 LabelSteps.Text = "Шаг 3";
                 Person.Code = entryCodeText;
             }
@@ -227,12 +293,12 @@ namespace xamarinJKH
         {
             if (!EntryCode.Text.Equals(""))
             {
-                FrameBtnNextTwo.IsVisible = true;
+                FrameBtnNextTwo.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
                 isNext = true;
             }
             else
             {
-                FrameBtnNextTwo.IsVisible = false;
+                FrameBtnNextTwo.BackgroundColor = Color.FromHex("#CFCFCF");
                 isNext = false;
             }
         }
