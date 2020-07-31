@@ -142,6 +142,7 @@
                                     <Label Text="Выбор района"
                                            x:Name="LabelGroup"
                                            FontSize="{Binding fontSize}"
+                                           MaxLines="3"
                                            FontAttributes="Bold"
                                            TextColor="White" />
                                     <xamarinJkh:IconView Source="ic_arrow_forward"
@@ -168,6 +169,7 @@
                                     <Label Text="Выбор дома"
                                            x:Name="LabelHouse"
                                            FontSize="{Binding fontSize}"
+                                           MaxLines="3"
                                            FontAttributes="Bold"
                                            TextColor="White" />
                                     <xamarinJkh:IconView Source="ic_arrow_forward"
