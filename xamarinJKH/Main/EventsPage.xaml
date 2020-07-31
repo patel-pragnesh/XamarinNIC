@@ -6,6 +6,7 @@
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="#F3F3F3"
+             xmlns:resouces="clr-namespace:xamarinJKH"
              x:Class="xamarinJKH.Main.EventsPage">    
     <ContentPage.Content>
         <StackLayout>
@@ -86,7 +87,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static resouces:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -99,7 +100,7 @@
                         Margin="25, 0, 0, 0"
                         HorizontalOptions="Start">
                         <Label
-                            Text="События"
+                            Text="{x:Static resouces:AppResources.Events_NavBar}"
                             FontSize="23"
                             TextColor="White"
                             FontAttributes="Bold"
@@ -130,7 +131,7 @@
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center" />
                                     <Label
-                                        Text="Уведомления"
+                                        Text="{x:Static xamarinJkh:AppResources.Notifications}"
                                         FontSize="20"
                                         TextColor="Black"
                                         FontAttributes="Bold"
@@ -165,7 +166,7 @@
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center" />
                                     <Label
-                                        Text="Новости"
+                                        Text="{x:Static resouces:AppResources.News}"
                                         FontSize="20"
                                         TextColor="Black"
                                         FontAttributes="Bold"
@@ -201,7 +202,7 @@
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center" />
                                     <Label
-                                        Text="Опросы"
+                                        Text="{x:Static resouces:AppResources.Quiz}"
                                         FontSize="20"
                                         TextColor="Black"
                                         FontAttributes="Bold"
@@ -236,7 +237,7 @@
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center" />
                                     <Label
-                                        Text="Специальные предложения"
+                                        Text="{x:Static xamarinJkh:AppResources.Offers}"
                                         FontSize="20"
                                         TextColor="Black"
                                         Margin="-20, 0, 0, 0"
@@ -270,7 +271,7 @@
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center" />
                                     <Label
-                                        Text="Общие собрания собственников"
+                                        Text="{x:Static xamarinJkh:AppResources.OSS}"
                                         FontSize="20"
                                         TextColor="Black"
                                         Margin="-20, 0, 0, 0"
@@ -308,7 +309,7 @@
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center" />
                                     <Label
-                                        Text="Магазин"
+                                        Text="{x:Static xamarinJkh:AppResources.Shop}"
                                         FontSize="20"
                                         TextColor="Black"
                                         Margin="0, 0, 0, 0"

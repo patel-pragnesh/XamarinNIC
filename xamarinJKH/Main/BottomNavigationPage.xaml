@@ -5,30 +5,31 @@
             xmlns:local="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
+            xmlns:resources="clr-namespace:xamarinJKH"
             x:Class="xamarinJKH.Main.BottomNavigationPage">
-    <NavigationPage HasNavigationBar="False" Title="События" IconImageSource="ic_events" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage HasNavigationBar="False" Title="{x:Static resources:AppResources.Events_NavBar}" IconImageSource="ic_events" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
-            <local:EventsPage  Title="События" IconImageSource="ic_events" />
+            <local:EventsPage  Title="{x:Static resources:AppResources.Events_NavBar}" IconImageSource="ic_events" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Оплата" IconImageSource="ic_pays" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage Title="{x:Static resources:AppResources.Pays}" IconImageSource="ic_pays" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
-            <local:PaysPage Title="Оплата" IconImageSource="ic_pays" />
+            <local:PaysPage Title="{x:Static resources:AppResources.Pays_NavBar}" IconImageSource="ic_pays" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Показания" IconImageSource="ic_counters" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage Title="{x:Static resources:AppResources.Meters_NavBar}" IconImageSource="ic_counters" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
-            <local:CountersPage Title="Показания" IconImageSource="ic_counters" />
+            <local:CountersPage Title="{x:Static resources:AppResources.Meters_NavBar}" IconImageSource="ic_counters" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage x:Name="AppPage"  Title="Заявки" IconImageSource="ic_apps" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage x:Name="AppPage"  Title="{x:Static resources:AppResources.App_NavBar}" IconImageSource="ic_apps" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
-            <local:AppsPage Title="Заявки" IconImageSource="ic_apps" />
+            <local:AppsPage Title="{x:Static resources:AppResources.App_NavBar}" IconImageSource="ic_apps" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Профиль" IconImageSource="ic_profile" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage Title="{x:Static resources:AppResources.Prof}" IconImageSource="ic_profile" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
-            <local:ProfilePage Title="Профиль" IconImageSource="ic_profile" />
+            <local:ProfilePage Title="{x:Static resources:AppResources.Profile_NavBar}" IconImageSource="ic_profile" />
         </x:Arguments>
     </NavigationPage>
 </TabbedPage>

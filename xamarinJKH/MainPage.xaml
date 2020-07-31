@@ -9,6 +9,7 @@
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
              BackgroundColor="#F3F3F3"
              mc:Ignorable="d"
+             xmlns:resources="clr-namespace:xamarinJKH"
              x:Class="xamarinJKH.MainPage">
     <ContentPage.Content>
         <Grid>
@@ -25,7 +26,7 @@
                     Orientation="Horizontal">
                     <Label
                         x:Name="EntryLabel"
-                        Text="Вход"
+                        Text="{x:Static resources:AppResources.LoginTitle}"
                         FontAttributes="Bold"
                         FontSize="27"
                         TextColor="White"
@@ -85,7 +86,7 @@
                                         IsToggled="true"
                                         x:Name="SwitchLogin" />
 
-                                        <Label Text="Вход по номеру телефона"
+                                        <Label Text="{x:Static resources:AppResources.PhoneLogin}"
                                            FontAttributes="Bold"
                                            FontSize="20"
                                            TextColor="Black"
@@ -105,7 +106,7 @@
                                                         HorizontalOptions="Start"
                                                         VerticalOptions="Center" />
                                             <Label x:Name="LabelPhone"
-                                               Text="Телефон"
+                                               Text="{x:Static resources:AppResources.PhoneLabel}"
                                                FontSize="15"
                                                TextColor="Black"
                                                Margin="-5, 0, 0, 0"
@@ -158,7 +159,7 @@
                                                         Foreground="{x:DynamicResource MainColor}"
                                                         VerticalOptions="Center" />
 
-                                            <Label x:Name="LabelPassword" Text=" Пароль  "
+                                            <Label x:Name="LabelPassword" Text="{x:Static resources:AppResources.Pass}"
                                                FontSize="15"
                                                TextColor="Black"
                                                Margin="-5, 0, 0, 5"
@@ -230,7 +231,7 @@
                                         Spacing="0"
                                         HorizontalOptions="Center">
                                             <Label
-                                            Text="Войти "
+                                            Text="{x:Static resources:AppResources.Login}"
                                             FontSize="15"
                                             TextColor="White"
                                             FontAttributes="Bold"
@@ -251,7 +252,7 @@
                                     Orientation="Horizontal">
                                         <Label
                                         x:Name="ForgotPass"
-                                        Text="Забыли пароль?"
+                                        Text="{x:Static resources:AppResources.ForgotPass}"
                                         FontSize="15"
                                         TextColor="Black"
                                         TextDecorations="Underline"
@@ -259,7 +260,7 @@
                                         HorizontalOptions="StartAndExpand" />
 
                                         <Label x:Name="RegistLabel"
-                                           Text="Зарегистрироваться"
+                                           Text="{x:Static resources:AppResources.Register}"
                                            FontSize="15"
                                            FontAttributes="Bold"
                                            TextColor="{x:DynamicResource MainColor}"
@@ -282,7 +283,7 @@
                                                 HorizontalOptions="Center" />
                                     <Label
                                     x:Name="LabelTech"
-                                    Text="Возникли проблемы? "
+                                    Text="{x:Static resources:AppResources.Troub}"
                                     FontSize="10"
                                     TextColor="Black"
                                     HorizontalOptions="Start" />
@@ -290,7 +291,7 @@
 
                                 <Label
                                 x:Name="LabelSotr"
-                                Text="Вход для сотрудника"
+                                Text="{x:Static resources:AppResources.ConstLogin}"
                                 FontSize="13"
                                 TextColor="{Binding hex}"
                                 TextDecorations="Underline"

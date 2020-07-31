@@ -48,7 +48,7 @@
                                                              HorizontalOptions="Start"
                                                              VerticalOptions="Center" />
                                         <Label x:Name="LabelPhone"
-                                               Text="Телефон"
+                                               Text="{x:Static xamarinJkh:AppResources.PhoneLabel}"
                                                FontSize="14"
                                                TextColor="White"
                                                Margin="-5, 0, 0, 0"
@@ -83,7 +83,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -96,7 +96,7 @@
                         Margin="25, 0, 0, 0"
                         HorizontalOptions="Start">
                         <Label
-                            Text="Показания"
+                            Text="{x:Static xamarinJkh:AppResources.Meters_NavBar}"
                             FontSize="23"
                             TextColor="White"
                             FontAttributes="Bold"
@@ -114,7 +114,7 @@
                         <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="CenterAndExpand">
                             <Label
-                                Text="Лицевой счет: "
+                                Text="{x:Static xamarinJkh:AppResources.Ident}"
                                 HeightRequest="20"
                                 FontAttributes="Bold"
                                 VerticalTextAlignment="Center"
@@ -124,7 +124,7 @@
                             <StackLayout Spacing="0">
                                 <StackLayout Orientation="Horizontal">
                                     <xamarinJkh:BorderlessPicker
-                                        x:Name="Picker" Title="Выбор"
+                                        x:Name="Picker" Title="{x:Static xamarinJkh:AppResources.Choose}"
                                         TitleColor="White"
                                         TextColor="White"
                                         BackgroundColor="#494949"
