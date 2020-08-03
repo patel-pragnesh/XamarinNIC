@@ -312,6 +312,7 @@
                     <Frame CornerRadius="10"
                            x:Name="FrameBtnSaldos"
                            Padding="0"
+                           IsVisible="{x:DynamicResource Saldo}"
                            Grid.Column="1" Grid.Row="0"
                            HorizontalOptions="FillAndExpand">
                         <StackLayout

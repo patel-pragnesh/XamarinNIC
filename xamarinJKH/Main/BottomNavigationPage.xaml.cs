@@ -24,6 +24,7 @@ namespace xamarinJKH.Main
             SelectedTabColor = Color.FromHex(Utils.Settings.MobileSettings.color);
             UnselectedTabColor = Color.Gray;
             CheckAccounts();
+            Application.Current.Resources["Saldo"] = true;
             visibleMenu();
             StartUpdateToken();
             if (Device.RuntimePlatform == Device.Android)
@@ -70,6 +71,42 @@ namespace xamarinJKH.Main
                         Children.Remove(AppPage);
                         Settings.AppIsVisible = false;
 
+                    }
+                }else if (each.name_app.Equals("Показания счетчиков") || each.name_app.Equals("Показания приборов") )
+                {
+                    if (each.visible == 0)
+                    {
+                        Children.Remove(CounterPage);
+                    }
+                }else if (each.name_app.Equals("Оплата ЖКУ"))
+                {
+                    if (each.visible == 0)
+                    {
+                        Children.Remove(PayPage);
+                    }
+                }else if (each.name_app.Equals("Уведомления"))
+                {
+                    if (each.visible == 0)
+                    {
+                        Settings.NotifVisible = false;
+                    }
+                }else if (each.name_app.Equals("Опросы"))
+                {
+                    if (each.visible == 0)
+                    {
+                        Settings.QuestVisible = false;
+                    }
+                }else if (each.name_app.Equals("Квитанции"))
+                {
+                    if (each.visible == 0)
+                    {
+                        Application.Current.Resources["Saldo"] = false;
+                    }
+                }else if (each.name_app.Equals("Дополнительные услуги"))
+                {
+                    if (each.visible == 0)
+                    {
+                        Settings.AddVisible = false;
                     }
                 }
             }

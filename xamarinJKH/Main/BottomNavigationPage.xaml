@@ -11,12 +11,12 @@
             <local:EventsPage  Title="События" IconImageSource="ic_events" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Оплата" IconImageSource="ic_pays" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage x:Name="PayPage" Title="Оплата" IconImageSource="ic_pays" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
             <local:PaysPage Title="Оплата" IconImageSource="ic_pays" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Показания" IconImageSource="ic_counters" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage x:Name="CounterPage" Title="Показания" IconImageSource="ic_counters" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
             <local:CountersPage Title="Показания" IconImageSource="ic_counters" />
         </x:Arguments>

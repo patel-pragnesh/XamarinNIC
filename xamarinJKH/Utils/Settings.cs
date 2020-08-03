@@ -21,6 +21,9 @@ namespace xamarinJKH.Utils
         public static string AppVersion = "3.2";
         public static bool TimerStart = false;
         public static bool AppIsVisible = true;
+        public static bool NotifVisible = true;
+        public static bool QuestVisible = true;
+        public static bool AddVisible = true;
         public static bool GoodsIsVisible = false;
         public static int TimerTime = 59;
 

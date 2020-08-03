@@ -196,6 +196,7 @@
                                            x:Name="FrameBtnSaldos"
                                            Padding="0"
                                            Grid.Column="1" Grid.Row="0"
+                                           IsVisible="{x:DynamicResource Saldo}"
                                            HorizontalOptions="FillAndExpand">
                                         <StackLayout
                                             Orientation="Horizontal"
