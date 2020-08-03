@@ -94,7 +94,7 @@ namespace xamarinJKH.Main
             
             
             Label adressLbl = new Label();
-            adressLbl.Text = "Адрес:";
+            adressLbl.Text = $"{AppResources.Adress}:";
             adressLbl.FontSize = 15;
             adressLbl.TextColor = Color.FromHex("#A2A2A2");
             adressLbl.HorizontalTextAlignment = TextAlignment.Start;
@@ -133,7 +133,7 @@ namespace xamarinJKH.Main
             numberStack.Orientation = StackOrientation.Horizontal;
             numberStack.HorizontalOptions = LayoutOptions.FillAndExpand;
             Label numberLbl = new Label();
-            numberLbl.Text = "Заводской №:";
+            numberLbl.Text = AppResources.FacNum;
             numberLbl.FontSize = 12;
             numberLbl.TextColor = Color.FromHex("#A2A2A2");
             numberLbl.HorizontalTextAlignment = TextAlignment.Start;
@@ -163,7 +163,7 @@ namespace xamarinJKH.Main
             checkupDateStack.HorizontalOptions = LayoutOptions.FillAndExpand;
             checkupDateStack.Margin = new Thickness(0, -7, 0, 0);
             Label checkupDateLbl = new Label();
-            checkupDateLbl.Text = "Последняя поверка:";
+            checkupDateLbl.Text = AppResources.LastCheck;
             checkupDateLbl.FontSize = 12;
             checkupDateLbl.TextColor = Color.FromHex("#A2A2A2");
             checkupDateLbl.HorizontalTextAlignment = TextAlignment.Start;
@@ -194,7 +194,7 @@ namespace xamarinJKH.Main
             recheckStack.HorizontalOptions = LayoutOptions.FillAndExpand;
             recheckStack.Margin = new Thickness(0, -7, 0, 0);
             Label recheckLbl = new Label();
-            recheckLbl.Text = "Межповерочный интервал:";
+            recheckLbl.Text = AppResources.CheckInterval;
             recheckLbl.FontSize = 12;
             recheckLbl.TextColor = Color.FromHex("#A2A2A2");
             recheckLbl.HorizontalTextAlignment = TextAlignment.Start;
@@ -328,7 +328,7 @@ namespace xamarinJKH.Main
             btn.FontAttributes = FontAttributes.Bold;
             btn.VerticalTextAlignment = TextAlignment.Center;
             btn.FontSize = 15;
-            btn.Text = "Передать показания";
+            btn.Text = AppResources.PassPenance;
             containerBtn.Children.Add(new Image()
             {
                 Source = "ic_counter",
@@ -432,7 +432,7 @@ namespace xamarinJKH.Main
 
             stack.Children.Add(new Label()
             {
-                Text = $"Показания переданы {Values[0].Period}",
+                Text = $"{AppResources.PenencePassed} {Values[0].Period}",
                 FontSize = 14,
                 VerticalTextAlignment = TextAlignment.Center,
                 HorizontalTextAlignment = TextAlignment.Center
@@ -446,7 +446,7 @@ namespace xamarinJKH.Main
             {
                 var editLabel = new Label()
                 {
-                    Text = "Изменить показания",
+                    Text = AppResources.ChangePenance,
                     FontAttributes = FontAttributes.Bold,
                     TextColor = Color.FromHex(Settings.MobileSettings.color),
                     VerticalTextAlignment = TextAlignment.Center,

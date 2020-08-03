@@ -211,6 +211,8 @@ namespace xamarinJKH.Main
             set { SetValue(SumPayProperty, value); }
         }
 
+        int fs = 15;
+        
 
         protected override async void OnBindingContextChanged()
         {
@@ -218,6 +220,10 @@ namespace xamarinJKH.Main
 
             if (BindingContext != null)
             {
+                if(Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width<700)
+                {
+                    fs = 13;
+                }
                 
                 var delLs = new TapGestureRecognizer();
                 delLs.Tapped += async (s, e) =>
@@ -247,13 +253,13 @@ namespace xamarinJKH.Main
                 {
                     Text = "Сумма к оплате\n",
                     TextColor = Color.Gray,
-                    FontSize = 15
+                    FontSize = fs
                 });
                 formattedPayDate.Spans.Add(new Span
                 {
                     Text = "на " + DateIdent + ":",
                     TextColor = Color.Black,
-                    FontSize = 15
+                    FontSize = fs
                 });
                 adress.Text = AdressIdent;
                 sumPayDate.FormattedText = formattedPayDate;

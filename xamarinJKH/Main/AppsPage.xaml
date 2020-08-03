@@ -88,7 +88,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -101,7 +101,7 @@
                         Margin="25, 0, 0, 0"
                         HorizontalOptions="Start">
                         <Label
-                            Text="Заявки"
+                            Text="{x:Static xamarinJkh:AppResources.App_NavBar}"
                             FontSize="23"
                             TextColor="White"
                             FontAttributes="Bold"
@@ -149,7 +149,7 @@
                                 x:Name="SwitchApp"
                                 VerticalOptions="Center" />
 
-                            <Label Text="Показать закрытые"
+                            <Label Text="{x:Static xamarinJkh:AppResources.ShowClosedApps}"
                                    x:Name="LabelSwitch"
                                    FontAttributes="Bold"
                                    FontSize="15"
@@ -177,7 +177,7 @@
                                                 WidthRequest="20"
                                                 VerticalOptions="Center" />
                                 <Label x:Name="BtnExit"
-                                       Text="Создать"
+                                       Text="{x:Static xamarinJkh:AppResources.Create}"
                                        FontSize="15"
                                        TextColor="White"
                                        HorizontalOptions="FillAndExpand"
@@ -202,7 +202,7 @@
                                     HeightRequest="24"
                                     WidthRequest="20" />
                                 <Button x:Name="LabelSaldos"
-                                        Text="Создать"
+                                        Text="{x:Static xamarinJkh:AppResources.Create}"
                                         FontSize="15"
                                         Padding="0"
                                         FontAttributes="Bold"
