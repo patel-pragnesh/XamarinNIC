@@ -83,7 +83,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -100,7 +100,7 @@
                                HeightRequest="15"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Уведомления"
+                            Text="{x:Static xamarinJkh:AppResources.Notifications}"
                             FontSize="18"
                             TextColor="White"
                             FontAttributes="Bold"
