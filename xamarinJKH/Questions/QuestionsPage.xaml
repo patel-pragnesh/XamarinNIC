@@ -85,7 +85,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -104,7 +104,7 @@
                                Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Опросы"
+                            Text="{x:Static xamarinJkh:AppResources.Quiz}"
                             FontSize="18"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
@@ -159,7 +159,7 @@
                                         PropertyChanged="chage"
                                         x:Name="SwitchQuest" />
 
-                                    <Label x:Name="labelShowClosed" Text="Показать пройденные опросы"
+                                    <Label x:Name="labelShowClosed" Text="{x:Static xamarinJkh:AppResources.ShowAnsweredQuizes}"
                                            FontAttributes="Bold"
                                            FontSize="17"
                                            TextColor="{AppThemeBinding Light=Black, Dark=White}"

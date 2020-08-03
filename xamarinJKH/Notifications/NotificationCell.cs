@@ -36,7 +36,7 @@ namespace xamarinJKH
             title.FontAttributes = FontAttributes.Bold;
             title.FontSize = 15;
             title.TextColor = Color.Black;
-            more.Text = "Подробнее >";
+            more.Text =  $"{AppResources.Details} >";
             more.FontSize = 13;
             more.TextDecorations = TextDecorations.Underline;
             more.TextColor = Color.FromHex(Settings.MobileSettings.color);

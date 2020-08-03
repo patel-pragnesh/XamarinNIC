@@ -439,7 +439,7 @@ namespace xamarinJKH.Counters
             FormattedString formattedUniq = new FormattedString();
             formattedUniq.Spans.Add(new Span
             {
-                Text = "Заводской №: ",
+                Text = AppResources.FacNum,
                 TextColor = Color.LightGray,
                 FontAttributes = FontAttributes.None,
                 FontSize = 15
@@ -456,7 +456,7 @@ namespace xamarinJKH.Counters
             FormattedString formattedCheckup = new FormattedString();
             formattedCheckup.Spans.Add(new Span
             {
-                Text = "Последняя поверка: ",
+                Text = AppResources.LastCheck,
                 TextColor = Color.LightGray,
                 FontAttributes = FontAttributes.None,
                 FontSize = 15
@@ -473,7 +473,7 @@ namespace xamarinJKH.Counters
             FormattedString formattedRecheckup = new FormattedString();
             formattedRecheckup.Spans.Add(new Span
             {
-                Text = "Межповерочный интервал: ",
+                Text = AppResources.CheckInterval,
                 TextColor = Color.LightGray,
                 FontAttributes = FontAttributes.None,
                 FontSize = 15

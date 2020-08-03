@@ -97,7 +97,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -114,7 +114,7 @@
                                HeightRequest="15"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Передать показания"
+                            Text="{x:Static xamarinJkh:AppResources.Back}"
                             FontSize="18"
                             TextColor="White"
                             FontAttributes="Bold"
@@ -134,7 +134,7 @@
                             <Image x:Name="img"
                                 WidthRequest="25"/>
                             <Label x:Name="NameLbl"
-                                Text="Лицевой счет: "
+                                Text="{x:Static xamarinJkh:AppResources.Ident}"
                                 HeightRequest="20"
                                 FontAttributes="Bold"
                                 VerticalTextAlignment="Center"
@@ -143,21 +143,21 @@
                                 FontSize="18" />
                         </StackLayout>
                         <Label x:Name="UniqNumLbl"
-                            Text="Заводской №: 123657"
+                            Text="{x:Static xamarinJkh:AppResources.FacNum}"
                             HeightRequest="20"
                             VerticalTextAlignment="Center"
                             HorizontalOptions="CenterAndExpand"
                             TextColor="White"
                             FontSize="15" />
                         <Label x:Name="CheckupLbl"
-                            Text="Последняя поверка: 12.01.2020"
+                            Text="{x:Static xamarinJkh:AppResources.LastCheck}"
                             HeightRequest="20"
                             VerticalTextAlignment="Center"
                             HorizontalOptions="CenterAndExpand"
                             TextColor="White"
                             FontSize="15" />
                         <Label x:Name="RecheckLbl"
-                            Text="Межповерочный интервал: 6 лет"
+                            Text="{x:Static xamarinJkh:AppResources.CheckInterval}"
                             HeightRequest="20"
                             VerticalTextAlignment="Center"
                             HorizontalOptions="CenterAndExpand"
@@ -174,7 +174,7 @@
                     <StackLayout x:Name="meterRootStack"
                             Margin="10, 10, 10, 10">
 
-                        <Label x:Name="meterReadingName" Text="Новые показания"
+                        <Label x:Name="meterReadingName" Text="{x:Static xamarinJkh:AppResources.NewPenance}"
                                    Margin="10, 0, 10, 0"
                                    FontAttributes="Bold"
                                    FontSize="20"
@@ -411,7 +411,7 @@
                                                     HorizontalOptions="Start"
                                                     VerticalOptions="Center" />
                                 <Label x:Name="BtnSave"
-                                           Text="Передать показания"
+                                           Text="{x:Static xamarinJkh:AppResources.PassPenance}"
                                            Margin="0, 0, 0, 0"
                                            FontAttributes="Bold"
                                            FontSize="15"

@@ -137,7 +137,7 @@ namespace xamarinJKH.Main
             if (i == 0)
                 MessagingCenter.Send<Object>(this, "UpdateEvents");
 
-            if (i == 3)
+            if (CurrentPage is AppsPage || CurrentPage is xamarinJKH.MainConst.AppsConstPage || CurrentPage.Title == AppResources.App_NavBar)
                 MessagingCenter.Send<Object>(this, "AutoUpdate");
         }
 

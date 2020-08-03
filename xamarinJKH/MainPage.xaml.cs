@@ -205,14 +205,14 @@ namespace xamarinJKH
                 FormattedString formatted = new FormattedString();
                 formatted.Spans.Add(new Span
                 {
-                    Text = "Возникли проблемы? ",
+                    Text = AppResources.Troub,
                     TextColor = Color.Black,
                     FontAttributes = FontAttributes.Bold,
                     FontSize = 13
                 });
                 formatted.Spans.Add(new Span
                 {
-                    Text = "Напишите нам.",
+                    Text = AppResources.WriteUs,
                     TextColor = hex,
                     FontSize = 13,
                     TextDecorations = TextDecorations.Underline
@@ -233,9 +233,9 @@ namespace xamarinJKH
             if (Settings.ConstAuth)
             {
                 Settings.ConstAuth = true;
-                EntryLabel.Text = "Вход для сотрудника";
-                LabelSotr.Text = "Вход для жителя";
-                LabelPhone.Text = "Логин";
+                EntryLabel.Text =AppResources.ConstLogin;
+                LabelSotr.Text = AppResources.DefaultLogin;
+                LabelPhone.Text = AppResources.Login;
                 RegStackLayout.IsVisible = false;
                 EntryLogin.IsVisible = false;
                 EntryLoginConst.IsVisible = true;
@@ -246,9 +246,9 @@ namespace xamarinJKH
             else
             {
                 Settings.ConstAuth = false;
-                EntryLabel.Text = "Вход";
-                LabelSotr.Text = "Вход для сотрудника";
-                LabelPhone.Text = "Телефон";
+                EntryLabel.Text = AppResources.Login;
+                LabelSotr.Text = AppResources.ConstLogin;
+                LabelPhone.Text = AppResources.PhoneLabel;
                 RegStackLayout.IsVisible = true;
                 EntryLogin.IsVisible = true;
                 EntryLoginConst.IsVisible = false;
@@ -263,9 +263,9 @@ namespace xamarinJKH
             if (Settings.ConstAuth)
             {
                 Settings.ConstAuth = false;
-                EntryLabel.Text = "Вход";
-                LabelSotr.Text = "Вход для сотрудника";
-                LabelPhone.Text = "Телефон";
+                EntryLabel.Text = AppResources.Login;
+                LabelSotr.Text = AppResources.ConstLogin;
+                LabelPhone.Text = AppResources.PhoneLabel;
                 RegStackLayout.IsVisible = true;
                 EntryLogin.IsVisible = true;
                 EntryLoginConst.IsVisible = false;
@@ -276,9 +276,9 @@ namespace xamarinJKH
             else
             {
                 Settings.ConstAuth = true;
-                EntryLabel.Text = "Вход для сотрудника";
-                LabelSotr.Text = "Вход для жителя";
-                LabelPhone.Text = "Логин";
+                EntryLabel.Text = AppResources.ConstLogin;
+                LabelSotr.Text = AppResources.DefaultLogin;
+                LabelPhone.Text = AppResources.Login;
                 RegStackLayout.IsVisible = false;
                 EntryLogin.IsVisible = false;
                 EntryLoginConst.IsVisible = true;

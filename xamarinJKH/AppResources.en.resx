@@ -126,8 +126,26 @@
   <data name="Adress" xml:space="preserve">
     <value>Adress</value>
   </data>
+  <data name="AnsweredAmount" xml:space="preserve">
+    <value>Answered</value>
+  </data>
   <data name="App_NavBar" xml:space="preserve">
     <value>Requests</value>
+  </data>
+  <data name="AttachmentChooseFile" xml:space="preserve">
+    <value>Choose file</value>
+  </data>
+  <data name="AttachmentChoosePhoto" xml:space="preserve">
+    <value>Choose photo from gallery</value>
+  </data>
+  <data name="AttachmentTakePhoto" xml:space="preserve">
+    <value>Take photo</value>
+  </data>
+  <data name="AttachmentTitle" xml:space="preserve">
+    <value>Add attachment</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
   </data>
   <data name="Bills" xml:space="preserve">
     <value>Bills</value>
@@ -135,14 +153,23 @@
   <data name="By" xml:space="preserve">
     <value>by </value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="ChangePenance" xml:space="preserve">
     <value>Change indications</value>
+  </data>
+  <data name="ChatPlaceholder" xml:space="preserve">
+    <value>Enter a message...</value>
   </data>
   <data name="CheckInterval" xml:space="preserve">
     <value>Checks interval: </value>
   </data>
   <data name="Choose" xml:space="preserve">
     <value>Choose</value>
+  </data>
+  <data name="CloseApp" xml:space="preserve">
+    <value>Close</value>
   </data>
   <data name="ConstLogin" xml:space="preserve">
     <value>Employee log in</value>
@@ -153,14 +180,23 @@
   <data name="Currency" xml:space="preserve">
     <value> RUB. </value>
   </data>
+  <data name="DefaultLogin" xml:space="preserve">
+    <value>Resident login</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
   </data>
   <data name="df" xml:space="preserve">
     <value />
   </data>
   <data name="DSP" xml:space="preserve">
     <value>Don't save password</value>
+  </data>
+  <data name="EnterCodeApp" xml:space="preserve">
+    <value>Enter code</value>
   </data>
   <data name="Events_NavBar" xml:space="preserve">
     <value>Events</value>
@@ -186,11 +222,17 @@
   <data name="ForgotPass" xml:space="preserve">
     <value>Forgot password?</value>
   </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>Hidden</value>
+  </data>
   <data name="Ident" xml:space="preserve">
     <value>Account: </value>
   </data>
   <data name="Info" xml:space="preserve">
     <value>Information</value>
+  </data>
+  <data name="InfoApp" xml:space="preserve">
+    <value>Info</value>
   </data>
   <data name="LastCheck" xml:space="preserve">
     <value>Last check: </value>
@@ -203,6 +245,9 @@
   </data>
   <data name="Meters_NavBar" xml:space="preserve">
     <value>Meters</value>
+  </data>
+  <data name="NewPenance" xml:space="preserve">
+    <value>New indications</value>
   </data>
   <data name="News" xml:space="preserve">
     <value>News</value>
@@ -228,6 +273,9 @@
   <data name="Pay" xml:space="preserve">
     <value>Pay</value>
   </data>
+  <data name="PayApp" xml:space="preserve">
+    <value>Pay</value>
+  </data>
   <data name="PayHistory" xml:space="preserve">
     <value>Payment history</value>
   </data>
@@ -243,6 +291,9 @@
   <data name="PenencePassed" xml:space="preserve">
     <value>Indications passed</value>
   </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
   <data name="PhoneLabel" xml:space="preserve">
     <value>Phone</value>
   </data>
@@ -255,8 +306,14 @@
   <data name="Profile_NavBar" xml:space="preserve">
     <value>Profile</value>
   </data>
+  <data name="QuestionsAmount" xml:space="preserve">
+    <value>Questions</value>
+  </data>
   <data name="Quiz" xml:space="preserve">
-    <value>Quizes</value>
+    <value>Polls</value>
+  </data>
+  <data name="QuizResult" xml:space="preserve">
+    <value>Show answers</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Sign up</value>
@@ -269,6 +326,9 @@
   </data>
   <data name="Shop" xml:space="preserve">
     <value>Shop</value>
+  </data>
+  <data name="ShowAnsweredQuizes" xml:space="preserve">
+    <value>Show passed polls</value>
   </data>
   <data name="ShowClosedApps" xml:space="preserve">
     <value>Show closed</value>
