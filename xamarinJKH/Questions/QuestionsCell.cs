@@ -45,7 +45,7 @@ namespace xamarinJKH.Questions
             StackLayout containerTwo = new StackLayout();
             containerTwo.Orientation = StackOrientation.Horizontal;
 
-            countQuestTitle.Text = "Количество вопросов:";
+            countQuestTitle.Text = $"{AppResources.QuestionsAmount}:";
             countQuestTitle.HorizontalOptions = LayoutOptions.Start;
             countQuestTitle.FontSize = 12;
             countAnsweredTitle.VerticalOptions = LayoutOptions.Center;
@@ -59,7 +59,7 @@ namespace xamarinJKH.Questions
             containerOne.Children.Add(countQuestTitle);
             containerOne.Children.Add(countQuest);
 
-            countAnsweredTitle.Text = "Количество отвеченных:";
+            countAnsweredTitle.Text = $"{AppResources.AnsweredAmount}:";
             countAnsweredTitle.TextColor = Color.Black;
             countAnsweredTitle.HorizontalOptions = LayoutOptions.Start;
             countAnsweredTitle.VerticalOptions = LayoutOptions.Center;
@@ -198,7 +198,7 @@ namespace xamarinJKH.Questions
                 if (IsComplete)
                 {
                     countAnswered.Text = CountQuest;
-                    btn.Text = "Посмотреть ответы";
+                    btn.Text = AppResources.QuizResult;
                 }
                 date.Text = DateQuest;
                 title.Text = TitleQuest;
