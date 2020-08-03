@@ -20,10 +20,8 @@
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>10.0</string>
-	<key>CFBundleDisplayName</key>
-	<string>ЗИП</string>
 	<key>CFBundleIdentifier</key>
-	<string>rom.best.zip</string>
+	<string>rom.best.dom24</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
@@ -37,7 +35,7 @@
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.10</string>
+	<string>3.13</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
@@ -59,12 +57,14 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Вы можете приложить фото к заявке</string>
 	<key>CFBundleVersion</key>
-	<string>3.10</string>
+	<string>3.13</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
 	</array>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
+	<key>CFBundleDisplayName</key>
+	<string>Дом 24</string>
 </dict>
 </plist>

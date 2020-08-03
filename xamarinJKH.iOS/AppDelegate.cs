@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
-using KeyboardOverlap.Forms.Plugin.iOSUnified;
+//using KeyboardOverlap.Forms.Plugin.iOSUnified;
 using Plugin.FirebasePushNotification;
 using UIKit;
 
@@ -27,7 +27,7 @@ namespace xamarinJKH.iOS
             global::Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental", "IndicatorView_Experimental");
             global::Xamarin.Forms.Forms.Init();
 
-            KeyboardOverlapRenderer.Init();
+            //KeyboardOverlapRenderer.Init();
 
             
 
