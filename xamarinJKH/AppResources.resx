@@ -129,20 +129,44 @@
   <data name="App_NavBar" xml:space="preserve">
     <value>Заявки</value>
   </data>
+  <data name="AttachmentChooseFile" xml:space="preserve">
+    <value>Выбрать файл</value>
+  </data>
+  <data name="AttachmentChoosePhoto" xml:space="preserve">
+    <value>Выбрать фото из галереи</value>
+  </data>
+  <data name="AttachmentTakePhoto" xml:space="preserve">
+    <value>Сделать снимок</value>
+  </data>
+  <data name="AttachmentTitle" xml:space="preserve">
+    <value>Добавить вложение</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
   <data name="Bills" xml:space="preserve">
     <value>Квитанции</value>
   </data>
   <data name="By" xml:space="preserve">
     <value>на </value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
   <data name="ChangePenance" xml:space="preserve">
     <value>Изменить показания</value>
+  </data>
+  <data name="ChatPlaceholder" xml:space="preserve">
+    <value>Введите сообщение...</value>
   </data>
   <data name="CheckInterval" xml:space="preserve">
     <value>Межповерочный интервал:</value>
   </data>
   <data name="Choose" xml:space="preserve">
     <value>Выбор</value>
+  </data>
+  <data name="CloseApp" xml:space="preserve">
+    <value>Закрыть</value>
   </data>
   <data name="ConstLogin" xml:space="preserve">
     <value>Вход для сотрудника</value>
@@ -153,11 +177,20 @@
   <data name="Currency" xml:space="preserve">
     <value> руб. </value>
   </data>
+  <data name="DefaultLogin" xml:space="preserve">
+    <value>Вход для жителя</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Удалить</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Подробнее</value>
+  </data>
   <data name="DSP" xml:space="preserve">
     <value>Не сохранять пароль</value>
+  </data>
+  <data name="EnterCodeApp" xml:space="preserve">
+    <value>Ввести код</value>
   </data>
   <data name="Events_NavBar" xml:space="preserve">
     <value>События</value>
@@ -174,11 +207,17 @@
   <data name="ForgotPass" xml:space="preserve">
     <value>Забыли пароль?</value>
   </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>Скрытое</value>
+  </data>
   <data name="Ident" xml:space="preserve">
     <value>Лицевой счет: </value>
   </data>
   <data name="Info" xml:space="preserve">
     <value>Информация</value>
+  </data>
+  <data name="InfoApp" xml:space="preserve">
+    <value>Инфо</value>
   </data>
   <data name="LastCheck" xml:space="preserve">
     <value>Последняя проверка:</value>
@@ -191,6 +230,9 @@
   </data>
   <data name="Meters_NavBar" xml:space="preserve">
     <value>Показатели</value>
+  </data>
+  <data name="NewPenance" xml:space="preserve">
+    <value>Новые показания</value>
   </data>
   <data name="News" xml:space="preserve">
     <value>Новости</value>
@@ -216,6 +258,9 @@
   <data name="Pay" xml:space="preserve">
     <value>Оплатить</value>
   </data>
+  <data name="PayApp" xml:space="preserve">
+    <value>Оплатить</value>
+  </data>
   <data name="PayHistory" xml:space="preserve">
     <value>История платежей</value>
   </data>
@@ -230,6 +275,9 @@
   </data>
   <data name="PenencePassed" xml:space="preserve">
     <value>Показания переданы</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Телефон</value>
   </data>
   <data name="PhoneLabel" xml:space="preserve">
     <value>Телефон</value>
