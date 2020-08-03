@@ -134,7 +134,7 @@ namespace xamarinJKH.Tech
             arguments.Phone = phone;
             arguments.Text = text;
             arguments.Mail = email;
-            arguments.AppVersion = Settings.AppVersion;
+            arguments.AppVersion = Xamarin.Essentials.AppInfo.VersionString;
             arguments.Info = GetIdent();
             arguments.Address = GetAdres();
             arguments.Login = Settings.Person.Login;
