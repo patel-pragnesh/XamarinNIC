@@ -25,6 +25,7 @@ using xamarinJKH.DialogViews;
 
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using xamarinJKH.CustomRenderers;
 
 namespace xamarinJKH
 {
@@ -178,6 +179,7 @@ namespace xamarinJKH
                 //     Settings.MobileSettings.main_name = "ООО \"ДОМЖИЛСЕРВИС\"";
                 // }
                 
+                
                 UkName.Text = Settings.MobileSettings.main_name;
                 Version.Text ="ver " + Xamarin.Essentials.AppInfo.VersionString;
                 hex = Color.FromHex(Settings.MobileSettings.color);
@@ -194,6 +196,8 @@ namespace xamarinJKH
                 //RegistLabel.TextColor = hex;
                 //progress.Color = hex;
                 Color.SetAccent(hex);
+                FrameLogin.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.Transparent);
+                BootomFrame.SetAppThemeColor(Frame.BorderColorProperty, hex, Color.Transparent);
 
                 StackLayoutContent.IsVisible = true;
                 progress2.IsVisible = false;

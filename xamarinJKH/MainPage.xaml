@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:xamarinJKH"
              xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
-             BackgroundColor="#F3F3F3"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              mc:Ignorable="d"
              xmlns:resources="clr-namespace:xamarinJKH"
              x:Class="xamarinJKH.MainPage">
@@ -19,7 +19,7 @@
 
             </Grid.RowDefinitions>
             <StackLayout Grid.RowSpan="2">
-                <Image Source="top_fon_login"
+                <Image Source="{AppThemeBinding Light=top_fon_login_light, Dark=top_fon_login}"
                        HorizontalOptions="Center" />
                 <StackLayout
                     Margin="20, -120, 0, 0"
@@ -29,13 +29,13 @@
                         Text="{x:Static resources:AppResources.LoginTitle}"
                         FontAttributes="Bold"
                         FontSize="27"
-                        TextColor="White"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                         HorizontalOptions="Start" />
                     <Label x:Name="Version"
                            HorizontalOptions="EndAndExpand"
                            VerticalOptions="Center"
                            Margin="0,0,20,0"
-                           TextColor="White"
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}"
                            Text="ver 2.1" />
                 </StackLayout>
                 <!-- Place new controls here -->
@@ -65,13 +65,15 @@
                                 <RowDefinition Height="0.4*"/>
                             </Grid.RowDefinitions>
 
-                            <Frame BackgroundColor="LightGray"
+                            <Frame BackgroundColor="{AppThemeBinding Light=White, Dark=LightGray}"
                                    Grid.Row="1"
+                                   x:Name="BootomFrame"
                                    CornerRadius="40"
                                    Margin="0,-50,0,-30" />
                             <customRenderers:MaterialFrame Elevation="20" CornerRadius="50"
                                                        Margin="15, 15, 15, 15"
                                                        BackgroundColor="White"
+                                                       x:Name="FrameLogin"
                                                        Padding="10" HasShadow="True">
 
                                 <StackLayout

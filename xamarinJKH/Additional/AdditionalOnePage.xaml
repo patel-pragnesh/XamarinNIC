@@ -4,15 +4,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             BackgroundColor="#F3F3F3"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Additional.AdditionalOnePage">
     <ContentPage.Content>
         <StackLayout>
             <pancakeView:PancakeView
                 Padding="0"
                 CornerRadius="0,0,25,25"
-                BackgroundColor="#131313"
+                BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
                 HorizontalOptions="Fill"
+                BorderThickness="1"
                 MinimumHeightRequest="102"
                 VerticalOptions="Start"
                 x:Name="Pancake"
@@ -27,7 +28,7 @@
                                    Text="Название"
                                    FontAttributes="Bold"
                                    FontSize="16"
-                                   TextColor="White" />
+                                   TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                             <StackLayout
                                 Spacing="0"
                                 Orientation="Horizontal">
@@ -41,7 +42,7 @@
                                 <Label x:Name="LabelPhone"
                                        Text="Телефон"
                                        FontSize="14"
-                                       TextColor="White"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        Margin="-5, 0, 0, 0"
                                        VerticalOptions="Center" />
                             </StackLayout>

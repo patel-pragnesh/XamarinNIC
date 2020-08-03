@@ -136,7 +136,7 @@ namespace xamarinJKH.Shop
                     });
                     stringBuilder.Append(i + 1)
                         .Append(") ").Append(value.Name).Append(" кол-во: ")
-                        .Append(value.ColBusket).Append(" цена: ").Append(value.priceBusket)
+                        .Append(value.ColBusket).Append(" шт").Append(" цена: ").Append(value.priceBusket).Append(" руб.")
                         .Append("\n");
                     i++;
                 }

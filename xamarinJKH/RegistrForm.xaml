@@ -7,7 +7,7 @@
              xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
-             BackgroundColor="#F3F3F3"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.RegistrForm">
     <ContentPage.Content>
         
@@ -19,13 +19,14 @@
                 <RowDefinition Height="0.1*"/>
             </Grid.RowDefinitions>
 
-            <Frame BackgroundColor="LightGray"
+            <Frame BackgroundColor="{AppThemeBinding Light=White, Dark=LightGray}"
                    Grid.Row="2"
+                   x:Name="BootomFrame"
                    Grid.RowSpan="2"
                    CornerRadius="40"
                    Margin="0,-80,0,-30"/>
             <Image x:Name="TopFon"
-                   Source="top_fon_login"
+                   Source="{AppThemeBinding Light=top_fon_login_light, Dark=top_fon_login}"
                    Grid.Row="0"
                    Margin="0,-20,0,0"
                    Aspect="Fill" />
@@ -34,14 +35,16 @@
                 x:Name="BackStackLayout"
                 Orientation="Horizontal"
                 Margin="10, 0, 0, 0"
+                Spacing="0"
                 HorizontalOptions="Start">
-                    <Image Source="ic_arrow_back"
+                    <xamarinJkh:IconView Source="ic_arrow_back"
                        HeightRequest="15"
+                       Foreground="{AppThemeBinding Light=Black, Dark=White}"
                        HorizontalOptions="Center" />
                     <Label
                     Text="Назад "
                     FontSize="15"
-                    TextColor="White"
+                    TextColor="{AppThemeBinding Light=Black, Dark=White}"
                     HorizontalOptions="Start" />
                 </StackLayout>
             </StackLayout>
@@ -51,7 +54,7 @@
                 FontAttributes="Bold"
                 FontSize="27"
                 Margin="20, 20, 0, 0"
-                TextColor="White"
+                TextColor="{AppThemeBinding Light=Black, Dark=White}"
                 VerticalTextAlignment="Center"
                 HorizontalOptions="Start" />
 
@@ -293,10 +296,10 @@
                         </StackLayout>
                     </customRenderers:MaterialFrame>
                     <!-- Второй шаг регистрации -->
-                    <customRenderers:MaterialFrame Elevation="20" x:Name="RegistrationFrameStep2"
+                    <customRenderers:MaterialFrame Elevation="{AppThemeBinding Light=0, Dark=20}" x:Name="RegistrationFrameStep2"
                                                    CornerRadius="50"
                                                    IsVisible="False"
-                                                   Margin="15, 15, 15, 15"
+                                                   Margin="15, 15, 15, 25"
                                                    BackgroundColor="White"
                                                    Padding="5"
                                                    HasShadow="False">
