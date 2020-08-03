@@ -117,12 +117,12 @@ namespace xamarinJKH.Counters
 
             if(counterThisMonth>0)
             {
-                meterReadingName.Text = "Изменить показания";
+                meterReadingName.Text = AppResources.ChangePenance;
                 SetCurrent(counterThisMonth);
             }
             else
             {
-                meterReadingName.Text = "Новые показания";
+                meterReadingName.Text = AppResources.NewData;
             }
 
             Device.BeginInvokeOnMainThread(() =>

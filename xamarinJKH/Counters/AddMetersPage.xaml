@@ -380,7 +380,7 @@
                             <StackLayout
                                     Orientation="Horizontal">
                                 <Label
-                                        Text="Предыдущие показания"
+                                        Text="{x:Static xamarinJkh:AppResources.PrebiousData}"
                                         FontSize="Micro"
                                         TextColor="#A2A2A2"
                                         HeightRequest="20"
