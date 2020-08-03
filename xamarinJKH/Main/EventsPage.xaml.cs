@@ -7,10 +7,12 @@ using Microsoft.AppCenter.Crashes;
 using Plugin.FirebaseCrashlytics;
 using Plugin.Messaging;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Additional;
+using xamarinJKH.CustomRenderers;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.News;
 using xamarinJKH.Questions;
@@ -174,25 +176,17 @@ namespace xamarinJKH.Main
         void SetColor()
         {
             Color hexColor = Color.FromHex(Settings.MobileSettings.color);
-            // IconViewLogin.Foreground = hexColor;
-            // IconViewTech.Foreground = hexColor;
-            IconViewNotification.Foreground = hexColor;
-            IconViewShop.Foreground = hexColor;
-            IconViewForvardShop.Foreground = hexColor;
-            IconViewForvardNotification.Foreground = hexColor;
-            IconViewNews.Foreground = hexColor;
-            IconViewForvardNews.Foreground = hexColor;
-            IconViewQuestions.Foreground = hexColor;
-            IconViewForvardQuestions.Foreground = hexColor;
-            IconViewOffers.Foreground = hexColor;
-            IconViewForvardOffers.Foreground = hexColor;
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
 
-
-            IconViewOss.Foreground = hexColor;
-            IconViewForvardOss.Foreground = hexColor;
-
-
-            // LabelTech.TextColor = hexColor;
+            FrameNews.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
+            FrameQuestions.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
+            FrameOffers.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
+            FrameOSS.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
+            FrameNotification.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
         }
     }
 

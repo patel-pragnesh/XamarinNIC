@@ -6,13 +6,13 @@
              xmlns:additional="clr-namespace:xamarinJKH.Additional;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:questions="clr-namespace:xamarinJKH.Questions;assembly=xamarinJKH"
-             BackgroundColor="#F3F3F3"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Questions.QuestionsPage">
     <ContentPage.Content>
         <StackLayout>
             <Grid>
                 <Image x:Name="ImageFon"
-                       Source="ic_background_event"
+                       Source="{AppThemeBinding Light=ic_background_event_light, Dark=ic_background_event}"
                        VerticalOptions="Start"
                        Margin="0,20,0,0"
                        Aspect="AspectFill"
@@ -21,9 +21,10 @@
                     <pancakeView:PancakeView
                         Padding="0"
                         CornerRadius="0,0,25,25"
-                        BackgroundColor="#131313"
+                        BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
                         HorizontalOptions="Fill"
                         MinimumHeightRequest="102"
+                        BorderThickness="1"
                         VerticalOptions="Start"
                         x:Name="Pancake"
                         IsClippedToBounds="True">
@@ -37,7 +38,7 @@
                                            Text="Название"
                                            FontAttributes="Bold"
                                            FontSize="16"
-                                           TextColor="White" />
+                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                                     <StackLayout
                                         Spacing="0"
                                         Orientation="Horizontal">
@@ -51,7 +52,7 @@
                                         <Label x:Name="LabelPhone"
                                                Text="Телефон"
                                                FontSize="14"
-                                               TextColor="White"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                                Margin="-5, 0, 0, 0"
                                                VerticalOptions="Center" />
                                     </StackLayout>
@@ -96,14 +97,16 @@
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
                         Margin="25, 0, 0, 0"
+                        Spacing="0"
                         HorizontalOptions="Start">
-                        <Image Source="ic_arrow_back"
+                        <xamarinJkh:IconView Source="ic_arrow_back"
                                HeightRequest="15"
+                               Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalOptions="Center" />
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.Quiz}"
                             FontSize="18"
-                            TextColor="White"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
@@ -140,8 +143,9 @@
                         </ListView>
                         <StackLayout Spacing="0">
                             <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0"
-                                                     BackgroundColor="#8D8D8D"
+                                                     BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
                                                      Padding="0,17,0,5"
+                                                     BorderThickness="1"
                                                      Margin="0"
                                                      VerticalOptions="FillAndExpand">
                                 <StackLayout
@@ -158,7 +162,7 @@
                                     <Label x:Name="labelShowClosed" Text="{x:Static xamarinJkh:AppResources.ShowAnsweredQuizes}"
                                            FontAttributes="Bold"
                                            FontSize="17"
-                                           TextColor="White"
+                                           TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                            HorizontalOptions="Center" VerticalOptions="Center" />
                                 </StackLayout>
                             </pancakeView:PancakeView>

@@ -11,6 +11,7 @@ using xamarinJKH.Server.RequestModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms.PlatformConfiguration;
+using xamarinJKH.CustomRenderers;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
@@ -42,7 +43,7 @@ namespace xamarinJKH
         {
             InitializeComponent();
             this.BindingContext = viewModel = new RegistrFormViewModel(this.Navigation);
-            
+            hex = Color.FromHex(Settings.MobileSettings.color);
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -114,6 +115,10 @@ namespace xamarinJKH
                 default:
                     break;
             }
+            BootomFrame.SetAppThemeColor(Frame.BorderColorProperty, hex, Color.Transparent);
+            RegistrationFrameStep1.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.Transparent);
+            RegistrationFrameStep2.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.Transparent);
+            RegistrationFrameStep3.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.Transparent);
         }
 
      

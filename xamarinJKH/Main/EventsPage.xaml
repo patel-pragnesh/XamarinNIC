@@ -5,7 +5,7 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             BackgroundColor="#F3F3F3"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              xmlns:resouces="clr-namespace:xamarinJKH"
              x:Class="xamarinJKH.Main.EventsPage">    
     <ContentPage.Content>
@@ -13,7 +13,7 @@
             <Grid>
                 <Image x:Name="ImageFon"
                        Margin="0,20,0,0"
-                       Source="ic_background_event"
+                       Source="{AppThemeBinding Light=ic_background_event_light, Dark=ic_background_event}"
                        VerticalOptions="Start"
                        Aspect="AspectFill"
                        HorizontalOptions="FillAndExpand" />
@@ -21,9 +21,10 @@
                     <pancakeView:PancakeView
                         Padding="0"
                         CornerRadius="0,0,25,25"
-                        BackgroundColor="#131313"
+                        BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
                         HorizontalOptions="Fill"
                         MinimumHeightRequest="102"
+                        BorderThickness="1"
                         VerticalOptions="Start"
                         x:Name="Pancake"
                         IsClippedToBounds="True">
@@ -40,21 +41,21 @@
                                            Text="Название"
                                            FontAttributes="Bold"
                                            FontSize="16"
-                                           TextColor="White" />
+                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                                     <StackLayout
                                         Spacing="0"
                                         Orientation="Horizontal">
                                         <xamarinJkh:IconView x:Name="IconViewLogin"
                                                              Source="ic_phone"
                                                              HeightRequest="15"
-                                                             Foreground="White"
+                                                             Foreground="{AppThemeBinding Light=Red, Dark=White}"
                                                              Margin="-10, 0,0,0"
                                                              HorizontalOptions="Start"
                                                              VerticalOptions="Center" />
                                         <Label x:Name="LabelPhone"
                                                Text="Телефон"
                                                FontSize="14"
-                                               TextColor="White"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                                Margin="-5, 0, 0, 0"
                                                VerticalOptions="Center" />
                                     </StackLayout>
@@ -127,6 +128,7 @@
                                         x:Name="IconViewNotification"
                                         Source="ic_notification"
                                         HeightRequest="30"
+                                        Foreground="{x:DynamicResource MainColor}"
                                         Margin="-10, 0, 0, 0"
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center" />
@@ -142,6 +144,7 @@
                                         x:Name="IconViewForvardNotification"
                                         Source="ic_arrow_forward"
                                         HeightRequest="25"
+                                        Foreground="{x:DynamicResource MainColor}"
                                         WidthRequest="25"
                                         Margin="0,0,15,0"
                                         HorizontalOptions="End"
@@ -162,6 +165,7 @@
                                         x:Name="IconViewNews"
                                         Source="ic_news"
                                         HeightRequest="30"
+                                        Foreground="{x:DynamicResource MainColor}"
                                         Margin="-10, 0, 0, 0"
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center" />
@@ -177,6 +181,7 @@
                                         x:Name="IconViewForvardNews"
                                         Source="ic_arrow_forward"
                                         HeightRequest="25"
+                                        Foreground="{x:DynamicResource MainColor}"
                                         WidthRequest="25"
                                         Margin="0,0,15,0"
                                         HorizontalOptions="End"
@@ -197,7 +202,7 @@
                                         x:Name="IconViewQuestions"
                                         Source="ic_questions2"
                                         HeightRequest="30"
-                                        Foreground="Red"
+                                        Foreground="{x:DynamicResource MainColor}"
                                         Margin="-10, 0, 0, 0"
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center" />
@@ -212,6 +217,7 @@
                                     <xamarinJkh:IconView
                                         x:Name="IconViewForvardQuestions"
                                         Source="ic_arrow_forward"
+                                        Foreground="{x:DynamicResource MainColor}"
                                         HeightRequest="25"
                                         WidthRequest="25"
                                         Margin="0,0,15,0"
@@ -232,6 +238,7 @@
                                     <xamarinJkh:IconView
                                         x:Name="IconViewOffers"
                                         Source="ic_diskont"
+                                        Foreground="{x:DynamicResource MainColor}"
                                         HeightRequest="30"
                                         Margin="-10, 0, 0, 0"
                                         HorizontalOptions="Start"
@@ -249,6 +256,7 @@
                                         Source="ic_arrow_forward"
                                         HeightRequest="25"
                                         WidthRequest="25"
+                                        Foreground="{x:DynamicResource MainColor}"
                                         Margin="0,0,15,0"
                                         HorizontalOptions="End"
                                         VerticalOptions="Center" />
@@ -266,6 +274,7 @@
                                     <xamarinJkh:IconView
                                         x:Name="IconViewOss"
                                         Source="ic_questions2"
+                                        Foreground="{x:DynamicResource MainColor}"
                                         HeightRequest="30"
                                         Margin="-10, 0, 0, 0"
                                         HorizontalOptions="Start"
@@ -284,6 +293,7 @@
                                         HeightRequest="25"
                                         WidthRequest="25"
                                         Margin="0,0,15,0"
+                                        Foreground="{x:DynamicResource MainColor}"
                                         HorizontalOptions="End"
                                         VerticalOptions="Center" />
                                 </StackLayout>
@@ -304,6 +314,7 @@
                                         x:Name="IconViewShop"
                                         Source="ic_shop"
                                         HeightRequest="30"
+                                        Foreground="{x:DynamicResource MainColor}"
                                         WidthRequest="60"
                                         Margin="0, 0, 20, 0"
                                         HorizontalOptions="Start"
@@ -320,6 +331,7 @@
                                         x:Name="IconViewForvardShop"
                                         Source="ic_arrow_forward"
                                         HeightRequest="25"
+                                        Foreground="{x:DynamicResource MainColor}"
                                         WidthRequest="25"
                                         Margin="0,0,15,0"
                                         HorizontalOptions="End"

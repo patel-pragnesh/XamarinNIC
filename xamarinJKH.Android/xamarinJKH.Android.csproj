@@ -160,6 +160,7 @@
     <AndroidResource Include="Resources\drawable\edit.png" />
     <AndroidResource Include="Resources\drawable\icon_login.png" />
     <AndroidResource Include="Resources\drawable\ic_additional_top.png" />
+    <AndroidResource Include="Resources\drawable\ic_additional_top_Light.png" />
     <AndroidResource Include="Resources\drawable\ic_add_file.png" />
     <AndroidResource Include="Resources\drawable\ic_add_ident.png" />
     <AndroidResource Include="Resources\drawable\ic_app_top.png" />
@@ -173,7 +174,9 @@
     <AndroidResource Include="Resources\drawable\ic_background.png" />
     <AndroidResource Include="Resources\drawable\ic_background_counter.png" />
     <AndroidResource Include="Resources\drawable\ic_background_event.png" />
+    <AndroidResource Include="Resources\drawable\ic_background_event_light.png" />
     <AndroidResource Include="Resources\drawable\ic_background_profile.png" />
+    <AndroidResource Include="Resources\drawable\ic_background_quest_light.png" />
     <AndroidResource Include="Resources\drawable\ic_calendar.png" />
     <AndroidResource Include="Resources\drawable\ic_call_app.png" />
     <AndroidResource Include="Resources\drawable\ic_card_pay_black.png" />
@@ -195,8 +198,10 @@
     <AndroidResource Include="Resources\drawable\ic_monitor.png" />
     <AndroidResource Include="Resources\drawable\ic_monitor_top.png" />
     <AndroidResource Include="Resources\drawable\ic_news_top.png" />
+    <AndroidResource Include="Resources\drawable\ic_news_top_light.png" />
     <AndroidResource Include="Resources\drawable\ic_new_app_top.png" />
     <AndroidResource Include="Resources\drawable\ic_notification_top.png" />
+    <AndroidResource Include="Resources\drawable\ic_notification_top_light.png" />
     <AndroidResource Include="Resources\drawable\ic_not_author.png" />
     <AndroidResource Include="Resources\drawable\ic_no_photo.png" />
     <AndroidResource Include="Resources\drawable\ic_payed_ident.png" />
@@ -216,6 +221,7 @@
     <AndroidResource Include="Resources\drawable\ic_time.png" />
     <AndroidResource Include="Resources\drawable\ic_top_event_back.png" />
     <AndroidResource Include="Resources\drawable\pay.png" />
+    <AndroidResource Include="Resources\drawable\top_fon_login_light.png" />
     <AndroidResource Include="Resources\drawable\up_arrow.png" />
     <AndroidResource Include="Resources\layout\Tabbar.xml" />
     <AndroidResource Include="Resources\layout\Toolbar.xml" />

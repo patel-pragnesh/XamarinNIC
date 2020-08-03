@@ -21,8 +21,18 @@ namespace xamarinJKH.Main
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            SelectedTabColor = Color.FromHex(Utils.Settings.MobileSettings.color);
-            UnselectedTabColor = Color.Gray;
+            Color hex = Color.FromHex(Utils.Settings.MobileSettings.color);
+            SelectedTabColor = hex;
+            
+            OSAppTheme currentTheme = Application.Current.RequestedTheme;
+            Color unselect = hex.AddLuminosity(0.3);
+            switch (currentTheme)
+            {
+                case OSAppTheme.Light: UnselectedTabColor = unselect;
+                    break;
+                case OSAppTheme.Dark: UnselectedTabColor = Color.Gray;
+                    break;
+            }
             CheckAccounts();
             Application.Current.Resources["Saldo"] = true;
             visibleMenu();

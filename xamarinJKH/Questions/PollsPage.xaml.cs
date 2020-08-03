@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Plugin.Messaging;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
@@ -137,9 +138,18 @@ namespace xamarinJKH.Questions
             LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
             LabelTitle.Text = _pollInfo.Name;
 
-            FrameBack.BackgroundColor = Color.FromHex("#4A4A4A");
             FrameBtnNext.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnFinish.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.Black);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.Black);
+            Color unselect = hexColor.AddLuminosity(0.3);
+            FrameBack.SetAppThemeColor(Frame.BackgroundColorProperty, unselect, Color.FromHex("#4A4A4A"));
+            StackLayoutIndicator.SetAppThemeColor(StackLayout.BackgroundColorProperty, unselect, Color.White);
         }
 
         void setQuest()

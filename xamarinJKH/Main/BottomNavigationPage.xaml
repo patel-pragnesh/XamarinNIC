@@ -5,6 +5,7 @@
             xmlns:local="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
+            BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
             xmlns:resources="clr-namespace:xamarinJKH"
             x:Class="xamarinJKH.Main.BottomNavigationPage">
     <NavigationPage HasNavigationBar="False" Title="{x:Static resources:AppResources.Events_NavBar}" IconImageSource="ic_events" BarBackgroundColor="Black" BarTextColor="White">

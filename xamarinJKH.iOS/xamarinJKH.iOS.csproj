@@ -340,6 +340,7 @@
     <BundleResource Include="Resources\edit.png" />
     <BundleResource Include="Resources\icon_login0.png" />
     <BundleResource Include="Resources\ic_additional_top.png" />
+    <BundleResource Include="Resources\ic_additional_top_Light.png" />
     <BundleResource Include="Resources\ic_add_file.png" />
     <BundleResource Include="Resources\ic_add_ident.png" />
     <BundleResource Include="Resources\ic_app_top.png" />
@@ -352,7 +353,9 @@
     <BundleResource Include="Resources\ic_background.png" />
     <BundleResource Include="Resources\ic_background_counter.png" />
     <BundleResource Include="Resources\ic_background_event.png" />
+    <BundleResource Include="Resources\ic_background_event_light.png" />
     <BundleResource Include="Resources\ic_background_profile.png" />
+    <BundleResource Include="Resources\ic_background_quest_light.png" />
     <BundleResource Include="Resources\ic_bottom_login.png" />
     <BundleResource Include="Resources\ic_calendar.png" />
     <BundleResource Include="Resources\ic_call_app.png" />
@@ -378,9 +381,11 @@
     <BundleResource Include="Resources\ic_monitor_top.png" />
     <BundleResource Include="Resources\ic_news.png" />
     <BundleResource Include="Resources\ic_news_top.png" />
+    <BundleResource Include="Resources\ic_news_top_light.png" />
     <BundleResource Include="Resources\ic_new_app_top.png" />
     <BundleResource Include="Resources\ic_notification.png" />
     <BundleResource Include="Resources\ic_notification_top.png" />
+    <BundleResource Include="Resources\ic_notification_top_light.png" />
     <BundleResource Include="Resources\ic_not_author.png" />
     <BundleResource Include="Resources\ic_no_photo.png" />
     <BundleResource Include="Resources\ic_password_login.png" />
@@ -421,6 +426,7 @@
     <BundleResource Include="Resources\ic_background_addCounter.png" />
     <BundleResource Include="Resources\star_filled.png" />
     <BundleResource Include="Resources\star.png" />
+    <BundleResource Include="Resources\top_fon_login_light.png" />
     <BundleResource Include="Resources\up_arrow.png" />
     <BundleResource Include="Resources\icon_add_app.png" />
     <BundleResource Include="Resources\ic_execute.png" />
