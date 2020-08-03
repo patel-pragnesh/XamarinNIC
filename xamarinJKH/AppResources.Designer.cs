@@ -88,6 +88,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Количество отвеченных.
+        /// </summary>
+        internal static string AnsweredAmount {
+            get {
+                return ResourceManager.GetString("AnsweredAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Заявки.
         /// </summary>
         internal static string App_NavBar {
@@ -583,11 +592,29 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Количество вопросов.
+        /// </summary>
+        internal static string QuestionsAmount {
+            get {
+                return ResourceManager.GetString("QuestionsAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Опросы.
         /// </summary>
         internal static string Quiz {
             get {
                 return ResourceManager.GetString("Quiz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Показать ответы.
+        /// </summary>
+        internal static string QuizResult {
+            get {
+                return ResourceManager.GetString("QuizResult", resourceCulture);
             }
         }
         
@@ -624,6 +651,15 @@ namespace xamarinJKH {
         internal static string Shop {
             get {
                 return ResourceManager.GetString("Shop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Показать пройденные опросы.
+        /// </summary>
+        internal static string ShowAnsweredQuizes {
+            get {
+                return ResourceManager.GetString("ShowAnsweredQuizes", resourceCulture);
             }
         }
         

@@ -126,6 +126,9 @@
   <data name="Adress" xml:space="preserve">
     <value>Адрес</value>
   </data>
+  <data name="AnsweredAmount" xml:space="preserve">
+    <value>Количество отвеченных</value>
+  </data>
   <data name="App_NavBar" xml:space="preserve">
     <value>Заявки</value>
   </data>
@@ -291,8 +294,14 @@
   <data name="Profile_NavBar" xml:space="preserve">
     <value>Профиль</value>
   </data>
+  <data name="QuestionsAmount" xml:space="preserve">
+    <value>Количество вопросов</value>
+  </data>
   <data name="Quiz" xml:space="preserve">
     <value>Опросы</value>
+  </data>
+  <data name="QuizResult" xml:space="preserve">
+    <value>Показать ответы</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Зарегистрироваться</value>
@@ -305,6 +314,9 @@
   </data>
   <data name="Shop" xml:space="preserve">
     <value>Магазин</value>
+  </data>
+  <data name="ShowAnsweredQuizes" xml:space="preserve">
+    <value>Показать пройденные опросы</value>
   </data>
   <data name="ShowClosedApps" xml:space="preserve">
     <value>Показать закрытые</value>
