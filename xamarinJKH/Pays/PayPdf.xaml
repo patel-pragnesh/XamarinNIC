@@ -77,7 +77,7 @@
                     <xamarinJkh:IconView Foreground="Black"
                                          Source="ic_arrow_back"
                                          HeightRequest="10"/>
-                    <Label Text="Назад"
+                    <Label Text="{x:Static xamarinJkh:AppResources.Back}"
                            VerticalOptions="Center"
                            
                            VerticalTextAlignment="Center"/>
