@@ -114,7 +114,7 @@ namespace xamarinJKH.Main
                 FormattedString formattedResource = new FormattedString();
                 formattedResource.Spans.Add(new Span
                 {
-                    Text = "Возможность передавать показания доступна ",
+                    Text = AppResources.CountersInfo1,
                     TextColor = Color.White,
                     FontAttributes = FontAttributes.None,
                     FontSize = 15
@@ -127,15 +127,15 @@ namespace xamarinJKH.Main
                     {
                         formattedResource.Spans.Add(new Span
                         {
-                            Text = "c " + Settings.Person.Accounts[0].MetersStartDay + " по " +
-                                   Settings.Person.Accounts[0].MetersEndDay + " числа ",
+                            Text = AppResources.From + Settings.Person.Accounts[0].MetersStartDay + AppResources.To +
+                                   Settings.Person.Accounts[0].MetersEndDay + AppResources.DayOfMounth,
                             TextColor = Color.White,
                             FontAttributes = FontAttributes.Bold,
                             FontSize = 15
                         });
                         formattedResource.Spans.Add(new Span
                         {
-                            Text = "текущего месяца!",
+                            Text = AppResources.CountersCurrentMonth,
                             TextColor = Color.White,
                             FontAttributes = FontAttributes.None,
                             FontSize = 15
@@ -145,7 +145,7 @@ namespace xamarinJKH.Main
                     {
                         formattedResource.Spans.Add(new Span
                         {
-                            Text = "в текущем месяце!",
+                            Text = AppResources.CountersThisMonth,
                             TextColor = Color.White,
                             FontAttributes = FontAttributes.Bold,
                             FontSize = 15
@@ -156,7 +156,7 @@ namespace xamarinJKH.Main
                 {
                     formattedResource.Spans.Add(new Span
                     {
-                        Text = "в текущем месяце!",
+                        Text = AppResources.CountersThisMonth,
                         TextColor = Color.White,
                         FontAttributes = FontAttributes.Bold,
                         FontSize = 15
@@ -167,7 +167,7 @@ namespace xamarinJKH.Main
             }
             else
             {
-                PeriodSendLbl.Text = "Лицевые счета не подключены";
+                PeriodSendLbl.Text = AppResources.NoAccounts;
             }
 
             countersList.BackgroundColor = Color.Transparent;

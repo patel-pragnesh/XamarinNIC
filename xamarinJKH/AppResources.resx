@@ -174,11 +174,23 @@
   <data name="ConstLogin" xml:space="preserve">
     <value>Вход для сотрудника</value>
   </data>
+  <data name="CountersCurrentMonth" xml:space="preserve">
+    <value> текущего месяца! </value>
+  </data>
+  <data name="CountersInfo1" xml:space="preserve">
+    <value>Возможность передавать показания доступна </value>
+  </data>
+  <data name="CountersThisMonth" xml:space="preserve">
+    <value>в текущем месяце!</value>
+  </data>
   <data name="Create" xml:space="preserve">
     <value>Создать</value>
   </data>
   <data name="Currency" xml:space="preserve">
     <value> руб. </value>
+  </data>
+  <data name="DayOfMounth" xml:space="preserve">
+    <value> числа </value>
   </data>
   <data name="DefaultLogin" xml:space="preserve">
     <value>Вход для жителя</value>
@@ -210,6 +222,9 @@
   <data name="ForgotPass" xml:space="preserve">
     <value>Забыли пароль?</value>
   </data>
+  <data name="From" xml:space="preserve">
+    <value>с </value>
+  </data>
   <data name="Hidden" xml:space="preserve">
     <value>Скрытое</value>
   </data>
@@ -234,11 +249,17 @@
   <data name="Meters_NavBar" xml:space="preserve">
     <value>Показатели</value>
   </data>
+  <data name="NewData" xml:space="preserve">
+    <value>Новые показания</value>
+  </data>
   <data name="NewPenance" xml:space="preserve">
     <value>Новые показания</value>
   </data>
   <data name="News" xml:space="preserve">
     <value>Новости</value>
+  </data>
+  <data name="NoAccounts" xml:space="preserve">
+    <value>Лицевые счета не подключены</value>
   </data>
   <data name="Notifications" xml:space="preserve">
     <value>Уведомления</value>
@@ -248,6 +269,9 @@
   </data>
   <data name="Offers" xml:space="preserve">
     <value>Специальные предложения</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Заказать</value>
   </data>
   <data name="OSS" xml:space="preserve">
     <value>Общие собрания собственников</value>
@@ -287,6 +311,9 @@
   </data>
   <data name="PhoneLogin" xml:space="preserve">
     <value>Вход по номеру телефона</value>
+  </data>
+  <data name="PrebiousData" xml:space="preserve">
+    <value>Предыдущие показания</value>
   </data>
   <data name="Prof" xml:space="preserve">
     <value>Профиль</value>
@@ -347,6 +374,9 @@
   </data>
   <data name="TechTitle" xml:space="preserve">
     <value>Обращение в тех.поддержку</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value> по </value>
   </data>
   <data name="Troub" xml:space="preserve">
     <value>Возникли проблемы? </value>
