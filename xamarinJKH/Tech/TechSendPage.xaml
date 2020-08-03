@@ -82,7 +82,7 @@
                                HeightRequest="15"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Обращение в тех.поддержку"
+                            Text="{x:Static xamarinJkh:AppResources.TechTitle}"
                             FontSize="18"
                             TextColor="White"
                             FontAttributes="Bold"
@@ -100,7 +100,7 @@
                                 <StackLayout
                                     Orientation="Horizontal">
 
-                                    <Label Text="Задайте вопрос здесь, опишите проблему. Мы обязательно вам поможем"
+                                    <Label Text="{x:Static xamarinJkh:AppResources.TechSubtitle}"
                                            Margin="10, 0, 0, 0"
                                            FontAttributes="Bold"
                                            FontSize="16"
@@ -121,7 +121,7 @@
                                                              HorizontalOptions="Start"
                                                              VerticalOptions="Center" />
                                         <Label x:Name="LabelPhone2"
-                                               Text="Телефон"
+                                               Text="{x:Static xamarinJkh:AppResources.Phone}"
                                                MinimumWidthRequest="50"
                                                MaxLines="1"
                                                FontSize="16"
@@ -219,7 +219,7 @@
                                                                Text=""
                                                                WidthRequest="300"
                                                                AutoSize="TextChanges"
-                                                               Placeholder="Опишите проблему..."
+                                                               Placeholder="{x:Static xamarinJkh:AppResources.TechPlaceholder}"
                                                                TextColor="#A2A2A2"
                                                                HorizontalOptions="FillAndExpand" />
                                 </Frame>
@@ -243,7 +243,7 @@
                                                              WidthRequest="35"
                                                              VerticalOptions="Center" />
                                         <Label x:Name="BtnSave"
-                                               Text="Отправить"
+                                               Text="{x:Static xamarinJkh:AppResources.Send}"
                                                Margin="0, 0, 0, 0"
                                                FontSize="15"
                                                TextColor="White"

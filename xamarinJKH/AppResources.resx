@@ -309,6 +309,9 @@
   <data name="Save" xml:space="preserve">
     <value>Сохранить</value>
   </data>
+  <data name="Send" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Настройки</value>
   </data>
@@ -326,6 +329,24 @@
   </data>
   <data name="Support" xml:space="preserve">
     <value>Написать в тех.поддержку</value>
+  </data>
+  <data name="TechAdditionalText1" xml:space="preserve">
+    <value>Данная форма предназначена для обращения в поддержку приложения. Если вы хотите обратиться в </value>
+  </data>
+  <data name="TechAdditionalText2" xml:space="preserve">
+    <value> - создайте заявку тут</value>
+  </data>
+  <data name="TechAdditionalText3" xml:space="preserve">
+    <value>Обратиться в </value>
+  </data>
+  <data name="TechPlaceholder" xml:space="preserve">
+    <value>Опишите проблему...</value>
+  </data>
+  <data name="TechSubtitle" xml:space="preserve">
+    <value>Задайте вопрос здесь, опишите проблему. Мы обязательно вам поможем</value>
+  </data>
+  <data name="TechTitle" xml:space="preserve">
+    <value>Обращение в тех.поддержку</value>
   </data>
   <data name="Troub" xml:space="preserve">
     <value>Возникли проблемы? </value>

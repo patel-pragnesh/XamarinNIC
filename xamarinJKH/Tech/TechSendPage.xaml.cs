@@ -47,9 +47,9 @@ namespace xamarinJKH.Tech
             }
             EntryPhone.Text = Settings.Person.Phone;
             LabelInfo.Text =
-                "Данная форма предназначена для обращения в поддержку приложения. Если вы хотите обратиться в " +
-                Settings.MobileSettings.main_name + " - создайте заявку тут";
-            BtnApp.Text = "Обратиться в " + Settings.MobileSettings.main_name;
+               AppResources.TechAdditionalText1 +
+                Settings.MobileSettings.main_name + AppResources.TechAdditionalText2;
+            BtnApp.Text = AppResources.TechAdditionalText3 + Settings.MobileSettings.main_name;
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { ClosePage(); };
             BackStackLayout.GestureRecognizers.Add(backClick);

@@ -321,6 +321,9 @@
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
@@ -341,6 +344,24 @@
   </data>
   <data name="Support" xml:space="preserve">
     <value>Contact support</value>
+  </data>
+  <data name="TechAdditionalText1" xml:space="preserve">
+    <value>This form is intended for contacting application support. If you want to contact </value>
+  </data>
+  <data name="TechAdditionalText2" xml:space="preserve">
+    <value>- create an application here</value>
+  </data>
+  <data name="TechAdditionalText3" xml:space="preserve">
+    <value>Contact </value>
+  </data>
+  <data name="TechPlaceholder" xml:space="preserve">
+    <value>Describe a problem...</value>
+  </data>
+  <data name="TechSubtitle" xml:space="preserve">
+    <value>Ask a question, elaborate on a problem. We will help you</value>
+  </data>
+  <data name="TechTitle" xml:space="preserve">
+    <value>Application to tech support</value>
   </data>
   <data name="Troub" xml:space="preserve">
     <value>Having troubles? </value>

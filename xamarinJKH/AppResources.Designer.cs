@@ -637,6 +637,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отправить.
+        /// </summary>
+        internal static string Send {
+            get {
+                return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Настройки.
         /// </summary>
         internal static string Settings {
@@ -687,6 +696,60 @@ namespace xamarinJKH {
         internal static string Support {
             get {
                 return ResourceManager.GetString("Support", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Данная форма предназначена для обращения в поддержку приложения. Если вы хотите обратиться в .
+        /// </summary>
+        internal static string TechAdditionalText1 {
+            get {
+                return ResourceManager.GetString("TechAdditionalText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  - создайте заявку тут.
+        /// </summary>
+        internal static string TechAdditionalText2 {
+            get {
+                return ResourceManager.GetString("TechAdditionalText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Обратиться в .
+        /// </summary>
+        internal static string TechAdditionalText3 {
+            get {
+                return ResourceManager.GetString("TechAdditionalText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Опишите проблему....
+        /// </summary>
+        internal static string TechPlaceholder {
+            get {
+                return ResourceManager.GetString("TechPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Задайте вопрос здесь, опишите проблему. Мы обязательно вам поможем.
+        /// </summary>
+        internal static string TechSubtitle {
+            get {
+                return ResourceManager.GetString("TechSubtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Обращение в тех.поддержку.
+        /// </summary>
+        internal static string TechTitle {
+            get {
+                return ResourceManager.GetString("TechTitle", resourceCulture);
             }
         }
         
