@@ -189,6 +189,9 @@
   <data name="Currency" xml:space="preserve">
     <value> руб. </value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
   <data name="DayOfMounth" xml:space="preserve">
     <value> числа </value>
   </data>
@@ -303,6 +306,9 @@
   <data name="PenencePassed" xml:space="preserve">
     <value>Показания переданы</value>
   </data>
+  <data name="Period" xml:space="preserve">
+    <value>Период</value>
+  </data>
   <data name="Phone" xml:space="preserve">
     <value>Телефон</value>
   </data>
@@ -356,6 +362,9 @@
   </data>
   <data name="SortByData" xml:space="preserve">
     <value>По дате</value>
+  </data>
+  <data name="Sum" xml:space="preserve">
+    <value>Сумма</value>
   </data>
   <data name="SumToPay" xml:space="preserve">
     <value>Сумма к оплате</value>

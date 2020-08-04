@@ -86,7 +86,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -104,7 +104,7 @@
                                Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="История платежей"
+                            Text="{x:Static xamarinJkh:AppResources.PayHistory}"
                             FontSize="18"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
@@ -124,7 +124,7 @@
 
                         <Label
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                            Text="Лицевой счет: "
+                            Text="{x:Static xamarinJkh:AppResources.Ident}"
                             VerticalOptions="Center"
                             FontAttributes="Bold"
                             FontSize="17" />
@@ -162,15 +162,15 @@
                     <StackLayout VerticalOptions="FillAndExpand">
                         <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="FillAndExpand">
-                            <Label Text="Дата"
+                            <Label Text="{x:Static xamarinJkh:AppResources.Date}"
                                    TextColor="Black"
                                    HorizontalOptions="StartAndExpand"
                                    FontSize="15" />
-                            <Label Text="Период"
+                            <Label Text="{x:Static xamarinJkh:AppResources.Period}"
                                    TextColor="Black"
                                    HorizontalOptions="CenterAndExpand"
                                    FontSize="15" />
-                            <Label Text="Сумма"
+                                    <Label Text="{x:Static xamarinJkh:AppResources.Sum}"
                                    TextColor="Black"
                                    HorizontalOptions="EndAndExpand"
                                    FontSize="15"

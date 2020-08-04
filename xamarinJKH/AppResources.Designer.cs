@@ -277,6 +277,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Дата.
+        /// </summary>
+        internal static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  числа .
         /// </summary>
         internal static string DayOfMounth {
@@ -619,6 +628,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Период.
+        /// </summary>
+        internal static string Period {
+            get {
+                return ResourceManager.GetString("Period", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Телефон.
         /// </summary>
         internal static string Phone {
@@ -777,6 +795,15 @@ namespace xamarinJKH {
         internal static string SortByData {
             get {
                 return ResourceManager.GetString("SortByData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сумма.
+        /// </summary>
+        internal static string Sum {
+            get {
+                return ResourceManager.GetString("Sum", resourceCulture);
             }
         }
         
