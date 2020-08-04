@@ -190,9 +190,8 @@ namespace xamarinJKH.Shop
             var b = new Button() { BackgroundColor = Color.Transparent };
             b.Text = c;
             b.FontSize = 20;
-            b.TextColor = Color.White;
             b.BorderWidth = 0;
-
+            b.SetAppThemeColor(Button.TextColorProperty, Color.Black, Color.White);
             //StackLayout labelStack = new StackLayout() { Margin = new Thickness(10, 10, 10, 10), BackgroundColor = Color.Transparent };
 
             //var cat = new Label();
@@ -207,7 +206,7 @@ namespace xamarinJKH.Shop
                 prevCategoryTapped = c;
             }
             else
-                b.TextColor = Color.White;
+                b.SetAppThemeColor(Button.TextColorProperty, Color.Black, Color.White);
 
             b.Clicked += B_Clicked;
             //TapGestureRecognizer tap = new TapGestureRecognizer();
@@ -232,7 +231,7 @@ namespace xamarinJKH.Shop
                 if (sp != null)
                 {
                     var bPrev = (Button)sp;
-                    bPrev.TextColor = Color.White;
+                    bPrev.SetAppThemeColor(Button.TextColorProperty, Color.Black, Color.White);
                 }
             }
             b.TextColor = colorFromMobileSettings;
@@ -1010,6 +1009,12 @@ namespace xamarinJKH.Shop
         {
             //ShopName.Text = Settings.MobileSettings.main_name;
             //LabelPhone.Text = "+" + Settings.Person.Phone;
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            PancakeViewKind.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeBot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
         }
 
         public class KeysModel

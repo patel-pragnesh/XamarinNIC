@@ -9,14 +9,14 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
-             BackgroundColor="#F3F3F3"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Pays.AddIdent">
     <ContentPage.Content>
         <StackLayout>
 
             <Grid>
                 <Image x:Name="ImageFon"
-                       Source="ic_pays_top"
+                       Source="{AppThemeBinding Light=ic_pays_top_light, Dark=ic_pays_top}"
                        Margin="0,20,0,0"
                        VerticalOptions="Start"
                        Aspect="AspectFill"
@@ -25,8 +25,9 @@
                     <pancakeView:PancakeView
                         Padding="0"
                         CornerRadius="0,0,25,25"
-                        BackgroundColor="#131313"
+                        BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
                         MinimumHeightRequest="102"
+                        BorderThickness="1"
                         HorizontalOptions="Fill"
                         VerticalOptions="StartAndExpand"
                         x:Name="Pancake"
@@ -41,7 +42,7 @@
                                            Text="Название"
                                            FontAttributes="Bold"
                                            FontSize="16"
-                                           TextColor="White" />
+                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                                     <StackLayout
                                         Spacing="0"
                                         Orientation="Horizontal">
@@ -55,7 +56,7 @@
                                         <Label x:Name="LabelPhone"
                                                Text="Телефон"
                                                FontSize="14"
-                                               TextColor="White"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                                Margin="-5, 0, 0, 0"
                                                VerticalOptions="Center" />
                                     </StackLayout>
@@ -100,13 +101,14 @@
                         Orientation="Horizontal"
                         Margin="25, 0, 0, 0"
                         HorizontalOptions="Start">
-                        <Image Source="ic_arrow_back"
+                        <xamarinJkh:IconView Source="ic_arrow_back"
                                HeightRequest="15"
+                               Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalOptions="Center" />
                         <Label
                             Text="Подключить лицевой счет"
                             FontSize="18"
-                            TextColor="White"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
@@ -116,6 +118,7 @@
                         <StackLayout
                             VerticalOptions="StartAndExpand">
                             <Frame CornerRadius="30"
+                                   x:Name="Frame"
                                    Margin="10, 10, 10, 15"
                                    BackgroundColor="White"
                                    Padding="0">

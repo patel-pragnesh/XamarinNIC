@@ -10,6 +10,7 @@ using Xamarin.Essentials;
 using xamarinJKH.CustomRenderers;
 using System.Net.Http;
 using AiForms.Dialogs;
+using Xamarin.Forms.PancakeView;
 
 namespace xamarinJKH.Pays
 {
@@ -43,6 +44,11 @@ namespace xamarinJKH.Pays
                 };
                 Content.Children.Add(pdfview);
             }
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            TopBar.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
         }
 
         protected override void OnAppearing()

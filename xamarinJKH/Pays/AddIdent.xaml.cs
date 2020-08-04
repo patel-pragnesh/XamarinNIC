@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Plugin.Messaging;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Server;
 using xamarinJKH.Main;
@@ -72,6 +73,14 @@ namespace xamarinJKH.Pays
             progress.Color = Color.FromHex(Settings.MobileSettings.color);
             Labelseparator.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             IconViewFio.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            Frame.SetAppThemeColor(Xamarin.Forms.Frame.BorderColorProperty, hexColor, Color.Transparent);
         }
         
         public async void AddIdentAccount(string ident)

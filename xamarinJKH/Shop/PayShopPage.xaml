@@ -3,14 +3,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
-             BackgroundColor="#F3F3F3"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Shop.PayShopPage">
 
     <ContentPage.Content>
         <StackLayout>
             <Grid VerticalOptions="FillAndExpand">
                 <Image x:Name="ImageFon"
-                       Source="ic_basket_top"
+                       Source="{AppThemeBinding Light=ic_additional_top_Light, Dark=ic_basket_top}"
                        Margin="0,0,0,0"
                        VerticalOptions="Start"
                        Aspect="AspectFill"
@@ -23,12 +23,12 @@
                         HorizontalOptions="Start">
                         <xamarinJkh:IconView Source="ic_arrow_back"
                                              HeightRequest="15"
-                                             Foreground="White"
+                                             Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                              HorizontalOptions="Center" />
                         <Label
                             Text="Подтверждение заказа "
                             FontSize="20"
-                            TextColor="White"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             HorizontalOptions="Start" />
                     </StackLayout>
                     <StackLayout
@@ -49,7 +49,9 @@
                                VerticalOptions="Center" />
                     </StackLayout>
                     <ScrollView Margin="10,10,10,10">
-                        <Frame CornerRadius="40" BackgroundColor="White">
+                        <Frame
+                            x:Name="GoodsLayot"
+                            CornerRadius="40" BackgroundColor="White">
                             <StackLayout Orientation="Vertical">
                                 <Label HorizontalOptions="Center" Margin="10">
                                     <Label.FormattedText>
