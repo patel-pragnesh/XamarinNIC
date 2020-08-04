@@ -655,7 +655,7 @@ namespace xamarinJKH.Counters
                 }
 
                 d6.Unfocus();
-                if (DecimalPoint == 1)
+                if (DecimalPoint >= 1)
                 {
                     d6.Focus();
                 }
@@ -679,7 +679,7 @@ namespace xamarinJKH.Counters
                 }
 
                 d7.Unfocus();
-                if (DecimalPoint == 2)
+                if (DecimalPoint >= 2)
                     d7.Focus();
             });
         }
@@ -701,7 +701,7 @@ namespace xamarinJKH.Counters
                 }
 
                 d8.Unfocus();
-                if (DecimalPoint == 3)
+                if (DecimalPoint >= 3)
                     d8.Focus();
             });
         }
