@@ -5,22 +5,22 @@
             xmlns:local="clr-namespace:xamarinJKH.MainConst;assembly=xamarinJKH"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             xmlns:mainConst="clr-namespace:xamarinJKH.MainConst;assembly=xamarinJKH"
-
+            xmlns:xamarinZkh="clr-namespace:xamarinJKH"
             android:TabbedPage.ToolbarPlacement="Bottom"
             x:Class="xamarinJKH.MainConst.BottomNavigationConstPage">
-    <NavigationPage Title="Заявки" IconImageSource="ic_apps" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage Title="{x:Static xamarinZkh:AppResources.App_NavBar}" IconImageSource="ic_apps" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
-            <local:AppsConstPage Title="Заявки" IconImageSource="ic_apps" />
+            <local:AppsConstPage Title="{x:Static xamarinZkh:AppResources.App_NavBar}" IconImageSource="ic_apps" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Монитор" IconImageSource="ic_monitor" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage Title="{x:Static xamarinZkh:AppResources.Monitoring_NavBar}" IconImageSource="ic_monitor" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
-            <mainConst:MonitorPage Title="Монитор" IconImageSource="ic_monitor" />
+            <mainConst:MonitorPage Title="{x:Static xamarinZkh:AppResources.Monitoring_NavBar}" IconImageSource="ic_monitor" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Профиль" IconImageSource="ic_profile" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage Title="{x:Static xamarinZkh:AppResources.Profile_NavBar}" IconImageSource="ic_profile" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
-            <local:ProfileConstPage Title="Профиль" IconImageSource="ic_profile" />
+            <local:ProfileConstPage Title="{x:Static xamarinZkh:AppResources.Profile_NavBar}" IconImageSource="ic_profile" />
         </x:Arguments>
     </NavigationPage>
 </TabbedPage>

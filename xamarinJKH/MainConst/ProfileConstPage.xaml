@@ -89,7 +89,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -102,7 +102,7 @@
                         Margin="25, 0, 0, 0"
                         HorizontalOptions="Start">
                         <Label
-                            Text="Профиль"
+                            Text="{x:Static xamarinJkh:AppResources.Profile_NavBar}"
                             FontSize="23"
                             TextColor="White"
                             FontAttributes="Bold"
@@ -125,7 +125,7 @@
                                     <StackLayout
                                         Orientation="Horizontal">
 
-                                        <Label Text="Информация"
+                                        <Label Text="{x:Static xamarinJkh:AppResources.Info}"
                                                Margin="10, 0, 0, 0"
                                                FontAttributes="Bold"
                                                FontSize="20"
@@ -145,7 +145,7 @@
                                                             HorizontalOptions="Start"
                                                             VerticalOptions="Center" />
                                             <Label x:Name="LabelPhone2"
-                                                   Text="ФИО"
+                                                   Text="{x:Static xamarinJkh:AppResources.FIO}"
                                                    MinimumWidthRequest="50"
                                                    MaxLines="1"
                                                    FontSize="16"
@@ -248,7 +248,7 @@
                                                             WidthRequest="35"
                                                             VerticalOptions="Center" />
                                             <Label x:Name="BtnSave"
-                                                   Text="Сохранить"
+                                                   Text="{x:Static xamarinJkh:AppResources.Save}"
                                                    Margin="0, 0, 0, 0"
                                                    FontSize="15"
                                                    TextColor="White"
@@ -277,7 +277,7 @@
                                                     WidthRequest="35"
                                                     VerticalOptions="Center" />
                                     <Label x:Name="BtnExit"
-                                           Text="Выйти"
+                                           Text="{x:Static xamarinJkh:AppResources.Exit}"
                                            Margin="0, 0, 0, 0"
                                            FontSize="15"
                                            TextColor="White"

@@ -141,6 +141,9 @@
   <data name="App_NavBar" xml:space="preserve">
     <value>Заявки</value>
   </data>
+  <data name="AreaChoose" xml:space="preserve">
+    <value>Выбора района</value>
+  </data>
   <data name="AskForCode" xml:space="preserve">
     <value>Запросить звонок с кодом</value>
   </data>
@@ -256,6 +259,12 @@
   <data name="FacNum" xml:space="preserve">
     <value>Заводской №</value>
   </data>
+  <data name="FailedReq" xml:space="preserve">
+    <value>Не выполнено</value>
+  </data>
+  <data name="FailedRequests" xml:space="preserve">
+    <value>Невыполненные заявки</value>
+  </data>
   <data name="FIO" xml:space="preserve">
     <value>ФИО</value>
   </data>
@@ -267,6 +276,9 @@
   </data>
   <data name="Hidden" xml:space="preserve">
     <value>Скрытое</value>
+  </data>
+  <data name="HomeChoose" xml:space="preserve">
+    <value>Выбор дома</value>
   </data>
   <data name="Ident" xml:space="preserve">
     <value>Лицевой счет: </value>
@@ -286,11 +298,20 @@
   <data name="LoginTitle" xml:space="preserve">
     <value>Вход</value>
   </data>
+  <data name="Marks" xml:space="preserve">
+    <value>Оценки</value>
+  </data>
   <data name="Mass" xml:space="preserve">
     <value>Вес:</value>
   </data>
   <data name="Meters_NavBar" xml:space="preserve">
     <value>Показатели</value>
+  </data>
+  <data name="Monitoring_NavBar" xml:space="preserve">
+    <value>Монитор</value>
+  </data>
+  <data name="MonthPeriod" xml:space="preserve">
+    <value>За месяц</value>
   </data>
   <data name="NewData" xml:space="preserve">
     <value>Новые показания</value>
@@ -327,6 +348,9 @@
   </data>
   <data name="OSS" xml:space="preserve">
     <value>Общие собрания собственников</value>
+  </data>
+  <data name="Overdue" xml:space="preserve">
+    <value>Просрочено</value>
   </data>
   <data name="Pass" xml:space="preserve">
     <value>Пароль</value>
@@ -418,6 +442,9 @@
   <data name="Register" xml:space="preserve">
     <value>Зарегистрироваться</value>
   </data>
+  <data name="RequestsReceived" xml:space="preserve">
+    <value>Заявок поступило:</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Сохранить</value>
   </data>
@@ -484,6 +511,9 @@
   <data name="To" xml:space="preserve">
     <value> по </value>
   </data>
+  <data name="TodayPeriod" xml:space="preserve">
+    <value>Сегодня</value>
+  </data>
   <data name="Total" xml:space="preserve">
     <value>Итого</value>
   </data>
@@ -498,6 +528,9 @@
   </data>
   <data name="TSA" xml:space="preserve">
     <value>Согласие на обработку персональных данных</value>
+  </data>
+  <data name="WeekPeriod" xml:space="preserve">
+    <value>За неделю</value>
   </data>
   <data name="WorkDays" xml:space="preserve">
     <value> рабочих дня</value>

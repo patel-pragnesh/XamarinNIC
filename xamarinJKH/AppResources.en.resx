@@ -141,6 +141,9 @@
   <data name="App_NavBar" xml:space="preserve">
     <value>Requests</value>
   </data>
+  <data name="AreaChoose" xml:space="preserve">
+    <value>Choose area</value>
+  </data>
   <data name="AskForCode" xml:space="preserve">
     <value>Request a call with a code</value>
   </data>
@@ -264,6 +267,12 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="FacNum" xml:space="preserve">
     <value>Factory #</value>
   </data>
+  <data name="FailedReq" xml:space="preserve">
+    <value>Not completed</value>
+  </data>
+  <data name="FailedRequests" xml:space="preserve">
+    <value>Failed requests</value>
+  </data>
   <data name="fgh" xml:space="preserve">
     <value>Показания переданы</value>
   </data>
@@ -285,6 +294,9 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="Hidden" xml:space="preserve">
     <value>Hidden</value>
   </data>
+  <data name="HomeChoose" xml:space="preserve">
+    <value>Choose house</value>
+  </data>
   <data name="Ident" xml:space="preserve">
     <value>Account: </value>
   </data>
@@ -303,11 +315,20 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="LoginTitle" xml:space="preserve">
     <value>Login</value>
   </data>
+  <data name="Marks" xml:space="preserve">
+    <value>Marks</value>
+  </data>
   <data name="Mass" xml:space="preserve">
     <value>Weight:</value>
   </data>
   <data name="Meters_NavBar" xml:space="preserve">
     <value>Meters</value>
+  </data>
+  <data name="Monitoring_NavBar" xml:space="preserve">
+    <value>Monitor</value>
+  </data>
+  <data name="MonthPeriod" xml:space="preserve">
+    <value>This month</value>
   </data>
   <data name="NewData" xml:space="preserve">
     <value>New data</value>
@@ -344,6 +365,9 @@ A bot will call you on your number PHONE and tell an access code</value>
   </data>
   <data name="OSS" xml:space="preserve">
     <value>Owners meetings</value>
+  </data>
+  <data name="Overdue" xml:space="preserve">
+    <value>Overdue</value>
   </data>
   <data name="Pass" xml:space="preserve">
     <value>Password</value>
@@ -432,6 +456,9 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="Register" xml:space="preserve">
     <value>Sign up</value>
   </data>
+  <data name="RequestsReceived" xml:space="preserve">
+    <value>Requests recieved</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
@@ -501,6 +528,9 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="To" xml:space="preserve">
     <value> to </value>
   </data>
+  <data name="TodayPeriod" xml:space="preserve">
+    <value>Today</value>
+  </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
   </data>
@@ -518,6 +548,9 @@ A bot will call you on your number PHONE and tell an access code</value>
   </data>
   <data name="TSA" xml:space="preserve">
     <value>Concent on processing personal data</value>
+  </data>
+  <data name="WeekPeriod" xml:space="preserve">
+    <value>This week</value>
   </data>
   <data name="WorkDays" xml:space="preserve">
     <value> workdays</value>
