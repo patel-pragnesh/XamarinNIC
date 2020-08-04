@@ -86,7 +86,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -103,7 +103,7 @@
                                HeightRequest="15"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Квитанции"
+                            Text="{x:Static xamarinJkh:AppResources.Bills}"
                             FontSize="18"
                             TextColor="White"
                             FontAttributes="Bold"
@@ -117,7 +117,7 @@
                              Spacing="15">
                     <StackLayout Orientation="Horizontal">
                         <Label x:Name="kvitLabel2"
-                            Text="Квитанции"
+                            Text="{x:Static xamarinJkh:AppResources.Bills}"
                             TextColor="Black"
                             FontAttributes="Bold"
                             HorizontalOptions="FillAndExpand"
@@ -138,7 +138,7 @@
                                 HorizontalOptions="Center" />
                             <Label
                                 x:Name="LabelDate"
-                                Text="По дате "
+                                Text="{x:Static xamarinJkh:AppResources.SortByData} "
                                 FontSize="15"
                                 VerticalOptions="Center"
                                 TextColor="Red"
@@ -160,7 +160,7 @@
                                 HorizontalOptions="Center" />
                             <Label
                                 x:Name="LabelLs"
-                                Text="По л/сч "
+                                Text="{x:Static xamarinJkh:AppResources.SortByAcc}"
                                 FontSize="15"
                                 TextDecorations="Underline"
                                 VerticalOptions="Center"

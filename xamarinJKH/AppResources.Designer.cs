@@ -763,6 +763,24 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to По л/сч.
+        /// </summary>
+        internal static string SortByAcc {
+            get {
+                return ResourceManager.GetString("SortByAcc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to По дате.
+        /// </summary>
+        internal static string SortByData {
+            get {
+                return ResourceManager.GetString("SortByData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Сумма к оплате.
         /// </summary>
         internal static string SumToPay {
@@ -840,6 +858,15 @@ namespace xamarinJKH {
         internal static string To {
             get {
                 return ResourceManager.GetString("To", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Итого.
+        /// </summary>
+        internal static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
             }
         }
         

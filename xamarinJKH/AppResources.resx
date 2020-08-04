@@ -351,6 +351,12 @@
   <data name="ShowClosedApps" xml:space="preserve">
     <value>Показать закрытые</value>
   </data>
+  <data name="SortByAcc" xml:space="preserve">
+    <value>По л/сч</value>
+  </data>
+  <data name="SortByData" xml:space="preserve">
+    <value>По дате</value>
+  </data>
   <data name="SumToPay" xml:space="preserve">
     <value>Сумма к оплате</value>
   </data>
@@ -377,6 +383,9 @@
   </data>
   <data name="To" xml:space="preserve">
     <value> по </value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Итого</value>
   </data>
   <data name="Troub" xml:space="preserve">
     <value>Возникли проблемы? </value>

@@ -363,6 +363,12 @@
   <data name="ShowClosedApps" xml:space="preserve">
     <value>Show closed</value>
   </data>
+  <data name="SortByAcc" xml:space="preserve">
+    <value>By acc</value>
+  </data>
+  <data name="SortByData" xml:space="preserve">
+    <value>By date</value>
+  </data>
   <data name="String1" xml:space="preserve">
     <value />
   </data>
@@ -392,6 +398,9 @@
   </data>
   <data name="To" xml:space="preserve">
     <value> to </value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
   </data>
   <data name="Troub" xml:space="preserve">
     <value>Having troubles? </value>
