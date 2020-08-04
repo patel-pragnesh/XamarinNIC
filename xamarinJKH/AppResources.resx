@@ -190,7 +190,8 @@
     <value>Закрыть</value>
   </data>
   <data name="CodeInfo" xml:space="preserve">
-    <value>Чтобы получить код доступа нажмите «Запросить звонок с кодом». \n Вам позвонит робот на номер PHONE и сообщит код</value>
+    <value>Чтобы получить код доступа нажмите «Запросить звонок с кодом». 
+Вам позвонит робот на номер PHONE и сообщит код</value>
   </data>
   <data name="Confirm order" xml:space="preserve">
     <value>Подтвердить заказ</value>

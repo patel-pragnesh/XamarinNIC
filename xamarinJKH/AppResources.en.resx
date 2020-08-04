@@ -191,7 +191,8 @@
     <value>Close</value>
   </data>
   <data name="CodeInfo" xml:space="preserve">
-    <value>To receive an access code, click "Request a call with a code". \n A bot will call you on your number PHONE and tell an access code</value>
+    <value>To receive an access code, click "Request a call with a code". 
+A bot will call you on your number PHONE and tell an access code</value>
     <comment>To receive an access code, click "Ask for a call with a code". A bot will call you on your number PHONE and tell an access code</comment>
   </data>
   <data name="Confirm order" xml:space="preserve">
