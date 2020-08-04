@@ -6,13 +6,13 @@
              xmlns:questions="clr-namespace:xamarinJKH.Questions;assembly=xamarinJKH"
              xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             BackgroundColor="#F3F3F3"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Main.PaysPage">
     <ContentPage.Content>
         <StackLayout>
             <Grid VerticalOptions="FillAndExpand">
                 <Image x:Name="ImageFon"
-                       Source="ic_pays_top"
+                       Source="{AppThemeBinding Light=ic_pays_top_light, Dark=ic_pays_top}"
                        Margin="0,20,0,0"
                        VerticalOptions="Start"
                        Aspect="AspectFill"
@@ -21,9 +21,10 @@
                     <pancakeView:PancakeView
                         Padding="0"
                         CornerRadius="0,0,25,25"
-                        BackgroundColor="#131313"
+                        BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
                         MinimumHeightRequest="102"
                         HorizontalOptions="Fill"
+                        BorderThickness="1"
                         VerticalOptions="Start"
                         x:Name="Pancake"
                         IsClippedToBounds="True">
@@ -37,7 +38,7 @@
                                            Text="Название"
                                            FontAttributes="Bold"
                                            FontSize="16"
-                                           TextColor="White" />
+                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                                     <StackLayout
                                         Spacing="0"
                                         Orientation="Horizontal">
@@ -51,7 +52,7 @@
                                         <Label x:Name="LabelPhone"
                                                Text="Телефон"
                                                FontSize="14"
-                                               TextColor="White"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                                Margin="-5, 0, 0, 0"
                                                VerticalOptions="Center" />
                                     </StackLayout>
@@ -99,7 +100,7 @@
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.Pays}"
                             FontSize="23"
-                            TextColor="White"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
@@ -109,7 +110,7 @@
                                CornerRadius="40"
                                Margin="20, 10, 20, -60"
                                VerticalOptions="Start"
-                               BackgroundColor="#494949"
+                               BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                Padding="20,20,20,60">
                             <Label
                                 Text="{x:Static xamarinJkh:AppResources.AddIdent}"
@@ -117,7 +118,7 @@
                                 FontAttributes="Bold"
                                 Margin="0,0,0,15"
                                 HorizontalOptions="CenterAndExpand"
-                                TextColor="White"
+                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                 FontSize="15" />
                         </Frame>
                         <RefreshView x:Name="paysRefreshView" Margin="10, 0, 10, 0" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" VerticalOptions="FillAndExpand">
@@ -150,8 +151,9 @@
                         <StackLayout VerticalOptions="End"
                             >
                             <pancakeView:PancakeView x:Name="GoodsLayot" Elevation="20" CornerRadius="50,50,0,0"
-                                                     BackgroundColor="#8D8D8D"
+                                                     BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
                                                      Padding="0,20,0,10"
+                                                     BorderThickness="1"
                                                      VerticalOptions="FillAndExpand">
                                 <!-- <StackLayout -->
                                 <!--     HorizontalOptions="FillAndExpand" -->

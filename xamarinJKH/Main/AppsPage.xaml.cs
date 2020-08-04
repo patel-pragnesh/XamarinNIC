@@ -15,7 +15,7 @@ using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 using System.Threading;
-
+using Xamarin.Forms.PancakeView;
 using xamarinJKH.ViewModels.Main;
 
 namespace xamarinJKH.Main
@@ -280,6 +280,13 @@ namespace xamarinJKH.Main
             LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
             SwitchApp.OnColor = hex;
             IconAddApp.Foreground = Color.White;
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
         }
 
         async Task getAppsAsync()

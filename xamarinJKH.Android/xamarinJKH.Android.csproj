@@ -165,6 +165,7 @@
     <AndroidResource Include="Resources\drawable\ic_add_ident.png" />
     <AndroidResource Include="Resources\drawable\ic_app_top.png" />
     <AndroidResource Include="Resources\drawable\ic_app_top_in.png" />
+    <AndroidResource Include="Resources\drawable\ic_app_top_light.png" />
     <AndroidResource Include="Resources\drawable\ic_arrow_down.png" />
     <AndroidResource Include="Resources\drawable\ic_arrow_down_monitor.png" />
     <AndroidResource Include="Resources\drawable\ic_arrow_forward.png" />
@@ -206,6 +207,7 @@
     <AndroidResource Include="Resources\drawable\ic_no_photo.png" />
     <AndroidResource Include="Resources\drawable\ic_payed_ident.png" />
     <AndroidResource Include="Resources\drawable\ic_pays_top.png" />
+    <AndroidResource Include="Resources\drawable\ic_pays_top_light.png" />
     <AndroidResource Include="Resources\drawable\ic_phone.png" />
     <AndroidResource Include="Resources\drawable\ic_plus.png" />
     <AndroidResource Include="Resources\drawable\ic_questions_top.png" />

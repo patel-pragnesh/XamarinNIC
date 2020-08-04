@@ -7,7 +7,9 @@ using System.Windows.Input;
 using Plugin.FirebaseCrashlytics;
 using Plugin.Messaging;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.CustomRenderers;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
@@ -149,6 +151,15 @@ namespace xamarinJKH.Pays
         {
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
+            
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            FrameSaldo.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
+            FrameHistory.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
         }
 
         private void picker_SelectedIndexChanged(object sender, EventArgs e)

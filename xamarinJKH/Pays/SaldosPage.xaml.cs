@@ -8,7 +8,9 @@ using AiForms.Dialogs;
 using Plugin.Messaging;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.CustomRenderers;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
@@ -237,6 +239,14 @@ namespace xamarinJKH.Pays
 
             IconViewSortDate.Foreground = hex;
             LabelDate.TextColor = hex;
+            
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            FrameSaldo.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
         }
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)

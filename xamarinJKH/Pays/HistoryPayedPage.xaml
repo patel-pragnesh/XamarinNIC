@@ -6,14 +6,14 @@
              xmlns:pays="clr-namespace:xamarinJKH.Pays;assembly=xamarinJKH"
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             BackgroundColor="#F3F3F3"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Pays.HistoryPayedPage">
     <ContentPage.Content>
         <StackLayout>
            
              <Grid>
                 <Image x:Name="ImageFon"
-                       Source="ic_history_pay_top"
+                       Source="{AppThemeBinding Light=ic_pays_top_light, Dark=ic_history_pay_top}"
                        VerticalOptions="Start"
 					   Margin="0,20,0,0"
                        Aspect="AspectFill"
@@ -22,8 +22,9 @@
                     <pancakeView:PancakeView
                         Padding="0"
                         CornerRadius="0,0,25,25"
-                        BackgroundColor="#131313"
+                        BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
                         HorizontalOptions="Fill"
+                        BorderThickness="1"
 						MinimumHeightRequest="102"
                         VerticalOptions="Start"
                         x:Name="Pancake"
@@ -38,7 +39,7 @@
                                            Text="Название"
                                            FontAttributes="Bold"
                                            FontSize="16"
-                                           TextColor="White" />
+                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                                     <StackLayout
                                         Spacing="0"
                                         Orientation="Horizontal">
@@ -52,7 +53,7 @@
                                         <Label x:Name="LabelPhone"
                                                Text="Телефон"
                                                FontSize="14"
-                                               TextColor="White"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                                Margin="-5, 0, 0, 0"
                                                VerticalOptions="Center" />
                                     </StackLayout>
@@ -98,13 +99,14 @@
                         Orientation="Horizontal"
                         Margin="25, 0, 0, 0"
                         HorizontalOptions="Start">
-                        <Image Source="ic_arrow_back"
+                        <xamarinJkh:IconView Source="ic_arrow_back"
                                HeightRequest="15"
+                               Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalOptions="Center" />
                         <Label
                             Text="История платежей"
                             FontSize="18"
-                            TextColor="White"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
@@ -112,15 +114,16 @@
                 VerticalOptions="FillAndExpand">
                 <customRenderers:MaterialFrame Elevation="20" CornerRadius="40"
                                                Margin="20, 10, 20, -60"
+                                               x:Name="FrameSaldo"
                                                VerticalOptions="Start"
-                                               BackgroundColor="#494949"
+                                               BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                                Padding="20,15,20,80">
                     <StackLayout
                         HorizontalOptions="Center"
                         Orientation="Horizontal">
 
                         <Label
-                            TextColor="White"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             Text="Лицевой счет: "
                             VerticalOptions="Center"
                             FontAttributes="Bold"
@@ -129,7 +132,7 @@
                             <StackLayout Orientation="Horizontal">
                                 <xamarinJkh:BorderlessPicker x:Name="Picker" Title="Выбор"
                                                              TitleColor="Black"
-                                                             TextColor="White"
+                                                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                                              VerticalOptions="Start"
                                                              HorizontalOptions="Fill"
                                                              SelectedIndexChanged="picker_SelectedIndexChanged"
@@ -142,7 +145,7 @@
                                                      Rotation="90"
                                                      Margin="0,5,0,0"
                                                      VerticalOptions="Center"
-                                                     Foreground="White"/>
+                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"/>
                             </StackLayout>
                             <Label
                                 HeightRequest="1"
@@ -152,6 +155,7 @@
                     </StackLayout>
                 </customRenderers:MaterialFrame>
                 <Frame CornerRadius="30"
+                       x:Name="FrameHistory"
                        Margin="20, 0, 20, 15"
                        BackgroundColor="White"
                        Padding="15">

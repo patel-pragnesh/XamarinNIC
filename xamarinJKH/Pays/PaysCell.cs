@@ -26,6 +26,7 @@ namespace xamarinJKH.Main
         public PaysCell()
         {
             MaterialFrame frame = new MaterialFrame();
+            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.Transparent);
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.Elevation = 20;
             frame.VerticalOptions = LayoutOptions.Start;

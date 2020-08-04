@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Apps;
 using xamarinJKH.Server;
@@ -60,6 +61,10 @@ namespace xamarinJKH.Shop
             BackStackLayout.GestureRecognizers.Add(backClick);
 
             hex = Color.FromHex(Settings.MobileSettings.color);
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            GoodsLayot.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
             BindingContext = this;
             SetPriceAndWeight();
         }

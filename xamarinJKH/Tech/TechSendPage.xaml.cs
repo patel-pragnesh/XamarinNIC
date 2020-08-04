@@ -7,8 +7,10 @@ using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Apps;
+using xamarinJKH.CustomRenderers;
 using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
@@ -111,7 +113,11 @@ namespace xamarinJKH.Tech
                 await SendTechTask();
             };
             FrameBtnLogin.GestureRecognizers.Add(send);
-
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            Frame.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
             BindingContext = this;
         }
 

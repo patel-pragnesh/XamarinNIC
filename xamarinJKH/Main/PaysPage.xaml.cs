@@ -10,6 +10,7 @@ using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
 using Plugin.Messaging;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.CustomRenderers;
 using xamarinJKH.DialogViews;
@@ -187,6 +188,15 @@ namespace xamarinJKH.Main
             FrameBtnSaldos.BorderColor = hex;
             LabelSaldos.TextColor = hex;
             LabelHistory.TextColor = hex;
+            
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            FrameAddIdent.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
         }
 
         async void getInfo()
@@ -424,6 +434,7 @@ namespace xamarinJKH.Main
             Label sumPay = new Label();
 
             MaterialFrame frame = new MaterialFrame();
+            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.Transparent);
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.Elevation = 20;
             frame.VerticalOptions = LayoutOptions.Start;

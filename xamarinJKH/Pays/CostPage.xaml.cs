@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Plugin.Messaging;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
@@ -112,6 +113,15 @@ namespace xamarinJKH.Pays
             LabelHistory.TextColor = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnHistory.BorderColor = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnSaldos.BorderColor = Color.FromHex(Settings.MobileSettings.color);
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            Frame.SetAppThemeColor(Xamarin.Forms.Frame.BorderColorProperty, hexColor, Color.Transparent);
+            
             SetPays();
         }
 

@@ -345,6 +345,7 @@
     <BundleResource Include="Resources\ic_add_ident.png" />
     <BundleResource Include="Resources\ic_app_top.png" />
     <BundleResource Include="Resources\ic_app_top_in.png" />
+    <BundleResource Include="Resources\ic_app_top_light.png" />
     <BundleResource Include="Resources\ic_arrow_back.png" />
     <BundleResource Include="Resources\ic_arrow_down.png" />
     <BundleResource Include="Resources\ic_arrow_tech.png" />
@@ -391,6 +392,7 @@
     <BundleResource Include="Resources\ic_password_login.png" />
     <BundleResource Include="Resources\ic_payed_ident.png" />
     <BundleResource Include="Resources\ic_pays_top.png" />
+    <BundleResource Include="Resources\ic_pays_top_light.png" />
     <BundleResource Include="Resources\ic_phone_login.png" />
     <BundleResource Include="Resources\ic_phone.png" />
     <BundleResource Include="Resources\ic_plus.png" />
