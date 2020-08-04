@@ -61,6 +61,8 @@ namespace xamarinJKH
                 token = p.Token;
                 await server.RegisterDevice(isCons);
             };
+
+
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
             {
 
@@ -70,8 +72,10 @@ namespace xamarinJKH
                 {
                     try
                     {
+
                         bool displayAlert = false;
                         string o = string.Empty;
+
                         if (p.Data.ContainsKey("title") && p.Data.ContainsKey("body"))
                         {
                             var current_page = (App.Current.MainPage.Navigation.ModalStack.ToList()[0] as Xamarin.Forms.TabbedPage).CurrentPage;
@@ -81,7 +85,18 @@ namespace xamarinJKH
                                 if (p.Data.ContainsKey("type_push"))
                                     o = p.Data["type_push"].ToString();
                             }
+                        }
 
+                        //ios
+                        if (p.Data.ContainsKey("aps.alert.title") && p.Data.ContainsKey("aps.alert.body"))
+                        {
+                            var current_page = (App.Current.MainPage.Navigation.ModalStack.ToList()[0] as Xamarin.Forms.TabbedPage).CurrentPage;
+                            if (!(current_page is AppPage))
+                            {
+                                displayAlert = await MainPage.DisplayAlert(p.Data["aps.alert.title"].ToString(), p.Data["aps.alert.body"].ToString(), "OK", "Отмена");
+                                if (p.Data.ContainsKey("gcm.notification.type_push"))
+                                    o = p.Data["gcm.notification.type_push"].ToString();
+                            }
                         }
 
                         if (displayAlert && o.ToLower().Equals("осс"))
@@ -116,9 +131,14 @@ namespace xamarinJKH
             CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
             {
                 System.Diagnostics.Debug.WriteLine("Opened");
-                if (p.Data.ContainsKey("type_push"))
+                if (p.Data.ContainsKey("type_push") || p.Data.ContainsKey("gcm.notification.type_push"))
                 {
-                    string o = p.Data["type_push"].ToString();
+                    string o = "";
+                    if (Device.RuntimePlatform == Device.Android)
+                        o = p.Data["type_push"].ToString();
+                    else
+                        o = p.Data["gcm.notification.type_push"].ToString();
+
                     if (o.ToLower().Equals("announcement"))
                     {
                         Device.BeginInvokeOnMainThread(async () =>
@@ -207,6 +227,15 @@ namespace xamarinJKH
                         Device.BeginInvokeOnMainThread(() =>
                         {
                             System.Diagnostics.Debug.WriteLine($"{p.Data["body"]}");
+                        });
+
+                    }
+
+                    if (p.Data.ContainsKey("aps.alert.body"))
+                    {
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            System.Diagnostics.Debug.WriteLine($"{p.Data["aps.alert.body"]}");
                         });
 
                     }

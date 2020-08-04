@@ -1,149 +1,151 @@
-﻿//using System;
-//using Xamarin.Forms.Platform.iOS;
-//using Foundation;
-//using UIKit;
-//using Xamarin.Forms;
-//using CoreGraphics;
-//using System.Diagnostics;
-//using xamarinJKH.iOS.CustomRenderers;
-//using xamarinJKH.iOS.Extensions;
-//using xamarinJKH.Counters;
-//using xamarinJKH.DialogViews;
+﻿using System;
+using Xamarin.Forms.Platform.iOS;
+using Foundation;
+using UIKit;
+using Xamarin.Forms;
+using CoreGraphics;
+using System.Diagnostics;
+using xamarinJKH.iOS.CustomRenderers;
+using xamarinJKH.iOS.Extensions;
+using xamarinJKH.Counters;
 
-//[assembly: ExportRenderer(typeof(AddMetersPage), typeof(KeyboardOverlapRenderer))]
+using xamarinJKH.Apps;
 
-//namespace xamarinJKH.iOS.CustomRenderers
-//{
-//	[Preserve(AllMembers = true)]
-//	public class KeyboardOverlapRenderer : PageRenderer
-//	{
-//		NSObject _keyboardShowObserver;
-//		NSObject _keyboardHideObserver;
-//		private bool _pageWasShiftedUp;
-//		private double _activeViewBottom;
-//		private bool _isKeyboardShown;
+[assembly: ExportRenderer(typeof(AddMetersPage), typeof(KeyboardOverlapRenderer))]
+[assembly: ExportRenderer(typeof(AppPage), typeof(KeyboardOverlapRenderer))]
 
-//		public static void Init()
-//		{
-//			var now = DateTime.Now;
-//			Debug.WriteLine("Keyboard Overlap plugin initialized {0}", now);
-//		}
+namespace xamarinJKH.iOS.CustomRenderers
+{
+    [Preserve(AllMembers = true)]
+    public class KeyboardOverlapRenderer : PageRenderer
+    {
+        NSObject _keyboardShowObserver;
+        NSObject _keyboardHideObserver;
+        private bool _pageWasShiftedUp;
+        private double _activeViewBottom;
+        private bool _isKeyboardShown;
 
-//		public override void ViewWillAppear(bool animated)
-//		{
-//			base.ViewWillAppear(animated);
+        public static void Init()
+        {
+            var now = DateTime.Now;
+            Debug.WriteLine("Keyboard Overlap plugin initialized {0}", now);
+        }
 
-//			var page = Element as ContentPage;
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
 
-//			if (page != null)
-//			{
-//				var contentScrollView = page.Content as ScrollView;
+            var page = Element as ContentPage;
 
-//				if (contentScrollView != null)
-//					return;
+            if (page != null)
+            {
+                var contentScrollView = page.Content as ScrollView;
 
-//				RegisterForKeyboardNotifications();
-//			}
-//		}
+                if (contentScrollView != null)
+                    return;
 
-//		public override void ViewWillDisappear(bool animated)
-//		{
-//			base.ViewWillDisappear(animated);
+                RegisterForKeyboardNotifications();
+            }
+        }
 
-//			UnregisterForKeyboardNotifications();
-//		}
+        public override void ViewWillDisappear(bool animated)
+        {
+            base.ViewWillDisappear(animated);
 
-//		void RegisterForKeyboardNotifications()
-//		{
-//			if (_keyboardShowObserver == null)
-//				_keyboardShowObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, OnKeyboardShow);
-//			if (_keyboardHideObserver == null)
-//				_keyboardHideObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, OnKeyboardHide);
-//		}
+            UnregisterForKeyboardNotifications();
+        }
 
-//		void UnregisterForKeyboardNotifications()
-//		{
-//			_isKeyboardShown = false;
-//			if (_keyboardShowObserver != null)
-//			{
-//				NSNotificationCenter.DefaultCenter.RemoveObserver(_keyboardShowObserver);
-//				_keyboardShowObserver.Dispose();
-//				_keyboardShowObserver = null;
-//			}
+        void RegisterForKeyboardNotifications()
+        {
+            if (_keyboardShowObserver == null)
+                _keyboardShowObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, OnKeyboardShow);
+            if (_keyboardHideObserver == null)
+                _keyboardHideObserver = NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, OnKeyboardHide);
+        }
 
-//			if (_keyboardHideObserver != null)
-//			{
-//				NSNotificationCenter.DefaultCenter.RemoveObserver(_keyboardHideObserver);
-//				_keyboardHideObserver.Dispose();
-//				_keyboardHideObserver = null;
-//			}
-//		}
+        void UnregisterForKeyboardNotifications()
+        {
+            _isKeyboardShown = false;
+            if (_keyboardShowObserver != null)
+            {
+                NSNotificationCenter.DefaultCenter.RemoveObserver(_keyboardShowObserver);
+                _keyboardShowObserver.Dispose();
+                _keyboardShowObserver = null;
+            }
 
-//		protected virtual void OnKeyboardShow(NSNotification notification)
-//		{
-//			if (!IsViewLoaded || _isKeyboardShown)
-//				return;
+            if (_keyboardHideObserver != null)
+            {
+                NSNotificationCenter.DefaultCenter.RemoveObserver(_keyboardHideObserver);
+                _keyboardHideObserver.Dispose();
+                _keyboardHideObserver = null;
+            }
+        }
 
-//			_isKeyboardShown = true;
-//			var activeView = View.FindFirstResponder();
+        protected virtual void OnKeyboardShow(NSNotification notification)
+        {
+            if (!IsViewLoaded || _isKeyboardShown)
+                return;
 
-//			if (activeView == null)
-//				return;
+            _isKeyboardShown = true;
+            var activeView = View.FindFirstResponder();
 
-//			var keyboardFrame = UIKeyboard.FrameEndFromNotification(notification);
-//			var isOverlapping = activeView.IsKeyboardOverlapping(View, keyboardFrame);
+            if (activeView == null)
+                return;
 
-//			if (!isOverlapping)
-//				return;
+            var keyboardFrame = UIKeyboard.FrameEndFromNotification(notification);
+            var isOverlapping = activeView.IsKeyboardOverlapping(View, keyboardFrame);
 
-//			if (isOverlapping)
-//			{
-//				_activeViewBottom = activeView.GetViewRelativeBottom(View);
-//				ShiftPageUp(keyboardFrame.Height, _activeViewBottom);
-//			}
-//		}
+            if (!isOverlapping)
+                return;
 
-//		private void OnKeyboardHide(NSNotification notification)
-//		{
-//			if (!IsViewLoaded)
-//				return;
+            if (isOverlapping)
+            {
+                _activeViewBottom = activeView.GetViewRelativeBottom(View);
+                ShiftPageUp(keyboardFrame.Height, _activeViewBottom);
+            }
+        }
 
-//			_isKeyboardShown = false;
-//			var keyboardFrame = UIKeyboard.FrameEndFromNotification(notification);
+        private void OnKeyboardHide(NSNotification notification)
+        {
+            if (!IsViewLoaded)
+                return;
 
-//			if (_pageWasShiftedUp)
-//			{
-//				ShiftPageDown(keyboardFrame.Height, _activeViewBottom);
-//			}
-//		}
+            _isKeyboardShown = false;
+            var keyboardFrame = UIKeyboard.FrameEndFromNotification(notification);
 
-//		private void ShiftPageUp(nfloat keyboardHeight, double activeViewBottom)
-//		{
-//			var pageFrame = Element.Bounds;
+            if (_pageWasShiftedUp)
+            {
+                ShiftPageDown(keyboardFrame.Height, _activeViewBottom);
+            }
+        }
 
-//			var newY = pageFrame.Y + CalculateShiftByAmount(pageFrame.Height, keyboardHeight, activeViewBottom);
+        private void ShiftPageUp(nfloat keyboardHeight, double activeViewBottom)
+        {
+            var pageFrame = Element.Bounds;
 
-//			Element.LayoutTo(new Rectangle(pageFrame.X, newY,
-//				pageFrame.Width, pageFrame.Height));
+            var newY = pageFrame.Y + CalculateShiftByAmount(pageFrame.Height, keyboardHeight, activeViewBottom);
 
-//			_pageWasShiftedUp = true;
-//		}
+            Element.LayoutTo(new Rectangle(pageFrame.X, newY,
+                pageFrame.Width, pageFrame.Height));
 
-//		private void ShiftPageDown(nfloat keyboardHeight, double activeViewBottom)
-//		{
-//			var pageFrame = Element.Bounds;
+            _pageWasShiftedUp = true;
+        }
 
-//			var newY = pageFrame.Y - CalculateShiftByAmount(pageFrame.Height, keyboardHeight, activeViewBottom);
+        private void ShiftPageDown(nfloat keyboardHeight, double activeViewBottom)
+        {
+            var pageFrame = Element.Bounds;
 
-//			Element.LayoutTo(new Rectangle(pageFrame.X, newY,
-//				pageFrame.Width, pageFrame.Height));
+            var newY = pageFrame.Y - CalculateShiftByAmount(pageFrame.Height, keyboardHeight, activeViewBottom);
 
-//			_pageWasShiftedUp = false;
-//		}
+            Element.LayoutTo(new Rectangle(pageFrame.X, newY,
+                pageFrame.Width, pageFrame.Height));
 
-//		private double CalculateShiftByAmount(double pageHeight, nfloat keyboardHeight, double activeViewBottom)
-//		{
-//			return (pageHeight - activeViewBottom) - keyboardHeight;
-//		}
-//	}
-//}
+            _pageWasShiftedUp = false;
+        }
+
+        private double CalculateShiftByAmount(double pageHeight, nfloat keyboardHeight, double activeViewBottom)
+        {
+            return (pageHeight - activeViewBottom) - keyboardHeight;
+        }
+    }
+}

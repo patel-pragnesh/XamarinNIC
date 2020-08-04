@@ -71,12 +71,12 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>Apple Distribution: Evgeny Yurtaykin (UK4AR963E7)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>distrZIP</CodesignProvision>
+    <CodesignProvision>dom24Distr</CodesignProvision>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
     <MtouchLink>SdkOnly</MtouchLink>
     <BuildIpa>true</BuildIpa>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
-    <IpaPackageName>ZIP</IpaPackageName>
+    <IpaPackageName>dom24</IpaPackageName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
@@ -301,9 +301,6 @@
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
     <PackageReference Include="SimpleImageButton" Version="1.0.3" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
-    <PackageReference Include="Xam.Plugins.Forms.KeyboardOverlap">
-      <Version>1.0.0.4</Version>
-    </PackageReference>
     <PackageReference Include="Xam.Plugins.Messaging" Version="5.2.0" />
     <PackageReference Include="Xamarin.Firebase.iOS.Crashlytics">
       <Version>3.10.9</Version>
@@ -499,9 +496,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_export_pdf.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\icon_login_dom24.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_send_code.png" />
