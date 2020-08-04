@@ -156,6 +156,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Card" xml:space="preserve">
+    <value>With card</value>
+  </data>
   <data name="ChangePenance" xml:space="preserve">
     <value>Change indications</value>
   </data>
@@ -170,6 +173,15 @@
   </data>
   <data name="CloseApp" xml:space="preserve">
     <value>Close</value>
+  </data>
+  <data name="Confirm order" xml:space="preserve">
+    <value>Confirm order</value>
+  </data>
+  <data name="Confirm order1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConfirmingOrder" xml:space="preserve">
+    <value>Confirming order</value>
   </data>
   <data name="ConstLogin" xml:space="preserve">
     <value>Employee log in</value>
@@ -261,6 +273,9 @@
   <data name="LoginTitle" xml:space="preserve">
     <value>Login</value>
   </data>
+  <data name="Mass" xml:space="preserve">
+    <value>Weight:</value>
+  </data>
   <data name="Meters_NavBar" xml:space="preserve">
     <value>Meters</value>
   </data>
@@ -285,6 +300,9 @@
   <data name="Offers" xml:space="preserve">
     <value>Special offers</value>
   </data>
+  <data name="OnRecieving" xml:space="preserve">
+    <value>Upon receiving</value>
+  </data>
   <data name="Order" xml:space="preserve">
     <value>Order</value>
   </data>
@@ -305,6 +323,9 @@
   </data>
   <data name="PayHistory" xml:space="preserve">
     <value>Payment history</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Payment</value>
   </data>
   <data name="PayProcess" xml:space="preserve">
     <value>Payment is processed for</value>
@@ -363,6 +384,12 @@
   <data name="Shop" xml:space="preserve">
     <value>Shop</value>
   </data>
+  <data name="ShopCheckingOut" xml:space="preserve">
+    <value>Checkout</value>
+  </data>
+  <data name="ShopCheckout" xml:space="preserve">
+    <value>Checkout</value>
+  </data>
   <data name="ShowAnsweredQuizes" xml:space="preserve">
     <value>Show passed polls</value>
   </data>
@@ -410,6 +437,9 @@
   </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="TotalPrice" xml:space="preserve">
+    <value>Total:</value>
   </data>
   <data name="Troub" xml:space="preserve">
     <value>Having troubles? </value>

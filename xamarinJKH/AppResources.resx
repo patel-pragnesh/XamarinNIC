@@ -156,6 +156,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Отмена</value>
   </data>
+  <data name="Card" xml:space="preserve">
+    <value>Картой</value>
+  </data>
   <data name="ChangePenance" xml:space="preserve">
     <value>Изменить показания</value>
   </data>
@@ -170,6 +173,12 @@
   </data>
   <data name="CloseApp" xml:space="preserve">
     <value>Закрыть</value>
+  </data>
+  <data name="Confirm order" xml:space="preserve">
+    <value>Подтвердить заказ</value>
+  </data>
+  <data name="ConfirmingOrder" xml:space="preserve">
+    <value>Подтверждение заказа</value>
   </data>
   <data name="ConstLogin" xml:space="preserve">
     <value>Вход для сотрудника</value>
@@ -249,6 +258,9 @@
   <data name="LoginTitle" xml:space="preserve">
     <value>Вход</value>
   </data>
+  <data name="Mass" xml:space="preserve">
+    <value>Вес:</value>
+  </data>
   <data name="Meters_NavBar" xml:space="preserve">
     <value>Показатели</value>
   </data>
@@ -273,6 +285,9 @@
   <data name="Offers" xml:space="preserve">
     <value>Специальные предложения</value>
   </data>
+  <data name="OnRecieving" xml:space="preserve">
+    <value>При получении</value>
+  </data>
   <data name="Order" xml:space="preserve">
     <value>Заказать</value>
   </data>
@@ -293,6 +308,9 @@
   </data>
   <data name="PayHistory" xml:space="preserve">
     <value>История платежей</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Способ оплаты:</value>
   </data>
   <data name="PayProcess" xml:space="preserve">
     <value>Платеж обрабатывается </value>
@@ -351,6 +369,12 @@
   <data name="Shop" xml:space="preserve">
     <value>Магазин</value>
   </data>
+  <data name="ShopCheckingOut" xml:space="preserve">
+    <value>Оформление заказа</value>
+  </data>
+  <data name="ShopCheckout" xml:space="preserve">
+    <value>Оформить заказ</value>
+  </data>
   <data name="ShowAnsweredQuizes" xml:space="preserve">
     <value>Показать пройденные опросы</value>
   </data>
@@ -395,6 +419,9 @@
   </data>
   <data name="Total" xml:space="preserve">
     <value>Итого</value>
+  </data>
+  <data name="TotalPrice" xml:space="preserve">
+    <value>Итого цена:</value>
   </data>
   <data name="Troub" xml:space="preserve">
     <value>Возникли проблемы? </value>

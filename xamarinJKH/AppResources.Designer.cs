@@ -178,6 +178,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Картой.
+        /// </summary>
+        internal static string Card {
+            get {
+                return ResourceManager.GetString("Card", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Изменить показания.
         /// </summary>
         internal static string ChangePenance {
@@ -219,6 +228,24 @@ namespace xamarinJKH {
         internal static string CloseApp {
             get {
                 return ResourceManager.GetString("CloseApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подтвердить заказ.
+        /// </summary>
+        internal static string Confirm_order {
+            get {
+                return ResourceManager.GetString("Confirm order", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подтверждение заказа.
+        /// </summary>
+        internal static string ConfirmingOrder {
+            get {
+                return ResourceManager.GetString("ConfirmingOrder", resourceCulture);
             }
         }
         
@@ -457,6 +484,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вес:.
+        /// </summary>
+        internal static string Mass {
+            get {
+                return ResourceManager.GetString("Mass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Показатели.
         /// </summary>
         internal static string Meters_NavBar {
@@ -529,6 +565,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to При получении.
+        /// </summary>
+        internal static string OnRecieving {
+            get {
+                return ResourceManager.GetString("OnRecieving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Заказать.
         /// </summary>
         internal static string Order {
@@ -588,6 +633,15 @@ namespace xamarinJKH {
         internal static string PayHistory {
             get {
                 return ResourceManager.GetString("PayHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Способ оплаты:.
+        /// </summary>
+        internal static string Payment {
+            get {
+                return ResourceManager.GetString("Payment", resourceCulture);
             }
         }
         
@@ -763,6 +817,24 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Оформление заказа.
+        /// </summary>
+        internal static string ShopCheckingOut {
+            get {
+                return ResourceManager.GetString("ShopCheckingOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Оформить заказ.
+        /// </summary>
+        internal static string ShopCheckout {
+            get {
+                return ResourceManager.GetString("ShopCheckout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Показать пройденные опросы.
         /// </summary>
         internal static string ShowAnsweredQuizes {
@@ -894,6 +966,15 @@ namespace xamarinJKH {
         internal static string Total {
             get {
                 return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Итого цена:.
+        /// </summary>
+        internal static string TotalPrice {
+            get {
+                return ResourceManager.GetString("TotalPrice", resourceCulture);
             }
         }
         
