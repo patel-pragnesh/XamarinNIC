@@ -120,17 +120,33 @@
   <data name="Acc" xml:space="preserve">
     <value>Acc: </value>
   </data>
+  <data name="AccessCode" xml:space="preserve">
+    <value>Access code</value>
+  </data>
   <data name="AddIdent" xml:space="preserve">
     <value>Add an account</value>
   </data>
   <data name="Adress" xml:space="preserve">
     <value>Adress</value>
   </data>
+  <data name="Amount" xml:space="preserve">
+    <value> amnt: </value>
+  </data>
+  <data name="Amount2" xml:space="preserve">
+    <value> pcs </value>
+  </data>
   <data name="AnsweredAmount" xml:space="preserve">
     <value>Answered</value>
   </data>
   <data name="App_NavBar" xml:space="preserve">
     <value>Requests</value>
+  </data>
+  <data name="AskForCode" xml:space="preserve">
+    <value>Request a call with a code</value>
+  </data>
+  <data name="AskForCodeAgain" xml:space="preserve">
+    <value>YOU CAN REQUEST A CALL AGAIN IN TimerTime SECONDS</value>
+    <comment>YOU CAN REQUEST A CALL AGAIN IN TimerTime SECONDS</comment>
   </data>
   <data name="AttachmentChooseFile" xml:space="preserve">
     <value>Choose file</value>
@@ -174,6 +190,10 @@
   <data name="CloseApp" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="CodeInfo" xml:space="preserve">
+    <value>To receive an access code, click "Request a call with a code". \n A bot will call you on your number PHONE and tell an access code</value>
+    <comment>To receive an access code, click "Ask for a call with a code". A bot will call you on your number PHONE and tell an access code</comment>
+  </data>
   <data name="Confirm order" xml:space="preserve">
     <value>Confirm order</value>
   </data>
@@ -182,6 +202,9 @@
   </data>
   <data name="ConfirmingOrder" xml:space="preserve">
     <value>Confirming order</value>
+  </data>
+  <data name="ConfirmPass" xml:space="preserve">
+    <value>Confirm password</value>
   </data>
   <data name="ConstLogin" xml:space="preserve">
     <value>Employee log in</value>
@@ -198,11 +221,17 @@
   <data name="Create" xml:space="preserve">
     <value>Create</value>
   </data>
+  <data name="CreatePass" xml:space="preserve">
+    <value>Create password</value>
+  </data>
   <data name="Currency" xml:space="preserve">
     <value> RUB. </value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Date</value>
+  </data>
+  <data name="DateOfBirth" xml:space="preserve">
+    <value>Date of birth</value>
   </data>
   <data name="DayOfMounth" xml:space="preserve">
     <value> of </value>
@@ -288,6 +317,9 @@
   <data name="News" xml:space="preserve">
     <value>News</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
   <data name="NoAccounts" xml:space="preserve">
     <value>There are no accounts connected </value>
   </data>
@@ -304,6 +336,9 @@
     <value>Upon receiving</value>
   </data>
   <data name="Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="OrderText" xml:space="preserve">
     <value>Order</value>
   </data>
   <data name="OSS" xml:space="preserve">
@@ -336,6 +371,21 @@
   <data name="Pays_NavBar" xml:space="preserve">
     <value>Payments</value>
   </data>
+  <data name="PayText0" xml:space="preserve">
+    <value>Pay with cash upon recieving</value>
+  </data>
+  <data name="PayText1" xml:space="preserve">
+    <value>Upon recieving a parcel tell courier confirmation code and money</value>
+  </data>
+  <data name="PayText2" xml:space="preserve">
+    <value>Pay with card upon recieving</value>
+  </data>
+  <data name="PayText3" xml:space="preserve">
+    <value>Upon recieving a parcel tell courier confirmation code and money</value>
+  </data>
+  <data name="PayText4" xml:space="preserve">
+    <value>Reciept will be available in you profile</value>
+  </data>
   <data name="PenencePassed" xml:space="preserve">
     <value>Indications passed</value>
   </data>
@@ -345,6 +395,9 @@
   <data name="Phone" xml:space="preserve">
     <value>Phone</value>
   </data>
+  <data name="PhoneConfirm" xml:space="preserve">
+    <value>Confirm phone</value>
+  </data>
   <data name="PhoneLabel" xml:space="preserve">
     <value>Phone</value>
   </data>
@@ -353,6 +406,12 @@
   </data>
   <data name="PrebiousData" xml:space="preserve">
     <value>Previous data</value>
+  </data>
+  <data name="PriceLowerCase" xml:space="preserve">
+    <value> price: </value>
+  </data>
+  <data name="PriceText" xml:space="preserve">
+    <value>Price</value>
   </data>
   <data name="Prof" xml:space="preserve">
     <value>Profile</value>
@@ -402,6 +461,12 @@
   <data name="SortByData" xml:space="preserve">
     <value>By date</value>
   </data>
+  <data name="Step" xml:space="preserve">
+    <value>Step</value>
+  </data>
+  <data name="Step1" xml:space="preserve">
+    <value>Step 1</value>
+  </data>
   <data name="String1" xml:space="preserve">
     <value />
   </data>
@@ -441,8 +506,17 @@
   <data name="TotalPrice" xml:space="preserve">
     <value>Total:</value>
   </data>
+  <data name="TotalPrice1" xml:space="preserve">
+    <value>Total price: </value>
+  </data>
   <data name="Troub" xml:space="preserve">
     <value>Having troubles? </value>
+  </data>
+  <data name="TroubleCode" xml:space="preserve">
+    <value>Didn't receive a call? We will help you sign up!</value>
+  </data>
+  <data name="TSA" xml:space="preserve">
+    <value>Concent on processing personal data</value>
   </data>
   <data name="WorkDays" xml:space="preserve">
     <value> workdays</value>

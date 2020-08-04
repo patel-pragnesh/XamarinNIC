@@ -56,7 +56,7 @@
                                 <Label HorizontalOptions="Center" Margin="10">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="Заказ" FontSize="20" TextColor="Black" FontAttributes="Bold" />
+                                            <Span Text="{x:Static xamarinJkh:AppResources.OrderText}" FontSize="20" TextColor="Black" FontAttributes="Bold" />
                                             <Span Text="{Binding orderNum}" FontSize="20" TextColor="{Binding hex}"
                                                   FontAttributes="Bold" />
                                         </FormattedString>
@@ -84,7 +84,7 @@
                                     </StackLayout>
                                     <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical"
                                                  Padding="0,0,10,10">
-                                        <Label HorizontalOptions="Start" Text="Цена:" TextColor="Black"
+                                        <Label HorizontalOptions="Start" Text="{x:Static xamarinJkh:AppResources.PriceText}" TextColor="Black"
                                                FontAttributes="Bold"
                                                FontSize="14" />
                                         <Label HorizontalOptions="Start">
@@ -151,18 +151,18 @@
                                     </Frame>
 
                                 </StackLayout>
-                                <Label x:Name="PaymentDescription0" Text="Оплата наличными при получении" FontSize="18"
+                                <Label x:Name="PaymentDescription0" Text="{x:Static xamarinJkh:AppResources.PayText0}" FontSize="18"
                                        FontAttributes="Bold" TextColor="Black"
                                        HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
                                        Margin="10,5" />
                                 <Label x:Name="PaymentDescription1"
-                                       Text="В момент получения товара передайте курьеру код подтверждения и оплатите заказ"
+                                       Text="{x:Static xamarinJkh:AppResources.PayText1}"
                                        FontSize="14" FontAttributes="Bold"
                                        TextColor="Black" HorizontalOptions="CenterAndExpand"
                                        HorizontalTextAlignment="Center"
                                        LineBreakMode="WordWrap" Margin="13,0" />
                                 <Label x:Name="PaymentDescription2"
-                                       Text="Электронный чек будет доступен в личном кабинете"
+                                       Text="{x:Static xamarinJkh:AppResources.PayText4}"
                                        FontSize="13" TextColor="Gray"
                                        HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
                                        LineBreakMode="WordWrap" Margin="5,5" />
@@ -184,7 +184,7 @@
                                             VerticalOptions="FillAndExpand"
                                             TextColor="White"
                                             FontAttributes="Bold"
-                                            Text="Подтвердить заказ" Font="18" Clicked="BtnCheckOut_Clicked" />
+                                            Text="{x:Static xamarinJkh:AppResources.Confirm_order}" Font="18" Clicked="BtnCheckOut_Clicked" />
                                 </Frame>
                             </StackLayout>
                         </Frame>

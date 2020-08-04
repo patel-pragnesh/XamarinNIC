@@ -136,7 +136,7 @@ namespace xamarinJKH
         {
             RegistrationFrameStep1.IsVisible = true;
             RegistrationFrameStep2.IsVisible = false;
-            LabelSteps.Text = "Шаг 1";
+            LabelSteps.Text = $"{AppResources.Step} 1";
             StepsImage.Source = ImageSource.FromFile("ic_steps_one");
             step = 0;
         }
@@ -146,7 +146,7 @@ namespace xamarinJKH
             RegistrationFrameStep2.IsVisible = true;
             RegistrationFrameStep3.IsVisible = false;
             StepsImage.Source = ImageSource.FromFile("ic_steps_two");
-            LabelSteps.Text = "Шаг 2";
+            LabelSteps.Text = $"{AppResources.Step} 2";
             step = 1;
         }
         
@@ -182,10 +182,11 @@ namespace xamarinJKH
                 Person.FIO = fio;
                 Person.Birthday = date;
                 FormattedString formatted = new FormattedString();
+                var message = AppResources.CodeInfo.Split("PHONE");
                 formatted.Spans.Add(new Span
                 {
                     Text =
-                        "Чтобы получить код доступа нажмите «Запросить звонок с кодом».\n    Вам позвонит робот на номер ",
+                        message[0],
                 });
                 formatted.Spans.Add(new Span
                 {
@@ -194,7 +195,7 @@ namespace xamarinJKH
                 });
                 formatted.Spans.Add(new Span
                 {
-                    Text = " и сообщит код",
+                    Text = message[1],
                 });
 
                 LabelTitleRequestCode.FormattedText = formatted;
@@ -202,7 +203,7 @@ namespace xamarinJKH
                 RegistrationFrameStep1.IsVisible = false;
                 RegistrationFrameStep2.IsVisible = true;
                 step = 1;
-                LabelSteps.Text = "Шаг 2";
+                LabelSteps.Text = $"{AppResources.Step} 2";
                 if (Settings.TimerStart)
                 {
                     Settings.TimerStart = false;
@@ -285,7 +286,7 @@ namespace xamarinJKH
                 RegistrationFrameStep2.IsVisible = false;
                 RegistrationFrameStep3.IsVisible = true;
                 step = 2;
-                LabelSteps.Text = "Шаг 3";
+                LabelSteps.Text = $"{AppResources.Step} 3";
                 Person.Code = entryCodeText;
             }
             else
@@ -314,7 +315,7 @@ namespace xamarinJKH
             {
                 if (LabelTimer != null)
                 {
-                    LabelTimer.Text = "ЗАПРОСИТЬ ПОВТОРНЫЙ ЗВОНОК МОЖНО БУДЕТ ЧЕРЕЗ: " + TimerTime + " секунд";
+                    LabelTimer.Text = AppResources.AskForCodeAgain.Replace("TimerTime",TimerTime.ToString());
                 }                
                 TimerTime -= 1;
                 if (TimerTime < 0)

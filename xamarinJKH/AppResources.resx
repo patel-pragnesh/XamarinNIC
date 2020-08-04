@@ -120,17 +120,32 @@
   <data name="Acc" xml:space="preserve">
     <value>Л/сч: </value>
   </data>
+  <data name="AccessCode" xml:space="preserve">
+    <value>Код доступа</value>
+  </data>
   <data name="AddIdent" xml:space="preserve">
     <value>Подключить лицевой счет</value>
   </data>
   <data name="Adress" xml:space="preserve">
     <value>Адрес</value>
   </data>
+  <data name="Amount" xml:space="preserve">
+    <value> кол-во: </value>
+  </data>
+  <data name="Amount2" xml:space="preserve">
+    <value> шт </value>
+  </data>
   <data name="AnsweredAmount" xml:space="preserve">
     <value>Количество отвеченных</value>
   </data>
   <data name="App_NavBar" xml:space="preserve">
     <value>Заявки</value>
+  </data>
+  <data name="AskForCode" xml:space="preserve">
+    <value>Запросить звонок с кодом</value>
+  </data>
+  <data name="AskForCodeAgain" xml:space="preserve">
+    <value>ЗАПРОСИТЬ ПОВТОРНЫЙ ЗВОНОК МОЖНО БУДЕТ ЧЕРЕЗ: TimerTime секунд</value>
   </data>
   <data name="AttachmentChooseFile" xml:space="preserve">
     <value>Выбрать файл</value>
@@ -174,11 +189,17 @@
   <data name="CloseApp" xml:space="preserve">
     <value>Закрыть</value>
   </data>
+  <data name="CodeInfo" xml:space="preserve">
+    <value>Чтобы получить код доступа нажмите «Запросить звонок с кодом». \n Вам позвонит робот на номер PHONE и сообщит код</value>
+  </data>
   <data name="Confirm order" xml:space="preserve">
     <value>Подтвердить заказ</value>
   </data>
   <data name="ConfirmingOrder" xml:space="preserve">
     <value>Подтверждение заказа</value>
+  </data>
+  <data name="ConfirmPass" xml:space="preserve">
+    <value>Подтвердите пароль</value>
   </data>
   <data name="ConstLogin" xml:space="preserve">
     <value>Вход для сотрудника</value>
@@ -195,11 +216,17 @@
   <data name="Create" xml:space="preserve">
     <value>Создать</value>
   </data>
+  <data name="CreatePass" xml:space="preserve">
+    <value>Создайте пароль           </value>
+  </data>
   <data name="Currency" xml:space="preserve">
     <value> руб. </value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Дата</value>
+  </data>
+  <data name="DateOfBirth" xml:space="preserve">
+    <value>Дата рождения</value>
   </data>
   <data name="DayOfMounth" xml:space="preserve">
     <value> числа </value>
@@ -273,6 +300,9 @@
   <data name="News" xml:space="preserve">
     <value>Новости</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>Далее</value>
+  </data>
   <data name="NoAccounts" xml:space="preserve">
     <value>Лицевые счета не подключены</value>
   </data>
@@ -290,6 +320,9 @@
   </data>
   <data name="Order" xml:space="preserve">
     <value>Заказать</value>
+  </data>
+  <data name="OrderText" xml:space="preserve">
+    <value>Заказ</value>
   </data>
   <data name="OSS" xml:space="preserve">
     <value>Общие собрания собственников</value>
@@ -312,6 +345,9 @@
   <data name="Payment" xml:space="preserve">
     <value>Способ оплаты:</value>
   </data>
+  <data name="PaymentDescription0" xml:space="preserve">
+    <value />
+  </data>
   <data name="PayProcess" xml:space="preserve">
     <value>Платеж обрабатывается </value>
   </data>
@@ -320,6 +356,21 @@
   </data>
   <data name="Pays_NavBar" xml:space="preserve">
     <value>Оплата</value>
+  </data>
+  <data name="PayText0" xml:space="preserve">
+    <value>Оплата наличными при получении</value>
+  </data>
+  <data name="PayText1" xml:space="preserve">
+    <value>В момент получения товара передайте курьеру код подтверждения и деньги</value>
+  </data>
+  <data name="PayText2" xml:space="preserve">
+    <value>Оплата картой при получении</value>
+  </data>
+  <data name="PayText3" xml:space="preserve">
+    <value>В момент получения товара передайте курьеру код подтверждения и деньги</value>
+  </data>
+  <data name="PayText4" xml:space="preserve">
+    <value>Электронный чек будет доступен в личном кабинете</value>
   </data>
   <data name="PenencePassed" xml:space="preserve">
     <value>Показания переданы</value>
@@ -330,6 +381,9 @@
   <data name="Phone" xml:space="preserve">
     <value>Телефон</value>
   </data>
+  <data name="PhoneConfirm" xml:space="preserve">
+    <value>Подтверждение телефона</value>
+  </data>
   <data name="PhoneLabel" xml:space="preserve">
     <value>Телефон</value>
   </data>
@@ -338,6 +392,12 @@
   </data>
   <data name="PrebiousData" xml:space="preserve">
     <value>Предыдущие показания</value>
+  </data>
+  <data name="PriceLowerCase" xml:space="preserve">
+    <value> цена: </value>
+  </data>
+  <data name="PriceText" xml:space="preserve">
+    <value>Цена</value>
   </data>
   <data name="Prof" xml:space="preserve">
     <value>Профиль</value>
@@ -387,6 +447,12 @@
   <data name="SortByData" xml:space="preserve">
     <value>По дате</value>
   </data>
+  <data name="Step" xml:space="preserve">
+    <value>Шаг</value>
+  </data>
+  <data name="Step1" xml:space="preserve">
+    <value>Шаг 1</value>
+  </data>
   <data name="Sum" xml:space="preserve">
     <value>Сумма</value>
   </data>
@@ -426,10 +492,19 @@
   <data name="Troub" xml:space="preserve">
     <value>Возникли проблемы? </value>
   </data>
+  <data name="TroubleCode" xml:space="preserve">
+    <value>Не поступил звонок? Напишите в тех. поддержку, поможем зарегистрироваться</value>
+  </data>
+  <data name="TSA" xml:space="preserve">
+    <value>Согласие на обработку персональных данных</value>
+  </data>
   <data name="WorkDays" xml:space="preserve">
     <value> рабочих дня</value>
   </data>
   <data name="WriteUs" xml:space="preserve">
     <value>Напишите нам </value>
+  </data>
+  <data name="YourOrder" xml:space="preserve">
+    <value>Ваш заказ:</value>
   </data>
 </root>
