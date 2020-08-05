@@ -70,6 +70,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Принять.
+        /// </summary>
+        internal static string AcceptApp {
+            get {
+                return ResourceManager.GetString("AcceptApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Код доступа.
         /// </summary>
         internal static string AccessCode {
@@ -292,6 +301,15 @@ namespace xamarinJKH {
         internal static string CodeInfo {
             get {
                 return ResourceManager.GetString("CodeInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выполнить.
+        /// </summary>
+        internal static string CompleteApp {
+            get {
+                return ResourceManager.GetString("CompleteApp", resourceCulture);
             }
         }
         
@@ -773,6 +791,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Перевести.
+        /// </summary>
+        internal static string PassApp {
+            get {
+                return ResourceManager.GetString("PassApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Передать показания.
         /// </summary>
         internal static string PassPenance {
@@ -1057,6 +1084,15 @@ namespace xamarinJKH {
         internal static string Send {
             get {
                 return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Отправить код.
+        /// </summary>
+        internal static string SendCodeApp {
+            get {
+                return ResourceManager.GetString("SendCodeApp", resourceCulture);
             }
         }
         

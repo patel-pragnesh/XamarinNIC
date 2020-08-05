@@ -120,6 +120,9 @@
   <data name="Acc" xml:space="preserve">
     <value>Л/сч: </value>
   </data>
+  <data name="AcceptApp" xml:space="preserve">
+    <value>Принять</value>
+  </data>
   <data name="AccessCode" xml:space="preserve">
     <value>Код доступа</value>
   </data>
@@ -195,6 +198,9 @@
   <data name="CodeInfo" xml:space="preserve">
     <value>Чтобы получить код доступа нажмите «Запросить звонок с кодом». 
 Вам позвонит робот на номер PHONE и сообщит код</value>
+  </data>
+  <data name="CompleteApp" xml:space="preserve">
+    <value>Выполнить</value>
   </data>
   <data name="Confirm order" xml:space="preserve">
     <value>Подтвердить заказ</value>
@@ -355,6 +361,9 @@
   <data name="Pass" xml:space="preserve">
     <value>Пароль</value>
   </data>
+  <data name="PassApp" xml:space="preserve">
+    <value>Перевести</value>
+  </data>
   <data name="PassPenance" xml:space="preserve">
     <value>Передать показания</value>
   </data>
@@ -450,6 +459,9 @@
   </data>
   <data name="Send" xml:space="preserve">
     <value>Отправить</value>
+  </data>
+  <data name="SendCodeApp" xml:space="preserve">
+    <value>Отправить код</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Настройки</value>

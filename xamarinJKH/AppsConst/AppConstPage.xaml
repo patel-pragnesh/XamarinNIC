@@ -70,7 +70,7 @@
                                HeightRequest="15"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Назад "
+                            Text="{x:Static xamarinJkh:AppResources.Back}"
                             FontSize="15"
                             TextColor="White"
                             HorizontalOptions="Start" />
@@ -101,7 +101,7 @@
                                 HorizontalOptions="StartAndExpand">
                                 <Image Source="ic_info_app1"
                                        HeightRequest="25" />
-                                <Label Text="Инфо"
+                                <Label Text="{x:Static xamarinJkh:AppResources.Info}"
                                        TextColor="White"
                                        FontAttributes="Bold"
                                        FontSize="10" />
@@ -124,7 +124,7 @@
                                 HorizontalOptions="StartAndExpand">
                                 <Image Source="ic_check_mark"
                                        HeightRequest="25" />
-                                <Label Text="Принять"
+                                <Label Text="{x:Static xamarinJkh:AppResources.AcceptApp}"
                                        TextColor="White"
                                        FontAttributes="Bold"
                                        FontSize="10" />
@@ -136,7 +136,7 @@
                                 HorizontalOptions="StartAndExpand">
                                 <Image Source="ic_execute"
                                        HeightRequest="25" />
-                                <Label Text="Выполнить"
+                                <Label Text="{x:Static xamarinJkh:AppResources.CompleteApp}"
                                        TextColor="White"
                                        FontAttributes="Bold"
                                        FontSize="10" />
@@ -148,7 +148,7 @@
                                 HorizontalOptions="StartAndExpand">
                                 <Image Source="ic_move_disp"
                                        HeightRequest="25" />
-                                <Label Text="Перевести"
+                                <Label Text="{x:Static xamarinJkh:AppResources.PassApp}"
                                        TextColor="White"
                                        FontAttributes="Bold"
                                        FontSize="10" />
@@ -161,7 +161,7 @@
                                 <Image Source="ic_close_app1"
                                        HeightRequest="25"
                                        WidthRequest="25" />
-                                <Label Text="Закрыть"
+                                <Label Text="{x:Static xamarinJkh:AppResources.CloseApp}"
                                        TextColor="White"
                                        FontAttributes="Bold"
                                        FontSize="10" />
@@ -175,7 +175,7 @@
                                 <Image Source="ic_send_code"
                                        HeightRequest="25"
                                        WidthRequest="25" />
-                                <Label Text="Отправить код"
+                                <Label Text="{x:Static xamarinJkh:AppResources.SendCodeApp}"
                                        TextColor="White"
                                        FontAttributes="Bold"
                                        FontSize="10" />
@@ -252,7 +252,7 @@
                                                VerticalOptions="Center"
                                                Text=""
                                                AutoSize="Disabled"
-                                               Placeholder="Введите сообщение..."
+                                               Placeholder="{x:Static xamarinJkh:AppResources.ChatPlaceholder}"
                                                TextColor="#A2A2A2"
                                                HorizontalOptions="FillAndExpand" />
                     <xamarinJkh:IconView
@@ -278,7 +278,7 @@
                             FontSize="10"
                             TextColor="Black"
                             HorizontalOptions="Center"
-                            Text="Скрытое" />
+                            Text="{x:Static xamarinJkh:AppResources.Hidden}" />
                     </StackLayout>
 
                 </StackLayout>
