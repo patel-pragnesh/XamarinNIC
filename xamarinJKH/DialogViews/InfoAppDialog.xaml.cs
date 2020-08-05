@@ -22,6 +22,7 @@ namespace xamarinJKH.DialogViews
         {
             InitializeComponent();
             code.IsVisible = !Settings.Person.IsDispatcher;
+            Frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.Transparent);
             switch (Device.RuntimePlatform)
             {
                 case Device.Android:

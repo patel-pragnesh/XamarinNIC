@@ -9,7 +9,7 @@
              xmlns:selector ="clr-namespace:xamarinJKH.Apps"
              xmlns:datatypes ="clr-namespace:xamarinJKH.Server.RequestModel"
              
-             BackgroundColor="#F3F3F3"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Apps.AppPage">    
     <ContentPage.Content>
         <StackLayout>
@@ -27,7 +27,7 @@
                              Property=Height,
                              Factor=0,
                              Constant=0}"
-                       Source="ic_app_top_in"
+                       Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top_in}"
                        VerticalOptions="Fill"
                        HorizontalOptions="Fill" />
                 <!-- <StackLayout x:Name="StackLayout" -->
@@ -69,24 +69,26 @@
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
                         HorizontalOptions="Start">
-                        <Image Source="ic_arrow_back"
+                        <xamarinJkh:IconView Source="ic_arrow_back"
                                HeightRequest="15"
+                               Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalOptions="Center" />
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.Back}"
                             FontSize="15"
-                            TextColor="White"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             HorizontalOptions="Start" />
                     </StackLayout>
                     <Label x:Name="LabelNumber"
                            FontSize="20"
                            Margin="10, 10 ,0,0"
-                           TextColor="White" />
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                 </StackLayout>
                 <Frame CornerRadius="40"
                        Margin="0, 0, 15, -95"
                        HorizontalOptions="End"
-                       BackgroundColor="#B5B5B5"
+                       x:Name="FrameKeys"
+                       BackgroundColor="{AppThemeBinding Light=White, Dark=#B5B5B5}"
                        Padding="20,0,20,80">
                     <ScrollView
                         x:Name="ScrollView"
@@ -100,10 +102,12 @@
                                 x:Name="StackLayoutInfo"
                                 VerticalOptions="Center"
                                 HorizontalOptions="StartAndExpand">
-                                <Image Source="ic_info_app1"
-                                       HeightRequest="25" />
+                                <xamarinJkh:IconView Source="ic_info_app1"
+                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                       HeightRequest="25"
+                                                     WidthRequest="25"/>
                                 <Label Text="{x:Static xamarinJkh:AppResources.InfoApp}"
-                                       TextColor="White"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
                             </StackLayout>
@@ -113,11 +117,12 @@
                                 VerticalOptions="Center"
                                 x:Name="StackLayoutClose"
                                 HorizontalOptions="EndAndExpand">
-                                <Image Source="ic_close_app1"
+                                <xamarinJkh:IconView Source="ic_close_app1"
                                        HeightRequest="25"
+                                       Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                        WidthRequest="25" />
                                 <Label Text="{x:Static xamarinJkh:AppResources.CloseApp}"
-                                       TextColor="White"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
                             </StackLayout> 
@@ -127,11 +132,12 @@
                                 VerticalOptions="Center"
                                 x:Name="StackLayoutPlay"
                                 HorizontalOptions="EndAndExpand">
-                                <Image Source="pay"
+                                <xamarinJkh:IconView Source="pay"
                                        HeightRequest="25"
+                                       Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                        WidthRequest="25" />
                                 <Label Text="{x:Static xamarinJkh:AppResources.PayApp}"
-                                       TextColor="White"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
                             </StackLayout>

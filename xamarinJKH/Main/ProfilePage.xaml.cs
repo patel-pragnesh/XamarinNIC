@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Plugin.Messaging;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.InterfacesIntegration;
@@ -174,7 +175,8 @@ namespace xamarinJKH.Main
         
         void SetColor()
         {
-            Color hexColor = Color.FromHex(Settings.MobileSettings.color);
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+
             UkName.Text = Settings.MobileSettings.main_name;
             IconViewSave.Foreground = Color.White;
             // IconViewNameUk.Foreground = hexColor;
@@ -192,6 +194,13 @@ namespace xamarinJKH.Main
             BtnExit.TextColor = hexColor;
             progress.Color = hexColor;
 
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            FrameTop.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
+            FrameSettings.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
             
         }
 

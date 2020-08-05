@@ -350,9 +350,11 @@
     <BundleResource Include="Resources\ic_author.png" />
     <BundleResource Include="Resources\ic_background.png" />
     <BundleResource Include="Resources\ic_background_counter.png" />
+    <BundleResource Include="Resources\ic_background_counter_light.png" />
     <BundleResource Include="Resources\ic_background_event.png" />
     <BundleResource Include="Resources\ic_background_event_light.png" />
     <BundleResource Include="Resources\ic_background_profile.png" />
+    <BundleResource Include="Resources\ic_background_profile_light.png" />
     <BundleResource Include="Resources\ic_background_quest_light.png" />
     <BundleResource Include="Resources\ic_bottom_login.png" />
     <BundleResource Include="Resources\ic_calendar.png" />

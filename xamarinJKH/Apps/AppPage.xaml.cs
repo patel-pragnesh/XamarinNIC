@@ -691,6 +691,10 @@ namespace xamarinJKH.Apps
             {
                 Console.WriteLine(e);
             }
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            FrameKeys.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
+            FrameMessage.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
+            
         }
 
         private async void ShowInfo()

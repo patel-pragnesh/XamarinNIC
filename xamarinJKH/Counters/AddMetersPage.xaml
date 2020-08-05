@@ -6,7 +6,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:xamarinJKH"
-             BackgroundColor="#F3F3F3"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
              xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
              xmlns:counters="clr-namespace:xamarinJKH.Counters;assembly=xamarinJKH"
@@ -25,7 +25,7 @@
            
                 <Grid>
                 <Image x:Name="ImageFon"
-                       Source="ic_history_pay_top"
+                       Source="{AppThemeBinding Light=ic_background_counter_light, Dark=ic_background_counter}"
                        VerticalOptions="Start"
 					   Margin="0,20,0,0"
                        Aspect="AspectFill"
@@ -34,9 +34,10 @@
                     <pancake:PancakeView
                         Padding="0"
                         CornerRadius="0,0,25,25"
-                        BackgroundColor="#131313"
+                        BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
                         HorizontalOptions="Fill"
 						MinimumHeightRequest="102"
+                        BorderThickness="1"
                         VerticalOptions="Start"
                         x:Name="Pancake"
                         IsClippedToBounds="True">
@@ -50,7 +51,7 @@
                                            Text="Название"
                                            FontAttributes="Bold"
                                            FontSize="16"
-                                           TextColor="White" />
+                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                                     <StackLayout
                                         Spacing="0"
                                         Orientation="Horizontal">
@@ -64,7 +65,7 @@
                                         <Label x:Name="LabelPhone"
                                                Text="Телефон"
                                                FontSize="14"
-                                               TextColor="White"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                                Margin="-5, 0, 0, 0"
                                                VerticalOptions="Center" />
                                     </StackLayout>
@@ -110,13 +111,14 @@
                         Orientation="Horizontal"
                         Margin="25, 0, 0, 0"
                         HorizontalOptions="Start">
-                        <Image Source="ic_arrow_back"
+                        <xamarinJkh:IconView Source="ic_arrow_back"
                                HeightRequest="15"
+                               Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalOptions="Center" />
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.Back}"
                             FontSize="18"
-                            TextColor="White"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
@@ -125,7 +127,8 @@
                 <Frame CornerRadius="40"
                        Margin="20, 10, 20, -60"
                        VerticalOptions="Start"
-                       BackgroundColor="#494949"
+                       x:Name="FrameTop"
+                       BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                        Padding="20,20,20,60">
                     <StackLayout Orientation="Vertical"
                                  HorizontalOptions="CenterAndExpand">
@@ -139,7 +142,7 @@
                                 FontAttributes="Bold"
                                 VerticalTextAlignment="Center"
                                 HorizontalOptions="CenterAndExpand"
-                                TextColor="White"
+                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                 FontSize="18" />
                         </StackLayout>
                         <Label x:Name="UniqNumLbl"

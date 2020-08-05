@@ -26,7 +26,7 @@ namespace xamarinJKH.DialogViews
             HexColor = hexColor;
             _Request = request;
             InitializeComponent();
-
+            Frame.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
             if(Device.RuntimePlatform==Device.iOS)
             {
                 commentFrame.BackgroundColor = Color.White;

@@ -23,6 +23,7 @@ using xamarinJKH.Utils;
 
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using Xamarin.Forms.PancakeView;
 
 namespace xamarinJKH.Apps
 {
@@ -354,6 +355,13 @@ namespace xamarinJKH.Apps
         {
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            FrameTop.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
         }
 
         void setBinding()

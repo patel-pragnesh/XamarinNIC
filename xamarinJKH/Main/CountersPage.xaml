@@ -5,13 +5,13 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             BackgroundColor="#F3F3F3"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Main.CountersPage">
     <ContentPage.Content>
         <StackLayout>
              <Grid>
                 <Image x:Name="ImageFon"
-                       Source="ic_background_counter"
+                       Source="{AppThemeBinding Light=ic_background_counter_light, Dark=ic_background_counter}"
                        VerticalOptions="Start"
 					   Margin="0,20,0,0"
                        Aspect="AspectFill"
@@ -20,7 +20,8 @@
                     <pancakeView:PancakeView
                         Padding="0"
                         CornerRadius="0,0,25,25"
-                        BackgroundColor="#131313"
+                        BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
+                        BorderThickness="1"
                         HorizontalOptions="Fill"
 						MinimumHeightRequest="102"
                         VerticalOptions="Start"
@@ -36,7 +37,7 @@
                                            Text="Название"
                                            FontAttributes="Bold"
                                            FontSize="16"
-                                           TextColor="White" />
+                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                                     <StackLayout
                                         Spacing="0"
                                         Orientation="Horizontal">
@@ -50,7 +51,7 @@
                                         <Label x:Name="LabelPhone"
                                                Text="{x:Static xamarinJkh:AppResources.PhoneLabel}"
                                                FontSize="14"
-                                               TextColor="White"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                                Margin="-5, 0, 0, 0"
                                                VerticalOptions="Center" />
                                     </StackLayout>
@@ -98,7 +99,7 @@
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.Meters_NavBar}"
                             FontSize="23"
-                            TextColor="White"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
@@ -107,7 +108,8 @@
                 <Frame CornerRadius="40"
                        Margin="20, 10, 20, -40"
                        VerticalOptions="Start"
-                       BackgroundColor="#494949"
+                       x:Name="FrameTop"
+                       BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                        Padding="20,20,20,60">
                     <StackLayout Orientation="Vertical"
                                  HorizontalOptions="CenterAndExpand">
@@ -119,15 +121,15 @@
                                 FontAttributes="Bold"
                                 VerticalTextAlignment="Center"
                                 HorizontalOptions="CenterAndExpand"
-                                TextColor="White"
+                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                 FontSize="15" />
                             <StackLayout Spacing="0">
                                 <StackLayout Orientation="Horizontal">
                                     <xamarinJkh:BorderlessPicker
                                         x:Name="Picker" Title="{x:Static xamarinJkh:AppResources.Choose}"
-                                        TitleColor="White"
-                                        TextColor="White"
-                                        BackgroundColor="#494949"
+                                        TitleColor="{AppThemeBinding Light=Black, Dark=White}"
+                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                        BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                         VerticalOptions="Start"
                                         SelectedIndexChanged="picker_SelectedIndexChanged" />
                                     <xamarinJkh:IconView Source="ic_arrow_forward"
@@ -136,7 +138,7 @@
                                                          Rotation="90"
                                                          Margin="0,5,0,0"
                                                          VerticalOptions="Center"
-                                                         Foreground="White" />
+                                                         Foreground="{AppThemeBinding Light=Black, Dark=White}" />
                                 </StackLayout>
                                 <Label
                                     HeightRequest="1"
@@ -151,7 +153,7 @@
                                FontAttributes="Bold"
                                HorizontalOptions="CenterAndExpand"
                                HorizontalTextAlignment="Center"
-                               TextColor="White"
+                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                FontSize="15" />
                     </StackLayout>
 

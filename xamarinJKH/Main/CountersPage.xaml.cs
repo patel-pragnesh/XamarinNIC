@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Plugin.Messaging;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Counters;
+using xamarinJKH.CustomRenderers;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Main;
 using xamarinJKH.Server;
@@ -109,13 +111,14 @@ namespace xamarinJKH.Main
             LabelPhone.GestureRecognizers.Add(call);
             SetTextAndColor();
             getInfo();
+            OSAppTheme currentTheme = Application.Current.RequestedTheme;
             if (Settings.Person.Accounts.Count > 0)
             {
                 FormattedString formattedResource = new FormattedString();
                 formattedResource.Spans.Add(new Span
                 {
                     Text = AppResources.CountersInfo1,
-                    TextColor = Color.White,
+                    TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
                     FontAttributes = FontAttributes.None,
                     FontSize = 15
                 });
@@ -129,14 +132,14 @@ namespace xamarinJKH.Main
                         {
                             Text = AppResources.From + Settings.Person.Accounts[0].MetersStartDay + AppResources.To +
                                    Settings.Person.Accounts[0].MetersEndDay + AppResources.DayOfMounth,
-                            TextColor = Color.White,
+                            TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
                             FontAttributes = FontAttributes.Bold,
                             FontSize = 15
                         });
                         formattedResource.Spans.Add(new Span
                         {
                             Text = AppResources.CountersCurrentMonth,
-                            TextColor = Color.White,
+                            TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
                             FontAttributes = FontAttributes.None,
                             FontSize = 15
                         });
@@ -146,7 +149,7 @@ namespace xamarinJKH.Main
                         formattedResource.Spans.Add(new Span
                         {
                             Text = AppResources.CountersThisMonth,
-                            TextColor = Color.White,
+                            TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
                             FontAttributes = FontAttributes.Bold,
                             FontSize = 15
                         });
@@ -157,7 +160,7 @@ namespace xamarinJKH.Main
                     formattedResource.Spans.Add(new Span
                     {
                         Text = AppResources.CountersThisMonth,
-                        TextColor = Color.White,
+                        TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
                         FontAttributes = FontAttributes.Bold,
                         FontSize = 15
                     });
@@ -173,6 +176,14 @@ namespace xamarinJKH.Main
             countersList.BackgroundColor = Color.Transparent;
             if(Device.RuntimePlatform!=Device.iOS)
                 countersList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+            
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            FrameTop.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
         }
 
         protected override void OnAppearing()
@@ -233,8 +244,8 @@ namespace xamarinJKH.Main
 
         void SetIdents()
         {
-            Picker.TextColor = Color.White;
-            Picker.TitleColor = Color.White;
+            Picker.SetAppThemeColor(Xamarin.Forms.Picker.TextColorProperty, Color.Black, Color.White);
+            Picker.SetAppThemeColor(Xamarin.Forms.Picker.TitleColorProperty, Color.Black, Color.White);
             Picker.Title = account;
             _meterInfo = null;
             if (account == "Все")

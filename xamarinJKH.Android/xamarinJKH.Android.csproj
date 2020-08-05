@@ -174,9 +174,11 @@
     <AndroidResource Include="Resources\drawable\ic_author.png" />
     <AndroidResource Include="Resources\drawable\ic_background.png" />
     <AndroidResource Include="Resources\drawable\ic_background_counter.png" />
+    <AndroidResource Include="Resources\drawable\ic_background_counter_light.png" />
     <AndroidResource Include="Resources\drawable\ic_background_event.png" />
     <AndroidResource Include="Resources\drawable\ic_background_event_light.png" />
     <AndroidResource Include="Resources\drawable\ic_background_profile.png" />
+    <AndroidResource Include="Resources\drawable\ic_background_profile_light.png" />
     <AndroidResource Include="Resources\drawable\ic_background_quest_light.png" />
     <AndroidResource Include="Resources\drawable\ic_calendar.png" />
     <AndroidResource Include="Resources\drawable\ic_call_app.png" />

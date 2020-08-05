@@ -17,6 +17,7 @@ using Xamarin.Forms.Internals;
 using System.Security.Cryptography;
 using Plugin.Messaging;
 using Xamarin.Forms.Markup;
+using Xamarin.Forms.PancakeView;
 using xamarinJKH.Tech;
 
 namespace xamarinJKH.Counters
@@ -414,6 +415,7 @@ namespace xamarinJKH.Counters
 
         void SetTextAndColor()
         {
+            OSAppTheme currentTheme = Application.Current.RequestedTheme;
             if (meter.Resource.ToLower().Contains("холодное") || meter.Resource.ToLower().Contains("хвс"))
             {
                 img.Source = ImageSource.FromFile("ic_cold_water");
@@ -440,15 +442,15 @@ namespace xamarinJKH.Counters
             formattedUniq.Spans.Add(new Span
             {
                 Text = AppResources.FacNum,
-                TextColor = Color.LightGray,
+                TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.LightGray,
                 FontAttributes = FontAttributes.None,
                 FontSize = 15
             });
             formattedUniq.Spans.Add(new Span
             {
                 Text = meter.FactoryNumber,
-                TextColor = Color.White,
-                FontAttributes = FontAttributes.None,
+                TextColor =  currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                FontAttributes = currentTheme.Equals(OSAppTheme.Light) ? FontAttributes.Bold : FontAttributes.None,
                 FontSize = 15
             });
             UniqNumLbl.FormattedText = formattedUniq;
@@ -457,15 +459,15 @@ namespace xamarinJKH.Counters
             formattedCheckup.Spans.Add(new Span
             {
                 Text = AppResources.LastCheck,
-                TextColor = Color.LightGray,
+                TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.LightGray,
                 FontAttributes = FontAttributes.None,
                 FontSize = 15
             });
             formattedCheckup.Spans.Add(new Span
             {
                 Text = meter.LastCheckupDate,
-                TextColor = Color.White,
-                FontAttributes = FontAttributes.None,
+                TextColor =  currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                FontAttributes = currentTheme.Equals(OSAppTheme.Light) ? FontAttributes.Bold : FontAttributes.None,
                 FontSize = 15
             });
             CheckupLbl.FormattedText = formattedCheckup;
@@ -473,16 +475,16 @@ namespace xamarinJKH.Counters
             FormattedString formattedRecheckup = new FormattedString();
             formattedRecheckup.Spans.Add(new Span
             {
-                Text = AppResources.CheckInterval,
-                TextColor = Color.LightGray,
+                Text = AppResources.CheckInterval + " ",
+                TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.LightGray,
                 FontAttributes = FontAttributes.None,
                 FontSize = 15
             });
             formattedRecheckup.Spans.Add(new Span
             {
                 Text = meter.RecheckInterval.ToString() + " лет",
-                TextColor = Color.White,
-                FontAttributes = FontAttributes.None,
+                TextColor =  currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                FontAttributes = currentTheme.Equals(OSAppTheme.Light) ? FontAttributes.Bold : FontAttributes.None,
                 FontSize = 15
             });
             RecheckLbl.FormattedText = formattedRecheckup;
@@ -491,6 +493,15 @@ namespace xamarinJKH.Counters
                 BindingContext = new AddMetersPageViewModel(SetPrev ? PrevValue : meter.Values[0].Value);
                 //PredCount.Text = meter.Values[0].Value.ToString(CultureInfo.InvariantCulture);
             }
+            
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            FrameTop.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
+            FrameMeterReading.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
         }
 
         public async void SaveInfoAccount(string count)

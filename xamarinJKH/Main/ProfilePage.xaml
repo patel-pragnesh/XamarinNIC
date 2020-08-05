@@ -9,13 +9,13 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             BackgroundColor="#F3F3F3"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Main.ProfilePage">
     <ContentPage.Content>
         <StackLayout>
             <Grid>
                 <Image x:Name="ImageFon"
-                       Source="ic_background_profile"
+                       Source="{AppThemeBinding Light=ic_background_profile_light, Dark=ic_background_profile} "
                        VerticalOptions="Start"
                        Margin="0,20,0,0"
                        Aspect="AspectFill"
@@ -24,8 +24,9 @@
                     <pancakeView:PancakeView
                         Padding="0"
                         CornerRadius="0,0,25,25"
-                        BackgroundColor="#131313"
+                        BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
                         HorizontalOptions="Fill"
+                        BorderThickness="1"
                         MinimumHeightRequest="102"
                         VerticalOptions="Start"
                         x:Name="Pancake"
@@ -40,7 +41,7 @@
                                            Text="Название"
                                            FontAttributes="Bold"
                                            FontSize="16"
-                                           TextColor="White" />
+                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                                     <StackLayout
                                         Spacing="0"
                                         Orientation="Horizontal">
@@ -54,7 +55,7 @@
                                         <Label x:Name="LabelPhone"
                                                Text="Телефон"
                                                FontSize="14"
-                                               TextColor="White"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                                Margin="-5, 0, 0, 0"
                                                VerticalOptions="Center" />
                                     </StackLayout>
@@ -102,7 +103,7 @@
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.Profile_NavBar}"
                             FontSize="23"
-                            TextColor="White"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
@@ -114,6 +115,7 @@
                             VerticalOptions="StartAndExpand">
                             <customRenderers:MaterialFrame Elevation="20" CornerRadius="30"
                                                            Margin="10, 0, 10, 15"
+                                                           x:Name="FrameTop"
                                                            BackgroundColor="White"
                                                            Padding="0">
 
@@ -259,6 +261,7 @@
                             </customRenderers:MaterialFrame>
                             <customRenderers:MaterialFrame Elevation="20"
                                                            CornerRadius="30"
+                                                           x:Name="FrameSettings"
                                                            Margin="10, 15, 10, 15"
                                                            BackgroundColor="White"
                                                            Padding="0">

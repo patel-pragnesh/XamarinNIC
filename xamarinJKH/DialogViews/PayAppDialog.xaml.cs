@@ -26,6 +26,8 @@ namespace xamarinJKH.DialogViews
             this.appPage = appPage;
             title = request.PaidServiceText;
             InitializeComponent();
+            Frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.Transparent);
+
             var close = new TapGestureRecognizer();
             close.Tapped += async (s, e) => { await PopupNavigation.Instance.PopAsync(); };
             IconViewClose.GestureRecognizers.Add(close);
