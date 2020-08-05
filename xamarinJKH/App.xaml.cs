@@ -203,7 +203,7 @@ namespace xamarinJKH
 
         protected override void OnStart()
         {
-            Application.Current.UserAppTheme = OSAppTheme.Unspecified;
+            Application.Current.UserAppTheme = OSAppTheme.Dark;
             AppCenter.Start("android=21216fbf-ac4c-4b3a-ace6-83d4ecc0a1a2;",
                             // "uwp={Your UWP App secret here};" +
                             // "ios={Your iOS App secret here}",
