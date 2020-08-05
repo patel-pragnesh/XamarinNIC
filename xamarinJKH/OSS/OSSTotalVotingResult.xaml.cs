@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Plugin.Messaging;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server.RequestModel;
@@ -65,6 +66,14 @@ namespace xamarinJKH
             SetDecorations();
             
             SetData(oSS);
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeBot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            FrameResult.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
         }
 
         Color colorFromMobileSettings = Color.FromHex(Settings.MobileSettings.color);
@@ -85,7 +94,7 @@ namespace xamarinJKH
                 TextColor = Color.White,
                 HorizontalOptions = LayoutOptions.Start
             };
-
+            statusName.SetAppThemeColor(Label.TextColorProperty, Color.Black, Color.White);
             statusNameIcon.Children.Add(statusName);
 
             StackLayout coloredStatus = new StackLayout() { HorizontalOptions = LayoutOptions.Start, Orientation = StackOrientation.Horizontal };

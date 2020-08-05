@@ -353,6 +353,7 @@
     <BundleResource Include="Resources\ic_background_counter_light.png" />
     <BundleResource Include="Resources\ic_background_event.png" />
     <BundleResource Include="Resources\ic_background_event_light.png" />
+    <BundleResource Include="Resources\ic_background_OSS_light.png" />
     <BundleResource Include="Resources\ic_background_profile.png" />
     <BundleResource Include="Resources\ic_background_profile_light.png" />
     <BundleResource Include="Resources\ic_background_quest_light.png" />

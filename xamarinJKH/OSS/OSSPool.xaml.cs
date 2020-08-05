@@ -7,6 +7,7 @@ using Plugin.Messaging;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
@@ -120,6 +121,15 @@ namespace xamarinJKH
             }
 
             pdf2.Foreground = colorFromMobileSettings;
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            FramePool.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            Color unselect = hexColor.AddLuminosity(0.3);
+            StackLayoutIndicator.SetAppThemeColor(StackLayout.BackgroundColorProperty, unselect, Color.White);
         }
 
         

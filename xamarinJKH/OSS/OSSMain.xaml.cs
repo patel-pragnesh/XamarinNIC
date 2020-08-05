@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Plugin.Messaging;
 using Xamarin.Forms;
-
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
@@ -85,7 +85,13 @@ namespace xamarinJKH
             GetOssData(1);
 
             NavigationPage.SetHasNavigationBar(this, false);
-
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            OssTypeFrame.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
             
         }
 
@@ -161,6 +167,7 @@ namespace xamarinJKH
                     {
 
                         Frame f = new Frame();
+                        f.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.Transparent);
                         f.MinimumHeightRequest = 50;
                         f.BackgroundColor = Color.White;
 
@@ -461,7 +468,7 @@ namespace xamarinJKH
 
 
                     ((Button)sender).TextColor = colorFromMobileSettings;
-                    ButtonArchive.TextColor = Color.White;
+                    ButtonArchive.SetAppThemeColor(Button.TextColorProperty, Color.Black, Color.White);
 
                     //ButtonActive.IsEnabled = true;
                     //ButtonArchive.IsEnabled = true;
@@ -490,8 +497,7 @@ namespace xamarinJKH
 
 
                     ((Button)sender).TextColor = colorFromMobileSettings;
-                    ButtonActive.TextColor = Color.White;
-
+                    ButtonActive.SetAppThemeColor(Button.TextColorProperty, Color.Black, Color.White);
                     //ButtonActive.IsEnabled = true;
                     //ButtonArchive.IsEnabled = true;
                 });
