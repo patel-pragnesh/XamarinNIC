@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Plugin.Messaging;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server.RequestModel;
@@ -91,7 +92,7 @@ namespace xamarinJKH
                 TextColor = Color.White,
                 HorizontalOptions = LayoutOptions.Start
             };
-
+            statusName.SetAppThemeColor(Label.TextColorProperty, Color.Black, Color.White);
             statusNameIcon.Children.Add(statusName);
 
             StackLayout coloredStatus = new StackLayout() { HorizontalOptions = LayoutOptions.Start, Orientation = StackOrientation.Horizontal };
@@ -140,14 +141,30 @@ namespace xamarinJKH
             delimColored.BackgroundColor = colorFromMobileSettings;
 
             TotalArea.Text = " "+ oSS.VoitingArea.ToString()+ " м.кв. = 100%";
-            Area.Text= " " + oSS.Accounts[0].Area.ToString() + " м.кв. = "+ Math.Round(oSS.Accounts[0].Area/oSS.VoitingArea*100,3) + "%";
+            decimal round = 0;
+            try
+            { 
+                round = Math.Round(oSS.Accounts[0].Area/oSS.VoitingArea*100,3);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            Area.Text= " " + oSS.Accounts[0].Area.ToString() + " м.кв. = "+ round + "%";
             dayEnd.Text = oSS.DateEnd.Split(' ')[0];
             var r1Date = oSS.ResultsReleaseDate.Split(' ')[0];
             var r1Time = oSS.ResultsReleaseDate.Split(' ')[1];
             dayEndPlus.Text = $" заключительный день голосования. Итоги голосования будут доступны {r1Date} в {r1Time}" +
                 $" местного времени. Когда результаты голосования будут подсчитаны, Вы получите уведомление в формате Push сообщения и доступ к \"Протоколу ОСС\" с пакетом необходимых документов.";
 
-
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeBot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            FrameResult.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
 
         }
 
