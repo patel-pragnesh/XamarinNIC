@@ -21,7 +21,7 @@ namespace xamarinJKH
 
         Color hex = Color.FromHex(Settings.MobileSettings.color);
         
-        const string forgotpinText = "Для восстановления/изменения пин-кода обратитесь пожалуйста в Вашу управляющую компанию";
+        string forgotpinText = AppResources.OSSPincodeTroub;
 
         public OSSAuth()
         {

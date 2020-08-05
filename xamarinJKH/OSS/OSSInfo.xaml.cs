@@ -156,21 +156,21 @@ namespace xamarinJKH
                 iconViewStatusNameIcon.Source = "ic_status_green";
                 iconViewStatusNameIcon.Foreground = Color.FromHex("#50ac2f");
                 ColorStatusTextString = Color.FromHex("#50ac2f");
-                textStatius = "Уведомление о проведении ОСС";
+                textStatius = AppResources.OSSInfoNotif;
             }
             else if (statusInt == 1)
             {
                 iconViewStatusNameIcon.Source = "ic_status_yellow";
                 iconViewStatusNameIcon.Foreground = Color.FromHex("#ff971c");
                 ColorStatusTextString = Color.FromHex("#ff971c");
-                textStatius = "Идет голосование";
+                textStatius = AppResources.OSSInfoVoting;
             }
             else //2
             {
                 iconViewStatusNameIcon.Source = "ic_status_red";
                 iconViewStatusNameIcon.Foreground = Color.FromHex("#ed2e37");
                 ColorStatusTextString = Color.FromHex("#ed2e37");
-                textStatius = "Завершено";
+                textStatius = AppResources.OSSInfoPassed;
             }
             iconViewStatusNameIcon.HeightRequest = 15;
             iconViewStatusNameIcon.WidthRequest = 15;
@@ -309,7 +309,7 @@ namespace xamarinJKH
             //добавляем иконку
             stackCommonInfo.Children.Add(getIconView("ic_info"));
             //основной текст
-            stackCommonInfo.Children.Add(HeadLabel("Общая информация"));
+            stackCommonInfo.Children.Add(HeadLabel(AppResources.OSSInfoGeneralInfo));
             //стрелка
             var iconViewArrow = await getIconArrowAsync();
             stackCommonInfo.Children.Add(iconViewArrow);
@@ -325,38 +325,38 @@ namespace xamarinJKH
             frames.Add(CommonInfo.Id, additionslData.Id);
 
             //наименование документа           
-            var docName = detailLabel("Наименование документа: ", sObj.MeetingTitle);
+            var docName = detailLabel($"{AppResources.OSSInfoDocName}: ", sObj.MeetingTitle);
             additionslData.Children.Add(docName);
 
             //инициатор            
-            var initiator = detailLabel("Инициатор собрания: ", sObj.Author);
+            var initiator = detailLabel($"{AppResources.OSSInfoInitiator}: ", sObj.Author);
             additionslData.Children.Add(initiator);
 
             //Адрес дома
-            Label adress = detailLabel("Адрес дома: ", sObj.HouseAddress);
+            Label adress = detailLabel($"{AppResources.OSSInfoAdress}: ", sObj.HouseAddress);
             additionslData.Children.Add(adress);
 
             //Реквизиты, подтверждающие собственность
-            Label document = detailLabel("Реквизиты, подтверждающие собственность: ", sObj.Accounts[0].Document);
+            Label document = detailLabel($"{AppResources.OSSInfoProps}: ", sObj.Accounts[0].Document);
             additionslData.Children.Add(document);
 
             //Номер собственности
-            Label propNum = detailLabel("Номер собственности: ", sObj.Accounts[0].PremiseNumber);
+            Label propNum = detailLabel($"{AppResources.OSSInfoNumber}: ", sObj.Accounts[0].PremiseNumber);
             additionslData.Children.Add(propNum);
             //Площадь
-            Label area = detailLabel("Площадь: ", $"{sObj.Accounts[0].Area} м.кв.");
+            Label area = detailLabel($"{AppResources.OSSInfoArea}: ", $"{sObj.Accounts[0].Area} {AppResources.OSSInfoMeasurmentArea}");
             additionslData.Children.Add(area);
 
             //Доля
-            Label propertyPercent = detailLabel("Доля: ", $"{sObj.Accounts[0].PropertyPercent} %");
+            Label propertyPercent = detailLabel($"{AppResources.OSSInfoPart}: ", $"{sObj.Accounts[0].PropertyPercent} %");
             additionslData.Children.Add(propertyPercent);
 
             //дата собрания
-            Label date = detailLabel("Дата собрания: ", $"{sObj.DateStart} по {sObj.DateEnd} включительно");
+            Label date = detailLabel($"{AppResources.OSSInfoDate}: ", $"{sObj.DateStart} {AppResources.To} {sObj.DateEnd} {AppResources.OSSInfoDateInclude}");
             additionslData.Children.Add(date);
 
             //форма проведения
-            Label formAction = detailLabel("Форма проведения: ", sObj.Form);
+            Label formAction = detailLabel($"{AppResources.OSSInfoForm}: ", sObj.Form);
             additionslData.Children.Add(formAction);
 
             rootStackCommon.Children.Add(additionslData);
@@ -379,7 +379,7 @@ namespace xamarinJKH
             //добавляем иконку
             stack.Children.Add(getIconView("ic_info_theme"));
             //основной текст
-            stack.Children.Add(HeadLabel("Повестка собрания"));
+            stack.Children.Add(HeadLabel(AppResources.OSSInfoTheme));
             //стрелка
             var iconViewArrowCommonTheme = await getIconArrowAsync();
             stack.Children.Add(iconViewArrowCommonTheme);
@@ -397,7 +397,7 @@ namespace xamarinJKH
             int i = 1;
             foreach(var q in sObj.Questions)
             {
-                var docName = detailLabel($"Вопрос № {i}: ", q.Text);
+                var docName = detailLabel($"{AppResources.OSSInfoQuestionNumber} {i}: ", q.Text);
                 i++;
                 additionslData.Children.Add(docName);
             }           
@@ -422,7 +422,7 @@ namespace xamarinJKH
             //добавляем иконку
             stack.Children.Add(getIconView("ic_info_property"));
             //основной текст
-            stack.Children.Add(HeadLabel("Сведения о собственности"));
+            stack.Children.Add(HeadLabel(AppResources.OSSInfoPropHeader));
             //стрелка
             var iconViewArrowCommonTheme = await getIconArrowAsync();
             stack.Children.Add(iconViewArrowCommonTheme);
@@ -437,20 +437,20 @@ namespace xamarinJKH
             frames.Add(frame.Id, additionslData.Id);
 
             //Реквизиты, подтверждающие собственность
-            Label document = detailLabel("Реквизиты, подтверждающие собственность: ", sObj.Accounts[0].Document);
+            Label document = detailLabel($"{AppResources.OSSInfoProps}: ", sObj.Accounts[0].Document);
             additionslData.Children.Add(document);
             //Номер собственности
-            Label propNum = detailLabel("Номер собственности: ", sObj.Accounts[0].PremiseNumber);
+            Label propNum = detailLabel($"{AppResources.OSSInfoNumber}: ", sObj.Accounts[0].PremiseNumber);
             additionslData.Children.Add(propNum);
             //Площадь
-            Label area = detailLabel("Площадь: ", $"{sObj.Accounts[0].Area} м.кв.");
+            Label area = detailLabel($"{AppResources.OSSInfoArea}: ", $"{sObj.Accounts[0].Area} {AppResources.OSSInfoMeasurmentArea}");
             additionslData.Children.Add(area);
 
             //Доля
-            Label propertyPercent = detailLabel("Доля: ", $"{sObj.Accounts[0].PropertyPercent} %");
+            Label propertyPercent = detailLabel($"{AppResources.OSSInfoPart}: ", $"{sObj.Accounts[0].PropertyPercent} %");
             additionslData.Children.Add(propertyPercent);
             //Общая площадь помещений
-            Label areaTotal = detailLabel("Общая площадь помещений: ", $"Жилые: {sObj.AreaResidential} м.кв.\nНежилые: {sObj.AreaNonresidential} м.кв.");
+            Label areaTotal = detailLabel($"{AppResources.OSSInfoAllArea}: ", $"{AppResources.OSSInfoLivingArea}: {sObj.AreaResidential} {AppResources.OSSInfoMeasurmentArea}\n{AppResources.OSSInfoNonLivingArea}: {sObj.AreaNonresidential} {AppResources.OSSInfoMeasurmentArea}");
             additionslData.Children.Add(areaTotal);
 
             rootStack.Children.Add(additionslData);
@@ -473,7 +473,7 @@ namespace xamarinJKH
             //добавляем иконку
             stack.Children.Add(getIconView("ic_info_admin"));
             //основной текст
-            stack.Children.Add(HeadLabel("Сведения об администраторе"));
+            stack.Children.Add(HeadLabel(AppResources.OSSInfoAdminHeader));
             //стрелка
             var iconViewArrowCommonTheme = await getIconArrowAsync();
             stack.Children.Add(iconViewArrowCommonTheme);
@@ -488,26 +488,26 @@ namespace xamarinJKH
             frames.Add(frame.Id, additionslData.Id);
 
             //Фирменное наименование
-            Label name = detailLabel("Фирменное наименование: ", sObj.AdminstratorName);
+            Label name = detailLabel($"{AppResources.OSSInfoAdminFirm}: ", sObj.AdminstratorName);
             additionslData.Children.Add(name);
 
             //Организационно-правовая форма
-            Label opf = detailLabel("Организационно-правовая форма: ",  sObj.AdministratorIsUL? "Юридическое лицо" : "Физическое лицо");
+            Label opf = detailLabel($"{AppResources.OSSInfoAdminForm}: ",  sObj.AdministratorIsUL? AppResources.Entity : AppResources.Resident);
             additionslData.Children.Add(opf);
 
             //Место нахождения            
-            additionslData.Children.Add(detailLabel("Место нахождения: ", sObj.AdminstratorAddress));
+            additionslData.Children.Add(detailLabel($"{AppResources.OSSInfoAdminPlace}: ", sObj.AdminstratorAddress));
 
             //Почтовый адрес           
-            additionslData.Children.Add(detailLabel("Почтовый адрес: ", sObj.AdminstratorPostAddress));
+            additionslData.Children.Add(detailLabel($"{AppResources.OSSInfoPostCode}: ", sObj.AdminstratorPostAddress));
 
             //Контактный номер телефона
-            additionslData.Children.Add(detailLabel("Контактный номер телефона: ", sObj.AdminstratorPhone));
+            additionslData.Children.Add(detailLabel($"{AppResources.OSSInfoContact}: ", sObj.AdminstratorPhone));
 
             //Официальный сайт
             var site = new Label();
             var fs = new FormattedString();
-            Span t = new Span() { TextColor = Color.FromHex("#545454"), FontSize = 14, Text = "Официальный сайт: " };
+            Span t = new Span() { TextColor = Color.FromHex("#545454"), FontSize = 14, Text = $"{AppResources.OSSInfoOfficialSite}: " };
             fs.Spans.Add(t);
             var fsSpanUrl = new Span() { Text = sObj.AdminstratorSite , TextColor=colorFromMobileSettings, TextDecorations=TextDecorations.Underline};
             fsSpanUrl.GestureRecognizers.Add(new TapGestureRecognizer
@@ -521,19 +521,19 @@ namespace xamarinJKH
             //без заполнения, поля надо уточнить
             //ФИО
             var fio = sObj.AdminstratorName;
-            additionslData.Children.Add(detailLabel("ФИО: ", fio));
+            additionslData.Children.Add(detailLabel($"{AppResources.FIO}: ", fio));
 
             //Паспортные данные
             var passport = sObj.AdminstratorDocNumber;
-            additionslData.Children.Add(detailLabel("Паспортные данные: ", passport));
+            additionslData.Children.Add(detailLabel($"{AppResources.OSSInfoPassport}: ", passport));
 
             //Место постоянного проживания
             var passportAdress = sObj.AdminstratorAddress;
-            additionslData.Children.Add(detailLabel("Место постоянного проживания: ", passportAdress));
+            additionslData.Children.Add(detailLabel($"{AppResources.OSSInfoPMJ}: ", passportAdress));
             
             //Адрес электронной почты
             var emailAdress = sObj.AdminstratorEmail;
-            additionslData.Children.Add(detailLabel("Адрес электронной почты: ", emailAdress));
+            additionslData.Children.Add(detailLabel($"{AppResources.EmailAdress}: ", emailAdress));
 
             rootStack.Children.Add(additionslData);
 
@@ -556,7 +556,7 @@ namespace xamarinJKH
             //добавляем иконку
             stack.Children.Add(getIconView("ic_info_design_order"));
             //основной текст
-            stack.Children.Add(HeadLabel("Порядок приема решений"));
+            stack.Children.Add(HeadLabel(AppResources.OSSInfoOrder));
             //стрелка
             var iconViewArrowCommonTheme = await getIconArrowAsync();
             stack.Children.Add(iconViewArrowCommonTheme);
@@ -573,7 +573,7 @@ namespace xamarinJKH
             //Электронные образцы
             var site = new Label();
             var fs = new FormattedString();
-            Span t = new Span() { TextColor = Color.FromHex("#545454"), FontSize = 14, Text = "Электронные образцы: " };
+            Span t = new Span() { TextColor = Color.FromHex("#545454"), FontSize = 14, Text = $"{AppResources.OSSInfoTypeElec} {AppResources.OSSInfoTypes}: " };
             fs.Spans.Add(t);
             var fsSpanUrl = new Span() { Text = sObj.WebSiteForScanDocView, TextColor = colorFromMobileSettings, TextDecorations = TextDecorations.Underline };
             fsSpanUrl.GestureRecognizers.Add(new TapGestureRecognizer
@@ -586,7 +586,7 @@ namespace xamarinJKH
 
             //Рукописные образцы: - содержимое поля надо уточнить
             var placeForWriteDesigns = sObj.PlaceOfReceiptSolutions;
-            var docName = detailLabel("Рукописные образцы: ", placeForWriteDesigns);                
+            var docName = detailLabel($"{AppResources.OSSInfoTypeHand} {AppResources.OSSInfoTypes}: ", placeForWriteDesigns);                
             additionslData.Children.Add(docName);
             
 

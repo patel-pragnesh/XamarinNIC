@@ -83,7 +83,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -100,7 +100,7 @@
                                Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalOptions="Center" />
                         <Label x:Name="titleLabel"
-                            Text="Сообщения о проведении общего &#10;собрания собственников"
+                            Text="{x:Static xamarinJkh:AppResources.OSSMainTitle}"
                             FontSize="18"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
@@ -121,10 +121,10 @@
                        VerticalOptions="Start">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start"
                                  Margin="0,-20,0,0">
-                                <Button x:Name="ButtonActive" Text="Активные" TextColor="{AppThemeBinding Light=Black, Dark=White}" FontAttributes="Bold"
+                                <Button x:Name="ButtonActive" Text="{x:Static xamarinJkh:AppResources.Active}" TextColor="{AppThemeBinding Light=Black, Dark=White}" FontAttributes="Bold"
                                 FontSize="Medium" BackgroundColor="Transparent" BorderWidth="0"
                                 Clicked="Button_Clicked" />
-                                <Button x:Name="ButtonArchive" Text="Завершенные" TextColor="{AppThemeBinding Light=Black, Dark=White}" FontAttributes="Bold"
+                                <Button x:Name="ButtonArchive" Text="{x:Static xamarinJkh:AppResources.Passed}" TextColor="{AppThemeBinding Light=Black, Dark=White}" FontAttributes="Bold"
                                 FontSize="Medium" BackgroundColor="Transparent" BorderWidth="0"
                                 Clicked="Button_Clicked_1" />
                             </StackLayout>

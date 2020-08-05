@@ -273,7 +273,7 @@ namespace xamarinJKH
                         //инициатор
                         Label initiator = new Label() {};
                         FormattedString text = new FormattedString();
-                        Span t1 = new Span() { TextColor =Color.FromHex("#545454"), FontSize=14, Text="Инициатор собрания: "};
+                        Span t1 = new Span() { TextColor =Color.FromHex("#545454"), FontSize=14, Text=$"{AppResources.OSSInfoInitiator}: "};
                         text.Spans.Add(t1);
                         Span t2 = new Span() { TextColor = Color.Black, FontSize = 14, Text = oss.InitiatorNames };
                         text.Spans.Add(t2);
@@ -283,9 +283,9 @@ namespace xamarinJKH
                         //дата собрания
                         Label date = new Label() {  };
                         FormattedString datetext = new FormattedString();
-                        Span datet1 = new Span() { TextColor = Color.FromHex("#545454"), FontSize = 14, Text = "Дата собрания: " };
+                        Span datet1 = new Span() { TextColor = Color.FromHex("#545454"), FontSize = 14, Text = $"{AppResources.OSSInfoDate}: " };
                         datetext.Spans.Add(datet1);
-                        Span datet2 = new Span() { TextColor = Color.Black, FontSize = 14, Text = $"{oss.DateStart} по {oss.DateEnd}" };
+                        Span datet2 = new Span() { TextColor = Color.Black, FontSize = 14, Text = $"{oss.DateStart} {AppResources.To} {oss.DateEnd}" };
                         datetext.Spans.Add(datet2);
                         date.FormattedText = datetext;
 
@@ -294,7 +294,7 @@ namespace xamarinJKH
                         //Адрес дома
                         Label adress = new Label() {  };
                         FormattedString adresstext = new FormattedString();
-                        Span adresst1 = new Span() { TextColor = Color.FromHex("#545454"), FontSize = 14, Text = "Адрес дома: " };
+                        Span adresst1 = new Span() { TextColor = Color.FromHex("#545454"), FontSize = 14, Text = $"{AppResources.OSSInfoAdress}: " };
                         adresstext.Spans.Add(adresst1);
                         Span adresst2 = new Span() { TextColor = Color.Black, FontSize = 14, Text = $"{oss.HouseAddress}" };
                         adresstext.Spans.Add(adresst2);
@@ -305,7 +305,7 @@ namespace xamarinJKH
                         //форма проведения
                         Label formAction = new Label() {  };
                         FormattedString formActiontext = new FormattedString();
-                        Span formActiont1 = new Span() { TextColor = Color.FromHex("#545454"), FontSize = 14, Text = "Форма проведения: " };
+                        Span formActiont1 = new Span() { TextColor = Color.FromHex("#545454"), FontSize = 14, Text = $"{AppResources.OSSInfoForm}: " };
                         formActiontext.Spans.Add(formActiont1);
                         Span formActiont2 = new Span() { TextColor = Color.Black, FontSize = 14, Text = $"{oss.Form}" };
                         formActiontext.Spans.Add(formActiont2);
@@ -323,7 +323,7 @@ namespace xamarinJKH
                         
                         StackLayout statusNameIcon = new StackLayout() { Orientation = StackOrientation.Vertical, HorizontalOptions = LayoutOptions.FillAndExpand };
                         
-                        Label statusName = new Label() { Text = "Статус собрания: ", FontAttributes = FontAttributes.Bold, FontSize = 14 , TextColor=Color.Black,                             
+                        Label statusName = new Label() { Text = $"{AppResources.OSSInfoStatus} ", FontAttributes = FontAttributes.Bold, FontSize = 14 , TextColor=Color.Black,                             
                             HorizontalOptions = LayoutOptions.Start};
 
                         statusNameIcon.Children.Add(statusName);
@@ -338,14 +338,14 @@ namespace xamarinJKH
                             iconViewStatusNameIcon.Source = "ic_status_green";
                             iconViewStatusNameIcon.Foreground = Color.FromHex("#50ac2f");
                             ColorStatusTextString = Color.FromHex("#50ac2f");
-                            textStatius = "Уведомление о проведении ОСС";
+                            textStatius = AppResources.OSSInfoNotif;
                         }
                         else if (statusInt == 1) 
                         {
                             iconViewStatusNameIcon.Source = "ic_status_yellow";
                             iconViewStatusNameIcon.Foreground = Color.FromHex("#ff971c");
                             ColorStatusTextString = Color.FromHex("#ff971c");
-                            textStatius = "Идет голосование";
+                            textStatius = AppResources.OSSInfoVoting;
                         }
                         else if(statusInt == 2)
                         {
@@ -359,7 +359,7 @@ namespace xamarinJKH
                             iconViewStatusNameIcon.Source = "ic_status_red";
                             iconViewStatusNameIcon.Foreground = Color.FromHex("#ed2e37");
                             ColorStatusTextString = Color.FromHex("#ed2e37");
-                            textStatius = "Завершено";
+                            textStatius = AppResources.OSSInfoPassed;
                         }                                            
                         iconViewStatusNameIcon.HeightRequest = 15;
                         iconViewStatusNameIcon.WidthRequest = 15;

@@ -86,7 +86,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -102,7 +102,7 @@
                                HeightRequest="15"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Авторизация для участия в &#10;общих собраниях собственников"
+                            Text="{x:Static xamarinJkh:AppResources.OSSAuthHeader}"
                             FontSize="18"
                             TextColor="White"
                             FontAttributes="Bold"
@@ -138,7 +138,7 @@
                                                HorizontalTextAlignment="Center"
                                                HorizontalOptions="FillAndExpand"
                                    Keyboard="Numeric"
-                                   Placeholder="Пин код" PlaceholderColor="#A2A2A2"/>
+                                   Placeholder="{x:Static xamarinJkh:AppResources.OSSPinCode}" PlaceholderColor="#A2A2A2"/>
 
                                         <local:IconView x:Name="ImageClosePass"
                                                         Source="ic_close_password"
@@ -171,7 +171,7 @@
                                         Spacing="0"
                                         HorizontalOptions="Center">
                                             <Label
-                                            Text="Войти "
+                                            Text="{x:Static xamarinJkh:AppResources.Login}"
                                             FontSize="15"
                                             TextColor="White"
                                             FontAttributes="Bold"
@@ -191,7 +191,7 @@
                                     Margin="0, 15, 0, 10"
                                     Orientation="Horizontal">
                                         <Label x:Name="ForgotPin"
-                                        Text="Забыли пин код?"
+                                        Text="{x:Static xamarinJkh:AppResources.OSSForgotPincode}"
                                         FontSize="15"
                                         TextColor="Black"
                                         TextDecorations="Underline"
@@ -199,7 +199,7 @@
                                         HorizontalOptions="StartAndExpand" />
 
                                         <Label x:Name="RegistLabel"
-                                           Text="Создать пин код"
+                                           Text="{x:Static xamarinJkh:AppResources.OSSCreatePincode}"
                                            FontSize="15"
                                            FontAttributes="Bold"
                                            TextColor="Red"

@@ -88,6 +88,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Активные.
+        /// </summary>
+        internal static string Active {
+            get {
+                return ResourceManager.GetString("Active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Подключить лицевой счет.
         /// </summary>
         internal static string AddIdent {
@@ -467,11 +476,29 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Адрес электронной почты.
+        /// </summary>
+        internal static string EmailAdress {
+            get {
+                return ResourceManager.GetString("EmailAdress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ввести код.
         /// </summary>
         internal static string EnterCodeApp {
             get {
                 return ResourceManager.GetString("EnterCodeApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Юридическое лицо.
+        /// </summary>
+        internal static string Entity {
+            get {
+                return ResourceManager.GetString("Entity", resourceCulture);
             }
         }
         
@@ -773,6 +800,396 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Авторизация для участия в 
+        ///общих собраниях собственников.
+        /// </summary>
+        internal static string OSSAuthHeader {
+            get {
+                return ResourceManager.GetString("OSSAuthHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Создать пин код.
+        /// </summary>
+        internal static string OSSCreatePincode {
+            get {
+                return ResourceManager.GetString("OSSCreatePincode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Забыли пин код?.
+        /// </summary>
+        internal static string OSSForgotPincode {
+            get {
+                return ResourceManager.GetString("OSSForgotPincode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Фирменное наименование.
+        /// </summary>
+        internal static string OSSInfoAdminFirm {
+            get {
+                return ResourceManager.GetString("OSSInfoAdminFirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Организационно-правовая форма.
+        /// </summary>
+        internal static string OSSInfoAdminForm {
+            get {
+                return ResourceManager.GetString("OSSInfoAdminForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сведения об администраторе.
+        /// </summary>
+        internal static string OSSInfoAdminHeader {
+            get {
+                return ResourceManager.GetString("OSSInfoAdminHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Место нахождения.
+        /// </summary>
+        internal static string OSSInfoAdminPlace {
+            get {
+                return ResourceManager.GetString("OSSInfoAdminPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Адрес дома.
+        /// </summary>
+        internal static string OSSInfoAdress {
+            get {
+                return ResourceManager.GetString("OSSInfoAdress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Общая площадь помещений.
+        /// </summary>
+        internal static string OSSInfoAllArea {
+            get {
+                return ResourceManager.GetString("OSSInfoAllArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Площадь.
+        /// </summary>
+        internal static string OSSInfoArea {
+            get {
+                return ResourceManager.GetString("OSSInfoArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Контактный номер телефона.
+        /// </summary>
+        internal static string OSSInfoContact {
+            get {
+                return ResourceManager.GetString("OSSInfoContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дата собрания.
+        /// </summary>
+        internal static string OSSInfoDate {
+            get {
+                return ResourceManager.GetString("OSSInfoDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to включительно.
+        /// </summary>
+        internal static string OSSInfoDateInclude {
+            get {
+                return ResourceManager.GetString("OSSInfoDateInclude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Наименование документа.
+        /// </summary>
+        internal static string OSSInfoDocName {
+            get {
+                return ResourceManager.GetString("OSSInfoDocName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Форма проведения.
+        /// </summary>
+        internal static string OSSInfoForm {
+            get {
+                return ResourceManager.GetString("OSSInfoForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Общая информация.
+        /// </summary>
+        internal static string OSSInfoGeneralInfo {
+            get {
+                return ResourceManager.GetString("OSSInfoGeneralInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Приветствуем Вас на собрании 
+        ///собственников жилья!.
+        /// </summary>
+        internal static string OSSInfoHeader {
+            get {
+                return ResourceManager.GetString("OSSInfoHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Инициатор собрания.
+        /// </summary>
+        internal static string OSSInfoInitiator {
+            get {
+                return ResourceManager.GetString("OSSInfoInitiator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Жилые.
+        /// </summary>
+        internal static string OSSInfoLivingArea {
+            get {
+                return ResourceManager.GetString("OSSInfoLivingArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to м.кв..
+        /// </summary>
+        internal static string OSSInfoMeasurmentArea {
+            get {
+                return ResourceManager.GetString("OSSInfoMeasurmentArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Нежилые.
+        /// </summary>
+        internal static string OSSInfoNonLivingArea {
+            get {
+                return ResourceManager.GetString("OSSInfoNonLivingArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Уведомление о проведении ОСС.
+        /// </summary>
+        internal static string OSSInfoNotif {
+            get {
+                return ResourceManager.GetString("OSSInfoNotif", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Номер собственности.
+        /// </summary>
+        internal static string OSSInfoNumber {
+            get {
+                return ResourceManager.GetString("OSSInfoNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Официальный сайт.
+        /// </summary>
+        internal static string OSSInfoOfficialSite {
+            get {
+                return ResourceManager.GetString("OSSInfoOfficialSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Порядок приема решений.
+        /// </summary>
+        internal static string OSSInfoOrder {
+            get {
+                return ResourceManager.GetString("OSSInfoOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Доля.
+        /// </summary>
+        internal static string OSSInfoPart {
+            get {
+                return ResourceManager.GetString("OSSInfoPart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Принять участие.
+        /// </summary>
+        internal static string OSSInfoPass {
+            get {
+                return ResourceManager.GetString("OSSInfoPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Завершено.
+        /// </summary>
+        internal static string OSSInfoPassed {
+            get {
+                return ResourceManager.GetString("OSSInfoPassed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Паспортные данные.
+        /// </summary>
+        internal static string OSSInfoPassport {
+            get {
+                return ResourceManager.GetString("OSSInfoPassport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Место постоянного проживания.
+        /// </summary>
+        internal static string OSSInfoPMJ {
+            get {
+                return ResourceManager.GetString("OSSInfoPMJ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Почтовый адрес.
+        /// </summary>
+        internal static string OSSInfoPostCode {
+            get {
+                return ResourceManager.GetString("OSSInfoPostCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сведения о собственности.
+        /// </summary>
+        internal static string OSSInfoPropHeader {
+            get {
+                return ResourceManager.GetString("OSSInfoPropHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Реквизиты, подтверждающие собственность.
+        /// </summary>
+        internal static string OSSInfoProps {
+            get {
+                return ResourceManager.GetString("OSSInfoProps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вопрос №.
+        /// </summary>
+        internal static string OSSInfoQuestionNumber {
+            get {
+                return ResourceManager.GetString("OSSInfoQuestionNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Статус собрания:.
+        /// </summary>
+        internal static string OSSInfoStatus {
+            get {
+                return ResourceManager.GetString("OSSInfoStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Повестка собрания.
+        /// </summary>
+        internal static string OSSInfoTheme {
+            get {
+                return ResourceManager.GetString("OSSInfoTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Электронные.
+        /// </summary>
+        internal static string OSSInfoTypeElec {
+            get {
+                return ResourceManager.GetString("OSSInfoTypeElec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Рукописные.
+        /// </summary>
+        internal static string OSSInfoTypeHand {
+            get {
+                return ResourceManager.GetString("OSSInfoTypeHand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to образцы.
+        /// </summary>
+        internal static string OSSInfoTypes {
+            get {
+                return ResourceManager.GetString("OSSInfoTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Идет голосование.
+        /// </summary>
+        internal static string OSSInfoVoting {
+            get {
+                return ResourceManager.GetString("OSSInfoVoting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сообщения о проведении общего 
+        ///собрания собственников.
+        /// </summary>
+        internal static string OSSMainTitle {
+            get {
+                return ResourceManager.GetString("OSSMainTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пин код.
+        /// </summary>
+        internal static string OSSPinCode {
+            get {
+                return ResourceManager.GetString("OSSPinCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Для восстановления/изменения пин-кода обратитесь пожалуйста в Вашу управляющую компанию.
+        /// </summary>
+        internal static string OSSPincodeTroub {
+            get {
+                return ResourceManager.GetString("OSSPincodeTroub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Просрочено.
         /// </summary>
         internal static string Overdue {
@@ -796,6 +1213,15 @@ namespace xamarinJKH {
         internal static string PassApp {
             get {
                 return ResourceManager.GetString("PassApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Завершенные.
+        /// </summary>
+        internal static string Passed {
+            get {
+                return ResourceManager.GetString("Passed", resourceCulture);
             }
         }
         
@@ -1066,6 +1492,15 @@ namespace xamarinJKH {
         internal static string RequestsReceived {
             get {
                 return ResourceManager.GetString("RequestsReceived", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Физическое лицо.
+        /// </summary>
+        internal static string Resident {
+            get {
+                return ResourceManager.GetString("Resident", resourceCulture);
             }
         }
         

@@ -82,7 +82,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -99,7 +99,7 @@
                                Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Приветствуем Вас на собрании &#10;собственников жилья!"
+                            Text="{x:Static xamarinJkh:AppResources.OSSInfoHeader}"
                             FontSize="18"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
@@ -136,7 +136,7 @@
                             </yummy:PancakeView.Shadow>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="End" Padding="20,0,20,0">
                                 <StackLayout HorizontalOptions="FillAndExpand" Margin="0,20" Orientation="Vertical">
-                                    <Label Text="Статус собрания:"
+                                    <Label Text="{x:Static xamarinJkh:AppResources.OSSInfoStatus}"
                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                FontSize="12"
                                FontAttributes="Bold">
@@ -153,7 +153,7 @@
                             VerticalOptions="FillAndExpand"                                    
                             TextColor="White"
                             FontAttributes="Bold"
-                            Text="Принять участие" Clicked="Btn_Clicked"></Button>
+                            Text="{x:Static xamarinJkh:AppResources.OSSInfoPass}" Clicked="Btn_Clicked"></Button>
                                 </Frame>
                             </StackLayout>
                         </yummy:PancakeView>

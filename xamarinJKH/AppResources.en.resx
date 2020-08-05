@@ -126,6 +126,9 @@
   <data name="AccessCode" xml:space="preserve">
     <value>Access code</value>
   </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
   <data name="AddIdent" xml:space="preserve">
     <value>Add an account</value>
   </data>
@@ -261,8 +264,14 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="DSP" xml:space="preserve">
     <value>Don't save password</value>
   </data>
+  <data name="EmailAdress" xml:space="preserve">
+    <value>E-mail address</value>
+  </data>
   <data name="EnterCodeApp" xml:space="preserve">
     <value>Enter code</value>
+  </data>
+  <data name="Entity" xml:space="preserve">
+    <value>Entity</value>
   </data>
   <data name="Events_NavBar" xml:space="preserve">
     <value>Events</value>
@@ -372,6 +381,135 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="OSS" xml:space="preserve">
     <value>Owners meetings</value>
   </data>
+  <data name="OSSAuthHeader" xml:space="preserve">
+    <value>Authorization for owners' meetings</value>
+  </data>
+  <data name="OSSCreatePincode" xml:space="preserve">
+    <value>Create pin code</value>
+  </data>
+  <data name="OSSForgotPincode" xml:space="preserve">
+    <value>Forgot pin code</value>
+  </data>
+  <data name="OSSInfoAdminFirm" xml:space="preserve">
+    <value>Brand name</value>
+  </data>
+  <data name="OSSInfoAdminForm" xml:space="preserve">
+    <value>Organizational and legal form</value>
+  </data>
+  <data name="OSSInfoAdminHeader" xml:space="preserve">
+    <value>Administrator information</value>
+  </data>
+  <data name="OSSInfoAdminPlace" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="OSSInfoAdress" xml:space="preserve">
+    <value>House address</value>
+  </data>
+  <data name="OSSInfoAllArea" xml:space="preserve">
+    <value>Total area of premises</value>
+  </data>
+  <data name="OSSInfoArea" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="OSSInfoContact" xml:space="preserve">
+    <value>Contact phone number</value>
+  </data>
+  <data name="OSSInfoDate" xml:space="preserve">
+    <value>Meeting date</value>
+  </data>
+  <data name="OSSInfoDateInclude" xml:space="preserve">
+    <value>incl.</value>
+  </data>
+  <data name="OSSInfoDocName" xml:space="preserve">
+    <value>Title of the document</value>
+  </data>
+  <data name="OSSInfoForm" xml:space="preserve">
+    <value>Form of conducting</value>
+  </data>
+  <data name="OSSInfoGeneralInfo" xml:space="preserve">
+    <value>General information</value>
+  </data>
+  <data name="OSSInfoHeader" xml:space="preserve">
+    <value>Welcome to owners' meeting!</value>
+  </data>
+  <data name="OSSInfoInitiator" xml:space="preserve">
+    <value>Meeting initiator</value>
+  </data>
+  <data name="OSSInfoLivingArea" xml:space="preserve">
+    <value>Residential</value>
+  </data>
+  <data name="OSSInfoMeasurmentArea" xml:space="preserve">
+    <value>sq.m.</value>
+  </data>
+  <data name="OSSInfoNonLivingArea" xml:space="preserve">
+    <value>Non-residential</value>
+  </data>
+  <data name="OSSInfoNotif" xml:space="preserve">
+    <value>OM notification</value>
+  </data>
+  <data name="OSSInfoNumber" xml:space="preserve">
+    <value>Property number</value>
+  </data>
+  <data name="OSSInfoOfficialSite" xml:space="preserve">
+    <value>Official site</value>
+  </data>
+  <data name="OSSInfoOrder" xml:space="preserve">
+    <value>Decision making procedure</value>
+  </data>
+  <data name="OSSInfoPart" xml:space="preserve">
+    <value>Portion</value>
+  </data>
+  <data name="OSSInfoPass" xml:space="preserve">
+    <value>Participate</value>
+  </data>
+  <data name="OSSInfoPassed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="OSSInfoPassport" xml:space="preserve">
+    <value>Passport data</value>
+  </data>
+  <data name="OSSInfoPMJ" xml:space="preserve">
+    <value>Place of permanent residence</value>
+  </data>
+  <data name="OSSInfoPostCode" xml:space="preserve">
+    <value>Mailing address</value>
+  </data>
+  <data name="OSSInfoPropHeader" xml:space="preserve">
+    <value>Property details</value>
+  </data>
+  <data name="OSSInfoProps" xml:space="preserve">
+    <value>Property details</value>
+  </data>
+  <data name="OSSInfoQuestionNumber" xml:space="preserve">
+    <value>Question #</value>
+  </data>
+  <data name="OSSInfoStatus" xml:space="preserve">
+    <value>Meeting status: </value>
+  </data>
+  <data name="OSSInfoTheme" xml:space="preserve">
+    <value>Meeting agenda</value>
+  </data>
+  <data name="OSSInfoTypeElec" xml:space="preserve">
+    <value>Electronic</value>
+  </data>
+  <data name="OSSInfoTypeHand" xml:space="preserve">
+    <value>Handwritten</value>
+  </data>
+  <data name="OSSInfoTypes" xml:space="preserve">
+    <value>samples</value>
+  </data>
+  <data name="OSSInfoVoting" xml:space="preserve">
+    <value>Voting in progress</value>
+  </data>
+  <data name="OSSMainTitle" xml:space="preserve">
+    <value>Messages about owners'meeting</value>
+  </data>
+  <data name="OSSPinCode" xml:space="preserve">
+    <value>Pin code</value>
+  </data>
+  <data name="OSSPincodeTroub" xml:space="preserve">
+    <value>To restore / change the PIN code, please contact your management company</value>
+  </data>
   <data name="Overdue" xml:space="preserve">
     <value>Overdue</value>
   </data>
@@ -380,6 +518,9 @@ A bot will call you on your number PHONE and tell an access code</value>
   </data>
   <data name="PassApp" xml:space="preserve">
     <value>Pass</value>
+  </data>
+  <data name="Passed" xml:space="preserve">
+    <value>Completed</value>
   </data>
   <data name="PassPenance" xml:space="preserve">
     <value>Pass penance</value>
@@ -468,6 +609,9 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="RequestsReceived" xml:space="preserve">
     <value>Requests recieved</value>
   </data>
+  <data name="Resident" xml:space="preserve">
+    <value>Individual</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
@@ -506,6 +650,9 @@ A bot will call you on your number PHONE and tell an access code</value>
   </data>
   <data name="Step1" xml:space="preserve">
     <value>Step 1</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>собственников жилья!</value>
   </data>
   <data name="String1" xml:space="preserve">
     <value />

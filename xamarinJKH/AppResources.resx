@@ -126,6 +126,9 @@
   <data name="AccessCode" xml:space="preserve">
     <value>Код доступа</value>
   </data>
+  <data name="Active" xml:space="preserve">
+    <value>Активные</value>
+  </data>
   <data name="AddIdent" xml:space="preserve">
     <value>Подключить лицевой счет</value>
   </data>
@@ -253,8 +256,14 @@
   <data name="DSP" xml:space="preserve">
     <value>Не сохранять пароль</value>
   </data>
+  <data name="EmailAdress" xml:space="preserve">
+    <value>Адрес электронной почты</value>
+  </data>
   <data name="EnterCodeApp" xml:space="preserve">
     <value>Ввести код</value>
+  </data>
+  <data name="Entity" xml:space="preserve">
+    <value>Юридическое лицо</value>
   </data>
   <data name="Events_NavBar" xml:space="preserve">
     <value>События</value>
@@ -355,6 +364,138 @@
   <data name="OSS" xml:space="preserve">
     <value>Общие собрания собственников</value>
   </data>
+  <data name="OSSAuthHeader" xml:space="preserve">
+    <value>Авторизация для участия в 
+общих собраниях собственников</value>
+  </data>
+  <data name="OSSCreatePincode" xml:space="preserve">
+    <value>Создать пин код</value>
+  </data>
+  <data name="OSSForgotPincode" xml:space="preserve">
+    <value>Забыли пин код?</value>
+  </data>
+  <data name="OSSInfoAdminFirm" xml:space="preserve">
+    <value>Фирменное наименование</value>
+  </data>
+  <data name="OSSInfoAdminForm" xml:space="preserve">
+    <value>Организационно-правовая форма</value>
+  </data>
+  <data name="OSSInfoAdminHeader" xml:space="preserve">
+    <value>Сведения об администраторе</value>
+  </data>
+  <data name="OSSInfoAdminPlace" xml:space="preserve">
+    <value>Место нахождения</value>
+  </data>
+  <data name="OSSInfoAdress" xml:space="preserve">
+    <value>Адрес дома</value>
+  </data>
+  <data name="OSSInfoAllArea" xml:space="preserve">
+    <value>Общая площадь помещений</value>
+  </data>
+  <data name="OSSInfoArea" xml:space="preserve">
+    <value>Площадь</value>
+  </data>
+  <data name="OSSInfoContact" xml:space="preserve">
+    <value>Контактный номер телефона</value>
+  </data>
+  <data name="OSSInfoDate" xml:space="preserve">
+    <value>Дата собрания</value>
+  </data>
+  <data name="OSSInfoDateInclude" xml:space="preserve">
+    <value>включительно</value>
+  </data>
+  <data name="OSSInfoDocName" xml:space="preserve">
+    <value>Наименование документа</value>
+  </data>
+  <data name="OSSInfoForm" xml:space="preserve">
+    <value>Форма проведения</value>
+  </data>
+  <data name="OSSInfoGeneralInfo" xml:space="preserve">
+    <value>Общая информация</value>
+  </data>
+  <data name="OSSInfoHeader" xml:space="preserve">
+    <value>Приветствуем Вас на собрании 
+собственников жилья!</value>
+  </data>
+  <data name="OSSInfoInitiator" xml:space="preserve">
+    <value>Инициатор собрания</value>
+  </data>
+  <data name="OSSInfoLivingArea" xml:space="preserve">
+    <value>Жилые</value>
+  </data>
+  <data name="OSSInfoMeasurmentArea" xml:space="preserve">
+    <value>м.кв.</value>
+  </data>
+  <data name="OSSInfoNonLivingArea" xml:space="preserve">
+    <value>Нежилые</value>
+  </data>
+  <data name="OSSInfoNotif" xml:space="preserve">
+    <value>Уведомление о проведении ОСС</value>
+  </data>
+  <data name="OSSInfoNumber" xml:space="preserve">
+    <value>Номер собственности</value>
+  </data>
+  <data name="OSSInfoOfficialSite" xml:space="preserve">
+    <value>Официальный сайт</value>
+  </data>
+  <data name="OSSInfoOrder" xml:space="preserve">
+    <value>Порядок приема решений</value>
+  </data>
+  <data name="OSSInfoPart" xml:space="preserve">
+    <value>Доля</value>
+  </data>
+  <data name="OSSInfoPass" xml:space="preserve">
+    <value>Принять участие</value>
+  </data>
+  <data name="OSSInfoPassed" xml:space="preserve">
+    <value>Завершено</value>
+  </data>
+  <data name="OSSInfoPassport" xml:space="preserve">
+    <value>Паспортные данные</value>
+  </data>
+  <data name="OSSInfoPMJ" xml:space="preserve">
+    <value>Место постоянного проживания</value>
+  </data>
+  <data name="OSSInfoPostCode" xml:space="preserve">
+    <value>Почтовый адрес</value>
+  </data>
+  <data name="OSSInfoPropHeader" xml:space="preserve">
+    <value>Сведения о собственности</value>
+  </data>
+  <data name="OSSInfoProps" xml:space="preserve">
+    <value>Реквизиты, подтверждающие собственность</value>
+  </data>
+  <data name="OSSInfoQuestionNumber" xml:space="preserve">
+    <value>Вопрос №</value>
+  </data>
+  <data name="OSSInfoStatus" xml:space="preserve">
+    <value>Статус собрания:</value>
+  </data>
+  <data name="OSSInfoTheme" xml:space="preserve">
+    <value>Повестка собрания</value>
+  </data>
+  <data name="OSSInfoTypeElec" xml:space="preserve">
+    <value>Электронные</value>
+  </data>
+  <data name="OSSInfoTypeHand" xml:space="preserve">
+    <value>Рукописные</value>
+  </data>
+  <data name="OSSInfoTypes" xml:space="preserve">
+    <value>образцы</value>
+  </data>
+  <data name="OSSInfoVoting" xml:space="preserve">
+    <value>Идет голосование</value>
+  </data>
+  <data name="OSSMainTitle" xml:space="preserve">
+    <value>Сообщения о проведении общего 
+собрания собственников</value>
+  </data>
+  <data name="OSSPinCode" xml:space="preserve">
+    <value>Пин код</value>
+  </data>
+  <data name="OSSPincodeTroub" xml:space="preserve">
+    <value>Для восстановления/изменения пин-кода обратитесь пожалуйста в Вашу управляющую компанию</value>
+  </data>
   <data name="Overdue" xml:space="preserve">
     <value>Просрочено</value>
   </data>
@@ -363,6 +504,9 @@
   </data>
   <data name="PassApp" xml:space="preserve">
     <value>Перевести</value>
+  </data>
+  <data name="Passed" xml:space="preserve">
+    <value>Завершенные</value>
   </data>
   <data name="PassPenance" xml:space="preserve">
     <value>Передать показания</value>
@@ -453,6 +597,9 @@
   </data>
   <data name="RequestsReceived" xml:space="preserve">
     <value>Заявок поступило:</value>
+  </data>
+  <data name="Resident" xml:space="preserve">
+    <value>Физическое лицо</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Сохранить</value>
