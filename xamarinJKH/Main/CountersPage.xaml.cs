@@ -38,7 +38,7 @@ namespace xamarinJKH.Main
                 OnPropertyChanged(nameof(IsRefreshing));
             }
         }
-
+        public Command ChangeTheme { get; set; }
         public ICommand RefreshCommand
         {
             get
@@ -111,6 +111,28 @@ namespace xamarinJKH.Main
             LabelPhone.GestureRecognizers.Add(call);
             SetTextAndColor();
             getInfo();
+            SetTitle();
+
+            countersList.BackgroundColor = Color.Transparent;
+            if(Device.RuntimePlatform!=Device.iOS)
+                countersList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+            
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            FrameTop.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
+            ChangeTheme = new Command(async () =>
+            {
+                SetTitle();
+            });
+            MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) => ChangeTheme.Execute(null));
+        }
+
+        private void SetTitle()
+        {
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
             if (Settings.Person.Accounts.Count > 0)
             {
@@ -172,18 +194,6 @@ namespace xamarinJKH.Main
             {
                 PeriodSendLbl.Text = AppResources.NoAccounts;
             }
-
-            countersList.BackgroundColor = Color.Transparent;
-            if(Device.RuntimePlatform!=Device.iOS)
-                countersList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
-            
-            Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
-            FrameTop.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
         }
 
         protected override void OnAppearing()

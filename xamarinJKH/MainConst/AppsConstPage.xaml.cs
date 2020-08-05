@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.AppsConst;
 using xamarinJKH.Server;
@@ -111,9 +112,36 @@ namespace xamarinJKH.MainConst
             MessagingCenter.Subscribe<Object>(this, "UpdateAppCons", (sender) => RefreshData());
             // Assuming this function needs to use Main/UI thread to move to your "Main Menu" Page
             getApps();
-
+            ChangeTheme = new Command(async () =>
+            {
+                SetAdminName();
+            });
+            MessagingCenter.Subscribe<Object>(this, "ChangeAdminApp", (sender) => ChangeTheme.Execute(null));
 
         }
+
+        private void SetAdminName()
+        {
+            FormattedString formattedName = new FormattedString();
+            OSAppTheme currentTheme = Application.Current.RequestedTheme;
+            formattedName.Spans.Add(new Span
+            {
+                Text = Settings.Person.FIO,
+                TextColor = currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
+                FontAttributes = FontAttributes.Bold,
+                FontSize = 16
+            });
+            formattedName.Spans.Add(new Span
+            {
+                Text = ", добрый день!",
+                TextColor = currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
+                FontAttributes = FontAttributes.None,
+                FontSize = 16
+            });
+            LabelName.FormattedText = formattedName;
+        }
+
+        public Command ChangeTheme { get; set; }
 
         protected override void OnAppearing()
         {
@@ -135,25 +163,18 @@ namespace xamarinJKH.MainConst
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            FormattedString formattedName = new FormattedString();
-            formattedName.Spans.Add(new Span
-            {
-                Text = Settings.Person.FIO,
-                TextColor = Color.White,
-                FontAttributes = FontAttributes.Bold,
-                FontSize = 16
-            });
-            formattedName.Spans.Add(new Span
-            {
-                Text = ", добрый день!",
-                TextColor = Color.White,
-                FontAttributes = FontAttributes.None,
-                FontSize = 16
-            });
-            LabelName.FormattedText = formattedName;
+            SetAdminName();
             SwitchApp.OnColor = hex;
             FrameBtnAdd.BackgroundColor = hex;
             IconAddApp.Foreground = Color.White;
+            
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
         }
 
 

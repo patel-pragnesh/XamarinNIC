@@ -246,7 +246,7 @@ namespace xamarinJKH.Pays
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
-            FrameSaldo.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
+            FrameSaldo.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
         }
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)

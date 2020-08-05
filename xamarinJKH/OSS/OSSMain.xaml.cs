@@ -91,7 +91,7 @@ namespace xamarinJKH
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
-            OssTypeFrame.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
+            OssTypeFrame.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#8d8d8d"));
             
         }
 
@@ -167,7 +167,7 @@ namespace xamarinJKH
                     {
 
                         Frame f = new Frame();
-                        f.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.Transparent);
+                        f.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
                         f.MinimumHeightRequest = 50;
                         f.BackgroundColor = Color.White;
 

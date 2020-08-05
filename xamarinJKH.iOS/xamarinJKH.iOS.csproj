@@ -380,6 +380,7 @@
     <BundleResource Include="Resources\ic_info_app1.png" />
     <BundleResource Include="Resources\ic_minus.png" />
     <BundleResource Include="Resources\ic_monitor_top.png" />
+    <BundleResource Include="Resources\ic_monitor_top_light.png" />
     <BundleResource Include="Resources\ic_news.png" />
     <BundleResource Include="Resources\ic_news_top.png" />
     <BundleResource Include="Resources\ic_news_top_light.png" />

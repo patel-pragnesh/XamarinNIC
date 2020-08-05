@@ -182,11 +182,11 @@ namespace xamarinJKH.Main
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
 
-            FrameNews.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
-            FrameQuestions.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
-            FrameOffers.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
-            FrameOSS.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
-            FrameNotification.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
+            FrameNews.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
+            FrameQuestions.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
+            FrameOffers.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
+            FrameOSS.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
+            FrameNotification.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
         }
     }
 

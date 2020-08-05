@@ -5,7 +5,7 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             BackgroundColor="#F3F3F3"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.MainConst.MonitorPage">
     <ContentPage.Content>
         <Grid>
@@ -17,7 +17,7 @@
             <Image x:Name="ImageFon"
                        Grid.Row="0"
                        Grid.RowSpan="3"
-                       Source="ic_monitor_top"
+                       Source="{AppThemeBinding Light=ic_monitor_top_light, Dark=ic_monitor_top}"
                        VerticalOptions="Start"
 					   Margin="0,20,0,0"
                        Aspect="AspectFill"
@@ -26,8 +26,9 @@
                 <pancakeView:PancakeView
                         Padding="0"
                         CornerRadius="0,0,25,25"
-                        BackgroundColor="#131313"
+                        BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
                         HorizontalOptions="Fill"
+                        BorderThickness="1"
 						MinimumHeightRequest="102"
                         VerticalOptions="Start"
                         x:Name="Pancake"
@@ -42,7 +43,7 @@
                                            Text="Название"
                                            FontAttributes="Bold"
                                            FontSize="16"
-                                           TextColor="White" />
+                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                                 <StackLayout
                                         Spacing="0"
                                         Orientation="Horizontal">
@@ -57,7 +58,7 @@
                                     <Label x:Name="LabelPhone"
                                                Text="Телефон"
                                                FontSize="14"
-                                               TextColor="White"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                                Margin="0, 0, 0, 0"
                                                VerticalOptions="Center" />
                                 </StackLayout>
@@ -105,7 +106,7 @@
                     <Label
                             Text="{x:Static xamarinJkh:AppResources.Monitoring_NavBar}"
                             FontSize="23"
-                            TextColor="White"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                 </StackLayout>
@@ -119,7 +120,7 @@
                        Margin="20, 10, 20, -70"
                        VerticalOptions="Start"
                        x:Name="Frame"
-                       BackgroundColor="#8D8D8D"
+                       BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
                        Padding="20,20,20,80">
                     <StackLayout Orientation="Horizontal">
                         <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0">
@@ -144,18 +145,18 @@
                                            FontSize="{Binding fontSize}"
                                            MaxLines="3"
                                            FontAttributes="Bold"
-                                           TextColor="White" />
+                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                                     <xamarinJkh:IconView Source="ic_arrow_forward"
                                                          HeightRequest="12"
                                                          WidthRequest="12"
                                                          Rotation="90"
                                                          Margin="0,5,0,0"
                                                          VerticalOptions="Center"
-                                                         Foreground="White" />
+                                                         Foreground="{AppThemeBinding Light=Black, Dark=White}" />
                                 </StackLayout>
                                 <Label
                                     HeightRequest="1"
-                                    BackgroundColor="White"
+                                    BackgroundColor="{AppThemeBinding Light=Black, Dark=White}"
                                     HorizontalOptions="Fill" />
                             </StackLayout>
                             <StackLayout Spacing="-2"
@@ -171,18 +172,18 @@
                                            FontSize="{Binding fontSize}"
                                            MaxLines="3"
                                            FontAttributes="Bold"
-                                           TextColor="White" />
+                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                                     <xamarinJkh:IconView Source="ic_arrow_forward"
                                                          HeightRequest="12"
                                                          WidthRequest="12"
                                                          Rotation="90"
                                                          Margin="0,5,0,0"
                                                          VerticalOptions="Center"
-                                                         Foreground="White" />
+                                                         Foreground="{AppThemeBinding Light=Black, Dark=White}" />
                                 </StackLayout>
                                 <Label
                                     HeightRequest="1"
-                                    BackgroundColor="White"
+                                    BackgroundColor="{AppThemeBinding Light=Black, Dark=White}"
                                     HorizontalOptions="Fill" />
                             </StackLayout>
                         </Grid>

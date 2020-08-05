@@ -12,6 +12,7 @@ using Plugin.FilePicker.Abstractions;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.MainConst;
@@ -332,21 +333,29 @@ namespace xamarinJKH.AppsConst
         {
             UkName.Text = Settings.MobileSettings.main_name;
             FormattedString formattedName = new FormattedString();
+            OSAppTheme currentTheme = Application.Current.RequestedTheme;
             formattedName.Spans.Add(new Span
             {
                 Text = Settings.Person.FIO,
-                TextColor = Color.White,
+                TextColor =  currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = 16
             });
             formattedName.Spans.Add(new Span
             {
                 Text = ", добрый день!",
-                TextColor = Color.White,
+                TextColor =  currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
                 FontAttributes = FontAttributes.None,
                 FontSize = 16
             });
             LabelName.FormattedText = formattedName;
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            FrameTop.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
         }
 
         void setBinding()

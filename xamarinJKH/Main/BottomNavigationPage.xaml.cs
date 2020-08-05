@@ -17,6 +17,8 @@ namespace xamarinJKH.Main
     public partial class BottomNavigationPage : TabbedPage
     {
         private RestClientMP server = new RestClientMP();
+        
+        public Command ChangeTheme { get; set; }
         public BottomNavigationPage()
         {
             InitializeComponent();
@@ -44,6 +46,21 @@ namespace xamarinJKH.Main
                 this.CurrentPage = this.Children[3];
                 MessagingCenter.Send<Object, int>(this, "OpenApp", index);
             });
+            
+            ChangeTheme = new Command(async () =>
+            {
+                OSAppTheme currentTheme = Application.Current.RequestedTheme;
+                Color unselect = hex.AddLuminosity(0.3);
+                switch (currentTheme)
+                {
+                    case OSAppTheme.Light: UnselectedTabColor = unselect;
+                        break;
+                    case OSAppTheme.Dark: UnselectedTabColor = Color.Gray;
+                        break;
+                }
+            });
+            
+            MessagingCenter.Subscribe<Object>(this, "ChangeTheme", (sender) => ChangeTheme.Execute(null));
         }
 
         void StartUpdateToken()

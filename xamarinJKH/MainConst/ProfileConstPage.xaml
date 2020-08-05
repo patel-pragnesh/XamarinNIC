@@ -9,14 +9,14 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             BackgroundColor="#F3F3F3"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.MainConst.ProfileConstPage">
     <ContentPage.Content>
         <StackLayout>
 
             <Grid>
                 <Image x:Name="ImageFon"
-                       Source="ic_background_profile"
+                       Source="{AppThemeBinding Light=ic_background_profile_light, Dark=ic_background_profile}"
                        VerticalOptions="Start"
                        Margin="0,20,0,0"
                        Aspect="AspectFill"
@@ -25,7 +25,8 @@
                     <pancakeView:PancakeView
                         Padding="0"
                         CornerRadius="0,0,25,25"
-                        BackgroundColor="#131313"
+                        BorderThickness="1"
+                        BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
                         HorizontalOptions="Fill"
                         MinimumHeightRequest="102"
                         VerticalOptions="Start"
@@ -41,7 +42,7 @@
                                            Text="Название"
                                            FontAttributes="Bold"
                                            FontSize="16"
-                                           TextColor="White" />
+                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                                     <StackLayout
                                         Spacing="0"
                                         Orientation="Horizontal">
@@ -56,7 +57,7 @@
                                         <Label x:Name="LabelName"
                                                Text="Телефон"
                                                FontSize="14"
-                                               TextColor="White"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                                Margin="0, 0, 0, 0"
                                                VerticalOptions="Center" />
                                     </StackLayout>
@@ -104,7 +105,7 @@
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.Profile_NavBar}"
                             FontSize="23"
-                            TextColor="White"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
@@ -116,6 +117,7 @@
                             VerticalOptions="StartAndExpand">
                             <customRenderers:MaterialFrame Elevation="20" CornerRadius="30"
                                                            Margin="10, 0, 10, 15"
+                                                           x:Name="FrameTop"
                                                            BackgroundColor="White"
                                                            Padding="0">
 
@@ -259,6 +261,47 @@
                                     </Frame>
                                 </StackLayout>
                             </customRenderers:MaterialFrame>
+                            
+                            <customRenderers:MaterialFrame Elevation="20"
+                                                           CornerRadius="30"
+                                                           x:Name="FrameSettings"
+                                                           Margin="10, 15, 10, 15"
+                                                           BackgroundColor="White"
+                                                           Padding="0">
+
+                                <StackLayout
+                                    Margin="10, 20, 10, 10">
+                                    <StackLayout
+                                        Orientation="Horizontal">
+
+                                        <Label Text="{x:Static xamarinJkh:AppResources.Theme}"
+                                               Margin="10, 0, 0, 0"
+                                               FontAttributes="Bold"
+                                               FontSize="20"
+                                               TextColor="Black"
+                                               HorizontalOptions="Center" />
+                                    </StackLayout>
+                                    <StackLayout
+                                        Margin="5,0,0,0">
+                                        <RadioButton
+                                            x:Name="RadioButtonAuto"
+                                            FontSize="16"
+                                            CheckedChanged="RadioButtonAuto_OnCheckedChanged"
+                                            Text="{x:Static xamarinJkh:AppResources.Automatic}" />
+                                        <RadioButton
+                                            x:Name="RadioButtonDark"
+                                            CheckedChanged="RadioButtonDark_OnCheckedChanged"
+                                            FontSize="16"
+                                            Text="{x:Static xamarinJkh:AppResources.Dark}" />
+                                        <RadioButton
+                                            x:Name="RadioButtonLigth"
+                                            CheckedChanged="RadioButtonLigth_OnCheckedChanged"
+                                            FontSize="16"
+                                            Text="{x:Static xamarinJkh:AppResources.Light}" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </customRenderers:MaterialFrame>
+                            
                             <Frame CornerRadius="15"
                                    BackgroundColor="Red"
                                    Margin="10, 10, 10, 10"

@@ -16,6 +16,7 @@ namespace xamarinJKH.AppsConst
         public AppConstCell()
         {
             MaterialFrame frame = new MaterialFrame();
+            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
             frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;

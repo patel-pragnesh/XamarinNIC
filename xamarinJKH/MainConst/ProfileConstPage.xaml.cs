@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.InterfacesIntegration;
@@ -141,19 +142,33 @@ namespace xamarinJKH.MainConst
 
         void SetText()
         {
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
             UkName.Text = Settings.MobileSettings.main_name;
+            SetAdminName();
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            FrameTop.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
+            FrameSettings.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
+        }
+
+        private void SetAdminName()
+        {
             FormattedString formattedName = new FormattedString();
+            OSAppTheme currentTheme = Application.Current.RequestedTheme;
             formattedName.Spans.Add(new Span
             {
                 Text = Settings.Person.FIO,
-                TextColor = Color.White,
+                TextColor = currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = 16
             });
             formattedName.Spans.Add(new Span
             {
                 Text = ", добрый день!",
-                TextColor = Color.White,
+                TextColor = currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
                 FontAttributes = FontAttributes.None,
                 FontSize = 16
             });
@@ -177,7 +192,24 @@ namespace xamarinJKH.MainConst
             LabelseparatorFio.BackgroundColor = hexColor;
             BtnExit.TextColor = hexColor;
             progress.Color = hexColor;
-
+            
+            RadioButtonAuto.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
+            RadioButtonDark.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
+            RadioButtonLigth.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
+            
+            int theme = Preferences.Get("Theme", 0);
+            switch (theme)
+            {
+                case 0:
+                    RadioButtonAuto.IsChecked = true;
+                    break;
+                case 1:
+                    RadioButtonDark.IsChecked = true;
+                    break;
+                case 2:
+                    RadioButtonLigth.IsChecked = true;
+                    break;
+            }
 
         }
 
@@ -186,5 +218,34 @@ namespace xamarinJKH.MainConst
             Preferences.Set("isPass", isSave);
         }
 
+        private void RadioButtonAuto_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            Application.Current.UserAppTheme = OSAppTheme.Unspecified;
+            Preferences.Set("Theme", 0);
+            MessagingCenter.Send<Object>(this, "ChangeThemeConst");
+            MessagingCenter.Send<Object>(this, "ChangeAdminApp");
+            MessagingCenter.Send<Object>(this, "ChangeAdminMonitor");
+            SetAdminName();
+        }
+
+        private void RadioButtonDark_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            Application.Current.UserAppTheme = OSAppTheme.Dark;
+            Preferences.Set("Theme", 1);
+            MessagingCenter.Send<Object>(this, "ChangeThemeConst");
+            MessagingCenter.Send<Object>(this, "ChangeAdminApp");
+            MessagingCenter.Send<Object>(this, "ChangeAdminMonitor");
+            SetAdminName();
+        }
+
+        private void RadioButtonLigth_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            Application.Current.UserAppTheme = OSAppTheme.Light;
+            Preferences.Set("Theme", 2);
+            MessagingCenter.Send<Object>(this, "ChangeThemeConst");
+            MessagingCenter.Send<Object>(this, "ChangeAdminApp");
+            MessagingCenter.Send<Object>(this, "ChangeAdminMonitor");
+            SetAdminName();
+        }
     }
 }

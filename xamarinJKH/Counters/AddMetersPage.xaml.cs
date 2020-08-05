@@ -500,8 +500,8 @@ namespace xamarinJKH.Counters
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
-            FrameTop.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
-            FrameMeterReading.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
+            FrameTop.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
+            FrameMeterReading.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
         }
 
         public async void SaveInfoAccount(string count)

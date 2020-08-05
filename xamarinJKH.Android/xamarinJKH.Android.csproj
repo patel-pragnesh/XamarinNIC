@@ -201,6 +201,7 @@
     <AndroidResource Include="Resources\drawable\ic_minus.png" />
     <AndroidResource Include="Resources\drawable\ic_monitor.png" />
     <AndroidResource Include="Resources\drawable\ic_monitor_top.png" />
+    <AndroidResource Include="Resources\drawable\ic_monitor_top_light.png" />
     <AndroidResource Include="Resources\drawable\ic_news_top.png" />
     <AndroidResource Include="Resources\drawable\ic_news_top_light.png" />
     <AndroidResource Include="Resources\drawable\ic_new_app_top.png" />

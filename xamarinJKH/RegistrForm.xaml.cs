@@ -115,10 +115,10 @@ namespace xamarinJKH
                 default:
                     break;
             }
-            BootomFrame.SetAppThemeColor(Frame.BorderColorProperty, hex, Color.Transparent);
-            RegistrationFrameStep1.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.Transparent);
-            RegistrationFrameStep2.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.Transparent);
-            RegistrationFrameStep3.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.Transparent);
+            BootomFrame.SetAppThemeColor(Frame.BorderColorProperty, hex, Color.LightGray);
+            RegistrationFrameStep1.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.White);
+            RegistrationFrameStep2.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.White);
+            RegistrationFrameStep3.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.White);
         }
 
      

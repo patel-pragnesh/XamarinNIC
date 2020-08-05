@@ -6,7 +6,7 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:dialogViews="clr-namespace:xamarinJKH.DialogViews;assembly=xamarinJKH"
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
-             BackgroundColor="#F3F3F3"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.AppsConst.AppConstPage">
     <ContentPage.Content>
         <StackLayout>
@@ -24,7 +24,7 @@
                              Property=Height,
                              Factor=0,
                              Constant=0}"
-                       Source="ic_app_top_in"
+                       Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top_in}"
                        VerticalOptions="Fill"
                        HorizontalOptions="Fill" />
                 <!-- <StackLayout x:Name="StackLayout" -->
@@ -66,43 +66,47 @@
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
                         HorizontalOptions="Start">
-                        <Image Source="ic_arrow_back"
-                               HeightRequest="15"
-                               HorizontalOptions="Center" />
+                        <xamarinJkh:IconView Source="ic_arrow_back"
+                                             HeightRequest="15"
+                                             Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                             HorizontalOptions="Center" />
                         <Label
                             Text="Назад "
                             FontSize="15"
-                            TextColor="White"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             HorizontalOptions="Start" />
                     </StackLayout>
                     <Label x:Name="LabelNumber"
                            FontSize="20"
                            Margin="10, 10 ,0,0"
-                           TextColor="White" />
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                 </StackLayout>
                 <Frame CornerRadius="40"
                        Margin="0, 0, 15, -95"
+                       x:Name="FrameKeys"
                        HorizontalOptions="End"
                        IsVisible="{Binding isNotRead}"
-                       BackgroundColor="#B5B5B5"
+                       BackgroundColor="{AppThemeBinding Light=White, Dark=#B5B5B5}"
                        Padding="5,0,5,80">
                     <ScrollView Orientation="Horizontal"
                                 WidthRequest="120"
                                 HeightRequest="100"
                                 Padding="20,0,20,0">
                         <StackLayout Orientation="Horizontal"
-                                 WidthRequest="350"
-                                 HeightRequest="100">
-                        
+                                     WidthRequest="350"
+                                     HeightRequest="100">
+
                             <StackLayout
                                 Margin="0,5,0,0"
                                 x:Name="StackLayoutInfo"
                                 VerticalOptions="Center"
                                 HorizontalOptions="StartAndExpand">
-                                <Image Source="ic_info_app1"
-                                       HeightRequest="25" />
+                                <xamarinJkh:IconView Source="ic_info_app1"
+                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                     WidthRequest="25"
+                                                     HeightRequest="25" />
                                 <Label Text="Инфо"
-                                       TextColor="White"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
                             </StackLayout>
@@ -122,10 +126,12 @@
                                 x:Name="StackLayoutAccept"
                                 VerticalOptions="Center"
                                 HorizontalOptions="StartAndExpand">
-                                <Image Source="ic_check_mark"
-                                       HeightRequest="25" />
+                                <xamarinJkh:IconView Source="ic_check_mark"
+                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                     WidthRequest="25"
+                                                     HeightRequest="25" />
                                 <Label Text="Принять"
-                                       TextColor="White"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
                             </StackLayout>
@@ -134,10 +140,12 @@
                                 x:Name="StackLayoutExecute"
                                 VerticalOptions="Center"
                                 HorizontalOptions="StartAndExpand">
-                                <Image Source="ic_execute"
-                                       HeightRequest="25" />
+                                <xamarinJkh:IconView Source="ic_execute"
+                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                     WidthRequest="25"
+                                                     HeightRequest="25" />
                                 <Label Text="Выполнить"
-                                       TextColor="White"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
                             </StackLayout>
@@ -146,10 +154,12 @@
                                 x:Name="StackLayoutMoveDisp"
                                 VerticalOptions="Center"
                                 HorizontalOptions="StartAndExpand">
-                                <Image Source="ic_move_disp"
-                                       HeightRequest="25" />
+                                <xamarinJkh:IconView Source="ic_move_disp"
+                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                     WidthRequest="25"
+                                                     HeightRequest="25" />
                                 <Label Text="Перевести"
-                                       TextColor="White"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
                             </StackLayout>
@@ -158,11 +168,12 @@
                                 VerticalOptions="Center"
                                 x:Name="StackLayoutClose"
                                 HorizontalOptions="EndAndExpand">
-                                <Image Source="ic_close_app1"
-                                       HeightRequest="25"
-                                       WidthRequest="25" />
+                                <xamarinJkh:IconView Source="ic_close_app1"
+                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                     HeightRequest="25"
+                                                     WidthRequest="25" />
                                 <Label Text="Закрыть"
-                                       TextColor="White"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
                             </StackLayout>
@@ -172,15 +183,16 @@
                                 Margin="0,5,0,0"
                                 VerticalOptions="Center"
                                 HorizontalOptions="EndAndExpand">
-                                <Image Source="ic_send_code"
-                                       HeightRequest="25"
-                                       WidthRequest="25" />
+                                <xamarinJkh:IconView Source="ic_send_code"
+                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                     HeightRequest="25"
+                                                     WidthRequest="25" />
                                 <Label Text="Отправить код"
-                                       TextColor="White"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="SendCode"/>
+                                    <TapGestureRecognizer Tapped="SendCode" />
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
 
@@ -268,7 +280,7 @@
                                        IsVisible="False"
                                        Color="{Binding hex}" />
                     <StackLayout
-                       
+
                         Spacing="-5">
 
                         <CheckBox
