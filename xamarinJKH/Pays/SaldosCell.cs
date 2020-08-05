@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Xamarin.Forms;
 using xamarinJKH.Utils;
 
@@ -81,13 +82,14 @@ namespace xamarinJKH.Pays
                 DateIdent = FirstLetterToUpper(DateIdent);
                 formattedIdent.Spans.Add(new Span
                 {
-                    Text = DateIdent,
+                    Text = DateTime.ParseExact(DateIdent.Replace("г."," ").Trim(), "MMMM yyyy", new CultureInfo("ru-RU")).ToString("MMMM yyyy") + 
+                            (CultureInfo.CurrentCulture.Name.Contains("en") ? string.Empty : " г.").ToString(),
                     TextColor = Color.Black,
                     FontSize = 15
                 });
                 formattedIdent.Spans.Add(new Span
                 {
-                    Text = "\nЛ/сч: ",
+                    Text = $"\n{AppResources.Acc} ",
                     TextColor = Color.Gray,
                     FontSize = 15
                 });
@@ -111,7 +113,7 @@ namespace xamarinJKH.Pays
                 });
                 formattedIdent.Spans.Add(new Span
                 {
-                    Text = "\nруб.",
+                    Text = $"\n{AppResources.Currency}",
                     TextColor = Color.Gray,
                     FontSize = 15
                 });

@@ -17,7 +17,7 @@
                                      Foreground="Black"
                                      HorizontalOptions="Center" />
                 <Label
-                    Text="Назад "
+                    Text="{x:Static xamarinJkh:AppResources.Back}"
                     FontSize="15"
                     TextColor="Black"
                     HorizontalOptions="Start" />

@@ -26,7 +26,7 @@ namespace xamarinJKH.MainConst
         public int fontSize2 { get; set; }
         public int fontSize3 { get; set; }
         public int StarSize { get; set; }
-        private List<string> period = new List<string>() {"Сегодня", "За неделю", "За месяц"};
+        private List<string> period = new List<string>() {AppResources.TodayPeriod, AppResources.WeekPeriod, AppResources.MonthPeriod};
         private Dictionary<string, string> HousesGroup = new Dictionary<string, string>();
         private Dictionary<string, string> Houses = new Dictionary<string, string>();
         private Thickness IconViewNotComplite;
@@ -105,7 +105,7 @@ namespace xamarinJKH.MainConst
                 {
                     IconViewArrow.Source = "ic_arrow_up_monitorpng";
                     MaterialFrameNotDoingContainer.Padding = new Thickness(0, 0, 0, 25);
-                    colapseAll("Не выполненные заявки");
+                    colapseAll(AppResources.FailedRequests);
                 }
                 else
                 {
@@ -116,7 +116,7 @@ namespace xamarinJKH.MainConst
 
             MaterialFrameNotDoing.GestureRecognizers.Add(colapse);
 
-            _visibleModels.Add("Не выполненные заявки", new VisibleModel()
+            _visibleModels.Add(AppResources.FailedRequests, new VisibleModel()
             {
                 IconView = IconViewArrow,
                 _materialFrame = MaterialFrameNotDoingContainer,
@@ -271,7 +271,7 @@ namespace xamarinJKH.MainConst
                 FormattedString formatted = new FormattedString();
                 formatted.Spans.Add(new Span
                 {
-                    Text = "Заявок поступило: ",
+                    Text = $"{AppResources.RequestsReceived}: ",
                     TextColor = Color.Black
                 });
                 formatted.Spans.Add(new Span
@@ -324,7 +324,7 @@ namespace xamarinJKH.MainConst
 
                 Label labelNotDoing = new Label()
                 {
-                    Text = "Не выполнено:",
+                    Text = $"{AppResources.FailedReq}:",
                     FontSize = fontSize3,
                     TextColor = Color.Black,
                     VerticalOptions = LayoutOptions.Center,
@@ -417,7 +417,7 @@ namespace xamarinJKH.MainConst
                 };
                 Label labelUnperformed = new Label()
                 {
-                    Text = "Просрочено",
+                    Text = AppResources.Overdue,
                     FontSize = fontSize3,
                     TextColor = Color.Black,
                     VerticalOptions = LayoutOptions.Center,
@@ -508,7 +508,7 @@ namespace xamarinJKH.MainConst
 
                 Label labelTitlePoint = new Label()
                 {
-                    Text = "Оценки:",
+                    Text = $"{AppResources.Marks}:",
                     FontSize = fontSize,
                     FontAttributes = FontAttributes.Bold,
                     TextColor = Color.Black
@@ -686,7 +686,7 @@ namespace xamarinJKH.MainConst
             {
                 string[] param = null;
                 setListGroups(groups, ref param);
-                var action = await DisplayActionSheet("Выбрать район", "Отмена", null, param);
+                var action = await DisplayActionSheet(AppResources.AreaChoose, AppResources.Cancel, null, param);
                 if (action != null && !action.Equals("Отмена"))
                 {
                     LayoutContent.Children.Clear();
@@ -709,8 +709,8 @@ namespace xamarinJKH.MainConst
             {
                 string[] param = null;
                 setListHouse(groups, ref param);
-                var action = await DisplayActionSheet("Выбрать дом", "Отмена", null, param);
-                if (action != null && !action.Equals("Отмена"))
+                var action = await DisplayActionSheet(AppResources.HomeChoose, AppResources.Cancel, null, param);
+                if (action != null && !action.Equals(AppResources.Cancel))
                 {
                     LayoutContent.Children.Clear();
                     MaterialFrameNotDoingContainer.IsVisible = false;
@@ -926,7 +926,7 @@ namespace xamarinJKH.MainConst
             LayoutGrid.IsVisible = false;
             formatted.Spans.Add(new Span
             {
-                Text = "Невыполненные заявки: ",
+                Text = $"{AppResources.FailedRequests}: ",
                 TextColor = Color.Black
             });
             formatted.Spans.Add(new Span

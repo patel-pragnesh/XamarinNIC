@@ -125,7 +125,7 @@ namespace xamarinJKH.Shop
         {
             ReceiptItems.Clear();
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Ваш заказ:\n");
+            stringBuilder.Append($"{AppResources.YourOrder}\n");
             int i = 0;
             foreach (var each in Goodset)
             {
@@ -140,14 +140,14 @@ namespace xamarinJKH.Shop
                         Amount = value.priceBusket
                     });
                     stringBuilder.Append(i + 1)
-                        .Append(") ").Append(value.Name).Append(" кол-во: ")
-                        .Append(value.ColBusket).Append(" шт").Append(" цена: ").Append(value.priceBusket).Append(" руб.")
+                        .Append(") ").Append(value.Name).Append(AppResources.Amount)
+                        .Append(value.ColBusket).Append(AppResources.Amount2).Append(AppResources.PriceLowerCase).Append(value.priceBusket).Append(AppResources.Currency)
                         .Append("\n");
                     i++;
                 }
             }
 
-            stringBuilder.Append("Итого: ").Append(LabelPriceBuscket.Text).Append(" руб.\n").Append(LabelWeightBuscket.Text).Append(" г.");
+            stringBuilder.Append($"{AppResources.TotalPrice}: ").Append(LabelPriceBuscket.Text).Append($"{AppResources.Currency}\n").Append(LabelWeightBuscket.Text).Append(" г.");
             stringBuilder.Append("\nБезналичный расчет.");
 
             return stringBuilder.ToString();
@@ -229,8 +229,8 @@ namespace xamarinJKH.Shop
 
         private void btnCashPay_Clicked(object sender, EventArgs e)
         {
-            PaymentDescription0.Text = "Оплата наличными при получении";
-            PaymentDescription1.Text = "В момент получения товара передайте курьеру код подтверждения и деньги";
+            PaymentDescription0.Text = AppResources.PayText0;
+            PaymentDescription1.Text = AppResources.PayText1;
             btnCardPay.TextColor = Color.Gray;
             frameBtnCardPay.BorderColor = Color.Gray;
 
@@ -240,10 +240,10 @@ namespace xamarinJKH.Shop
 
         private void btnCardPay_Clicked(object sender, EventArgs e)
         {
-            PaymentDescription0.Text = "Оплата картой при получении";
+            PaymentDescription0.Text = AppResources.PayText2;
 
             //под замену на текст для карты. запросить текст для карты.
-            PaymentDescription1.Text = "В момент получения товара передайте курьеру код подтверждения и деньги";
+            PaymentDescription1.Text = AppResources.PayText3;
             btnCardPay.TextColor = hex;
             frameBtnCardPay.BorderColor = hex;
 

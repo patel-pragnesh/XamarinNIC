@@ -84,7 +84,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -101,7 +101,7 @@
                                Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Оплатить"
+                            Text="{x:Static xamarinJkh:AppResources.Pay}"
                             FontSize="18"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
@@ -128,7 +128,7 @@
 
                                         <Label
                                             TextColor="Black"
-                                            Text="Лицевой счет: "
+                                            Text="{x:Static xamarinJkh:AppResources.Ident}"
                                             VerticalOptions="Center"
                                             FontAttributes="Bold"
                                             FontSize="17" />
@@ -252,7 +252,7 @@
                                                 HeightRequest="30"
                                                 WidthRequest="30" />
                                             <Button x:Name="BtnLogin"
-                                                    Text="Оплатить"
+                                                    Text="{x:Static xamarinJkh:AppResources.Pay}"
                                                     TextColor="White"
                                                     FontSize="17"
                                                     Clicked="Pay"
@@ -303,7 +303,7 @@
                                 HeightRequest="24"
                                 WidthRequest="20" />
                             <Button x:Name="LabelHistory"
-                                    Text="История платежей"
+                                    Text="{x:Static xamarinJkh:AppResources.PayHistory}"
                                     TextColor="White"
                                     Padding="0"
                                     FontAttributes="Bold"
@@ -332,7 +332,7 @@
                                 HeightRequest="24"
                                 WidthRequest="20" />
                             <Button x:Name="LabelSaldos"
-                                    Text="Квитанции"
+                                    Text="{x:Static xamarinJkh:AppResources.Bills}"
                                     FontSize="12"
                                     Padding="0"
                                     

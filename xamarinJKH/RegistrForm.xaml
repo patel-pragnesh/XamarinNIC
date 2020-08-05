@@ -42,7 +42,7 @@
                        Foreground="{AppThemeBinding Light=Black, Dark=White}"
                        HorizontalOptions="Center" />
                     <Label
-                    Text="Назад "
+                    Text="{x:Static xamarinJkh:AppResources.Back}"
                     FontSize="15"
                     TextColor="{AppThemeBinding Light=Black, Dark=White}"
                     HorizontalOptions="Start" />
@@ -50,7 +50,7 @@
             </StackLayout>
             
             <Label x:Name="RegLbl"
-                Text="Регистрация"
+                Text="{x:Static xamarinJkh:AppResources.Register}"
                 FontAttributes="Bold"
                 FontSize="27"
                 Margin="20, 20, 0, 0"
@@ -98,7 +98,7 @@
                                                          WidthRequest="25"
                                                          Foreground="{x:DynamicResource MainColor}"
                                                          VerticalOptions="Center" />
-                                    <Label Text="Телефон"
+                                    <Label Text="{x:Static xamarinJkh:AppResources.Phone}"
                                            FontSize="14"
                                            TextColor="Black"
                                            HorizontalOptions="Start"
@@ -147,7 +147,7 @@
                                                          Foreground="{x:DynamicResource MainColor}"
                                                          VerticalOptions="Center" />
 
-                                    <Label Text="ФИО  "
+                                    <Label Text="{x:Static xamarinJkh:AppResources.FIO}"
                                            FontSize="14"
                                            TextColor="Black"
                                            HorizontalOptions="Start"
@@ -190,7 +190,7 @@
                                                          Foreground="{x:DynamicResource MainColor}"
                                                          VerticalOptions="Center" />
 
-                                    <Label Text="Дата рождения"
+                                    <Label Text="{x:Static xamarinJkh:AppResources.DateOfBirth}"
                                            FontSize="14"
                                            TextColor="Black"
                                            HorizontalOptions="Start"
@@ -247,7 +247,7 @@
                             <StackLayout
                                 Orientation="Horizontal"
                                 HorizontalOptions="End">
-                                <Label Text="Согласие на обработку персональных данных"
+                                <Label Text="{x:Static xamarinJkh:AppResources.TSA}"
                                        FontSize="13"
                                        Margin="5, 15, 5, 15"
                                        TextColor="Black"
@@ -277,7 +277,7 @@
                                     Spacing="0"
                                     HorizontalOptions="Center">
                                     <Label
-                                        Text="Далее "
+                                        Text="{x:Static xamarinJkh:AppResources.Next} "
                                         FontSize="15"
                                         TextColor="White"
                                         FontAttributes="Bold"
@@ -306,7 +306,7 @@
 
                         <StackLayout
                             Margin="10, 20, 10, 10">
-                            <Label Text="Подтверждение телефона"
+                            <Label Text="{x:Static xamarinJkh:AppResources.PhoneConfirm}"
                                    FontAttributes="Bold"
                                    FontSize="18"
                                    TextColor="Black"
@@ -322,7 +322,7 @@
                                                          Foreground="{x:DynamicResource MainColor}"
                                                          Margin="-10, 0, 0, 0"
                                                          VerticalOptions="Center" />
-                                    <Label Text="Код доступа"
+                                    <Label Text="{x:Static xamarinJkh:AppResources.AccessCode}"
                                            FontSize="15"
                                            TextColor="Black"
                                            Margin="-10, 0, 0, 0"
@@ -379,7 +379,7 @@
                                        Margin="0, 5, 0, 0"
                                        Padding="0">
                                     <Button x:Name="BtnRegCode"
-                                            Text="Запросить звонок с кодом"
+                                            Text="{x:Static xamarinJkh:AppResources.AskForCode}"
                                             FontSize="15"
                                             TextColor="White"
                                             FontAttributes="Bold"
@@ -406,7 +406,7 @@
                                     x:Name="tech"
                                     Margin="0,5,0,0"
                                     Orientation="Horizontal">
-                                    <Label Text="Не поступил звонок? Напишите в тех. поддержку, поможем зарегистрироваться"
+                                    <Label Text="{x:Static xamarinJkh:AppResources.TroubleCode}"
                                            FontSize="10"
                                            TextColor="#A2A2A2"
                                            WidthRequest="180"
@@ -426,7 +426,8 @@
                                                                    VerticalOptions="Center"
                                                                    Padding="0">
                                         <Button x:Name="BtnTech"
-                                                Text="   Написать в тех. поддержку   "
+                                                Text="{x:Static xamarinJkh:AppResources.Support}"
+                                                
                                                 TextColor="{x:DynamicResource MainColor}"
                                                 FontSize="10"
                                                 FontAttributes="Bold"
@@ -455,7 +456,7 @@
                                     Spacing="0"
                                     HorizontalOptions="Center">
                                     <Label
-                                        Text="Далее "
+                                        Text="{x:Static xamarinJkh:AppResources.Next} "
                                         FontSize="15"
                                         TextColor="White"
                                         FontAttributes="Bold"
@@ -494,7 +495,7 @@
                                                          HeightRequest="20"
                                                          Foreground="{x:DynamicResource MainColor}"
                                                          VerticalOptions="Center" />
-                                    <Label Text="Создайте пароль           "
+                                    <Label Text="{x:Static xamarinJkh:AppResources.CreatePass}"
                                            FontSize="12"
                                            TextColor="Black"
                                            Margin="-10, 0, 10, 0"
@@ -543,7 +544,7 @@
                                                          HeightRequest="20"
                                                          VerticalOptions="Center" />
 
-                                    <Label Text="Подтвердите пароль"
+                                    <Label Text="{x:Static xamarinJkh:AppResources.ConfirmPass}"
                                            FontSize="13.5"
                                            TextColor="Black"
                                            Margin="-10, 0, 5, 0"
@@ -612,7 +613,7 @@
                                                     HorizontalOptions="Start"
                                                     VerticalOptions="Center" />
                                     <Label x:Name="BtnSave"
-                                           Text="Зарегистрироваться"
+                                           Text="{x:Static xamarinJkh:AppResources.Register}"
                                            Margin="0, 0, 0, 10"
                                            FontSize="15"
                                            TextColor="White"
@@ -634,7 +635,7 @@
                                Margin="0, 15, 0, 0"
                                HorizontalOptions="FillAndExpand" />
                 <Label x:Name="LabelSteps"
-                               Text="Шаг 1"
+                               Text="{x:Static xamarinJkh:AppResources.Step1}"
                                FontSize="16"
                                FontAttributes="Bold"
                                Margin="0, 10, 0, 15"

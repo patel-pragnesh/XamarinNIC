@@ -140,7 +140,7 @@ namespace xamarinJKH.Pays
 
             formatted.Spans.Add(new Span
             {
-                Text = "Итого: ",
+                Text = $"{AppResources.Total}: ",
                 FontSize = 17,
                 TextColor = Color.Black
             });
@@ -153,7 +153,7 @@ namespace xamarinJKH.Pays
             });
             formatted.Spans.Add(new Span
             {
-                Text = " руб.",
+                Text = $" {AppResources.Currency}",
                 FontSize = 15,
                 TextColor = Color.FromHex("#777777")
             });
@@ -215,7 +215,7 @@ namespace xamarinJKH.Pays
 
             formatted.Spans.Add(new Span
             {
-                Text = "Итого: ",
+                Text = $"{AppResources.Total}: ",
                 FontSize = 17,
                 TextColor = Color.Black
             });
@@ -229,7 +229,7 @@ namespace xamarinJKH.Pays
             });
             formatted.Spans.Add(new Span
             {
-                Text = " руб.",
+                Text = $" {AppResources.Currency}",
                 FontSize = 15,
                 TextColor = Color.Gray
             });
