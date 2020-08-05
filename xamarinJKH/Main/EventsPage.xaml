@@ -103,7 +103,7 @@
                         <Label
                             Text="{x:Static resouces:AppResources.Events_NavBar}"
                             FontSize="23"
-                            TextColor="White"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>

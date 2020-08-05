@@ -1013,7 +1013,7 @@ namespace xamarinJKH.Shop
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             PancakeViewKind.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.White);
             PancakeBot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
         }
 

@@ -194,13 +194,31 @@ namespace xamarinJKH.Main
             BtnExit.TextColor = hexColor;
             progress.Color = hexColor;
 
+            RadioButtonAuto.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
+            RadioButtonDark.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
+            RadioButtonLigth.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
+            
+            int theme = Preferences.Get("Theme", 0);
+            switch (theme)
+            {
+                case 0:
+                    RadioButtonAuto.IsChecked = true;
+                    break;
+                case 1:
+                    RadioButtonDark.IsChecked = true;
+                    break;
+                case 2:
+                    RadioButtonLigth.IsChecked = true;
+                    break;
+            }
+            
             IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
-            FrameTop.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
-            FrameSettings.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
+            FrameTop.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
+            FrameSettings.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
             
         }
 
@@ -208,6 +226,30 @@ namespace xamarinJKH.Main
         {
             Preferences.Set("isPass",isSave);
         }
-     
+
+        private void RadioButtonDark_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            Application.Current.UserAppTheme = OSAppTheme.Dark;
+            MessagingCenter.Send<Object>(this, "ChangeTheme");
+            MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
+            Preferences.Set("Theme", 1);
+
+        }
+
+        private void RadioButtonAuto_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            Application.Current.UserAppTheme = OSAppTheme.Unspecified;
+            MessagingCenter.Send<Object>(this, "ChangeTheme");
+            MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
+            Preferences.Set("Theme", 0);
+        }
+
+        private void RadioButtonLigth_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            Application.Current.UserAppTheme = OSAppTheme.Light;
+            MessagingCenter.Send<Object>(this, "ChangeTheme");
+            MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
+            Preferences.Set("Theme", 2);
+        }
     }
 }

@@ -72,7 +72,7 @@ namespace xamarinJKH
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeBot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            FrameResult.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
+            FrameResult.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
         }
 

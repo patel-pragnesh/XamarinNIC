@@ -164,7 +164,7 @@ namespace xamarinJKH.Additional
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            FrameKind.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
+            FrameKind.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
 
         }

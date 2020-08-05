@@ -602,6 +602,10 @@ namespace xamarinJKH.AppsConst
             {
                 Console.WriteLine(e);
             }
+            
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            FrameKeys.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#B5B5B5"));
+            FrameMessage.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
         }
 
         private async void ShowInfo()

@@ -196,8 +196,8 @@ namespace xamarinJKH
                 //RegistLabel.TextColor = hex;
                 //progress.Color = hex;
                 Color.SetAccent(hex);
-                FrameLogin.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.Transparent);
-                BootomFrame.SetAppThemeColor(Frame.BorderColorProperty, hex, Color.Transparent);
+                FrameLogin.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.White);
+                BootomFrame.SetAppThemeColor(Frame.BorderColorProperty, hex, Color.LightGray);
 
                 StackLayoutContent.IsVisible = true;
                 progress2.IsVisible = false;

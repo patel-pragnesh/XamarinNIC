@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.CustomRenderers;
 using xamarinJKH.DialogViews;
@@ -123,6 +124,11 @@ namespace xamarinJKH.MainConst
                 _grid = LayoutGrid
             });
             SetText();
+            ChangeTheme = new Command(async () =>
+            {
+                SetAdminName();
+            });
+            MessagingCenter.Subscribe<Object>(this, "ChangeAdminMonitor", (sender) => ChangeTheme.Execute(null));
             BindingContext = this;
         }
 
@@ -154,6 +160,7 @@ namespace xamarinJKH.MainConst
             foreach (var each in periodStatses)
             {
                 MaterialFrame container = new MaterialFrame();
+                container.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
                 container.Elevation = 20;
                 container.Margin = new Thickness(20, 0, 20, 10);
                 container.CornerRadius = 35;
@@ -166,6 +173,7 @@ namespace xamarinJKH.MainConst
                 container.Content = stackLayoutFrame;
 
                 MaterialFrame materialFrameTop = new MaterialFrame();
+                materialFrameTop.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
                 materialFrameTop.Elevation = 20;
                 materialFrameTop.CornerRadius = 35;
                 materialFrameTop.BackgroundColor = Color.White;
@@ -1008,22 +1016,38 @@ namespace xamarinJKH.MainConst
             return dictionary;
         }
 
-
+        public Command ChangeTheme { get; set; }
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
+            SetAdminName();
+
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            Frame.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#8D8D8D"));
+            MaterialFrameNotDoingContainer.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
+            MaterialFrameNotDoing.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+        }
+
+        private void SetAdminName()
+        {
             FormattedString formatted = new FormattedString();
+            OSAppTheme currentTheme = Application.Current.RequestedTheme;
             formatted.Spans.Add(new Span
             {
                 Text = Settings.Person.FIO + ", ",
-                TextColor = Color.White,
+                TextColor = currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = 15
             });
             formatted.Spans.Add(new Span
             {
                 Text = "добрый день!",
-                TextColor = Color.White,
+                TextColor = currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
                 FontSize = 15
             });
             LabelPhone.FormattedText = formatted;

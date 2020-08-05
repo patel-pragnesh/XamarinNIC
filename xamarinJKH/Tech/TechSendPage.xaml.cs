@@ -117,7 +117,7 @@ namespace xamarinJKH.Tech
             IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            Frame.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.Transparent);
+            Frame.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
             BindingContext = this;
         }
 

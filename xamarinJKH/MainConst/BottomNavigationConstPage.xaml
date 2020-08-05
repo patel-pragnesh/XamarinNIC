@@ -6,6 +6,7 @@
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             xmlns:mainConst="clr-namespace:xamarinJKH.MainConst;assembly=xamarinJKH"
             xmlns:xamarinZkh="clr-namespace:xamarinJKH"
+            BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
             android:TabbedPage.ToolbarPlacement="Bottom"
             x:Class="xamarinJKH.MainConst.BottomNavigationConstPage">
     <NavigationPage Title="{x:Static xamarinZkh:AppResources.App_NavBar}" IconImageSource="ic_apps" BarBackgroundColor="Black" BarTextColor="White">

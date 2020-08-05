@@ -196,7 +196,7 @@ namespace xamarinJKH.Main
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
-            FrameAddIdent.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
+            FrameAddIdent.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
         }
 
         async void getInfo()
@@ -434,7 +434,7 @@ namespace xamarinJKH.Main
             Label sumPay = new Label();
 
             MaterialFrame frame = new MaterialFrame();
-            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.Transparent);
+            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.Elevation = 20;
             frame.VerticalOptions = LayoutOptions.Start;

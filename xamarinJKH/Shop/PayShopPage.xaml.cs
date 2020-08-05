@@ -64,7 +64,7 @@ namespace xamarinJKH.Shop
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
-            GoodsLayot.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
+            GoodsLayot.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
             BindingContext = this;
             SetPriceAndWeight();
         }

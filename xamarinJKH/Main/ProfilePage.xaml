@@ -298,6 +298,34 @@
                                                    VerticalOptions="Center" />
                                         </StackLayout>
                                     </StackLayout>
+                                    <StackLayout
+                                        Orientation="Horizontal">
+
+                                        <Label Text="{x:Static xamarinJkh:AppResources.Theme}"
+                                               Margin="10, 0, 0, 0"
+                                               FontAttributes="Bold"
+                                               FontSize="20"
+                                               TextColor="Black"
+                                               HorizontalOptions="Center" />
+                                    </StackLayout>
+                                    <StackLayout
+                                        Margin="5,0,0,0">
+                                        <RadioButton
+                                            x:Name="RadioButtonAuto"
+                                            FontSize="16"
+                                            CheckedChanged="RadioButtonAuto_OnCheckedChanged"
+                                            Text="{x:Static xamarinJkh:AppResources.Automatic}" />
+                                        <RadioButton
+                                            x:Name="RadioButtonDark"
+                                            CheckedChanged="RadioButtonDark_OnCheckedChanged"
+                                            FontSize="16"
+                                            Text="{x:Static xamarinJkh:AppResources.Dark}" />
+                                        <RadioButton
+                                            x:Name="RadioButtonLigth"
+                                            CheckedChanged="RadioButtonLigth_OnCheckedChanged"
+                                            FontSize="16"
+                                            Text="{x:Static xamarinJkh:AppResources.Light}" />
+                                    </StackLayout>
                                 </StackLayout>
                             </customRenderers:MaterialFrame>
                             <Frame CornerRadius="15"
@@ -330,7 +358,7 @@
                     </ScrollView>
                 </StackLayout>
             </Grid>
- <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0" BackgroundColor="#8D8D8D"
+            <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0" BackgroundColor="#8D8D8D"
                                      Padding="0,20,0,10"
                                      IsVisible="{Binding GoodsIsVisible}"
                                      VerticalOptions="EndAndExpand">
@@ -373,13 +401,13 @@
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="493" TextColor="White" FontAttributes="Bold" FontSize="20" />
-                                    <Span Text=" баллов" TextColor ="White" FontSize="11" />
+                                    <Span Text=" баллов" TextColor="White" FontSize="11" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                
-                    </StackLayout> 
-                    
+
+                    </StackLayout>
+
                 </Grid>
                 <!-- </StackLayout> -->
             </pancakeView:PancakeView>

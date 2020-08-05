@@ -613,6 +613,18 @@
   <data name="Settings" xml:space="preserve">
     <value>Настройки</value>
   </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="Automatic" xml:space="preserve">
+    <value>Автоматическая</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Темная</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Светлая</value>
+  </data>
   <data name="Shop" xml:space="preserve">
     <value>Магазин</value>
   </data>
