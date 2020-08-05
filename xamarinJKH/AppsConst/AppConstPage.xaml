@@ -6,7 +6,7 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:dialogViews="clr-namespace:xamarinJKH.DialogViews;assembly=xamarinJKH"
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
-             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
+             BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.AppsConst.AppConstPage">
     <ContentPage.Content>
         <StackLayout>
@@ -71,7 +71,7 @@
                                              Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                              HorizontalOptions="Center" />
                         <Label
-                            Text="Назад "
+                            Text="{x:Static xamarinJkh:AppResources.Back}"
                             FontSize="15"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             HorizontalOptions="Start" />
@@ -105,7 +105,7 @@
                                                      Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                                      WidthRequest="25"
                                                      HeightRequest="25" />
-                                <Label Text="Инфо"
+                                <Label Text="{x:Static xamarinJkh:AppResources.Info}"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
@@ -130,7 +130,7 @@
                                                      Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                                      WidthRequest="25"
                                                      HeightRequest="25" />
-                                <Label Text="Принять"
+                                <Label Text="{x:Static xamarinJkh:AppResources.AcceptApp}"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
@@ -144,7 +144,7 @@
                                                      Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                                      WidthRequest="25"
                                                      HeightRequest="25" />
-                                <Label Text="Выполнить"
+                                <Label Text="{x:Static xamarinJkh:AppResources.CompleteApp}"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
@@ -158,7 +158,7 @@
                                                      Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                                      WidthRequest="25"
                                                      HeightRequest="25" />
-                                <Label Text="Перевести"
+                                <Label Text="{x:Static xamarinJkh:AppResources.PassApp}"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
@@ -172,7 +172,7 @@
                                                      Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                                      HeightRequest="25"
                                                      WidthRequest="25" />
-                                <Label Text="Закрыть"
+                                <Label Text="{x:Static xamarinJkh:AppResources.CloseApp}"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
@@ -187,7 +187,7 @@
                                                      Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                                      HeightRequest="25"
                                                      WidthRequest="25" />
-                                <Label Text="Отправить код"
+                                <Label Text="{x:Static xamarinJkh:AppResources.SendCodeApp}"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
@@ -290,7 +290,7 @@
                             FontSize="10"
                             TextColor="Black"
                             HorizontalOptions="Center"
-                            Text="Скрытое" />
+                            Text="{x:Static xamarinJkh:AppResources.Hidden}" />
                     </StackLayout>
 
                 </StackLayout>
