@@ -85,7 +85,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -102,7 +102,7 @@
                                Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalOptions="Center" />
                         <Label x:Name="titleLabel"
-                            Text="Результаты Вашего голосования в м.кв."
+                            Text="{x:Static xamarinJkh:AppResources.OSSPersonalHeader}"
                             FontSize="18"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
@@ -121,9 +121,9 @@
                                         <Label x:Name="lRezults" Margin="30,10" TextColor="Black">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="Вы проголосовали " FontSize="14" FontAttributes="Bold" />
+                                                    <Span Text="{x:Static xamarinJkh:AppResources.OSSPersonalYouVoted}" FontSize="14" FontAttributes="Bold" />
                                                     <Span x:Name="spanAnswersCnt" FontSize="14" FontAttributes="Bold" />
-                                                    <Span Text=" Ваши ответы:" FontSize="14" FontAttributes="Bold" />
+                                                    <Span Text="{x:Static xamarinJkh:AppResources.OSSPersonalYourAnswers}" FontSize="14" FontAttributes="Bold" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
@@ -147,7 +147,7 @@
                                                        Grid.Row="0"
                                                        Grid.Column="0" />
                                             </Grid>
-                                            <Label Text="За" FontSize="16" TextColor="Black" VerticalOptions="Center" />
+                                            <Label Text="{x:Static xamarinJkh:AppResources.OSSPersonalFor}" FontSize="16" TextColor="Black" VerticalOptions="Center" />
                                         </StackLayout>
                                         <StackLayout Margin="20,5" Orientation="Horizontal">
                                             <Grid HorizontalOptions="Center" VerticalOptions="Center">
@@ -168,7 +168,7 @@
                                                        Grid.Row="0"
                                                        Grid.Column="0" />
                                             </Grid>
-                                            <Label Text="Против" FontSize="16" TextColor="Black"
+                                            <Label Text="{x:Static xamarinJkh:AppResources.OSSPersonalAgainst}" FontSize="16" TextColor="Black"
                                                    VerticalOptions="Center" />
                                         </StackLayout>
                                         <StackLayout Margin="20,5" Orientation="Horizontal">
@@ -190,14 +190,14 @@
                                                        Grid.Row="0"
                                                        Grid.Column="0" />
                                             </Grid>
-                                            <Label Text="Воздержался" FontSize="16" TextColor="Black"
+                                            <Label Text="{x:Static xamarinJkh:AppResources.OSSPersonalNeutral}" FontSize="16" TextColor="Black"
                                                    VerticalOptions="Center" />
                                         </StackLayout>
                                         <BoxView x:Name="delimColored" HeightRequest="1" Margin="0,15" />
                                         <Label Margin="20,5">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="Общая площадь помещений:" TextColor="#545454"
+                                                    <Span Text="{x:Static xamarinJkh:AppResources.OSSPersonalArea}" TextColor="#545454"
                                                           FontSize="14" />
                                                     <Span x:Name="TotalArea" TextColor="Black" FontSize="14" />
                                                 </FormattedString>
@@ -206,13 +206,13 @@
                                         <Label Margin="20,5">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="Ваша доля:" TextColor="#545454" FontSize="14" />
+                                                    <Span Text="{x:Static xamarinJkh:AppResources.OSSPersonalYourPart}" TextColor="#545454" FontSize="14" />
                                                     <Span x:Name="Area" TextColor="Black" FontSize="14" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
                                         <BoxView BackgroundColor="#545454" Margin="20,10" HeightRequest="1" />
-                                        <Label Text="Спасибо за участие!" Margin="20,5" TextColor="Black"
+                                        <Label Text="{x:Static xamarinJkh:AppResources.OSSPersonalThankYou}" Margin="20,5" TextColor="Black"
                                                FontAttributes="Bold" FontSize="16" />
                                         <Label Margin="20,10">
                                             <Label.FormattedText>
@@ -251,7 +251,7 @@
                                                 VerticalOptions="FillAndExpand"
                                                 TextColor="White"
                                                 FontAttributes="Bold"
-                                                Text="К списку ОСС" Clicked="Btn_Clicked" />
+                                                Text="{x:Static xamarinJkh:AppResources.OSSPersonalBackToList}" Clicked="Btn_Clicked" />
                                     </Frame>
                                 </StackLayout>
                             </StackLayout>

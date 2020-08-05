@@ -352,7 +352,7 @@ namespace xamarinJKH
                             iconViewStatusNameIcon.Source = "ic_status_done";
                             iconViewStatusNameIcon.Foreground = Color.FromHex("#50ac2f");
                             ColorStatusTextString = Color.FromHex("#50ac2f");
-                            textStatius = "Ваш голос учтён";
+                            textStatius = AppResources.OSSVoteChecked;
                         }
                         else //3
                         {

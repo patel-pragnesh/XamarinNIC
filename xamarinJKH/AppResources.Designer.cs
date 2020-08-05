@@ -19,7 +19,7 @@ namespace xamarinJKH {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -332,6 +332,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Подтвердить.
+        /// </summary>
+        internal static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Подтвердить заказ.
         /// </summary>
         internal static string Confirm_order {
@@ -485,6 +494,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Скачать.
+        /// </summary>
+        internal static string Download {
+            get {
+                return ResourceManager.GetString("Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не сохранять пароль.
         /// </summary>
         internal static string DSP {
@@ -562,6 +580,15 @@ namespace xamarinJKH {
         internal static string FailedRequests {
             get {
                 return ResourceManager.GetString("FailedRequests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Завершить.
+        /// </summary>
+        internal static string Finish {
+            get {
+                return ResourceManager.GetString("Finish", resourceCulture);
             }
         }
         
@@ -1199,6 +1226,96 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Против.
+        /// </summary>
+        internal static string OSSPersonalAgainst {
+            get {
+                return ResourceManager.GetString("OSSPersonalAgainst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Общая площадь помещений:.
+        /// </summary>
+        internal static string OSSPersonalArea {
+            get {
+                return ResourceManager.GetString("OSSPersonalArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to К списку ОСС.
+        /// </summary>
+        internal static string OSSPersonalBackToList {
+            get {
+                return ResourceManager.GetString("OSSPersonalBackToList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to За.
+        /// </summary>
+        internal static string OSSPersonalFor {
+            get {
+                return ResourceManager.GetString("OSSPersonalFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Результаты Вашего голосования в м.кв..
+        /// </summary>
+        internal static string OSSPersonalHeader {
+            get {
+                return ResourceManager.GetString("OSSPersonalHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Воздержался.
+        /// </summary>
+        internal static string OSSPersonalNeutral {
+            get {
+                return ResourceManager.GetString("OSSPersonalNeutral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Спасибо за участие!.
+        /// </summary>
+        internal static string OSSPersonalThankYou {
+            get {
+                return ResourceManager.GetString("OSSPersonalThankYou", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ваши ответы:.
+        /// </summary>
+        internal static string OSSPersonalYourAnswers {
+            get {
+                return ResourceManager.GetString("OSSPersonalYourAnswers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ваша доля:.
+        /// </summary>
+        internal static string OSSPersonalYourPart {
+            get {
+                return ResourceManager.GetString("OSSPersonalYourPart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вы проголосовали .
+        /// </summary>
+        internal static string OSSPersonalYouVoted {
+            get {
+                return ResourceManager.GetString("OSSPersonalYouVoted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Пин код.
         /// </summary>
         internal static string OSSPinCode {
@@ -1213,6 +1330,96 @@ namespace xamarinJKH {
         internal static string OSSPincodeTroub {
             get {
                 return ResourceManager.GetString("OSSPincodeTroub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вопросы для голосования.
+        /// </summary>
+        internal static string OSSPollHeader {
+            get {
+                return ResourceManager.GetString("OSSPollHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Регистрация пин-кода.
+        /// </summary>
+        internal static string OSSRegister {
+            get {
+                return ResourceManager.GetString("OSSRegister", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Проверочный код.
+        /// </summary>
+        internal static string OSSRegisterCode {
+            get {
+                return ResourceManager.GetString("OSSRegisterCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подтвердите пин-код.
+        /// </summary>
+        internal static string OSSRegisterConfirmPin {
+            get {
+                return ResourceManager.GetString("OSSRegisterConfirmPin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Задайте пин-код.
+        /// </summary>
+        internal static string OSSRegisterCreatePincode {
+            get {
+                return ResourceManager.GetString("OSSRegisterCreatePincode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to заключительный день голосования. Итоги голосования будут доступны {r1Date} в {r1Time} местного времени. Когда результаты голосования будут подсчитаны, Вы получите уведомление в формате Push сообщения и доступ к &quot;Протоколу ОСС&quot; с пакетом необходимых документов..
+        /// </summary>
+        internal static string OSSText {
+            get {
+                return ResourceManager.GetString("OSSText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Результаты общего голосования в м.кв..
+        /// </summary>
+        internal static string OSSTotal {
+            get {
+                return ResourceManager.GetString("OSSTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Результаты:.
+        /// </summary>
+        internal static string OSSTotalResult {
+            get {
+                return ResourceManager.GetString("OSSTotalResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Всего проголосовали.
+        /// </summary>
+        internal static string OSSTotalVoted {
+            get {
+                return ResourceManager.GetString("OSSTotalVoted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ваш голос учтён.
+        /// </summary>
+        internal static string OSSVoteChecked {
+            get {
+                return ResourceManager.GetString("OSSVoteChecked", resourceCulture);
             }
         }
         
@@ -1474,6 +1681,15 @@ namespace xamarinJKH {
         internal static string Profile_NavBar {
             get {
                 return ResourceManager.GetString("Profile_NavBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вопрос .
+        /// </summary>
+        internal static string Question {
+            get {
+                return ResourceManager.GetString("Question", resourceCulture);
             }
         }
         

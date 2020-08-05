@@ -86,7 +86,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -103,7 +103,7 @@
                                Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Вопросы для голосования"
+                            Text="{x:Static xamarinJkh:AppResources.OSSPollHeader}"
                             FontSize="18"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
@@ -157,7 +157,7 @@
                                                 HorizontalOptions="Center">
                                                 <Label
                                                     x:Name="LabelNext"
-                                                    Text="Далее "
+                                                    Text="{x:Static xamarinJkh:AppResources.Next}"
                                                     FontSize="15"
                                                     TextColor="White"
                                                     FontAttributes="Bold"
@@ -192,7 +192,7 @@
                                                                      HorizontalOptions="Center" />
                                                 <Label
                                                     x:Name="LabelFinish"
-                                                    Text=" Завершить"
+                                                    Text="{x:Static xamarinJkh:AppResources.Finish}"
                                                     FontSize="15"
                                                     TextColor="White"
                                                     FontAttributes="Bold"
@@ -212,7 +212,7 @@
                                         <Label>
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span x:Name="urlProtokol" TextDecorations="Underline" Text="Скачать" FontSize="14"></Span>
+                                                    <Span x:Name="urlProtokol" TextDecorations="Underline" Text="{x:Static xamarinJkh:AppResources.Download}" FontSize="14"></Span>
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>

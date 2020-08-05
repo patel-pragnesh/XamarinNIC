@@ -86,7 +86,7 @@ namespace xamarinJKH
 
             Label statusName = new Label()
             {
-                Text = "Статус собрания: ",
+                Text = AppResources.OSSInfoStatus,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = 14,
                 TextColor = Color.White,
@@ -103,7 +103,7 @@ namespace xamarinJKH
             iconViewStatusNameIcon.Source = "ic_status_done";
             iconViewStatusNameIcon.Foreground = Color.FromHex("#50ac2f");
             ColorStatusTextString = Color.FromHex("#50ac2f");
-            string textStatius = "Ваш голос учтён";
+            string textStatius = AppResources.OSSVoteChecked;
 
             iconViewStatusNameIcon.HeightRequest = 15;
             iconViewStatusNameIcon.WidthRequest = 15;
@@ -140,7 +140,7 @@ namespace xamarinJKH
 
             delimColored.BackgroundColor = colorFromMobileSettings;
 
-            TotalArea.Text = " "+ oSS.VoitingArea.ToString()+ " м.кв. = 100%";
+            TotalArea.Text = " "+ oSS.VoitingArea.ToString()+ $" {AppResources.OSSInfoMeasurmentArea} = 100%";
             decimal round = 0;
             try
             { 
@@ -150,13 +150,11 @@ namespace xamarinJKH
             {
                 Console.WriteLine(e);
             }
-            Area.Text= " " + oSS.Accounts[0].Area.ToString() + " м.кв. = "+ round + "%";
+            Area.Text= " " + oSS.Accounts[0].Area.ToString() + $" {AppResources.OSSInfoMeasurmentArea} = "+ round + "%";
             dayEnd.Text = oSS.DateEnd.Split(' ')[0];
             var r1Date = oSS.ResultsReleaseDate.Split(' ')[0];
             var r1Time = oSS.ResultsReleaseDate.Split(' ')[1];
-            dayEndPlus.Text = $" заключительный день голосования. Итоги голосования будут доступны {r1Date} в {r1Time}" +
-                $" местного времени. Когда результаты голосования будут подсчитаны, Вы получите уведомление в формате Push сообщения и доступ к \"Протоколу ОСС\" с пакетом необходимых документов.";
-
+            dayEndPlus.Text =" " + AppResources.OSSText.Replace("{r1Date}", r1Date).Replace("{r1Time}", r1Time);
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);

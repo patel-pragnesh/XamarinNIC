@@ -712,4 +712,76 @@
   <data name="YourOrder" xml:space="preserve">
     <value>Ваш заказ:</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Скачать</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Завершить</value>
+  </data>
+  <data name="OSSPersonalAgainst" xml:space="preserve">
+    <value>Против</value>
+  </data>
+  <data name="OSSPersonalArea" xml:space="preserve">
+    <value>Общая площадь помещений:</value>
+  </data>
+  <data name="OSSPersonalBackToList" xml:space="preserve">
+    <value>К списку ОСС</value>
+  </data>
+  <data name="OSSPersonalFor" xml:space="preserve">
+    <value>За</value>
+  </data>
+  <data name="OSSPersonalHeader" xml:space="preserve">
+    <value>Результаты Вашего голосования в м.кв.</value>
+  </data>
+  <data name="OSSPersonalNeutral" xml:space="preserve">
+    <value>Воздержался</value>
+  </data>
+  <data name="OSSPersonalThankYou" xml:space="preserve">
+    <value>Спасибо за участие!</value>
+  </data>
+  <data name="OSSPersonalYourAnswers" xml:space="preserve">
+    <value>Ваши ответы:</value>
+  </data>
+  <data name="OSSPersonalYourPart" xml:space="preserve">
+    <value>Ваша доля:</value>
+  </data>
+  <data name="OSSPersonalYouVoted" xml:space="preserve">
+    <value>Вы проголосовали </value>
+  </data>
+  <data name="OSSPollHeader" xml:space="preserve">
+    <value>Вопросы для голосования</value>
+  </data>
+  <data name="OSSRegister" xml:space="preserve">
+    <value>Регистрация пин-кода</value>
+  </data>
+  <data name="OSSRegisterCode" xml:space="preserve">
+    <value>Проверочный код</value>
+  </data>
+  <data name="OSSRegisterConfirmPin" xml:space="preserve">
+    <value>Подтвердите пин-код</value>
+  </data>
+  <data name="OSSRegisterCreatePincode" xml:space="preserve">
+    <value>Задайте пин-код</value>
+  </data>
+  <data name="OSSText" xml:space="preserve">
+    <value>заключительный день голосования. Итоги голосования будут доступны {r1Date} в {r1Time} местного времени. Когда результаты голосования будут подсчитаны, Вы получите уведомление в формате Push сообщения и доступ к "Протоколу ОСС" с пакетом необходимых документов.</value>
+  </data>
+  <data name="OSSTotal" xml:space="preserve">
+    <value>Результаты общего голосования в м.кв.</value>
+  </data>
+  <data name="OSSTotalResult" xml:space="preserve">
+    <value> Результаты:</value>
+  </data>
+  <data name="OSSTotalVoted" xml:space="preserve">
+    <value>Всего проголосовали</value>
+  </data>
+  <data name="OSSVoteChecked" xml:space="preserve">
+    <value>Ваш голос учтён</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Вопрос </value>
+  </data>
 </root>

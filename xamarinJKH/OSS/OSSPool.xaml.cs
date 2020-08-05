@@ -148,9 +148,9 @@ namespace xamarinJKH
 
                 StackLayout radio = new StackLayout();                
 
-                radio.Children.Add(GetButton("За", false));
-                radio.Children.Add(GetButton("Против", false));
-                radio.Children.Add(GetButton("Воздержался", false));
+                radio.Children.Add(GetButton(AppResources.OSSPersonalFor, false));
+                radio.Children.Add(GetButton(AppResources.OSSPersonalAgainst, false));
+                radio.Children.Add(GetButton(AppResources.OSSPersonalNeutral, false));
 
                 containerPolss.Children.Add(radio);
 
@@ -225,7 +225,7 @@ namespace xamarinJKH
                 FormattedString formattedString = new FormattedString();
                 formattedString.Spans.Add(new Span
                 {
-                    Text = "Вопрос " + (q+1) + "/" + _oss.Questions.Count + ".",
+                    Text = AppResources.Question + (q+1) + "/" + _oss.Questions.Count + ".",
                     FontAttributes = FontAttributes.Bold,
                     TextColor = Color.Black,
                     FontSize = 17

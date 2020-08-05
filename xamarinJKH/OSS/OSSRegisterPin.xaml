@@ -86,7 +86,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -102,7 +102,7 @@
                                HeightRequest="15"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Регистрация пин-кода"
+                            Text="{x:Static xamarinJkh:AppResources.OSSRegister}"
                             FontSize="18"
                             TextColor="White"
                             FontAttributes="Bold"
@@ -132,7 +132,7 @@
                                                BackgroundColor="Transparent"
                                                HorizontalOptions="FillAndExpand"
                                                Keyboard="Numeric"
-                                               Placeholder="Проверочный код" PlaceholderColor="#A2A2A2" />
+                                               Placeholder="{x:Static xamarinJkh:AppResources.OSSRegisterCode}" PlaceholderColor="#A2A2A2" />
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal">
                                         <Label
@@ -154,7 +154,7 @@
                                                BackgroundColor="Transparent"
                                                HorizontalOptions="FillAndExpand"
                                                Keyboard="Numeric"
-                                               Placeholder="Задайте пин-код" PlaceholderColor="#A2A2A2"
+                                               Placeholder="{x:Static xamarinJkh:AppResources.OSSRegisterCreatePincode}" PlaceholderColor="#A2A2A2"
                                                Margin="19,0,0,0" />
                                         <local:IconView x:Name="ImageClosePass0"
                                                         Source="ic_close_password"
@@ -183,7 +183,7 @@
                                                BackgroundColor="Transparent"
                                                HorizontalOptions="FillAndExpand"
                                                Keyboard="Numeric"
-                                               Placeholder="Подтвердите пин-код" PlaceholderColor="#A2A2A2"
+                                               Placeholder="{x:Static xamarinJkh:AppResources.OSSRegisterConfirmPin}" PlaceholderColor="#A2A2A2"
                                                Margin="19,0,0,0" />
                                         <local:IconView x:Name="ImageClosePass"
                                                         Source="ic_close_password"
@@ -213,7 +213,7 @@
                                             Spacing="0"
                                             HorizontalOptions="Center">
                                             <Label
-                                                Text="Подтвердить "
+                                                Text="{x:Static xamarinJkh:AppResources.Confirm}"
                                                 FontSize="15"
                                                 TextColor="White"
                                                 FontAttributes="Bold"

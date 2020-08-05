@@ -85,7 +85,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -102,7 +102,7 @@
                                Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalOptions="Center" />
                         <Label x:Name="titleLabel"
-                            Text="Результаты общего голосования в м.кв."
+                            Text="{x:Static xamarinJkh:AppResources.OSSTotal}"
                             FontSize="18"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
@@ -121,9 +121,9 @@
                                         <Label x:Name="lRezults" Margin="30,10" TextColor="Black">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="Всего проголосовали " FontSize="14" FontAttributes="Bold"></Span>
+                                                    <Span Text="{x:Static xamarinJkh:AppResources.OSSTotalVoted}" FontSize="14" FontAttributes="Bold"></Span>
                                                     <Span x:Name="spanAnswersCnt" FontSize="14"  FontAttributes="Bold"></Span>
-                                                    <Span Text=" Результаты:" FontSize="14" FontAttributes="Bold"></Span>
+                                                    <Span Text="{x:Static xamarinJkh:AppResources.OSSTotalResult}" FontSize="14" FontAttributes="Bold"></Span>
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
@@ -144,7 +144,7 @@
          Grid.Row="0"
          Grid.Column="0"/>
                                             </Grid>
-                                            <Label Text="За" FontSize="16" TextColor="Black" VerticalOptions="Center" />
+                                            <Label Text="{x:Static xamarinJkh:AppResources.OSSPersonalFor}" FontSize="16" TextColor="Black" VerticalOptions="Center" />
                                         </StackLayout>
                                         <StackLayout Margin="20,5" Orientation="Horizontal">
                                             <Grid HorizontalOptions="Center"  VerticalOptions="Center">
@@ -163,7 +163,7 @@
          Grid.Row="0"
          Grid.Column="0"/>
                                             </Grid>
-                                            <Label Text="Против" FontSize="16" TextColor="Black" VerticalOptions="Center" />
+                                            <Label Text="{x:Static xamarinJkh:AppResources.OSSPersonalAgainst}" FontSize="16" TextColor="Black" VerticalOptions="Center" />
                                         </StackLayout>
                                         <StackLayout Margin="20,5" Orientation="Horizontal">
                                             <Grid HorizontalOptions="Center"  VerticalOptions="Center">
@@ -182,7 +182,7 @@
          Grid.Row="0"
          Grid.Column="0"/>
                                             </Grid>
-                                            <Label Text="Воздержался" FontSize="16" TextColor="Black" VerticalOptions="Center" />
+                                            <Label Text="{x:Static xamarinJkh:AppResources.OSSPersonalNeutral}" FontSize="16" TextColor="Black" VerticalOptions="Center" />
                                         </StackLayout>
                                         <BoxView x:Name="delimColored" HeightRequest="1" Margin="0,15"></BoxView>
                                         <Label Margin="20,5">

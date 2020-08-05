@@ -729,4 +729,76 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="WriteUs" xml:space="preserve">
     <value>Tell us </value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="OSSPersonalAgainst" xml:space="preserve">
+    <value>Against</value>
+  </data>
+  <data name="OSSPersonalArea" xml:space="preserve">
+    <value>Total area of premises:</value>
+  </data>
+  <data name="OSSPersonalBackToList" xml:space="preserve">
+    <value>Back to OM list</value>
+  </data>
+  <data name="OSSPersonalFor" xml:space="preserve">
+    <value>For</value>
+  </data>
+  <data name="OSSPersonalHeader" xml:space="preserve">
+    <value>Your voting results sq.m.</value>
+  </data>
+  <data name="OSSPersonalNeutral" xml:space="preserve">
+    <value>Neutral</value>
+  </data>
+  <data name="OSSPersonalThankYou" xml:space="preserve">
+    <value>Thank you for parttaking</value>
+  </data>
+  <data name="OSSPersonalYourAnswers" xml:space="preserve">
+    <value>Your answeres:</value>
+  </data>
+  <data name="OSSPersonalYourPart" xml:space="preserve">
+    <value>Your share:</value>
+  </data>
+  <data name="OSSPersonalYouVoted" xml:space="preserve">
+    <value>You voted</value>
+  </data>
+  <data name="OSSPollHeader" xml:space="preserve">
+    <value>Poll questions</value>
+  </data>
+  <data name="OSSRegister" xml:space="preserve">
+    <value>PIN code registration</value>
+  </data>
+  <data name="OSSRegisterCode" xml:space="preserve">
+    <value>Check code</value>
+  </data>
+  <data name="OSSRegisterConfirmPin" xml:space="preserve">
+    <value>Confirm PIN code</value>
+  </data>
+  <data name="OSSRegisterCreatePincode" xml:space="preserve">
+    <value>Create PIN code</value>
+  </data>
+  <data name="OSSText" xml:space="preserve">
+    <value>is the final day of voting. Voting results will be available {r1Date} at {r1Time} local time. When the voting results are counted, you will receive a notification in the Push message format and access to the "OM Protocol" with a package of necessary documents.</value>
+  </data>
+  <data name="OSSTotal" xml:space="preserve">
+    <value>Voting result in sq.m.</value>
+  </data>
+  <data name="OSSTotalResult" xml:space="preserve">
+    <value>Result:</value>
+  </data>
+  <data name="OSSTotalVoted" xml:space="preserve">
+    <value>Total voted</value>
+  </data>
+  <data name="OSSVoteChecked" xml:space="preserve">
+    <value>Your vote is checked in</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+  </data>
 </root>
