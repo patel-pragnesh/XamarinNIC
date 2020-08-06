@@ -1033,8 +1033,20 @@
   <data name="Commision" xml:space="preserve">
     <value>Комиссия</value>
   </data>
+  <data name="EnterCodeNoCode" xml:space="preserve">
+    <value>Введите код для продолжения!</value>
+  </data>
+  <data name="EnterCodeSuccess" xml:space="preserve">
+    <value>Заказ успешно подтвержден</value>
+  </data>
+  <data name="EnterCodeWrongCode" xml:space="preserve">
+    <value>Введенный код неверный</value>
+  </data>
   <data name="ErrorBasketEmpty" xml:space="preserve">
     <value>Корзина пуста</value>
+  </data>
+  <data name="ErrorCheckAdress" xml:space="preserve">
+    <value>Проверьте правильность адреса</value>
   </data>
   <data name="ErrorEnterEmail" xml:space="preserve">
     <value>Введите Email</value>
@@ -1065,6 +1077,9 @@
   </data>
   <data name="ErrorUnknown" xml:space="preserve">
     <value>Во время выполнения произошла ошибка</value>
+  </data>
+  <data name="IdentSuccess" xml:space="preserve">
+    <value>Лс/ч ident  успешно подключён, для дальнейшей работы перезагрузите приложение</value>
   </data>
   <data name="PaymentOf" xml:space="preserve">
     <value>Оплата производится по квитанции за</value>

@@ -728,6 +728,33 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введите код для продолжения!.
+        /// </summary>
+        internal static string EnterCodeNoCode {
+            get {
+                return ResourceManager.GetString("EnterCodeNoCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заказ успешно подтвержден.
+        /// </summary>
+        internal static string EnterCodeSuccess {
+            get {
+                return ResourceManager.GetString("EnterCodeSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введенный код неверный.
+        /// </summary>
+        internal static string EnterCodeWrongCode {
+            get {
+                return ResourceManager.GetString("EnterCodeWrongCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Добавьте Ваш лицевой счет.
         /// </summary>
         internal static string EnterIdent {
@@ -832,6 +859,15 @@ namespace xamarinJKH {
         internal static string ErrorCameraNotAvailable {
             get {
                 return ResourceManager.GetString("ErrorCameraNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Проверьте правильность адреса.
+        /// </summary>
+        internal static string ErrorCheckAdress {
+            get {
+                return ResourceManager.GetString("ErrorCheckAdress", resourceCulture);
             }
         }
         
@@ -1246,6 +1282,15 @@ namespace xamarinJKH {
         internal static string Ident {
             get {
                 return ResourceManager.GetString("Ident", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Лс/ч ident  успешно подключён, для дальнейшей работы перезагрузите приложение.
+        /// </summary>
+        internal static string IdentSuccess {
+            get {
+                return ResourceManager.GetString("IdentSuccess", resourceCulture);
             }
         }
         

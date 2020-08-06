@@ -1056,8 +1056,20 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="Commision" xml:space="preserve">
     <value>Comission</value>
   </data>
+  <data name="EnterCodeNoCode" xml:space="preserve">
+    <value>Enter code to continue</value>
+  </data>
+  <data name="EnterCodeSuccess" xml:space="preserve">
+    <value>Order is created</value>
+  </data>
+  <data name="EnterCodeWrongCode" xml:space="preserve">
+    <value>Entered code is wrong</value>
+  </data>
   <data name="ErrorBasketEmpty" xml:space="preserve">
     <value>Cart is empty</value>
+  </data>
+  <data name="ErrorCheckAdress" xml:space="preserve">
+    <value>Check adress input</value>
   </data>
   <data name="ErrorEnterEmail" xml:space="preserve">
     <value>Enter Email</value>
