@@ -91,7 +91,7 @@ namespace xamarinJKH.Monitor
             });
             formattedName.Spans.Add(new Span
             {
-                Text = ", добрый день!",
+                Text = AppResources.GoodDay,
                 TextColor = currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
                 FontAttributes = FontAttributes.None,
                 FontSize = 16

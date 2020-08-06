@@ -286,6 +286,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Внимание.
+        /// </summary>
+        internal static string Attention {
+            get {
+                return ResourceManager.GetString("Attention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Автоматическая.
         /// </summary>
         internal static string Automatic {
@@ -399,6 +408,15 @@ namespace xamarinJKH {
         internal static string CloseApp {
             get {
                 return ResourceManager.GetString("CloseApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Проверочный код.
+        /// </summary>
+        internal static string CodeField {
+            get {
+                return ResourceManager.GetString("CodeField", resourceCulture);
             }
         }
         
@@ -638,11 +656,38 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введите пин-код в оба поля.
+        /// </summary>
+        internal static string EnterBothPins {
+            get {
+                return ResourceManager.GetString("EnterBothPins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введите проверочный код.
+        /// </summary>
+        internal static string EnterCode {
+            get {
+                return ResourceManager.GetString("EnterCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ввести код.
         /// </summary>
         internal static string EnterCodeApp {
             get {
                 return ResourceManager.GetString("EnterCodeApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Добавьте Ваш лицевой счет.
+        /// </summary>
+        internal static string EnterIdent {
+            get {
+                return ResourceManager.GetString("EnterIdent", resourceCulture);
             }
         }
         
@@ -796,6 +841,96 @@ namespace xamarinJKH {
         internal static string ErrorMessageEmpty {
             get {
                 return ResourceManager.GetString("ErrorMessageEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не удалось получить информацию о новостях.
+        /// </summary>
+        internal static string ErrorNewsInfo {
+            get {
+                return ResourceManager.GetString("ErrorNewsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не удалось получить информацию о уведомлениях.
+        /// </summary>
+        internal static string ErrorNotifInfo {
+            get {
+                return ResourceManager.GetString("ErrorNotifInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введенный пин-код не является числом.
+        /// </summary>
+        internal static string ErrorOSSAuthNotNumber {
+            get {
+                return ResourceManager.GetString("ErrorOSSAuthNotNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ошибка при проверки пин-кода.
+        /// </summary>
+        internal static string ErrorOSSAuthPin {
+            get {
+                return ResourceManager.GetString("ErrorOSSAuthPin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введите положительное число в поле пин-код.
+        /// </summary>
+        internal static string ErrorOSSAuthPositive {
+            get {
+                return ResourceManager.GetString("ErrorOSSAuthPositive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не удалось отправить уведомление об ознакомлении с повесткой ОСС.
+        /// </summary>
+        internal static string ErrorOSSMain {
+            get {
+                return ResourceManager.GetString("ErrorOSSMain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не удалось получить информацию об ОСС.
+        /// </summary>
+        internal static string ErrorOSSMainInfo {
+            get {
+                return ResourceManager.GetString("ErrorOSSMainInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не удалось передать ответы.
+        /// </summary>
+        internal static string ErrorOSSPollPass {
+            get {
+                return ResourceManager.GetString("ErrorOSSPollPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Добавьте номер Вашего телефона.
+        /// </summary>
+        internal static string ErrorOSSRegisterAddPhone {
+            get {
+                return ResourceManager.GetString("ErrorOSSRegisterAddPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ошибка при отправке проверочного кода: .
+        /// </summary>
+        internal static string ErrorOSSRegisterCode {
+            get {
+                return ResourceManager.GetString("ErrorOSSRegisterCode", resourceCulture);
             }
         }
         
@@ -1486,6 +1621,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Голосование начнется {_oss.DateStart} по местному времени, Вам будет прислано Push оповещение.
+        /// </summary>
+        internal static string OSSInfoNotifSuccess {
+            get {
+                return ResourceManager.GetString("OSSInfoNotifSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Номер собственности.
         /// </summary>
         internal static string OSSInfoNumber {
@@ -2081,6 +2225,24 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Пин-код.
+        /// </summary>
+        internal static string PinField {
+            get {
+                return ResourceManager.GetString("PinField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введенные пин-коды не совпадают.
+        /// </summary>
+        internal static string PinsDifferent {
+            get {
+                return ResourceManager.GetString("PinsDifferent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Предыдущие показания.
         /// </summary>
         internal static string PrebiousData {
@@ -2324,6 +2486,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ответы успешно переданы.
+        /// </summary>
+        internal static string SuccessOSSPollPass {
+            get {
+                return ResourceManager.GetString("SuccessOSSPollPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ваши данные успешно сохранены.
         /// </summary>
         internal static string SuccessProfile {
@@ -2437,6 +2608,24 @@ namespace xamarinJKH {
         internal static string TodayPeriod {
             get {
                 return ResourceManager.GetString("TodayPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Для получения электронной подписи введите одноразовый пароль.
+        /// </summary>
+        internal static string ToGetSignature {
+            get {
+                return ResourceManager.GetString("ToGetSignature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Смс-собщение с кодом подтверждения отправлено на Ваш номер телефона, введите его в соответсвующее поле на форме.
+        /// </summary>
+        internal static string ToGetSignatureText {
+            get {
+                return ResourceManager.GetString("ToGetSignatureText", resourceCulture);
             }
         }
         

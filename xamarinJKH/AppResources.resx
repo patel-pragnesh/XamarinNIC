@@ -940,6 +940,51 @@
   <data name="SuccessProfile" xml:space="preserve">
     <value>Ваши данные успешно сохранены</value>
   </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Внимание</value>
+  </data>
+  <data name="CodeField" xml:space="preserve">
+    <value>Проверочный код</value>
+  </data>
+  <data name="EnterBothPins" xml:space="preserve">
+    <value>Введите пин-код в оба поля</value>
+  </data>
+  <data name="EnterCode" xml:space="preserve">
+    <value>Введите проверочный код</value>
+  </data>
+  <data name="EnterIdent" xml:space="preserve">
+    <value>Добавьте Ваш лицевой счет</value>
+  </data>
+  <data name="ErrorNewsInfo" xml:space="preserve">
+    <value>Не удалось получить информацию о новостях</value>
+  </data>
+  <data name="ErrorNotifInfo" xml:space="preserve">
+    <value>Не удалось получить информацию о уведомлениях</value>
+  </data>
+  <data name="ErrorOSSAuthNotNumber" xml:space="preserve">
+    <value>Введенный пин-код не является числом</value>
+  </data>
+  <data name="ErrorOSSAuthPin" xml:space="preserve">
+    <value>Ошибка при проверки пин-кода</value>
+  </data>
+  <data name="ErrorOSSAuthPositive" xml:space="preserve">
+    <value>Введите положительное число в поле пин-код</value>
+  </data>
+  <data name="ErrorOSSMain" xml:space="preserve">
+    <value>Не удалось отправить уведомление об ознакомлении с повесткой ОСС</value>
+  </data>
+  <data name="ErrorOSSMainInfo" xml:space="preserve">
+    <value>Не удалось получить информацию об ОСС</value>
+  </data>
+  <data name="ErrorOSSPollPass" xml:space="preserve">
+    <value>Не удалось передать ответы</value>
+  </data>
+  <data name="ErrorOSSRegisterAddPhone" xml:space="preserve">
+    <value>Добавьте номер Вашего телефона</value>
+  </data>
+  <data name="ErrorOSSRegisterCode" xml:space="preserve">
+    <value>Ошибка при отправке проверочного кода: </value>
+  </data>
   <data name="GoodDay" xml:space="preserve">
     <value>, добрый день!</value>
   </data>
@@ -948,5 +993,23 @@
   </data>
   <data name="MonitorStats" xml:space="preserve">
     <value>Сбор статистики...</value>
+  </data>
+  <data name="OSSInfoNotifSuccess" xml:space="preserve">
+    <value>Голосование начнется {_oss.DateStart} по местному времени, Вам будет прислано Push оповещение</value>
+  </data>
+  <data name="PinField" xml:space="preserve">
+    <value>Пин-код</value>
+  </data>
+  <data name="PinsDifferent" xml:space="preserve">
+    <value>Введенные пин-коды не совпадают</value>
+  </data>
+  <data name="SuccessOSSPollPass" xml:space="preserve">
+    <value>Ответы успешно переданы</value>
+  </data>
+  <data name="ToGetSignature" xml:space="preserve">
+    <value>Для получения электронной подписи введите одноразовый пароль</value>
+  </data>
+  <data name="ToGetSignatureText" xml:space="preserve">
+    <value>Смс-собщение с кодом подтверждения отправлено на Ваш номер телефона, введите его в соответсвующее поле на форме</value>
   </data>
 </root>

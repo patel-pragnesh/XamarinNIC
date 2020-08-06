@@ -966,6 +966,51 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="YourOrder" xml:space="preserve">
     <value>Your order:</value>
   </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Attention</value>
+  </data>
+  <data name="CodeField" xml:space="preserve">
+    <value>Verification code</value>
+  </data>
+  <data name="EnterBothPins" xml:space="preserve">
+    <value>Enter pin code in both fields</value>
+  </data>
+  <data name="EnterCode" xml:space="preserve">
+    <value>Enter verification code</value>
+  </data>
+  <data name="EnterIdent" xml:space="preserve">
+    <value>Add your personal account</value>
+  </data>
+  <data name="ErrorNewsInfo" xml:space="preserve">
+    <value>Couldn't get information about news</value>
+  </data>
+  <data name="ErrorNotifInfo" xml:space="preserve">
+    <value>Couldn't get information about notifications</value>
+  </data>
+  <data name="ErrorOSSAuthNotNumber" xml:space="preserve">
+    <value>Entered PIN is not a number</value>
+  </data>
+  <data name="ErrorOSSAuthPin" xml:space="preserve">
+    <value>Error checking PIN code</value>
+  </data>
+  <data name="ErrorOSSAuthPositive" xml:space="preserve">
+    <value>enter a positive number in PIN code field</value>
+  </data>
+  <data name="ErrorOSSMain" xml:space="preserve">
+    <value>Failed to send notification of reviewing OM agenda</value>
+  </data>
+  <data name="ErrorOSSMainInfo" xml:space="preserve">
+    <value>Failed to get information about OM</value>
+  </data>
+  <data name="ErrorOSSPollPass" xml:space="preserve">
+    <value>Failed to send replies</value>
+  </data>
+  <data name="ErrorOSSRegisterAddPhone" xml:space="preserve">
+    <value>Add your phone number</value>
+  </data>
+  <data name="ErrorOSSRegisterCode" xml:space="preserve">
+    <value>Error sending verification code:</value>
+  </data>
   <data name="GoodDay" xml:space="preserve">
     <value>, good day!</value>
   </data>
@@ -974,5 +1019,23 @@ A bot will call you on your number PHONE and tell an access code</value>
   </data>
   <data name="MonitorStats" xml:space="preserve">
     <value>Getting information...</value>
+  </data>
+  <data name="OSSInfoNotifSuccess" xml:space="preserve">
+    <value>Voting will start on {_oss.DateStart} local time, you will receive a Push notification</value>
+  </data>
+  <data name="PinField" xml:space="preserve">
+    <value>Pin</value>
+  </data>
+  <data name="PinsDifferent" xml:space="preserve">
+    <value>The entered PIN codes do not match</value>
+  </data>
+  <data name="SuccessOSSPollPass" xml:space="preserve">
+    <value>Replies sent successfully</value>
+  </data>
+  <data name="ToGetSignature" xml:space="preserve">
+    <value>To receive an electronic signature, enter a one-time password</value>
+  </data>
+  <data name="ToGetSignatureText" xml:space="preserve">
+    <value>SMS message with a confirmation code has been sent to your phone number, enter it in the appropriate field on the form</value>
   </data>
 </root>
