@@ -784,4 +784,94 @@
   <data name="Question" xml:space="preserve">
     <value>Вопрос </value>
   </data>
+  <data name="AlertSuccess" xml:space="preserve">
+    <value>Успешно</value>
+  </data>
+  <data name="AppCreated" xml:space="preserve">
+    <value>Заявка успешно создана</value>
+  </data>
+  <data name="AppErrorFill" xml:space="preserve">
+    <value>Заполните описание заявки</value>
+  </data>
+  <data name="DeleteFile" xml:space="preserve">
+    <value>Удалить файл?</value>
+  </data>
+  <data name="ErrorAdditional" xml:space="preserve">
+    <value>Не удалось получить информацию об услугах</value>
+  </data>
+  <data name="ErrorAdditionalLink" xml:space="preserve">
+    <value>Не удалось открыть ссылку</value>
+  </data>
+  <data name="ErrorCameraNotAvailable" xml:space="preserve">
+    <value>Камера недоступна</value>
+  </data>
+  <data name="ErrorComments" xml:space="preserve">
+    <value>Не удалось получить информацию по комментариям</value>
+  </data>
+  <data name="ErrorConnectcIdent" xml:space="preserve">
+    <value>Подключите лицевой счет</value>
+  </data>
+  <data name="ErrorFileLoading" xml:space="preserve">
+    <value>Не удалось скачать файл</value>
+  </data>
+  <data name="ErrorGalleryNotAvailable" xml:space="preserve">
+    <value>Галерея недоступна</value>
+  </data>
+  <data name="ErrorMessageEmpty" xml:space="preserve">
+    <value>Введите текст сообщения</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="FileSending" xml:space="preserve">
+    <value>Отправка файла</value>
+  </data>
+  <data name="FileTooBig" xml:space="preserve">
+    <value>Размер файла превышает 10мб</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Загрузка</value>
+  </data>
+  <data name="LoadingFile" xml:space="preserve">
+    <value>Загрузка файла</value>
+  </data>
+  <data name="MessageNotSent" xml:space="preserve">
+    <value>Сообщение не отправлено</value>
+  </data>
+  <data name="MessageSent" xml:space="preserve">
+    <value>Сообщение отправлено</value>
+  </data>
+  <data name="NewAppAddFile" xml:space="preserve">
+    <value>+ Прикрепить</value>
+  </data>
+  <data name="NewAppCreate" xml:space="preserve">
+    <value>Создать заявку</value>
+  </data>
+  <data name="NewAppDescription" xml:space="preserve">
+    <value>Введите описание заявки...</value>
+  </data>
+  <data name="NewAppFiles" xml:space="preserve">
+    <value>Файлы</value>
+  </data>
+  <data name="NewAppMaxSize" xml:space="preserve">
+    <value>Максимальный размер: 10 МБ</value>
+  </data>
+  <data name="NewAppType" xml:space="preserve">
+    <value>Тип заявки: </value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="OrderSuccess" xml:space="preserve">
+    <value>Заказ успешно оформлен</value>
+  </data>
+  <data name="OSSVotingResult" xml:space="preserve">
+    <value>Итоги голосования</value>
+  </data>
+  <data name="SuccessFileSent" xml:space="preserve">
+    <value>Файл отправлен</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
 </root>
