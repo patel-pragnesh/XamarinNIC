@@ -68,12 +68,12 @@ namespace xamarinJKH.Tech
                         }
                         else
                         {
-                            await DisplayAlert("Ошибка", "Отсутствуют типы заявок", "OK");
+                            await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppsNoTypes, "OK");
                         }
                     }
                     else
                     {
-                        await DisplayAlert("Ошибка", "Лицевые счета не подключены", "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppsNoIdent, "OK");
                     }
                 }
             };
@@ -94,19 +94,19 @@ namespace xamarinJKH.Tech
                 string text = EntryText.Text;
                 if (phone.Length < 11)
                 {
-                    await DisplayAlert("Ошибка", "Номер телефона необходимо ввести в формате: +7 (ХХХ) ХХХ-ХХХХ", "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorTechNumberFormat, "OK");
                     return;
                 }
 
                 if (email.Equals(""))
                 {
-                    await DisplayAlert("Ошибка", "Введите E-mail", "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorEnterEmail, "OK");
                     return;
                 }
 
                 if (text.Equals(""))
                 {
-                    await DisplayAlert("Ошибка", "Введите описание проблемы", "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorTechDesc, "OK");
                     return;
                 }
 
@@ -148,12 +148,12 @@ namespace xamarinJKH.Tech
             CommonResult result = await server.TechSupportAppeal(arguments);
             if (result.Error == null)
             {
-                await DisplayAlert("Успешно", "Обращение успешно отправлено", "OK");
+                await DisplayAlert(AppResources.AlertSuccess, AppResources.TechSendSuccess, "OK");
                 ClosePage();
             }
             else
             {
-                await DisplayAlert("Ошибка", result.Error, "OK");
+                await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
             }
         }
 
@@ -189,7 +189,7 @@ namespace xamarinJKH.Tech
                 IndicatorColor = hex,
                 OverlayColor = Color.Black,
                 Opacity = 0.8,
-                DefaultMessage = "Отправка...",
+                DefaultMessage = AppResources.Sending,
             };
 
             await Loading.Instance.StartAsync(async progress =>

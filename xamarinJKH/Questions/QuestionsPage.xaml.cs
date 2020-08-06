@@ -74,7 +74,7 @@ namespace xamarinJKH.Questions
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию об опросах", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorOSSMainInfo, "OK");
             }
         }
 

@@ -92,12 +92,12 @@ namespace xamarinJKH.Questions
             CommonResult result = await server.SaveResultPolls(_pollingResult);
             if (result.Error == null)
             {
-                await DisplayAlert("Успешно", "Ответы успешно переданы", "OK");
+                await DisplayAlert(AppResources.AlertSuccess, AppResources.SuccessOSSPollPass, "OK");
                 _ = await Navigation.PopAsync();
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось передать ответы\n" + result.Error, "OK");
+                await DisplayAlert(AppResources.ErrorTitle, $"{AppResources.ErrorOSSPollPass}\n" + result.Error, "OK");
             }
         }
 

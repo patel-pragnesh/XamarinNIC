@@ -83,7 +83,7 @@ namespace xamarinJKH.Shop
             //    }
             //    else
             //    {
-            //        await DisplayAlert("Ошибка", "Корзина пуста", "OK");
+            //        await DisplayAlert(AppResources.ErrorTitle, "Корзина пуста", "OK");
             //    }
             //};
             //StackLayoutBasket.GestureRecognizers.Add(basketPage);
@@ -113,7 +113,7 @@ namespace xamarinJKH.Shop
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию о товарах", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorInfoProducts, "OK");
             }
         }
 
@@ -316,7 +316,7 @@ namespace xamarinJKH.Shop
             Label text = new Label();
             text.FontSize = 16;
             text.TextColor = Color.Black;
-            text.Text = "Каталог";
+            text.Text = AppResources.Catalog;
             text.FontAttributes = FontAttributes.Bold;
 
             #region price
@@ -506,7 +506,7 @@ namespace xamarinJKH.Shop
                     }
                     else
                     {
-                        await DisplayAlert("Ошибка", "Товар: " + each.Name + " закончился", "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, $"{AppResources.BasketProduct} {AppResources.BasketProductNoLeft}", "OK");
                     }
 
                     SetPriceAndWeight();
@@ -550,7 +550,7 @@ namespace xamarinJKH.Shop
                     }
                     else
                     {
-                        await DisplayAlert("Ошибка", "Товара: " + each.Name + " в корзине больше нет", "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, $"{AppResources.BasketProduct} {AppResources.BasketProductNotInBasket}", "OK");
                     }
 
                     SetPriceAndWeight();
@@ -705,7 +705,7 @@ namespace xamarinJKH.Shop
         //                }
         //                else
         //                {
-        //                    await DisplayAlert("Ошибка", "Товар: " + each.Name + " закончился", "OK");
+        //                    await DisplayAlert(AppResources.ErrorTitle, "Товар: " + each.Name + " закончился", "OK");
         //                }
 
         //                SetPriceAndWeight();
@@ -747,7 +747,7 @@ namespace xamarinJKH.Shop
         //                }
         //                else
         //                {
-        //                    await DisplayAlert("Ошибка", "Товара: " + each.Name + " в корзине больше нет", "OK");
+        //                    await DisplayAlert(AppResources.ErrorTitle, "Товара: " + each.Name + " в корзине больше нет", "OK");
         //                }
 
         //                SetPriceAndWeight();
@@ -887,7 +887,7 @@ namespace xamarinJKH.Shop
                     }
                     else
                     {
-                        await DisplayAlert("Ошибка", "Товар: " + each.Name + " закончился", "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, "Товар: " + each.Name + " закончился", "OK");
                     }
 
                     SetPriceAndWeight();
@@ -929,7 +929,7 @@ namespace xamarinJKH.Shop
                     }
                     else
                     {
-                        await DisplayAlert("Ошибка", "Товара: " + each.Name + " в корзине больше нет", "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, "Товара: " + each.Name + " в корзине больше нет", "OK");
                     }
 
                     SetPriceAndWeight();
@@ -981,7 +981,7 @@ namespace xamarinJKH.Shop
             });
             formattedStringPriceBasket.Spans.Add(new Span
             {
-                Text = " руб.",
+                Text = $" {AppResources.Currency}",
                 TextColor = Color.FromHex("#8a8a8a")  ,
                 FontSize=12
             }) ;
@@ -1041,7 +1041,7 @@ namespace xamarinJKH.Shop
             }
             else
             {
-                await DisplayAlert("Ошибка", "Корзина пуста", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorBasketEmpty, "OK");
             }
         }
 

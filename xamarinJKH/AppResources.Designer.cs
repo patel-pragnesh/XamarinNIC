@@ -313,6 +313,33 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Товар.
+        /// </summary>
+        internal static string BasketProduct {
+            get {
+                return ResourceManager.GetString("BasketProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to закончился.
+        /// </summary>
+        internal static string BasketProductNoLeft {
+            get {
+                return ResourceManager.GetString("BasketProductNoLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to отсутствует в корзине.
+        /// </summary>
+        internal static string BasketProductNotInBasket {
+            get {
+                return ResourceManager.GetString("BasketProductNotInBasket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Квитанции.
         /// </summary>
         internal static string Bills {
@@ -345,6 +372,15 @@ namespace xamarinJKH {
         internal static string Card {
             get {
                 return ResourceManager.GetString("Card", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Каталог.
+        /// </summary>
+        internal static string Catalog {
+            get {
+                return ResourceManager.GetString("Catalog", resourceCulture);
             }
         }
         
@@ -782,6 +818,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Корзина пуста.
+        /// </summary>
+        internal static string ErrorBasketEmpty {
+            get {
+                return ResourceManager.GetString("ErrorBasketEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Камера недоступна.
         /// </summary>
         internal static string ErrorCameraNotAvailable {
@@ -814,6 +859,15 @@ namespace xamarinJKH {
         internal static string ErrorCountersNoData {
             get {
                 return ResourceManager.GetString("ErrorCountersNoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введите Email.
+        /// </summary>
+        internal static string ErrorEnterEmail {
+            get {
+                return ResourceManager.GetString("ErrorEnterEmail", resourceCulture);
             }
         }
         
@@ -877,6 +931,15 @@ namespace xamarinJKH {
         internal static string ErrorInfoBills {
             get {
                 return ResourceManager.GetString("ErrorInfoBills", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не удалось получить информацию о товарах.
+        /// </summary>
+        internal static string ErrorInfoProducts {
+            get {
+                return ResourceManager.GetString("ErrorInfoProducts", resourceCulture);
             }
         }
         
@@ -1007,11 +1070,38 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введите описание проблемы.
+        /// </summary>
+        internal static string ErrorTechDesc {
+            get {
+                return ResourceManager.GetString("ErrorTechDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Номер телефона необходимо ввести в формате: +7 (ХХХ) ХХХ-ХХХХ.
+        /// </summary>
+        internal static string ErrorTechNumberFormat {
+            get {
+                return ResourceManager.GetString("ErrorTechNumberFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ошибка.
         /// </summary>
         internal static string ErrorTitle {
             get {
                 return ResourceManager.GetString("ErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Во время выполнения произошла ошибка.
+        /// </summary>
+        internal static string ErrorUnknown {
+            get {
+                return ResourceManager.GetString("ErrorUnknown", resourceCulture);
             }
         }
         
@@ -2216,6 +2306,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Заказ успешно оформлен.
+        /// </summary>
+        internal static string PayShopSuccess {
+            get {
+                return ResourceManager.GetString("PayShopSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Оплата наличными при получении.
         /// </summary>
         internal static string PayText0 {
@@ -2468,6 +2567,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отправка....
+        /// </summary>
+        internal static string Sending {
+            get {
+                return ResourceManager.GetString("Sending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Настройки.
         /// </summary>
         internal static string Settings {
@@ -2662,6 +2770,15 @@ namespace xamarinJKH {
         internal static string TechPlaceholder {
             get {
                 return ResourceManager.GetString("TechPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Обращение успешно отправлено.
+        /// </summary>
+        internal static string TechSendSuccess {
+            get {
+                return ResourceManager.GetString("TechSendSuccess", resourceCulture);
             }
         }
         
