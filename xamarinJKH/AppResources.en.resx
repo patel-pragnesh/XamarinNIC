@@ -981,6 +981,9 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="EnterIdent" xml:space="preserve">
     <value>Add your personal account</value>
   </data>
+  <data name="ErrorAddIdent" xml:space="preserve">
+    <value>Check address</value>
+  </data>
   <data name="ErrorNewsInfo" xml:space="preserve">
     <value>Couldn't get information about news</value>
   </data>
@@ -1037,5 +1040,32 @@ A bot will call you on your number PHONE and tell an access code</value>
   </data>
   <data name="ToGetSignatureText" xml:space="preserve">
     <value>SMS message with a confirmation code has been sent to your phone number, enter it in the appropriate field on the form</value>
+  </data>
+  <data name="Commision" xml:space="preserve">
+    <value>Comission</value>
+  </data>
+  <data name="ErrorEnterSum" xml:space="preserve">
+    <value>Enter sum</value>
+  </data>
+  <data name="ErrorInfoBills" xml:space="preserve">
+    <value>Failed to get receipt information</value>
+  </data>
+  <data name="ErrorOverpay" xml:space="preserve">
+    <value>There is an overpayment of account</value>
+  </data>
+  <data name="ErrorPayInfo" xml:space="preserve">
+    <value>Failed to get payment information</value>
+  </data>
+  <data name="ErrorReboot" xml:space="preserve">
+    <value>An error has occurred, please try restarting the application</value>
+  </data>
+  <data name="PaymentOf" xml:space="preserve">
+    <value>Payment is made on receipt for</value>
+  </data>
+  <data name="PayProcessing" xml:space="preserve">
+    <value>Payment is being processed</value>
+  </data>
+  <data name="ShareBill" xml:space="preserve">
+    <value>Share bill</value>
   </data>
 </root>

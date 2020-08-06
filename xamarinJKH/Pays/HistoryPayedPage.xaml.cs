@@ -65,7 +65,7 @@ namespace xamarinJKH.Pays
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию об оплатах", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorPayInfo, "OK");
             }
         }
 

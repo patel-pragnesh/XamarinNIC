@@ -431,6 +431,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Комиссия.
+        /// </summary>
+        internal static string Commision {
+            get {
+                return ResourceManager.GetString("Commision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Выполнить.
         /// </summary>
         internal static string CompleteApp {
@@ -719,6 +728,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Проверьте правильность адреса.
+        /// </summary>
+        internal static string ErrorAddIdent {
+            get {
+                return ResourceManager.GetString("ErrorAddIdent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не удалось получить информацию об услугах.
         /// </summary>
         internal static string ErrorAdditional {
@@ -800,6 +818,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введите сумму.
+        /// </summary>
+        internal static string ErrorEnterSum {
+            get {
+                return ResourceManager.GetString("ErrorEnterSum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не удалось скачать файл.
         /// </summary>
         internal static string ErrorFileLoading {
@@ -818,6 +845,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Заполните номер счета.
+        /// </summary>
+        internal static string ErrorFillIdent {
+            get {
+                return ResourceManager.GetString("ErrorFillIdent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Заполните поля.
         /// </summary>
         internal static string ErrorFills {
@@ -832,6 +868,15 @@ namespace xamarinJKH {
         internal static string ErrorGalleryNotAvailable {
             get {
                 return ResourceManager.GetString("ErrorGalleryNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не удалось получить информацию о квитанциях.
+        /// </summary>
+        internal static string ErrorInfoBills {
+            get {
+                return ResourceManager.GetString("ErrorInfoBills", resourceCulture);
             }
         }
         
@@ -931,6 +976,33 @@ namespace xamarinJKH {
         internal static string ErrorOSSRegisterCode {
             get {
                 return ResourceManager.GetString("ErrorOSSRegisterCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Имеется переплата по л.с.
+        /// </summary>
+        internal static string ErrorOverpay {
+            get {
+                return ResourceManager.GetString("ErrorOverpay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не удалось получить информацию об оплатах.
+        /// </summary>
+        internal static string ErrorPayInfo {
+            get {
+                return ResourceManager.GetString("ErrorPayInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Произошла ошибка, попробуйте перезапустить приложение.
+        /// </summary>
+        internal static string ErrorReboot {
+            get {
+                return ResourceManager.GetString("ErrorReboot", resourceCulture);
             }
         }
         
@@ -2099,11 +2171,29 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Оплата производится по квитанции за.
+        /// </summary>
+        internal static string PaymentOf {
+            get {
+                return ResourceManager.GetString("PaymentOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Платеж обрабатывается .
         /// </summary>
         internal static string PayProcess {
             get {
                 return ResourceManager.GetString("PayProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Платеж обрабатывается.
+        /// </summary>
+        internal static string PayProcessing {
+            get {
+                return ResourceManager.GetString("PayProcessing", resourceCulture);
             }
         }
         
@@ -2383,6 +2473,15 @@ namespace xamarinJKH {
         internal static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Поделиться квитанцией.
+        /// </summary>
+        internal static string ShareBill {
+            get {
+                return ResourceManager.GetString("ShareBill", resourceCulture);
             }
         }
         

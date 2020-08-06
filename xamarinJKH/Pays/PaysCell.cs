@@ -62,7 +62,7 @@ namespace xamarinJKH.Main
             x.WidthRequest = 10;
 
             Label close = new Label();
-            close.Text = "Удалить";
+            close.Text = AppResources.Delete;
             close.TextColor = Color.FromHex(Settings.MobileSettings.color);
             close.FontSize = 15;
             close.TextDecorations = TextDecorations.Underline;
@@ -134,7 +134,7 @@ namespace xamarinJKH.Main
             btn.Margin = new Thickness(13,13,0,13);
             btn.FontAttributes = FontAttributes.Bold;
             btn.FontSize = 16;
-            btn.Text = "Оплатить";
+            btn.Text = AppResources.Pay;
 
             containerBtn.Children.Add(image);
             containerBtn.Children.Add(btn);
@@ -149,7 +149,7 @@ namespace xamarinJKH.Main
 
             formatted.Spans.Add(new Span
             {
-                Text = "Платеж обрабатывается",
+                Text = AppResources.PayProcessing,
                 FontSize = 12
             });
             formatted.Spans.Add(new Span
@@ -160,7 +160,7 @@ namespace xamarinJKH.Main
             });
             formatted.Spans.Add(new Span
             {
-                Text = "рабочих дня",
+                Text = AppResources.WorkDays,
                 FontSize = 12
             });
 
@@ -236,13 +236,13 @@ namespace xamarinJKH.Main
                 FormattedString formattedIdent = new FormattedString();
                 formattedIdent.Spans.Add(new Span
                 {
-                    Text = "Л/сч: ",
+                    Text = $"{AppResources.Acc} ",
                     TextColor = Color.Black,
                     FontSize = 15
                 });
                 formattedIdent.Spans.Add(new Span
                 {
-                    Text = "№ " + Ident,
+                    Text = $"{AppResources.Number} " + Ident,
                     TextColor = Color.Black,
                     FontAttributes = FontAttributes.Bold,
                     FontSize = 15
@@ -252,13 +252,13 @@ namespace xamarinJKH.Main
 
                 formattedPayDate.Spans.Add(new Span
                 {
-                    Text = "Сумма к оплате\n",
+                    Text = $"{AppResources.SumToPay}\n",
                     TextColor = Color.Gray,
                     FontSize = fs
                 });
                 formattedPayDate.Spans.Add(new Span
                 {
-                    Text = "на " + DateIdent + ":",
+                    Text = $"{AppResources.By} " + DateIdent + ":",
                     TextColor = Color.Black,
                     FontSize = fs
                 });
@@ -274,7 +274,7 @@ namespace xamarinJKH.Main
                 });
                 formattedPay.Spans.Add(new Span
                 {
-                    Text = " руб.",
+                    Text = $" {AppResources.Currency}",
                     TextColor = Color.Gray,
                     FontSize = 15
                 });

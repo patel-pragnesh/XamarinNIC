@@ -955,6 +955,12 @@
   <data name="EnterIdent" xml:space="preserve">
     <value>Добавьте Ваш лицевой счет</value>
   </data>
+  <data name="ErrorAddIdent" xml:space="preserve">
+    <value>Проверьте правильность адреса</value>
+  </data>
+  <data name="ErrorFillIdent" xml:space="preserve">
+    <value>Заполните номер счета</value>
+  </data>
   <data name="ErrorNewsInfo" xml:space="preserve">
     <value>Не удалось получить информацию о новостях</value>
   </data>
@@ -1011,5 +1017,32 @@
   </data>
   <data name="ToGetSignatureText" xml:space="preserve">
     <value>Смс-собщение с кодом подтверждения отправлено на Ваш номер телефона, введите его в соответсвующее поле на форме</value>
+  </data>
+  <data name="Commision" xml:space="preserve">
+    <value>Комиссия</value>
+  </data>
+  <data name="ErrorEnterSum" xml:space="preserve">
+    <value>Введите сумму</value>
+  </data>
+  <data name="ErrorInfoBills" xml:space="preserve">
+    <value>Не удалось получить информацию о квитанциях</value>
+  </data>
+  <data name="ErrorOverpay" xml:space="preserve">
+    <value>Имеется переплата по л.с</value>
+  </data>
+  <data name="ErrorPayInfo" xml:space="preserve">
+    <value>Не удалось получить информацию об оплатах</value>
+  </data>
+  <data name="ErrorReboot" xml:space="preserve">
+    <value>Произошла ошибка, попробуйте перезапустить приложение</value>
+  </data>
+  <data name="PaymentOf" xml:space="preserve">
+    <value>Оплата производится по квитанции за</value>
+  </data>
+  <data name="PayProcessing" xml:space="preserve">
+    <value>Платеж обрабатывается</value>
+  </data>
+  <data name="ShareBill" xml:space="preserve">
+    <value>Поделиться квитанцией</value>
   </data>
 </root>
