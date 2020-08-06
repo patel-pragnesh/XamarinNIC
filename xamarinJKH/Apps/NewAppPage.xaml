@@ -85,7 +85,7 @@
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
-                               Text="Написать в тех.поддержку"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
@@ -103,7 +103,7 @@
                                Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="Создать заявку"
+                            Text="{x:Static xamarinJkh:AppResources.NewAppCreate}"
                             FontSize="18"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
@@ -127,13 +127,13 @@
 
                                     <Label
                                         TextColor="Black"
-                                        Text="Лицевой счет: "
+                                        Text="{x:Static xamarinJkh:AppResources.Ident}"
                                         VerticalOptions="Center"
                                         FontAttributes="Bold"
                                         FontSize="17" />
                                     <StackLayout Spacing="0">
                                         <StackLayout Orientation="Horizontal">
-                                            <xamarinJkh:BorderlessPicker x:Name="PickerLs" Title="Выбор"
+                                            <xamarinJkh:BorderlessPicker x:Name="PickerLs" Title="{x:Static xamarinJkh:AppResources.Choose}"
                                                                          TitleColor="{Binding hex}"
                                                                          TextColor="{Binding hex}"
                                                                          VerticalOptions="End"
@@ -165,14 +165,14 @@
 
                                     <Label
                                         TextColor="Black"
-                                        Text="Тип заявки: "
+                                        Text="{x:Static xamarinJkh:AppResources.NewAppType}"
                                         VerticalOptions="Center"
                                         FontAttributes="Bold"
                                         FontSize="17" />
                                     <StackLayout Spacing="0">
                                         <StackLayout
                                             Orientation="Horizontal">
-                                            <xamarinJkh:BorderlessPicker x:Name="PickerType" Title="Выбор"
+                                            <xamarinJkh:BorderlessPicker x:Name="PickerType" Title="{x:Static xamarinJkh:AppResources.Choose}"
                                                                          TitleColor="{Binding hex}"
                                                                          TextColor="{Binding hex}"
                                                                          VerticalOptions="End"
@@ -207,7 +207,7 @@
                                                                Text=""
                                                                WidthRequest="300"
                                                                AutoSize="TextChanges"
-                                                               Placeholder="Введите описание заявки..."
+                                                               Placeholder="{x:Static xamarinJkh:AppResources.NewAppDescription}"
                                                                TextColor="#A2A2A2"
                                                                HorizontalOptions="FillAndExpand" />
                                 </Frame>
@@ -216,14 +216,14 @@
                                     <StackLayout Spacing="0"
                                                  HorizontalOptions="FillAndExpand">
                                         <Label
-                                            Text="Файлы"
+                                            Text="{x:Static xamarinJkh:AppResources.NewAppFiles}"
                                             FontAttributes="Bold"
                                             FontSize="17"
                                             TextColor="Black"
                                             HorizontalOptions="Start"
                                             HorizontalTextAlignment="Start" />
                                         <Label
-                                            Text="Максимальный размер: 10 МБ"
+                                            Text="{x:Static xamarinJkh:AppResources.NewAppMaxSize}"
                                             FontSize="11"
                                             TextColor="Gray"
                                             HorizontalOptions="Start"
@@ -240,7 +240,7 @@
                                                              Foreground="{Binding hex}"
                                                              HorizontalOptions="Center" />
                                         <Label
-                                            Text="+ Прикрепить"
+                                            Text="{x:Static xamarinJkh:AppResources.NewAppAddFile}"
                                             FontSize="13"
                                             TextDecorations="Underline"
                                             FontAttributes="Bold"
@@ -283,7 +283,7 @@
                                        x:Name="FrameBtnAdd"
                                        Padding="0">
                                     <Button x:Name="BtnAdd"
-                                            Text="Создать"
+                                            Text="{x:Static xamarinJkh:AppResources.Create}"
                                             TextColor="White"
                                             Clicked="addApp"
                                             FontAttributes="Bold"

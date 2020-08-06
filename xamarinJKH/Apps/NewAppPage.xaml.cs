@@ -34,9 +34,9 @@ namespace xamarinJKH.Apps
         public List<FileData> files { get; set; }
         public List<byte[]> Byteses = new List<byte[]>();
         private AppsPage _appsPage;
-        const string TAKE_PHOTO = "Сделать фото";
-        const string TAKE_GALRY = "Выбрать фото из галереи";
-        const string TAKE_FILE = "Выбрать файл";
+        string TAKE_PHOTO = AppResources.AttachmentTakePhoto;
+        string TAKE_GALRY = AppResources.AttachmentChoosePhoto;
+        string TAKE_FILE = AppResources.AttachmentChooseFile;
         const string CAMERA = "camera";
         const string GALERY = "galery";
         const string FILE = "file";
@@ -144,23 +144,26 @@ namespace xamarinJKH.Apps
 
         private async void AddFile()
         {
-            var action = await DisplayActionSheet("Добавить вложение", "Отмена", null,
+            var action = await DisplayActionSheet(AppResources.AttachmentTitle, AppResources.Cancel, null,
                 TAKE_PHOTO,
                 TAKE_GALRY, TAKE_FILE);
             try
             {
-                switch (action)
-                {
-                    case TAKE_PHOTO:
-                        await getCameraFile();
-                        break;
-                    case TAKE_GALRY:
-                        await GetGalaryFile();
-                        break;
-                    case TAKE_FILE:
-                        await PickAndShowFile(null);
-                        break;
-                }
+                        if (action == TAKE_PHOTO)
+                        {
+                            await getCameraFile();
+                            return;
+                        }
+                        if (action == TAKE_GALRY)
+                        {
+                            await GetGalaryFile();
+                            return;
+                        }
+                        if (action == TAKE_FILE)
+                        {
+                            await PickAndShowFile(null);
+                            return;
+                        }
             }
             catch (Exception ex)
             {
@@ -207,7 +210,7 @@ namespace xamarinJKH.Apps
                     // LabelPhone.Text = pickedFile.FilePath;
                     if (pickedFile.DataArray.Length > 10000000)
                     {
-                        await DisplayAlert("Ошибка", "Размер файла превышает 10мб", "OK");
+                        await DisplayAlert(AppResources.ErrorTitle,AppResources.FileTooBig, "OK");
                         return;
                     }
 
@@ -231,7 +234,7 @@ namespace xamarinJKH.Apps
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Ошибка", ex.ToString(), "OK");
+                await DisplayAlert(AppResources.ErrorTitle, ex.ToString(), "OK");
             }
         }
 
@@ -241,7 +244,7 @@ namespace xamarinJKH.Apps
 
             if (!CrossMedia.Current.IsTakePhotoSupported || !CrossMedia.Current.IsCameraAvailable)
             {
-                await DisplayAlert("Ошибка", "Камера не доступна", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorCameraNotAvailable, "OK");
 
                 return;
             }
@@ -270,7 +273,7 @@ namespace xamarinJKH.Apps
 
             if (!CrossMedia.Current.IsPickPhotoSupported)
             {
-                await DisplayAlert("Ошибка", "Галерея не доступна", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorGalleryNotAvailable, "OK");
 
                 return;
             }
@@ -297,7 +300,7 @@ namespace xamarinJKH.Apps
                 IndicatorColor = Color.FromHex(Settings.MobileSettings.color),
                 OverlayColor = Color.Black,
                 Opacity = 0.8,
-                DefaultMessage = "Загрузка файла",
+                DefaultMessage = AppResources.LoadingFile,
             };
 
             await Loading.Instance.StartAsync(async progress =>
@@ -431,12 +434,12 @@ namespace xamarinJKH.Apps
                     if (result.Error == null)
                     {
                         sendFiles(result.ID.ToString());
-                        await DisplayAlert("Успешно", "Заявка успешно создана", "OK");
+                        await DisplayAlert(AppResources.AlertSuccess, AppResources.AppCreated, "OK");
                         await Navigation.PopAsync();
                     }
                     else
                     {
-                        await DisplayAlert("Ошибка", result.Error, "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
                     }
                     MessagingCenter.Send<Object>(this, "UpdateIdent");
                     MessagingCenter.Send<Object>(this, "UpdateEvents");
@@ -449,7 +452,7 @@ namespace xamarinJKH.Apps
             }
             else
             {
-                await DisplayAlert("Ошибка", "Заполните описание заявки", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.AppErrorFill, "OK");
             }
 
             FrameBtnAdd.IsVisible = true;
@@ -459,7 +462,7 @@ namespace xamarinJKH.Apps
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             FileData select = e.Item as FileData;
-            bool answer = await DisplayAlert("Удаление", "Удалить файл?", "Да", "Нет");
+            bool answer = await DisplayAlert(AppResources.Delete, AppResources.DeleteFile, AppResources.Yes, AppResources.No);
             if (answer)
             {
                 int indexOf = files.IndexOf(@select);

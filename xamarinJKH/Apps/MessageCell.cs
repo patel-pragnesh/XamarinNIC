@@ -319,7 +319,7 @@ namespace xamarinJKH.Apps
                     }
                     else
                     {
-                        await Settings.StartProgressBar("Загрузка", 0.8);
+                        await Settings.StartProgressBar(AppResources.Loading, 0.8);
                         byte[] memoryStream = await _server.GetFileAPP(message.FileID.ToString());
                         if (memoryStream != null)
                         {
@@ -332,7 +332,7 @@ namespace xamarinJKH.Apps
                         }
                         else
                         {
-                            await p.DisplayAlert("Ошибка", "Не удалось скачать файл", "OK");
+                            await p.DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorFileLoading, "OK");
                         }
                     }
                     //// await ShowRating();
@@ -822,7 +822,7 @@ namespace xamarinJKH.Apps
                     }
                     else
                     {
-                        await Settings.StartProgressBar("Загрузка", 0.8);
+                        await Settings.StartProgressBar(AppResources.Loading, 0.8);
                         byte[] memoryStream = await _server.GetFileAPP(message.FileID.ToString());
                         if (memoryStream != null)
                         {
@@ -835,7 +835,7 @@ namespace xamarinJKH.Apps
                         }
                         else
                         {
-                            await p.DisplayAlert("Ошибка", "Не удалось скачать файл", "OK");
+                            await p.DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorFileLoading, "OK");
                         }
                     }
                     //// await ShowRating();

@@ -94,7 +94,7 @@ namespace xamarinJKH.Additional
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию об услугах", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAdditional, "OK");
             }
         }
         public AdditionalPage()

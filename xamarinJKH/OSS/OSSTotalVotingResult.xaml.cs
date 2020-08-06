@@ -88,7 +88,7 @@ namespace xamarinJKH
 
             Label statusName = new Label()
             {
-                Text = "Статус собрания: ",
+                Text = $"{AppResources.OSSInfoStatus} ",
                 FontAttributes = FontAttributes.Bold,
                 FontSize = 14,
                 TextColor = Color.White,
@@ -105,7 +105,7 @@ namespace xamarinJKH
             iconViewStatusNameIcon.Source = "ic_ossEnd";
             iconViewStatusNameIcon.Foreground = Color.FromHex("#2f99ac");
             ColorStatusTextString = Color.FromHex("#2f99ac");
-            string textStatius = "Итоги голосования";
+            string textStatius = AppResources.OSSVotingResult;
 
             iconViewStatusNameIcon.HeightRequest = 15;
             iconViewStatusNameIcon.WidthRequest = 15;
@@ -146,7 +146,7 @@ namespace xamarinJKH
                 answerAbstainedCount += q.CountWhyVoiteUnknow;
             }
 
-            var cntVotes = "за " + answerTotalCount + "/" + (oSS.TotalAccounts*oSS.Questions.Count).ToString() + ".";
+            var cntVotes = $"{AppResources.OSSPersonalFor} " + answerTotalCount + "/" + (oSS.TotalAccounts*oSS.Questions.Count).ToString() + ".";
             spanAnswersCnt.Text = cntVotes;
 
             lCntYes.Text = answerYesCount.ToString();
@@ -160,8 +160,8 @@ namespace xamarinJKH
 
             delimColored.BackgroundColor = colorFromMobileSettings;
 
-            TotalArea.Text = " " + oSS.VoitingArea.ToString() + " м.кв. = 100%";
-            Area.Text = " " + oSS.ComplateArea.ToString() + " м.кв. = " + oSS.ComplateAreaPercents+ "%";
+            TotalArea.Text = " " + oSS.VoitingArea.ToString() + $" {AppResources.OSSInfoMeasurmentArea} = 100%";
+            Area.Text = " " + oSS.ComplateArea.ToString() + $" {AppResources.OSSInfoMeasurmentArea} = " + oSS.ComplateAreaPercents+ "%";
 
             //ссылки на документы  - Макс по идее должен сказать откуда взять.
             //urlBlank.TextColor = colorFromMobileSettings;

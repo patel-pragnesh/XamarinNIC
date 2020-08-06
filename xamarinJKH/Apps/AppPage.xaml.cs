@@ -188,7 +188,7 @@ namespace xamarinJKH.Apps
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию по комментариям", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorComments, "OK");
             }
 
            // additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
@@ -362,7 +362,7 @@ namespace xamarinJKH.Apps
                     {
                         if (!CrossMedia.Current.IsTakePhotoSupported || !CrossMedia.Current.IsCameraAvailable)
                         {
-                            await DisplayAlert("Ошибка", "Камера не доступна", "OK");
+                            await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorCameraNotAvailable, "OK");
 
                             return;
                         }
@@ -390,7 +390,7 @@ namespace xamarinJKH.Apps
                     {
                         if (!CrossMedia.Current.IsPickPhotoSupported)
                         {
-                            await DisplayAlert("Ошибка", "Галерея не доступна", "OK");
+                            await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorGalleryNotAvailable, "OK");
 
                             return;
                         }
@@ -424,7 +424,7 @@ namespace xamarinJKH.Apps
                 file.Path);
             if (commonResult == null)
             {
-                await ShowToast("Файл отправлен");
+                await ShowToast(AppResources.SuccessFileSent);
                 await RefreshData();
             }
         }
@@ -437,7 +437,7 @@ namespace xamarinJKH.Apps
                 IndicatorColor = hex,
                 OverlayColor = Color.Black,
                 Opacity = 0.8,
-                DefaultMessage = "Отправка файла",
+                DefaultMessage = AppResources.FileSending,
             };
 
             await Loading.Instance.StartAsync(async progress =>
@@ -464,7 +464,7 @@ namespace xamarinJKH.Apps
                 file.Path);
             if (commonResult == null)
             {
-                await ShowToast("Файл отправлен");
+                await ShowToast(AppResources.SuccessFileSent);
                 await RefreshData();
             }
         }
@@ -518,7 +518,7 @@ namespace xamarinJKH.Apps
                     // LabelPhone.Text = pickedFile.FilePath;
                     if (pickedFile.DataArray.Length > 10000000)
                     {
-                        await DisplayAlert("Ошибка", "Размер файла превышает 10мб", "OK");
+                        await DisplayAlert(AppResources.ErrorTitle,AppResources.FileTooBig, "OK");
                         IconViewAddFile.IsVisible = true;
                         progressFile.IsVisible = false;
                         return;
@@ -530,14 +530,14 @@ namespace xamarinJKH.Apps
                         pickedFile.FilePath);
                     if (commonResult == null)
                     {
-                        await ShowToast("Файл отправлен");
+                        await ShowToast(AppResources.SuccessFileSent);
                         await RefreshData();
                     }
                 }
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Ошибка", ex.ToString(), "OK");
+                await DisplayAlert(AppResources.ErrorTitle, ex.ToString(), "OK");
             }
 
             IconViewAddFile.IsVisible = true;
@@ -557,7 +557,7 @@ namespace xamarinJKH.Apps
                     if (result.Error == null)
                     {
                         EntryMess.Text = "";
-                        await ShowToast("Сообщение отправлено");
+                        await ShowToast(AppResources.MessageSent);
                         await RefreshData();
 
                         var lastChild = baseForApp.Children.LastOrDefault();
@@ -567,7 +567,7 @@ namespace xamarinJKH.Apps
                 }
                 else
                 {
-                    await ShowToast("Введите текст сообщения");
+                    await ShowToast(AppResources.ErrorMessageEmpty);
                 }
 
                 progress.IsVisible = false;
@@ -575,7 +575,7 @@ namespace xamarinJKH.Apps
             }
             catch(Exception e)
             {
-                await ShowToast("Сообщение не отправлено");
+                await ShowToast(AppResources.MessageNotSent);
 
 
                 progress.IsVisible = false;
@@ -640,7 +640,7 @@ namespace xamarinJKH.Apps
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию по комментариям", "OK");
+                await DisplayAlert(AppResources.ErrorTitle,AppResources.ErrorComments, "OK");
             }
 
             await MethodWithDelayAsync(1000);

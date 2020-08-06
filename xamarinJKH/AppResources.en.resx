@@ -687,7 +687,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="Successfully" xml:space="preserve">
     <value>Successfully</value>
   </data>
- <data name="Changed" xml:space="preserve">
+  <data name="Changed" xml:space="preserve">
     <value>Changed</value>
   </data>
   <data name="Transit" xml:space="preserve">
@@ -821,5 +821,149 @@ A bot will call you on your number PHONE and tell an access code</value>
   </data>
   <data name="Question" xml:space="preserve">
     <value>Question</value>
+  </data>
+  <data name="AlertSuccess" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="AppCreated" xml:space="preserve">
+    <value>Request created successfully</value>
+  </data>
+  <data name="AppErrorFill" xml:space="preserve">
+    <value>Fill application description</value>
+  </data>
+  <data name="DeleteFile" xml:space="preserve">
+    <value>Delete file?</value>
+  </data>
+  <data name="ErrorAdditional" xml:space="preserve">
+    <value>Couldn't get information about services</value>
+  </data>
+  <data name="ErrorAdditionalLink" xml:space="preserve">
+    <value>Could not open link</value>
+  </data>
+  <data name="ErrorCameraNotAvailable" xml:space="preserve">
+    <value>Camera is not available</value>
+  </data>
+  <data name="ErrorComments" xml:space="preserve">
+    <value>Couldn't get information abbout comments</value>
+  </data>
+  <data name="ErrorConnectcIdent" xml:space="preserve">
+    <value>Add an account</value>
+  </data>
+  <data name="ErrorFileLoading" xml:space="preserve">
+    <value>Couldn't download file</value>
+  </data>
+  <data name="ErrorGalleryNotAvailable" xml:space="preserve">
+    <value>Gallery is not available</value>
+  </data>
+  <data name="ErrorMessageEmpty" xml:space="preserve">
+    <value>Enter message text</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="FileSending" xml:space="preserve">
+    <value>Sending file</value>
+  </data>
+  <data name="FileTooBig" xml:space="preserve">
+    <value>File size is over 10 mb</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading</value>
+  </data>
+  <data name="LoadingFile" xml:space="preserve">
+    <value>File loading</value>
+  </data>
+  <data name="MessageNotSent" xml:space="preserve">
+    <value>Message is not sent</value>
+  </data>
+  <data name="MessageSent" xml:space="preserve">
+    <value>Message sent</value>
+  </data>
+  <data name="NewAppAddFile" xml:space="preserve">
+    <value>+ Add</value>
+  </data>
+  <data name="NewAppCreate" xml:space="preserve">
+    <value>Create an application</value>
+  </data>
+  <data name="NewAppDescription" xml:space="preserve">
+    <value>Enter request description</value>
+  </data>
+  <data name="NewAppFiles" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="NewAppMaxSize" xml:space="preserve">
+    <value>Max size: 10 mb</value>
+  </data>
+  <data name="NewAppType" xml:space="preserve">
+    <value>Request type</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="OrderSuccess" xml:space="preserve">
+    <value>Order created successfully</value>
+  </data>
+  <data name="OSSVotingResult" xml:space="preserve">
+    <value>Voting result</value>
+  </data>
+  <data name="OSSVotingResult1" xml:space="preserve">
+    <value>Итоги голосования</value>
+  </data>
+  <data name="SuccessFileSent" xml:space="preserve">
+    <value>File sent</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="AddMetersError" xml:space="preserve">
+    <value>Error occured when passing meters data</value>
+  </data>
+  <data name="AddMetersNoData" xml:space="preserve">
+    <value>Enter indications</value>
+  </data>
+  <data name="AddMetersNotNumber" xml:space="preserve">
+    <value>Not all symbols are numbers. Please, check your input</value>
+  </data>
+  <data name="AddMetersSuccess" xml:space="preserve">
+    <value>Data is passed successfully</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>and</value>
+  </data>
+  <data name="DeleteIdent" xml:space="preserve">
+    <value>Delete account:</value>
+  </data>
+  <data name="DeletingIdent" xml:space="preserve">
+    <value>Deleting account</value>
+  </data>
+  <data name="ErrorAppsInfo" xml:space="preserve">
+    <value>Not able to get information about requests</value>
+  </data>
+  <data name="ErrorAppsNoIdent" xml:space="preserve">
+    <value>Accounts are not connected</value>
+  </data>
+  <data name="ErrorAppsNoTypes" xml:space="preserve">
+    <value>Request types are not present</value>
+  </data>
+  <data name="ErrorCountersNoData" xml:space="preserve">
+    <value>Failed to get information about charges</value>
+  </data>
+  <data name="ErrorFill" xml:space="preserve">
+    <value>Fill a field:</value>
+  </data>
+  <data name="ErrorFills" xml:space="preserve">
+    <value>Fill the fields:</value>
+  </data>
+  <data name="MetersThreeCellCanCount" xml:space="preserve">
+    <value>The ability to transfer readings is available from the 15th to the 25th of the current month!</value>
+  </data>
+  <data name="String11" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SuccessProfile" xml:space="preserve">
+    <value>Your data is updated successfully</value>
+  </data>
+  <data name="YourOrder" xml:space="preserve">
+    <value>Your order:</value>
   </data>
 </root>

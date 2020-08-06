@@ -339,7 +339,7 @@ namespace xamarinJKH.Main
 
             container.Children.Add(frameBtn);
 
-            canCount.Text = "Возможность передавать показания доступна с 15 по 25 число текущего месяца!";
+            canCount.Text = AppResources.MetersThreeCellCanCount;
             canCount.FontSize = 12;
             canCount.TextDecorations = TextDecorations.Underline;
             canCount.FontAttributes = FontAttributes.Bold;
@@ -586,7 +586,7 @@ namespace xamarinJKH.Main
                     FormattedString formattedDate = new FormattedString();
                     formattedDate.Spans.Add(new Span
                     {
-                        Text = "Возможность передавать показания доступна ",
+                        Text = $"{AppResources.CountersInfo1} ",
                         TextColor = Color.FromHex(Settings.MobileSettings.color),
                         FontAttributes = FontAttributes.None,
                         FontSize = 12
@@ -599,7 +599,7 @@ namespace xamarinJKH.Main
                         {
                             formattedDate.Spans.Add(new Span
                             {
-                                Text = "c " + Settings.Person.Accounts[0].MetersStartDay + " по " +
+                                Text = $"{AppResources.From} " + Settings.Person.Accounts[0].MetersStartDay + $" {AppResources.To} " +
                                        Settings.Person.Accounts[0].MetersEndDay + " числа ",
                                 TextColor = Color.FromHex(Settings.MobileSettings.color),
                                 FontAttributes = FontAttributes.Bold,
@@ -607,7 +607,7 @@ namespace xamarinJKH.Main
                             });
                             formattedDate.Spans.Add(new Span
                             {
-                                Text = "текущего месяца!",
+                                Text = AppResources.CountersThisMonth,
                                 TextColor = Color.FromHex(Settings.MobileSettings.color),
                                 FontAttributes = FontAttributes.None,
                                 FontSize = 12
@@ -617,7 +617,7 @@ namespace xamarinJKH.Main
                         {
                             formattedDate.Spans.Add(new Span
                             {
-                                Text = "в текущем месяце!",
+                                Text = AppResources.CountersCurrentMonth,
                                 TextColor = Color.FromHex(Settings.MobileSettings.color),
                                 FontAttributes = FontAttributes.Bold,
                                 FontSize = 12
@@ -628,7 +628,7 @@ namespace xamarinJKH.Main
                     {
                         formattedDate.Spans.Add(new Span
                         {
-                            Text = "в текущем месяце!",
+                            Text = AppResources.CountersCurrentMonth,
                             TextColor = Color.FromHex(Settings.MobileSettings.color),
                             FontAttributes = FontAttributes.Bold,
                             FontSize = 12

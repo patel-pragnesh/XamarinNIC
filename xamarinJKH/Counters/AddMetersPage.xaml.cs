@@ -403,12 +403,12 @@ namespace xamarinJKH.Counters
                 }
                 else
                 {
-                    await DisplayAlert("Внимание", "Не все введенные символы являются цифрами. Пожалуйста, проверьте правильность введенных показаний", "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.AddMetersNotNumber, "OK");
                 }
             }
             catch(Exception ex)
             {
-                await DisplayAlert("ОШИБКА", "При передаче показаний произошла ошибка", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.AddMetersError, "OK");
             }
             
         }
@@ -517,7 +517,7 @@ namespace xamarinJKH.Counters
                 {
                     Console.WriteLine(result.ToString());
                     Console.WriteLine("Отправлено");
-                    await DisplayAlert("", "Показания успешно переданы", "OK");
+                    await DisplayAlert("", AppResources.AddMetersSuccess, "OK");
                     FrameBtnLogin.IsVisible = true;
                     progress.IsVisible = false;
                     await Navigation.PopAsync();
@@ -531,7 +531,7 @@ namespace xamarinJKH.Counters
                     progress.IsVisible = false;
                     if (Device.RuntimePlatform == Device.iOS)
                     {
-                        await DisplayAlert("ОШИБКА", result.Error, "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
                     }
                     else
                     {
@@ -544,7 +544,7 @@ namespace xamarinJKH.Counters
             }
             else
             {
-                await DisplayAlert("Введите показания", "", "OK");
+                await DisplayAlert(AppResources.AddMetersNoData, "", "OK");
             }
         }
 

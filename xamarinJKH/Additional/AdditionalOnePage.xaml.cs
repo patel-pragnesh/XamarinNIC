@@ -35,7 +35,7 @@ namespace xamarinJKH.Additional
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                await DisplayAlert("Ошибка", "Не удалось открыть ссылку", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAdditionalLink, "OK");
             }
         });
         public AdditionalOnePage(AdditionalService additionalService)
@@ -160,19 +160,19 @@ namespace xamarinJKH.Additional
                         Settings.UpdateKey = requestsUpdate.NewUpdateKey;
                     }
 
-                    await DisplayAlert("Успешно", "Заказ успешно оформлен", "OK");
+                    await DisplayAlert(AppResources.AlertSuccess, AppResources.OrderSuccess, "OK");
                     RequestInfo requestInfo = new RequestInfo();
                     requestInfo.ID = result.ID;
                     await Navigation.PushAsync(new AppPage(requestInfo, true));
                 }
                 else
                 {
-                    await DisplayAlert("Ошибка", result.Error, "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
                 }
             }
             else
             {
-                await DisplayAlert("Ошибка", "Подключите лицевой счет", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorConnectcIdent, "OK");
             }
             FrameBtnQuest.IsVisible = true;
             progress.IsVisible = false;
