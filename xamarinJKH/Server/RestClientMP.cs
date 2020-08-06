@@ -16,15 +16,15 @@ namespace xamarinJKH.Server
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        //public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
-          public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
+        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
         // public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_yegkh"; //Легкая жизнъ
-         // public const string SERVER_ADDR = "https://api.sm-center.ru/vodokanal_narof"; // Водоканал
-         //public const string SERVER_ADDR = "https://api.sm-center.ru/uk_egokomfort"; // Эгокомфорт
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/vodokanal_narof"; // Водоканал
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/uk_egokomfort"; // Эгокомфорт
         // public const string SERVER_ADDR = "https://api.sm-center.ru/tsg_sivtsev_vrazhek14"; // ТСЖ Сивцев Вражек 14
-         //public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_zip"; // ЗИП
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_zip"; // ЗИП
 
         public const string SEND_TEACH_MAIL = "Public/TechSupportAppeal"; // Создание обращения в тех поддержк
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутентификация сотрудника
@@ -37,21 +37,24 @@ namespace xamarinJKH.Server
 
         public const string GET_MOBILE_SETTINGS = "Config/MobileAppSettings"; // Регистрация по телефону
         public const string GET_EVENT_BLOCK_DATA = "Common/EventBlockData"; // Блок события
-        
+
         public const string GET_PHOTO_ADDITIONAL = "AdditionalServices/logo"; // Картинка доп услуги
         public const string GET_ACCOUNTING_INFO = "Accounting/Info"; // инфомация о начислениях
         public const string GET_SUM_COMISSION = "Accounting/SumWithComission"; // Возвращает сумму с комиссией
         public const string GET_FILE_BILLS = "Bills/Download"; // Получить квитанцию
 
         public const string REGISTR_DISPATCHER_DEVICE = "Dispatcher/RegisterDevice"; //Регистрация устройства.
-        
+
         public const string REQUEST_LIST_CONST = "RequestsDispatcher/List"; // Заявки сотрудника
         public const string REQUEST_DETAIL_LIST_CONST = "RequestsDispatcher/Details"; // Детали заявки сотрудника
         public const string REQUEST_UPDATES_CONST = "RequestsDispatcher/GetUpdates"; // Обновление заявок сотрудника
         public const string CLOSE_APP_CONST = "RequestsDispatcher/Close "; // Закрытие заявки
         public const string LOCK_APP_CONST = "RequestsDispatcher/Lock "; // Прием заявки к работе
         public const string PERFORM_APP_CONST = "RequestsDispatcher/Perform "; // Выполнение заявки
-        public const string CHANGE_DISPATCHER_CONST = "RequestsDispatcher/ChangeDispatcher "; // Перевод заявки диспетчеру
+
+        public const string
+            CHANGE_DISPATCHER_CONST = "RequestsDispatcher/ChangeDispatcher "; // Перевод заявки диспетчеру
+
         public const string DISPATCHERS_LIST_CONST = "RequestsDispatcher/DispatchersList "; // Список диспетчеров
         public const string GET_TYPE_CONST = "RequestsDispatcher/RequestTypes"; // Получение типов заявок
         public const string NEW_APP_CONST = "RequestsDispatcher/New"; // Добавление заявки
@@ -60,7 +63,9 @@ namespace xamarinJKH.Server
         public const string ADD_MESSAGE_CONST = "RequestsDispatcher/AddMessage"; // Отправка сообщения
         public const string GET_HOUSES_GROUP = "RequestsDispatcher/HouseGroups"; // Возвращает список районов
         public const string GET_HOUSES = "RequestsDispatcher/Houses"; // Возвращает список домов. 
-        public const string GET_REQUESTS_STATS = "RequestsDispatcher/RequestStats"; // Возвращает статистику по заявкам.  
+
+        public const string
+            GET_REQUESTS_STATS = "RequestsDispatcher/RequestStats"; // Возвращает статистику по заявкам.  
 
 
         public const string REQUEST_LIST = "Requests/List"; // Заявки
@@ -83,9 +88,10 @@ namespace xamarinJKH.Server
 
         public const string ADD_PERSONAL_DATA = "User/AddPersonalData"; // Добавление/обновление информации о физ лице
         public const string REGISTR_DEVICE = "User/RegisterDevice"; // регистрация устройства
-        
+
         public const string GET_METERS_THREE = "Meters/List"; // Получить последние 3 показания по приборам
         public const string SAVE_METER_VALUE = "Meters/SaveMeterValue"; // Получить полную инфу по новости
+        public const string SET_METER_NAME = "Meters/SetMeterCustomName"; // Смена произвольного имени прибора
 
         public const string GET_NEWS_FULL = "News/Content"; // Получить полную инфу по новости
         public const string GET_NEWS_IMAGE = "News/Image"; // Получить полную инфу по новости
@@ -98,7 +104,10 @@ namespace xamarinJKH.Server
         public const string SAVE_ANSWER_OSS = "OSS/SaveAnswer"; // Сохранить ответ на вопрос.
         public const string FINISH_OSS = "OSS/CompleteVote"; // Завершить голосование 
         public const string GET_OSS_BASE = "OSS/List"; // Получить список ОСС (краткая информация). 
-        public const string GET_OSS_BY_ID = "OSS/OssById"; // Возвращает данные по осс с указанным id. Результат вызова – OSS (см. выше)
+
+        public const string
+            GET_OSS_BY_ID = "OSS/OssById"; // Возвращает данные по осс с указанным id. Результат вызова – OSS (см. выше)
+
         public const string
             SET_ACQUAINTED_OSS =
                 "OSS/SetAcquainted"; // Записывает в лог, что участник голосования ознакомился с повесткой собрания 
@@ -108,7 +117,10 @@ namespace xamarinJKH.Server
 
         public const string OSS_CHECK_PIN = "OSS/ValidatePinCode"; // Проверка пин-кода
         public const string OSS_CHECK_CODE = "OSS/SendCheckCode"; // Запрос проверочного кода
-        public const string OSS_SAVE_PIN = "OSS/ValidateCheckCode"; // Проверка кода из смс и установка пин-кода аккаунта (если проверка пройдена).
+
+        public const string
+            OSS_SAVE_PIN =
+                "OSS/ValidateCheckCode"; // Проверка кода из смс и установка пин-кода аккаунта (если проверка пройдена).
 
         public const string PAY_ONLINE = "PayOnline/GetPayLink"; // Метод возвращает ссылку на оплату
 
@@ -198,7 +210,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
-        
+
         /// <summary>
         /// Создание обращения в тех поддержку.
         /// </summary>
@@ -405,7 +417,8 @@ namespace xamarinJKH.Server
             return response.Data;
         }
 
-        public async Task<IDResult> newAppConst(string ident, string typeID, string Text, string AutoLockDisptacherId = "")
+        public async Task<IDResult> newAppConst(string ident, string typeID, string Text,
+            string AutoLockDisptacherId = "")
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(NEW_APP_CONST, Method.POST);
@@ -471,7 +484,8 @@ namespace xamarinJKH.Server
             return response.Data;
         }
 
-        public async Task<IDResult> newAppPayConst(string ident, string typeID, string Text, bool isPaid, decimal paidSum,
+        public async Task<IDResult> newAppPayConst(string ident, string typeID, string Text, bool isPaid,
+            decimal paidSum,
             string paidServiceText, string AutoLockDisptacherId = "")
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
@@ -1031,6 +1045,36 @@ namespace xamarinJKH.Server
         }
 
         /// <summary>
+        /// Смена произвольного имени прибора
+        /// </summary>
+        /// <param name="MeterUniqueNumber">уникальный номер прибора</param>
+        /// <param name="CustomName">произвольное имя прибора</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> SetMeterCustomName(string MeterUniqueNumber,string CustomName )
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(SET_METER_NAME, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                MeterUniqueNumber,
+                CustomName
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
+        /// <summary>
         /// Получение товаров по магазину
         /// </summary>
         /// <returns>список товаров</returns>
@@ -1169,15 +1213,14 @@ namespace xamarinJKH.Server
             return response.Data;
         }
 
-        
-        
+
         public async Task<ItemsList<OSSBase>> GetOss()
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(GET_OSS_BASE, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
-         
+
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<OSSBase>>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
@@ -1190,13 +1233,14 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         public async Task<OSS> GetOssById(string id)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
-            RestRequest restRequest = new RestRequest(GET_OSS_BY_ID+"/"+id, Method.GET);
+            RestRequest restRequest = new RestRequest(GET_OSS_BY_ID + "/" + id, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
-         
+
             var response = await restClientMp.ExecuteTaskAsync<OSS>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
@@ -1209,6 +1253,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         /// <summary>
         /// Проверка пин-кода аккаунта.
         /// </summary>
@@ -1228,7 +1273,7 @@ namespace xamarinJKH.Server
                 PinCode
             });
 
-            var response = await restClientMp.ExecuteTaskAsync< CommonResult > (restRequest);
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
             {
@@ -1237,6 +1282,7 @@ namespace xamarinJKH.Server
                     Error = $"Ошибка {response.StatusDescription}"
                 };
             }
+
             return response.Data;
         }
 
@@ -1267,6 +1313,7 @@ namespace xamarinJKH.Server
                     Error = $"Ошибка {response.StatusDescription}"
                 };
             }
+
             return response.Data;
         }
 
@@ -1299,11 +1346,10 @@ namespace xamarinJKH.Server
                     Error = $"Ошибка {response.StatusDescription}"
                 };
             }
+
             return response.Data;
         }
 
-
-        
 
         /// <summary>
         /// Получение данных о физ лице по номеру л/сч
@@ -1729,7 +1775,8 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
-        public async Task<PayService> GetPayLink(int? PaidRequestId , decimal Sum)
+
+        public async Task<PayService> GetPayLink(int? PaidRequestId, decimal Sum)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(PAY_ONLINE, Method.POST);
@@ -1739,7 +1786,6 @@ namespace xamarinJKH.Server
             {
                 Sum,
                 PaidRequestId
-               
             });
             var response = await restClientMp.ExecuteTaskAsync<PayService>(restRequest);
             // Проверяем статус
@@ -1753,6 +1799,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         public async Task<PayResult> GetPayResult(string url)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
@@ -1782,7 +1829,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_HOUSES_GROUP, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
-            
+
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<NamedValue>>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
@@ -1792,8 +1839,10 @@ namespace xamarinJKH.Server
                     Error = $"Ошибка {response.StatusDescription}"
                 };
             }
+
             return response.Data;
-        }  
+        }
+
         /// <summary>
         /// Возвращает список домов. 
         /// </summary>
@@ -1805,7 +1854,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_HOUSES, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
-           
+
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<HouseProfile>>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
@@ -1815,9 +1864,10 @@ namespace xamarinJKH.Server
                     Error = $"Ошибка {response.StatusDescription}"
                 };
             }
+
             return response.Data;
-        } 
-        
+        }
+
         /// <summary>
         /// Возвращает статистику по заявкам. 
         /// </summary>
@@ -1841,21 +1891,22 @@ namespace xamarinJKH.Server
                     Error = $"Ошибка {response.StatusDescription}"
                 };
             }
+
             return response.Data;
         }
-        
+
         /// <summary>
         /// Получить сумму комиссии
         /// </summary>
         /// <param name="sum">сумма оплаты</param>
         /// <returns></returns>
-        public async Task<ComissionModel> GetSumWithComission(string sum )
+        public async Task<ComissionModel> GetSumWithComission(string sum)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(GET_SUM_COMISSION, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
-            restRequest.AddParameter("sum", sum.Replace(",","."));
+            restRequest.AddParameter("sum", sum.Replace(",", "."));
             var response = await restClientMp.ExecuteTaskAsync<ComissionModel>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
@@ -1865,6 +1916,7 @@ namespace xamarinJKH.Server
                     Error = $"Ошибка {response.StatusDescription}"
                 };
             }
+
             return response.Data;
         }
 
@@ -1878,7 +1930,5 @@ namespace xamarinJKH.Server
             var response = await restClientMp.ExecuteTaskAsync<PaidRequestResponse>(restRequest);
             return response.Data.IsCorrect;
         }
-
-
     }
 }

@@ -434,7 +434,7 @@ namespace xamarinJKH.Counters
             }
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
-            NameLbl.Text = meter.Resource;
+            NameLbl.Text = meter.CustomName != null && !meter.CustomName.Equals("") ? meter.CustomName : meter.Resource;
             LabelseparatorFio.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             progress.Color = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);

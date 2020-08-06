@@ -183,6 +183,7 @@
                                 CheckupDate="{Binding LastCheckupDate}"
                                 RecheckInterval="{Binding RecheckInterval}"
                                 DecimalPoint="{Binding NumberOfDecimalPlaces}"
+                                CustomName = "{Binding CustomName}"
                                 Values="{Binding Values}" />
                         </DataTemplate>
 
