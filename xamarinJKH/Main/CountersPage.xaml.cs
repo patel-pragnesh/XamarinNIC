@@ -129,6 +129,7 @@ namespace xamarinJKH.Main
                 SetTitle();
             });
             MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) => ChangeTheme.Execute(null));
+            MessagingCenter.Subscribe<Object>(this, "UpdateCounters", (sender) => RefreshCommand.Execute(null));
         }
 
         private void SetTitle()

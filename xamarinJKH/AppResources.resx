@@ -186,6 +186,11 @@
   <data name="ChangePenance" xml:space="preserve">
     <value>Изменить показания</value>
   </data>
+  <data name="Change" xml:space="preserve">
+    <value>Изменить</value>
+  </data><data name="Changed" xml:space="preserve">
+    <value>Изменено</value>
+  </data>
   <data name="ChatPlaceholder" xml:space="preserve">
     <value>Введите сообщение...</value>
   </data>
@@ -194,6 +199,15 @@
   </data>
   <data name="Choose" xml:space="preserve">
     <value>Выбор</value>
+  </data>
+  <data name="EnterName" xml:space="preserve">
+    <value>Введите название</value>
+  </data> 
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data> 
+  <data name="Successfully" xml:space="preserve">
+    <value>Успешно</value>
   </data>
   <data name="CloseApp" xml:space="preserve">
     <value>Закрыть</value>

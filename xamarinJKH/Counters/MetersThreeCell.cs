@@ -71,9 +71,7 @@ namespace xamarinJKH.Main
 
             header.Children.Add(img);
             header.Children.Add(resource);
-#if DEBUG
             header.Children.Add(imgEdit);
-#endif
 
             StackLayout addressStack = new StackLayout();
             addressStack.Orientation = StackOrientation.Horizontal;
@@ -358,6 +356,9 @@ namespace xamarinJKH.Main
 
         public static readonly BindableProperty ResourceProperty =
             BindableProperty.Create("Resource", typeof(string), typeof(MetersThreeCell), "");
+ 
+        public static readonly BindableProperty CustomNameProperty =
+            BindableProperty.Create("CustomName", typeof(string), typeof(MetersThreeCell), "");
 
         public static readonly BindableProperty AddressProperty =
             BindableProperty.Create("Address", typeof(string), typeof(MetersThreeCell), "");
@@ -404,6 +405,16 @@ namespace xamarinJKH.Main
         {
             get { return (string) GetValue(AddressProperty); }
             set { SetValue(AddressProperty, value); }
+        }  
+        public string CustomName
+        {
+            get
+            {
+                return ((string) GetValue(ResourceProperty)).ToLower().Contains("водоснабжение")
+                    ? $"{(string) GetValue(CustomNameProperty)}, м3"
+                    : $"{(string) GetValue(CustomNameProperty)}, кВт";
+            }
+            set { SetValue(CustomNameProperty, value); }
         }
 
         public string UniqueNum
@@ -491,12 +502,13 @@ namespace xamarinJKH.Main
                 {
                     imgEdit.GestureRecognizers.Add(editName);
                 }
-                
+
+                string name = (!CustomName.Equals(", м3") && !CustomName.Equals(", кВт")) ? CustomName : Resource;
                 
                 FormattedString formattedResource = new FormattedString();
                 formattedResource.Spans.Add(new Span
                 {
-                    Text = Resource,
+                    Text = name,
                     TextColor = Color.Black,
                     FontAttributes = FontAttributes.Bold,
                     FontSize = 18
