@@ -124,7 +124,8 @@ namespace xamarinJKH.Server
 
         public const string PAY_ONLINE = "PayOnline/GetPayLink"; // Метод возвращает ссылку на оплату
 
-        public const string SEND_CODE = "RequestsDispatcher/CheckPaidRequestCompleteCode";
+        public const string SEND_CODE = "RequestsDispatcher/CheckPaidRequestCompleteCode"; //Проверка кода подтверждения заказа
+        public const string TRANSIT_ORDER = "RequestsDispatcher/SetPaidRequestStatusOnTheWay";// Установка статуса платной заявки в 'курьер в пути'
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -1060,6 +1061,28 @@ namespace xamarinJKH.Server
             {
                 MeterUniqueNumber,
                 CustomName
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        public async Task<CommonResult> SetPaidRequestStatusOnTheWay(string RequestId)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(TRANSIT_ORDER, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                RequestId
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус

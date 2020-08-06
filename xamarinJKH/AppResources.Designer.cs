@@ -2036,6 +2036,24 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to В пути.
+        /// </summary>
+        internal static string Transit {
+            get {
+                return ResourceManager.GetString("Transit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заказ в пути.
+        /// </summary>
+        internal static string TransitOrder {
+            get {
+                return ResourceManager.GetString("TransitOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Возникли проблемы? .
         /// </summary>
         internal static string Troub {

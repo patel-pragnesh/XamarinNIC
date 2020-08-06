@@ -378,6 +378,7 @@
     <BundleResource Include="Resources\ic_history_pay_top.png" />
     <BundleResource Include="Resources\ic_home.png" />
     <BundleResource Include="Resources\ic_info_app1.png" />
+    <BundleResource Include="Resources\ic_in_way.png" />
     <BundleResource Include="Resources\ic_minus.png" />
     <BundleResource Include="Resources\ic_monitor_top.png" />
     <BundleResource Include="Resources\ic_monitor_top_light.png" />

@@ -641,5 +641,21 @@ namespace xamarinJKH.AppsConst
         {
             ShowInfo();
         }
+
+        private async void Transit_OnTapped(object sender, EventArgs e)
+        {
+            progress.IsVisible = true;
+            var request = await _server.SetPaidRequestStatusOnTheWay(_requestInfo.ID.ToString());
+            if (request.Error == null)
+            {
+                await ShowToast(AppResources.TransitOrder);
+                await RefreshData();
+            }
+            else
+            {
+                await DisplayAlert(AppResources.Order, request.Error, "OK");
+            }
+            progress.IsVisible = false;
+        }
     }
 }

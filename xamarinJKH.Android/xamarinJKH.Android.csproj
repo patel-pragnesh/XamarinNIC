@@ -198,6 +198,7 @@
     <AndroidResource Include="Resources\drawable\ic_history_pay_top.png" />
     <AndroidResource Include="Resources\drawable\ic_home.png" />
     <AndroidResource Include="Resources\drawable\ic_info_app1.png" />
+    <AndroidResource Include="Resources\drawable\ic_in_way.png" />
     <AndroidResource Include="Resources\drawable\ic_minus.png" />
     <AndroidResource Include="Resources\drawable\ic_monitor.png" />
     <AndroidResource Include="Resources\drawable\ic_monitor_top.png" />

@@ -105,7 +105,7 @@
                                                      Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                                      WidthRequest="25"
                                                      HeightRequest="25" />
-                                <Label Text="{x:Static xamarinJkh:AppResources.Info}"
+                                <Label Text="{x:Static xamarinJkh:AppResources.InfoApp}"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
@@ -163,6 +163,45 @@
                                        FontAttributes="Bold"
                                        FontSize="10" />
                             </StackLayout>
+                            
+                            <StackLayout
+                                IsVisible="{Binding IsRequestPaid}"
+                                Margin="0,5,0,0"
+                                x:Name="Transit"
+                                VerticalOptions="Center"
+                                HorizontalOptions="EndAndExpand">
+                                <xamarinJkh:IconView Source="ic_in_way"
+                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                     HeightRequest="25"
+                                                     WidthRequest="25" />
+                                <Label Text="{x:Static xamarinJkh:AppResources.Transit}"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                       FontAttributes="Bold"
+                                       FontSize="10" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Transit_OnTapped" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            <StackLayout
+                                IsVisible="{Binding IsRequestPaid}"
+                                Margin="0,5,0,0"
+                                x:Name="Payed"
+                                VerticalOptions="Center"
+                                HorizontalOptions="EndAndExpand">
+                                <xamarinJkh:IconView Source="ic_send_code"
+                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                     HeightRequest="25"
+                                                     WidthRequest="25" />
+                                <Label Text="{x:Static xamarinJkh:AppResources.SendCodeApp}"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                       FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center"
+                                       FontSize="10" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SendCode" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            
                             <StackLayout
                                 Margin="0,5,0,0"
                                 VerticalOptions="Center"
@@ -178,23 +217,7 @@
                                        FontSize="10" />
                             </StackLayout>
 
-                            <StackLayout
-                                IsVisible="{Binding IsRequestPaid}"
-                                Margin="0,5,0,0"
-                                VerticalOptions="Center"
-                                HorizontalOptions="EndAndExpand">
-                                <xamarinJkh:IconView Source="ic_send_code"
-                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
-                                                     HeightRequest="25"
-                                                     WidthRequest="25" />
-                                <Label Text="{x:Static xamarinJkh:AppResources.SendCodeApp}"
-                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                                       FontAttributes="Bold"
-                                       FontSize="10" />
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="SendCode" />
-                                </StackLayout.GestureRecognizers>
-                            </StackLayout>
+                            
 
                         </StackLayout>
                     </ScrollView>

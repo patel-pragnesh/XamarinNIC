@@ -5,9 +5,9 @@
                          xmlns:extra="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
                          CornerRadius="30" OffsetX="0" OffsetY="0" UseCurrentPageLocation="false"
                          VerticalLayoutAlignment="Start" HorizontalLayoutAlignment="Center"
-
                          xmlns:abstractions="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
                          xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+                         xmlns:converters="clr-namespace:xamarinJKH.Converters;assembly=xamarinJKH"
                          x:Class="xamarinJKH.DialogViews.InfoAppDialog">
 
     <Frame CornerRadius="30"
@@ -116,6 +116,7 @@
             </StackLayout> 
             
             <StackLayout
+                IsVisible="{Binding _Request.IsPaid, Converter={converters:InverseBoolConverter}  }"
                 Orientation="Horizontal">
                 <!-- <Label TextColor="Black" -->
                 <!--       FontSize="15" -->

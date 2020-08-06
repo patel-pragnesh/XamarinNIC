@@ -22,7 +22,7 @@ namespace xamarinJKH.DialogViews
         {
             InitializeComponent();
             code.IsVisible = !Settings.Person.IsDispatcher;
-            Frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.Transparent);
+            Frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
             switch (Device.RuntimePlatform)
             {
                 case Device.Android:
@@ -38,6 +38,7 @@ namespace xamarinJKH.DialogViews
             }
 
             this.BindingContext = this;
+            
         }
 
 

@@ -623,6 +623,12 @@
   </data>
   <data name="SendCodeApp" xml:space="preserve">
     <value>Отправить код</value>
+  </data> 
+  <data name="Transit" xml:space="preserve">
+    <value>В пути</value>
+  </data>
+  <data name="TransitOrder" xml:space="preserve">
+    <value>Заказ в пути</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Настройки</value>
