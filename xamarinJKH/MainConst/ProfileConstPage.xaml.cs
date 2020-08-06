@@ -100,7 +100,7 @@ namespace xamarinJKH.MainConst
                 {
                     Console.WriteLine(result.ToString());
                     Console.WriteLine("Отправлено");
-                    await DisplayAlert("", "Ваши данные успешно сохранены", "OK");
+                    await DisplayAlert("", AppResources.SuccessProfile, "OK");
                     FrameBtnLogin.IsVisible = true;
                     progress.IsVisible = false;
                 }
@@ -112,7 +112,7 @@ namespace xamarinJKH.MainConst
                     progress.IsVisible = false;
                     if (Device.RuntimePlatform == Device.iOS)
                     {
-                        await DisplayAlert("ОШИБКА", result.Error, "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
                     }
                     else
                     {
@@ -127,15 +127,15 @@ namespace xamarinJKH.MainConst
             {
                 if (fio == "" && email == "")
                 {
-                    await DisplayAlert("", "Заполните поля ФИО и E-mail", "OK");
+                    await DisplayAlert("", $"{AppResources.ErrorFills} {AppResources.FIO} {AppResources.And} E-mail", "OK");
                 }
                 else if (fio == "")
                 {
-                    await DisplayAlert("", "Заполните поле ФИО", "OK");
+                    await DisplayAlert("", $"{AppResources.ErrorFill} {AppResources.FIO}", "OK");
                 }
                 else if (email == "")
                 {
-                    await DisplayAlert("", "Заполните поле E-mail", "OK");
+                    await DisplayAlert("", $"{AppResources.ErrorFill} E-mail", "OK");
                 }
             }
         }
@@ -167,7 +167,7 @@ namespace xamarinJKH.MainConst
             });
             formattedName.Spans.Add(new Span
             {
-                Text = ", добрый день!",
+                Text = AppResources.GoodDay,
                 TextColor = currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
                 FontAttributes = FontAttributes.None,
                 FontSize = 16

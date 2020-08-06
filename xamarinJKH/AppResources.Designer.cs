@@ -908,6 +908,24 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to , добрый день!.
+        /// </summary>
+        internal static string GoodDay {
+            get {
+                return ResourceManager.GetString("GoodDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to добрый день!.
+        /// </summary>
+        internal static string GoodDay2 {
+            get {
+                return ResourceManager.GetString("GoodDay2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Скрытое.
         /// </summary>
         internal static string Hidden {
@@ -1066,6 +1084,15 @@ namespace xamarinJKH {
         internal static string Monitoring_NavBar {
             get {
                 return ResourceManager.GetString("Monitoring_NavBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сбор статистики....
+        /// </summary>
+        internal static string MonitorStats {
+            get {
+                return ResourceManager.GetString("MonitorStats", resourceCulture);
             }
         }
         

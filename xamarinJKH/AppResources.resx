@@ -624,7 +624,7 @@
   </data>
   <data name="SendCodeApp" xml:space="preserve">
     <value>Отправить код</value>
-  </data> 
+  </data>
   <data name="Transit" xml:space="preserve">
     <value>В пути</value>
   </data>
@@ -939,5 +939,14 @@
   </data>
   <data name="SuccessProfile" xml:space="preserve">
     <value>Ваши данные успешно сохранены</value>
+  </data>
+  <data name="GoodDay" xml:space="preserve">
+    <value>, добрый день!</value>
+  </data>
+  <data name="GoodDay2" xml:space="preserve">
+    <value>добрый день!</value>
+  </data>
+  <data name="MonitorStats" xml:space="preserve">
+    <value>Сбор статистики...</value>
   </data>
 </root>

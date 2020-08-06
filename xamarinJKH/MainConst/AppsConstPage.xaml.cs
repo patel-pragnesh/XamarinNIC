@@ -133,7 +133,7 @@ namespace xamarinJKH.MainConst
             });
             formattedName.Spans.Add(new Span
             {
-                Text = ", добрый день!",
+                Text = AppResources.GoodDay,
                 TextColor = currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
                 FontAttributes = FontAttributes.None,
                 FontSize = 16
@@ -188,7 +188,7 @@ namespace xamarinJKH.MainConst
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию о заявках", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppsInfo, "OK");
             }
         }
 
