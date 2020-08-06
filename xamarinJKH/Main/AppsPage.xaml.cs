@@ -304,7 +304,7 @@ namespace xamarinJKH.Main
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию о заявках", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppsInfo, "OK");
             }
         }
 
@@ -319,7 +319,7 @@ namespace xamarinJKH.Main
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию о заявках", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppsInfo, "OK");
             }
         }
 
@@ -371,12 +371,12 @@ namespace xamarinJKH.Main
                 }
                 else
                 {
-                    await DisplayAlert("Ошибка", "Отсутствуют типы заявок", "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppsNoTypes, "OK");
                 }
             }
             else
             {
-                await DisplayAlert("Ошибка", "Лицевые счета не подключены", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppsNoIdent, "OK");
             }
         }
 

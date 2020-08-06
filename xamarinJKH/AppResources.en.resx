@@ -687,7 +687,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="Successfully" xml:space="preserve">
     <value>Successfully</value>
   </data>
- <data name="Changed" xml:space="preserve">
+  <data name="Changed" xml:space="preserve">
     <value>Changed</value>
   </data>
   <data name="Support" xml:space="preserve">
@@ -908,5 +908,56 @@ A bot will call you on your number PHONE and tell an access code</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="AddMetersError" xml:space="preserve">
+    <value>Error occured when passing meters data</value>
+  </data>
+  <data name="AddMetersNoData" xml:space="preserve">
+    <value>Enter indications</value>
+  </data>
+  <data name="AddMetersNotNumber" xml:space="preserve">
+    <value>Not all symbols are numbers. Please, check your input</value>
+  </data>
+  <data name="AddMetersSuccess" xml:space="preserve">
+    <value>Data is passed successfully</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>and</value>
+  </data>
+  <data name="DeleteIdent" xml:space="preserve">
+    <value>Delete account:</value>
+  </data>
+  <data name="DeletingIdent" xml:space="preserve">
+    <value>Deleting account</value>
+  </data>
+  <data name="ErrorAppsInfo" xml:space="preserve">
+    <value>Not able to get information about requests</value>
+  </data>
+  <data name="ErrorAppsNoIdent" xml:space="preserve">
+    <value>Accounts are not connected</value>
+  </data>
+  <data name="ErrorAppsNoTypes" xml:space="preserve">
+    <value>Request types are not present</value>
+  </data>
+  <data name="ErrorCountersNoData" xml:space="preserve">
+    <value>Failed to get information about charges</value>
+  </data>
+  <data name="ErrorFill" xml:space="preserve">
+    <value>Fill a field:</value>
+  </data>
+  <data name="ErrorFills" xml:space="preserve">
+    <value>Fill the fields:</value>
+  </data>
+  <data name="MetersThreeCellCanCount" xml:space="preserve">
+    <value>The ability to transfer readings is available from the 15th to the 25th of the current month!</value>
+  </data>
+  <data name="String11" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SuccessProfile" xml:space="preserve">
+    <value>Your data is updated successfully</value>
+  </data>
+  <data name="YourOrder" xml:space="preserve">
+    <value>Your order:</value>
   </data>
 </root>

@@ -188,7 +188,8 @@
   </data>
   <data name="Change" xml:space="preserve">
     <value>Изменить</value>
-  </data><data name="Changed" xml:space="preserve">
+  </data>
+  <data name="Changed" xml:space="preserve">
     <value>Изменено</value>
   </data>
   <data name="ChatPlaceholder" xml:space="preserve">
@@ -202,10 +203,10 @@
   </data>
   <data name="EnterName" xml:space="preserve">
     <value>Введите название</value>
-  </data> 
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Ошибка</value>
-  </data> 
+  </data>
   <data name="Successfully" xml:space="preserve">
     <value>Успешно</value>
   </data>
@@ -887,5 +888,50 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Да</value>
+  </data>
+  <data name="AddMetersError" xml:space="preserve">
+    <value>При передаче показаний произошла ошибка</value>
+  </data>
+  <data name="AddMetersNoData" xml:space="preserve">
+    <value>Введите показания</value>
+  </data>
+  <data name="AddMetersNotNumber" xml:space="preserve">
+    <value>Не все введенные символы являются цифрами. Пожалуйста, проверьте правильность введенных показаний</value>
+  </data>
+  <data name="AddMetersSuccess" xml:space="preserve">
+    <value>Показания успешно переданы</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>и</value>
+  </data>
+  <data name="DeleteIdent" xml:space="preserve">
+    <value>Удалить лицевой счет:</value>
+  </data>
+  <data name="DeletingIdent" xml:space="preserve">
+    <value>Удаление ЛС</value>
+  </data>
+  <data name="ErrorAppsInfo" xml:space="preserve">
+    <value>Не удалось получить информацию о заявках</value>
+  </data>
+  <data name="ErrorAppsNoIdent" xml:space="preserve">
+    <value>Лицевые счета не подключены</value>
+  </data>
+  <data name="ErrorAppsNoTypes" xml:space="preserve">
+    <value>Отсутствуют типы заявок</value>
+  </data>
+  <data name="ErrorCountersNoData" xml:space="preserve">
+    <value>Не удалось получить информацию о начислениях</value>
+  </data>
+  <data name="ErrorFill" xml:space="preserve">
+    <value>Заполните поле</value>
+  </data>
+  <data name="ErrorFills" xml:space="preserve">
+    <value>Заполните поля</value>
+  </data>
+  <data name="MetersThreeCellCanCount" xml:space="preserve">
+    <value>Возможность передавать показания доступна с 15 по 25 число текущего месяца!</value>
+  </data>
+  <data name="SuccessProfile" xml:space="preserve">
+    <value>Ваши данные успешно сохранены</value>
   </data>
 </root>

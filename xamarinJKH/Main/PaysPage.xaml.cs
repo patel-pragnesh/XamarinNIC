@@ -211,7 +211,7 @@ namespace xamarinJKH.Main
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию о начислениях", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorCountersNoData, "OK");
             }
         }
 
@@ -229,7 +229,7 @@ namespace xamarinJKH.Main
             }
             else
             {
-                await DisplayAlert("Ошибка", "Лицевые счета не подключены", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppsNoIdent, "OK");
             }
         }
 
@@ -241,13 +241,13 @@ namespace xamarinJKH.Main
             }
             else
             {
-                await DisplayAlert("Ошибка", "Лицевые счета не подключены", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppsNoIdent, "OK");
             }
         }
 
         public async void DellLs(string Ident)
         {
-            bool answer = await Settings.mainPage.DisplayAlert("Удалить?", "Удалить лицевой счет: " + Ident + " ?",
+            bool answer = await Settings.mainPage.DisplayAlert(AppResources.Delete, $"{AppResources.DeleteIdent} " + Ident + " ?",
                 "Да", "Отмена");
             if (answer)
             {
@@ -263,7 +263,7 @@ namespace xamarinJKH.Main
                 IndicatorColor = Color.FromHex(Settings.MobileSettings.color),
                 OverlayColor = Color.Black,
                 Opacity = 0.8,
-                DefaultMessage = "Удаление ЛС",
+                DefaultMessage = AppResources.DeletingIdent,
             };
             RestClientMP server = new RestClientMP();
             await Loading.Instance.StartAsync(async progress =>
@@ -297,7 +297,7 @@ namespace xamarinJKH.Main
             }
             else
             {
-                await DisplayAlert("Ошибка", result.Error, "ОК");
+                await DisplayAlert(AppResources.ErrorTitle, result.Error, "ОК");
             }
 
             //Device.BeginInvokeOnMainThread(async () =>

@@ -326,7 +326,7 @@ namespace xamarinJKH.Main
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию о начислениях", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorCountersNoData, "OK");
             }
         }
 
