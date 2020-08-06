@@ -36,6 +36,9 @@ namespace xamarinJKH.Pays
             }
             else
             {
+                int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();                
+                gridMain.Padding = new Thickness(0, statusBarHeight , 0, 0);
+                
                 pdfview = new WebView()
                 {
                     VerticalOptions = LayoutOptions.FillAndExpand,

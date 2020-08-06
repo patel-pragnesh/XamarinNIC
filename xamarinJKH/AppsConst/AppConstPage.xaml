@@ -229,8 +229,14 @@
                                            CornerRadius="30"
                                            Margin="15, 0, 15, -30"
                                            BackgroundColor="White"
-                                           Padding="5,0,5,70">
-                <ListView x:Name="additionalList"
+                                           Padding="5,0,5,70" VerticalOptions="FillAndExpand">
+                <RefreshView x:Name="messageRefreshView" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" VerticalOptions="FillAndExpand">
+                    <ScrollView x:Name="scrollFroAppMessages" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
+                        <StackLayout x:Name="baseForApp" VerticalOptions="FillAndExpand"></StackLayout>
+                    </ScrollView>
+                </RefreshView>
+                
+                <!--<ListView x:Name="additionalList"
                           HasUnevenRows="True"
                           Margin="0, 5, 0, 0"
                           SeparatorVisibility="None"
@@ -239,14 +245,10 @@
                           RefreshCommand="{Binding RefreshCommand}"
                           IsRefreshing="{Binding IsRefreshing}"
                           SelectionMode="None"
-                          ItemTapped="OnItemTapped"
-
+                          ItemTapped="OnItemTapped"                          
                           ItemsSource="{Binding messages}">
-                    <ListView.Header>
-
-                    </ListView.Header>
+                
                     <ListView.ItemTemplate>
-
                         <DataTemplate>
                             <apps:MessageConstCell
                                 Name="{Binding AuthorName}"
@@ -258,7 +260,7 @@
                         </DataTemplate>
 
                     </ListView.ItemTemplate>
-                </ListView>
+                </ListView>-->
             </customRenderers:MaterialFrame>
             <Frame CornerRadius="30"
                    Margin="15, -30, 15, 5"
