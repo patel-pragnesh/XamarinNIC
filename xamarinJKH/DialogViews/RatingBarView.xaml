@@ -44,10 +44,9 @@
                 HorizontalTextAlignment="Center">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Помогите нам стать лучше.
-                        " FontSize="17" />
-                        <Span Text="Оцените " TextColor="Black" FontAttributes="Bold" FontSize="17" />
-                        <Span Text="работу службы поддержки:" TextColor="Black" FontSize="17" />
+                        <Span Text="{x:Static xamarinJkh:AppResources.RatingBarText1}" FontSize="17" />
+                        <Span Text="{x:Static xamarinJkh:AppResources.Rate}" TextColor="Black" FontAttributes="Bold" FontSize="17" />
+                        <Span Text="{x:Static xamarinJkh:AppResources.RatingBarText2}" TextColor="Black" FontSize="17" />
 
                     </FormattedString>
                 </Label.FormattedText>
@@ -73,7 +72,7 @@
                                            WidthRequest="100"
                                            IsSpellCheckEnabled="True"
                                            AutoSize="TextChanges"
-                                           Placeholder="Прокомментируйте вашу оценку..."
+                                           Placeholder="{x:Static xamarinJkh:AppResources.RatingBarComment}"
                                            TextColor="#A2A2A2"
                                            HorizontalOptions="FillAndExpand" />
             </Frame>
@@ -83,7 +82,7 @@
                    x:Name="FrameBtnAdd"
                    Padding="0">
                 <Button x:Name="BtnAdd"
-                        Text="Закрыть заявку"
+                        Text="{x:Static xamarinJkh:AppResources.RatingBarCloseApp}"
                         TextColor="White"
                         Clicked="CloseApp"
                         FontAttributes="Bold"

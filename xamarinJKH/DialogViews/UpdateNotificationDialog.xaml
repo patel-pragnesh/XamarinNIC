@@ -18,8 +18,8 @@
                     CornerRadius="20"
                     TextColor="White"
                     Clicked="OpenMarket"
-                    Text="Обновить"/>
-            <Label Text="Продолжить работу в текущей версии"
+                    Text="{x:Static xamarinJkh:AppResources.UpdateDialogUpdate}"/>
+            <Label Text="{x:Static xamarinJkh:AppResources.UpdateDialogKeepWorking}"
                    VerticalOptions="CenterAndExpand"
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center"

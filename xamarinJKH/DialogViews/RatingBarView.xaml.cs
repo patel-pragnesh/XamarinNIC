@@ -51,7 +51,7 @@ namespace xamarinJKH.DialogViews
                 CommonResult result = await server.CloseApp(_Request.ID.ToString(), text, RatingBar.Rating.ToString());
                 if (result.Error == null)
                 {
-                    await ShowToast("Збс");
+                    await ShowToast(AppResources.AppClosed);
                 }
                 else
                 {
@@ -60,7 +60,7 @@ namespace xamarinJKH.DialogViews
             }
             else
             {
-                await ShowToast("Заполните комментарий к заявке");
+                await ShowToast(AppResources.ErrorFillCommant);
             }
         }
         public async Task ShowToast(string title)

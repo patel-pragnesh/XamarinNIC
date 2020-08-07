@@ -61,7 +61,7 @@
                    x:Name="FrameBtnAdd"
                    Padding="0">
                 <Button x:Name="BtnAdd"
-                        Text="Оплатить"
+                        Text="{x:Static xamarinJkh:AppResources.Pay}"
                         Clicked="payApp"
                         TextColor="White"
                         FontAttributes="Bold"

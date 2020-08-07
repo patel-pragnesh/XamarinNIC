@@ -222,7 +222,7 @@ namespace xamarinJKH
             }
             else
             {
-                    await DisplayAlert("Ошибка", Settings.MobileSettings.Error, "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, Settings.MobileSettings.Error, "OK");
                     getSettings();
 
                 // BtnLogin.IsEnabled = false;
@@ -326,7 +326,7 @@ namespace xamarinJKH
             {
                 if (replace.Length < 11)
                 {
-                    await DisplayAlert("Ошибка", "Номер телефона необходимо ввести в формате: +7 (ХХХ) ХХХ-ХХХХ", "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorTechNumberFormat, "OK");
                     progress.IsVisible = false;
                     FrameBtnLogin.IsVisible = true;
                     return;
@@ -350,17 +350,17 @@ namespace xamarinJKH
                 {
                     if (login.Error.ToLower().Contains("unauthorized"))
                     {
-                        await DisplayAlert("Ошибка", "Пользователь не найден", "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorUserNotFound, "OK");
                     }
                     else
                     {
-                        await DisplayAlert("Ошибка", login.Error, "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, login.Error, "OK");
                     }
                 }
             }
             else
             {
-                await DisplayAlert("Ошибка", "Заполните пустые поля", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorFills, "OK");
             }
 
             progress.IsVisible = false;
@@ -400,17 +400,17 @@ namespace xamarinJKH
                 {
                     if (login.Error.ToLower().Contains("unauthorized"))
                     {
-                        await DisplayAlert("Ошибка", "Пользователь не найден", "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorUserNotFound, "OK");
                     }
                     else
                     {
-                        await DisplayAlert("Ошибка", login.Error, "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, login.Error, "OK");
                     }
                 }
             }
             else
             {
-                await DisplayAlert("Ошибка", "Заполните пустые поля", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorFills, "OK");
             }
 
             progress.IsVisible = false;
