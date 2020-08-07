@@ -20,6 +20,8 @@ namespace xamarinJKH.Server.RequestModel
         
         public List<MobileMenu> menu { get; set; }
         public string Error { get; set; }
+        public string appLinkIOS { get; set; }
+        public string appLinkAndroid { get; set; }
     }
 
     public class MobileMenu

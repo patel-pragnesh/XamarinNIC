@@ -184,33 +184,41 @@ namespace xamarinJKH.Additional
         {
             Groups.Clear();
             Additional.Clear();
-            foreach (var each in Settings.EventBlockData.AdditionalServices)
+            if (Settings.EventBlockData.AdditionalServices != null)
             {
-                if (each.HasLogo && !each.ShowInAdBlock.ToLower().Equals("не отображать"))
+                foreach (var each in Settings.EventBlockData.AdditionalServices)
                 {
-                    if (SelectedGroup != null)
+                    if (each.HasLogo && !each.ShowInAdBlock.ToLower().Equals("не отображать"))
                     {
-                        if (each.Group == SelectedGroup)
+                        if (SelectedGroup != null)
+                        {
+                            if (each.Group == SelectedGroup)
+                            {
+                                Additional.Add(each);
+                            }
+                        }
+                        else
                         {
                             Additional.Add(each);
                         }
                     }
-                    else
-                    {
-                        Additional.Add(each);
-                    }
+                }
+
+                var groups = Settings.EventBlockData.AdditionalServices.GroupBy(x => x.Group).Select(x => x.First()).Select(y => y.Group).ToList();
+
+                foreach (var group in groups)
+                {
+                    Groups.Add(group);
+                }
+                if (SelectedGroup == null)
+                {
+                    SelectedGroup = Groups[0];
                 }
             }
-
-            var groups = Settings.EventBlockData.AdditionalServices.GroupBy(x => x.Group).Select(x => x.First()).Select(y => y.Group).ToList();
-
-            foreach (var group in groups)
+            
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
-                Groups.Add(group);
-            }
-            if (SelectedGroup == null)
-            {
-                SelectedGroup = Groups[0];
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, null, "OK"));
             }
             IsBusy = false;
             //AiForms.Dialogs.Loading.Instance.Hide();

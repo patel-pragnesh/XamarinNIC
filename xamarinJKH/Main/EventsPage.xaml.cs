@@ -242,10 +242,18 @@ namespace xamarinJKH.Main
                 var data = Settings.EventBlockData;
                 data = await server.GetEventBlockData();
                 Settings.EventBlockData = data;
-                ShowNews = data.News.Count != 0;
-                ShowPolls = data.Polls.Count != 0 && Settings.QuestVisible;
-                ShowAdditionalServices = data.AdditionalServices.Count != 0 && Settings.AddVisible;
-                ShowAnnouncements = data.Announcements.Count != 0 && Settings.NotifVisible;
+                if (data != null)
+                {
+                    if (data.News != null)
+                        ShowNews =  data.News.Count != 0;
+                    if (data.Polls != null)
+                        ShowPolls = data.Polls.Count != 0 && Settings.QuestVisible;
+                    if (data.AdditionalServices != null)
+                        ShowAdditionalServices = data.AdditionalServices.Count != 0 && Settings.AddVisible;
+                    if (data.Announcements != null)
+                        ShowAnnouncements = data.Announcements.Count != 0 && Settings.NotifVisible;
+                }
+               
             });
         }
     }

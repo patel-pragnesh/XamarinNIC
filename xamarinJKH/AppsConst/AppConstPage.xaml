@@ -126,7 +126,7 @@
                                 x:Name="StackLayoutAccept"
                                 VerticalOptions="Center"
                                 HorizontalOptions="StartAndExpand">
-                                <xamarinJkh:IconView Source="ic_check_mark"
+                                <xamarinJkh:IconView Source="ic_accept_app"
                                                      Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                                      WidthRequest="25"
                                                      HeightRequest="25" />
@@ -140,7 +140,7 @@
                                 x:Name="StackLayoutExecute"
                                 VerticalOptions="Center"
                                 HorizontalOptions="StartAndExpand">
-                                <xamarinJkh:IconView Source="ic_execute"
+                                <xamarinJkh:IconView Source="ic_check_mark"
                                                      Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                                      WidthRequest="25"
                                                      HeightRequest="25" />
@@ -154,7 +154,7 @@
                                 x:Name="StackLayoutMoveDisp"
                                 VerticalOptions="Center"
                                 HorizontalOptions="StartAndExpand">
-                                <xamarinJkh:IconView Source="ic_move_disp"
+                                <xamarinJkh:IconView Source="ic_next_disp"
                                                      Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                                      WidthRequest="25"
                                                      HeightRequest="25" />

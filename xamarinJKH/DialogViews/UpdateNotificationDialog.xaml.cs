@@ -43,9 +43,7 @@ namespace xamarinJKH.DialogViews
 
             if (Device.RuntimePlatform == "iOS")
             {
-                throw new NotImplementedException("Нужно добавить id приложения в ссылку ниже");
-                var id = string.Empty;
-                uri = $"itms-apps://itunes.apple.com/ru/app/{name}/id{id}?mt=8";
+                uri = Settings.MobileSettings.appLinkIOS;
             }
 
             if (!string.IsNullOrEmpty(uri))

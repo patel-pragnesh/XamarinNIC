@@ -159,10 +159,12 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\edit.png" />
     <AndroidResource Include="Resources\drawable\icon_login.png" />
+    <AndroidResource Include="Resources\drawable\ic_accept_app.png" />
     <AndroidResource Include="Resources\drawable\ic_additional_top.png" />
     <AndroidResource Include="Resources\drawable\ic_additional_top_Light.png" />
     <AndroidResource Include="Resources\drawable\ic_add_file.png" />
     <AndroidResource Include="Resources\drawable\ic_add_ident.png" />
+    <AndroidResource Include="Resources\drawable\ic_add_ls.png" />
     <AndroidResource Include="Resources\drawable\ic_app_top.png" />
     <AndroidResource Include="Resources\drawable\ic_app_top_in.png" />
     <AndroidResource Include="Resources\drawable\ic_app_top_light.png" />
@@ -206,6 +208,7 @@
     <AndroidResource Include="Resources\drawable\ic_news_top.png" />
     <AndroidResource Include="Resources\drawable\ic_news_top_light.png" />
     <AndroidResource Include="Resources\drawable\ic_new_app_top.png" />
+    <AndroidResource Include="Resources\drawable\ic_next_disp.png" />
     <AndroidResource Include="Resources\drawable\ic_notification_top.png" />
     <AndroidResource Include="Resources\drawable\ic_notification_top_light.png" />
     <AndroidResource Include="Resources\drawable\ic_not_author.png" />

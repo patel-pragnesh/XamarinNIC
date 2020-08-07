@@ -27,8 +27,7 @@
                 HorizontalOptions="Start">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Тема: " TextColor="Black" FontAttributes="Bold" FontSize="18" />
-                        <Span Text=" {Binding _Request.Name}" FontSize="15" />
+                        <Span Text="{Binding _Request.Name}" TextColor="Black" FontAttributes="Bold" FontSize="15" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -73,14 +72,26 @@
                             <Span Text=" {Binding _Request.Phone}" FontSize="15" />
                         </FormattedString>
                     </Label.FormattedText>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding Calling}"
+                            CommandParameter="{Binding _Request.Phone}" />
+                    </Label.GestureRecognizers>
                 </Label>
-                <!--<xamarinJkh:IconView x:Name="IconViewPhone"
+                <xamarinJkh:IconView x:Name="IconViewPhone"
                                      Source="ic_call_app"
                                      HeightRequest="17"
+                                     IsVisible="False"
                                      WidthRequest="17"
                                      Foreground="{Binding HexColor}"
                                      HorizontalOptions="Start"
-                                     VerticalOptions="Center" />-->
+                                     VerticalOptions="Center" >
+                    <xamarinJkh:IconView.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding Calling}"
+                            CommandParameter="{Binding _Request.Phone}" />
+                    </xamarinJkh:IconView.GestureRecognizers>
+                </xamarinJkh:IconView>
             </StackLayout>
             <StackLayout
                 IsVisible="{Binding _Request.IsPaid}"

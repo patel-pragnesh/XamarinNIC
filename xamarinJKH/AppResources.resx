@@ -130,7 +130,7 @@
     <value>Активные</value>
   </data>
   <data name="AddIdent" xml:space="preserve">
-    <value>Подключить лицевой счет</value>
+    <value>+ Подключить лицевой счет</value>
   </data>
   <data name="Adress" xml:space="preserve">
     <value>Адрес</value>
@@ -244,6 +244,9 @@
   <data name="Create" xml:space="preserve">
     <value>Создать</value>
   </data>
+  <data name="AddApp" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
   <data name="CreatePass" xml:space="preserve">
     <value>Создайте пароль           </value>
   </data>
@@ -335,7 +338,7 @@
     <value>Вес:</value>
   </data>
   <data name="Meters_NavBar" xml:space="preserve">
-    <value>Показатели</value>
+    <value>Показания</value>
   </data>
   <data name="Monitoring_NavBar" xml:space="preserve">
     <value>Монитор</value>
@@ -608,6 +611,9 @@
     <value>Показать ответы</value>
   </data>
   <data name="Register" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="Register2" xml:space="preserve">
     <value>Зарегистрироваться</value>
   </data>
   <data name="RequestsReceived" xml:space="preserve">
@@ -660,6 +666,9 @@
   </data>
   <data name="ShowClosedApps" xml:space="preserve">
     <value>Показать закрытые</value>
+  </data>
+  <data name="ShowReadApps" xml:space="preserve">
+    <value>Показать прочитанные</value>
   </data>
   <data name="SortByAcc" xml:space="preserve">
     <value>По л/сч</value>
@@ -1098,5 +1107,78 @@
   </data>
   <data name="TechSendSuccess" xml:space="preserve">
     <value>Обращение успешно отправлено</value>
+  </data>
+  <data name="AlertCodeSent" xml:space="preserve">
+    <value>Запрос с кодом доступа отправлен</value>
+  </data>
+  <data name="AppClosed" xml:space="preserve">
+    <value>Заявка закрыта</value>
+  </data>
+  <data name="ClosingApp" xml:space="preserve">
+    <value>Закрытие заявки..</value>
+  </data>
+  <data name="ErrorFillCommant" xml:space="preserve">
+    <value>Заполните комментарий к заявке</value>
+  </data>
+  <data name="ErrorPayApp" xml:space="preserve">
+    <value>Заказ уже оплачен</value>
+  </data>
+  <data name="ErrorRegisterFillPassword" xml:space="preserve">
+    <value>Заполните поле пароль</value>
+  </data>
+  <data name="ErrorRegisterFillPasswordConfirm" xml:space="preserve">
+    <value>Заполните поле подтвердите пароль</value>
+  </data>
+  <data name="ErrorRegisterPassword" xml:space="preserve">
+    <value>Пароли не совпадают</value>
+  </data>
+  <data name="ErrorRegisterWrongCode" xml:space="preserve">
+    <value>Неверный код доступа</value>
+  </data>
+  <data name="ErrorUserNotFound" xml:space="preserve">
+    <value>Пользователь не найден</value>
+  </data>
+  <data name="MoveDispatcher" xml:space="preserve">
+    <value>Перевести заявку?</value>
+  </data>
+  <data name="MoveDispatcherChoose" xml:space="preserve">
+    <value>Выберите диспетчера:</value>
+  </data>
+  <data name="MoveDispatcherConfirm" xml:space="preserve">
+    <value>Перевести заявку</value>
+  </data>
+  <data name="MoveDispatcherStatus" xml:space="preserve">
+    <value>Перевод заявки..</value>
+  </data>
+  <data name="MoveDispatcherSuccess" xml:space="preserve">
+    <value>Заявка переведена</value>
+  </data>
+  <data name="ProcessUserData" xml:space="preserve">
+    <value>Подтвердите согласие на обработку персональных данных</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Оцените</value>
+  </data>
+  <data name="RatingBarClose" xml:space="preserve">
+    <value>Закрыть заявку?</value>
+  </data>
+  <data name="RatingBarCloseApp" xml:space="preserve">
+    <value>Закрыть заявку</value>
+  </data>
+  <data name="RatingBarComment" xml:space="preserve">
+    <value>Прокомментируйте вашу оценку...</value>
+  </data>
+  <data name="RatingBarText1" xml:space="preserve">
+    <value>Помогите нам стать лучше.
+</value>
+  </data>
+  <data name="RatingBarText2" xml:space="preserve">
+    <value>  работу службы поддержки:</value>
+  </data>
+  <data name="UpdateDialogKeepWorking" xml:space="preserve">
+    <value>Продолжить работу в текущей версии</value>
+  </data>
+  <data name="UpdateDialogUpdate" xml:space="preserve">
+    <value>Обновить</value>
   </data>
 </root>

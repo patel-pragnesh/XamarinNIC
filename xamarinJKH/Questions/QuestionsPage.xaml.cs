@@ -152,6 +152,12 @@ namespace xamarinJKH.Questions
         {
             QuestComlite = new List<PollInfo>();
             QuestNotComlite = new List<PollInfo>();
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, null, "OK"));
+                return;
+            }
+            if (Settings.EventBlockData.Polls != null)
             foreach (var each in Settings.EventBlockData.Polls)
             {
                 bool flag = true;

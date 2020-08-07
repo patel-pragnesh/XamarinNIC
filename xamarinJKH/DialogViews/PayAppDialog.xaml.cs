@@ -34,7 +34,7 @@ namespace xamarinJKH.DialogViews
             FormattedString formatted = new FormattedString();
             formatted.Spans.Add(new Span
             {
-                Text = "Итого: ",
+                Text = $"{AppResources.Total}: ",
                 FontSize = 17,
                 TextColor = Color.Black
             });
@@ -47,7 +47,7 @@ namespace xamarinJKH.DialogViews
             });
             formatted.Spans.Add(new Span
             {
-                Text = " руб.",
+                Text = $" {AppResources.Currency}",
                 FontSize = 15,
                 TextColor = Color.FromHex("#777777")
             });
@@ -64,7 +64,7 @@ namespace xamarinJKH.DialogViews
             }
             else
             {
-                await DisplayAlert("Ошибка", "Заказ уже оплачен", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorPayApp, "OK");
             }
         }
     }

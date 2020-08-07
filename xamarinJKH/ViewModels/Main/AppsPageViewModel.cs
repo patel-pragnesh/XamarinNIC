@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace xamarinJKH.ViewModels.Main
 {
-    public class AppsPageViewModel:BaseViewModel
+    public class AppsPageViewModel : BaseViewModel
     {
         ObservableCollection<RequestInfo> _requests;
         public ObservableCollection<RequestInfo> Requests
@@ -64,28 +64,28 @@ namespace xamarinJKH.ViewModels.Main
             Requests = new ObservableCollection<RequestInfo>();
             LoadRequests = new Command(async () =>
             {
-                    var response = await Server.GetRequestsList();
-                    AllRequests = new List<RequestInfo>();
-                    AllRequests.AddRange(response.Requests);
-                    if (response.Error != null)
+                var response = await Server.GetRequestsList();
+                AllRequests = new List<RequestInfo>();
+                if (response.Error != null)
+                {
+                    ShowError(response.Error);
+                    return;
+                }
+                else
+                {
+                    if (Settings.UpdateKey != response.UpdateKey)
+                        Settings.UpdateKey = response.UpdateKey;
+                    if (response.Requests != null)
                     {
-                        ShowError(response.Error);
-                        return;
-                    }
-                    else
-                    {
-                        if (Settings.UpdateKey != response.UpdateKey)
-                            Settings.UpdateKey = response.UpdateKey;
-                        if (response.Requests != null)
+                        AllRequests.AddRange(response.Requests);
+                        if (Requests == null) Requests = new ObservableCollection<RequestInfo>();
+                        Requests.Clear();
+                        foreach (var App in AllRequests.Where(x => !x.IsClosed))
                         {
-                            if (Requests == null) Requests = new ObservableCollection<RequestInfo>();
-                            Requests.Clear();
-                            foreach (var App in  AllRequests.Where(x => !x.IsClosed))
-                            {
-                                Device.BeginInvokeOnMainThread(() => Requests.Add(App));
-                            }
+                            Device.BeginInvokeOnMainThread(() => Requests.Add(App));
                         }
                     }
+                }
             });
         }
 
@@ -103,7 +103,7 @@ namespace xamarinJKH.ViewModels.Main
                         Device.BeginInvokeOnMainThread(() => Requests.Add(newApp));
                     }
                 }
-                
+
             }
         }
     }

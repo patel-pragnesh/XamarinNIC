@@ -19,7 +19,7 @@ namespace xamarinJKH {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -97,7 +97,16 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Подключить лицевой счет.
+        ///   Looks up a localized string similar to Добавить.
+        /// </summary>
+        internal static string AddApp {
+            get {
+                return ResourceManager.GetString("AddApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to + Подключить лицевой счет.
         /// </summary>
         internal static string AddIdent {
             get {
@@ -147,6 +156,15 @@ namespace xamarinJKH {
         internal static string Adress {
             get {
                 return ResourceManager.GetString("Adress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Запрос с кодом доступа отправлен.
+        /// </summary>
+        internal static string AlertCodeSent {
+            get {
+                return ResourceManager.GetString("AlertCodeSent", resourceCulture);
             }
         }
         
@@ -201,6 +219,15 @@ namespace xamarinJKH {
         internal static string App_NavBar {
             get {
                 return ResourceManager.GetString("App_NavBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заявка закрыта.
+        /// </summary>
+        internal static string AppClosed {
+            get {
+                return ResourceManager.GetString("AppClosed", resourceCulture);
             }
         }
         
@@ -444,6 +471,15 @@ namespace xamarinJKH {
         internal static string CloseApp {
             get {
                 return ResourceManager.GetString("CloseApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Закрытие заявки...
+        /// </summary>
+        internal static string ClosingApp {
+            get {
+                return ResourceManager.GetString("ClosingApp", resourceCulture);
             }
         }
         
@@ -935,6 +971,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Заполните комментарий к заявке.
+        /// </summary>
+        internal static string ErrorFillCommant {
+            get {
+                return ResourceManager.GetString("ErrorFillCommant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Заполните номер счета.
         /// </summary>
         internal static string ErrorFillIdent {
@@ -1088,6 +1133,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Заказ уже оплачен.
+        /// </summary>
+        internal static string ErrorPayApp {
+            get {
+                return ResourceManager.GetString("ErrorPayApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не удалось получить информацию об оплатах.
         /// </summary>
         internal static string ErrorPayInfo {
@@ -1102,6 +1156,42 @@ namespace xamarinJKH {
         internal static string ErrorReboot {
             get {
                 return ResourceManager.GetString("ErrorReboot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заполните поле пароль.
+        /// </summary>
+        internal static string ErrorRegisterFillPassword {
+            get {
+                return ResourceManager.GetString("ErrorRegisterFillPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заполните поле подтвердите пароль.
+        /// </summary>
+        internal static string ErrorRegisterFillPasswordConfirm {
+            get {
+                return ResourceManager.GetString("ErrorRegisterFillPasswordConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пароли не совпадают.
+        /// </summary>
+        internal static string ErrorRegisterPassword {
+            get {
+                return ResourceManager.GetString("ErrorRegisterPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Неверный код доступа.
+        /// </summary>
+        internal static string ErrorRegisterWrongCode {
+            get {
+                return ResourceManager.GetString("ErrorRegisterWrongCode", resourceCulture);
             }
         }
         
@@ -1138,6 +1228,15 @@ namespace xamarinJKH {
         internal static string ErrorUnknown {
             get {
                 return ResourceManager.GetString("ErrorUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пользователь не найден.
+        /// </summary>
+        internal static string ErrorUserNotFound {
+            get {
+                return ResourceManager.GetString("ErrorUserNotFound", resourceCulture);
             }
         }
         
@@ -1403,7 +1502,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Показатели.
+        ///   Looks up a localized string similar to Показания.
         /// </summary>
         internal static string Meters_NavBar {
             get {
@@ -1444,6 +1543,51 @@ namespace xamarinJKH {
         internal static string MonthPeriod {
             get {
                 return ResourceManager.GetString("MonthPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Перевести заявку?.
+        /// </summary>
+        internal static string MoveDispatcher {
+            get {
+                return ResourceManager.GetString("MoveDispatcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выберите диспетчера:.
+        /// </summary>
+        internal static string MoveDispatcherChoose {
+            get {
+                return ResourceManager.GetString("MoveDispatcherChoose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Перевести заявку.
+        /// </summary>
+        internal static string MoveDispatcherConfirm {
+            get {
+                return ResourceManager.GetString("MoveDispatcherConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Перевод заявки...
+        /// </summary>
+        internal static string MoveDispatcherStatus {
+            get {
+                return ResourceManager.GetString("MoveDispatcherStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заявка переведена.
+        /// </summary>
+        internal static string MoveDispatcherSuccess {
+            get {
+                return ResourceManager.GetString("MoveDispatcherSuccess", resourceCulture);
             }
         }
         
@@ -2504,6 +2648,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Подтвердите согласие на обработку персональных данных.
+        /// </summary>
+        internal static string ProcessUserData {
+            get {
+                return ResourceManager.GetString("ProcessUserData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Профиль.
         /// </summary>
         internal static string Prof {
@@ -2558,11 +2711,75 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Зарегистрироваться.
+        ///   Looks up a localized string similar to Оцените.
+        /// </summary>
+        internal static string Rate {
+            get {
+                return ResourceManager.GetString("Rate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Закрыть заявку?.
+        /// </summary>
+        internal static string RatingBarClose {
+            get {
+                return ResourceManager.GetString("RatingBarClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Закрыть заявку.
+        /// </summary>
+        internal static string RatingBarCloseApp {
+            get {
+                return ResourceManager.GetString("RatingBarCloseApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прокомментируйте вашу оценку....
+        /// </summary>
+        internal static string RatingBarComment {
+            get {
+                return ResourceManager.GetString("RatingBarComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Помогите нам стать лучше.
+        ///.
+        /// </summary>
+        internal static string RatingBarText1 {
+            get {
+                return ResourceManager.GetString("RatingBarText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to   работу службы поддержки:.
+        /// </summary>
+        internal static string RatingBarText2 {
+            get {
+                return ResourceManager.GetString("RatingBarText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Регистрация.
         /// </summary>
         internal static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Зарегистрироваться.
+        /// </summary>
+        internal static string Register2 {
+            get {
+                return ResourceManager.GetString("Register2", resourceCulture);
             }
         }
         
@@ -2680,6 +2897,15 @@ namespace xamarinJKH {
         internal static string ShowClosedApps {
             get {
                 return ResourceManager.GetString("ShowClosedApps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Показать прочитанные.
+        /// </summary>
+        internal static string ShowReadApps {
+            get {
+                return ResourceManager.GetString("ShowReadApps", resourceCulture);
             }
         }
         
@@ -2950,6 +3176,24 @@ namespace xamarinJKH {
         internal static string TSA {
             get {
                 return ResourceManager.GetString("TSA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Продолжить работу в текущей версии.
+        /// </summary>
+        internal static string UpdateDialogKeepWorking {
+            get {
+                return ResourceManager.GetString("UpdateDialogKeepWorking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Обновить.
+        /// </summary>
+        internal static string UpdateDialogUpdate {
+            get {
+                return ResourceManager.GetString("UpdateDialogUpdate", resourceCulture);
             }
         }
         

@@ -155,7 +155,7 @@
                                 x:Name="SwitchApp"
                                 VerticalOptions="Center"/>
 
-                                    <Label Text="{x:Static xamarinJkh:AppResources.ShowClosedApps}"
+                                    <Label Text="{x:Static xamarinJkh:AppResources.ShowReadApps}"
                                    x:Name="LabelSwitch"
                                    FontAttributes="Bold"
                                    FontSize="15"
@@ -182,7 +182,7 @@
                                             WidthRequest="20"
                                             VerticalOptions="Center" />
                                 <Label x:Name="BtnExit"
-                                        Text="{x:Static xamarinJkh:AppResources.Create}"
+                                        Text="{x:Static xamarinJkh:AppResources.AddApp}"
                                         FontSize="15"
                                         TextColor="White"
                                         HorizontalOptions="FillAndExpand" 
