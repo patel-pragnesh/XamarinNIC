@@ -130,7 +130,7 @@
     <value>Active</value>
   </data>
   <data name="AddIdent" xml:space="preserve">
-    <value>Add an account</value>
+    <value>+ Add an account</value>
   </data>
   <data name="Adress" xml:space="preserve">
     <value>Adress</value>
@@ -848,6 +848,15 @@ A bot will call you on your number PHONE and tell an access code</value>
   </data>
   <data name="ErrorConnectcIdent" xml:space="preserve">
     <value>Add an account</value>
+  </data>
+  <data name="ShowReadApps" xml:space="preserve">
+    <value>Show read</value>
+  </data>
+  <data name="AddApp" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Register2" xml:space="preserve">
+    <value>Register</value>
   </data>
   <data name="ErrorFileLoading" xml:space="preserve">
     <value>Couldn't download file</value>

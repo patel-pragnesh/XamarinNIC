@@ -11,6 +11,7 @@ using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using Plugin.Messaging;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Rg.Plugins.Popup.Services;
@@ -209,6 +210,7 @@ namespace xamarinJKH.AppsConst
             setText();
             getMessage();
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+            MessagingCenter.Subscribe<Object>(this, "RefreshApp", (sender) => RefreshCommand.Execute(null));
         }
 
         protected async void SendCode(object sender, EventArgs args)
@@ -624,13 +626,26 @@ namespace xamarinJKH.AppsConst
             {
                 request.Phone = "+" + request.Phone;
             }
+            Call = new Command<string>(async (phone) =>
+            {
+                if (phone!= null)
+                {
+                    IPhoneCallTask phoneDialer;
+                    phoneDialer = CrossMessaging.Current.PhoneDialer;
+                    if (phoneDialer.CanMakePhoneCall) 
+                        phoneDialer.MakePhoneCall(phone);
+                }
+            });
             var ret = await Dialog.Instance.ShowAsync<InfoAppDialog>(new
             {
                 _Request = request,
                 HexColor = this.hex,
-                SourceApp = Source
+                SourceApp = Source,
+                Calling = Call
             });
         }
+
+        public Command<string> Call { get; set; }
 
         public async Task ShowRating()
         {

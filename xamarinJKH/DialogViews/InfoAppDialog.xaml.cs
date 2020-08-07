@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using AiForms.Dialogs.Abstractions;
+using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Server.RequestModel;
@@ -17,11 +19,13 @@ namespace xamarinJKH.DialogViews
         public Color HexColor { get; set; }
         public string SourceApp { get; set; }
         public RequestInfo _Request { get; set; }
-
+        public Command Call { get; set; }
+     
         public InfoAppDialog()
         {
             InitializeComponent();
             code.IsVisible = !Settings.Person.IsDispatcher;
+            IconViewPhone.IsVisible = Settings.Person.IsDispatcher;
             Frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
             switch (Device.RuntimePlatform)
             {
@@ -37,7 +41,9 @@ namespace xamarinJKH.DialogViews
                     break;
             }
 
-            this.BindingContext = this;
+            
+            BindingContext = this;
+            
             
         }
 

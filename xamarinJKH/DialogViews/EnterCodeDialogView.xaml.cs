@@ -55,7 +55,7 @@ namespace xamarinJKH.DialogViews
                     if (success)
                     {
                         dialog.CloseDialog();
-                        MessagingCenter.Send<Object>(this, "UpdateEvents");
+                        MessagingCenter.Send<Object>(this, "ChangeThemeConst");
                         DependencyService.Get<IMessage>().ShortAlert("Заказ успешно подтвержден");
                     }
                     else

@@ -1946,10 +1946,14 @@ namespace xamarinJKH.Server
         public async Task<bool> SendCodeRequestForpaidService(PaidRequestCodeModel data)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
-            RestRequest restRequest = new RestRequest(SEND_CODE, Method.GET);
+            RestRequest restRequest = new RestRequest(SEND_CODE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
-            restRequest.AddBody(data);
+            restRequest.AddBody(new
+            {
+                data.RequestId,
+                data.Code
+            });
             var response = await restClientMp.ExecuteTaskAsync<PaidRequestResponse>(restRequest);
             return response.Data.IsCorrect;
         }

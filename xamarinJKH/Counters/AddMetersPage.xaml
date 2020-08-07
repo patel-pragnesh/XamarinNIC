@@ -116,7 +116,7 @@
                                Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalOptions="Center" />
                         <Label
-                            Text="{x:Static xamarinJkh:AppResources.Back}"
+                            Text="{x:Static xamarinJkh:AppResources.PassPenance}"
                             FontSize="18"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"

@@ -262,7 +262,7 @@
                                         HorizontalOptions="StartAndExpand" />
 
                                         <Label x:Name="RegistLabel"
-                                           Text="{x:Static resources:AppResources.Register}"
+                                           Text="{x:Static resources:AppResources.Register2}"
                                            FontSize="15"
                                            FontAttributes="Bold"
                                            TextColor="{x:DynamicResource MainColor}"

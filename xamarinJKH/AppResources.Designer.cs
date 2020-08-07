@@ -19,7 +19,7 @@ namespace xamarinJKH {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -97,7 +97,16 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Подключить лицевой счет.
+        ///   Looks up a localized string similar to Добавить.
+        /// </summary>
+        internal static string AddApp {
+            get {
+                return ResourceManager.GetString("AddApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to + Подключить лицевой счет.
         /// </summary>
         internal static string AddIdent {
             get {
@@ -1043,7 +1052,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Показатели.
+        ///   Looks up a localized string similar to Показания.
         /// </summary>
         internal static string Meters_NavBar {
             get {
@@ -2135,11 +2144,20 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Зарегистрироваться.
+        ///   Looks up a localized string similar to Регистрация.
         /// </summary>
         internal static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Зарегистрироваться.
+        /// </summary>
+        internal static string Register2 {
+            get {
+                return ResourceManager.GetString("Register2", resourceCulture);
             }
         }
         
@@ -2239,6 +2257,15 @@ namespace xamarinJKH {
         internal static string ShowClosedApps {
             get {
                 return ResourceManager.GetString("ShowClosedApps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Показать прочитанные.
+        /// </summary>
+        internal static string ShowReadApps {
+            get {
+                return ResourceManager.GetString("ShowReadApps", resourceCulture);
             }
         }
         
