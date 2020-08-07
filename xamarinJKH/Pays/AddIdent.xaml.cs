@@ -95,7 +95,7 @@ namespace xamarinJKH.Pays
                 {
                     Console.WriteLine(result.Address);
                     Console.WriteLine("Отправлено");
-                    bool answer = await DisplayAlert("Проверьте правильность адреса", result.Address, "Добавить лицевой счет", "Отмена");
+                    bool answer = await DisplayAlert("", result.Address, AppResources.AddIdent, AppResources.Cancel);
                     if (answer)
                     {
                         AcceptAddIdentAccount(ident, Settings.Person.Email);
@@ -114,7 +114,7 @@ namespace xamarinJKH.Pays
                     progress.IsVisible = false;
                     if (Device.RuntimePlatform == Device.iOS)
                     {
-                        await DisplayAlert("ОШИБКА", result.Error, "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
                     }
                     else
                     {
@@ -129,7 +129,7 @@ namespace xamarinJKH.Pays
             {
                 if (ident == "")
                 {
-                    await DisplayAlert("", "Заполните номер счета", "OK");
+                    await DisplayAlert("", AppResources.ErrorFillIdent , "OK");
                 }
             }
         }
@@ -146,7 +146,7 @@ namespace xamarinJKH.Pays
                 {
                     Console.WriteLine(result.Address);
                     Console.WriteLine("Отправлено");
-                    await DisplayAlert("", "Лс/ч " + ident + " успешно подключён, для дальнейшей работы перезагрузите приложение", "ОК");
+                    await DisplayAlert("", $"{AppResources.Acc} " + ident + " успешно подключён, для дальнейшей работы перезагрузите приложение", "ОК");
                     FrameBtnAdd.IsVisible = true;
                     progress.IsVisible = false;
                    
@@ -161,7 +161,7 @@ namespace xamarinJKH.Pays
                     progress.IsVisible = false;
                     if (Device.RuntimePlatform == Device.iOS)
                     {
-                        await DisplayAlert("ОШИБКА", result.Error, "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
                     }
                     else
                     {
@@ -176,7 +176,7 @@ namespace xamarinJKH.Pays
             {
                 if (ident == "")
                 {
-                    await DisplayAlert("", "Заполните номер счета", "OK");
+                    await DisplayAlert("", AppResources.ErrorFillIdent, "OK");
                 }
             }
         }

@@ -29,36 +29,7 @@
                              Constant=0}"
                        Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top_in}"
                        VerticalOptions="Fill"
-                       HorizontalOptions="Fill" />
-                <!-- <StackLayout x:Name="StackLayout" -->
-                <!--              RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, -->
-                <!--              Property=Width, -->
-                <!--              Factor=0, -->
-                <!--              Constant=15}" -->
-                <!--              RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, -->
-                <!--              Property=Height, -->
-                <!--              Factor=0, -->
-                <!--              Constant=0}" -->
-                <!--              Orientation="Vertical"> -->
-                <!--     <StackLayout -->
-                <!--         x:Name="BackStackLayout" -->
-                <!--         Orientation="Horizontal" -->
-                <!--         Margin="0, 40, 0, 0" -->
-                <!--         HorizontalOptions="Start"> -->
-                <!--         <Image Source="ic_arrow_back" -->
-                <!--                HeightRequest="15" -->
-                <!--                HorizontalOptions="Center" /> -->
-                <!--         <Label -->
-                <!--             Text="Назад " -->
-                <!--             FontSize="15" -->
-                <!--             TextColor="White" -->
-                <!--             HorizontalOptions="Start" /> -->
-                <!--     </StackLayout> -->
-                <!--     <Label x:Name="LabelNumber" -->
-                <!--            FontSize="20" -->
-                <!--            Margin="10, 15 ,0,0" -->
-                <!--            TextColor="White" /> -->
-                <!-- </StackLayout> -->
+                       HorizontalOptions="Fill" />                
             </RelativeLayout>
             <StackLayout HorizontalOptions="Fill"
                          Orientation="Horizontal">
@@ -157,35 +128,20 @@
                     <ScrollView x:Name="scrollFroAppMessages" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
                         <StackLayout x:Name="baseForApp" VerticalOptions="FillAndExpand"></StackLayout>
                     </ScrollView>
-                </RefreshView>
-                
-                
-                <!--
-                IsPullToRefreshEnabled="True"
-                          RefreshCommand="{Binding RefreshCommand}"
-                          IsRefreshing="{Binding IsRefreshing}"
-                -->
-                
-                
+                </RefreshView>                
                 
                 <!--<ListView x:Name="additionalList"
                           HasUnevenRows="True"
                           Margin="0, 0, 0, 0"
                           SeparatorVisibility="None"
-                          VerticalScrollBarVisibility="Never"
-                          
+                          VerticalScrollBarVisibility="Never"                          
                           SelectionMode="None"
                           ItemTapped="OnItemTapped"
                           BackgroundColor="Transparent"
                           CachingStrategy="RecycleElement"
-                          ItemsSource="{Binding messages}">
-                    --><!--ItemTemplate="{StaticResource usrDataTemplateSelector}">
-                    
-                    Time="{Binding Status}"
-                    --><!--
+                          ItemsSource="{Binding messages}">                    
                     
                     <ListView.ItemTemplate>
-
                         <DataTemplate x:DataType="datatypes:RequestMessage">                            
                             <apps:MessageCell
                                 Name="{Binding AuthorName}"

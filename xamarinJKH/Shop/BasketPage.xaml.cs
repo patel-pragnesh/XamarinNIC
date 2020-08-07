@@ -75,7 +75,7 @@ namespace xamarinJKH.Shop
             //    }
             //    else
             //    {
-            //        await DisplayAlert("Ошибка", "Корзина пуста", "OK");
+            //        await DisplayAlert(AppResources.ErrorTitle, "Корзина пуста", "OK");
             //    }
             //};
             //StackLayoutBasket.GestureRecognizers.Add(PayPageShop);
@@ -251,7 +251,7 @@ namespace xamarinJKH.Shop
                     }
                     else
                     {
-                        await DisplayAlert("Ошибка", "Товар: " + each.Name + " закончился", "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, $"{AppResources.BasketProduct} {each.Name} {AppResources.BasketProductNoLeft}"/*"Товар: " + each.Name + " закончился"*/, "OK");
                     }
 
                     SetPriceAndWeight();
@@ -291,7 +291,7 @@ namespace xamarinJKH.Shop
                     }
                     else
                     {
-                        await DisplayAlert("Ошибка", "Товара: " + each.Name + " в корзине больше нет", "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, $"{AppResources.BasketProduct} {each.Name} {AppResources.BasketProductNotInBasket}"/*"Товар: " + each.Name + " закончился"*/, "OK");
                     }
 
                     SetPriceAndWeight();
@@ -357,7 +357,7 @@ namespace xamarinJKH.Shop
             }
             else
             {
-                await DisplayAlert("Ошибка", "Корзина пуста", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorBasketEmpty, "OK");
             }
         }
 

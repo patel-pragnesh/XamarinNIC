@@ -67,7 +67,7 @@ namespace xamarinJKH.Pays
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию о квитанциях", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorInfoBills, "OK");
             }
         }
 
@@ -288,7 +288,7 @@ namespace xamarinJKH.Pays
                 else
                 {
                     Loading.Instance.Hide();
-                    await DisplayAlert("Ошибка", "Не удалось скачать файл", "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
                 }
             }
         }

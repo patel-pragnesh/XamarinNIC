@@ -56,16 +56,16 @@ namespace xamarinJKH.DialogViews
                     {
                         dialog.CloseDialog();
                         MessagingCenter.Send<Object>(this, "ChangeThemeConst");
-                        DependencyService.Get<IMessage>().ShortAlert("Заказ успешно подтвержден");
+                        DependencyService.Get<IMessage>().ShortAlert(AppResources.EnterCodeSuccess);
                     }
                     else
                     {
-                        DependencyService.Get<IMessage>().ShortAlert("Введенный код неверный");
+                        DependencyService.Get<IMessage>().ShortAlert(AppResources.EnterCodeWrongCode);
                     }
                 }
                 else
                 {
-                    DependencyService.Get<IMessage>().ShortAlert("Введите код для продолжеия!");
+                    DependencyService.Get<IMessage>().ShortAlert(AppResources.EnterCodeNoCode);
                 }
             });
         }

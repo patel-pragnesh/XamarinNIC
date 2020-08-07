@@ -99,7 +99,7 @@ namespace xamarinJKH
             
             var forgotPinTgr = new TapGestureRecognizer();
             forgotPinTgr.Tapped += async (s, e) => {
-                await DisplayAlert("Внимание", forgotpinText, "OK");
+                await DisplayAlert(AppResources.Attention, forgotpinText, "OK");
             };
             ForgotPin.GestureRecognizers.Add(forgotPinTgr);
 
@@ -125,7 +125,7 @@ namespace xamarinJKH
                 }
                 else
                 {
-                    await DisplayAlert("Ошибка", checkResult, "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, checkResult, "OK");
                     progress.IsVisible = false;
                     FrameBtnLogin.IsVisible = true;
                 }
@@ -145,11 +145,11 @@ namespace xamarinJKH
                 var isInt = int.TryParse(text, out c);
                 if(!isInt)
                 {
-                    return "Введенный пин-код не является числом";
+                    return AppResources.ErrorOSSAuthNotNumber;
                 }
                 if (c < 0)
                 {
-                    return "Введите положительное число в поле пин-код";
+                    return AppResources.ErrorOSSAuthPositive;
                 }
 
                 var r = await rc.OSSCheckPin(text);
@@ -157,7 +157,7 @@ namespace xamarinJKH
             }
             catch(Exception ex)
             {
-                return "Ошибка при проверки пин-кода";
+                return AppResources.ErrorOSSAuthPin;
             }
             
         }

@@ -134,7 +134,7 @@ namespace xamarinJKH.Pays
             if (result.Error == null && result.Comission != 0)
             {
                 isComission = true;
-                LabelCommision.Text = "Комиссия " + result.Comission + " руб.";
+                LabelCommision.Text = $"{AppResources.Commision} " + result.Comission + $" {AppResources.Currency}";
                 totalSum = result.TotalSum.ToString();
             }
 
@@ -163,7 +163,7 @@ namespace xamarinJKH.Pays
 
             formatted.Spans.Add(new Span
             {
-                Text = "Оплата производится по квитанции за ",
+                Text = $"{AppResources.PaymentOf} ",
                 FontSize = 12,
                 TextColor = Color.Black
             });
@@ -208,8 +208,8 @@ namespace xamarinJKH.Pays
                 if (result.Error == null && !result.Comission.Equals("0"))
                 {
                     isComission = true;
-                    LabelCommision.Text = "Комиссия " + result.Comission + " руб.";
-                    totalSum = result.TotalSum.ToString();
+                    LabelCommision.Text = $"{AppResources.Commision} " + result.Comission + $" {AppResources.Currency}";
+                totalSum = result.TotalSum.ToString();
                 }
             // }
 
@@ -258,12 +258,12 @@ namespace xamarinJKH.Pays
                 }
                 else
                 {
-                    await DisplayAlert("Ошибка", "Имеется переплата по л.с", "OK");
+                    await DisplayAlert(AppResources.ErrorTitle,AppResources.ErrorOverpay, "OK");
                 }
             }
             else
             {
-                await DisplayAlert("Ошибка", "Введите сумму", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorEnterSum, "OK");
             }
         }
     }

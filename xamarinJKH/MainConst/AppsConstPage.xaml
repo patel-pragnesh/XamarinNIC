@@ -119,6 +119,7 @@
                           IsRefreshing="{Binding IsRefreshing}"
                           SelectionMode="None"
                           ItemTapped="OnItemTapped"
+                          CachingStrategy="RecycleElement"
                           ItemsSource="{Binding RequestInfos}">
                     <ListView.Header>
 

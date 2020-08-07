@@ -48,7 +48,7 @@ namespace xamarinJKH.AppsConst
 
             numberAndDate.TextColor = Color.Black;
             numberAndDate.FontSize = 12;
-            numberAndDate.VerticalOptions = LayoutOptions.StartAndExpand;
+            numberAndDate.VerticalOptions = LayoutOptions.CenterAndExpand;
             numberAndDate.HorizontalOptions = LayoutOptions.Fill;
 
             ImageStatus.Foreground = hex;
@@ -57,11 +57,14 @@ namespace xamarinJKH.AppsConst
             ImageStatus.VerticalOptions = LayoutOptions.Center;
             ImageStatus.WidthRequest = 15;
             ImageStatus.Margin = new Thickness(0, 0, 0, 0);
+            ImageStatus.HorizontalOptions = LayoutOptions.End;
 
             LabelStatus.TextColor = Color.Black;
             LabelStatus.FontSize = 13;
             LabelStatus.VerticalTextAlignment = TextAlignment.Center;
             LabelStatus.VerticalOptions = LayoutOptions.Center;
+            //LabelStatus.LineBreakMode = LineBreakMode.WordWrap;
+            LabelStatus.HorizontalOptions = LayoutOptions.End;
 
 
             // status.Children.Add(ImageStatus);
@@ -93,7 +96,8 @@ namespace xamarinJKH.AppsConst
 
             StackLayout stackLayoutStatus = new StackLayout();
             stackLayoutStatus.Orientation = StackOrientation.Horizontal;
-            stackLayoutStatus.HorizontalOptions = LayoutOptions.FillAndExpand;
+            stackLayoutStatus.HorizontalOptions = LayoutOptions.Fill;
+            
             // stackLayoutStatus.Spacing = 0;
             stackLayoutStatus.Children.Add(numberAndDate);
             stackLayoutStatus.Children.Add(ImageStatus);
@@ -161,23 +165,44 @@ namespace xamarinJKH.AppsConst
 
             if (BindingContext != null)
             {
+                var fNum = 17;
+                var fdt = 13;
+                if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
+                {
+                    fNum = 13;
+                     fdt = 11;
+                    if (Status.Length > 17)
+                    {
+                        ImageStatus.HorizontalOptions = LayoutOptions.End;
+                        LabelStatus.HorizontalOptions = LayoutOptions.End;
+                        var w = 100;
+                        LabelStatus.WidthRequest = w;
+
+                        //Status = Status.Substring(0, 16);
+                        //ImageStatus.Margin = new Thickness(30, 0, 0, 0);
+                        //numberAndDate.Padding = new Thickness(0, 0, -30, 0);
+                    }
+                }
                 FormattedString formatted = new FormattedString();
                 formatted.Spans.Add(new Span
                 {
                     Text = "№" + Number + " ",
                     TextColor = Color.Black,
                     FontAttributes = FontAttributes.Bold,
-                    FontSize = 17
+                    FontSize = fNum
                 });
                 formatted.Spans.Add(new Span
                 {
                     Text = "• " + DateApp + " •",
                     TextColor = Color.Black,
-                    FontSize = 13
+                    FontSize = fdt
                 });
                 numberAndDate.FormattedText = formatted;
                 numberAndDate.MaxLines = 1;
                 LabelStatus.Text = Status;
+                LabelStatus.FontSize = fdt;
+                
+
                 // LabelText.Text = "• " + TextApp;
 
                 LabelText.Text = TextApp;

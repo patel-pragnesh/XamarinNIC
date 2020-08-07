@@ -116,7 +116,7 @@ namespace xamarinJKH.Pays
                 });
                 formattedIdent.Spans.Add(new Span
                 {
-                    Text = " руб.",
+                    Text = $" {AppResources.Currency}",
                     TextColor = Color.Gray,
                     FontSize = 10
                 });

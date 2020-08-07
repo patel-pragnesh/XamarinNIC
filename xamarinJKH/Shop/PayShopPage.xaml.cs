@@ -102,12 +102,12 @@ namespace xamarinJKH.Shop
         //            }
         //            else
         //            {
-        //                await DisplayAlert("Ошибка", result.Error, "OK");
+        //                await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
         //            }
         //        }
         //        else
         //        {
-        //            await DisplayAlert("Ошибка", "Подключите лицевой счет", "OK");
+        //            await DisplayAlert(AppResources.ErrorTitle, "Подключите лицевой счет", "OK");
         //        }
 
         //        progress.IsVisible = false;
@@ -116,7 +116,7 @@ namespace xamarinJKH.Shop
         //    }
         //    catch (Exception ex)
         //    {                
-        //        await DisplayAlert("Ошибка", "Во время выполнения проищошла ошибка", "OK");
+        //        await DisplayAlert(AppResources.ErrorTitle, "Во время выполнения проищошла ошибка", "OK");
         //        BtnCheckOut.IsEnabled = true;
         //    }
         //}
@@ -190,7 +190,7 @@ namespace xamarinJKH.Shop
                                 Settings.UpdateKey = requestsUpdate.NewUpdateKey;
                             }
 
-                            await DisplayAlert("Успешно", "Заказ успешно оформлен", "OK");
+                            await DisplayAlert(AppResources.AlertSuccess, AppResources.PayShopSuccess, "OK");
                             // foreach (var ePage in Settings.AppPAge)
                             // {
                             //     Navigation.RemovePage(ePage);
@@ -203,12 +203,12 @@ namespace xamarinJKH.Shop
                         }
                         else
                         {
-                            await DisplayAlert("Ошибка", result.Error, "OK");
+                            await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
                         }
                     }
                     else
                     {
-                        await DisplayAlert("Ошибка", "Подключите лицевой счет", "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAddIdent, "OK");
                     }
 
                     progress.IsVisible = false;
@@ -217,13 +217,13 @@ namespace xamarinJKH.Shop
                 }
                 catch (Exception ex)
                 {
-                    await DisplayAlert("Ошибка", "Во время выполнения проищошла ошибка", "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorUnknown, "OK");
                     BtnCheckOut.IsEnabled = true;
                 }
             }
             else
             {
-                await DisplayAlert("Ошибка", "Корзина пуста", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorBasketEmpty, "OK");
             }
         }
 

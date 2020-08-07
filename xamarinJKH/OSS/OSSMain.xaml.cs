@@ -401,7 +401,7 @@ namespace xamarinJKH
                                     }
                                     else
                                     {
-                                        await DisplayAlert("Ошибка", "Не удалось отправить уведомление об ознакомлении с повесткой ОСС", "OK");
+                                        await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorOSSMain, "OK");
 
                                     }
 
@@ -444,7 +444,7 @@ namespace xamarinJKH
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию об ОСС", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorOSSMainInfo, "OK");
                 return false;
             }
 
@@ -476,7 +476,7 @@ namespace xamarinJKH
             }
             catch(Exception ex)
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию об ОСС", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorOSSMainInfo, "OK");
             }
             
         }
@@ -504,7 +504,7 @@ namespace xamarinJKH
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию об ОСС", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorOSSMainInfo, "OK");
             }
             
             //архивные

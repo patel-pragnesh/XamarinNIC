@@ -74,7 +74,7 @@ namespace xamarinJKH.Pays
             else
             {
                 Loading.Instance.Hide();
-                await DisplayAlert("Ошибка", payLink.Error, "OK");
+                await DisplayAlert(AppResources.ErrorTitle, payLink.Error, "OK");
                 await Navigation.PopAsync();
             }
         } 
@@ -89,7 +89,7 @@ namespace xamarinJKH.Pays
             else
             {
                 Loading.Instance.Hide();
-                await DisplayAlert("Ошибка", payLink.Error, "OK");
+                await DisplayAlert(AppResources.ErrorTitle, payLink.Error, "OK");
                 await Navigation.PopAsync();
             }
         }
@@ -136,12 +136,12 @@ namespace xamarinJKH.Pays
                 PayResult result = await server.GetPayResult(url);
                 if (result.error != null && result.Equals(""))
                 {
-                    await DisplayAlert("Ошибка", result.error, "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, result.error, "OK");
                     await Navigation.PopAsync();
                 }
                 else
                 {
-                    await DisplayAlert("Успешно", result.message, "OK");
+                    await DisplayAlert(AppResources.AlertSuccess, result.message, "OK");
                     await Navigation.PopToRootAsync();
                 }
             });

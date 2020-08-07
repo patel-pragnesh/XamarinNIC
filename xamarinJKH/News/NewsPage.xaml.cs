@@ -58,7 +58,7 @@ namespace xamarinJKH.News
                 NotificationList.ItemsSource = NewsInfos;
             }else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию о новостях", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNewsInfo, "OK");
             }
         }
 

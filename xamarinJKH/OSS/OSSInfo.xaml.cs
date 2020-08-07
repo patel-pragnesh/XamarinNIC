@@ -614,7 +614,7 @@ namespace xamarinJKH
             }
             else if (intStatus == 1)
             {
-                await DisplayAlert("Информация", $"Голосование начнется {_oss.DateStart} по местному времени, Вам будет прислано Push оповещение", "OK");
+                await DisplayAlert(AppResources.Info, AppResources.OSSInfoNotifSuccess.Replace("{_oss.DateStart}", _oss.DateStart), "OK");
             }
             //тут добавить логику нажатия, в зависимости от статуса ОСС
         }

@@ -975,4 +975,157 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="YourOrder" xml:space="preserve">
     <value>Your order:</value>
   </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Attention</value>
+  </data>
+  <data name="CodeField" xml:space="preserve">
+    <value>Verification code</value>
+  </data>
+  <data name="EnterBothPins" xml:space="preserve">
+    <value>Enter pin code in both fields</value>
+  </data>
+  <data name="EnterCode" xml:space="preserve">
+    <value>Enter verification code</value>
+  </data>
+  <data name="EnterIdent" xml:space="preserve">
+    <value>Add your personal account</value>
+  </data>
+  <data name="ErrorAddIdent" xml:space="preserve">
+    <value>Check address</value>
+  </data>
+  <data name="ErrorNewsInfo" xml:space="preserve">
+    <value>Couldn't get information about news</value>
+  </data>
+  <data name="ErrorNotifInfo" xml:space="preserve">
+    <value>Couldn't get information about notifications</value>
+  </data>
+  <data name="ErrorOSSAuthNotNumber" xml:space="preserve">
+    <value>Entered PIN is not a number</value>
+  </data>
+  <data name="ErrorOSSAuthPin" xml:space="preserve">
+    <value>Error checking PIN code</value>
+  </data>
+  <data name="ErrorOSSAuthPositive" xml:space="preserve">
+    <value>enter a positive number in PIN code field</value>
+  </data>
+  <data name="ErrorOSSMain" xml:space="preserve">
+    <value>Failed to send notification of reviewing OM agenda</value>
+  </data>
+  <data name="ErrorOSSMainInfo" xml:space="preserve">
+    <value>Failed to get information about OM</value>
+  </data>
+  <data name="ErrorOSSPollPass" xml:space="preserve">
+    <value>Failed to send replies</value>
+  </data>
+  <data name="ErrorOSSRegisterAddPhone" xml:space="preserve">
+    <value>Add your phone number</value>
+  </data>
+  <data name="ErrorOSSRegisterCode" xml:space="preserve">
+    <value>Error sending verification code:</value>
+  </data>
+  <data name="GoodDay" xml:space="preserve">
+    <value>, good day!</value>
+  </data>
+  <data name="GoodDay2" xml:space="preserve">
+    <value>good day!</value>
+  </data>
+  <data name="MonitorStats" xml:space="preserve">
+    <value>Getting information...</value>
+  </data>
+  <data name="OSSInfoNotifSuccess" xml:space="preserve">
+    <value>Voting will start on {_oss.DateStart} local time, you will receive a Push notification</value>
+  </data>
+  <data name="PinField" xml:space="preserve">
+    <value>Pin</value>
+  </data>
+  <data name="PinsDifferent" xml:space="preserve">
+    <value>The entered PIN codes do not match</value>
+  </data>
+  <data name="SuccessOSSPollPass" xml:space="preserve">
+    <value>Replies sent successfully</value>
+  </data>
+  <data name="ToGetSignature" xml:space="preserve">
+    <value>To receive an electronic signature, enter a one-time password</value>
+  </data>
+  <data name="ToGetSignatureText" xml:space="preserve">
+    <value>SMS message with a confirmation code has been sent to your phone number, enter it in the appropriate field on the form</value>
+  </data>
+  <data name="BasketProduct" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="BasketProductNoLeft" xml:space="preserve">
+    <value>ran out</value>
+  </data>
+  <data name="BasketProductNotInBasket" xml:space="preserve">
+    <value>is not in cart</value>
+  </data>
+  <data name="Catalog" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
+  <data name="Commision" xml:space="preserve">
+    <value>Comission</value>
+  </data>
+  <data name="EnterCodeNoCode" xml:space="preserve">
+    <value>Enter code to continue</value>
+  </data>
+  <data name="EnterCodeSuccess" xml:space="preserve">
+    <value>Order is created</value>
+  </data>
+  <data name="EnterCodeWrongCode" xml:space="preserve">
+    <value>Entered code is wrong</value>
+  </data>
+  <data name="ErrorBasketEmpty" xml:space="preserve">
+    <value>Cart is empty</value>
+  </data>
+  <data name="ErrorCheckAdress" xml:space="preserve">
+    <value>Check adress input</value>
+  </data>
+  <data name="ErrorEnterEmail" xml:space="preserve">
+    <value>Enter Email</value>
+  </data>
+  <data name="ErrorEnterSum" xml:space="preserve">
+    <value>Enter sum</value>
+  </data>
+  <data name="ErrorInfoBills" xml:space="preserve">
+    <value>Failed to get receipt information</value>
+  </data>
+  <data name="ErrorInfoProducts" xml:space="preserve">
+    <value>Failed to get product information</value>
+  </data>
+  <data name="ErrorOverpay" xml:space="preserve">
+    <value>There is an overpayment of account</value>
+  </data>
+  <data name="ErrorPayInfo" xml:space="preserve">
+    <value>Failed to get payment information</value>
+  </data>
+  <data name="ErrorReboot" xml:space="preserve">
+    <value>An error has occurred, please try restarting the application</value>
+  </data>
+  <data name="ErrorTechDesc" xml:space="preserve">
+    <value>Enter a description of the problem</value>
+  </data>
+  <data name="ErrorTechNumberFormat" xml:space="preserve">
+    <value>The phone number must be entered in the format: +7 (XXX) XXX-XXXX</value>
+  </data>
+  <data name="ErrorUnknown" xml:space="preserve">
+    <value>An error occurred during execution</value>
+  </data>
+  <data name="PaymentOf" xml:space="preserve">
+    <value>Payment is made on receipt for</value>
+  </data>
+  <data name="PayProcessing" xml:space="preserve">
+    <value>Payment is being processed</value>
+  </data>
+  <data name="PayShopSuccess" xml:space="preserve">
+    <value>Order is created</value>
+  </data>
+  <data name="Sending" xml:space="preserve">
+    <value>Sending ...</value>
+  </data>
+  <data name="ShareBill" xml:space="preserve">
+    <value>Share bill</value>
+  </data>
+  <data name="TechSendSuccess" xml:space="preserve">
+    <value>Message sent successfully</value>
+  </data>
 </root>

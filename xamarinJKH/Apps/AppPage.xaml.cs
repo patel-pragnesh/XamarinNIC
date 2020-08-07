@@ -74,7 +74,6 @@ namespace xamarinJKH.Apps
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-
             
             TokenSource = new CancellationTokenSource();
             Token = TokenSource.Token;
@@ -102,15 +101,11 @@ namespace xamarinJKH.Apps
                                 }
                                 //Device.BeginInvokeOnMainThread(() => additionalList.ScrollTo(messages[messages.Count - 1], 0, true));
                                 var lastChild = baseForApp.Children.LastOrDefault();
-
                                 //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true));
                                 Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true));
-
-
                             }
                         }
                     }
-
                 }
                 catch(Exception e)
                 {
@@ -214,9 +209,6 @@ namespace xamarinJKH.Apps
             }
             messages = new List<RequestMessage>();// System.Collections.ObjectModel.ObservableCollection<RequestMessage>();
 
-
-
-            
             hex = Color.FromHex(Settings.MobileSettings.color);
             getMessage2();
             this.BindingContext = this;

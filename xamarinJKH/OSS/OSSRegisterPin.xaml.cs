@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -122,21 +123,21 @@ namespace xamarinJKH
             {
                 if(string.IsNullOrWhiteSpace(Settings.Person.Phone))
                 {
-                    await DisplayAlert("Ошибка", "Добавьте номер Вашего телефона", "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorOSSRegisterAddPhone, "OK");
                     return;
                 }
                 //вызвали метод сервера для получения регстрационного кода по телефону/номеру счета 
                 var r = await rc.OSSCheckCode(Settings.Person.Phone, Settings.Person.Accounts[0].Ident);
                 if(!string.IsNullOrWhiteSpace( r.Error))
                 {
-                    await DisplayAlert("Ошибка", "Ошибка при отправке проверочного кода: "+r.Error, "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorOSSRegisterCode+r.Error, "OK");
                     return;
                 }
-                await DisplayAlert("Для получения электронной подписи введите одноразовый пароль", "Смс-собщение с кодом подтверждения отправлено на Ваш номер телефона, введите его в соответсвующее поле на форме", "OK");
+                await DisplayAlert(AppResources.ToGetSignature, AppResources.ToGetSignatureText, "OK");
             }
             else
             {
-                await DisplayAlert("Ошибка", "Добавьте Ваш лицевой счет", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.EnterIdent, "OK");
                 return;
             }
         }
@@ -150,7 +151,7 @@ namespace xamarinJKH
             var code = EntryCode.Text;
             if(string.IsNullOrWhiteSpace(code))
             {
-                await DisplayAlert("Ошибка", "Введите проверочный код", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.EnterCode, "OK");
                 progress.IsVisible = false;
                 FrameBtnLogin.IsVisible = true;
                 return;
@@ -160,14 +161,14 @@ namespace xamarinJKH
             var isInt0 = int.TryParse(code, out c0);
             if (!isInt0)
             {
-                await DisplayAlert("Ошибка", "Введенный проверочный код не является числом", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorOSSAuthNotNumber, "OK");
                 progress.IsVisible = false;
                 FrameBtnLogin.IsVisible = true;
                 return;
             }
             if (c0 < 0)
             {
-                await DisplayAlert("Ошибка", "Введите положительное число в поле \"Проверочный код\"", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, $"{AppResources.ErrorOSSAuthPositive} \"{AppResources.CodeField}\"", "OK");
                 progress.IsVisible = false;
                 FrameBtnLogin.IsVisible = true;
                 return;
@@ -178,14 +179,14 @@ namespace xamarinJKH
             var isInt = int.TryParse(EntryPin0.Text, out c);
             if (!isInt)
             {
-                await DisplayAlert("Ошибка", "Введенный пин-код не является числом", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorOSSAuthNotNumber, "OK");
                 progress.IsVisible = false;
                 FrameBtnLogin.IsVisible = true;
                 return;
             }
             if (c < 0)
             {
-                await DisplayAlert("Ошибка", "Введите положительное число в поле пин-код", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, $"{AppResources.ErrorOSSAuthPositive} \"{AppResources.PinField}\"", "OK");
                 progress.IsVisible = false;
                 FrameBtnLogin.IsVisible = true;
                 return;
@@ -195,14 +196,14 @@ namespace xamarinJKH
             var isInt1 = int.TryParse(EntryPin.Text, out c1);
             if (!isInt1)
             {
-                await DisplayAlert("Ошибка", "Введенный в поле подтверждения пин-код не является числом", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorOSSAuthNotNumber, "OK");
                 progress.IsVisible = false;
                 FrameBtnLogin.IsVisible = true;
                 return;
             }
             if (c1 < 0)
             {
-                await DisplayAlert("Ошибка", "Введите положительное число в поле подтверждения пин-кода", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorOSSAuthPositive, "OK");
                 progress.IsVisible = false;
                 FrameBtnLogin.IsVisible = true;
                 return;
@@ -211,7 +212,7 @@ namespace xamarinJKH
             if (string.IsNullOrWhiteSpace( EntryPin0.Text) || string.IsNullOrWhiteSpace( EntryPin.Text))
             {
                 //пин не введен
-                await DisplayAlert("Ошибка", "Введите пин-код в оба поля", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.EnterBothPins, "OK");
 
                 progress.IsVisible = false;
                 FrameBtnLogin.IsVisible = true;
@@ -222,7 +223,7 @@ namespace xamarinJKH
             if (EntryPin0.Text!=EntryPin.Text)
             {
                 //введенный пин не совпадает
-                await DisplayAlert("Ошибка", "Введенные пин-коды не совпадают", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.PinsDifferent, "OK");
                 
                 progress.IsVisible = false;
                 FrameBtnLogin.IsVisible = true;
@@ -235,7 +236,7 @@ namespace xamarinJKH
 
             if(!string.IsNullOrWhiteSpace(rez.Error))
             {
-                await DisplayAlert("Ошибка", rez.Error, "OK");
+                await DisplayAlert(AppResources.ErrorTitle, rez.Error, "OK");
                 progress.IsVisible = false;
                 FrameBtnLogin.IsVisible = true;
                 return;

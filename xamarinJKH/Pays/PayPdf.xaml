@@ -10,7 +10,7 @@
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Pays.PayPdf">
     <ContentPage.Content>
-        <Grid>
+        <Grid x:Name="gridMain">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="*"/>

@@ -60,7 +60,7 @@ namespace xamarinJKH
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию о уведомлениях", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNotifInfo, "OK");
             }
         }
 

@@ -145,7 +145,7 @@ namespace xamarinJKH.MainConst
             }
             else
             {
-                await DisplayAlert("Ошибка", result.Error, "OK");
+                await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
             }
         }
 
@@ -659,7 +659,7 @@ namespace xamarinJKH.MainConst
                 IndicatorColor = hex,
                 OverlayColor = Color.Black,
                 Opacity = 0.8,
-                DefaultMessage = "Сбор статистики...",
+                DefaultMessage = AppResources.MonitorStats,
             };
 
             await Loading.Instance.StartAsync(async progress =>
@@ -695,7 +695,7 @@ namespace xamarinJKH.MainConst
                 string[] param = null;
                 setListGroups(groups, ref param);
                 var action = await DisplayActionSheet(AppResources.AreaChoose, AppResources.Cancel, null, param);
-                if (action != null && !action.Equals("Отмена"))
+                if (action != null && !action.Equals(AppResources.Cancel))
                 {
                     LayoutContent.Children.Clear();
                     MaterialFrameNotDoingContainer.IsVisible = false;
@@ -706,7 +706,7 @@ namespace xamarinJKH.MainConst
             }
             else
             {
-                await DisplayAlert("Ошибка", groups.Error, "OK");
+                await DisplayAlert(AppResources.ErrorTitle, groups.Error, "OK");
             }
         }
 
@@ -728,7 +728,7 @@ namespace xamarinJKH.MainConst
             }
             else
             {
-                await DisplayAlert("Ошибка", groups.Error, "OK");
+                await DisplayAlert(AppResources.ErrorTitle, groups.Error, "OK");
             }
         }
 
@@ -1046,7 +1046,7 @@ namespace xamarinJKH.MainConst
             });
             formatted.Spans.Add(new Span
             {
-                Text = "добрый день!",
+                Text = AppResources.GoodDay2,
                 TextColor = currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
                 FontSize = 15
             });

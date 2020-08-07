@@ -9,12 +9,12 @@
              x:Class="xamarinJKH.DialogViews.EnterCodeDialogView">
     <Frame CornerRadius="40">
         <StackLayout WidthRequest="250" Spacing="30">
-            <Entry Placeholder="Код"
+            <Entry Placeholder="{x:Static xamarinJKH:AppResources.CodeField}"
                    Keyboard="Numeric"
                    x:Name="Code"
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"/>
-            <Button Text="Отправить"
+            <Button Text="{x:Static xamarinJKH:AppResources.Send}"
                     CornerRadius="20"
                     TextColor="White"
                     Command="{Binding SendCode}"

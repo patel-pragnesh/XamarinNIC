@@ -88,7 +88,7 @@ namespace xamarinJKH.DialogViews
                     {
                         Console.WriteLine(result.Address);
                         Console.WriteLine("Отправлено");
-                        bool answer = await Application.Current.MainPage.DisplayAlert("Проверьте правильность адреса", result.Address, "Добавить лицевой счет", "Отмена");
+                        bool answer = await Application.Current.MainPage.DisplayAlert(AppResources.ErrorCheckAdress, result.Address, AppResources.AddIdent, AppResources.Cancel);
                         if (answer)
                         {
                            
@@ -123,7 +123,7 @@ namespace xamarinJKH.DialogViews
                 {
                     if (ident == "")
                     {
-                        await Application.Current.MainPage.DisplayAlert("", "Заполните номер счета", "OK");
+                        await Application.Current.MainPage.DisplayAlert("", AppResources.ErrorFillIdent, "OK");
                     }
                 }
             });
@@ -140,7 +140,7 @@ namespace xamarinJKH.DialogViews
                 {
                     Console.WriteLine(result.Address);
                     Console.WriteLine("Отправлено");
-                    await Application.Current.MainPage.DisplayAlert("", "Лс/ч " + ident + " успешно подключён, для дальнейшей работы перезагрузите приложение", "ОК");
+                    await Application.Current.MainPage.DisplayAlert("", AppResources.IdentSuccess.Replace("ident",ident.ToString()), "ОК");
                     Button = true;
                     Progress = false;
 
@@ -157,7 +157,7 @@ namespace xamarinJKH.DialogViews
                     Progress = false;
                     if (Device.RuntimePlatform == Device.iOS)
                     {
-                        await Application.Current.MainPage.DisplayAlert("ОШИБКА", result.Error, "OK");
+                        await Application.Current.MainPage.DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
                     }
                     else
                     {
@@ -172,7 +172,7 @@ namespace xamarinJKH.DialogViews
             {
                 if (ident == "")
                 {
-                    await Application.Current.MainPage.DisplayAlert("", "Заполните номер счета", "OK");
+                    await Application.Current.MainPage.DisplayAlert("", AppResources.ErrorFillIdent, "OK");
                 }
             }
         }

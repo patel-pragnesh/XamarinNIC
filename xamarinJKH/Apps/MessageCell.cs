@@ -10,221 +10,221 @@ using xamarinJKH.Utils;
 
 namespace xamarinJKH.Apps
 {
-    public class MessageCellA : ViewCell
-    {
-        private StackLayout ConteinerA = new StackLayout();
-        private Image ImagePersonA = new Image();
-        //private Label LabelNameA = new Label();
-        private Label LabeltimeA = new Label();
-        private Label LabelTextA = new Label();
-        private Label LabelDateA = new Label();
-        Frame frameDateA = new Frame();
-        IconView imageA = new IconView();
-        Frame frameA = new Frame();
+    //public class MessageCellA : ViewCell
+    //{
+    //    private StackLayout ConteinerA = new StackLayout();
+    //    private Image ImagePersonA = new Image();
+    //    //private Label LabelNameA = new Label();
+    //    private Label LabeltimeA = new Label();
+    //    private Label LabelTextA = new Label();
+    //    private Label LabelDateA = new Label();
+    //    Frame frameDateA = new Frame();
+    //    IconView imageA = new IconView();
+    //    Frame frameA = new Frame();
 
-        public MessageCellA()
-        {
-            frameA.HorizontalOptions = LayoutOptions.Start;
-            frameA.VerticalOptions = LayoutOptions.Start;
-            frameA.BackgroundColor = Color.White;
-            frameA.Margin = new Thickness(-15, -30, 5, 0);
-            frameA.Padding = 10;
-            frameA.CornerRadius = 23;
+    //    public MessageCellA()
+    //    {
+    //        frameA.HorizontalOptions = LayoutOptions.Start;
+    //        frameA.VerticalOptions = LayoutOptions.Start;
+    //        frameA.BackgroundColor = Color.White;
+    //        frameA.Margin = new Thickness(-15, -30, 5, 0);
+    //        frameA.Padding = 10;
+    //        frameA.CornerRadius = 23;
 
-            ImagePersonA.Source = ImageSource.FromFile("ic_author");
-            ImagePersonA.HeightRequest = 25;
-            ImagePersonA.WidthRequest = 25;
-            ImagePersonA.VerticalOptions = LayoutOptions.Start;
-            frameA.Content = ImagePersonA;
+    //        ImagePersonA.Source = ImageSource.FromFile("ic_author");
+    //        ImagePersonA.HeightRequest = 25;
+    //        ImagePersonA.WidthRequest = 25;
+    //        ImagePersonA.VerticalOptions = LayoutOptions.Start;
+    //        frameA.Content = ImagePersonA;
 
-            LabeltimeA.VerticalOptions = LayoutOptions.End;
-            LabeltimeA.HorizontalTextAlignment = TextAlignment.End;
+    //        LabeltimeA.VerticalOptions = LayoutOptions.End;
+    //        LabeltimeA.HorizontalTextAlignment = TextAlignment.End;
 
-            LabeltimeA.Margin = new Thickness(0, -10, 5, 0);
+    //        LabeltimeA.Margin = new Thickness(0, -10, 5, 0);
 
-            LabelTextA.HorizontalTextAlignment = TextAlignment.Start;
+    //        LabelTextA.HorizontalTextAlignment = TextAlignment.Start;
 
 
-            StackLayout containerDateA = new StackLayout();
-            //StackLayout containerFioTimeA = new StackLayout();
+    //        StackLayout containerDateA = new StackLayout();
+    //        //StackLayout containerFioTimeA = new StackLayout();
 
-            //LabelNameA.TextColor = Color.Transparent;
-            //LabelNameA.FontSize = 15;
-            //LabelNameA.IsVisible = false;
-            //LabelNameA.HorizontalTextAlignment = TextAlignment.End;
-            //LabelNameA.HorizontalOptions = LayoutOptions.Start;
+    //        //LabelNameA.TextColor = Color.Transparent;
+    //        //LabelNameA.FontSize = 15;
+    //        //LabelNameA.IsVisible = false;
+    //        //LabelNameA.HorizontalTextAlignment = TextAlignment.End;
+    //        //LabelNameA.HorizontalOptions = LayoutOptions.Start;
 
-            LabeltimeA.TextColor = Color.Gray;
-            LabeltimeA.FontSize = 15;
-            LabeltimeA.HorizontalOptions = LayoutOptions.End;
+    //        LabeltimeA.TextColor = Color.Gray;
+    //        LabeltimeA.FontSize = 15;
+    //        LabeltimeA.HorizontalOptions = LayoutOptions.End;
 
-            //containerFioTimeA.Orientation = StackOrientation.Horizontal;
+    //        //containerFioTimeA.Orientation = StackOrientation.Horizontal;
 
-            Frame frameTextA = new Frame();
-            frameTextA.HorizontalOptions = LayoutOptions.End;
-            frameTextA.VerticalOptions = LayoutOptions.StartAndExpand;
-            frameTextA.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            frameTextA.Margin = new Thickness(0, 0, 0, 10);
-            frameTextA.Padding = new Thickness(15, 15, 15, 15);
-            frameTextA.CornerRadius = 20;
+    //        Frame frameTextA = new Frame();
+    //        frameTextA.HorizontalOptions = LayoutOptions.End;
+    //        frameTextA.VerticalOptions = LayoutOptions.StartAndExpand;
+    //        frameTextA.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+    //        frameTextA.Margin = new Thickness(0, 0, 0, 10);
+    //        frameTextA.Padding = new Thickness(15, 15, 15, 15);
+    //        frameTextA.CornerRadius = 20;
 
-            StackLayout stackLayoutContentA = new StackLayout();
-            stackLayoutContentA.HorizontalOptions = LayoutOptions.End;
+    //        StackLayout stackLayoutContentA = new StackLayout();
+    //        stackLayoutContentA.HorizontalOptions = LayoutOptions.End;
 
-            LabelTextA.TextColor = Color.White;
-            LabelTextA.FontSize = 15;
+    //        LabelTextA.TextColor = Color.White;
+    //        LabelTextA.FontSize = 15;
             
-            LabelTextA.HorizontalOptions = LayoutOptions.Center;
-            stackLayoutContentA.Children.Add(LabelTextA);
+    //        LabelTextA.HorizontalOptions = LayoutOptions.Center;
+    //        stackLayoutContentA.Children.Add(LabelTextA);
        
-            //DataTrigger dt = new DataTrigger(typeof(IconView));
-            //dt.BindingContext =  FileID;
+    //        //DataTrigger dt = new DataTrigger(typeof(IconView));
+    //        //dt.BindingContext =  FileID;
 
-            //imageA.Triggers
-            imageA.IsVisible = false;// FileID != "-1";
-                imageA.HorizontalOptions = LayoutOptions.CenterAndExpand;
-                imageA.HeightRequest = 40;
-                imageA.WidthRequest = 40;
-                imageA.Foreground = Color.White;
-                imageA.Source = "ic_file_download";
+    //        //imageA.Triggers
+    //        imageA.IsVisible = false;// FileID != "-1";
+    //            imageA.HorizontalOptions = LayoutOptions.CenterAndExpand;
+    //            imageA.HeightRequest = 40;
+    //            imageA.WidthRequest = 40;
+    //            imageA.Foreground = Color.White;
+    //            imageA.Source = "ic_file_download";
 
-                stackLayoutContentA.Children.Add(imageA);
-            //}
+    //            stackLayoutContentA.Children.Add(imageA);
+    //        //}
 
-            StackLayout stackLayoutIcon = new StackLayout();
-            stackLayoutIcon.Orientation = StackOrientation.Horizontal;
-            stackLayoutIcon.Spacing = 0;
-            stackLayoutIcon.HorizontalOptions = LayoutOptions.End;
-            frameTextA.Content = stackLayoutContentA;
+    //        StackLayout stackLayoutIcon = new StackLayout();
+    //        stackLayoutIcon.Orientation = StackOrientation.Horizontal;
+    //        stackLayoutIcon.Spacing = 0;
+    //        stackLayoutIcon.HorizontalOptions = LayoutOptions.End;
+    //        frameTextA.Content = stackLayoutContentA;
 
-            stackLayoutIcon.Children.Add(frameTextA);
-            stackLayoutIcon.Children.Add(frameA);
+    //        stackLayoutIcon.Children.Add(frameTextA);
+    //        stackLayoutIcon.Children.Add(frameA);
 
-            frameDateA.HorizontalOptions = LayoutOptions.Center;
-            frameDateA.VerticalOptions = LayoutOptions.Start;
-            frameDateA.BackgroundColor = Color.FromHex("#E2E2E2");
-            frameDateA.Margin = new Thickness(0, 2, 0, 10);
-            frameDateA.Padding = 5;
-            frameDateA.CornerRadius = 15;
+    //        frameDateA.HorizontalOptions = LayoutOptions.Center;
+    //        frameDateA.VerticalOptions = LayoutOptions.Start;
+    //        frameDateA.BackgroundColor = Color.FromHex("#E2E2E2");
+    //        frameDateA.Margin = new Thickness(0, 2, 0, 10);
+    //        frameDateA.Padding = 5;
+    //        frameDateA.CornerRadius = 15;
 
-            LabelDateA.FontSize = 15;
-            LabelDateA.TextColor = Color.FromHex("#777777");
+    //        LabelDateA.FontSize = 15;
+    //        LabelDateA.TextColor = Color.FromHex("#777777");
 
-            frameDateA.Content = LabelDateA;
+    //        frameDateA.Content = LabelDateA;
 
-            //containerDateA.Children.Add(containerFioTimeA);
-            containerDateA.Children.Add(stackLayoutIcon);
-            containerDateA.Children.Add(LabeltimeA);
-            containerDateA.Spacing = 3;
-            containerDateA.Margin = new Thickness(60, 0, 0, 0);
-            containerDateA.HorizontalOptions = LayoutOptions.FillAndExpand;
+    //        //containerDateA.Children.Add(containerFioTimeA);
+    //        containerDateA.Children.Add(stackLayoutIcon);
+    //        containerDateA.Children.Add(LabeltimeA);
+    //        containerDateA.Spacing = 3;
+    //        containerDateA.Margin = new Thickness(60, 0, 0, 0);
+    //        containerDateA.HorizontalOptions = LayoutOptions.FillAndExpand;
             
 
-            ConteinerA.Children.Add(frameDateA);
-            ConteinerA.Children.Add(containerDateA);
+    //        ConteinerA.Children.Add(frameDateA);
+    //        ConteinerA.Children.Add(containerDateA);
 
-            StackLayout stackLayout = new StackLayout();
+    //        StackLayout stackLayout = new StackLayout();
 
-            stackLayout.Children.Add(ConteinerA);
+    //        stackLayout.Children.Add(ConteinerA);
 
-            View = stackLayout;
-        }
+    //        View = stackLayout;
+    //    }
 
-        public static readonly BindableProperty NameProperty =
-            BindableProperty.Create("Name", typeof(string), typeof(MessageCellA), "");
+    //    public static readonly BindableProperty NameProperty =
+    //        BindableProperty.Create("Name", typeof(string), typeof(MessageCellA), "");
 
-        public static readonly BindableProperty FileIDProperty =
-            BindableProperty.Create("FileID", typeof(string), typeof(MessageCellA), "");
+    //    public static readonly BindableProperty FileIDProperty =
+    //        BindableProperty.Create("FileID", typeof(string), typeof(MessageCellA), "");
 
-        public static readonly BindableProperty TimeProperty =
-            BindableProperty.Create("Time", typeof(string), typeof(MessageCellA), "");
+    //    public static readonly BindableProperty TimeProperty =
+    //        BindableProperty.Create("Time", typeof(string), typeof(MessageCellA), "");
 
-        public static readonly BindableProperty DateAppProperty =
-            BindableProperty.Create("DateApp", typeof(string), typeof(MessageCellA), "");
+    //    public static readonly BindableProperty DateAppProperty =
+    //        BindableProperty.Create("DateApp", typeof(string), typeof(MessageCellA), "");
 
-        public static readonly BindableProperty TextAppProperty =
-            BindableProperty.Create("TextApp", typeof(string), typeof(MessageCellA), "");
+    //    public static readonly BindableProperty TextAppProperty =
+    //        BindableProperty.Create("TextApp", typeof(string), typeof(MessageCellA), "");
 
-        public static readonly BindableProperty IsSelfProperty =
-            BindableProperty.Create("IsSelf", typeof(bool), typeof(MessageCellA), false);
+    //    public static readonly BindableProperty IsSelfProperty =
+    //        BindableProperty.Create("IsSelf", typeof(bool), typeof(MessageCellA), false);
 
-        public string Name
-        {
-            get { return (string)GetValue(NameProperty); }
-            set { SetValue(NameProperty, value); }
-        }
+    //    public string Name
+    //    {
+    //        get { return (string)GetValue(NameProperty); }
+    //        set { SetValue(NameProperty, value); }
+    //    }
 
-        public string FileID
-        {
-            get { return (string)GetValue(FileIDProperty); }
-            set { SetValue(FileIDProperty, value); }
-        }
+    //    public string FileID
+    //    {
+    //        get { return (string)GetValue(FileIDProperty); }
+    //        set { SetValue(FileIDProperty, value); }
+    //    }
 
-        public string Time
-        {
-            get { return (string)GetValue(TimeProperty); }
-            set { SetValue(TimeProperty, value); }
-        }
+    //    public string Time
+    //    {
+    //        get { return (string)GetValue(TimeProperty); }
+    //        set { SetValue(TimeProperty, value); }
+    //    }
 
-        public string DateApp
-        {
-            get { return (string)GetValue(DateAppProperty); }
-            set { SetValue(DateAppProperty, value); }
-        }
+    //    public string DateApp
+    //    {
+    //        get { return (string)GetValue(DateAppProperty); }
+    //        set { SetValue(DateAppProperty, value); }
+    //    }
 
-        public string TextApp
-        {
-            get { return (string)GetValue(TextAppProperty); }
-            set { SetValue(TextAppProperty, value); }
-        }
+    //    public string TextApp
+    //    {
+    //        get { return (string)GetValue(TextAppProperty); }
+    //        set { SetValue(TextAppProperty, value); }
+    //    }
 
-        public bool IsSelf
-        {
-            get { return (bool)GetValue(IsSelfProperty); }
-            set { SetValue(IsSelfProperty, value); }
-        }
+    //    public bool IsSelf
+    //    {
+    //        get { return (bool)GetValue(IsSelfProperty); }
+    //        set { SetValue(IsSelfProperty, value); }
+    //    }
 
 
-        protected override async void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
+    //    protected override async void OnBindingContextChanged()
+    //    {
+    //        base.OnBindingContextChanged();
 
-            if (BindingContext != null)
-            {    
-                var strings = DateApp.Split(' ');
-                var dateMess = strings[0];
-                if (Settings.DateUniq.Equals(dateMess))
-                {
-                    frameDateA.IsVisible = false;                    
-                        frameA.Content = new Label()
-                        {
-                            WidthRequest = 25,
-                            HeightRequest = 25
-                        };
-                        frameA.BackgroundColor = Color.Transparent;
-                    Settings.isSelf = IsSelf;
-                }
-                else
-                {
-                    frameDateA.IsVisible = true;
-                    Settings.DateUniq = dateMess;
-                }
+    //        if (BindingContext != null)
+    //        {    
+    //            var strings = DateApp.Split(' ');
+    //            var dateMess = strings[0];
+    //            if (Settings.DateUniq.Equals(dateMess))
+    //            {
+    //                frameDateA.IsVisible = false;                    
+    //                    frameA.Content = new Label()
+    //                    {
+    //                        WidthRequest = 25,
+    //                        HeightRequest = 25
+    //                    };
+    //                    frameA.BackgroundColor = Color.Transparent;
+    //                Settings.isSelf = IsSelf;
+    //            }
+    //            else
+    //            {
+    //                frameDateA.IsVisible = true;
+    //                Settings.DateUniq = dateMess;
+    //            }
 
-                LabelDateA.Text = dateMess;
-                //LabelNameA.Text = Name;
-                LabelTextA.Text = TextApp;
+    //            LabelDateA.Text = dateMess;
+    //            //LabelNameA.Text = Name;
+    //            LabelTextA.Text = TextApp;
 
-                LabeltimeA.Text = strings[1].Substring(0, 5);
+    //            LabeltimeA.Text = strings[1].Substring(0, 5);
 
-                bool imgVisible = !FileID.Equals("-1");
+    //            bool imgVisible = !FileID.Equals("-1");
 
-                if (imgVisible)
-                {
-                    imageA.IsVisible = true;
-                }
-            }
-        }
-    }
+    //            if (imgVisible)
+    //            {
+    //                imageA.IsVisible = true;
+    //            }
+    //        }
+    //    }
+    //}
 
     public class MessageCellAuthor:StackLayout
     {
@@ -414,326 +414,326 @@ namespace xamarinJKH.Apps
 
     }
 
-    public class MessageCellU : ViewCell
-    {
-        //private StackLayout ConteinerA = new StackLayout();
-        //private Image ImagePersonA = new Image();
-        //private Label LabelNameA = new Label();
-        //private Label LabeltimeA = new Label();
-        //private Label LabelTextA = new Label();
-        //private Label LabelDateA = new Label();
-        //Frame frameDateA = new Frame();
-        //IconView imageA = new IconView();
-        //Frame frameA = new Frame();
+    //public class MessageCellU : ViewCell
+    //{
+    //    //private StackLayout ConteinerA = new StackLayout();
+    //    //private Image ImagePersonA = new Image();
+    //    //private Label LabelNameA = new Label();
+    //    //private Label LabeltimeA = new Label();
+    //    //private Label LabelTextA = new Label();
+    //    //private Label LabelDateA = new Label();
+    //    //Frame frameDateA = new Frame();
+    //    //IconView imageA = new IconView();
+    //    //Frame frameA = new Frame();
 
-        private StackLayout Container = new StackLayout();
-        private Image ImagePerson = new Image();
-        private Label LabelName = new Label();
-        private Label Labeltime = new Label();
-        private Label LabelText = new Label();
-        private Label LabelDate = new Label();
-        Frame frameDate = new Frame();
-        IconView image = new IconView();
-        Frame frame = new Frame();
+    //    private StackLayout Container = new StackLayout();
+    //    private Image ImagePerson = new Image();
+    //    private Label LabelName = new Label();
+    //    private Label Labeltime = new Label();
+    //    private Label LabelText = new Label();
+    //    private Label LabelDate = new Label();
+    //    Frame frameDate = new Frame();
+    //    IconView image = new IconView();
+    //    Frame frame = new Frame();
 
-        public MessageCellU()
-        {
-            frame.HorizontalOptions = LayoutOptions.Start;
-            frame.VerticalOptions = LayoutOptions.Start;
-            frame.BackgroundColor = Color.White;
-            frame.Margin = new Thickness(5, -30, -15, 0);
-            frame.Padding = 10;
-            frame.HasShadow = true;
-            frame.CornerRadius = 23;
-
-
-            ImagePerson.Source = ImageSource.FromFile("ic_not_author");
-            ImagePerson.HeightRequest = 25;
-            ImagePerson.WidthRequest = 25;
-            ImagePerson.VerticalOptions = LayoutOptions.Start;
-            frame.Content = ImagePerson;
-
-            //frameA.HorizontalOptions = LayoutOptions.Start;
-            //frameA.VerticalOptions = LayoutOptions.Start;
-            //frameA.BackgroundColor = Color.White;
-            //frameA.Margin = new Thickness(-15, -30, 5, 0);
-            //frameA.Padding = 10;
-            //frameA.CornerRadius = 23;
-
-            //ImagePersonA.Source = ImageSource.FromFile("ic_author");
-            //ImagePersonA.HeightRequest = 25;
-            //ImagePersonA.WidthRequest = 25;
-            //ImagePersonA.VerticalOptions = LayoutOptions.Start;
-            //frameA.Content = ImagePersonA;
+    //    public MessageCellU()
+    //    {
+    //        frame.HorizontalOptions = LayoutOptions.Start;
+    //        frame.VerticalOptions = LayoutOptions.Start;
+    //        frame.BackgroundColor = Color.White;
+    //        frame.Margin = new Thickness(5, -30, -15, 0);
+    //        frame.Padding = 10;
+    //        frame.HasShadow = true;
+    //        frame.CornerRadius = 23;
 
 
-            StackLayout containerDate = new StackLayout();
-            StackLayout containerFioTime = new StackLayout();
+    //        ImagePerson.Source = ImageSource.FromFile("ic_not_author");
+    //        ImagePerson.HeightRequest = 25;
+    //        ImagePerson.WidthRequest = 25;
+    //        ImagePerson.VerticalOptions = LayoutOptions.Start;
+    //        frame.Content = ImagePerson;
 
-            LabelName.TextColor = Color.Gray;
-            LabelName.FontSize = 15;
-            LabelName.Margin = new Thickness(55, 0, 0, 0);
-            LabelName.HorizontalOptions = LayoutOptions.Center;
+    //        //frameA.HorizontalOptions = LayoutOptions.Start;
+    //        //frameA.VerticalOptions = LayoutOptions.Start;
+    //        //frameA.BackgroundColor = Color.White;
+    //        //frameA.Margin = new Thickness(-15, -30, 5, 0);
+    //        //frameA.Padding = 10;
+    //        //frameA.CornerRadius = 23;
 
-            Labeltime.TextColor = Color.Gray;
-            Labeltime.FontSize = 15;
-            Labeltime.HorizontalTextAlignment = TextAlignment.Start;
-            Labeltime.VerticalOptions = LayoutOptions.End;
-            //LabeltimeA.VerticalOptions = LayoutOptions.End;
-            //LabeltimeA.HorizontalTextAlignment = TextAlignment.End;
-            Labeltime.HorizontalOptions = LayoutOptions.Start;
-            Labeltime.Margin = new Thickness(5, -10, 15, 0);
-            //LabeltimeA.Margin = new Thickness(0, -10, 5, 0);
-
-            containerFioTime.Orientation = StackOrientation.Horizontal;
-            containerFioTime.HorizontalOptions = LayoutOptions.FillAndExpand;
-            containerFioTime.Children.Add(LabelName);
+    //        //ImagePersonA.Source = ImageSource.FromFile("ic_author");
+    //        //ImagePersonA.HeightRequest = 25;
+    //        //ImagePersonA.WidthRequest = 25;
+    //        //ImagePersonA.VerticalOptions = LayoutOptions.Start;
+    //        //frameA.Content = ImagePersonA;
 
 
-            Frame frameText = new Frame();
-            frameText.HorizontalOptions = LayoutOptions.Start;
-            frameText.VerticalOptions = LayoutOptions.StartAndExpand;
-            frameText.BackgroundColor = Color.FromHex("#E2E2E2");
-            frameText.Margin = new Thickness(0, 0, 0, 10);
-            frameText.Padding = new Thickness(15, 15, 15, 15);
-            frameText.CornerRadius = 20;
+    //        StackLayout containerDate = new StackLayout();
+    //        StackLayout containerFioTime = new StackLayout();
 
-            StackLayout stackLayoutContent = new StackLayout();
+    //        LabelName.TextColor = Color.Gray;
+    //        LabelName.FontSize = 15;
+    //        LabelName.Margin = new Thickness(55, 0, 0, 0);
+    //        LabelName.HorizontalOptions = LayoutOptions.Center;
 
-            image.IsVisible = FileID != "-1";
-            image.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            image.HeightRequest = 40;
+    //        Labeltime.TextColor = Color.Gray;
+    //        Labeltime.FontSize = 15;
+    //        Labeltime.HorizontalTextAlignment = TextAlignment.Start;
+    //        Labeltime.VerticalOptions = LayoutOptions.End;
+    //        //LabeltimeA.VerticalOptions = LayoutOptions.End;
+    //        //LabeltimeA.HorizontalTextAlignment = TextAlignment.End;
+    //        Labeltime.HorizontalOptions = LayoutOptions.Start;
+    //        Labeltime.Margin = new Thickness(5, -10, 15, 0);
+    //        //LabeltimeA.Margin = new Thickness(0, -10, 5, 0);
 
-
-            image.WidthRequest = 40;
-
-
-            image.Foreground = Color.White;
-            image.Source = "ic_file_download";
-
-            LabelText.TextColor = Color.Black;
-            LabelText.FontSize = 15;
-            LabelText.HorizontalTextAlignment = TextAlignment.Start;
-            //LabelTextA.HorizontalTextAlignment = TextAlignment.Start;
-            LabelText.HorizontalOptions = LayoutOptions.Start;
-
-            stackLayoutContent.Children.Add(LabelText);
-            //stackLayoutContent.Children.Add(image);
-            frameText.Content = stackLayoutContent;
-
-            StackLayout stackLayoutIconB = new StackLayout();
-            stackLayoutIconB.Orientation = StackOrientation.Horizontal;
-            stackLayoutIconB.Spacing = 0;
-
-            stackLayoutIconB.Children.Add(frame);
-            stackLayoutIconB.Children.Add(frameText);
+    //        containerFioTime.Orientation = StackOrientation.Horizontal;
+    //        containerFioTime.HorizontalOptions = LayoutOptions.FillAndExpand;
+    //        containerFioTime.Children.Add(LabelName);
 
 
-            frameDate.HorizontalOptions = LayoutOptions.Center;
-            frameDate.VerticalOptions = LayoutOptions.Start;
-            frameDate.BackgroundColor = Color.FromHex("#E2E2E2");
-            frameDate.Margin = new Thickness(0, 0, 0, 10);
-            frameDate.Padding = new Thickness(5, 5, 5, 5);
-            frameDate.CornerRadius = 15;
+    //        Frame frameText = new Frame();
+    //        frameText.HorizontalOptions = LayoutOptions.Start;
+    //        frameText.VerticalOptions = LayoutOptions.StartAndExpand;
+    //        frameText.BackgroundColor = Color.FromHex("#E2E2E2");
+    //        frameText.Margin = new Thickness(0, 0, 0, 10);
+    //        frameText.Padding = new Thickness(15, 15, 15, 15);
+    //        frameText.CornerRadius = 20;
 
-            LabelDate.FontSize = 15;
-            LabelDate.TextColor = Color.FromHex("#777777");
+    //        StackLayout stackLayoutContent = new StackLayout();
 
-            frameDate.Content = LabelDate;
-            LabelText.HorizontalOptions = LayoutOptions.Center;
-
-            containerDate.Children.Add(containerFioTime);
-            containerDate.Children.Add(stackLayoutIconB);
-            containerDate.Children.Add(Labeltime);
+    //        image.IsVisible = FileID != "-1";
+    //        image.HorizontalOptions = LayoutOptions.CenterAndExpand;
+    //        image.HeightRequest = 40;
 
 
-            Container.Children.Add(frameDate);
-            Container.Children.Add(containerDate);
-
-            //StackLayout containerDateA = new StackLayout();
-            //StackLayout containerFioTimeA = new StackLayout();
-
-            //LabelNameA.TextColor = Color.Transparent;
-            //LabelNameA.FontSize = 15;
-            //LabelNameA.IsVisible = false;
-            //LabelNameA.HorizontalTextAlignment = TextAlignment.End;
-            //LabelNameA.HorizontalOptions = LayoutOptions.Start;
-
-            //LabeltimeA.TextColor = Color.Gray;
-            //LabeltimeA.FontSize = 15;
-            //LabeltimeA.HorizontalOptions = LayoutOptions.End;
-
-            //containerFioTimeA.Orientation = StackOrientation.Horizontal;
+    //        image.WidthRequest = 40;
 
 
-            //Frame frameTextA = new Frame();
-            //frameTextA.HorizontalOptions = LayoutOptions.End;
-            //frameTextA.VerticalOptions = LayoutOptions.StartAndExpand;
-            //frameTextA.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            //frameTextA.Margin = new Thickness(0, 0, 0, 10);
-            //frameTextA.Padding = new Thickness(15, 15, 15, 15);
-            //frameTextA.CornerRadius = 20;
+    //        image.Foreground = Color.White;
+    //        image.Source = "ic_file_download";
 
-            //imageA.IsVisible = false;
-            //imageA.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            //imageA.HeightRequest = 40;
-            //imageA.WidthRequest = 40;
-            //imageA.Foreground = Color.White;
-            //imageA.Source = "ic_file_download";
+    //        LabelText.TextColor = Color.Black;
+    //        LabelText.FontSize = 15;
+    //        LabelText.HorizontalTextAlignment = TextAlignment.Start;
+    //        //LabelTextA.HorizontalTextAlignment = TextAlignment.Start;
+    //        LabelText.HorizontalOptions = LayoutOptions.Start;
+
+    //        stackLayoutContent.Children.Add(LabelText);
+    //        //stackLayoutContent.Children.Add(image);
+    //        frameText.Content = stackLayoutContent;
+
+    //        StackLayout stackLayoutIconB = new StackLayout();
+    //        stackLayoutIconB.Orientation = StackOrientation.Horizontal;
+    //        stackLayoutIconB.Spacing = 0;
+
+    //        stackLayoutIconB.Children.Add(frame);
+    //        stackLayoutIconB.Children.Add(frameText);
+
+
+    //        frameDate.HorizontalOptions = LayoutOptions.Center;
+    //        frameDate.VerticalOptions = LayoutOptions.Start;
+    //        frameDate.BackgroundColor = Color.FromHex("#E2E2E2");
+    //        frameDate.Margin = new Thickness(0, 0, 0, 10);
+    //        frameDate.Padding = new Thickness(5, 5, 5, 5);
+    //        frameDate.CornerRadius = 15;
+
+    //        LabelDate.FontSize = 15;
+    //        LabelDate.TextColor = Color.FromHex("#777777");
+
+    //        frameDate.Content = LabelDate;
+    //        LabelText.HorizontalOptions = LayoutOptions.Center;
+
+    //        containerDate.Children.Add(containerFioTime);
+    //        containerDate.Children.Add(stackLayoutIconB);
+    //        containerDate.Children.Add(Labeltime);
+
+
+    //        Container.Children.Add(frameDate);
+    //        Container.Children.Add(containerDate);
+
+    //        //StackLayout containerDateA = new StackLayout();
+    //        //StackLayout containerFioTimeA = new StackLayout();
+
+    //        //LabelNameA.TextColor = Color.Transparent;
+    //        //LabelNameA.FontSize = 15;
+    //        //LabelNameA.IsVisible = false;
+    //        //LabelNameA.HorizontalTextAlignment = TextAlignment.End;
+    //        //LabelNameA.HorizontalOptions = LayoutOptions.Start;
+
+    //        //LabeltimeA.TextColor = Color.Gray;
+    //        //LabeltimeA.FontSize = 15;
+    //        //LabeltimeA.HorizontalOptions = LayoutOptions.End;
+
+    //        //containerFioTimeA.Orientation = StackOrientation.Horizontal;
+
+
+    //        //Frame frameTextA = new Frame();
+    //        //frameTextA.HorizontalOptions = LayoutOptions.End;
+    //        //frameTextA.VerticalOptions = LayoutOptions.StartAndExpand;
+    //        //frameTextA.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+    //        //frameTextA.Margin = new Thickness(0, 0, 0, 10);
+    //        //frameTextA.Padding = new Thickness(15, 15, 15, 15);
+    //        //frameTextA.CornerRadius = 20;
+
+    //        //imageA.IsVisible = false;
+    //        //imageA.HorizontalOptions = LayoutOptions.CenterAndExpand;
+    //        //imageA.HeightRequest = 40;
+    //        //imageA.WidthRequest = 40;
+    //        //imageA.Foreground = Color.White;
+    //        //imageA.Source = "ic_file_download";
 
             
 
-            StackLayout stackLayoutContentA = new StackLayout();
-            stackLayoutContentA.HorizontalOptions = LayoutOptions.End;
+    //        StackLayout stackLayoutContentA = new StackLayout();
+    //        stackLayoutContentA.HorizontalOptions = LayoutOptions.End;
 
-            //LabelTextA.TextColor = Color.White;
-            //LabelTextA.FontSize = 15;
-            //LabelTextA.HorizontalOptions = LayoutOptions.End;
+    //        //LabelTextA.TextColor = Color.White;
+    //        //LabelTextA.FontSize = 15;
+    //        //LabelTextA.HorizontalOptions = LayoutOptions.End;
 
-            //stackLayoutContentA.Children.Add(LabelTextA);
-            //stackLayoutContentA.Children.Add(imageA);
-            StackLayout stackLayoutIcon = new StackLayout();
-            stackLayoutIcon.Orientation = StackOrientation.Horizontal;
-            stackLayoutIcon.Spacing = 0;
-            stackLayoutIcon.HorizontalOptions = LayoutOptions.End;
-            //frameTextA.Content = stackLayoutContentA;
+    //        //stackLayoutContentA.Children.Add(LabelTextA);
+    //        //stackLayoutContentA.Children.Add(imageA);
+    //        StackLayout stackLayoutIcon = new StackLayout();
+    //        stackLayoutIcon.Orientation = StackOrientation.Horizontal;
+    //        stackLayoutIcon.Spacing = 0;
+    //        stackLayoutIcon.HorizontalOptions = LayoutOptions.End;
+    //        //frameTextA.Content = stackLayoutContentA;
 
-            //stackLayoutIcon.Children.Add(frameTextA);
-            //stackLayoutIcon.Children.Add(frameA);
+    //        //stackLayoutIcon.Children.Add(frameTextA);
+    //        //stackLayoutIcon.Children.Add(frameA);
 
-            //frameDateA.HorizontalOptions = LayoutOptions.Center;
-            //frameDateA.VerticalOptions = LayoutOptions.Start;
-            //frameDateA.BackgroundColor = Color.FromHex("#E2E2E2");
-            //frameDateA.Margin = new Thickness(0, 2, 0, 10);
-            //frameDateA.Padding = 5;
-            //frameDateA.CornerRadius = 15;
+    //        //frameDateA.HorizontalOptions = LayoutOptions.Center;
+    //        //frameDateA.VerticalOptions = LayoutOptions.Start;
+    //        //frameDateA.BackgroundColor = Color.FromHex("#E2E2E2");
+    //        //frameDateA.Margin = new Thickness(0, 2, 0, 10);
+    //        //frameDateA.Padding = 5;
+    //        //frameDateA.CornerRadius = 15;
 
-            //LabelDateA.FontSize = 15;
-            //LabelDateA.TextColor = Color.FromHex("#777777");
+    //        //LabelDateA.FontSize = 15;
+    //        //LabelDateA.TextColor = Color.FromHex("#777777");
 
-            //frameDateA.Content = LabelDateA;
-            //LabelTextA.HorizontalOptions = LayoutOptions.Center;
-
-
-            //containerDateA.Children.Add(containerFioTimeA);
-            //containerDateA.Children.Add(stackLayoutIcon);
-            //containerDateA.Children.Add(LabeltimeA);
-            //containerDateA.Spacing = 3;
-            //containerDateA.Margin = new Thickness(60, 0, 0, 0);
-            //containerDateA.HorizontalOptions = LayoutOptions.FillAndExpand;
-            containerDate.Margin = new Thickness(0, 0, 60, 0);
+    //        //frameDateA.Content = LabelDateA;
+    //        //LabelTextA.HorizontalOptions = LayoutOptions.Center;
 
 
-            //ConteinerA.Children.Add(frameDateA);
-            //ConteinerA.Children.Add(containerDateA);
-
-            StackLayout stackLayout = new StackLayout();
-
-            stackLayout.Children.Add(Container);
-            //stackLayout.Children.Add(ConteinerA);
-
-            View = stackLayout;
-        }
-
-        public static readonly BindableProperty NameProperty =
-            BindableProperty.Create("Name", typeof(string), typeof(MessageCellU), "");
-
-        public static readonly BindableProperty FileIDProperty =
-            BindableProperty.Create("FileID", typeof(string), typeof(MessageCellU), "");
-
-        public static readonly BindableProperty TimeProperty =
-            BindableProperty.Create("Time", typeof(string), typeof(MessageCellU), "");
-
-        public static readonly BindableProperty DateAppProperty =
-            BindableProperty.Create("DateApp", typeof(string), typeof(MessageCellU), "");
-
-        public static readonly BindableProperty TextAppProperty =
-            BindableProperty.Create("TextApp", typeof(string), typeof(MessageCellU), "");
-
-        public static readonly BindableProperty IsSelfProperty =
-            BindableProperty.Create("IsSelf", typeof(bool), typeof(MessageCellU), false);
-
-        public string Name
-        {
-            get { return (string)GetValue(NameProperty); }
-            set { SetValue(NameProperty, value); }
-        }
-
-        public string FileID
-        {
-            get { return (string)GetValue(FileIDProperty); }
-            set { SetValue(FileIDProperty, value); }
-        }
-
-        public string Time
-        {
-            get { return (string)GetValue(TimeProperty); }
-            set { SetValue(TimeProperty, value); }
-        }
-
-        public string DateApp
-        {
-            get { return (string)GetValue(DateAppProperty); }
-            set { SetValue(DateAppProperty, value); }
-        }
-
-        public string TextApp
-        {
-            get { return (string)GetValue(TextAppProperty); }
-            set { SetValue(TextAppProperty, value); }
-        }
-
-        public bool IsSelf
-        {
-            get { return (bool)GetValue(IsSelfProperty); }
-            set { SetValue(IsSelfProperty, value); }
-        }
+    //        //containerDateA.Children.Add(containerFioTimeA);
+    //        //containerDateA.Children.Add(stackLayoutIcon);
+    //        //containerDateA.Children.Add(LabeltimeA);
+    //        //containerDateA.Spacing = 3;
+    //        //containerDateA.Margin = new Thickness(60, 0, 0, 0);
+    //        //containerDateA.HorizontalOptions = LayoutOptions.FillAndExpand;
+    //        containerDate.Margin = new Thickness(0, 0, 60, 0);
 
 
-        protected override async void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
+    //        //ConteinerA.Children.Add(frameDateA);
+    //        //ConteinerA.Children.Add(containerDateA);
 
-            if (BindingContext != null)
-            {
+    //        StackLayout stackLayout = new StackLayout();
+
+    //        stackLayout.Children.Add(Container);
+    //        //stackLayout.Children.Add(ConteinerA);
+
+    //        View = stackLayout;
+    //    }
+
+    //    public static readonly BindableProperty NameProperty =
+    //        BindableProperty.Create("Name", typeof(string), typeof(MessageCellU), "");
+
+    //    public static readonly BindableProperty FileIDProperty =
+    //        BindableProperty.Create("FileID", typeof(string), typeof(MessageCellU), "");
+
+    //    public static readonly BindableProperty TimeProperty =
+    //        BindableProperty.Create("Time", typeof(string), typeof(MessageCellU), "");
+
+    //    public static readonly BindableProperty DateAppProperty =
+    //        BindableProperty.Create("DateApp", typeof(string), typeof(MessageCellU), "");
+
+    //    public static readonly BindableProperty TextAppProperty =
+    //        BindableProperty.Create("TextApp", typeof(string), typeof(MessageCellU), "");
+
+    //    public static readonly BindableProperty IsSelfProperty =
+    //        BindableProperty.Create("IsSelf", typeof(bool), typeof(MessageCellU), false);
+
+    //    public string Name
+    //    {
+    //        get { return (string)GetValue(NameProperty); }
+    //        set { SetValue(NameProperty, value); }
+    //    }
+
+    //    public string FileID
+    //    {
+    //        get { return (string)GetValue(FileIDProperty); }
+    //        set { SetValue(FileIDProperty, value); }
+    //    }
+
+    //    public string Time
+    //    {
+    //        get { return (string)GetValue(TimeProperty); }
+    //        set { SetValue(TimeProperty, value); }
+    //    }
+
+    //    public string DateApp
+    //    {
+    //        get { return (string)GetValue(DateAppProperty); }
+    //        set { SetValue(DateAppProperty, value); }
+    //    }
+
+    //    public string TextApp
+    //    {
+    //        get { return (string)GetValue(TextAppProperty); }
+    //        set { SetValue(TextAppProperty, value); }
+    //    }
+
+    //    public bool IsSelf
+    //    {
+    //        get { return (bool)GetValue(IsSelfProperty); }
+    //        set { SetValue(IsSelfProperty, value); }
+    //    }
+
+
+    //    protected override async void OnBindingContextChanged()
+    //    {
+    //        base.OnBindingContextChanged();
+
+    //        if (BindingContext != null)
+    //        {
                       
-                var strings = DateApp.Split(' ');
-                var dateMess = strings[0];
-                if (Settings.DateUniq.Equals(dateMess))
-                {
-                    frameDate.IsVisible = false;
+    //            var strings = DateApp.Split(' ');
+    //            var dateMess = strings[0];
+    //            if (Settings.DateUniq.Equals(dateMess))
+    //            {
+    //                frameDate.IsVisible = false;
                     
-                        frame.Content = new Label()
-                        {
-                            WidthRequest = 25,
-                            HeightRequest = 25
-                        };
-                        frame.BackgroundColor = Color.Transparent;
+    //                    frame.Content = new Label()
+    //                    {
+    //                        WidthRequest = 25,
+    //                        HeightRequest = 25
+    //                    };
+    //                    frame.BackgroundColor = Color.Transparent;
 
-                        LabelName.IsVisible = false;                    
+    //                    LabelName.IsVisible = false;                    
 
-                    Settings.isSelf = IsSelf;
-                }
-                else
-                {
-                    frameDate.IsVisible = true;                    
-                    Settings.DateUniq = dateMess;
-                }
+    //                Settings.isSelf = IsSelf;
+    //            }
+    //            else
+    //            {
+    //                frameDate.IsVisible = true;                    
+    //                Settings.DateUniq = dateMess;
+    //            }
 
-                LabelDate.Text = dateMess;
-                LabelName.Text = Name;
-                LabelText.Text = TextApp;
-                Labeltime.Text = strings[1].Substring(0, 5);
+    //            LabelDate.Text = dateMess;
+    //            LabelName.Text = Name;
+    //            LabelText.Text = TextApp;
+    //            Labeltime.Text = strings[1].Substring(0, 5);
                 
-                bool imgVisible = !FileID.Equals("-1");
+    //            bool imgVisible = !FileID.Equals("-1");
 
-                if (imgVisible)
-                {
-                    image.IsVisible = true;                 
-                }
-            }
-        }
-    }
+    //            if (imgVisible)
+    //            {
+    //                image.IsVisible = true;                 
+    //            }
+    //        }
+    //    }
+    //}
 
     public class MessageCellService : StackLayout
     {       

@@ -253,7 +253,7 @@ namespace xamarinJKH
             if(!string.IsNullOrWhiteSpace(result.Error))
             {
                 Device.BeginInvokeOnMainThread(async () => {
-                    await DisplayAlert("Ошибка", result.Error, "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
                     return;
                 });                
             }
@@ -283,7 +283,7 @@ namespace xamarinJKH
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await DisplayAlert("Ошибка", result.Error, "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
                     return;
                 });
             }
@@ -294,14 +294,14 @@ namespace xamarinJKH
 
                 if (resultComplite.Error == null)
                 {
-                    await DisplayAlert("Успешно", "Ответы успешно переданы", "OK");
+                    await DisplayAlert(AppResources.AlertSuccess, AppResources.SuccessOSSPollPass, "OK");
                     await Navigation.PushAsync(new OSSPersonalVotingResult(_oss, true));
                     Navigation.RemovePage(this);
 
                 }
                 else
                 {
-                    await DisplayAlert("Ошибка", "Не удалось передать ответы\n" + result.Error, "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, $"{AppResources.ErrorOSSPollPass}\n" + result.Error, "OK");
                 }
             }
               

@@ -36,6 +36,9 @@ namespace xamarinJKH.Pays
             }
             else
             {
+                int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();                
+                gridMain.Padding = new Thickness(0, statusBarHeight , 0, 0);
+                
                 pdfview = new WebView()
                 {
                     VerticalOptions = LayoutOptions.FillAndExpand,
@@ -66,25 +69,25 @@ namespace xamarinJKH.Pays
             await Xamarin.Essentials.Share.RequestAsync(new ShareTextRequest()
             {
                 Uri = viewModel.Bill.FileLink,
-                Text = "Поделиться квитанцией"
+                Text = AppResources.ShareBill
             });
         }
 
         async void Print(object sender, EventArgs args)
         {
             HttpClient client = new HttpClient();
-            Loading.Instance.Show("Подождите, идет загрузка");
+            Loading.Instance.Show(AppResources.Loading);
             try
             {
                 var file = await client.GetByteArrayAsync(viewModel.Bill.FileLink);
                 if (file != null)
                     DependencyService.Get<xamarinJKH.InterfacesIntegration.IPrintManager>().SendFileToPrint(file);
                 else
-                    await DisplayAlert(null, "Произошла ошибка при скачивании файла", "OK");
+                    await DisplayAlert(null, AppResources.ErrorFileLoading, "OK");
             }
             catch (Exception ex)
             {
-                await DisplayAlert(null, "Произошла ошибка, попробуйте перезапустить приложение", "ОК");
+                await DisplayAlert(null, AppResources.ErrorReboot, "ОК");
             }
             finally
             {
