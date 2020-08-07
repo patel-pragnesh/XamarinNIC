@@ -167,20 +167,30 @@ namespace xamarinJKH.AppsConst
             {
                 var fNum = 17;
                 var fdt = 13;
+                if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
+                {
+                    fNum = 11;
+                     fdt = 9;
+                    if (Status.Length > 17)
+                    {
+                        ImageStatus.HorizontalOptions = LayoutOptions.End;
+                        LabelStatus.HorizontalOptions = LayoutOptions.End;
+                        var w = 700;
+                        LabelStatus.WidthRequest = w;
+                    }
+                }
+                else
                 if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
                 {
                     fNum = 13;
-                     fdt = 11;
+                    fdt = 11;
+                    
                     if (Status.Length > 17)
                     {
                         ImageStatus.HorizontalOptions = LayoutOptions.End;
                         LabelStatus.HorizontalOptions = LayoutOptions.End;
                         var w = 100;
                         LabelStatus.WidthRequest = w;
-
-                        //Status = Status.Substring(0, 16);
-                        //ImageStatus.Margin = new Thickness(30, 0, 0, 0);
-                        //numberAndDate.Padding = new Thickness(0, 0, -30, 0);
                     }
                 }
                 FormattedString formatted = new FormattedString();

@@ -246,45 +246,6 @@ namespace xamarinJKH.Shop
         
         static string prevCategoryTapped;
 
-
-        //private void Tap_Tapped(object sender, EventArgs e)
-        //{
-        //    //var sl = (StackLayout)sender;
-        //    //var cat = (Label)sl.Children.First();
-
-        //    //cat.TextDecorations = TextDecorations.Underline;
-        //    //var catName = cat.Text;
-            
-
-        //    //if (prevCategoryTapped.Text == catName )
-        //    //    return;
-        //    //if (!string.IsNullOrWhiteSpace(prevCategoryTapped.Text))
-        //    //{
-        //    //    var sp = GoodsCategories.Children.FirstOrDefault(_ => ((Label)((StackLayout)_).Children[0]).Text == prevCategoryTapped.Text);
-        //    //    if(sp!=null)
-        //    //    {
-        //    //        var indexP = GoodsCategories.Children.IndexOf(sp);
-        //    //        GoodsCategories.Children.RemoveAt(indexP);
-        //    //        GoodsCategories.Children.Insert(indexP, GetLabelForCategory(prevCategoryTapped.Text, false));
-        //    //    }
-        //    //}            
-
-        //    ////замена категории
-        //    //prevCategoryTapped = cat;
-            
-        //    //var s = GoodsCategories.Children.FirstOrDefault(_ => ((Label)((StackLayout)_).Children[0]).Text == cat.Text);
-        //    //if (s != null)
-        //    //{
-        //    //    var indexP = GoodsCategories.Children.IndexOf(s);
-        //    //    GoodsCategories.Children.RemoveAt(indexP);
-        //    //    GoodsCategories.Children.Insert(indexP, GetLabelForCategory(cat.Text, true));
-        //    //}
-
-        //    //currentDisplayCategoryKey = catName;
-
-        //    //setList(catName);
-        //}
-
         void setKeys()
         {
             try
@@ -402,6 +363,7 @@ namespace xamarinJKH.Shop
                 imgFrame.BackgroundColor = Color.FromHex("#e7e7e7");
                 imgFrame.Padding = new Thickness(5, 5, 5, 5);
                 imgFrame.Content = imageGoods;
+                imgFrame.HasShadow = false;
 
                 Label LabelName = new Label();
                 LabelName.TextColor = Color.Black;

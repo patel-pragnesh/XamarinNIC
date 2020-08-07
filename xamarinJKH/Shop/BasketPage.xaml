@@ -72,6 +72,7 @@
                 <yummy:PancakeView.Shadow>
                     <yummy:DropShadow Opacity="0.7" Color="Gray" />
                 </yummy:PancakeView.Shadow>
+                <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="20,0,20,0">
                     <StackLayout HorizontalOptions="StartAndExpand" Margin="0,20">
                         <Label Text="{x:Static xamarinJkh:AppResources.Mass}"
@@ -112,9 +113,11 @@
                                 VerticalOptions="FillAndExpand"
                                 TextColor="White"
                                 FontAttributes="Bold"
+                                Padding="5,0"
                                 Text="{x:Static xamarinJkh:AppResources.Confirm_order}" Clicked="BtnCheckOut_Clicked" />
                     </Frame>
                 </StackLayout>
+                </ScrollView>
             </yummy:PancakeView>
 
         </StackLayout>

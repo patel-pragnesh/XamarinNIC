@@ -159,6 +159,7 @@ namespace xamarinJKH.Shop
                 imgFrame.BackgroundColor = Color.FromHex("#e7e7e7");
                 imgFrame.Padding = new Thickness(5, 5, 5, 5);
                 imgFrame.Content = imageGoods;
+                imgFrame.HasShadow = false;
 
 
                 Label LabelName = new Label();

@@ -78,6 +78,10 @@ namespace xamarinJKH.Pays
 
             if (BindingContext != null)
             {
+                var fs = 15;
+                if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
+                    fs = 12;
+
                 FormattedString formattedIdent = new FormattedString();
                 DateIdent = FirstLetterToUpper(DateIdent);
                 formattedIdent.Spans.Add(new Span
@@ -85,20 +89,20 @@ namespace xamarinJKH.Pays
                     Text = DateTime.ParseExact(DateIdent.Replace("г."," ").Trim(), "MMMM yyyy", new CultureInfo("ru-RU")).ToString("MMMM yyyy") + 
                             (CultureInfo.CurrentCulture.Name.Contains("en") ? string.Empty : " г.").ToString(),
                     TextColor = Color.Black,
-                    FontSize = 15
+                    FontSize = fs
                 });
                 formattedIdent.Spans.Add(new Span
                 {
                     Text = $"\n{AppResources.Acc} ",
                     TextColor = Color.Gray,
-                    FontSize = 15
+                    FontSize = fs
                 });
                 formattedIdent.Spans.Add(new Span
                 {
                     Text = " " + Ident,
                     TextColor = Color.Black,
                     FontAttributes = FontAttributes.Bold,
-                    FontSize = 15
+                    FontSize = fs
                 });
                 identDate.FormattedText = formattedIdent;
 
@@ -109,13 +113,13 @@ namespace xamarinJKH.Pays
                     Text = $"{sum2:0.00}".Replace(',','.'),
                     TextColor = Color.Black,
                     FontAttributes = FontAttributes.Bold,
-                    FontSize = 15
+                    FontSize = fs
                 });
                 formattedIdent.Spans.Add(new Span
                 {
                     Text = $"\n{AppResources.Currency}",
                     TextColor = Color.Gray,
-                    FontSize = 15
+                    FontSize = fs-2
                 });
 
                 sum.FormattedText = formattedIdent;

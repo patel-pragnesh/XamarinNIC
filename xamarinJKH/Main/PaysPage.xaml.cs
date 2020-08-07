@@ -609,18 +609,20 @@ namespace xamarinJKH.Main
             });
             ident.FormattedText = formattedIdent;
             FormattedString formattedPayDate = new FormattedString();
-
+            var fs = 15;
+            if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
+                fs = 12;
             formattedPayDate.Spans.Add(new Span
             {
                 Text = $"{AppResources.SumToPay}\n",
                 TextColor = Color.Gray,
-                FontSize = 15
+                FontSize = fs
             });
             formattedPayDate.Spans.Add(new Span
             {
                 Text = AppResources.By + info.DebtActualDate + ":",
                 TextColor = Color.Black,
-                FontSize = 15
+                FontSize = fs
             });
             adress.Text = info.Address;
             sumPayDate.FormattedText = formattedPayDate;
@@ -630,13 +632,13 @@ namespace xamarinJKH.Main
                 Text = info.Sum.ToString(),
                 TextColor = Color.FromHex(Settings.MobileSettings.color),
                 FontAttributes = FontAttributes.Bold,
-                FontSize = 20
+                FontSize = fs+5
             });
             formattedPay.Spans.Add(new Span
             {
                 Text = AppResources.Currency,
                 TextColor = Color.Gray,
-                FontSize = 15
+                FontSize = fs
             });
             sumPay.FormattedText = formattedPay;
 

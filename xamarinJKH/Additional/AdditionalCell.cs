@@ -13,18 +13,19 @@ namespace xamarinJKH.Additional
 
         public AdditionalCell()
         {
-            image = new Image();
+            image = new Image();            
             MaterialFrame frame = new MaterialFrame();
             frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
-            frame.BackgroundColor = Color.White;
+            frame.BackgroundColor =  Color.White;
+            frame.IsClippedToBounds = true;
             frame.Margin = new Thickness(10, 0, 10, 10);
-            frame.Padding = new Thickness(0,0,0,0);
+            frame.Padding = new Thickness(0);
             frame.CornerRadius = 40;
-            StackLayout cell = new StackLayout();
-            cell.Children.Add(image);
-            frame.Content = cell;
+            //StackLayout cell = new StackLayout();
+            //cell.Children.Add(image);
+            frame.Content = image;// cell;
             View = frame;
         }
 
@@ -76,7 +77,7 @@ namespace xamarinJKH.Additional
                     Stream stream = new MemoryStream(imageByte);
                     image.Source = ImageSource.FromStream(() => { return stream; });
                     image.VerticalOptions = LayoutOptions.FillAndExpand;
-                    image.Aspect = Aspect.Fill;
+                    image.Aspect = Aspect.AspectFill;
                     image.HorizontalOptions = LayoutOptions.FillAndExpand;
                     image.HeightRequest = ImageHeight;
                 }

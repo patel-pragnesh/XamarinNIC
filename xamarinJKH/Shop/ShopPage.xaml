@@ -123,6 +123,7 @@
                                         VerticalOptions="FillAndExpand"
                                         TextColor="White"
                                         FontAttributes="Bold"
+                                        Padding="5,0"
                                         Text="{x:Static xamarinJkh:AppResources.ShopCheckout}" Clicked="BtnCheckOut_Clicked" />
                             </Frame>
                         </StackLayout>

@@ -119,7 +119,8 @@
                                   VerticalScrollBarVisibility="Never"
                                   SelectionMode="None"
                                   ItemTapped="OnItemTapped"
-                                  ItemsSource="{Binding RequestInfos}">
+                                  ItemsSource="{Binding RequestInfos}"
+                                  CachingStrategy="RecycleElement">
                             <ListView.Header>
 
                             </ListView.Header>
