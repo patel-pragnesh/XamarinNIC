@@ -337,10 +337,12 @@
   <ItemGroup>
     <BundleResource Include="Resources\edit.png" />
     <BundleResource Include="Resources\icon_login0.png" />
+    <BundleResource Include="Resources\ic_accept_app.png" />
     <BundleResource Include="Resources\ic_additional_top.png" />
     <BundleResource Include="Resources\ic_additional_top_Light.png" />
     <BundleResource Include="Resources\ic_add_file.png" />
     <BundleResource Include="Resources\ic_add_ident.png" />
+    <BundleResource Include="Resources\ic_add_ls.png" />
     <BundleResource Include="Resources\ic_app_top.png" />
     <BundleResource Include="Resources\ic_app_top_in.png" />
     <BundleResource Include="Resources\ic_app_top_light.png" />
@@ -387,6 +389,7 @@
     <BundleResource Include="Resources\ic_news_top.png" />
     <BundleResource Include="Resources\ic_news_top_light.png" />
     <BundleResource Include="Resources\ic_new_app_top.png" />
+    <BundleResource Include="Resources\ic_next_disp.png" />
     <BundleResource Include="Resources\ic_notification.png" />
     <BundleResource Include="Resources\ic_notification_top.png" />
     <BundleResource Include="Resources\ic_notification_top_light.png" />

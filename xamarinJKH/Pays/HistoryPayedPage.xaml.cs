@@ -158,7 +158,7 @@ namespace xamarinJKH.Pays
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
-            FrameSaldo.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
+            FrameSaldo.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
             FrameHistory.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
         }
 

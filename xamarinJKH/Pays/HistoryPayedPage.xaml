@@ -149,7 +149,7 @@
                             </StackLayout>
                             <Label
                                 HeightRequest="1"
-                                BackgroundColor="White"
+                                BackgroundColor="{AppThemeBinding Light=Black, Dark=White}"
                                 HorizontalOptions="Fill" />
                         </StackLayout>
                     </StackLayout>
