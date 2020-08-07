@@ -163,18 +163,18 @@ namespace xamarinJKH
 
             if (phone.Equals(""))
             {
-                await DisplayAlert("Ошибка", "Заполните поле номер телефона", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, $"{AppResources.ErrorFill} {AppResources.Phone}", "OK");
             }else if (phone.Length < 11)
             {
-                await DisplayAlert("Ошибка", "Номер телефона необходимо ввести в формате: +7 (ХХХ) ХХХ-ХХХХ", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorTechNumberFormat, "OK");
             }
             else if (fio.Equals(""))
             {
-                await DisplayAlert("Ошибка", "Заполните поле ФИО", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, $"{AppResources.ErrorFill} {AppResources.FIO}", "OK");
             }
             else if (!SwitchConsent.IsToggled)
             {
-                await DisplayAlert("Ошибка", "Подтвердите согласие на обработку персональных данных", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ProcessUserData, "OK");
             }
             else
             {
@@ -291,7 +291,7 @@ namespace xamarinJKH
             }
             else
             {
-                await DisplayAlert("Ошибка", "Неверный код доступа", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorRegisterWrongCode, "OK");
             }
         }
 
@@ -355,11 +355,11 @@ namespace xamarinJKH
                 Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
                 if (Device.RuntimePlatform == Device.iOS)
                 {
-                    await DisplayAlert("", "Запрос с кодом доступа отправлен", "OK");
+                    await DisplayAlert("", AppResources.AlertCodeSent, "OK");
                 }
                 else
                 {
-                    DependencyService.Get<IMessage>().ShortAlert("Запрос с кодом доступа отправлен");
+                    DependencyService.Get<IMessage>().ShortAlert(AppResources.AlertCodeSent);
                 }                
                 // FrameBtnReg.IsVisible = true;
                 // progress.IsVisible = false;
@@ -392,15 +392,15 @@ namespace xamarinJKH
             string passConfirm = EntryPassCommit.Text;
             if (pass.Equals(""))
             {
-                await DisplayAlert("Ошибка", "Заполните поле пароль", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorRegisterFillPassword, "OK");
             }
             else if (passConfirm.Equals(""))
             {
-                await DisplayAlert("Ошибка", "Заполните поле подтвердите пароль", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorRegisterFillPasswordConfirm, "OK");
             }
             else if (!pass.Equals(passConfirm))
             {
-                await DisplayAlert("Ошибка", "Пароли не совпадают", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorRegisterPassword, "OK");
             }
             else
             {
@@ -415,7 +415,7 @@ namespace xamarinJKH
                 }
                 else
                 {
-                    await DisplayAlert("Ошибка", result.Error, "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
                 }
             }
         }

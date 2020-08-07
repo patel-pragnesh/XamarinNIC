@@ -46,7 +46,7 @@
                     Margin="0,-20,0,0"
                     FontAttributes="Bold"
                     HorizontalOptions="Center"
-                    Text="Закрыть заявку?" />
+                    Text="{x:Static xamarinJkh:AppResources.RatingBarClose}" />
 
                 <Label
                     TextColor="Black"
@@ -56,9 +56,9 @@
                     HorizontalTextAlignment="Center">
                     <Label.FormattedText>
                         <FormattedString>
-                        <Span x:Name="ls1" Text="Помогите нам стать лучше.&#13; &#10;" FontSize="17" />
-                        <Span x:Name="ls2" Text="Оцените" TextColor="Black" FontAttributes="Bold" FontSize="17" />
-                        <Span x:Name="ls3" Text=" работу службы поддержки:" TextColor="Black" FontSize="17" />
+                        <Span x:Name="ls1" Text="{x:Static xamarinJkh:AppResources.RatingBarText1}" FontSize="17" />
+                        <Span x:Name="ls2" Text="{x:Static xamarinJkh:AppResources.Rate}" TextColor="Black" FontAttributes="Bold" FontSize="17" />
+                        <Span x:Name="ls3" Text="{x:Static xamarinJkh:AppResources.RatingBarText2}" TextColor="Black" FontSize="17" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -84,7 +84,7 @@
                                                WidthRequest="100"
                                                IsSpellCheckEnabled="True"
                                                AutoSize="TextChanges"
-                                               Placeholder="Прокомментируйте вашу оценку..."
+                                               Placeholder="{x:Static xamarinJkh:AppResources.RatingBarComment}"
                                                TextColor="#A2A2A2"
                                                HorizontalOptions="FillAndExpand" Focused="BordlessEditor_Focused" Unfocused="BordlessEditor_Unfocused"/>
                 </Frame>
@@ -94,7 +94,7 @@
                        x:Name="FrameBtnAdd"
                        Padding="0">
                     <Button x:Name="BtnAdd"
-                            Text="Закрыть заявку"
+                            Text="{x:Static xamarinJkh:AppResources.RatingBarCloseApp}"
                             TextColor="White"
                             Clicked="CloseApp"
                             FontAttributes="Bold"

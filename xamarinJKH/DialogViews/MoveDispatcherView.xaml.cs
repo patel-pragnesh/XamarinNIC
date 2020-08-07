@@ -66,9 +66,11 @@ namespace xamarinJKH.DialogViews
             public Color hex { get; set; }
         }
 
-        public async Task StartProgressBar(string title = "Перевод заявки..", double opacity = 0.6)
+        public async Task StartProgressBar(string title = "", double opacity = 0.6)
         {
             // Loading settings
+            if (string.IsNullOrEmpty(title))
+                 title = AppResources.MoveDispatcherStatus;
             Configurations.LoadingConfig = new LoadingConfig
             {
                 IndicatorColor = HexColor,
@@ -83,7 +85,7 @@ namespace xamarinJKH.DialogViews
                 CommonResult result = await server.ChangeDispatcherConst(_Request.ID.ToString(), dispId);
                 if (result.Error == null)
                 {
-                    await ShowToast("Заявка переведена");
+                    await ShowToast(AppResources.MoveDispatcherSuccess);
                     await PopupNavigation.Instance.PopAsync();
                 }
                 else

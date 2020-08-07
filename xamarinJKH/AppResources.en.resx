@@ -1128,4 +1128,76 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="TechSendSuccess" xml:space="preserve">
     <value>Message sent successfully</value>
   </data>
+  <data name="AlertCodeSent" xml:space="preserve">
+    <value>Request with access code sent</value>
+  </data>
+  <data name="AppClosed" xml:space="preserve">
+    <value>Application closed</value>
+  </data>
+  <data name="ClosingApp" xml:space="preserve">
+    <value>Closing application</value>
+  </data>
+  <data name="ErrorFillCommant" xml:space="preserve">
+    <value>Fill in a comment on the application</value>
+  </data>
+  <data name="ErrorPayApp" xml:space="preserve">
+    <value>The order has already been paid</value>
+  </data>
+  <data name="ErrorRegisterFillPassword" xml:space="preserve">
+    <value>Fill in the password field</value>
+  </data>
+  <data name="ErrorRegisterFillPasswordConfirm" xml:space="preserve">
+    <value>Fill in the field confirm password</value>
+  </data>
+  <data name="ErrorRegisterPassword" xml:space="preserve">
+    <value>Password mismatch</value>
+  </data>
+  <data name="ErrorRegisterWrongCode" xml:space="preserve">
+    <value>Wrong security code</value>
+  </data>
+  <data name="ErrorUserNotFound" xml:space="preserve">
+    <value>User is not found</value>
+  </data>
+  <data name="MoveDispatcher" xml:space="preserve">
+    <value>Pass the application?</value>
+  </data>
+  <data name="MoveDispatcherChoose" xml:space="preserve">
+    <value>Выберите диспетчера:</value>
+  </data>
+  <data name="MoveDispatcherConfirm" xml:space="preserve">
+    <value>Pass application</value>
+  </data>
+  <data name="MoveDispatcherStatus" xml:space="preserve">
+    <value>Passing application</value>
+  </data>
+  <data name="MoveDispatcherSuccess" xml:space="preserve">
+    <value>Application passed</value>
+  </data>
+  <data name="ProcessUserData" xml:space="preserve">
+    <value>Confirm your consent to the processing of personal data</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Rate</value>
+  </data>
+  <data name="RatingBarClose" xml:space="preserve">
+    <value>Close application</value>
+  </data>
+  <data name="RatingBarCloseApp" xml:space="preserve">
+    <value>Close application</value>
+  </data>
+  <data name="RatingBarComment" xml:space="preserve">
+    <value>Comment on your rating ...</value>
+  </data>
+  <data name="RatingBarText1" xml:space="preserve">
+    <value>Help us get better.</value>
+  </data>
+  <data name="RatingBarText2" xml:space="preserve">
+    <value>   работу службы поддержки:</value>
+  </data>
+  <data name="UpdateDialogKeepWorking" xml:space="preserve">
+    <value>Continue working in current version</value>
+  </data>
+  <data name="UpdateDialogUpdate" xml:space="preserve">
+    <value>Update</value>
+  </data>
 </root>

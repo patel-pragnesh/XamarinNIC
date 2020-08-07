@@ -74,9 +74,11 @@ namespace xamarinJKH.DialogViews
             // Optionally, view model can be passed to the toast view instance.
         }
 
-        public async Task StartProgressBar(string title = "Закрытие заявки..", double opacity = 0.6)
+        public async Task StartProgressBar(string title = "", double opacity = 0.6)
         {
             // Loading settings
+            if (string.IsNullOrEmpty(title))
+                title = AppResources.ClosingApp;
             Configurations.LoadingConfig = new LoadingConfig
             {
                 IndicatorColor = HexColor,
@@ -94,7 +96,7 @@ namespace xamarinJKH.DialogViews
                     CommonResult result = await server.CloseAppConst(_Request.ID.ToString());
                     if (result.Error == null)
                     {
-                        await ShowToast("Заявка закрыта");
+                        await ShowToast(AppResources.AppClosed);
                         await PopupNavigation.Instance.PopAsync();
                     }
                     else
@@ -107,7 +109,7 @@ namespace xamarinJKH.DialogViews
                     CommonResult result = await server.CloseApp(_Request.ID.ToString(), text, RatingBar.Rating.ToString());
                     if (result.Error == null)
                     {
-                        await ShowToast("Заявка закрыта");
+                        await ShowToast(AppResources.AppClosed);
                         await PopupNavigation.Instance.PopAsync();
                     }
                     else
@@ -117,7 +119,7 @@ namespace xamarinJKH.DialogViews
                 }
                 else
                 {
-                    await ShowToast("Заполните комментарий к заявке");
+                    await ShowToast(AppResources.ErrorFillCommant);
                 }
             });
         }
