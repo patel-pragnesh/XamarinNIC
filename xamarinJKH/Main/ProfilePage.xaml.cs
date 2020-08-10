@@ -76,6 +76,12 @@ namespace xamarinJKH.Main
                 case Device.iOS:
                     //BackgroundColor = Color.White;
                     ImageFon.Margin = new Thickness(0, 0, 0, 0);
+
+
+                    themelabel.IsVisible = false;
+                    ThemeButtonBlock.IsVisible = false;
+                    ThemeButtonBlock.IsEnabled = false;
+
                     // StackLayout.Margin = new Thickness(0, 33, 0, 0);
                     // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     // if (Application.Current.MainPage.Height < 800)
@@ -238,10 +244,15 @@ namespace xamarinJKH.Main
 
         private void RadioButtonAuto_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            Application.Current.UserAppTheme = OSAppTheme.Unspecified;
-            MessagingCenter.Send<Object>(this, "ChangeTheme");
-            MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
-            Preferences.Set("Theme", 0);
+            if (Xamarin.Essentials.DeviceInfo.Platform != DevicePlatform.iOS)
+            {
+                Application.Current.UserAppTheme = OSAppTheme.Unspecified;
+                MessagingCenter.Send<Object>(this, "ChangeTheme");
+                MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
+                Preferences.Set("Theme", 0);
+            }
+
+                
         }
 
         private void RadioButtonLigth_OnCheckedChanged(object sender, CheckedChangedEventArgs e)

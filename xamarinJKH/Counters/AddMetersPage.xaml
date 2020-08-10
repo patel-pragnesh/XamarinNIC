@@ -192,7 +192,7 @@
                             
                             <StackLayout x:Name="CounterLayout"
                                     Orientation="Horizontal" HeightRequest="80"  Margin="20,0" Spacing="5" HorizontalOptions="CenterAndExpand">
-                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <StackLayout x:Name="CounterDigitsContainer" Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
                                             <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
                                                 <pancake:PancakeView BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,5,0" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="80" MinimumHeightRequest="60" >
                                                     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0" >
@@ -265,8 +265,8 @@
                                                 <Label x:Name="d04" Text="0" TextColor="#A2A2A2" FontSize="20" HorizontalTextAlignment="Center"></Label>
                                             </StackLayout>
 
-                                            <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
-                                                <pancake:PancakeView BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,0,0" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="80" MinimumHeightRequest="60"  >
+                                            <StackLayout x:Name="cds5" Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                                                <pancake:PancakeView x:Name="pc5" BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,0,0" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="80" MinimumHeightRequest="60"  >
                                                     <Grid VerticalOptions="FillAndExpand" RowSpacing="0" >
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="0.85*"></RowDefinition>
@@ -297,8 +297,8 @@
                                             </StackLayout>
 
 
-                                            <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
-                                                <pancake:PancakeView BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,0,0" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="80" MinimumHeightRequest="60"  >
+                                            <StackLayout x:Name="cds6" Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                                                <pancake:PancakeView x:Name="pc6" BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,0,0" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="80" MinimumHeightRequest="60"  >
                                                     <Grid VerticalOptions="FillAndExpand" RowSpacing="0" >
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="0.85*"></RowDefinition>
@@ -315,8 +315,8 @@
                                                 <Label x:Name="d06" Text="0" TextColor="#A2A2A2" FontSize="20" HorizontalTextAlignment="Center" IsVisible="{Binding Path=IsVisible, Source={x:Reference d6}}"></Label>
                                             </StackLayout>
 
-                                            <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
-                                                <pancake:PancakeView BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,0,0" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="80" MinimumHeightRequest="60"  >
+                                            <StackLayout x:Name="cds7" Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                                                <pancake:PancakeView x:Name="pc7" BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,0,0" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="80" MinimumHeightRequest="60"  >
                                                     <Grid VerticalOptions="FillAndExpand" RowSpacing="0" >
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="0.85*"></RowDefinition>
@@ -333,8 +333,8 @@
                                                 <Label x:Name="d07" Text="0" TextColor="#A2A2A2" FontSize="20" HorizontalTextAlignment="Center" IsVisible="{Binding Path=IsVisible, Source={x:Reference d7}}"></Label>
                                             </StackLayout>
 
-                                            <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
-                                                <pancake:PancakeView BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,0,5" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="80" MinimumHeightRequest="60" >
+                                            <StackLayout x:Name="cds8" Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                                                <pancake:PancakeView x:Name="pc8" BorderColor="Gray" BorderThickness="1"  Padding="0" CornerRadius="5,5,0,5" WidthRequest="30"  MinimumWidthRequest="25" HeightRequest="80" MinimumHeightRequest="60" >
                                                     <Grid VerticalOptions="FillAndExpand" RowSpacing="0" >
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="0.85*"></RowDefinition>

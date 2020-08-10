@@ -25,8 +25,10 @@ namespace xamarinJKH.Main
             NavigationPage.SetHasNavigationBar(this, false);
             Color hex = Color.FromHex(Utils.Settings.MobileSettings.color);
             SelectedTabColor = hex;
-            
+
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
+            if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+                currentTheme = OSAppTheme.Dark;
             Color unselect = hex.AddLuminosity(0.3);
             switch (currentTheme)
             {
@@ -50,6 +52,10 @@ namespace xamarinJKH.Main
             ChangeTheme = new Command(async () =>
             {
                 OSAppTheme currentTheme = Application.Current.RequestedTheme;
+                if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+                    currentTheme = OSAppTheme.Dark;
+
+
                 Color unselect = hex.AddLuminosity(0.3);
                 switch (currentTheme)
                 {

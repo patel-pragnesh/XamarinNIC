@@ -25,6 +25,8 @@ namespace xamarinJKH.MainConst
             SelectedTabColor = hex;
             UnselectedTabColor = Color.Gray;
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
+            if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                currentTheme = OSAppTheme.Dark;
             Color unselect = hex.AddLuminosity(0.3);
             switch (currentTheme)
             {
@@ -38,6 +40,9 @@ namespace xamarinJKH.MainConst
             ChangeTheme = new Command(async () =>
             {
                 OSAppTheme currentTheme = Application.Current.RequestedTheme;
+                if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                    currentTheme = OSAppTheme.Dark;
+                
                 Color unselect = hex.AddLuminosity(0.3);
                 switch (currentTheme)
                 {

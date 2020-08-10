@@ -35,7 +35,7 @@ namespace xamarinJKH
         {
             InitializeComponent();
 
-            //ios пока только "темную тему"
+            //только темная тема в иос
             if (Device.RuntimePlatform == Device.iOS)
                 Application.Current.UserAppTheme = OSAppTheme.Dark;
 
@@ -210,19 +210,27 @@ namespace xamarinJKH
 
         protected override void OnStart()
         {
-            int theme = Preferences.Get("Theme", 0);
-            switch (theme)
+            
+
+            //только темная тема в иос
+            if (Device.RuntimePlatform != Device.iOS)
             {
-                case 0:
-                    Current.UserAppTheme = OSAppTheme.Unspecified;
-                    break;
-                case 1:
-                    Current.UserAppTheme = OSAppTheme.Dark;
-                    break;
-                case 2:
-                    Current.UserAppTheme = OSAppTheme.Light;
-                    break;
+                int theme = Preferences.Get("Theme", 0);
+                switch (theme)
+                {
+                    case 0:
+                        Current.UserAppTheme = OSAppTheme.Unspecified;
+                        break;
+                    case 1:
+                        Current.UserAppTheme = OSAppTheme.Dark;
+                        break;
+                    case 2:
+                        Current.UserAppTheme = OSAppTheme.Light;
+                        break;
+                }
             }
+            else
+                Current.UserAppTheme = OSAppTheme.Dark;
 
 
             AppCenter.Start("android=21216fbf-ac4c-4b3a-ace6-83d4ecc0a1a2;",

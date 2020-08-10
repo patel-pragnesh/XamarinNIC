@@ -188,20 +188,30 @@ namespace xamarinJKH.Additional
             {
                 foreach (var each in Settings.EventBlockData.AdditionalServices)
                 {
-                    if (each.HasLogo && !each.ShowInAdBlock.ToLower().Equals("не отображать"))
-                    {
-                        if (SelectedGroup != null)
-                        {
-                            if (each.Group == SelectedGroup)
-                            {
-                                Additional.Add(each);
-                            }
-                        }
-                        else
-                        {
-                            Additional.Add(each);
-                        }
-                    }
+                    //try
+                    //{
+                        if (each.HasLogo)
+                            if (each.ShowInAdBlock != null)
+                                if (!each.ShowInAdBlock.ToLower().Equals("не отображать"))
+                                {
+                                    if (SelectedGroup != null)
+                                    {
+                                        if (each.Group == SelectedGroup)
+                                        {
+                                            Additional.Add(each);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Additional.Add(each);
+                                    }
+                                }
+                    //}
+                    //catch(Exception exc)
+                    //{
+
+                    //}
+                    
                 }
 
                 var groups = Settings.EventBlockData.AdditionalServices.GroupBy(x => x.Group).Select(x => x.First()).Select(y => y.Group).ToList();

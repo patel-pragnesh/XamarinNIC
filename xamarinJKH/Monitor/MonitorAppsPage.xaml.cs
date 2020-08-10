@@ -82,6 +82,8 @@ namespace xamarinJKH.Monitor
             UkName.Text = Settings.MobileSettings.main_name;
             FormattedString formattedName = new FormattedString();
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
+            if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                currentTheme = OSAppTheme.Dark;
             formattedName.Spans.Add(new Span
             {
                 Text = Settings.Person.FIO,

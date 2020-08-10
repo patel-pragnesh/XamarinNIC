@@ -164,6 +164,9 @@ namespace xamarinJKH.Counters
             //d7.Unfocused += Entry_Unfocused;
             //d8.Unfocused += Entry_Unfocused;
 
+            StackLayout cds6 = (StackLayout)CounterDigitsContainer.FindByName("cds6"); ;
+            StackLayout cds7 = (StackLayout)CounterDigitsContainer.FindByName("cds7"); ;
+            StackLayout cds8 = (StackLayout)CounterDigitsContainer.FindByName("cds8"); ;
 
             DecimalPoint = meter.NumberOfDecimalPlaces;
             switch (DecimalPoint)
@@ -171,16 +174,34 @@ namespace xamarinJKH.Counters
                 case 0: Divider.IsVisible = false;
                     (d6.Parent.Parent as VisualElement).IsVisible = (d7.Parent.Parent as VisualElement).IsVisible = (d8.Parent.Parent as VisualElement).IsVisible = false;
                     d6.IsVisible = d7.IsVisible = d8.IsVisible = false;
+                   
+                      
+                    CounterDigitsContainer.Children.Remove(cds6);
+                      
+                    CounterDigitsContainer.Children.Remove(cds7);
+                      
+                    CounterDigitsContainer.Children.Remove(cds8);
+                    pc5.CornerRadius = new CornerRadius(5, 5, 0, 5);
                     break;
                 case 1: Divider.IsVisible = true;
                     (d7.Parent.Parent as VisualElement).IsVisible = (d8.Parent.Parent as VisualElement).IsVisible = false;
                     (d6.Parent.Parent as VisualElement).IsVisible = d6.IsVisible = true;
                     d7.IsVisible = d8.IsVisible = false;
+
+                    
+                    CounterDigitsContainer.Children.Remove(cds7);
+                    CounterDigitsContainer.Children.Remove(cds8);
+
+                    pc6.CornerRadius = new CornerRadius(5, 5, 0, 5);
                     break;
                 case 2: Divider.IsVisible = true;
                     (d6.Parent.Parent as VisualElement).IsVisible = d6.IsVisible = (d7.Parent.Parent as VisualElement).IsVisible = d7.IsVisible = true;
                     (d8.Parent.Parent as VisualElement).IsVisible = false;
                     d8.IsVisible = false;
+
+                    CounterDigitsContainer.Children.Remove(cds8);
+
+                    pc7.CornerRadius = new CornerRadius(5, 5, 0, 5);
                     break;
                 case 3: Divider.IsVisible = true;
                     (d6.Parent.Parent as VisualElement).IsVisible = 
@@ -416,6 +437,8 @@ namespace xamarinJKH.Counters
         void SetTextAndColor()
         {
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
+            if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                currentTheme = OSAppTheme.Dark;
             if (meter.Resource.ToLower().Contains("холодное") || meter.Resource.ToLower().Contains("хвс"))
             {
                 img.Source = ImageSource.FromFile("ic_cold_water");

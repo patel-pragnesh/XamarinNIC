@@ -158,6 +158,8 @@ namespace xamarinJKH.MainConst
         {
             FormattedString formattedName = new FormattedString();
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
+            if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                currentTheme = OSAppTheme.Dark;
             formattedName.Spans.Add(new Span
             {
                 Text = Settings.Person.FIO,
@@ -220,12 +222,16 @@ namespace xamarinJKH.MainConst
 
         private void RadioButtonAuto_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            Application.Current.UserAppTheme = OSAppTheme.Unspecified;
-            Preferences.Set("Theme", 0);
-            MessagingCenter.Send<Object>(this, "ChangeThemeConst");
-            MessagingCenter.Send<Object>(this, "ChangeAdminApp");
-            MessagingCenter.Send<Object>(this, "ChangeAdminMonitor");
-            SetAdminName();
+            if (Xamarin.Essentials.DeviceInfo.Platform != DevicePlatform.iOS)
+            {
+                Application.Current.UserAppTheme = OSAppTheme.Unspecified;
+                Preferences.Set("Theme", 0);
+                MessagingCenter.Send<Object>(this, "ChangeThemeConst");
+                MessagingCenter.Send<Object>(this, "ChangeAdminApp");
+                MessagingCenter.Send<Object>(this, "ChangeAdminMonitor");
+                SetAdminName();
+            }
+                
         }
 
         private void RadioButtonDark_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
