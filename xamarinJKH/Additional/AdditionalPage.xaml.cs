@@ -255,7 +255,8 @@ namespace xamarinJKH.Additional
             Additional.Clear();
             foreach (var service in Settings.EventBlockData.AdditionalServices.Where(x => x.Group == group))
             {
-                if (service.HasLogo && !service.ShowInAdBlock.ToLower().Equals("не отображать"))
+                if (service.HasLogo &&  service.ShowInAdBlock != null )
+                    if(!service.ShowInAdBlock.ToLower().Equals("не отображать"))
                     Additional.Add(service);
             }
         }
