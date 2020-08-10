@@ -1063,6 +1063,9 @@
   <data name="ErrorEnterSum" xml:space="preserve">
     <value>Введите сумму</value>
   </data>
+  <data name="ErrorEnterSumOne" xml:space="preserve">
+    <value>Введите сумму больше 1</value>
+  </data>
   <data name="ErrorInfoBills" xml:space="preserve">
     <value>Не удалось получить информацию о квитанциях</value>
   </data>
@@ -1139,13 +1142,13 @@
     <value>Пользователь не найден</value>
   </data>
   <data name="MoveDispatcher" xml:space="preserve">
-    <value>Перевести заявку?</value>
+    <value>Укажите консультанта:</value>
   </data>
   <data name="MoveDispatcherChoose" xml:space="preserve">
     <value>Выберите диспетчера:</value>
   </data>
   <data name="MoveDispatcherConfirm" xml:space="preserve">
-    <value>Перевести заявку</value>
+    <value>Перевести</value>
   </data>
   <data name="MoveDispatcherStatus" xml:space="preserve">
     <value>Перевод заявки..</value>

@@ -953,6 +953,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введите сумму больше 1.
+        /// </summary>
+        internal static string ErrorEnterSumOne {
+            get {
+                return ResourceManager.GetString("ErrorEnterSumOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не удалось скачать файл.
         /// </summary>
         internal static string ErrorFileLoading {
@@ -1547,7 +1556,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Перевести заявку?.
+        ///   Looks up a localized string similar to Укажите консультанта:.
         /// </summary>
         internal static string MoveDispatcher {
             get {
@@ -1565,7 +1574,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Перевести заявку.
+        ///   Looks up a localized string similar to Перевести.
         /// </summary>
         internal static string MoveDispatcherConfirm {
             get {

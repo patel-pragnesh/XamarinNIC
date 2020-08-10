@@ -473,13 +473,13 @@ namespace xamarinJKH.Main
             var dec = DecimalPoint;
             switch (dec)
             {
-                case 0: return "{0}";
-                case 1: return "{0.0}";
-                case 2: return "{0.00}";
-                case 3: return "{0.000}";
+                case 0: return "{0:0}";
+                case 1: return "{0:0.0}";
+                case 2: return "{0:0.00}";
+                case 3: return "{0:0.000}";
                 
             }
-            return "{0.000}";
+            return "{0:0.000}";
         }
 
         protected override async void OnBindingContextChanged()

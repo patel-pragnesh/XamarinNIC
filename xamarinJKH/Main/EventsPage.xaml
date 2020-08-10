@@ -7,7 +7,7 @@
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              xmlns:resouces="clr-namespace:xamarinJKH"
-             x:Class="xamarinJKH.Main.EventsPage">    
+             x:Class="xamarinJKH.Main.EventsPage">
     <ContentPage.Content>
         <StackLayout>
             <Grid>
@@ -17,7 +17,7 @@
                        VerticalOptions="Start"
                        Aspect="AspectFill"
                        HorizontalOptions="FillAndExpand" />
-                <StackLayout>                    
+                <StackLayout>
                     <pancakeView:PancakeView
                         Padding="0"
                         CornerRadius="0,0,25,25"
@@ -120,72 +120,80 @@
                                                            HorizontalOptions="FillAndExpand"
                                                            VerticalOptions="Start"
                                                            BackgroundColor="White"
-                                                           Padding="0, 25, 0, 25"
+                                                           Padding="0"
                                                            Margin="10,0,10,10">
-                                <StackLayout
-                                    Orientation="Horizontal">
-                                    <xamarinJkh:IconView
-                                        x:Name="IconViewNotification"
-                                        Source="ic_notification"
-                                        HeightRequest="30"
-                                        Foreground="{x:DynamicResource MainColor}"
-                                        Margin="-10, 0, 0, 0"
-                                        HorizontalOptions="Start"
-                                        VerticalOptions="Center" />
-                                    <Label
-                                        Text="{x:Static xamarinJkh:AppResources.Notifications}"
-                                        FontSize="20"
-                                        TextColor="Black"
-                                        FontAttributes="Bold"
-                                        Margin="-20, 0, 0, 0"
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout
+                                        Padding="0, 25, 0, 25"
                                         HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="Center" />
-                                    <xamarinJkh:IconView
-                                        x:Name="IconViewForvardNotification"
-                                        Source="ic_arrow_forward"
-                                        HeightRequest="25"
-                                        Foreground="{x:DynamicResource MainColor}"
-                                        WidthRequest="25"
-                                        Margin="0,0,15,0"
-                                        HorizontalOptions="End"
-                                        VerticalOptions="Center" />
+                                        Orientation="Horizontal">
+                                        <xamarinJkh:IconView
+                                            x:Name="IconViewNotification"
+                                            Source="ic_notification"
+                                            HeightRequest="30"
+                                            Foreground="{x:DynamicResource MainColor}"
+                                            Margin="-10, 0, 0, 0"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Text="{x:Static xamarinJkh:AppResources.Notifications}"
+                                            FontSize="20"
+                                            TextColor="Black"
+                                            FontAttributes="Bold"
+                                            Margin="-20, 0, 0, 0"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="Center" />
+                                        <xamarinJkh:IconView
+                                            x:Name="IconViewForvardNotification"
+                                            Source="ic_arrow_forward"
+                                            HeightRequest="25"
+                                            Foreground="{x:DynamicResource MainColor}"
+                                            WidthRequest="25"
+                                            Margin="0,0,15,0"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
                                 </StackLayout>
                             </customRenderers:MaterialFrame>
                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameNews"
                                                            IsVisible="{Binding ShowNews}"
                                                            CornerRadius="30"
+                                                           Padding="0"
                                                            HorizontalOptions="FillAndExpand"
                                                            VerticalOptions="Start"
                                                            BackgroundColor="White"
-                                                           Margin="10, 0, 10, 10"
-                                                           Padding="0, 25, 0, 25">
-                                <StackLayout
-                                    Orientation="Horizontal">
-                                    <xamarinJkh:IconView
-                                        x:Name="IconViewNews"
-                                        Source="ic_news"
-                                        HeightRequest="30"
-                                        Foreground="{x:DynamicResource MainColor}"
-                                        Margin="-10, 0, 0, 0"
-                                        HorizontalOptions="Start"
-                                        VerticalOptions="Center" />
-                                    <Label
-                                        Text="{x:Static resouces:AppResources.News}"
-                                        FontSize="20"
-                                        TextColor="Black"
-                                        FontAttributes="Bold"
-                                        Margin="-20, 0, 0, 0"
+                                                           Margin="10, 0, 10, 10">
+                                <StackLayout Spacing="0" Orientation="Horizontal">
+                                    <StackLayout
+                                        Padding="0, 25, 0, 25"
                                         HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="Center" />
-                                    <xamarinJkh:IconView
-                                        x:Name="IconViewForvardNews"
-                                        Source="ic_arrow_forward"
-                                        HeightRequest="25"
-                                        Foreground="{x:DynamicResource MainColor}"
-                                        WidthRequest="25"
-                                        Margin="0,0,15,0"
-                                        HorizontalOptions="End"
-                                        VerticalOptions="Center" />
+                                        Orientation="Horizontal">
+                                        <xamarinJkh:IconView
+                                            x:Name="IconViewNews"
+                                            Source="ic_news"
+                                            HeightRequest="30"
+                                            Foreground="{x:DynamicResource MainColor}"
+                                            Margin="-10, 0, 0, 0"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Text="{x:Static resouces:AppResources.News}"
+                                            FontSize="20"
+                                            TextColor="Black"
+                                            FontAttributes="Bold"
+                                            Margin="-20, 0, 0, 0"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="Center" />
+                                        <xamarinJkh:IconView
+                                            x:Name="IconViewForvardNews"
+                                            Source="ic_arrow_forward"
+                                            HeightRequest="25"
+                                            Foreground="{x:DynamicResource MainColor}"
+                                            WidthRequest="25"
+                                            Margin="0,0,15,0"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
                                 </StackLayout>
                             </customRenderers:MaterialFrame>
                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameQuestions"
@@ -194,35 +202,39 @@
                                                            Margin="10, 0, 10, 10"
                                                            HorizontalOptions="FillAndExpand"
                                                            VerticalOptions="Start"
-                                                           BackgroundColor="White"
-                                                           Padding="0, 25, 0, 25">
-                                <StackLayout
-                                    Orientation="Horizontal">
-                                    <xamarinJkh:IconView
-                                        x:Name="IconViewQuestions"
-                                        Source="ic_questions2"
-                                        HeightRequest="30"
-                                        Foreground="{x:DynamicResource MainColor}"
-                                        Margin="-10, 0, 0, 0"
-                                        HorizontalOptions="Start"
-                                        VerticalOptions="Center" />
-                                    <Label
-                                        Text="{x:Static resouces:AppResources.Quiz}"
-                                        FontSize="20"
-                                        TextColor="Black"
-                                        FontAttributes="Bold"
-                                        Margin="-20, 0, 0, 0"
+                                                           Padding="0"
+                                                           BackgroundColor="White">
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout
+                                        Padding="0, 25, 0, 25"
                                         HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="Center" />
-                                    <xamarinJkh:IconView
-                                        x:Name="IconViewForvardQuestions"
-                                        Source="ic_arrow_forward"
-                                        Foreground="{x:DynamicResource MainColor}"
-                                        HeightRequest="25"
-                                        WidthRequest="25"
-                                        Margin="0,0,15,0"
-                                        HorizontalOptions="End"
-                                        VerticalOptions="Center" />
+                                        Orientation="Horizontal">
+                                        <xamarinJkh:IconView
+                                            x:Name="IconViewQuestions"
+                                            Source="ic_questions2"
+                                            HeightRequest="30"
+                                            Foreground="{x:DynamicResource MainColor}"
+                                            Margin="-10, 0, 0, 0"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Text="{x:Static resouces:AppResources.Quiz}"
+                                            FontSize="20"
+                                            TextColor="Black"
+                                            FontAttributes="Bold"
+                                            Margin="-20, 0, 0, 0"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="Center" />
+                                        <xamarinJkh:IconView
+                                            x:Name="IconViewForvardQuestions"
+                                            Source="ic_arrow_forward"
+                                            Foreground="{x:DynamicResource MainColor}"
+                                            HeightRequest="25"
+                                            WidthRequest="25"
+                                            Margin="0,0,15,0"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
                                 </StackLayout>
                             </customRenderers:MaterialFrame>
                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOffers"
@@ -232,34 +244,38 @@
                                                            HorizontalOptions="FillAndExpand"
                                                            VerticalOptions="Start"
                                                            BackgroundColor="White"
-                                                           Padding="0, 25, 0, 25">
-                                <StackLayout
-                                    Orientation="Horizontal">
-                                    <xamarinJkh:IconView
-                                        x:Name="IconViewOffers"
-                                        Source="ic_diskont"
-                                        Foreground="{x:DynamicResource MainColor}"
-                                        HeightRequest="30"
-                                        Margin="-10, 0, 0, 0"
-                                        HorizontalOptions="Start"
-                                        VerticalOptions="Center" />
-                                    <Label
-                                        Text="{x:Static xamarinJkh:AppResources.Offers}"
-                                        FontSize="20"
-                                        TextColor="Black"
-                                        Margin="-20, 0, 0, 0"
-                                        FontAttributes="Bold"
+                                                           Padding="0">
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout
+                                        Padding="0, 25, 0, 25"
                                         HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="Center" />
-                                    <xamarinJkh:IconView
-                                        x:Name="IconViewForvardOffers"
-                                        Source="ic_arrow_forward"
-                                        HeightRequest="25"
-                                        WidthRequest="25"
-                                        Foreground="{x:DynamicResource MainColor}"
-                                        Margin="0,0,15,0"
-                                        HorizontalOptions="End"
-                                        VerticalOptions="Center" />
+                                        Orientation="Horizontal">
+                                        <xamarinJkh:IconView
+                                            x:Name="IconViewOffers"
+                                            Source="ic_diskont"
+                                            Foreground="{x:DynamicResource MainColor}"
+                                            HeightRequest="30"
+                                            Margin="-10, 0, 0, 0"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Text="{x:Static xamarinJkh:AppResources.Offers}"
+                                            FontSize="20"
+                                            TextColor="Black"
+                                            Margin="-20, 0, 0, 0"
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="Center" />
+                                        <xamarinJkh:IconView
+                                            x:Name="IconViewForvardOffers"
+                                            Source="ic_arrow_forward"
+                                            HeightRequest="25"
+                                            WidthRequest="25"
+                                            Foreground="{x:DynamicResource MainColor}"
+                                            Margin="0,0,15,0"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
                                 </StackLayout>
                             </customRenderers:MaterialFrame>
                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOSS"
@@ -268,34 +284,38 @@
                                                            HorizontalOptions="FillAndExpand"
                                                            VerticalOptions="Start"
                                                            BackgroundColor="White"
-                                                           Padding="0, 25, 0, 25">
-                                <StackLayout
-                                    Orientation="Horizontal">
-                                    <xamarinJkh:IconView
-                                        x:Name="IconViewOss"
-                                        Source="ic_questions2"
-                                        Foreground="{x:DynamicResource MainColor}"
-                                        HeightRequest="30"
-                                        Margin="-10, 0, 0, 0"
-                                        HorizontalOptions="Start"
-                                        VerticalOptions="Center" />
-                                    <Label
-                                        Text="{x:Static xamarinJkh:AppResources.OSS}"
-                                        FontSize="20"
-                                        TextColor="Black"
-                                        Margin="-20, 0, 0, 0"
-                                        FontAttributes="Bold"
+                                                           Padding="0">
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout
+                                        Padding="0, 25, 0, 25"
                                         HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="Center" />
-                                    <xamarinJkh:IconView
-                                        x:Name="IconViewForvardOss"
-                                        Source="ic_arrow_forward"
-                                        HeightRequest="25"
-                                        WidthRequest="25"
-                                        Margin="0,0,15,0"
-                                        Foreground="{x:DynamicResource MainColor}"
-                                        HorizontalOptions="End"
-                                        VerticalOptions="Center" />
+                                        Orientation="Horizontal">
+                                        <xamarinJkh:IconView
+                                            x:Name="IconViewOss"
+                                            Source="ic_questions2"
+                                            Foreground="{x:DynamicResource MainColor}"
+                                            HeightRequest="30"
+                                            Margin="-10, 0, 0, 0"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Text="{x:Static xamarinJkh:AppResources.OSS}"
+                                            FontSize="20"
+                                            TextColor="Black"
+                                            Margin="-20, 0, 0, 0"
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="Center" />
+                                        <xamarinJkh:IconView
+                                            x:Name="IconViewForvardOss"
+                                            Source="ic_arrow_forward"
+                                            HeightRequest="25"
+                                            WidthRequest="25"
+                                            Margin="0,0,15,0"
+                                            Foreground="{x:DynamicResource MainColor}"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
                                 </StackLayout>
                             </customRenderers:MaterialFrame>
 

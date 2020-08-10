@@ -1086,6 +1086,9 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="ErrorEnterSum" xml:space="preserve">
     <value>Enter sum</value>
   </data>
+  <data name="ErrorEnterSumOne" xml:space="preserve">
+    <value>Enter sum more than 1</value>
+  </data>
   <data name="ErrorInfoBills" xml:space="preserve">
     <value>Failed to get receipt information</value>
   </data>
@@ -1159,13 +1162,13 @@ A bot will call you on your number PHONE and tell an access code</value>
     <value>User is not found</value>
   </data>
   <data name="MoveDispatcher" xml:space="preserve">
-    <value>Pass the application?</value>
+    <value>Choose a consultant</value>
   </data>
   <data name="MoveDispatcherChoose" xml:space="preserve">
     <value>Выберите диспетчера:</value>
   </data>
   <data name="MoveDispatcherConfirm" xml:space="preserve">
-    <value>Pass application</value>
+    <value>Pass</value>
   </data>
   <data name="MoveDispatcherStatus" xml:space="preserve">
     <value>Passing application</value>

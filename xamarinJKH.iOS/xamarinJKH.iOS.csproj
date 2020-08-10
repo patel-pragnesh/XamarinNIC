@@ -437,6 +437,7 @@
     <BundleResource Include="Resources\star_filled.png" />
     <BundleResource Include="Resources\star.png" />
     <BundleResource Include="Resources\top_fon_login_light.png" />
+    <BundleResource Include="Resources\triangle.png" />
     <BundleResource Include="Resources\up_arrow.png" />
     <BundleResource Include="Resources\icon_add_app.png" />
     <BundleResource Include="Resources\ic_execute.png" />

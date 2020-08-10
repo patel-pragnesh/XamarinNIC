@@ -415,6 +415,9 @@
   <data name="ErrorEnterSum" xml:space="preserve">
     <value>Введіть суму</value>
   </data>
+  <data name="ErrorEnterSumOne" xml:space="preserve">
+    <value>Введіть суму бiльше 1</value>
+  </data>
   <data name="ErrorFileLoading" xml:space="preserve">
     <value>Не вдалося завантажити файл</value>
   </data>
@@ -614,13 +617,13 @@
     <value>За місяць</value>
   </data>
   <data name="MoveDispatcher" xml:space="preserve">
-    <value>Перекласти заявку?</value>
+    <value>Вибрати консультанта?</value>
   </data>
   <data name="MoveDispatcherChoose" xml:space="preserve">
     <value>Виберіть диспетчера:</value>
   </data>
   <data name="MoveDispatcherConfirm" xml:space="preserve">
-    <value>Перекласти заявку</value>
+    <value>Перекласти</value>
   </data>
   <data name="MoveDispatcherStatus" xml:space="preserve">
     <value>Переклад заявки ..</value>

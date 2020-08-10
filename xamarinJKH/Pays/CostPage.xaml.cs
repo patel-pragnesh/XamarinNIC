@@ -200,6 +200,7 @@ namespace xamarinJKH.Pays
 
 
             string sumText = EntrySum.Text.Equals("") ? "0" : EntrySum.Text;
+          
             string totalSum = sumText;
 
             // if (isComission)
@@ -249,8 +250,15 @@ namespace xamarinJKH.Pays
         private async void Pay(object sender, EventArgs e)
         {
             string sumText = EntrySum.Text;
+            
             if (!sumText.Equals("") && !sumText.Equals("0") && !sumText.Equals("-"))
             {
+                decimal sumPay = Decimal.Parse(sumText);
+                if (sumPay < 1 && sumPay > 0)
+                {
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorEnterSumOne, "OK");
+                    return;
+                }
                 decimal sum = Decimal.Parse(sumText);
                 if (sum > 0)
                 {

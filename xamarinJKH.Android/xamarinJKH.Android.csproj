@@ -232,6 +232,7 @@
     <AndroidResource Include="Resources\drawable\ic_top_event_back.png" />
     <AndroidResource Include="Resources\drawable\pay.png" />
     <AndroidResource Include="Resources\drawable\top_fon_login_light.png" />
+    <AndroidResource Include="Resources\drawable\triangle.png" />
     <AndroidResource Include="Resources\drawable\up_arrow.png" />
     <AndroidResource Include="Resources\layout\Tabbar.xml" />
     <AndroidResource Include="Resources\layout\Toolbar.xml" />
