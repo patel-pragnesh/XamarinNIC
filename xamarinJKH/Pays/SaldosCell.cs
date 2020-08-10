@@ -84,10 +84,25 @@ namespace xamarinJKH.Pays
 
                 FormattedString formattedIdent = new FormattedString();
                 DateIdent = FirstLetterToUpper(DateIdent);
+
+                DateTime dtView;
+                string spanTextField;
+                //var dateToView1 = DateTime.ParseExact(DateIdent.Replace("г.", " ").Trim(), "MMMM yyyy", new CultureInfo("ru-RU"));
+                var dateCorrect = DateTime.TryParseExact(DateIdent.Replace("г.", " ").Trim(), "MMMM yyyy", new CultureInfo("ru-RU"), DateTimeStyles.None , out dtView);
+                if (dateCorrect)
+                {
+                    spanTextField = dtView.ToString("MMMM yyyy") + (CultureInfo.CurrentCulture.Name.Contains("en") ? string.Empty : " г.");
+                }
+                else
+                    spanTextField = DateIdent;
+                //.ToString("MMMM yyyy");
+                //+ (CultureInfo.CurrentCulture.Name.Contains("en") ? string.Empty : " г.").ToString();
+
                 formattedIdent.Spans.Add(new Span
                 {
-                    Text = DateTime.ParseExact(DateIdent.Replace("г."," ").Trim(), "MMMM yyyy", new CultureInfo("ru-RU")).ToString("MMMM yyyy") + 
-                            (CultureInfo.CurrentCulture.Name.Contains("en") ? string.Empty : " г.").ToString(),
+                    //Text = DateTime.ParseExact(DateIdent.Replace("г."," ").Trim(), "MMMM yyyy", new CultureInfo("ru-RU")).ToString("MMMM yyyy") + 
+                    //        (CultureInfo.CurrentCulture.Name.Contains("en") ? string.Empty : " г.").ToString(),
+                    Text=spanTextField,
                     TextColor = Color.Black,
                     FontSize = fs
                 });

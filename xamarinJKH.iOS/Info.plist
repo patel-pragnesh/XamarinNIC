@@ -21,7 +21,7 @@
 	<key>MinimumOSVersion</key>
 	<string>10.0</string>
 	<key>CFBundleIdentifier</key>
-	<string>rom.best.UkComfort</string>
+	<string>rom.best.dom24</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
@@ -65,6 +65,6 @@
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>CFBundleDisplayName</key>
-	<string>ГранельЖКХ</string>
+	<string>Дом 24</string>
 </dict>
 </plist>
