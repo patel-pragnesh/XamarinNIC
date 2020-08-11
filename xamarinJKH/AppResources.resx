@@ -596,10 +596,10 @@
     <value>Цена</value>
   </data>
   <data name="Prof" xml:space="preserve">
-    <value>Профиль</value>
+    <value>Наш сервис</value>
   </data>
   <data name="Profile_NavBar" xml:space="preserve">
-    <value>Профиль</value>
+    <value>Наш сервис</value>
   </data>
   <data name="QuestionsAmount" xml:space="preserve">
     <value>Количество вопросов</value>

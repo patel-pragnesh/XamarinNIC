@@ -77,32 +77,39 @@ namespace xamarinJKH.Main
             addressStack.Orientation = StackOrientation.Horizontal;
             addressStack.HorizontalOptions = LayoutOptions.FillAndExpand;
             
-            Grid grid = new Grid
-            {
-                RowDefinitions =
-                {
-                    new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                },
-                ColumnDefinitions =
-                {
-                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) },
-                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) },
-                }
-            };
-            
-            
+            //Grid grid = new Grid
+            //{
+            //    RowDefinitions =
+            //    {
+            //        new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+            //    },
+            //    ColumnDefinitions =
+            //    {
+            //        new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) },
+            //        new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+            //        new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) },
+            //    }
+            //};
+
+            StackLayout grid = new StackLayout();
+            grid.Orientation = StackOrientation.Horizontal;
+            grid.HorizontalOptions = LayoutOptions.FillAndExpand;
+
+
+            StackLayout grid0 = new StackLayout();
+            grid0.Orientation = StackOrientation.Horizontal;
+            grid0.HorizontalOptions = LayoutOptions.FillAndExpand;
+            grid0.VerticalOptions = LayoutOptions.Start;
+
+
             Label adressLbl = new Label();
             adressLbl.Text = $"{AppResources.Adress}:";
             adressLbl.FontSize = 15;
             adressLbl.TextColor = Color.FromHex("#A2A2A2");
             adressLbl.HorizontalTextAlignment = TextAlignment.Start;
             adressLbl.HorizontalOptions = LayoutOptions.Fill;
-            adress.FontSize = 15;
-            adress.TextColor = Color.Black;
-            adress.HorizontalTextAlignment = TextAlignment.End;
-            adress.HorizontalOptions = LayoutOptions.Fill;
-            adress.MaxLines = 3;
+            adressLbl.MinimumWidthRequest = 60;
+           
             // addressStack.Children.Add(adressLbl);
             // addressStack.Children.Add(new Label
             // {
@@ -114,16 +121,54 @@ namespace xamarinJKH.Main
             // });
             // addressStack.Children.Add(adress);
             
-            grid.Children.Add(adressLbl, 0, 0);
-            grid.Children.Add(new Label
-            {
-                HeightRequest = 1,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                BackgroundColor = Color.LightGray,
-                Margin = new Thickness(0, 5, 0, 0),
-                VerticalOptions = LayoutOptions.Center
-            }, 1, 0);
-            grid.Children.Add(adress, 2, 0);
+            grid0.Children.Add(adressLbl);
+            //grid.Children.Add(new Label
+            //{
+            //    HeightRequest = 1,
+            //    HorizontalOptions = LayoutOptions.FillAndExpand,
+            //    BackgroundColor = Color.LightGray,
+            //    Margin = new Thickness(0, 5, 0, 0),
+            //    VerticalOptions = LayoutOptions.Center
+            //});
+
+            BoxView b = new BoxView();
+            b.VerticalOptions = LayoutOptions.Center;
+            b.HeightRequest = 1;
+            b.Margin = new Thickness(0, 2, 0, 0);
+            b.HorizontalOptions = LayoutOptions.FillAndExpand;
+            b.Color = Color.LightGray;
+            b.MinimumWidthRequest = 10;
+
+            //Label linesaddr = new Label();
+            //linesaddr.HeightRequest = 1;
+            //linesaddr.BackgroundColor = Color.LightGray;
+            //linesaddr.Margin = new Thickness(0, 2, 0, 0);
+            //linesaddr.VerticalOptions = LayoutOptions.Center;
+            //linesaddr.HorizontalOptions = LayoutOptions.FillAndExpand;
+            //linesaddr.MinimumWidthRequest = 160;
+
+            //grid0.Children.Add(linesaddr);
+            grid0.Children.Add(b);
+            
+            grid.Children.Add(grid0);
+
+
+            adress.FontSize = 15;
+            adress.TextColor = Color.Black;
+            adress.HorizontalTextAlignment = TextAlignment.End;
+            adress.HorizontalOptions = LayoutOptions.Fill;
+            adress.MaxLines = 3;
+            if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
+            { adress.WidthRequest = 450; adressLbl.FontSize = 13; adress.FontSize = 13; }
+            else
+            if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
+            { adress.WidthRequest = 500; adressLbl.FontSize = 14; adress.FontSize = 14; }
+            else
+                adress.WidthRequest = Convert.ToInt32(Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width * 0.7);
+            
+            
+            
+            grid.Children.Add(adress);
 
             container.Children.Add(header);
             container.Children.Add(grid);

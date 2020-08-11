@@ -73,12 +73,12 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>Apple Distribution: Evgeny Yurtaykin (UK4AR963E7)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>dom24Distr</CodesignProvision>
+    <CodesignProvision>distrGranel</CodesignProvision>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
     <MtouchLink>SdkOnly</MtouchLink>
     <BuildIpa>true</BuildIpa>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
-    <IpaPackageName>dom24</IpaPackageName>
+    <IpaPackageName>granel323</IpaPackageName>
     <IpaIncludeArtwork>true</IpaIncludeArtwork>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
@@ -156,6 +156,9 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-83.5x83.5@2x1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ItunesArtwork@2x1.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\upload1.png">

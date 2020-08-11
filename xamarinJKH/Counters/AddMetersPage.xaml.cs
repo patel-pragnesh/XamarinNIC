@@ -19,6 +19,7 @@ using Plugin.Messaging;
 using Xamarin.Forms.Markup;
 using Xamarin.Forms.PancakeView;
 using xamarinJKH.Tech;
+using Xamarin.Essentials;
 
 namespace xamarinJKH.Counters
 {
@@ -59,7 +60,16 @@ namespace xamarinJKH.Counters
                     {
                         CounterLayout.Margin = new Thickness(5, 0);
                         meterRootStack.Margin = new Thickness(5);
+
+                        NameLbl.FontSize = 15;
+                        UniqNumLbl.FontSize = 13;
+                        CheckupLbl.FontSize = 13;
+                        RecheckLbl.FontSize = 13;
                     }
+
+                    UniqNumLbl.Margin = new Thickness(0, 5, 0, -5);
+                    CheckupLbl.Margin = new Thickness(0, -5, 0, -5);
+                    RecheckLbl.Margin = new Thickness(0, -5, 0, -5);
 
                     //BackgroundColor = Color.White;
                     // ImageFon.Margin = new Thickness(0, 0, 0, 0);
@@ -442,6 +452,8 @@ namespace xamarinJKH.Counters
             if (meter.Resource.ToLower().Contains("холодное") || meter.Resource.ToLower().Contains("хвс"))
             {
                 img.Source = ImageSource.FromFile("ic_cold_water");
+                //if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+                    meter.Resource += ", м3";
             }
             else if (meter.Resource.ToLower().Contains("горячее") || meter.Resource.ToLower().Contains("гвс")|| meter.Resource.ToLower().Contains("подог")|| meter.Resource.ToLower().Contains("отопл"))
             {
@@ -450,11 +462,23 @@ namespace xamarinJKH.Counters
             else if (meter.Resource.ToLower().Contains("эле"))
             {
                 img.Source = ImageSource.FromFile("ic_electr");
+
+                //если это э/э и не указаны ед. измерения, в RU локали добавляем их
+                if (!meter.Resource.ToLower().Contains("кВт"))
+                    meter.Resource += ", кВт";
             }
             else
             {
                 img.Source = ImageSource.FromFile("ic_cold_water");
             }
+
+            //если это вода и не указаны ед. измерения, в RU локали добавляем их
+            if ((meter.Resource.ToLower().Contains("горячее") || meter.Resource.ToLower().Contains("гвс")
+                || meter.Resource.ToLower().Contains("холодное") || meter.Resource.ToLower().Contains("хвс"))
+                && !meter.Resource.ToLower().Contains("м3"))
+                meter.Resource += ", м3";
+
+
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
             NameLbl.Text = meter.CustomName != null && !meter.CustomName.Equals("") ? meter.CustomName : meter.Resource;

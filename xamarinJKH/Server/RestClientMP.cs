@@ -16,8 +16,8 @@ namespace xamarinJKH.Server
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
-        public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
+         public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
         // public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_yegkh"; //Легкая жизнъ
@@ -25,6 +25,7 @@ namespace xamarinJKH.Server
         //public const string SERVER_ADDR = "https://api.sm-center.ru/uk_egokomfort"; // Эгокомфорт
         // public const string SERVER_ADDR = "https://api.sm-center.ru/tsg_sivtsev_vrazhek14"; // ТСЖ Сивцев Вражек 14
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_zip"; // ЗИП
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/ukom";
 
         public const string SEND_TEACH_MAIL = "Public/TechSupportAppeal"; // Создание обращения в тех поддержк
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутентификация сотрудника

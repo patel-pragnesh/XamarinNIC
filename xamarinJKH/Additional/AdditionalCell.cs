@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using xamarinJKH.CustomRenderers;
 using xamarinJKH.Server;
 
@@ -9,23 +10,40 @@ namespace xamarinJKH.Additional
     public class AdditionalCell : ViewCell
     {
         Image image;
+        
+        //MaterialFrame frame;
+        PancakeView frame;
         RestClientMP _server = new RestClientMP();
 
         public AdditionalCell()
         {
-            image = new Image();            
-            MaterialFrame frame = new MaterialFrame();
-            frame.Elevation = 20;
+            image = new Image();
+
+
+            frame = new PancakeView(); // MaterialFrame();
+            //frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
-            frame.BackgroundColor =  Color.White;
+           // frame.BackgroundColor =  Color.White;
             frame.IsClippedToBounds = true;
             frame.Margin = new Thickness(10, 0, 10, 10);
             frame.Padding = new Thickness(0);
             frame.CornerRadius = 40;
-            //StackLayout cell = new StackLayout();
+
+            //frame.BackgroundColor = Color.Red;
+            
+            //Frame cell = new Frame();
+            //cell.Padding = new Thickness(0);
+            //cell.HorizontalOptions = LayoutOptions.FillAndExpand;
+            //cell.VerticalOptions = LayoutOptions.Start;
+            //cell.BackgroundColor = Color.White;
+            //cell.IsClippedToBounds = true;
+            //cell.CornerRadius = 40;
+            //cell.Content = image;
             //cell.Children.Add(image);
-            frame.Content = image;// cell;
+            
+            frame.Content = image;
+            
             View = frame;
         }
 
@@ -75,11 +93,16 @@ namespace xamarinJKH.Additional
                 if (imageByte != null)
                 {
                     Stream stream = new MemoryStream(imageByte);
+                    //image = new Image();       
+
                     image.Source = ImageSource.FromStream(() => { return stream; });
                     image.VerticalOptions = LayoutOptions.FillAndExpand;
                     image.Aspect = Aspect.AspectFill;
                     image.HorizontalOptions = LayoutOptions.FillAndExpand;
                     image.HeightRequest = ImageHeight;
+
+                    //frame.Content = image;
+              
                 }
                 
             }

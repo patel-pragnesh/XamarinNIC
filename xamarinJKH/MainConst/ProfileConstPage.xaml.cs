@@ -54,6 +54,12 @@ namespace xamarinJKH.MainConst
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
+
+                    // //только темная тема в ios
+                    themelabel.IsVisible = false;
+                    ThemeButtonBlock.IsVisible = false;
+                    ThemeButtonBlock.IsEnabled = false;
+
                     //BackgroundColor = Color.White;
                     // ImageFon.Margin = new Thickness(0, 0, 0, 0);
                     // StackLayout.Margin = new Thickness(0, 33, 0, 0);
@@ -158,8 +164,8 @@ namespace xamarinJKH.MainConst
         {
             FormattedString formattedName = new FormattedString();
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
-            if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
-                currentTheme = OSAppTheme.Dark;
+            //if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+            //    currentTheme = OSAppTheme.Dark;
             formattedName.Spans.Add(new Span
             {
                 Text = Settings.Person.FIO,
@@ -222,6 +228,7 @@ namespace xamarinJKH.MainConst
 
         private void RadioButtonAuto_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
+            //только темная тема в ios
             if (Xamarin.Essentials.DeviceInfo.Platform != DevicePlatform.iOS)
             {
                 Application.Current.UserAppTheme = OSAppTheme.Unspecified;

@@ -274,14 +274,14 @@
                                     <StackLayout
                                         Orientation="Horizontal">
 
-                                        <Label Text="{x:Static xamarinJkh:AppResources.Theme}"
+                                        <Label x:Name="themelabel" Text="{x:Static xamarinJkh:AppResources.Theme}"
                                                Margin="10, 0, 0, 0"
                                                FontAttributes="Bold"
                                                FontSize="20"
                                                TextColor="Black"
                                                HorizontalOptions="Center" />
                                     </StackLayout>
-                                    <StackLayout
+                                    <StackLayout x:Name="ThemeButtonBlock"
                                         Margin="5,0,0,0">
                                         <RadioButton
                                             x:Name="RadioButtonAuto"

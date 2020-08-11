@@ -77,23 +77,12 @@ namespace xamarinJKH.Main
                     //BackgroundColor = Color.White;
                     ImageFon.Margin = new Thickness(0, 0, 0, 0);
 
-
+                    //только темная тема в ios
                     themelabel.IsVisible = false;
                     ThemeButtonBlock.IsVisible = false;
                     ThemeButtonBlock.IsEnabled = false;
 
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
-                    // if (Application.Current.MainPage.Height < 800)
-                    // {
-                    //     ScrollViewContainer.Margin = new Thickness(10, -170, 10, 0);
-                    //     BackStackLayout.Margin = new Thickness(5, 15, 0, 0);
-                    // }
-                    // else
-                    // {
-                    //     ScrollViewContainer.Margin = new Thickness(10, -230, 10, 0);
-                    //     BackStackLayout.Margin = new Thickness(5, 35, 0, 0);
-                    // }
+                    
                     break;
                 case Device.Android:
                     // double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
@@ -244,15 +233,14 @@ namespace xamarinJKH.Main
 
         private void RadioButtonAuto_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
+            //только темная тема в ios 
             if (Xamarin.Essentials.DeviceInfo.Platform != DevicePlatform.iOS)
             {
                 Application.Current.UserAppTheme = OSAppTheme.Unspecified;
                 MessagingCenter.Send<Object>(this, "ChangeTheme");
                 MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
                 Preferences.Set("Theme", 0);
-            }
-
-                
+            }                
         }
 
         private void RadioButtonLigth_OnCheckedChanged(object sender, CheckedChangedEventArgs e)

@@ -127,10 +127,10 @@ namespace xamarinJKH
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    if (App.ScreenHeight < 600)
+                    if (App.ScreenHeight < 600 || Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width<700)
                     {
-                        RegistLabel.FontSize = 13;
-                        ForgotPass.FontSize = 13;
+                        RegistLabel.FontSize = 12;
+                        ForgotPass.FontSize = 12;
                         RegStackLayout.Margin = new Thickness(0, 5, 0, 0);
                         BottomStackLayout.Margin = new Thickness(0, -20, 0, 20);
                     }
