@@ -2666,7 +2666,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Наш сервис.
+        ///   Looks up a localized string similar to Профиль.
         /// </summary>
         internal static string Prof {
             get {
@@ -2675,7 +2675,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Наш сервис.
+        ///   Looks up a localized string similar to Профиль.
         /// </summary>
         internal static string Profile_NavBar {
             get {
