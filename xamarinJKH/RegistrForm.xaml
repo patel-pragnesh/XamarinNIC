@@ -614,7 +614,7 @@
                                                     VerticalOptions="Center" />
                                     <Label x:Name="BtnSave"
                                            Text="{x:Static xamarinJkh:AppResources.Register}"
-                                           Margin="0, 0, 0, 10"
+                                           Margin="0, 0, 0, 0"
                                            FontSize="15"
                                            TextColor="White"
                                            FontAttributes="Bold"
