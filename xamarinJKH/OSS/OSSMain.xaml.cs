@@ -134,6 +134,11 @@ namespace xamarinJKH
             ButtonActive.IsEnabled = false;
             ButtonArchive.IsEnabled = false;
 
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return false;
+            }
             //получаем данные от сервера по ОСС
             var result = await rc.GetOss();
             //var result1 = await rc.GetOss(1);

@@ -151,7 +151,6 @@ namespace xamarinJKH
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-           
         }
 
         async void CheckForUpdate()
@@ -167,7 +166,8 @@ namespace xamarinJKH
 
         private async void getSettings()
         {
-            
+            Version.Text = "ver " + Xamarin.Essentials.AppInfo.VersionString;
+
             Settings.MobileSettings = await server.MobileAppSettings("4.02", "0");
             if (Settings.MobileSettings.Error == null)
             {
@@ -181,8 +181,8 @@ namespace xamarinJKH
                 
                 
                 UkName.Text = Settings.MobileSettings.main_name;
-                Version.Text ="ver " + Xamarin.Essentials.AppInfo.VersionString;
-                hex = Color.FromHex(Settings.MobileSettings.color);
+                var color = !string.IsNullOrEmpty(Settings.MobileSettings.color) ? $"#{Settings.MobileSettings.color}" :"#FF0000";
+                hex = Color.FromHex(color);
                 Application.Current.Resources["MainColor"] = hex;
                 //IconViewLogin.Foreground = hex;
                 //IconViewPass.Foreground = hex;
@@ -222,7 +222,7 @@ namespace xamarinJKH
             }
             else
             {
-                    await DisplayAlert(AppResources.ErrorTitle, Settings.MobileSettings.Error, "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK");
                     getSettings();
 
                 // BtnLogin.IsEnabled = false;
@@ -354,7 +354,7 @@ namespace xamarinJKH
                     }
                     else
                     {
-                        await DisplayAlert(AppResources.ErrorTitle, login.Error, "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK");
                     }
                 }
             }

@@ -182,6 +182,12 @@ namespace xamarinJKH.MainConst
 
         async void getApps()
         {
+
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             _requestList = await _server.GetRequestsListConst();
             if (_requestList.Error == null)
             {

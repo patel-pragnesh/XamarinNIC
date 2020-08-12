@@ -14,6 +14,13 @@
            Margin="15,125,15,15"
            Padding="25,20,25,20">
         <StackLayout WidthRequest="250" Spacing="15">
+            <xamarinJkh:IconView x:Name="IconViewClose"
+                                 Source="ic_close"
+                                 HeightRequest="15"
+                                 WidthRequest="15"
+                                 Foreground="Black"
+                                 HorizontalOptions="End"
+                                 VerticalOptions="Center" />
             <StackLayout Spacing="-2"
                          Padding="0,0,0,10"
                          HorizontalOptions="CenterAndExpand"
@@ -46,8 +53,9 @@
                    x:Name="FrameBtnAdd"
                    Padding="0">
                 <Button x:Name="BtnAdd"
-                        Text="Выбрать"
+                        Text="{x:Static xamarinJkh:AppResources.HomeChoose}"
                         TextColor="White"
+                        Clicked="BtnAdd_OnClicked"
                         FontAttributes="Bold"
                         BackgroundColor="Transparent" />
             </Frame>

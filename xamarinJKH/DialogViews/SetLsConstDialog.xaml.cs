@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Server;
@@ -25,6 +25,9 @@ namespace xamarinJKH.DialogViews
                 getHouse();
             };
             StackLayoutHouse.GestureRecognizers.Add(setLss);
+            var close = new TapGestureRecognizer();
+            close.Tapped += async (s, e) => { await PopupNavigation.Instance.PopAsync(); };
+            IconViewClose.GestureRecognizers.Add(close);
         }
         
         void setListHouse(ItemsList<HouseProfile> groups, ref string[] param)
@@ -69,5 +72,11 @@ namespace xamarinJKH.DialogViews
             }
         }
         public Dictionary<string, string> Houses { get; set; }
+
+        private async void BtnAdd_OnClicked(object sender, EventArgs e)
+        {
+            MessagingCenter.Send<Object, string>(this, "SetLs", LabelHouse.Text);
+            await PopupNavigation.Instance.PopAsync();
+        }
     }
 }

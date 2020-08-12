@@ -65,6 +65,11 @@ namespace xamarinJKH.Pays
 
         async void GetPayLink(string ident, decimal sum)
         {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             await Settings.StartProgressBar();
             PayService payLink = await server.GetPayLink(ident, sum);
             if (payLink.payLink != null)
@@ -80,6 +85,11 @@ namespace xamarinJKH.Pays
         } 
         async void GetPayLinkRequest(int? id, decimal sum)
         {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             await Settings.StartProgressBar();
             PayService payLink = await server.GetPayLink(id, sum);
             if (payLink.payLink != null)
@@ -121,6 +131,11 @@ namespace xamarinJKH.Pays
 
         public async Task StartProgressBar(string url)
         {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             // Loading settings
             Configurations.LoadingConfig = new LoadingConfig
             {

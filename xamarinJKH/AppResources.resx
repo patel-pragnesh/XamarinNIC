@@ -159,6 +159,9 @@
   <data name="AttachmentChooseFile" xml:space="preserve">
     <value>Выбрать файл</value>
   </data>
+  <data name="Choise" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
   <data name="AttachmentChoosePhoto" xml:space="preserve">
     <value>Выбрать фото из галереи</value>
   </data>
@@ -1183,5 +1186,14 @@
   </data>
   <data name="UpdateDialogUpdate" xml:space="preserve">
     <value>Обновить</value>
+  </data>
+  <data name="IdentNotFound" xml:space="preserve">
+    <value>Лс не найден</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Номер телефона: </value>
+  </data>
+  <data name="ErrorNoInternet" xml:space="preserve">
+    <value>Отсутствует подключение к интернету</value>
   </data>
 </root>

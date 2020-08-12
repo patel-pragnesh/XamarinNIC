@@ -137,6 +137,11 @@ namespace xamarinJKH.MainConst
 
         async Task getMonitorStandart(int id, int houseID = -1)
         {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             ItemsList<RequestStats> result = await _server.RequestStats(id, houseID);
             if (result.Error == null)
             {
@@ -689,6 +694,11 @@ namespace xamarinJKH.MainConst
 
         async Task getHouseGroups()
         {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             ItemsList<NamedValue> groups = await _server.GetHouseGroups();
             if (groups.Error == null)
             {
@@ -712,6 +722,11 @@ namespace xamarinJKH.MainConst
 
         async Task getHouse()
         {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             ItemsList<HouseProfile> groups = await _server.GetHouse();
             if (groups.Error == null)
             {
