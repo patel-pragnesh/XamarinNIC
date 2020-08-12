@@ -146,6 +146,15 @@
                                 TextColor="#A2A2A2"
                                 HorizontalOptions="FillAndExpand"
                                 Keyboard="Text"/>
+                            <Label
+                                x:Name="LabelLs"
+                                Text="Нажмите для выбора"
+                                VerticalOptions="Center"
+                                TextColor="#A2A2A2"
+                                HorizontalTextAlignment="Center"
+                                HorizontalOptions="FillAndExpand"
+                                IsVisible="False"
+                                FontSize="17" />
                         </StackLayout>
                         <StackLayout
                             Margin="5, 5, 5, 5"

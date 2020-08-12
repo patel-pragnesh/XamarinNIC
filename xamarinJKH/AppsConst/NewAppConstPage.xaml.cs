@@ -11,9 +11,11 @@ using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.MainConst;
 using xamarinJKH.Server;
@@ -90,6 +92,18 @@ namespace xamarinJKH.AppsConst
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
+            
+            var setLss = new TapGestureRecognizer();
+#if DEBUG
+            setLss.Tapped += async (s, e) =>
+            {
+                await  PopupNavigation.Instance.PushAsync(
+                    new SetLsConstDialog());
+            };
+            LabelLs.GestureRecognizers.Add(setLss);
+            EntryLS.IsVisible = false;
+            LabelLs.IsVisible = true;
+#endif
             
             SetText();
             files = new List<FileData>();
