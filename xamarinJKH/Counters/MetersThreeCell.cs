@@ -484,16 +484,9 @@ namespace xamarinJKH.Main
         {
             frameBtn.IsVisible = false;
             var stack = (View as Frame).Content as StackLayout;
-            stack.Children.RemoveAt(stack.Children.Count - 2);
-            stack.Children.RemoveAt(stack.Children.Count - 1);
-
-            stack.Children.Add(new Label()
+            try
             {
-                Text = $"{AppResources.PenencePassed} {Values[0].Period}",
-                FontSize = 14,
-                VerticalTextAlignment = TextAlignment.Center,
-                HorizontalTextAlignment = TextAlignment.Center
-            });
+            
 
             int currDay = DateTime.Now.Day;
             if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
@@ -501,6 +494,17 @@ namespace xamarinJKH.Main
                 (Settings.Person.Accounts[0].MetersStartDay == 0 &&
                  Settings.Person.Accounts[0].MetersEndDay == 0))
             {
+                stack.Children.RemoveAt(stack.Children.Count - 2);
+                stack.Children.RemoveAt(stack.Children.Count - 1);
+           
+
+                stack.Children.Add(new Label()
+                {
+                    Text = $"{AppResources.PenencePassed} {Values[0].Period}",
+                    FontSize = 14,
+                    VerticalTextAlignment = TextAlignment.Center,
+                    HorizontalTextAlignment = TextAlignment.Center
+                });
                 var editLabel = new Label()
                 {
                     Text = AppResources.ChangePenance,
@@ -511,7 +515,11 @@ namespace xamarinJKH.Main
                 };
                 stack.Children.Add(editLabel);
             }    
+            }
+            catch (Exception e)
+            {
                 
+            }
         }
         string GetFormat()
         {

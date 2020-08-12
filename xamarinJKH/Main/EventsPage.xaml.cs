@@ -175,7 +175,7 @@ namespace xamarinJKH.Main
 
         void SetColor()
         {
-            Color hexColor = Color.FromHex(Settings.MobileSettings.color);
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
             IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);

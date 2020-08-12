@@ -146,6 +146,24 @@
                                 TextColor="#A2A2A2"
                                 HorizontalOptions="FillAndExpand"
                                 Keyboard="Text"/>
+                            
+                            <Label
+                                x:Name="LabelLs"
+                                Text="Нажмите для выбора"
+                                VerticalOptions="Center"
+                                TextColor="#A2A2A2"
+                                HorizontalTextAlignment="Center"
+                                HorizontalOptions="FillAndExpand"
+                                IsVisible="False"
+                                FontSize="17" />
+                            <xamarinJkh:IconView x:Name="IconViewClose"
+                                                 Source="ic_close"
+                                                 HeightRequest="15"
+                                                 IsVisible="False"
+                                                 Margin="0,0,5,0"
+                                                 WidthRequest="15"
+                                                 Foreground="{x:DynamicResource MainColor}"
+                                                 VerticalOptions="Center" />
                         </StackLayout>
                         <StackLayout
                             Margin="5, 5, 5, 5"
