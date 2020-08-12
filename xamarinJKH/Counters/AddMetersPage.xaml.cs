@@ -553,6 +553,11 @@ namespace xamarinJKH.Counters
 
         public async void SaveInfoAccount(string count)
         {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             if (!string.IsNullOrEmpty(count))
             {
                 double d = Double.Parse(count.Replace('.',','));

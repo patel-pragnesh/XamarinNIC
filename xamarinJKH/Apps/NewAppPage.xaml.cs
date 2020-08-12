@@ -434,6 +434,11 @@ namespace xamarinJKH.Apps
             {
                 try
                 {
+                    if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+                    {
+                        Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                        return;
+                    }
                     string ident = Settings.Person.Accounts[PickerLs.SelectedIndex].Ident;
                     string typeId = Settings.TypeApp[PickerType.SelectedIndex].ID;
                     IDResult result = await _server.newApp(ident, typeId, text);
@@ -489,7 +494,12 @@ namespace xamarinJKH.Apps
 
         async void sendFiles(string id)
         {
-            int i = 0;
+            int i = 0; 
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             foreach (var each in files)
             {
                 CommonResult commonResult = await _server.AddFileApps(id, each.FileName, Byteses[i],

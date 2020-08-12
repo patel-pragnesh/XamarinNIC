@@ -56,6 +56,11 @@ namespace xamarinJKH.Pays
 
         private async Task RefreshData()
         {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             ItemsList<AccountAccountingInfo> info = await _server.GetAccountingInfo();
             if (info.Error == null)
             {

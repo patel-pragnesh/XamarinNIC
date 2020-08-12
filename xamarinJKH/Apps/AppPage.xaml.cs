@@ -164,6 +164,11 @@ namespace xamarinJKH.Apps
 
         private async Task RefreshData()
         {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             RequestsUpdate requestsUpdate =
                 await _server.GetRequestsUpdates(Settings.UpdateKey, _requestInfo.ID.ToString());
             if (requestsUpdate.Error == null)

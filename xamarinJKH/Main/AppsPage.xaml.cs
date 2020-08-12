@@ -76,6 +76,15 @@ namespace xamarinJKH.Main
             {
                 while (!this.CancellationToken.IsCancellationRequested)
                 {
+                    if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+                    {
+                        Device.BeginInvokeOnMainThread(async () => 
+                        {
+                            await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK");
+                            await Task.Delay(TimeSpan.FromSeconds(5));
+                        });
+
+                    }
                     await viewModel.UpdateTask();
                     await Task.Delay(TimeSpan.FromSeconds(5));
                 }
@@ -291,6 +300,11 @@ namespace xamarinJKH.Main
 
         async Task getAppsAsync()
         {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             _requestList = await _server.GetRequestsList();
             if (_requestList.Error == null)
             {

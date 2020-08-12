@@ -1193,4 +1193,7 @@
   <data name="PhoneNumber" xml:space="preserve">
     <value>Номер телефона: </value>
   </data>
+  <data name="ErrorNoInternet" xml:space="preserve">
+    <value>Отсутствует подключение к интернету</value>
+  </data>
 </root>

@@ -51,6 +51,11 @@ namespace xamarinJKH
 
         private async Task RefreshData()
         {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             Settings.EventBlockData = await server.GetEventBlockData();
             if (Settings.EventBlockData.Error == null)
             {

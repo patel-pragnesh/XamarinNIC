@@ -33,7 +33,12 @@ namespace xamarinJKH.DialogViews
 
         private async void Button_OnClicked(object sender, EventArgs e)
         {
-            string name = EditName.Text;
+            string name = EditName.Text; 
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             if (!name.Equals(""))
             {
                 Configurations.LoadingConfig = new LoadingConfig {

@@ -143,6 +143,11 @@ namespace xamarinJKH.Additional
 
         private async void ButtonClick(object sender, EventArgs e)
         {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             FrameBtnQuest.IsVisible = false;
             progress.IsVisible = true;
             if (Settings.Person.Accounts.Count > 0)
