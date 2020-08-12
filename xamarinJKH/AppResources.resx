@@ -1184,4 +1184,10 @@
   <data name="UpdateDialogUpdate" xml:space="preserve">
     <value>Обновить</value>
   </data>
+  <data name="IdentNotFound" xml:space="preserve">
+    <value>Лс не найден</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Номер телефона: </value>
+  </data>
 </root>

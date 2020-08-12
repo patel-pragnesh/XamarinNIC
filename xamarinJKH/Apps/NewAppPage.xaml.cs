@@ -125,25 +125,33 @@ namespace xamarinJKH.Apps
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            if (Device.RuntimePlatform == "Android")
-            {
-                var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
-                if (camera_perm != PermissionStatus.Granted)
-                {
-                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
-                }
-
-                var file_perm = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
-                if (file_perm != PermissionStatus.Granted)
-                {
-                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
-                }
-
-            }
+            await Task.Delay(TimeSpan.FromSeconds(1));
+           
         }
 
         private async void AddFile()
         {
+
+            if (Device.RuntimePlatform == "Android")
+            {
+                try
+                {
+                    var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                    var storage_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                    if (camera_perm != PermissionStatus.Granted || storage_perm != PermissionStatus.Granted)
+                    {
+                        var status = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
+                        if (status[Permission.Camera] == PermissionStatus.Denied && status[Permission.Storage] == PermissionStatus.Denied)
+                        {
+                            return;
+                        }
+                    }
+                }
+                catch
+                {
+                    return;
+                }
+            }
             var action = await DisplayActionSheet(AppResources.AttachmentTitle, AppResources.Cancel, null,
                 TAKE_PHOTO,
                 TAKE_GALRY, TAKE_FILE);

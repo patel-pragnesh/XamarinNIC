@@ -562,6 +562,9 @@
   <data name="Ident" xml:space="preserve">
     <value>Особовий рахунок:</value>
   </data>
+  <data name="IdentNotFound" xml:space="preserve">
+    <value>Особовий рахунок не найден</value>
+  </data>
   <data name="IdentSuccess" xml:space="preserve">
     <value>Ос / р ident успішно підключений, для подальшої роботи перезавантажте додаток</value>
   </data>
@@ -969,6 +972,9 @@
   </data>
   <data name="PhoneLogin" xml:space="preserve">
     <value>Вхід за номером телефону</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Номер телефона:</value>
   </data>
   <data name="PinField" xml:space="preserve">
     <value>Пiн-код</value>

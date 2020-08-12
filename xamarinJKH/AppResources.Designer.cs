@@ -1394,6 +1394,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Лс не найден.
+        /// </summary>
+        internal static string IdentNotFound {
+            get {
+                return ResourceManager.GetString("IdentNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Лс/ч ident  успешно подключён, для дальнейшей работы перезагрузите приложение.
         /// </summary>
         internal static string IdentSuccess {
@@ -2608,6 +2617,15 @@ namespace xamarinJKH {
         internal static string PhoneLogin {
             get {
                 return ResourceManager.GetString("PhoneLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Номер телефона: .
+        /// </summary>
+        internal static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
             }
         }
         

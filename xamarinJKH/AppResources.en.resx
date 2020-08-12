@@ -1203,4 +1203,10 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="UpdateDialogUpdate" xml:space="preserve">
     <value>Update</value>
   </data>
+  <data name="IdentNotFound" xml:space="preserve">
+    <value>Account not found</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone Number:</value>
+  </data>
 </root>

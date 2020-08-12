@@ -82,21 +82,7 @@ namespace xamarinJKH.AppsConst
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            if (Device.RuntimePlatform == "Android")
-            {
-                var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
-                if (camera_perm != PermissionStatus.Granted)
-                {
-                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
-                }
-
-                var file_perm = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
-                if (file_perm != PermissionStatus.Granted)
-                {
-                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
-                }
-
-            }
+            await Task.Delay(TimeSpan.FromSeconds(1));
         }
 
         //private async Task RefreshData()
@@ -334,23 +320,28 @@ namespace xamarinJKH.AppsConst
             // // GetGalaryFile();
             //
             // // PickAndShowFile(null);
+
             if (Device.RuntimePlatform == "Android")
             {
-                await CrossMedia.Current.Initialize();
-                var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
-                if (camera_perm != PermissionStatus.Granted)
+                try
                 {
-                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
+                    var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                    var storage_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                    if (camera_perm != PermissionStatus.Granted || storage_perm != PermissionStatus.Granted)
+                    {
+                        var status = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
+                        if (status[Permission.Camera] == PermissionStatus.Denied && status[Permission.Storage] == PermissionStatus.Denied)
+                        {
+                            return;
+                        }
+                    }
                 }
-
-                var file_perm = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
-                if (file_perm != PermissionStatus.Granted)
+                catch
                 {
-                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                    return;
                 }
-
             }
-            
+
             MediaFile file = null;
             var action = await DisplayActionSheet("Добавить вложение", "Отмена", null,
                 TAKE_PHOTO,
