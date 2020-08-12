@@ -150,6 +150,10 @@ namespace xamarinJKH.Questions
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
+                if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+                {
+                    return;
+                }
                 if (IsRefreshing)
                     return;
 
