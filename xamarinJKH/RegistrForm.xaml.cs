@@ -16,6 +16,7 @@ using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 
 using xamarinJKH.ViewModels;
+using Xamarin.Forms.PancakeView;
 
 namespace xamarinJKH
 {
@@ -53,6 +54,15 @@ namespace xamarinJKH
 
                     //DOB.IsVisible = false;
                     //DOBSeparator.IsVisible = false;
+
+                    if(Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width<700)
+                    {                        
+                        DOBLabel.FontSize = 12;
+                        LabelTimer.FontSize = 10;
+                        lblConfirmPass.FontSize = 10;
+                        lblCreatePass.FontSize = 10;
+                    }
+
 
                     break;
                 case Device.Android:
@@ -120,9 +130,14 @@ namespace xamarinJKH
                     break;
             }
             BootomFrame.SetAppThemeColor(Frame.BorderColorProperty, hex, Color.LightGray);
-            RegistrationFrameStep1.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.White);
-            RegistrationFrameStep2.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.White);
-            RegistrationFrameStep3.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.White);
+
+            RegistrationFrameStep1.SetAppThemeColor(PancakeView.BorderColorProperty, hex, Color.White);
+            RegistrationFrameStep2.SetAppThemeColor(PancakeView.BorderColorProperty, hex, Color.White);
+            RegistrationFrameStep3.SetAppThemeColor(PancakeView.BorderColorProperty, hex, Color.White);
+
+            //RegistrationFrameStep1.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.White);
+            //RegistrationFrameStep2.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.White);
+            //RegistrationFrameStep3.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.White);
         }
 
      
