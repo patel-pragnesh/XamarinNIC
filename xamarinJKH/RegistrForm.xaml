@@ -180,7 +180,7 @@
 
                                 </StackLayout>
 
-                                <StackLayout
+                                <StackLayout x:Name="DOB"
                                     Margin="15, 10, 0, 0"
                                     Orientation="Horizontal">
                                     <xamarinJkh:IconView x:Name="IconViewDate"
@@ -224,7 +224,7 @@
                                         <!-- </Entry> -->
                                     </StackLayout>
                                 </StackLayout>
-                                <StackLayout
+                                <StackLayout x:Name="DOBSeparator"
                                     Margin="0,0,0,0"
                                     Orientation="Horizontal">
                                     <!-- <Image Source="ic_separator" -->

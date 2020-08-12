@@ -147,9 +147,8 @@
                             <Switch
                                 OnColor="{x:DynamicResource MainColor}"
                                 IsToggled="{Binding ShowClosed, Mode=TwoWay}"
-                                PropertyChanged="change"
                                 x:Name="SwitchApp"
-                                VerticalOptions="Center" />
+                                VerticalOptions="Center"  />
 
                             <Label Text="{x:Static xamarinJkh:AppResources.ShowClosedApps}"
                                    x:Name="LabelSwitch"

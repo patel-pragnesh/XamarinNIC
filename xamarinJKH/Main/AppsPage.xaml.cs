@@ -121,9 +121,10 @@ namespace xamarinJKH.Main
 
         public AppsPage()
         {
+            InitializeComponent();
             hex = Color.FromHex(Settings.MobileSettings.color);
             BindingContext = viewModel = new AppsPageViewModel();
-            InitializeComponent();
+            
             NavigationPage.SetHasNavigationBar(this, false);
             MessagingCenter.Subscribe<Object>(this, "AutoUpdate", (sender) =>
             {
@@ -140,49 +141,20 @@ namespace xamarinJKH.Main
                     if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
                         LabelSwitch.FontSize = 12;
 
-                    
-                    break;
-                default:
-                    break;
-            }
-
-            switch (Device.RuntimePlatform)
-            {
-                case Device.iOS:
                     FrameBtnAdd.IsVisible = false;
                     FrameBtnAddIos.IsVisible = true;
-                    // FrameBtnAddIos.BackgroundColor = hex;
-                    //BackgroundColor = Color.White;
-                    // ImageFon.Margin = new Thickness(0, 0, 0, 0);
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
-                    // if (Application.Current.MainPage.Height < 800)
-                    // {
-                    //     ScrollViewContainer.Margin = new Thickness(0, 0, 0, -170);
-                    //     BackStackLayout.Margin = new Thickness(5, 15, 0, 0);
-                    // }
-                    // else
-                    // {
-                    //     ScrollViewContainer.Margin = new Thickness(0, 0, 0, -180);
-                    //     BackStackLayout.Margin = new Thickness(5, 35, 0, 0);
-                    // }                  
+
                     break;
                 case Device.Android:
                     FrameBtnAdd.IsVisible = true;
                     FrameBtnAddIos.IsVisible = false;
-                    // ScrollViewContainer.Margin = new Thickness(0,0,0,-170);
-                    // BackStackLayout.Margin = new Thickness(5,25,0,0);
-                    // double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
-                    // if (Math.Abs(or - 0.5) < 0.02)
-                    // {
-                    //     ScrollViewContainer.Margin = new Thickness(0, 0, 0, -125);
-                    //     BackStackLayout.Margin = new Thickness(5, 25, 0, 0);
-                    // }
 
                     break;
                 default:
                     break;
             }
+
+           
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
@@ -196,8 +168,6 @@ namespace xamarinJKH.Main
                     if (phoneDialer.CanMakePhoneCall)
                         phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
                 }
-
-
             };
             LabelPhone.GestureRecognizers.Add(call);
             var addClick = new TapGestureRecognizer();
@@ -230,7 +200,27 @@ namespace xamarinJKH.Main
                     Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(new AppPage(request)));
                 }
             });
+
+            //            PropertyChanged = "change"
+
+            SwitchApp.Toggled += SwitchApp_Toggled; 
         }
+
+        private void SwitchApp_Toggled(object sender, ToggledEventArgs e)
+        {
+            if (SwitchApp.IsToggled)
+            {
+                RequestInfos = RequestInfosClose;
+            }
+            else
+            {
+                RequestInfos = RequestInfosAlive;
+            }
+            additionalList.ItemsSource = null;
+            additionalList.ItemsSource = RequestInfos;
+            
+        }
+
         public AppsPage(string app_id) : base ()
         {
             var request = RequestInfos.Find(x => x.ID == int.Parse(app_id));
@@ -380,8 +370,8 @@ namespace xamarinJKH.Main
             }
         }
 
-        private async void change(object sender, PropertyChangedEventArgs e)
-        {
+        private void change(object sender, PropertyChangedEventArgs e)
+        {            
             if (SwitchApp.IsToggled)
             {
                 RequestInfos = RequestInfosClose;

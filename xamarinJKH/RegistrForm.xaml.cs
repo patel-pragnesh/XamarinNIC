@@ -50,6 +50,10 @@ namespace xamarinJKH
                     //BackgroundColor = Color.White;
                     BackStackLayout.Margin = new Thickness(10, 20, 0, 0);
                     RegLbl.Margin = new Thickness(20, 60, 0, 0);
+
+                    //DOB.IsVisible = false;
+                    //DOBSeparator.IsVisible = false;
+
                     break;
                 case Device.Android:
                     double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
