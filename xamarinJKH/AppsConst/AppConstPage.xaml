@@ -289,7 +289,7 @@
                                                VerticalOptions="Center"
                                                Text=""
                                                AutoSize="Disabled"
-                                               Placeholder="Введите сообщение..."
+                                               Placeholder="{x:Static xamarinJkh:AppResources.ChatPlaceholder}"
                                                TextColor="#A2A2A2"
                                                HorizontalOptions="FillAndExpand" />
                     <xamarinJkh:IconView

@@ -625,6 +625,9 @@
   <data name="MoveDispatcherConfirm" xml:space="preserve">
     <value>Перекласти</value>
   </data>
+  <data name="Choise" xml:space="preserve">
+    <value>Виберіть</value>
+  </data>
   <data name="MoveDispatcherStatus" xml:space="preserve">
     <value>Переклад заявки ..</value>
   </data>

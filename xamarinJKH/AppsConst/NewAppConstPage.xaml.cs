@@ -29,6 +29,7 @@ namespace xamarinJKH.AppsConst
     public partial class NewAppConstPage : ContentPage
     {
         private RestClientMP _server = new RestClientMP();
+        public Command SetLs { get; set; }
         public List<FileData> files { get; set; }
         public List<byte[]> Byteses = new List<byte[]>();
         private AppsConstPage _appsPage;
@@ -40,6 +41,7 @@ namespace xamarinJKH.AppsConst
         const string FILE = "file";
         public int PikerLsItem = 0;
         public int PikerTypeItem = 0;
+
         public NewAppConstPage(AppsConstPage appsPage)
         {
             _appsPage = appsPage;
@@ -90,21 +92,32 @@ namespace xamarinJKH.AppsConst
             addFile.Tapped += async (s, e) => { AddFile(); };
             StackLayoutAddFile.GestureRecognizers.Add(addFile);
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
             
+            var delLS = new TapGestureRecognizer();
+            delLS.Tapped += async (s, e) =>
+            {
+                EntryLS.IsVisible = false;
+                LabelLs.IsVisible = true;
+                EntryLS.Text = "";
+                LabelLs.Text = "Нажмите для выбора";
+                IconViewClose.IsVisible = false;
+            };
+            IconViewClose.GestureRecognizers.Add(delLS);
+
             var setLss = new TapGestureRecognizer();
 #if DEBUG
             setLss.Tapped += async (s, e) =>
             {
-                await  PopupNavigation.Instance.PushAsync(
+                await PopupNavigation.Instance.PushAsync(
                     new SetLsConstDialog());
             };
             LabelLs.GestureRecognizers.Add(setLss);
             EntryLS.IsVisible = false;
             LabelLs.IsVisible = true;
 #endif
-            
+
             SetText();
             files = new List<FileData>();
             if (Settings.TypeApp == null)
@@ -122,7 +135,13 @@ namespace xamarinJKH.AppsConst
                 };
             }
 
-            ListViewFiles.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+            
+            MessagingCenter.Subscribe<Object, string>(this, "SetLs", async (sender, args) =>
+            {
+                LabelLs.Text = args;
+                EntryLS.Text = args;
+                IconViewClose.IsVisible = true;
+            });
         }
 
         private async void AddFile()
@@ -150,22 +169,22 @@ namespace xamarinJKH.AppsConst
 
             if (Device.RuntimePlatform == Device.Android)
             {
-                fileTypes = new string[] { "image/png", "image/jpeg" };
+                fileTypes = new string[] {"image/png", "image/jpeg"};
             }
 
             if (Device.RuntimePlatform == Device.iOS)
             {
-                fileTypes = new string[] { "public.image" }; // same as iOS constant UTType.Image
+                fileTypes = new string[] {"public.image"}; // same as iOS constant UTType.Image
             }
 
             if (Device.RuntimePlatform == Device.UWP)
             {
-                fileTypes = new string[] { ".jpg", ".png" };
+                fileTypes = new string[] {".jpg", ".png"};
             }
 
             if (Device.RuntimePlatform == Device.WPF)
             {
-                fileTypes = new string[] { "JPEG files (*.jpg)|*.jpg", "PNG files (*.png)|*.png" };
+                fileTypes = new string[] {"JPEG files (*.jpg)|*.jpg", "PNG files (*.png)|*.png"};
             }
 
             await PickAndShowFile(fileTypes);
@@ -245,7 +264,6 @@ namespace xamarinJKH.AppsConst
             {
                 await DisplayAlert("Ошибка", $"{ex.Message}\n{ex.StackTrace}", "ОК");
             }
-            
         }
 
         async Task GetGalaryFile()
@@ -278,7 +296,6 @@ namespace xamarinJKH.AppsConst
             {
                 await DisplayAlert("Ошибка", $"{ex.Message}\n{ex.StackTrace}", "ОК");
             }
-            
         }
 
         public async Task startLoadFile(string metod)
@@ -313,7 +330,7 @@ namespace xamarinJKH.AppsConst
         {
             if (stream is MemoryStream)
             {
-                return ((MemoryStream)stream).ToArray();
+                return ((MemoryStream) stream).ToArray();
             }
             else
             {
@@ -353,14 +370,14 @@ namespace xamarinJKH.AppsConst
             formattedName.Spans.Add(new Span
             {
                 Text = Settings.Person.FIO,
-                TextColor =  currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
+                TextColor = currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = 16
             });
             formattedName.Spans.Add(new Span
             {
                 Text = ", добрый день!",
-                TextColor =  currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
+                TextColor = currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
                 FontAttributes = FontAttributes.None,
                 FontSize = 16
             });
@@ -397,8 +414,6 @@ namespace xamarinJKH.AppsConst
 
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
             // try
             // {
             //     var identLength = Settings.Person.Accounts[PickerLs.SelectedIndex].Ident.Length;
@@ -436,6 +451,7 @@ namespace xamarinJKH.AppsConst
                 progress.IsVisible = false;
                 return;
             }
+
             if (!text.Equals(""))
             {
                 try
@@ -490,10 +506,8 @@ namespace xamarinJKH.AppsConst
                 }
 
                 setBinding();
-
             }
         }
-
 
 
         async void sendFiles(string id)

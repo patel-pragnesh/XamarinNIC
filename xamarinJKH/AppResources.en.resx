@@ -1170,6 +1170,9 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="MoveDispatcherConfirm" xml:space="preserve">
     <value>Pass</value>
   </data>
+  <data name="Choise" xml:space="preserve">
+    <value>Choise</value>
+  </data>
   <data name="MoveDispatcherStatus" xml:space="preserve">
     <value>Passing application</value>
   </data>
