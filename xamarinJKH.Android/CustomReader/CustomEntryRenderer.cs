@@ -33,9 +33,10 @@ namespace xamarinJKH.Android
                 Control.SetPadding(0, 0, 0, 0);
                 SetPadding(0, 0, 0, 0);
                 
-                IntPtr IntPtrtextViewClass = JNIEnv.FindClass(typeof(TextView));
-                IntPtr mCursorDrawableResProperty = JNIEnv.GetFieldID (IntPtrtextViewClass, "mCursorDrawableRes", "I");
-                JNIEnv.SetField (Control.Handle, mCursorDrawableResProperty, 0); 
+                
+                // IntPtr IntPtrtextViewClass = JNIEnv.FindClass(typeof(TextView));
+                // IntPtr mCursorDrawableResProperty = JNIEnv.GetFieldID (IntPtrtextViewClass, "mCursorDrawableRes", "I");
+                // JNIEnv.SetField (Control.Handle, mCursorDrawableResProperty, 0); 
             }
         }
     }
