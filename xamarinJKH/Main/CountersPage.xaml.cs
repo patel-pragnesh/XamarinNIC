@@ -54,6 +54,11 @@ namespace xamarinJKH.Main
 
         public async Task RefreshCountersData()
         {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             ItemsList<MeterInfo> info = await _server.GetThreeMeters();
             _meterInfoAll = info.Data;
             if (account == "Все")
@@ -295,6 +300,11 @@ namespace xamarinJKH.Main
 
         async void getInfo()
         {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             ItemsList<MeterInfo> info = await _server.GetThreeMeters();
             if (info.Error == null)
             {

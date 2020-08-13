@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using AiForms.Dialogs;
+﻿using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
@@ -15,9 +7,15 @@ using Plugin.Media.Abstractions;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Rg.Plugins.Popup.Services;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Markup;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
@@ -71,10 +69,11 @@ namespace xamarinJKH.Apps
 
         CancellationTokenSource TokenSource { get; set; }
         CancellationToken Token { get; set; }
+        bool PermissionAsked;
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            
+
             TokenSource = new CancellationTokenSource();
             Token = TokenSource.Token;
             var UpdateTask = new Task(async () =>
@@ -91,7 +90,7 @@ namespace xamarinJKH.Apps
                             if (update.CurrentRequestUpdates != null)
                             {
                                 //Settings.DateUniq = "";
-                                
+
                                 request = update.CurrentRequestUpdates;
                                 foreach (var each in update.CurrentRequestUpdates.Messages)
                                 {
@@ -107,27 +106,39 @@ namespace xamarinJKH.Apps
                         }
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
 
                 }
-                
+
             }, Token);
             UpdateTask.Start();
-
+            await Task.Delay(TimeSpan.FromSeconds(1));
             if (Device.RuntimePlatform == "Android")
             {
-                var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
-                if (camera_perm != PermissionStatus.Granted)
+                return;
+                try
                 {
-                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
+                    if (!PermissionAsked)
+                    {
+                        var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                        if (camera_perm != PermissionStatus.Granted)
+                        {
+                            await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
+                        }
+                    }
+                    
+                }
+                catch
+                {
+
+                }
+                finally
+                {
+
+                    PermissionAsked = true;
                 }
 
-                var file_perm = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
-                if (file_perm != PermissionStatus.Granted)
-                {
-                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
-                }
 
             }
         }
@@ -153,6 +164,11 @@ namespace xamarinJKH.Apps
 
         private async Task RefreshData()
         {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
             RequestsUpdate requestsUpdate =
                 await _server.GetRequestsUpdates(Settings.UpdateKey, _requestInfo.ID.ToString());
             if (requestsUpdate.Error == null)
@@ -178,7 +194,7 @@ namespace xamarinJKH.Apps
                     //await MethodWithDelayAsync(500);
 
                     //await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true);
-                }                
+                }
 
             }
             else
@@ -186,7 +202,7 @@ namespace xamarinJKH.Apps
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorComments, "OK");
             }
 
-           // additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
+            // additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
         }
 
         //public System.Collections.ObjectModel.ObservableCollection<RequestMessage> messages { get; set; }
@@ -217,8 +233,8 @@ namespace xamarinJKH.Apps
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    if(DeviceDisplay.MainDisplayInfo.Width<700)
-                    ScrollViewContainer.Padding = new Thickness(0, statusBarHeight*2, 0, 0);
+                    if (DeviceDisplay.MainDisplayInfo.Width < 700)
+                        ScrollViewContainer.Padding = new Thickness(0, statusBarHeight * 2, 0, 0);
                     else
                         ScrollViewContainer.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     // ImageTop.Margin = new Thickness(0, 33, 0, 0);
@@ -270,7 +286,7 @@ namespace xamarinJKH.Apps
                 await RefreshData();
             };
             StackLayoutClose.GestureRecognizers.Add(closeApp);
-            
+
             var pay = new TapGestureRecognizer();
             pay.Tapped += async (s, e) =>
             {
@@ -297,7 +313,7 @@ namespace xamarinJKH.Apps
             }
         }
 
-        
+
         //private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         //{
         //    RequestMessage select = e.Item as RequestMessage;
@@ -347,62 +363,82 @@ namespace xamarinJKH.Apps
             //
             // // PickAndShowFile(null);
             MediaFile file = null;
+            if (Device.RuntimePlatform == "Android")
+            {
+                try
+                {
+                    var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                    var storage_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                    if (camera_perm != PermissionStatus.Granted || storage_perm != PermissionStatus.Granted)
+                    {
+                        var status = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
+                        if (status[Permission.Camera] == PermissionStatus.Denied && status[Permission.Storage] == PermissionStatus.Denied)
+                        {
+                            return;
+                        }
+                    }
+                }
+                catch
+                {
+                    return;
+                }
+            }
             var action = await DisplayActionSheet(AppResources.AttachmentTitle, AppResources.Cancel, null,
                 TAKE_PHOTO,
                 TAKE_GALRY, TAKE_FILE);
-                    if (action == TAKE_PHOTO)
-                    {
-                        if (!CrossMedia.Current.IsTakePhotoSupported || !CrossMedia.Current.IsCameraAvailable)
-                        {
-                            await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorCameraNotAvailable, "OK");
+            if (action == TAKE_PHOTO)
+            {
+                if (!CrossMedia.Current.IsTakePhotoSupported || !CrossMedia.Current.IsCameraAvailable)
+                {
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorCameraNotAvailable, "OK");
 
-                            return;
-                        }
+                    return;
+                }
 
-                        try
+                try
+                {
+                    file = await CrossMedia.Current.TakePhotoAsync(
+                        new StoreCameraMediaOptions
                         {
-                            file = await CrossMedia.Current.TakePhotoAsync(
-                                new StoreCameraMediaOptions
-                                {
-                                    SaveToAlbum = false,
-                                    Directory = "Demo"
-                                });
-                            if (file != null)
-                                await startLoadFile(CAMERA, file);
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e);
-                        }
+                            SaveToAlbum = false,
+                            Directory = "Demo"
+                        });
+                    if (file != null)
+                        await startLoadFile(CAMERA, file);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
 
+                return;
+            }
+
+            if (action == TAKE_GALRY)
+            {
+                if (!CrossMedia.Current.IsPickPhotoSupported)
+                {
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorGalleryNotAvailable, "OK");
+
+                    return;
+                }
+
+                try
+                {
+                    file = await CrossMedia.Current.PickPhotoAsync();
+                    if (file == null)
                         return;
-                    }
-                    
-                    if (action == TAKE_GALRY)
-                    {
-                        if (!CrossMedia.Current.IsPickPhotoSupported)
-                        {
-                            await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorGalleryNotAvailable, "OK");
+                    await startLoadFile(GALERY, file);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
 
-                            return;
-                        }
-
-                        try
-                        {
-                            file = await CrossMedia.Current.PickPhotoAsync();
-                            if (file == null)
-                                return;
-                            await startLoadFile(GALERY, file);
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e);
-                        }
-
-                        return;
-                    }
-                    if (action == TAKE_FILE)
-                        await startLoadFile(FILE, null);
+                return;
+            }
+            if (action == TAKE_FILE)
+                await startLoadFile(FILE, null);
 
             Loading.Instance.Hide();
         }
@@ -510,7 +546,7 @@ namespace xamarinJKH.Apps
                     // LabelPhone.Text = pickedFile.FilePath;
                     if (pickedFile.DataArray.Length > 10000000)
                     {
-                        await DisplayAlert(AppResources.ErrorTitle,AppResources.FileTooBig, "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, AppResources.FileTooBig, "OK");
                         IconViewAddFile.IsVisible = true;
                         progressFile.IsVisible = false;
                         return;
@@ -565,7 +601,7 @@ namespace xamarinJKH.Apps
                 progress.IsVisible = false;
                 IconViewSend.IsVisible = true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 await ShowToast(AppResources.MessageNotSent);
 
@@ -573,7 +609,7 @@ namespace xamarinJKH.Apps
                 progress.IsVisible = false;
                 IconViewSend.IsVisible = true;
             }
-            
+
         }
 
         private async Task ShowToast(string text)
@@ -626,13 +662,13 @@ namespace xamarinJKH.Apps
                 foreach (var message in request.Messages)
                 {
                     messages.Add(message);
-                    Device.BeginInvokeOnMainThread(() =>addAppMessage(message));
+                    Device.BeginInvokeOnMainThread(() => addAppMessage(message));
                 }
                 LabelNumber.Text = "№ " + request.RequestNumber;
             }
             else
             {
-                await DisplayAlert(AppResources.ErrorTitle,AppResources.ErrorComments, "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorComments, "OK");
             }
 
             await MethodWithDelayAsync(1000);
@@ -643,13 +679,13 @@ namespace xamarinJKH.Apps
         {
             StackLayout data;
             string newDate;
-            if(message.IsSelf)
-            {                
-                data = new MessageCellAuthor(message, this,  DateUniq, out newDate);
+            if (message.IsSelf)
+            {
+                data = new MessageCellAuthor(message, this, DateUniq, out newDate);
             }
             else
             {
-                data = new MessageCellService(message, this,  DateUniq, out newDate);
+                data = new MessageCellService(message, this, DateUniq, out newDate);
             }
 
             DateUniq = newDate;
@@ -683,10 +719,10 @@ namespace xamarinJKH.Apps
             {
                 Console.WriteLine(e);
             }
-            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            Color hexColor = (Color)Application.Current.Resources["MainColor"];
             FrameKeys.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#B5B5B5"));
             FrameMessage.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
-            
+
         }
 
         private async void ShowInfo()

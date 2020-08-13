@@ -442,7 +442,12 @@ namespace xamarinJKH.AppsConst
             string text = EntryMess.Text;
             FrameBtnAdd.IsVisible = false;
             progress.IsVisible = true;
-            string ident = EntryLS.Text;
+            string ident = EntryLS.Text; 
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
 
             if (ident.Equals(""))
             {

@@ -56,6 +56,18 @@ namespace xamarinJKH.Questions
 
         private async Task RefreshData()
         {
+            try
+            {
+                if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+                {
+                    //Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, null, "OK"));
+                    return;
+                }
+            }
+            catch
+            {
+                return;
+            }
             if (Settings.EventBlockData.Error == null)
             {
                 Settings.EventBlockData = await server.GetEventBlockData();
@@ -138,6 +150,11 @@ namespace xamarinJKH.Questions
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
+                if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+                {
+                    Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                    return;
+                }
                 if (IsRefreshing)
                     return;
 
@@ -154,7 +171,7 @@ namespace xamarinJKH.Questions
             QuestNotComlite = new List<PollInfo>();
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
-                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, null, "OK"));
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
             if (Settings.EventBlockData.Polls != null)

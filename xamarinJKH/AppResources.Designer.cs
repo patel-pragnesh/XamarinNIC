@@ -19,7 +19,7 @@ namespace xamarinJKH {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -1061,6 +1061,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отсутствует подключение к интернету.
+        /// </summary>
+        internal static string ErrorNoInternet {
+            get {
+                return ResourceManager.GetString("ErrorNoInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не удалось получить информацию о уведомлениях.
         /// </summary>
         internal static string ErrorNotifInfo {
@@ -1399,6 +1408,15 @@ namespace xamarinJKH {
         internal static string Ident {
             get {
                 return ResourceManager.GetString("Ident", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Лс не найден.
+        /// </summary>
+        internal static string IdentNotFound {
+            get {
+                return ResourceManager.GetString("IdentNotFound", resourceCulture);
             }
         }
         
@@ -2617,6 +2635,15 @@ namespace xamarinJKH {
         internal static string PhoneLogin {
             get {
                 return ResourceManager.GetString("PhoneLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Номер телефона: .
+        /// </summary>
+        internal static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
             }
         }
         

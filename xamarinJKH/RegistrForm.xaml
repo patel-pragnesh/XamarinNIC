@@ -7,6 +7,7 @@
              xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.RegistrForm">
     <ContentPage.Content>
@@ -77,9 +78,10 @@
                            TextColor="Black"
                            HorizontalOptions="Center" />
                     <!-- Первый шаг регистрации -->
-                    <customRenderers:MaterialFrame Elevation="20" x:Name="RegistrationFrameStep1"
+                    <!--<customRenderers:MaterialFrame-->
+                    <pancakeView:PancakeView  Elevation="20" x:Name="RegistrationFrameStep1"
                                                    CornerRadius="50"
-                                                   Margin="20, 15, 20, 15"
+                                                   Margin="20, 15, 20, 15"                                             
                                                    HasShadow="True"
                                                    Padding="20"
                                                    BackgroundColor="White">
@@ -180,7 +182,7 @@
 
                                 </StackLayout>
 
-                                <StackLayout
+                                <StackLayout x:Name="DOB"
                                     Margin="15, 10, 0, 0"
                                     Orientation="Horizontal">
                                     <xamarinJkh:IconView x:Name="IconViewDate"
@@ -190,7 +192,7 @@
                                                          Foreground="{x:DynamicResource MainColor}"
                                                          VerticalOptions="Center" />
 
-                                    <Label Text="{x:Static xamarinJkh:AppResources.DateOfBirth}"
+                                    <Label x:Name="DOBLabel" Text="{x:Static xamarinJkh:AppResources.DateOfBirth}"
                                            FontSize="14"
                                            TextColor="Black"
                                            HorizontalOptions="Start"
@@ -224,7 +226,7 @@
                                         <!-- </Entry> -->
                                     </StackLayout>
                                 </StackLayout>
-                                <StackLayout
+                                <StackLayout x:Name="DOBSeparator"
                                     Margin="0,0,0,0"
                                     Orientation="Horizontal">
                                     <!-- <Image Source="ic_separator" -->
@@ -264,7 +266,7 @@
                                    Margin="5, 5, 5, 0"
                                    x:Name="FrameBtnLogin"
                                    Padding="12"
-                                   HasShadow="False">
+                                   HasShadow="True">
                                 <!-- <Button x:Name="BtnLogin" -->
                                 <!--         Text="Далее" -->
                                 <!--         TextColor="White" -->
@@ -294,15 +296,15 @@
                             </Frame>
 
                         </StackLayout>
-                    </customRenderers:MaterialFrame>
+                    </pancakeView:PancakeView>
                     <!-- Второй шаг регистрации -->
-                    <customRenderers:MaterialFrame Elevation="{AppThemeBinding Light=0, Dark=20}" x:Name="RegistrationFrameStep2"
+                    <pancakeView:PancakeView Elevation="{AppThemeBinding Light=0, Dark=20}" x:Name="RegistrationFrameStep2"
                                                    CornerRadius="50"
                                                    IsVisible="False"
                                                    Margin="15, 15, 15, 25"
                                                    BackgroundColor="White"
                                                    Padding="5"
-                                                   HasShadow="False">
+                                                   HasShadow="True">
 
                         <StackLayout
                             Margin="10, 20, 10, 10">
@@ -427,7 +429,7 @@
                                                                    Padding="0">
                                         <Button x:Name="BtnTech"
                                                 Text="{x:Static xamarinJkh:AppResources.Support}"
-                                                
+                                                Padding="5,0"
                                                 TextColor="{x:DynamicResource MainColor}"
                                                 FontSize="10"
                                                 FontAttributes="Bold"
@@ -473,10 +475,11 @@
                             </Frame>
 
                         </StackLayout>
-                    </customRenderers:MaterialFrame>
+                    </pancakeView:PancakeView>
                     <!-- Третий шаг регистрации -->
-                    <customRenderers:MaterialFrame Elevation="20" x:Name="RegistrationFrameStep3"
+                    <pancakeView:PancakeView Elevation="20" x:Name="RegistrationFrameStep3"
                                                    CornerRadius="50"
+                                             HasShadow="True"
                                                    IsVisible="False"
                                                    Margin="20, 15, 20, 15"
                                                    BackgroundColor="White"
@@ -495,7 +498,8 @@
                                                          HeightRequest="20"
                                                          Foreground="{x:DynamicResource MainColor}"
                                                          VerticalOptions="Center" />
-                                    <Label Text="{x:Static xamarinJkh:AppResources.CreatePass}"
+                                    <Label x:Name="lblCreatePass" 
+                                           Text="{x:Static xamarinJkh:AppResources.CreatePass}"
                                            FontSize="12"
                                            TextColor="Black"
                                            Margin="-10, 0, 10, 0"
@@ -544,7 +548,8 @@
                                                          HeightRequest="20"
                                                          VerticalOptions="Center" />
 
-                                    <Label Text="{x:Static xamarinJkh:AppResources.ConfirmPass}"
+                                    <Label x:Name="lblConfirmPass"
+                                           Text="{x:Static xamarinJkh:AppResources.ConfirmPass}"
                                            FontSize="13.5"
                                            TextColor="Black"
                                            Margin="-10, 0, 5, 0"
@@ -624,7 +629,7 @@
                             </Frame>
 
                         </StackLayout>
-                    </customRenderers:MaterialFrame>
+                    </pancakeView:PancakeView>
                     
                 </StackLayout>
             </ScrollView>

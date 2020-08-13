@@ -38,10 +38,10 @@ namespace xamarinJKH.Main
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();                    
-                    Pancake.Padding = new Thickness(0,statusBarHeight,0,0);
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     //BackgroundColor = Color.White;                    
-                    break;                
+                    break;
                 default:
                     break;
             }
@@ -54,7 +54,7 @@ namespace xamarinJKH.Main
                 await Navigation.PushAsync(new TechSendPage());
             };
             LabelTech.GestureRecognizers.Add(techSend);
-            
+
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
             {
@@ -62,11 +62,11 @@ namespace xamarinJKH.Main
                 {
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
-                    if (phoneDialer.CanMakePhoneCall) 
+                    if (phoneDialer.CanMakePhoneCall)
                         phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
                 }
 
-            
+
             };
             LabelPhone.GestureRecognizers.Add(call);
             SetText();
@@ -80,7 +80,17 @@ namespace xamarinJKH.Main
             CrossFirebaseCrashlytics.Current.SetUserIdentifier(Settings.Person.Login);
             CrossFirebaseCrashlytics.Current.SetUserName(Settings.Person.FIO);
             CrossFirebaseCrashlytics.Current.SetUserEmail(Settings.Person.Email);
-            MessagingCenter.Subscribe<Object>(this, "UpdateEvents", (sender) => viewModel.LoadData.Execute(null));
+            MessagingCenter.Subscribe<Object>(this, "UpdateEvents", (sender) =>
+            {
+                viewModel.LoadData.Execute(null);
+
+                if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+                {
+                    Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                    return;
+                }
+
+            });
         }
 
         protected override void OnAppearing()
