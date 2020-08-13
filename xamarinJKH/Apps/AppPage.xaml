@@ -112,7 +112,22 @@
                                        FontAttributes="Bold"
                                        FontSize="10" />
                             </StackLayout>
-                           
+
+                            <StackLayout
+                                IsVisible="{Binding isPayd}"
+                                Margin="0,5,0,0"
+                                VerticalOptions="Center"
+                                HorizontalOptions="EndAndExpand">
+                                <xamarinJkh:IconView Source="pay"
+                                       HeightRequest="25"
+                                       Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                       WidthRequest="25" />
+                                <Label Text="{x:Static xamarinJkh:AppResources.PayApp}"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                       FontAttributes="Bold"
+                                       FontSize="10" />
+                            </StackLayout>
+
                         </StackLayout>
                     </ScrollView>
                 </Frame>

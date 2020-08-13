@@ -167,6 +167,9 @@ namespace xamarinJKH.Main
 
             if (CurrentPage is AppsPage || CurrentPage is xamarinJKH.MainConst.AppsConstPage || CurrentPage.Title == AppResources.App_NavBar)
                 MessagingCenter.Send<Object>(this, "AutoUpdate");
+
+            if (CurrentPage.Title == AppResources.Shop_NavBar)
+                MessagingCenter.Send<Object>(this, "LoadGoods");
         }
 
 

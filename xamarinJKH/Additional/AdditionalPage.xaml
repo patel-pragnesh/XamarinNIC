@@ -118,13 +118,9 @@
                         Margin="25, 0, 0, 0"
                         Spacing="0"
                         HorizontalOptions="Start">
-                        <xamarinJkh:IconView Source="ic_arrow_back"
-                               HeightRequest="15"
-                               Foreground="{AppThemeBinding Light=Black, Dark=White}"
-                               HorizontalOptions="Center" />
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.Offers}"
-                            FontSize="18"
+                            FontSize="24"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />

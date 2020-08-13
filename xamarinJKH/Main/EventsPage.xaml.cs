@@ -270,7 +270,7 @@ namespace xamarinJKH.Main
                     if (data.Announcements != null)
                         ShowAnnouncements = data.Announcements.Count != 0 && Settings.NotifVisible;
                 }
-               
+                ShowAdditionalServices = false;
             });
         }
     }

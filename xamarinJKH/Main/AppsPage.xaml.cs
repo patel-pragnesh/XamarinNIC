@@ -67,6 +67,21 @@ namespace xamarinJKH.Main
         }
         Task UpdateTask;
 
+        public async Task ShowMessage(string message,
+            string title,
+            string buttonText,
+            Action afterHideCallback)
+        {
+            await DisplayAlert(
+                title,
+                message,
+                buttonText);
+
+            afterHideCallback?.Invoke();
+        }
+
+        bool showNoInetWindow = true;
+
         void StartAutoUpdate()
         {
             CancellationTokenSource = new CancellationTokenSource();
@@ -80,7 +95,18 @@ namespace xamarinJKH.Main
                     {
                         Device.BeginInvokeOnMainThread(async () => 
                         {
-                            await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK");
+                            if (showNoInetWindow)
+                            {
+                                showNoInetWindow = false;
+
+                                   await ShowMessage(AppResources.ErrorNoInternet, AppResources.ErrorTitle, "OK", () =>
+                                {
+                                    showNoInetWindow = true;
+                                    //await ShowMessage("OK was pressed", "Message", "OK", null);
+                                });
+                            }
+                            //await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK");
+
                             await Task.Delay(TimeSpan.FromSeconds(5));
                         });
 
