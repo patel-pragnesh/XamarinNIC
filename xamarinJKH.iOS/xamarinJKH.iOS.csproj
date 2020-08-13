@@ -416,6 +416,7 @@
     <BundleResource Include="Resources\ic_phone_login.png" />
     <BundleResource Include="Resources\ic_phone.png" />
     <BundleResource Include="Resources\ic_plus.png" />
+    <BundleResource Include="Resources\ic_profile_top.png" />
     <BundleResource Include="Resources\ic_questions.png" />
     <BundleResource Include="Resources\ic_questions2.png" />
     <BundleResource Include="Resources\ic_questions_top.png" />

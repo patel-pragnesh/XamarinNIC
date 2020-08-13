@@ -190,6 +190,9 @@
   <data name="ChatPlaceholder" xml:space="preserve">
     <value>Enter a message...</value>
   </data>
+  <data name="Shop_NavBar" xml:space="preserve">
+    <value>Services</value>
+  </data>
   <data name="CheckInterval" xml:space="preserve">
     <value>Checks interval: </value>
   </data>

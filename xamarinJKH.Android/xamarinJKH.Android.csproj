@@ -218,6 +218,7 @@
     <AndroidResource Include="Resources\drawable\ic_pays_top_light.png" />
     <AndroidResource Include="Resources\drawable\ic_phone.png" />
     <AndroidResource Include="Resources\drawable\ic_plus.png" />
+    <AndroidResource Include="Resources\drawable\ic_profile_top.png" />
     <AndroidResource Include="Resources\drawable\ic_questions_top.png" />
     <AndroidResource Include="Resources\drawable\ic_saldos.png" />
     <AndroidResource Include="Resources\drawable\ic_saldos_top.png" />

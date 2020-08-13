@@ -604,6 +604,9 @@
   <data name="Profile_NavBar" xml:space="preserve">
     <value>Профиль</value>
   </data>
+  <data name="Shop_NavBar" xml:space="preserve">
+    <value>Услуги</value>
+  </data>
   <data name="QuestionsAmount" xml:space="preserve">
     <value>Количество вопросов</value>
   </data>

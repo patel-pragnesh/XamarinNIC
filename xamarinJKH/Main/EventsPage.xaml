@@ -73,12 +73,20 @@
                                            Source="icon_login"
                                            HeightRequest="50" />
                                 </pancakeView:PancakeView>
+                                <xamarinJkh:IconView
+                                    Source="ic_profile_top"
+                                    WidthRequest="35"
+                                    x:Name="IconViewProfile"
+                                    HeightRequest="70"
+                                    VerticalOptions="Center"
+                                    Foreground="Chartreuse"/>
                             </StackLayout>
                         </Grid>
                     </pancakeView:PancakeView>
                     <StackLayout
                         HorizontalOptions="End"
                         Margin="0,0,15,0"
+                        IsVisible="False"
                         Orientation="Horizontal">
                         <xamarinJkh:IconView x:Name="IconViewTech"
                                              Source="ic_tech"

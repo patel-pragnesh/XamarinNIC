@@ -53,7 +53,14 @@ namespace xamarinJKH.Main
                     Crashes.GenerateTestCrash();
                 await Navigation.PushAsync(new TechSendPage());
             };
-            LabelTech.GestureRecognizers.Add(techSend);
+            LabelTech.GestureRecognizers.Add(techSend); 
+            
+            var profile = new TapGestureRecognizer();
+            profile.Tapped += async (s, e) =>
+            {
+                await Navigation.PushAsync(new ProfilePage());
+            };
+            IconViewProfile.GestureRecognizers.Add(profile);
 
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
