@@ -250,5 +250,10 @@ namespace xamarinJKH.Main
             MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
             Preferences.Set("Theme", 2);
         }
+
+        private async void GoBack(object sender, EventArgs args)
+        {
+            await Navigation.PopAsync();
+        }
     }
 }

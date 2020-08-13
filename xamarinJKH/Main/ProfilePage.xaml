@@ -100,12 +100,19 @@
                         Orientation="Horizontal"
                         Margin="25, 0, 0, 0"
                         HorizontalOptions="Start">
+                        <xamarinJkh:IconView Source="ic_arrow_back"
+                               HeightRequest="15"
+                               Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                               HorizontalOptions="Center" />
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.Profile_NavBar}"
-                            FontSize="23"
+                            FontSize="18"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="GoBack"/>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                     <ScrollView x:Name="ScrollViewContainer"
                                 Orientation="Vertical"
