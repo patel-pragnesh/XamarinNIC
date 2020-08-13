@@ -201,7 +201,27 @@
                                     <TapGestureRecognizer Tapped="SendCode" />
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
-                            
+
+
+                            <StackLayout
+                                IsVisible="True"
+                                Margin="0,5,0,0"
+                                VerticalOptions="Center"
+                                HorizontalOptions="EndAndExpand">
+                                <xamarinJkh:IconView Source="ic_receipt"
+                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                     HeightRequest="25"
+                                                     WidthRequest="25" />
+                                <Label Text="{x:Static xamarinJkh:AppResources.Receipt}"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                       FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center"
+                                       FontSize="10" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ReceiptEdit" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+
                             <StackLayout
                                 Margin="0,5,0,0"
                                 VerticalOptions="Center"

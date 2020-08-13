@@ -758,5 +758,10 @@ namespace xamarinJKH.AppsConst
             }
             progress.IsVisible = false;
         }
+
+        private async void ReceiptEdit(object sender, EventArgs e)
+        {
+            await Dialog.Instance.ShowAsync(new AppConstDialogWindow(new ViewModels.DialogViewModels.AppRecieptConstViewModel(this.request.ReceiptItems, this.request.ID)));
+        }
     }
 }

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dialog:DialogView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+                   x:Name="AppReciept"
+             xmlns:dialog="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
+             xmlns:converters="clr-namespace:xamarinJKH.Converters"
+             xmlns:app="clr-namespace:xamarinJKH"
+             x:Class="xamarinJKH.DialogViews.AppConstDialogWindow">
+    <dialog:DialogView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="Header">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+            <converters:PriceConverter x:Key="Price"/>
+        </ResourceDictionary>
+    </dialog:DialogView.Resources>
+    <Frame CornerRadius="30"
+           HeightRequest="350"
+           Margin="30"
+           Padding="20,20,10,20">
+        <StackLayout>
+            <app:IconView Source="ic_shop_plus"
+                          Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                          HeightRequest="30"/>
+            <Grid HeightRequest="60">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="0.1*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="{x:Static app:AppResources.Name}"
+                       Grid.Column="0"
+                       Style="{StaticResource Header}"/>
+                <Label Text="{x:Static app:AppResources.Amount1}"
+                       Grid.Column="1"
+                       Style="{StaticResource Header}"/>
+                <Label Text="{x:Static app:AppResources.Price}"
+                       Grid.Column="2"
+                       Style="{StaticResource Header}"/>
+            </Grid>
+            <CollectionView ItemsSource="{Binding ReceiptItems}"
+                            SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="0.2*"/>
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="0.1*"/>
+                                <ColumnDefinition Width="0.1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Name}"
+                                   Grid.Column="0"/>
+                            <Label Text="{Binding Amount}"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center"
+                                   Grid.Column="1"/>
+                            <app:BordlessEditor Text="{Binding Price, Converter={StaticResource Price}}"
+                                                
+                                            Keyboard="Numeric"
+                                            FontSize="14"
+                                            VerticalOptions="CenterAndExpand"
+                                            HorizontalOptions="EndAndExpand"
+                                            x:Name="{Binding Name}"
+                                            IsReadOnly="True"
+                                   Grid.Column="2">
+                            </app:BordlessEditor>
+                            <ImageButton Source="edit"
+                                         Grid.Column="3"
+                                         HeightRequest="30"
+                                         BackgroundColor="Transparent"
+                                     Command="{Binding Path=BindingContext.Edit, Source={x:Reference AppReciept}}"
+                                     CommandParameter="{Binding .}"/>
+                            <ImageButton Source="ic_close"
+                                         Grid.Column="4"
+                                         HeightRequest="30"
+                                         BackgroundColor="Transparent"
+                                         Command="{Binding Path=BindingContext.Delete, Source={x:Reference AppReciept}}"
+                                         CommandParameter="{Binding .}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button BackgroundColor="{x:DynamicResource MainColor}"
+                    CornerRadius="30"
+                    Margin="0,0,10,0"
+                    TextColor="White"
+                    Command="{Binding Update}"
+                    Text="Обновить заказ"/>
+        </StackLayout>
+    </Frame>
+</dialog:DialogView>
