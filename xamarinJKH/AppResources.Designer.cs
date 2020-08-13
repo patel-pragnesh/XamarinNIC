@@ -19,7 +19,7 @@ namespace xamarinJKH {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -183,6 +183,15 @@ namespace xamarinJKH {
         internal static string Amount {
             get {
                 return ResourceManager.GetString("Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Количество.
+        /// </summary>
+        internal static string Amount1 {
+            get {
+                return ResourceManager.GetString("Amount1", resourceCulture);
             }
         }
         
@@ -1673,6 +1682,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Наименование.
+        /// </summary>
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to + Прикрепить.
         /// </summary>
         internal static string NewAppAddFile {
@@ -2720,6 +2738,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Цена.
+        /// </summary>
+        internal static string Price {
+            get {
+                return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  цена: .
         /// </summary>
         internal static string PriceLowerCase {
@@ -2852,6 +2879,15 @@ namespace xamarinJKH {
         internal static string RatingBarText2 {
             get {
                 return ResourceManager.GetString("RatingBarText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Чек.
+        /// </summary>
+        internal static string Receipt {
+            get {
+                return ResourceManager.GetString("Receipt", resourceCulture);
             }
         }
         

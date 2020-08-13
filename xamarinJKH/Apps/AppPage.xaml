@@ -118,14 +118,17 @@
                                 Margin="0,5,0,0"
                                 VerticalOptions="Center"
                                 HorizontalOptions="EndAndExpand">
-                                <xamarinJkh:IconView Source="pay"
+                                <xamarinJkh:IconView Source="ic_receipt"
                                        HeightRequest="25"
                                        Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                        WidthRequest="25" />
-                                <Label Text="{x:Static xamarinJkh:AppResources.PayApp}"
+                                <Label Text="{x:Static xamarinJkh:AppResources.Receipt}"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OpenReceipt"/>
+                                </StackLayout.GestureRecognizers>
                             </StackLayout>
 
                         </StackLayout>

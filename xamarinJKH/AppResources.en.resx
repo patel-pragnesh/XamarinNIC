@@ -1233,4 +1233,16 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="ErrorNoPermissions" xml:space="preserve">
     <value>In order to use this function, you need to enable camera and storage permissions</value>
   </data>
+  <data name="Amount1" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Receipt" xml:space="preserve">
+    <value>Receipt</value>
+  </data>
 </root>

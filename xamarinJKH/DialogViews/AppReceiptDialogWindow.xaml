@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dialog:DialogView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:app="clr-namespace:xamarinJKH"
+             xmlns:models="clr-namespace:xamarinJKH.Server.RequestModel"
+             xmlns:dialog="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
+             xmlns:converters="clr-namespace:xamarinJKH.Converters"
+             Margin="40"
+             x:Class="xamarinJKH.DialogViews.AppReceiptDialogWindow">
+    <dialog:DialogView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="Header">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <converters:PriceConverter x:Key="Price"/>
+        </ResourceDictionary>
+    </dialog:DialogView.Resources>
+    <Frame CornerRadius="30"
+           Margin="50"
+           HeightRequest="400"
+           Padding="20">
+        <StackLayout>
+            <Grid VerticalOptions="StartAndExpand"
+                  HeightRequest="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="0.3*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="{x:Static app:AppResources.Name}"
+                       Grid.Column="0"
+                       Style="{StaticResource Header}"/>
+                <Label Text="{x:Static app:AppResources.Amount1}"
+                       Grid.Column="1"
+                       Style="{StaticResource Header}"/>
+                <Label Text="{x:Static app:AppResources.Price}"
+                       Grid.Column="2"
+                       Style="{StaticResource Header}"/>
+            </Grid>
+            <CollectionView ItemsSource="{Binding ReceiptItems}"
+                            SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="0.3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Name}"
+                                   Grid.Column="0"/>
+                            <Label Text="{Binding Amount}"
+                                   Grid.Column="1"/>
+                            <Label Text="{Binding Price, Converter={StaticResource Price}}"
+                                   Grid.Column="2"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </Frame>
+</dialog:DialogView>

@@ -23,6 +23,7 @@ using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 using PermissionStatus = Plugin.Permissions.Abstractions.PermissionStatus;
+using xamarinJKH.DialogViews;
 
 namespace xamarinJKH.Apps
 {
@@ -766,6 +767,11 @@ namespace xamarinJKH.Apps
         private async void OpenInfo(object sender, EventArgs e)
         {
             ShowInfo();
+        }
+
+        private async void OpenReceipt(object sender, EventArgs args)
+        {
+            await Dialog.Instance.ShowAsync(new AppReceiptDialogWindow(new ViewModels.DialogViewModels.AppRecieptViewModel(request.ReceiptItems)));
         }
     }
 }

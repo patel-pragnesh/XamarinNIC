@@ -1214,4 +1214,16 @@
   <data name="ErrorNoPermissions" xml:space="preserve">
     <value>Для того, чтобы воспользоваться функцией, включите разрешения на использование камеры и хранилища</value>
   </data>
+  <data name="Amount1" xml:space="preserve">
+    <value>Количество</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="Receipt" xml:space="preserve">
+    <value>Чек</value>
+  </data>
 </root>

@@ -528,4 +528,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\icon_login.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_receipt.png" />
+  </ItemGroup>
 </Project>
