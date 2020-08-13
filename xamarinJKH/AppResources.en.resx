@@ -313,7 +313,13 @@ A bot will call you on your number PHONE and tell an access code</value>
     <value>Hidden</value>
   </data>
   <data name="HomeChoose" xml:space="preserve">
-    <value>Choose house</value>
+    <value>Choose street</value>
+  </data>
+  <data name="FlatChoose" xml:space="preserve">
+    <value>Choose home</value>
+  </data>
+  <data name="LsChoose" xml:space="preserve">
+    <value>Choose acc</value>
   </data>
   <data name="Ident" xml:space="preserve">
     <value>Account: </value>

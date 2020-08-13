@@ -314,7 +314,13 @@
     <value>Скрытое</value>
   </data>
   <data name="HomeChoose" xml:space="preserve">
-    <value>Выбор дома</value>
+    <value>Выберите улицу</value>
+  </data>
+  <data name="FlatChoose" xml:space="preserve">
+    <value>Выберите квартиру</value>
+  </data> 
+  <data name="LsChoose" xml:space="preserve">
+    <value>Выберите ЛС.</value>
   </data>
   <data name="Ident" xml:space="preserve">
     <value>Лицевой счет: </value>
