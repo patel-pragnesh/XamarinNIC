@@ -35,7 +35,7 @@
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.23</string>
+	<string>3.24</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
@@ -57,7 +57,7 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Вы можете приложить фото к заявке</string>
 	<key>CFBundleVersion</key>
-	<string>3.23</string>
+	<string>3.24</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

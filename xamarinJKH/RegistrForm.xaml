@@ -84,7 +84,7 @@
                                                    Margin="20, 15, 20, 15"                                             
                                                    HasShadow="True"
                                                    Padding="20"
-                                                   BackgroundColor="White">
+                                                   BackgroundColor="White" IsVisible="True">
 
                         <StackLayout>
 
@@ -604,7 +604,7 @@
                                 <!--         BackgroundColor="Transparent" /> -->
                                 
                                 <StackLayout
-                                    x:Name="SaveStackLayout"
+                                    x:Name="SaveStackLayout"                                    
                                     Orientation="Horizontal"
                                     Margin="0, 0, 0, 0"
                                     Spacing="0"
@@ -614,6 +614,7 @@
                                                     Margin="0, 10, 0, 10"
                                                     Source="ic_check_mark"
                                                     HeightRequest="25"
+                                                        WidthRequest="25"
                                                     Foreground="White"
                                                     HorizontalOptions="Start"
                                                     VerticalOptions="Center" />
@@ -623,7 +624,7 @@
                                            FontSize="15"
                                            TextColor="White"
                                            FontAttributes="Bold"
-                                           HorizontalOptions="FillAndExpand" 
+                                           HorizontalOptions="Start" 
                                            VerticalOptions="Center"/>
                                 </StackLayout>
                             </Frame>
