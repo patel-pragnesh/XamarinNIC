@@ -149,6 +149,13 @@ namespace xamarinJKH.Apps
                 }
                 catch
                 {
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        var result = await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoPermissions, "OK", AppResources.Cancel);
+                        if (result)
+                            Plugin.Permissions.CrossPermissions.Current.OpenAppSettings();
+
+                    });
                     return;
                 }
             }

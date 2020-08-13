@@ -37,9 +37,9 @@ namespace xamarinJKH.AppsConst
         private RequestList _requestList;
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
-        const string TAKE_PHOTO = "Сделать фото";
-        const string TAKE_GALRY = "Выбрать фото из галереи";
-        const string TAKE_FILE = "Выбрать файл";
+        string TAKE_PHOTO = AppResources.AttachmentTakePhoto;
+        string TAKE_GALRY = AppResources.AttachmentChoosePhoto;
+        string TAKE_FILE = AppResources.AttachmentChooseFile;
         const string CAMERA = "camera";
         const string GALERY = "galery";
         const string FILE = "file";
@@ -108,7 +108,7 @@ namespace xamarinJKH.AppsConst
         //    }
         //    else
         //    {
-        //        await DisplayAlert("Ошибка", "Не удалось получить информацию по комментариям", "OK");
+        //        await DisplayAlert(AppResources.ErrorTitle, "Не удалось получить информацию по комментариям", "OK");
         //    }
 
         //    additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
@@ -141,7 +141,7 @@ namespace xamarinJKH.AppsConst
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию по комментариям", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorComments, "OK");
             }
         }
 
@@ -305,7 +305,7 @@ namespace xamarinJKH.AppsConst
         //            }
         //            else
         //            {
-        //                await DisplayAlert("Ошибка", "Не удалось скачать файл", "OK");
+        //                await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
         //            }
         //        }
         //    }
@@ -325,7 +325,6 @@ namespace xamarinJKH.AppsConst
             // // GetGalaryFile();
             //
             // // PickAndShowFile(null);
-
             if (Device.RuntimePlatform == "Android")
             {
                 try
@@ -341,70 +340,81 @@ namespace xamarinJKH.AppsConst
                         }
                     }
                 }
-                catch
+                catch (Exception e)
                 {
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        var result = await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoPermissions, "OK", AppResources.Cancel);
+                        if (result)
+                            Plugin.Permissions.CrossPermissions.Current.OpenAppSettings();
+
+                    });
                     return;
                 }
             }
 
             MediaFile file = null;
-            var action = await DisplayActionSheet("Добавить вложение", "Отмена", null,
+            var action = await DisplayActionSheet(AppResources.AttachmentTitle, AppResources.Cancel, null,
                 TAKE_PHOTO,
                 TAKE_GALRY, TAKE_FILE);
-            switch (action)
+
+            if (action == TAKE_PHOTO)
             {
-                case TAKE_PHOTO:
-                    if (!CrossMedia.Current.IsTakePhotoSupported || !CrossMedia.Current.IsCameraAvailable)
-                    {
-                        await DisplayAlert("Ошибка", "Камера не доступна", "OK");
+                if (!CrossMedia.Current.IsTakePhotoSupported || !CrossMedia.Current.IsCameraAvailable)
+                {
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorCameraNotAvailable, "OK");
 
+                    return;
+                }
+
+                try
+                {
+                    file = await CrossMedia.Current.TakePhotoAsync(
+                        new StoreCameraMediaOptions
+                        {
+                            SaveToAlbum = false,
+                            Directory = "Demo",
+                            PhotoSize = PhotoSize.Medium,
+                        });
+
+                    if (file != null)
+                        await startLoadFile(CAMERA, file);
+                }
+                catch (Exception e)
+                {
+                    await DisplayAlert(AppResources.ErrorTitle, $"{e.Message}\n{e.StackTrace}", "OK");
+                    Console.WriteLine(e);
+                }
+                return;
+            }
+            if (action == TAKE_GALRY)
+            {
+                if (!CrossMedia.Current.IsPickPhotoSupported)
+                {
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorGalleryNotAvailable, "OK");
+
+                    return;
+                }
+
+                try
+                {
+                    file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions { PhotoSize = PhotoSize.Medium });
+                    if (file == null)
                         return;
-                    }
+                    await startLoadFile(GALERY, file);
+                }
+                catch (Exception e)
+                {
+                    await DisplayAlert(AppResources.ErrorTitle, $"{e.Message}\n{e.StackTrace}", "OK");
+                    Console.WriteLine(e);
+                }
+                return;
+            }
 
-                    try
-                    {
-                        file = await CrossMedia.Current.TakePhotoAsync(
-                            new StoreCameraMediaOptions
-                            {
-                                SaveToAlbum = false,
-                                Directory = "Demo",
-                                PhotoSize = PhotoSize.Medium,
-                            });
-                        
-                        if (file != null)
-                            await startLoadFile(CAMERA, file);
-                    }
-                    catch (Exception e)
-                    {
-                        await DisplayAlert("Ошибка", $"{e.Message}\n{e.StackTrace}", "OK");
-                        Console.WriteLine(e);
-                    }
-                    break;
-                case TAKE_GALRY:
-                    if (!CrossMedia.Current.IsPickPhotoSupported)
-                    {
-                        await DisplayAlert("Ошибка", "Галерея не доступна", "OK");
+            if (action == TAKE_FILE)
+            {
 
-                        return;
-                    }
-
-                    try
-                    {
-                        file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions { PhotoSize = PhotoSize.Medium });
-                        if (file == null)
-                            return;
-                        await startLoadFile(GALERY, file);
-                    }
-                    catch (Exception e)
-                    {
-                        await DisplayAlert("Ошибка", $"{e.Message}\n{e.StackTrace}", "OK");
-                        Console.WriteLine(e);
-                    }
-                   
-                    break;
-                case TAKE_FILE:
-                    await startLoadFile(FILE, null);
-                    break;
+                await startLoadFile(FILE, null);
             }
         }
 
@@ -418,7 +428,7 @@ namespace xamarinJKH.AppsConst
                 file.Path);
             if (commonResult == null)
             {
-                await ShowToast("Файл отправлен");
+                await ShowToast(AppResources.SuccessFileSent);
                 await RefreshData();
             }
         }
@@ -469,7 +479,7 @@ namespace xamarinJKH.AppsConst
                 file.Path);
             if (commonResult == null)
             {
-                await ShowToast("Файл отправлен");
+                await ShowToast(AppResources.SuccessFileSent);
                 await RefreshData();
             }
         }
@@ -523,7 +533,7 @@ namespace xamarinJKH.AppsConst
                     // LabelPhone.Text = pickedFile.FilePath;
                     if (pickedFile.DataArray.Length > 10000000)
                     {
-                        await DisplayAlert("Ошибка", "Размер файла превышает 10мб", "OK");
+                        await DisplayAlert(AppResources.ErrorTitle, AppResources.FileTooBig, "OK");
                         IconViewAddFile.IsVisible = true;
                         progressFile.IsVisible = false;
                         return;
@@ -535,14 +545,14 @@ namespace xamarinJKH.AppsConst
                         pickedFile.FilePath);
                     if (commonResult == null)
                     {
-                        await ShowToast("Файл отправлен");
+                        await ShowToast(AppResources.SuccessFileSent);
                         await RefreshData();
                     }
                 }
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Ошибка", ex.ToString(), "OK");
+                await DisplayAlert(AppResources.ErrorTitle, ex.ToString(), "OK");
             }
 
             IconViewAddFile.IsVisible = true;
@@ -560,13 +570,13 @@ namespace xamarinJKH.AppsConst
                 if (result.Error == null)
                 {
                     EntryMess.Text = "";
-                    await ShowToast("Сообщение отправлено");
+                    await ShowToast(AppResources.MessageSent);
                     await RefreshData();
                 }
             }
             else
             {
-                await ShowToast("Введите текст сообщения");
+                await ShowToast(AppResources.ErrorMessageEmpty);
             }
 
             progress.IsVisible = false;
@@ -598,7 +608,7 @@ namespace xamarinJKH.AppsConst
         //    }
         //    else
         //    {
-        //        await DisplayAlert("Ошибка", "Не удалось получить информацию по комментариям", "OK");
+        //        await DisplayAlert(AppResources.ErrorTitle, "Не удалось получить информацию по комментариям", "OK");
         //    }
 
         //    await MethodWithDelayAsync(1000);
@@ -622,7 +632,7 @@ namespace xamarinJKH.AppsConst
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось получить информацию по комментариям", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorComments, "OK");
             }
 
             await MethodWithDelayAsync(1000);
@@ -635,12 +645,12 @@ namespace xamarinJKH.AppsConst
             var request = await _server.LockAppConst(_requestInfo.ID.ToString());
             if (request.Error == null)
             {
-                await ShowToast("Заявка принята к выполнению");
+                await ShowToast(AppResources.AppAccepted);
                 await RefreshData();
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось принять заявку", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppAccept, "OK");
             }
             progress.IsVisible = false;
         }
@@ -651,12 +661,12 @@ namespace xamarinJKH.AppsConst
             var request = await _server.PerformAppConst(_requestInfo.ID.ToString());
             if (request.Error == null)
             {
-                await ShowToast("Заявка выполнена");
+                await ShowToast(AppResources.AppCompleted);
                 await RefreshData();
             }
             else
             {
-                await DisplayAlert("Ошибка", "Не удалось выполнить заявку", "OK");
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppComplete, "OK");
             }
             progress.IsVisible = false;
         }

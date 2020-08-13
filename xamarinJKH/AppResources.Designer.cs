@@ -223,11 +223,29 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Заявка принята к выполнению.
+        /// </summary>
+        internal static string AppAccepted {
+            get {
+                return ResourceManager.GetString("AppAccepted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Заявка закрыта.
         /// </summary>
         internal static string AppClosed {
             get {
                 return ResourceManager.GetString("AppClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заявка выполнена.
+        /// </summary>
+        internal static string AppCompleted {
+            get {
+                return ResourceManager.GetString("AppCompleted", resourceCulture);
             }
         }
         
@@ -863,6 +881,24 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Не удалось принять заявку.
+        /// </summary>
+        internal static string ErrorAppAccept {
+            get {
+                return ResourceManager.GetString("ErrorAppAccept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не удалось выполнить заявку.
+        /// </summary>
+        internal static string ErrorAppComplete {
+            get {
+                return ResourceManager.GetString("ErrorAppComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не удалось получить информацию о заявках.
         /// </summary>
         internal static string ErrorAppsInfo {
@@ -1066,6 +1102,15 @@ namespace xamarinJKH {
         internal static string ErrorNoInternet {
             get {
                 return ResourceManager.GetString("ErrorNoInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Для того, чтобы воспользоваться функцией, включите разрешения на использование камеры и хранилища.
+        /// </summary>
+        internal static string ErrorNoPermissions {
+            get {
+                return ResourceManager.GetString("ErrorNoPermissions", resourceCulture);
             }
         }
         

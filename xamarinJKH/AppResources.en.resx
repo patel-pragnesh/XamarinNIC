@@ -1215,4 +1215,19 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="ErrorNoInternet" xml:space="preserve">
     <value>No internet connection</value>
   </data>
+  <data name="AppAccepted" xml:space="preserve">
+    <value>Request accepted</value>
+  </data>
+  <data name="AppCompleted" xml:space="preserve">
+    <value>Request completed</value>
+  </data>
+  <data name="ErrorAppAccept" xml:space="preserve">
+    <value>Couldn't accept request</value>
+  </data>
+  <data name="ErrorAppComplete" xml:space="preserve">
+    <value>Couldn't complete request</value>
+  </data>
+  <data name="ErrorNoPermissions" xml:space="preserve">
+    <value>In order to use this function, you need to enable camera and storage permissions</value>
+  </data>
 </root>

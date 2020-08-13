@@ -1196,4 +1196,19 @@
   <data name="ErrorNoInternet" xml:space="preserve">
     <value>Відсутнє підключення до інтернету</value>
   </data>
+  <data name="AppAccepted" xml:space="preserve">
+    <value>Заявка прийнята до виконання</value>
+  </data>
+  <data name="AppCompleted" xml:space="preserve">
+    <value>Заявка виконана</value>
+  </data>
+  <data name="ErrorAppAccept" xml:space="preserve">
+    <value>Чи не вдалося прийняти заявку</value>
+  </data>
+  <data name="ErrorAppComplete" xml:space="preserve">
+    <value>Чи не вдалося виконати заявку</value>
+  </data>
+  <data name="ErrorNoPermissions" xml:space="preserve">
+    <value>Для того, щоб скористатися функцією, включите дозволу на використання камери і сховища</value>
+  </data>
 </root>
