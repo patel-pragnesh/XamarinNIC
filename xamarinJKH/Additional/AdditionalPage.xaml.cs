@@ -26,6 +26,7 @@ namespace xamarinJKH.Additional
         private RestClientMP server = new RestClientMP();
 
         string _selectedGroup;
+
         public string SelectedGroup
         {
             get => _selectedGroup;
@@ -48,6 +49,7 @@ namespace xamarinJKH.Additional
 
         public ObservableCollection<string> Groups { get; set; }
         string _mainColor;
+
         public string MainColor
         {
             get => _mainColor;
@@ -57,6 +59,7 @@ namespace xamarinJKH.Additional
                 OnPropertyChanged(nameof(MainColor));
             }
         }
+
         public ICommand RefreshCommand
         {
             get
@@ -73,6 +76,7 @@ namespace xamarinJKH.Additional
         }
 
         bool _busy;
+
         public bool IsBusy
         {
             get => _busy;
@@ -87,9 +91,11 @@ namespace xamarinJKH.Additional
         {
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
-                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                Device.BeginInvokeOnMainThread(async () =>
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
+
             Settings.EventBlockData = await server.GetEventBlockData();
             if (Settings.EventBlockData.Error == null)
             {
@@ -102,6 +108,7 @@ namespace xamarinJKH.Additional
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAdditional, "OK");
             }
         }
+
         public AdditionalPage()
         {
             InitializeComponent();
@@ -124,6 +131,7 @@ namespace xamarinJKH.Additional
                 default:
                     break;
             }
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -133,6 +141,7 @@ namespace xamarinJKH.Additional
                 default:
                     break;
             }
+
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
@@ -149,8 +158,6 @@ namespace xamarinJKH.Additional
                     if (phoneDialer.CanMakePhoneCall)
                         phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
                 }
-
-
             };
             LabelPhone.GestureRecognizers.Add(call);
             additionalList.BackgroundColor = Color.Transparent;
@@ -166,18 +173,18 @@ namespace xamarinJKH.Additional
                 SetAdditional();
             });
         }
+
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-            Color hexColor = (Color)Application.Current.Resources["MainColor"];
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
             IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             FrameKind.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
-
         }
 
         protected override async void OnAppearing()
@@ -197,23 +204,25 @@ namespace xamarinJKH.Additional
 
         void SetAdditional()
         {
-
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
                 Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, null, "OK"));
             }
+
             Groups.Clear();
             Additional.Clear();
             Task.Run(() =>
             {
                 if (Settings.EventBlockData.AdditionalServices != null)
                 {
-                    var groups = Settings.EventBlockData.AdditionalServices.GroupBy(x => x.Group).Select(x => x.First()).Select(y => y.Group).ToList();
+                    var groups = Settings.EventBlockData.AdditionalServices.GroupBy(x => x.Group).Select(x => x.First())
+                        .Select(y => y.Group).ToList();
 
                     foreach (var group in groups)
                     {
                         Device.BeginInvokeOnMainThread(() => Groups.Add(group));
                     }
+
                     foreach (var each in Settings.EventBlockData.AdditionalServices)
                     {
                         //try
@@ -236,18 +245,19 @@ namespace xamarinJKH.Additional
                                 }
                     }
 
-                    
+
                     if (SelectedGroup == null)
                     {
-                        Device.BeginInvokeOnMainThread(() => SelectedGroup = Groups[0]);
+                        if (Groups.Count > 0)
+                            Device.BeginInvokeOnMainThread(() => SelectedGroup = Groups[0]);
                     }
                 }
+
                 IsBusy = false;
             });
 
             //AiForms.Dialogs.Loading.Instance.Hide();
         }
-
 
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)

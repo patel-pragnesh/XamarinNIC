@@ -64,6 +64,7 @@ namespace xamarinJKH.Server
         public const string ADD_MESSAGE_CONST = "RequestsDispatcher/AddMessage"; // Отправка сообщения
         public const string GET_HOUSES_GROUP = "RequestsDispatcher/HouseGroups"; // Возвращает список районов
         public const string GET_HOUSES = "RequestsDispatcher/Houses"; // Возвращает список домов. 
+        public const string GET_HOUSE_DATA = "RequestsDispatcher/HouseData"; // Возвращает список домов. 
 
         public const string
             GET_REQUESTS_STATS = "RequestsDispatcher/RequestStats"; // Возвращает статистику по заявкам.  
@@ -1884,6 +1885,33 @@ namespace xamarinJKH.Server
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 return new ItemsList<HouseProfile>()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        
+        /// <summary>
+        /// Возвращает список помещений и л/сч по дому
+        /// </summary>
+        /// <param name="id"> ID дома</param>
+        /// <param name="loadAllAccs">по умолчанию 0, если 1 - подгружаются все л/сч</param>
+        /// <returns></returns>
+        public async Task<ItemsList<R731PremiseWithAccounts>> GetHouseData(string id, string loadAllAccs = "1")
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_HOUSE_DATA, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddParameter("id", id);
+            restRequest.AddParameter("loadAllAccs", loadAllAccs);
+            var response = await restClientMp.ExecuteTaskAsync<ItemsList<R731PremiseWithAccounts>>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new ItemsList<R731PremiseWithAccounts>()
                 {
                     Error = $"Ошибка {response.StatusDescription}"
                 };

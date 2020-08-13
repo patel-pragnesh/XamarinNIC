@@ -96,7 +96,7 @@ namespace xamarinJKH.AppsConst
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
-            
+
             var delLS = new TapGestureRecognizer();
             delLS.Tapped += async (s, e) =>
             {
@@ -109,16 +109,17 @@ namespace xamarinJKH.AppsConst
             IconViewClose.GestureRecognizers.Add(delLS);
 
             var setLss = new TapGestureRecognizer();
-#if DEBUG
-            setLss.Tapped += async (s, e) =>
+            if (Settings.MobileSettings.chooseIdentByHouse)
             {
-                await PopupNavigation.Instance.PushAsync(
-                    new SetLsConstDialog());
-            };
-            LabelLs.GestureRecognizers.Add(setLss);
-            EntryLS.IsVisible = false;
-            LabelLs.IsVisible = true;
-#endif
+                setLss.Tapped += async (s, e) =>
+                {
+                    await PopupNavigation.Instance.PushAsync(
+                        new SetLsConstDialog());
+                };
+                LabelLs.GestureRecognizers.Add(setLss);
+                EntryLS.IsVisible = false;
+                LabelLs.IsVisible = true;
+            }
 
             SetText();
             files = new List<FileData>();
@@ -137,7 +138,7 @@ namespace xamarinJKH.AppsConst
                 };
             }
 
-            
+
             MessagingCenter.Subscribe<Object, string>(this, "SetLs", async (sender, args) =>
             {
                 LabelLs.Text = args;
@@ -152,12 +153,18 @@ namespace xamarinJKH.AppsConst
             {
                 try
                 {
-                    var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
-                    var storage_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                    var camera_perm =
+                        await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                    var storage_perm =
+                        await Plugin.Permissions.CrossPermissions.Current
+                            .CheckPermissionStatusAsync(Permission.Storage);
                     if (camera_perm != PermissionStatus.Granted || storage_perm != PermissionStatus.Granted)
                     {
-                        var status = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
-                        if (status[Permission.Camera] == PermissionStatus.Denied && status[Permission.Storage] == PermissionStatus.Denied)
+                        var status =
+                            await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera,
+                                Permission.Storage);
+                        if (status[Permission.Camera] == PermissionStatus.Denied &&
+                            status[Permission.Storage] == PermissionStatus.Denied)
                         {
                             return;
                         }
@@ -167,14 +174,15 @@ namespace xamarinJKH.AppsConst
                 {
                     Device.BeginInvokeOnMainThread(async () =>
                     {
-                        var result = await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoPermissions, "OK", AppResources.Cancel);
+                        var result = await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoPermissions, "OK",
+                            AppResources.Cancel);
                         if (result)
                             Plugin.Permissions.CrossPermissions.Current.OpenAppSettings();
-
                     });
                     return;
                 }
             }
+
             var action = await DisplayActionSheet(AppResources.AttachmentTitle, AppResources.Cancel, null,
                 TAKE_PHOTO,
                 TAKE_GALRY, TAKE_FILE);
@@ -183,11 +191,13 @@ namespace xamarinJKH.AppsConst
                 await getCameraFile();
                 return;
             }
+
             if (action == TAKE_GALRY)
             {
                 await GetGalaryFile();
                 return;
             }
+
             if (action == TAKE_FILE)
             {
                 await PickAndShowFile(null);
@@ -342,7 +352,6 @@ namespace xamarinJKH.AppsConst
 
             await Loading.Instance.StartAsync(async progress =>
             {
-                
                 switch (metod)
                 {
                     case CAMERA:
@@ -474,10 +483,11 @@ namespace xamarinJKH.AppsConst
             string text = EntryMess.Text;
             FrameBtnAdd.IsVisible = false;
             progress.IsVisible = true;
-            string ident = EntryLS.Text; 
+            string ident = EntryLS.Text;
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
-                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                Device.BeginInvokeOnMainThread(async () =>
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
 
@@ -530,7 +540,8 @@ namespace xamarinJKH.AppsConst
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             FileData select = e.Item as FileData;
-            bool answer = await DisplayAlert(AppResources.Delete,AppResources.DeleteFile,AppResources.Yes, AppResources.No);
+            bool answer = await DisplayAlert(AppResources.Delete, AppResources.DeleteFile, AppResources.Yes,
+                AppResources.No);
             if (answer)
             {
                 int indexOf = files.IndexOf(@select);

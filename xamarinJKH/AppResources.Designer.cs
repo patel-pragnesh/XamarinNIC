@@ -1403,6 +1403,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Выберите квартиру.
+        /// </summary>
+        internal static string FlatChoose {
+            get {
+                return ResourceManager.GetString("FlatChoose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Забыли пароль?.
         /// </summary>
         internal static string ForgotPass {
@@ -1448,7 +1457,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Выбор дома.
+        ///   Looks up a localized string similar to Выберите улицу.
         /// </summary>
         internal static string HomeChoose {
             get {
@@ -1552,6 +1561,15 @@ namespace xamarinJKH {
         internal static string LoginTitle {
             get {
                 return ResourceManager.GetString("LoginTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выберите ЛС..
+        /// </summary>
+        internal static string LsChoose {
+            get {
+                return ResourceManager.GetString("LsChoose", resourceCulture);
             }
         }
         

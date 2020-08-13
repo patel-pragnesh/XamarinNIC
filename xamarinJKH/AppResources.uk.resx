@@ -559,6 +559,12 @@
   <data name="HomeChoose" xml:space="preserve">
     <value>Вибір будинку</value>
   </data>
+  <data name="FlatChoose" xml:space="preserve">
+    <value>Вибір уквартiру</value>
+  </data>
+  <data name="LsChoose" xml:space="preserve">
+    <value>Вибір ЛС.</value>
+  </data>
   <data name="Ident" xml:space="preserve">
     <value>Особовий рахунок:</value>
   </data>
