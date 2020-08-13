@@ -159,12 +159,18 @@ namespace xamarinJKH.Additional
             Additional = new ObservableCollection<AdditionalService>();
             Groups = new ObservableCollection<string>();
             this.BindingContext = this;
+            MessagingCenter.Subscribe<Object>(this, "LoadGoods", async (s) =>
+            {
+                IsBusy = true;
+                await Task.Delay(TimeSpan.FromMilliseconds(500));
+                SetAdditional();
+            });
         }
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            Color hexColor = (Color)Application.Current.Resources["MainColor"];
             IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
@@ -179,22 +185,39 @@ namespace xamarinJKH.Additional
             base.OnAppearing();
             //AiForms.Dialogs.Loading.Instance.Show();
             IsBusy = true;
-            
-            await Task.Delay(TimeSpan.FromMilliseconds(200));
             SetText();
-            SetAdditional();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            Groups.Clear();
+            Additional.Clear();
         }
 
         void SetAdditional()
         {
+
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, null, "OK"));
+            }
             Groups.Clear();
             Additional.Clear();
-            if (Settings.EventBlockData.AdditionalServices != null)
+            Task.Run(() =>
             {
-                foreach (var each in Settings.EventBlockData.AdditionalServices)
+                if (Settings.EventBlockData.AdditionalServices != null)
                 {
-                    //try
-                    //{
+                    var groups = Settings.EventBlockData.AdditionalServices.GroupBy(x => x.Group).Select(x => x.First()).Select(y => y.Group).ToList();
+
+                    foreach (var group in groups)
+                    {
+                        Device.BeginInvokeOnMainThread(() => Groups.Add(group));
+                    }
+                    foreach (var each in Settings.EventBlockData.AdditionalServices)
+                    {
+                        //try
+                        //{
                         if (each.HasLogo)
                             if (each.ShowInAdBlock != null)
                                 if (!each.ShowInAdBlock.ToLower().Equals("не отображать"))
@@ -203,39 +226,25 @@ namespace xamarinJKH.Additional
                                     {
                                         if (each.Group == SelectedGroup)
                                         {
-                                            Additional.Add(each);
+                                            Device.BeginInvokeOnMainThread(() => Additional.Add(each));
                                         }
                                     }
                                     else
                                     {
-                                        Additional.Add(each);
+                                        Device.BeginInvokeOnMainThread(() => Additional.Add(each));
                                     }
                                 }
-                    //}
-                    //catch(Exception exc)
-                    //{
+                    }
 
-                    //}
                     
+                    if (SelectedGroup == null)
+                    {
+                        Device.BeginInvokeOnMainThread(() => SelectedGroup = Groups[0]);
+                    }
                 }
+                IsBusy = false;
+            });
 
-                var groups = Settings.EventBlockData.AdditionalServices.GroupBy(x => x.Group).Select(x => x.First()).Select(y => y.Group).ToList();
-
-                foreach (var group in groups)
-                {
-                    Groups.Add(group);
-                }
-                if (SelectedGroup == null)
-                {
-                    SelectedGroup = Groups[0];
-                }
-            }
-            
-            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
-            {
-                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, null, "OK"));
-            }
-            IsBusy = false;
             //AiForms.Dialogs.Loading.Instance.Hide();
         }
 
@@ -260,9 +269,9 @@ namespace xamarinJKH.Additional
             Additional.Clear();
             foreach (var service in Settings.EventBlockData.AdditionalServices.Where(x => x.Group == group))
             {
-                if (service.HasLogo &&  service.ShowInAdBlock != null )
-                    if(!service.ShowInAdBlock.ToLower().Equals("не отображать"))
-                    Additional.Add(service);
+                if (service.HasLogo && service.ShowInAdBlock != null)
+                    if (!service.ShowInAdBlock.ToLower().Equals("не отображать"))
+                        Additional.Add(service);
             }
         }
     }
