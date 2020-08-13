@@ -98,7 +98,7 @@ namespace xamarinJKH.Main
                     break;
             }
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
@@ -107,11 +107,11 @@ namespace xamarinJKH.Main
                 {
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
-                    if (phoneDialer.CanMakePhoneCall) 
+                    if (phoneDialer.CanMakePhoneCall)
                         phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
                 }
 
-            
+
             };
             LabelPhone.GestureRecognizers.Add(call);
             SetTextAndColor();
@@ -119,10 +119,10 @@ namespace xamarinJKH.Main
             SetTitle();
 
             countersList.BackgroundColor = Color.Transparent;
-            if(Device.RuntimePlatform!=Device.iOS)
+            if (Device.RuntimePlatform != Device.iOS)
                 countersList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
-            
-            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+
+            Color hexColor = (Color)Application.Current.Resources["MainColor"];
             IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
@@ -142,66 +142,68 @@ namespace xamarinJKH.Main
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
             if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
                 currentTheme = OSAppTheme.Dark;
-            if (Settings.Person.Accounts.Count > 0)
-            {
-                FormattedString formattedResource = new FormattedString();
-                formattedResource.Spans.Add(new Span
-                {
-                    Text = AppResources.CountersInfo1,
-                    TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
-                    FontAttributes = FontAttributes.None,
-                    FontSize = 15
-                });
-                if (Settings.Person.Accounts[0].MetersStartDay != null &&
-                    Settings.Person.Accounts[0].MetersEndDay != null)
-                {
-                    if (Settings.Person.Accounts[0].MetersStartDay != 0 &&
-                        Settings.Person.Accounts[0].MetersEndDay != 0)
+            if (Settings.Person != null)
+                if (Settings.Person.Accounts != null)
+                    if (Settings.Person.Accounts.Count > 0)
                     {
+                        FormattedString formattedResource = new FormattedString();
                         formattedResource.Spans.Add(new Span
                         {
-                            Text = AppResources.From + Settings.Person.Accounts[0].MetersStartDay + AppResources.To +
-                                   Settings.Person.Accounts[0].MetersEndDay + AppResources.DayOfMounth,
-                            TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
-                            FontAttributes = FontAttributes.Bold,
-                            FontSize = 15
-                        });
-                        formattedResource.Spans.Add(new Span
-                        {
-                            Text = AppResources.CountersCurrentMonth,
+                            Text = AppResources.CountersInfo1,
                             TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
                             FontAttributes = FontAttributes.None,
                             FontSize = 15
                         });
+                        if (Settings.Person.Accounts[0].MetersStartDay != null &&
+                            Settings.Person.Accounts[0].MetersEndDay != null)
+                        {
+                            if (Settings.Person.Accounts[0].MetersStartDay != 0 &&
+                                Settings.Person.Accounts[0].MetersEndDay != 0)
+                            {
+                                formattedResource.Spans.Add(new Span
+                                {
+                                    Text = AppResources.From + Settings.Person.Accounts[0].MetersStartDay + AppResources.To +
+                                           Settings.Person.Accounts[0].MetersEndDay + AppResources.DayOfMounth,
+                                    TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                                    FontAttributes = FontAttributes.Bold,
+                                    FontSize = 15
+                                });
+                                formattedResource.Spans.Add(new Span
+                                {
+                                    Text = AppResources.CountersCurrentMonth,
+                                    TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                                    FontAttributes = FontAttributes.None,
+                                    FontSize = 15
+                                });
+                            }
+                            else
+                            {
+                                formattedResource.Spans.Add(new Span
+                                {
+                                    Text = AppResources.CountersThisMonth,
+                                    TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                                    FontAttributes = FontAttributes.Bold,
+                                    FontSize = 15
+                                });
+                            }
+                        }
+                        else
+                        {
+                            formattedResource.Spans.Add(new Span
+                            {
+                                Text = AppResources.CountersThisMonth,
+                                TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                                FontAttributes = FontAttributes.Bold,
+                                FontSize = 15
+                            });
+                        }
+
+                        PeriodSendLbl.FormattedText = formattedResource;
                     }
                     else
                     {
-                        formattedResource.Spans.Add(new Span
-                        {
-                            Text = AppResources.CountersThisMonth,
-                            TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
-                            FontAttributes = FontAttributes.Bold,
-                            FontSize = 15
-                        });
+                        PeriodSendLbl.Text = AppResources.NoAccounts;
                     }
-                }
-                else
-                {
-                    formattedResource.Spans.Add(new Span
-                    {
-                        Text = AppResources.CountersThisMonth,
-                        TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
-                        FontAttributes = FontAttributes.Bold,
-                        FontSize = 15
-                    });
-                }
-
-                PeriodSendLbl.FormattedText = formattedResource;
-            }
-            else
-            {
-                PeriodSendLbl.Text = AppResources.NoAccounts;
-            }
         }
 
         protected override void OnAppearing()
@@ -244,7 +246,7 @@ namespace xamarinJKH.Main
                         Device.BeginInvokeOnMainThread(() =>
                         {
                             Picker.WidthRequest = identLength * 9;
-                           // Picker.MinimumWidthRequest = identLength * 9;
+                            // Picker.MinimumWidthRequest = identLength * 9;
                         });
                     }
                 }
@@ -295,7 +297,7 @@ namespace xamarinJKH.Main
         void SetTextAndColor()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
+            LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
         }
 
         async void getInfo()
@@ -353,14 +355,14 @@ namespace xamarinJKH.Main
                 MeterInfo select = e.Item as MeterInfo;
                 if (select.Values.Count >= 1 && int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
                 {
-                    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0 ;
-                    var counterThisMonth2 = (select.Values.Count >= 2) ? select.Values[1].Value : 0 ;
+                    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
+                    var counterThisMonth2 = (select.Values.Count >= 2) ? select.Values[1].Value : 0;
                     await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, counterThisMonth,
                         counterThisMonth2));
                 }
                 else
                 {
-                    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0 ;
+                    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
                     await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0, counterThisMonth));
                 }
             }

@@ -76,7 +76,7 @@ namespace xamarinJKH.Main
             StackLayout addressStack = new StackLayout();
             addressStack.Orientation = StackOrientation.Horizontal;
             addressStack.HorizontalOptions = LayoutOptions.FillAndExpand;
-            
+
             //Grid grid = new Grid
             //{
             //    RowDefinitions =
@@ -109,7 +109,7 @@ namespace xamarinJKH.Main
             adressLbl.HorizontalTextAlignment = TextAlignment.Start;
             adressLbl.HorizontalOptions = LayoutOptions.Fill;
             adressLbl.MinimumWidthRequest = 60;
-           
+
             // addressStack.Children.Add(adressLbl);
             // addressStack.Children.Add(new Label
             // {
@@ -120,7 +120,7 @@ namespace xamarinJKH.Main
             //     VerticalOptions = LayoutOptions.Center
             // });
             // addressStack.Children.Add(adress);
-            
+
             grid0.Children.Add(adressLbl);
             //grid.Children.Add(new Label
             //{
@@ -149,7 +149,7 @@ namespace xamarinJKH.Main
 
             //grid0.Children.Add(linesaddr);
             grid0.Children.Add(b);
-            
+
             grid.Children.Add(grid0);
 
 
@@ -165,9 +165,9 @@ namespace xamarinJKH.Main
             { adress.WidthRequest = 500; adressLbl.FontSize = 14; adress.FontSize = 14; }
             else
                 adress.WidthRequest = Convert.ToInt32(Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width * 0.7);
-            
-            
-            
+
+
+
             grid.Children.Add(adress);
 
             container.Children.Add(header);
@@ -401,7 +401,7 @@ namespace xamarinJKH.Main
 
         public static readonly BindableProperty ResourceProperty =
             BindableProperty.Create("Resource", typeof(string), typeof(MetersThreeCell), "");
- 
+
         public static readonly BindableProperty CustomNameProperty =
             BindableProperty.Create("CustomName", typeof(string), typeof(MetersThreeCell), "");
 
@@ -426,7 +426,7 @@ namespace xamarinJKH.Main
 
         public List<MeterValueInfo> Values
         {
-            get { return (List<MeterValueInfo>) GetValue(ValuesProperty); }
+            get { return (List<MeterValueInfo>)GetValue(ValuesProperty); }
             set { SetValue(ValuesProperty, value); }
         }
         public int DecimalPoint
@@ -439,44 +439,44 @@ namespace xamarinJKH.Main
         {
             get
             {
-                return ((string) GetValue(ResourceProperty)).ToLower().Contains("водоснабжение")
-                    ? $"{(string) GetValue(ResourceProperty)}, м3"
-                    : $"{(string) GetValue(ResourceProperty)}, кВт";
+                return ((string)GetValue(ResourceProperty)).ToLower().Contains("водоснабжение")
+                    ? $"{(string)GetValue(ResourceProperty)}, м3"
+                    : $"{(string)GetValue(ResourceProperty)}, кВт";
             }
             set { SetValue(ResourceProperty, value); }
         }
 
         public string Address
         {
-            get { return (string) GetValue(AddressProperty); }
+            get { return (string)GetValue(AddressProperty); }
             set { SetValue(AddressProperty, value); }
-        }  
+        }
         public string CustomName
         {
             get
             {
-                return ((string) GetValue(ResourceProperty)).ToLower().Contains("водоснабжение")
-                    ? $"{(string) GetValue(CustomNameProperty)}, м3"
-                    : $"{(string) GetValue(CustomNameProperty)}, кВт";
+                return ((string)GetValue(ResourceProperty)).ToLower().Contains("водоснабжение")
+                    ? $"{(string)GetValue(CustomNameProperty)}, м3"
+                    : $"{(string)GetValue(CustomNameProperty)}, кВт";
             }
             set { SetValue(CustomNameProperty, value); }
         }
 
         public string UniqueNum
         {
-            get { return (string) GetValue(UniqueNumProperty); }
+            get { return (string)GetValue(UniqueNumProperty); }
             set { SetValue(UniqueNumProperty, value); }
         }
 
         public string CheckupDate
         {
-            get { return (string) GetValue(CheckupDateProperty); }
+            get { return (string)GetValue(CheckupDateProperty); }
             set { SetValue(CheckupDateProperty, value); }
         }
 
         public string RecheckInterval
         {
-            get { return (string) GetValue(RecheckIntervalProperty); }
+            get { return (string)GetValue(RecheckIntervalProperty); }
             set { SetValue(RecheckIntervalProperty, value); }
         }
 
@@ -486,39 +486,39 @@ namespace xamarinJKH.Main
             var stack = (View as Frame).Content as StackLayout;
             try
             {
-            
 
-            int currDay = DateTime.Now.Day;
-            if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
-                 Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
-                (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                 Settings.Person.Accounts[0].MetersEndDay == 0))
-            {
-                stack.Children.RemoveAt(stack.Children.Count - 2);
-                stack.Children.RemoveAt(stack.Children.Count - 1);
-           
 
-                stack.Children.Add(new Label()
+                int currDay = DateTime.Now.Day;
+                if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
+                     Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
+                    (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                     Settings.Person.Accounts[0].MetersEndDay == 0))
                 {
-                    Text = $"{AppResources.PenencePassed} {Values[0].Period}",
-                    FontSize = 14,
-                    VerticalTextAlignment = TextAlignment.Center,
-                    HorizontalTextAlignment = TextAlignment.Center
-                });
-                var editLabel = new Label()
-                {
-                    Text = AppResources.ChangePenance,
-                    FontAttributes = FontAttributes.Bold,
-                    TextColor = Color.FromHex(Settings.MobileSettings.color),
-                    VerticalTextAlignment = TextAlignment.Center,
-                    HorizontalTextAlignment = TextAlignment.Center
-                };
-                stack.Children.Add(editLabel);
-            }    
+                    stack.Children.RemoveAt(stack.Children.Count - 2);
+                    stack.Children.RemoveAt(stack.Children.Count - 1);
+
+
+                    stack.Children.Add(new Label()
+                    {
+                        Text = $"{AppResources.PenencePassed} {Values[0].Period}",
+                        FontSize = 14,
+                        VerticalTextAlignment = TextAlignment.Center,
+                        HorizontalTextAlignment = TextAlignment.Center
+                    });
+                    var editLabel = new Label()
+                    {
+                        Text = AppResources.ChangePenance,
+                        FontAttributes = FontAttributes.Bold,
+                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                        VerticalTextAlignment = TextAlignment.Center,
+                        HorizontalTextAlignment = TextAlignment.Center
+                    };
+                    stack.Children.Add(editLabel);
+                }
             }
             catch (Exception e)
             {
-                
+
             }
         }
         string GetFormat()
@@ -530,7 +530,7 @@ namespace xamarinJKH.Main
                 case 1: return "{0:0.0}";
                 case 2: return "{0:0.00}";
                 case 3: return "{0:0.000}";
-                
+
             }
             return "{0:0.000}";
         }
@@ -544,8 +544,8 @@ namespace xamarinJKH.Main
                 var editName = new TapGestureRecognizer();
                 editName.Tapped += async (s, e) =>
                 {
-                   await  PopupNavigation.Instance.PushAsync(
-                       new EditCounterNameDialog(Color.FromHex(Settings.MobileSettings.color), UniqueNum));
+                    await PopupNavigation.Instance.PushAsync(
+                        new EditCounterNameDialog(Color.FromHex(Settings.MobileSettings.color), UniqueNum));
                 };
                 if (imgEdit.GestureRecognizers.Count > 0)
                 {
@@ -557,7 +557,7 @@ namespace xamarinJKH.Main
                 }
 
                 string name = (!CustomName.Equals(", м3") && !CustomName.Equals(", кВт")) ? CustomName : Resource;
-                
+
                 FormattedString formattedResource = new FormattedString();
                 formattedResource.Spans.Add(new Span
                 {
@@ -634,75 +634,77 @@ namespace xamarinJKH.Main
                 // currDay = 16;
                 frameBtn.IsVisible = true;
                 canCount.IsVisible = false;
-                if (Settings.Person.Accounts.Count > 0)
-                {
-                    FormattedString formattedDate = new FormattedString();
-                    formattedDate.Spans.Add(new Span
-                    {
-                        Text = $"{AppResources.CountersInfo1} ",
-                        TextColor = Color.FromHex(Settings.MobileSettings.color),
-                        FontAttributes = FontAttributes.None,
-                        FontSize = 12
-                    });
-                    if (Settings.Person.Accounts[0].MetersStartDay != null &&
-                        Settings.Person.Accounts[0].MetersEndDay != null)
-                    {
-                        if (Settings.Person.Accounts[0].MetersStartDay != 0 &&
-                            Settings.Person.Accounts[0].MetersEndDay != 0)
+                if (Settings.Person != null)
+                    if (Settings.Person.Accounts != null)
+                        if (Settings.Person.Accounts.Count > 0)
                         {
+                            FormattedString formattedDate = new FormattedString();
                             formattedDate.Spans.Add(new Span
                             {
-                                Text = $"{AppResources.From} " + Settings.Person.Accounts[0].MetersStartDay + $" {AppResources.To} " +
-                                       Settings.Person.Accounts[0].MetersEndDay + " числа ",
-                                TextColor = Color.FromHex(Settings.MobileSettings.color),
-                                FontAttributes = FontAttributes.Bold,
-                                FontSize = 12
-                            });
-                            formattedDate.Spans.Add(new Span
-                            {
-                                Text = AppResources.CountersThisMonth,
+                                Text = $"{AppResources.CountersInfo1} ",
                                 TextColor = Color.FromHex(Settings.MobileSettings.color),
                                 FontAttributes = FontAttributes.None,
                                 FontSize = 12
                             });
-                        }
-                        else
-                        {
-                            formattedDate.Spans.Add(new Span
+                            if (Settings.Person.Accounts[0].MetersStartDay != null &&
+                                Settings.Person.Accounts[0].MetersEndDay != null)
                             {
-                                Text = AppResources.CountersCurrentMonth,
-                                TextColor = Color.FromHex(Settings.MobileSettings.color),
-                                FontAttributes = FontAttributes.Bold,
-                                FontSize = 12
-                            });
-                        }
-                    }
-                    else
-                    {
-                        formattedDate.Spans.Add(new Span
-                        {
-                            Text = AppResources.CountersCurrentMonth,
-                            TextColor = Color.FromHex(Settings.MobileSettings.color),
-                            FontAttributes = FontAttributes.Bold,
-                            FontSize = 12
-                        });
-                    }
+                                if (Settings.Person.Accounts[0].MetersStartDay != 0 &&
+                                    Settings.Person.Accounts[0].MetersEndDay != 0)
+                                {
+                                    formattedDate.Spans.Add(new Span
+                                    {
+                                        Text = $"{AppResources.From} " + Settings.Person.Accounts[0].MetersStartDay + $" {AppResources.To} " +
+                                               Settings.Person.Accounts[0].MetersEndDay + " числа ",
+                                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                        FontAttributes = FontAttributes.Bold,
+                                        FontSize = 12
+                                    });
+                                    formattedDate.Spans.Add(new Span
+                                    {
+                                        Text = AppResources.CountersThisMonth,
+                                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                        FontAttributes = FontAttributes.None,
+                                        FontSize = 12
+                                    });
+                                }
+                                else
+                                {
+                                    formattedDate.Spans.Add(new Span
+                                    {
+                                        Text = AppResources.CountersCurrentMonth,
+                                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                        FontAttributes = FontAttributes.Bold,
+                                        FontSize = 12
+                                    });
+                                }
+                            }
+                            else
+                            {
+                                formattedDate.Spans.Add(new Span
+                                {
+                                    Text = AppResources.CountersCurrentMonth,
+                                    TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                    FontAttributes = FontAttributes.Bold,
+                                    FontSize = 12
+                                });
+                            }
 
-                    canCount.FormattedText = formattedDate;
-                    if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
-                         Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
-                        (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                         Settings.Person.Accounts[0].MetersEndDay == 0))
-                    {
-                        frameBtn.IsVisible = true;
-                        canCount.IsVisible = false;
-                    }
-                    else
-                    {
-                        frameBtn.IsVisible = false;
-                        canCount.IsVisible = true;
-                    }
-                }
+                            canCount.FormattedText = formattedDate;
+                            if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
+                                 Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
+                                (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                                 Settings.Person.Accounts[0].MetersEndDay == 0))
+                            {
+                                frameBtn.IsVisible = true;
+                                canCount.IsVisible = false;
+                            }
+                            else
+                            {
+                                frameBtn.IsVisible = false;
+                                canCount.IsVisible = true;
+                            }
+                        }
             }
         }
     }
