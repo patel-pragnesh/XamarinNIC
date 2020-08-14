@@ -119,7 +119,7 @@ fi
 if [ ${#CLIENT_SCRIPT} -gt 0 ]; then
     if [ ${BASE} ]; then
         echo "##[section][Pre-Build] Changing database name in ${CLIENT_SCRIPT} to ${BASE}"
-        sed -i.bak -e "s/public const string SERVER_ADDR = \"https:\/\/api.sm-center.ru\/[a-zA-Z0-9|.|\/|:|-|_]*\";/public const string SERVER_ADDR = \"https:\/\/api.sm-center.ru\/${BASE}\";/" $CLIENT_SCRIPT
+        sed -i.bak -e "s/public const string SERVER_ADDR = \"https:\/\/api.sm-center.ru\/[a-zA-Z0-9|.|\/|:|\-|_]*\";/public const string SERVER_ADDR = \"https:\/\/api.sm-center.ru\/${BASE}\";/" $CLIENT_SCRIPT
     else
         echo ERROR: "##[section][Pre-Build] No base variable set. Aborting"
         exit 1
@@ -128,4 +128,4 @@ else
     echo ERROR: "##[section][Pre-Build] No RestClientMP.cs found. Aborting"
     exit 1
 fi
-head -n 30 ${CLIENT_SCRIPT} | grep "public const string SERVER_ADDR = \"https:\/\/api.sm-center.ru\/[a-zA-Z0-9|.|\/|:|-|_]*\""
+head -n 30 ${CLIENT_SCRIPT} | grep "public const string SERVER_ADDR = \"https:\/\/api.sm-center.ru\/[a-zA-Z0-9|.|\/|:|\-|_]*\""
