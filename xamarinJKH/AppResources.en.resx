@@ -1240,7 +1240,7 @@ A bot will call you on your number PHONE and tell an access code</value>
     <value>In order to use this function, you need to enable camera and storage permissions</value>
   </data>
   <data name="Amount1" xml:space="preserve">
-    <value>Amount</value>
+    <value>Amnt</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
