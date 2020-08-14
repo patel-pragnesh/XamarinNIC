@@ -27,15 +27,19 @@
            Padding="20,20,10,20">
         <StackLayout>
             <app:IconView Source="ic_shop_plus"
-                          Foreground="{AppThemeBinding Light=Black, Dark=White}"
-                          HeightRequest="30"/>
+                          Foreground="Black"
+                          HeightRequest="30">
+                <app:IconView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="AddGoods"/>
+                </app:IconView.GestureRecognizers>
+            </app:IconView>
             <Grid HeightRequest="60">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.3*"/>
-                    <ColumnDefinition Width="0.2*"/>
-                    <ColumnDefinition Width="0.3*"/>
-                    <ColumnDefinition Width="0.1*"/>
-                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="0.25*"/>
+                    <ColumnDefinition Width="0.35*"/>
+                    <ColumnDefinition Width="0.05*"/>
+                    <ColumnDefinition Width="0.05*"/>
                 </Grid.ColumnDefinitions>
                 <Label Text="{x:Static app:AppResources.Name}"
                        Grid.Column="0"
@@ -58,33 +62,48 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.3*"/>
-                                <ColumnDefinition Width="0.2*"/>
-                                <ColumnDefinition Width="0.3*"/>
-                                <ColumnDefinition Width="0.1*"/>
-                                <ColumnDefinition Width="0.1*"/>
+                                <ColumnDefinition Width="0.25*"/>
+                                <ColumnDefinition Width="0.35*"/>
+                                <ColumnDefinition Width="0.05*"/>
+                                <ColumnDefinition Width="0.05*"/>
                             </Grid.ColumnDefinitions>
                             <Label Text="{Binding Name}"
+                                   VerticalTextAlignment="Center"
                                    Grid.Column="0"/>
                             <Label Text="{Binding Amount}"
                                    VerticalTextAlignment="Center"
                                    HorizontalTextAlignment="Center"
                                    Grid.Column="1"/>
-                            <app:BordlessEditor Text="{Binding Price, Converter={StaticResource Price}}"
-                                                
+                            <Entry Text="{Binding Price, Mode=TwoWay, Converter={StaticResource Price}}"
+                                                Unfocused="SetPrice"
+                                                Focused="SelectAllText"
                                             Keyboard="Numeric"
-                                            FontSize="14"
+                                            FontSize="12"
+                                                IsReadOnly="True"
                                             VerticalOptions="CenterAndExpand"
                                             HorizontalOptions="EndAndExpand"
-                                            x:Name="{Binding Name}"
-                                            IsReadOnly="True"
+                                            ClassId="{Binding Name}"
                                    Grid.Column="2">
-                            </app:BordlessEditor>
+                                
+                            </Entry>
                             <ImageButton Source="edit"
                                          Grid.Column="3"
                                          HeightRequest="30"
-                                         BackgroundColor="Transparent"
-                                     Command="{Binding Path=BindingContext.Edit, Source={x:Reference AppReciept}}"
-                                     CommandParameter="{Binding .}"/>
+                                         Clicked="SetEditor"
+                                         BackgroundColor="Transparent">
+                                <!--<VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="Pressed">
+                                            <VisualState.Setters>
+                                                <Setter TargetName="Price"
+                                                        Property="Entry.IsReadOnly"
+                                                        Value="False" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>-->
+                            </ImageButton>
                             <ImageButton Source="ic_close"
                                          Grid.Column="4"
                                          HeightRequest="30"
