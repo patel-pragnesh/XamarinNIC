@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dialog:DialogView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:dialog="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
+                   xmlns:converters="clr-namespace:xamarinJKH.Converters"
+                   xmlns:app="clr-namespace:xamarinJKH"
+             x:Class="xamarinJKH.DialogViews.ShopListDialogView">
+    <Frame CornerRadius="30"
+           Padding="20"
+           HeightRequest="350">
+        <StackLayout>
+            <CollectionView ItemsSource="{Binding Items}"
+                            x:Name="collection_items"
+                            SelectionChanged="collection_items_SelectionChanged"
+                            SelectionMode="Multiple">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HeightRequest="60" BackgroundColor="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.3*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding Name}" 
+                                   Grid.Column="1"/>
+                            <Label Text="{Binding Price,Converter={converters:PriceConverter}}"
+                                   Grid.Column="2"/>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="{x:DynamicResource MainColor}"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="{x:Static app:AppResources.AddApp}"
+                    TextColor="White"
+                    Clicked="AddItems"
+                    Command="{Binding AddItems}"
+                    BackgroundColor="{x:DynamicResource MainColor}"
+                    CornerRadius="20"/>
+        </StackLayout>
+    </Frame>
+</dialog:DialogView>

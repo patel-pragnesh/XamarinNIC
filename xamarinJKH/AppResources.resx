@@ -318,7 +318,7 @@
   </data>
   <data name="FlatChoose" xml:space="preserve">
     <value>Выберите квартиру</value>
-  </data> 
+  </data>
   <data name="LsChoose" xml:space="preserve">
     <value>Выберите ЛС.</value>
   </data>
@@ -1231,7 +1231,7 @@
     <value>Для того, чтобы воспользоваться функцией, включите разрешения на использование камеры и хранилища</value>
   </data>
   <data name="Amount1" xml:space="preserve">
-    <value>Количество</value>
+    <value>Кол-во</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Наименование</value>

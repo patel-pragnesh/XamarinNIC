@@ -9,6 +9,7 @@ using xamarinJKH.Server.RequestModel;
 using RestSharp;
 using Xamarin.Forms;
 using xamarinJKH.Utils;
+using xamarinJKH.Server.RequestModel;
 
 namespace xamarinJKH.Server
 {
@@ -132,6 +133,7 @@ namespace xamarinJKH.Server
 
         public const string SEND_CODE = "RequestsDispatcher/CheckPaidRequestCompleteCode"; //Проверка кода подтверждения заказа
         public const string TRANSIT_ORDER = "RequestsDispatcher/SetPaidRequestStatusOnTheWay";// Установка статуса платной заявки в 'курьер в пути'
+        public const string UPDATE_RECEIPT = "RequestsDispatcher/UpdateRequestReceipts";
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -2008,6 +2010,21 @@ namespace xamarinJKH.Server
             });
             var response = await restClientMp.ExecuteTaskAsync<PaidRequestResponse>(restRequest);
             return response.Data.IsCorrect;
+        }
+
+        public async Task<CommonResult> UpdateReceipt(RequestsReceiptItemsList data)
+        {
+            RestClient client = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(UPDATE_RECEIPT, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                data.RequestId,
+                data.ReceiptItems
+            });
+            var response = await client.ExecuteTaskAsync<CommonResult>(restRequest);
+            return response.Data;
         }
     }
 }
