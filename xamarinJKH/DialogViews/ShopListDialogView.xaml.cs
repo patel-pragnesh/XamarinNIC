@@ -19,27 +19,9 @@ namespace xamarinJKH.DialogViews
         public ShopListDialogView()
         {
             InitializeComponent();
-            BindingContext = viewModel = new ShopListViewModel();
+            BindingContext = viewModel = new ShopListViewModel(DialogNotifier);
 
             viewModel.LoadItems.Execute(null);
-        }
-
-        void AddItems(object sender, EventArgs args)
-        {
-            DialogNotifier.Cancel();
-        }
-
-        private void collection_items_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            viewModel.SelectedItems.Clear();
-            if (e.CurrentSelection != null)
-            {
-                foreach (var good in e.CurrentSelection)
-                {
-                    viewModel.SelectedItems.Add(good as Goods);
-                }
-
-            }
         }
     }
 }

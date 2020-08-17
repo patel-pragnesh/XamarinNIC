@@ -39,6 +39,11 @@ namespace xamarinJKH.Server.RequestModel
         public decimal PaidSumm { get; set; }
         public string PaidServiceText { get; set; }
         public string Error { get; set; }
+
+        public RequestContent Copy()
+        {
+            return (RequestContent)this.MemberwiseClone();
+        }
     }
 
     public class RequestMessage

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AiForms.Dialogs.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -15,23 +16,43 @@ namespace xamarinJKH.ViewModels.DialogViewModels
         public Command Edit { get; set; }
         public Command Update { get; set; }
         public int ID { get; set; }
+        decimal price { get; set; }
+        public decimal Price
+        {
+            get => price;
+            set
+            {
+                price = value;
+                OnPropertyChanged(nameof(Price));
+            }
+        }
 
-        public AppRecieptConstViewModel(List<RequestsReceiptItem> items, int id)
+        readonly IDialogNotifier Notifier;
+       
+
+        public AppRecieptConstViewModel(List<RequestsReceiptItem> items, int id, IDialogNotifier dialog)
         {
             ReceiptItems = new ObservableCollection<RequestsReceiptItem>();
             ID = id;
             if (items != null)
             foreach (var item in items)
             {
-                Device.BeginInvokeOnMainThread(() => ReceiptItems.Add(item));
+                ReceiptItems.Add(item);
             }
+
+            Notifier = dialog;
+
+            var total = ReceiptItems.Select(x => x.Price * x.Amount).Sum();
+            Price = Convert.ToDecimal(total);
 
             Delete = new Command<RequestsReceiptItem>(item =>
             {
                 if (item != null)
                 {
-                    Device.BeginInvokeOnMainThread(() => ReceiptItems.Remove(item));
+                    ReceiptItems.Remove(item);
                 }
+                var total = ReceiptItems.Select(x => x.Price * x.Amount).Sum();
+                Price = Convert.ToDecimal(total);
             });
 
             Edit = new Command<RequestsReceiptItem>(item => 
@@ -41,7 +62,14 @@ namespace xamarinJKH.ViewModels.DialogViewModels
             Update = new Command(async () =>
             {
                 var response = await Server.UpdateReceipt(new RequestsReceiptItemsList(this.ID, ReceiptItems));
-                
+                MessagingCenter.Send<Object>(this, "RefreshAppList");
+                Notifier.Cancel();
+            });
+
+            MessagingCenter.Subscribe<Object>(this, "UpdatePrice", sender =>
+            {
+                var total = ReceiptItems.Select(x => x.Price * x.Amount).Sum();
+                Price = Convert.ToDecimal(total);
             });
 
             MessagingCenter.Subscribe<Object, List<Goods>>(this, "AddItems", (sender, args) =>
@@ -50,14 +78,20 @@ namespace xamarinJKH.ViewModels.DialogViewModels
                 {
                     foreach (var item in args)
                     {
-                        var receipt_item = new RequestsReceiptItem { Name = item.Name, Price = item.Price, Amount = 1 };
-                        var existing = ReceiptItems.First(x => x.Name == item.Name);
-                        if (existing == null)
-                            Device.BeginInvokeOnMainThread(() => ReceiptItems.Add(receipt_item));
-                        else
-                            existing.Amount++;
+                        var receipt_item = new RequestsReceiptItem { Name = item.Name, Price = item.Price, Amount = item.ColBusket };
+                        if (!string.IsNullOrEmpty(item.Name))
+                        {
+                            var existing = ReceiptItems.FirstOrDefault(x => x.Name == item.Name);
+                            if (existing == null)
+                                Device.BeginInvokeOnMainThread(() => ReceiptItems.Add(receipt_item));
+                            else
+                                existing.Amount += item.ColBusket;
+                        }
+                        
                     }
                 }
+                var total = ReceiptItems.Select(x => x.Price * x.Amount).Sum();
+                Price = Convert.ToDecimal(total);
             });
         }
     }

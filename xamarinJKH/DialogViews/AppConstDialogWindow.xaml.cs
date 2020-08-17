@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using Xamarin.Forms.Internals;
 using System.Diagnostics.Tracing;
 using AiForms.Dialogs;
+using xamarinJKH.Server.RequestModel;
 
 namespace xamarinJKH.DialogViews
 {
@@ -19,10 +20,11 @@ namespace xamarinJKH.DialogViews
     public partial class AppConstDialogWindow : DialogView
     {
         AppRecieptConstViewModel viewModel { get; set; }
-        public AppConstDialogWindow(AppRecieptConstViewModel vm)
+        public AppConstDialogWindow(List<RequestsReceiptItem> items, int id)
         {
             InitializeComponent();
-            BindingContext = viewModel = vm;
+            BindingContext = viewModel = new AppRecieptConstViewModel(items, id, this.DialogNotifier);
+            
         }
 
         decimal currentVal;
@@ -38,6 +40,8 @@ namespace xamarinJKH.DialogViews
             var editor = (cell as Grid).Children[2] as Entry;
             editor.IsReadOnly = false;
             editor.Focus();
+            editor.Text = editor.Text.Replace(AppResources.Currency.Trim(), " ").Trim();
+            editor.CursorPosition = editor.Text.Length;
         }
 
         protected void SetPrice(object sender, FocusEventArgs args)
@@ -56,6 +60,7 @@ namespace xamarinJKH.DialogViews
                         if (item != null)
                         {
                             item.Price = price;
+                            MessagingCenter.Send<Object>(this, "UpdatePrice");
                         }
                     }
                     else
@@ -79,6 +84,7 @@ namespace xamarinJKH.DialogViews
                 if (entry != null)
                 {
                     entry.Unfocus();
+                    entry.IsReadOnly = true;
                 }
             }
             

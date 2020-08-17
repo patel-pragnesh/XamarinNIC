@@ -17,5 +17,10 @@ namespace xamarinJKH.Server.RequestModel
                 OnPropertyChanged(nameof(Amount));
             }
         }
+
+        public RequestsReceiptItem Copy()
+        {
+            return (RequestsReceiptItem)this.MemberwiseClone();
+        }
     }
 }
