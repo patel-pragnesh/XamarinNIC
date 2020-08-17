@@ -195,6 +195,8 @@ namespace xamarinJKH.Additional
             //AiForms.Dialogs.Loading.Instance.Show();
             IsBusy = true;
             SetText();
+
+            //await RefreshData();
         }
 
         protected override void OnDisappearing()
@@ -217,7 +219,11 @@ namespace xamarinJKH.Additional
             {
                 if (Settings.EventBlockData.AdditionalServices != null)
                 {
-                    var groups = Settings.EventBlockData.AdditionalServices.GroupBy(x => x.Group).Select(x => x.First())
+                    var l = Settings.EventBlockData.AdditionalServices.Where(x => x.HasLogo && x.ShowInAdBlock != null && !x.ShowInAdBlock.ToLower().Equals("не отображать"));
+                    var groups = l.GroupBy(x => x.Group).Select(x => x.First())
+                        .Select(y => y.Group ).ToList();
+
+                    var groups1 = Settings.EventBlockData.AdditionalServices.GroupBy(x => x.Group).Select(x => x.First())
                         .Select(y => y.Group).ToList();
 
                     foreach (var group in groups)

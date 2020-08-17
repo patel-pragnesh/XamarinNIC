@@ -1251,4 +1251,13 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="Receipt" xml:space="preserve">
     <value>Receipt</value>
   </data>
+  <data name="b" xml:space="preserve">
+    <value>b</value>
+  </data>
+  <data name="kb" xml:space="preserve">
+    <value>Kb</value>
+  </data>
+  <data name="mb" xml:space="preserve">
+    <value>Mb</value>
+  </data>
 </root>

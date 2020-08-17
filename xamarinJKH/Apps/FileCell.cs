@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.Apps
@@ -21,6 +22,7 @@ namespace xamarinJKH.Apps
             frame.Margin = new Thickness(0, 0, 0, 5);
             frame.Padding = new Thickness(10, 10, 10, 10);
             frame.CornerRadius = 10;
+            frame.HasShadow = false;
 
             StackLayout container = new StackLayout();
             container.Orientation = StackOrientation.Horizontal;
@@ -56,18 +58,18 @@ namespace xamarinJKH.Apps
             BindableProperty.Create("FileName", typeof(string), typeof(FileCell), "");
 
         public static readonly BindableProperty FileSizeProperty =
-            BindableProperty.Create("FileSize", typeof(byte[]), typeof(FileCell), new byte[] {1});
+            BindableProperty.Create("FileSize", typeof(byte[]), typeof(FileCell), new byte[] { 1 });
 
         public string FileName
         {
-            get { return (string) GetValue(FileNameProperty); }
+            get { return (string)GetValue(FileNameProperty); }
             set { SetValue(FileNameProperty, value); }
         }
 
         public byte[] FileSize
         {
-            get { return (byte[]) GetValue(FileSizeProperty); }
-            set { SetValue(FileSizeProperty, new byte[] {1}); }
+            get { return (byte[])GetValue(FileSizeProperty); }
+            set { SetValue(FileSizeProperty, new byte[] { 1 }); }
         }
 
         protected override async void OnBindingContextChanged()
@@ -76,9 +78,23 @@ namespace xamarinJKH.Apps
 
             if (BindingContext != null)
             {
-                byte[] bytes = new byte[] {1};
+                //byte[] bytes = new byte[] {1};
                 LabelName.Text = FileName;
-                // LabelSize.Text = (FileSize.Length / 1000).ToString() + " КБ";
+
+                double size = FileSize.Length;
+                string sizeType = AppResources.b;
+                if (size >= 1024)
+                {
+                    size /= 1024;
+                    sizeType = AppResources.kb;
+                }
+                if (size >= 1024)
+                {
+                    size /= 1024;
+                    sizeType = AppResources.mb;
+                }
+
+                LabelSize.Text = Math.Round(size, 2).ToString() + " " + sizeType;
             }
         }
     }

@@ -19,7 +19,7 @@ namespace xamarinJKH {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -354,6 +354,15 @@ namespace xamarinJKH {
         internal static string Automatic {
             get {
                 return ResourceManager.GetString("Automatic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to б.
+        /// </summary>
+        internal static string b {
+            get {
+                return ResourceManager.GetString("b", resourceCulture);
             }
         }
         
@@ -1511,6 +1520,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Кб.
+        /// </summary>
+        internal static string kb {
+            get {
+                return ResourceManager.GetString("kb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Последняя проверка:.
         /// </summary>
         internal static string LastCheck {
@@ -1588,6 +1606,15 @@ namespace xamarinJKH {
         internal static string Mass {
             get {
                 return ResourceManager.GetString("Mass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Мб.
+        /// </summary>
+        internal static string mb {
+            get {
+                return ResourceManager.GetString("mb", resourceCulture);
             }
         }
         

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 using xamarinJKH.Utils;
 
 namespace xamarinJKH.AppsConst
@@ -21,6 +22,8 @@ namespace xamarinJKH.AppsConst
             frame.Margin = new Thickness(0, 0, 0, 5);
             frame.Padding = new Thickness(10, 10, 10, 10);
             frame.CornerRadius = 10;
+            frame.HasShadow = false;
+
 
             StackLayout container = new StackLayout();
             container.Orientation = StackOrientation.Horizontal;
@@ -76,8 +79,24 @@ namespace xamarinJKH.AppsConst
 
             if (BindingContext != null)
             {
-                byte[] bytes = new byte[] { 1 };
+                //byte[] bytes = new byte[] { 1 };
                 LabelName.Text = FileName;
+
+                double size = FileSize.Length;
+                string sizeType = AppResources.b;
+                if (size >= 1024)
+                {
+                    size /= 1024;
+                    sizeType = AppResources.kb;
+                }
+                if (size >= 1024)
+                {
+                    size /= 1024;
+                    sizeType = AppResources.mb;
+                }
+
+                LabelSize.Text = Math.Round(size, 2).ToString() + " " + sizeType;
+
                 // LabelSize.Text = (FileSize.Length / 1000).ToString() + " КБ";
             }
         }

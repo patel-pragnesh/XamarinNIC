@@ -44,6 +44,20 @@ namespace xamarinJKH.Main
             StartUpdateToken();
             if (Device.RuntimePlatform == Device.Android)
                 RegisterNewDevice();
+
+            //if (Device.RuntimePlatform == Device.iOS)
+            //{
+            //    var pages = Children.GetEnumerator();
+            //    pages.MoveNext(); // First page
+            //    pages.MoveNext(); // Second page
+            //    pages.MoveNext(); // Second page
+            //    pages.MoveNext(); // Second page
+            //    pages.MoveNext(); // 5 page
+            //    CurrentPage = pages.Current;
+            //    //MessagingCenter.Send<Object>(this, "LoadGoods");
+            //    //this.CurrentPage = this.Children[4]; 
+            //}
+
             MessagingCenter.Subscribe<Object, int>(this, "SwitchToApps", (sender, index) =>
             {
                 this.CurrentPage = this.Children[3];
