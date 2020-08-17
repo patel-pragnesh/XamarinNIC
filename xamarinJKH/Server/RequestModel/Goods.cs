@@ -29,6 +29,12 @@ namespace xamarinJKH.Server.RequestModel
         public decimal weightBusket = 0;
         
         public List<string> Categories { get; set; }
+        string image;
+        public string Image
+        {
+            get => RestClientMP.SERVER_ADDR + "/public/GoodsImage/" + this.ID;
+        }
+        
 
     }
 }
