@@ -17,8 +17,12 @@ namespace xamarinJKH.Server.RequestModel
             get => _colBasket;
             set
             {
-                _colBasket = value;
-                OnPropertyChanged("ColBusket");
+                if (value >= 0)
+                {
+                    _colBasket = value;
+                    OnPropertyChanged("ColBusket");
+
+                }
             }
         }
         public decimal priceBusket = 0;
