@@ -4,35 +4,92 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+                   x:Name="Shop"
              xmlns:dialog="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
                    xmlns:converters="clr-namespace:xamarinJKH.Converters"
                    xmlns:app="clr-namespace:xamarinJKH"
+                   xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="xamarinJKH.DialogViews.ShopListDialogView">
+    <dialog:DialogView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+        <converters:PriceConverter x:Key="Price"/>
+    </dialog:DialogView.Resources>
     <Frame CornerRadius="30"
            Padding="20"
-           HeightRequest="350">
+           Margin="15"
+           BorderColor="{AppThemeBinding Dark=White,Light={x:StaticResource MainColor}}"
+           HeightRequest="400">
         <StackLayout>
             <CollectionView ItemsSource="{Binding Items}"
-                            x:Name="collection_items"
-                            SelectionChanged="collection_items_SelectionChanged"
-                            SelectionMode="Multiple">
+                            BackgroundColor="White"
+                            SelectionMode="None">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid HeightRequest="60" BackgroundColor="Transparent">
+                        <Grid HeightRequest="80" BackgroundColor="Transparent">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.4*"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="0.4*"/>
                             </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
 
                             <Label Text="{Binding Name}" 
                                    Grid.Column="1"/>
-                            <Label Text="{Binding Price,Converter={converters:PriceConverter}}"
+                            <Label Text="{Binding Price,Converter={x:StaticResource Price}}"
                                    Grid.Column="2"/>
+
+                            <Grid Grid.Row="1"
+                                  RowSpacing="0"
+                                  Grid.Column="1">
+                                
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="2"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition Width="0.2*"/>
+                                </Grid.ColumnDefinitions>
+                                <app:IconView Source="ic_shop_minus"
+                                              Grid.Column="1"
+                                                  Margin="5"
+                                              Foreground="{x:DynamicResource MainColor}">
+                                    <app:IconView.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.Decrease, Source={x:Reference Shop}}" CommandParameter="{Binding .}"/>
+                                    </app:IconView.GestureRecognizers>
+                                </app:IconView>
+                                <Label Text="{Binding ColBusket}"
+                                       HorizontalTextAlignment="Center"
+                                       Grid.Column="2"/>
+                                <app:IconView Source="ic_shop_plus"
+                                              Grid.Column="3"
+                                                  Margin="5"
+                                              Foreground="{x:DynamicResource MainColor}">
+                                    <app:IconView.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.Increase, Source={x:Reference Shop}}" CommandParameter="{Binding .}"/>
+                                    </app:IconView.GestureRecognizers>
+                                </app:IconView>
+                                <StackLayout Grid.Column="1"
+                                             Grid.ColumnSpan="3"
+                                             Grid.Row="1"
+                                             BackgroundColor="{x:DynamicResource MainColor}"/>
+                            </Grid>
+                            
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal" />
@@ -50,7 +107,6 @@
             </CollectionView>
             <Button Text="{x:Static app:AppResources.AddApp}"
                     TextColor="White"
-                    Clicked="AddItems"
                     Command="{Binding AddItems}"
                     BackgroundColor="{x:DynamicResource MainColor}"
                     CornerRadius="20"/>

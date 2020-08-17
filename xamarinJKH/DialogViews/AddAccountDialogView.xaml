@@ -14,6 +14,7 @@
              x:Class="xamarinJKH.DialogViews.AddAccountDialogView">
     <Frame CornerRadius="30"
            Margin="30"
+           BorderColor="{AppThemeBinding Dark=White,Light={x:StaticResource MainColor}}"
            HorizontalOptions="FillAndExpand"
            BackgroundColor="White"
            Padding="0">
