@@ -49,6 +49,7 @@ namespace xamarinJKH.Droid
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
             Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             LoadApplication(new App());
 
         }
