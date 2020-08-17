@@ -15,6 +15,7 @@ using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Shop;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
+using static Akavache.BlobCache;
 
 namespace xamarinJKH.Additional
 {
@@ -102,6 +103,7 @@ namespace xamarinJKH.Additional
                 SetAdditional();
                 additionalList.ItemsSource = null;
                 additionalList.ItemsSource = Additional;
+                
             }
             else
             {
@@ -248,7 +250,7 @@ namespace xamarinJKH.Additional
 
                     if (SelectedGroup == null)
                     {
-                        if (Groups.Count > 0)
+                        if (groups.Count > 0)
                             Device.BeginInvokeOnMainThread(() => SelectedGroup = Groups[0]);
                     }
                 }
@@ -258,6 +260,8 @@ namespace xamarinJKH.Additional
 
             //AiForms.Dialogs.Loading.Instance.Hide();
         }
+
+     
 
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)

@@ -19,7 +19,7 @@ namespace xamarinJKH {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -1844,6 +1844,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Принимаю условия договора оферты.
+        /// </summary>
+        internal static string OffertDoc {
+            get {
+                return ResourceManager.GetString("OffertDoc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to При получении.
         /// </summary>
         internal static string OnRecieving {
@@ -2540,6 +2549,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Бонусы.
+        /// </summary>
+        internal static string PayBonus {
+            get {
+                return ResourceManager.GetString("PayBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to История платежей.
         /// </summary>
         internal static string PayHistory {
@@ -2572,6 +2590,15 @@ namespace xamarinJKH {
         internal static string PaymentOf {
             get {
                 return ResourceManager.GetString("PaymentOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  балл(ов).
+        /// </summary>
+        internal static string PayPoints {
+            get {
+                return ResourceManager.GetString("PayPoints", resourceCulture);
             }
         }
         
@@ -3009,7 +3036,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Услуги.
+        ///   Looks up a localized string similar to Наш сервис.
         /// </summary>
         internal static string Shop_NavBar {
             get {

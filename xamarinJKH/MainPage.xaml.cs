@@ -21,6 +21,7 @@ using XamEffects;
 using NavigationPage = Xamarin.Forms.NavigationPage;
 using AiForms.Dialogs.Abstractions;
 using AiForms.Dialogs;
+using Akavache;
 using xamarinJKH.DialogViews;
 
 using Plugin.Permissions;

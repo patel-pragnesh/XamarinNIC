@@ -73,7 +73,6 @@ namespace xamarinJKH.Main
             InitializeComponent();
             //BindingContext = viewModel = new PaysPageViewModel(this.baseForPays, _accountingInfo);
 
-            
 
             //PaysPageViewModel(this.baseForPays, _accountingInfo);
             Settings.mainPage = this;
@@ -89,6 +88,7 @@ namespace xamarinJKH.Main
                         LabelHistory.FontSize = 10;
                         LabelSaldos.FontSize = 10;
                     }
+
                     IconViewSaldos.Margin = new Thickness(0, 0, 5, 0);
                     break;
                 default:
@@ -128,7 +128,7 @@ namespace xamarinJKH.Main
 
             hex = Color.FromHex(Settings.MobileSettings.color);
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
@@ -137,22 +137,22 @@ namespace xamarinJKH.Main
                 {
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
-                    if (phoneDialer.CanMakePhoneCall) 
+                    if (phoneDialer.CanMakePhoneCall)
                         phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
                 }
-
-            
             };
             LabelPhone.GestureRecognizers.Add(call);
             SetTextAndColor();
-
-            
 
 
             //getInfo();
             //additionalList.BackgroundColor = Color.Transparent;
             var goAddIdent = new TapGestureRecognizer();
-            goAddIdent.Tapped += async (s, e) => { /*await Dialog.Instance.ShowAsync<AddAccountDialogView>();*/await Navigation.PushAsync(new AddIdent(this)); };
+            goAddIdent.Tapped += async (s, e) =>
+            {
+                /*await Dialog.Instance.ShowAsync<AddAccountDialogView>();*/
+                await Navigation.PushAsync(new AddIdent(this));
+            };
             FrameAddIdent.GestureRecognizers.Add(goAddIdent);
             var openSaldos = new TapGestureRecognizer();
             openSaldos.Tapped += async (s, e) => { await Navigation.PushAsync(new SaldosPage(_accountingInfo)); };
@@ -182,13 +182,13 @@ namespace xamarinJKH.Main
         void SetTextAndColor()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+","");
+            LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
 
             FrameBtnHistory.BorderColor = hex;
             FrameBtnSaldos.BorderColor = hex;
             LabelSaldos.TextColor = hex;
             LabelHistory.TextColor = hex;
-            
+
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
@@ -201,18 +201,20 @@ namespace xamarinJKH.Main
 
         async void getInfo()
         {
-
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
-                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                Device.BeginInvokeOnMainThread(async () =>
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
+
             ItemsList<AccountAccountingInfo> info = await _server.GetAccountingInfo();
             if (info.Error == null)
             {
                 _accountingInfo = info.Data;
                 _accountingInfos = _accountingInfo;
-                /*viewModel.*/LoadAccounts.Execute(info.Data);
+                /*viewModel.*/
+                LoadAccounts.Execute(info.Data);
                 //this.BindingContext = this;
             }
             else
@@ -229,7 +231,7 @@ namespace xamarinJKH.Main
 
         private async void openSaldo(object sender, EventArgs e)
         {
-            if (_accountingInfo!=null && _accountingInfo.Count > 0)
+            if (_accountingInfo != null && _accountingInfo.Count > 0)
             {
                 await Navigation.PushAsync(new SaldosPage(_accountingInfo));
             }
@@ -241,7 +243,7 @@ namespace xamarinJKH.Main
 
         private async void OpenHistory(object sender, EventArgs e)
         {
-            if (_accountingInfo!=null && _accountingInfo.Count > 0)
+            if (_accountingInfo != null && _accountingInfo.Count > 0)
             {
                 await Navigation.PushAsync(new HistoryPayedPage(_accountingInfo));
             }
@@ -253,7 +255,8 @@ namespace xamarinJKH.Main
 
         public async void DellLs(string Ident)
         {
-            bool answer = await Settings.mainPage.DisplayAlert(AppResources.Delete, $"{AppResources.DeleteIdent} " + Ident + " ?",
+            bool answer = await Settings.mainPage.DisplayAlert(AppResources.Delete,
+                $"{AppResources.DeleteIdent} " + Ident + " ?",
                 "Да", "Отмена");
             if (answer)
             {
@@ -287,7 +290,8 @@ namespace xamarinJKH.Main
                 // Settings.EventBlockData = await server.GetEventBlockData();
                 ItemsList<NamedValue> resultN = await server.GetRequestsTypes();
                 Settings.TypeApp = resultN.Data;
-                /*viewModel.*/RemoveAccount.Execute(ident);//removeLs(ident);
+                /*viewModel.*/
+                RemoveAccount.Execute(ident); //removeLs(ident);
 
 
                 Device.BeginInvokeOnMainThread(async () =>
@@ -298,8 +302,6 @@ namespace xamarinJKH.Main
 
                     IsRefreshing = false;
                 });
-
-
             }
             else
             {
@@ -330,14 +332,16 @@ namespace xamarinJKH.Main
         //    additionalList.ItemsSource = null;
         //    additionalList.ItemsSource = _accountingInfo;
         //}
-    //}
+        //}
 
-    //public class PaysPageViewModel : BaseViewModel
-    //{
+        //public class PaysPageViewModel : BaseViewModel
+        //{
         public List<AccountAccountingInfo> Accounts { get; set; }
+
         public Command LoadAccounts { get; set; }
+
         //public Color hex { get; set; }
-        public Command RemoveAccount 
+        public Command RemoveAccount
         {
             get => new Command<string>(ident =>
             {
@@ -379,10 +383,7 @@ namespace xamarinJKH.Main
             LoadAccounts = new Command<List<AccountAccountingInfo>>(async (accounts) =>
             {
                 Accounts.Clear();
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    baseForPays.Children.Clear();
-                });
+                Device.BeginInvokeOnMainThread(() => { baseForPays.Children.Clear(); });
 
                 if (accounts == null)
                     accounts = (await (new RestClientMP()).GetAccountingInfo()).Data;
@@ -391,23 +392,22 @@ namespace xamarinJKH.Main
                 {
                     if (accounts.Count < 2)
                     {
-
-
                         for (int i = 0; i < 9; i++)
                         {
                             AccountAccountingInfo a = new AccountAccountingInfo();
                             a.Sum = accounts[i].Sum + i * 102;
                             a.Ident = (i * 9 + i * 2).ToString();
                             accounts.Add(a);
-                        };
+                        }
 
+                        ;
                     }
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
                 }
-                
+
 #endif
                 if (accounts != null)
                 {
@@ -415,13 +415,11 @@ namespace xamarinJKH.Main
                     {
                         //Device.BeginInvokeOnMainThread(() => Accounts.Add(account));
                         Device.BeginInvokeOnMainThread(() =>
-                        {
-                            Accounts.Add(account);
-                            baseForPays.Children.Add(AddAccountToList(account, PaysPage._accountingInfos));
-                        }
-                        ) ;
-
-                        
+                            {
+                                Accounts.Add(account);
+                                baseForPays.Children.Add(AddAccountToList(account, PaysPage._accountingInfos));
+                            }
+                        );
                     }
                 }
 
@@ -429,18 +427,19 @@ namespace xamarinJKH.Main
             });
         }
 
-       
 
         MaterialFrame AddAccountToList(AccountAccountingInfo info, List<AccountAccountingInfo> _accountingInfo)
         {
             Label ident = new Label();
             Label adress = new Label();
+            Label bonus = new Label();
             StackLayout dell = new StackLayout();
             Label sumPayDate = new Label();
             Label sumPay = new Label();
 
             MaterialFrame frame = new MaterialFrame();
-            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
+            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color),
+                Color.White);
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.Elevation = 20;
             frame.VerticalOptions = LayoutOptions.Start;
@@ -465,8 +464,34 @@ namespace xamarinJKH.Main
             adress.TextColor = Color.Gray;
             adress.FontFamily = "Roboto";
 
+            bonus.FontSize = 15;
+            FormattedString formattedBonus = new FormattedString();
+
+            formattedBonus.Spans.Add(new Span
+            {
+                Text = AppResources.PayBonus + ": ",
+                FontSize = 15,
+                TextColor = Color.Black,
+            });
+            formattedBonus.Spans.Add(new Span
+            {
+                Text = info.BonusBalance.ToString(),
+                TextColor = Color.Black,
+                FontAttributes = FontAttributes.Bold,
+                FontSize = 15,
+            });
+            formattedBonus.Spans.Add(new Span
+            {
+                Text = AppResources.PayPoints,
+                TextColor = Color.Gray,
+                FontSize = 12
+            });
+            bonus.FormattedText = formattedBonus;
+
             identAdress.Children.Add(ident);
             identAdress.Children.Add(adress);
+            if (Settings.MobileSettings.useBonusSystem)
+                identAdress.Children.Add(bonus);
 
             IconView x = new IconView();
             x.Source = "ic_close";
@@ -475,7 +500,7 @@ namespace xamarinJKH.Main
             x.WidthRequest = 10;
 
             Label close = new Label();
-            close.Text = AppResources.Delete;// "Удалить";
+            close.Text = AppResources.Delete; // "Удалить";
             close.TextColor = Color.FromHex(Settings.MobileSettings.color);
             close.FontSize = 15;
             close.TextDecorations = TextDecorations.Underline;
@@ -545,7 +570,7 @@ namespace xamarinJKH.Main
             btn.Margin = new Thickness(13, 13, 0, 13);
             btn.FontAttributes = FontAttributes.Bold;
             btn.FontSize = 16;
-            btn.Text = AppResources.Pay;//"Оплатить";
+            btn.Text = AppResources.Pay; //"Оплатить";
 
             containerBtn.Children.Add(image);
             containerBtn.Children.Add(btn);
@@ -585,24 +610,18 @@ namespace xamarinJKH.Main
             frame.Content = container;
 
             var openPayRec = new TapGestureRecognizer();
-            openPayRec.Tapped += async (s, e) =>
-              {
-                  await Navigation.PushAsync(new CostPage(info, _accountingInfo));
-              };
+            openPayRec.Tapped += async (s, e) => { await Navigation.PushAsync(new CostPage(info, _accountingInfo)); };
             frameBtn.GestureRecognizers.Add(openPayRec);
 
 
             var delLs = new TapGestureRecognizer();
-            delLs.Tapped += async (s, e) =>
-            {
-                Settings.mainPage.DellLs(info.Ident);
-            };
+            delLs.Tapped += async (s, e) => { Settings.mainPage.DellLs(info.Ident); };
             dell.GestureRecognizers.Add(delLs);
 
             FormattedString formattedIdent = new FormattedString();
             formattedIdent.Spans.Add(new Span
             {
-                Text = AppResources.Acc,//"Л/сч: ",
+                Text = AppResources.Acc, //"Л/сч: ",
                 TextColor = Color.Black,
                 FontSize = 15
             });
@@ -638,7 +657,7 @@ namespace xamarinJKH.Main
                 Text = info.Sum.ToString(),
                 TextColor = Color.FromHex(Settings.MobileSettings.color),
                 FontAttributes = FontAttributes.Bold,
-                FontSize = fs+5
+                FontSize = fs + 5
             });
             formattedPay.Spans.Add(new Span
             {

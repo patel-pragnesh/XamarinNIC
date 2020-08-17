@@ -71,7 +71,11 @@ namespace xamarinJKH.Shop
             
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) =>
+            {
+                MessagingCenter.Send<Object>(this, "LoadGoods");
+                _ = await Navigation.PopAsync();
+            };
             BackStackLayout.GestureRecognizers.Add(backClick);
             hex = Color.FromHex(Settings.MobileSettings.color);
             //var basketPage = new TapGestureRecognizer();
@@ -100,6 +104,12 @@ namespace xamarinJKH.Shop
                 });
                 
             });
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            MessagingCenter.Send<Object>(this, "LoadGoods");
+            return base.OnBackButtonPressed();
         }
 
         async void GetGoods()
@@ -265,7 +275,7 @@ namespace xamarinJKH.Shop
             }            
         }
 
-        const string GOODS_IMAGE_URI = "https://api.sm-center.ru/test_erc_udm/public/GoodsImage/";
+        const string GOODS_IMAGE_URI = RestClientMP.SERVER_ADDR +"/public/GoodsImage/";
         const string SortByPrice = "Сортировать по цене";
         
         Color colorFromMobileSettings = Color.FromHex(Settings.MobileSettings.color);
@@ -346,9 +356,12 @@ namespace xamarinJKH.Shop
                 imageGoods.WidthRequest = 35;
                 if (each.HasImage)
                 {
-                    imageGoods.Source =
-                        ImageSource.FromUri(new Uri(GOODS_IMAGE_URI +
-                                                    each.ID.ToString()));
+                    imageGoods.Source = new UriImageSource
+                    {
+                         CachingEnabled = true,
+                         CacheValidity = new TimeSpan(2,0,0,0),
+                         Uri = new Uri(GOODS_IMAGE_URI + each.ID.ToString())
+                    };
                 }
                 else
                 {

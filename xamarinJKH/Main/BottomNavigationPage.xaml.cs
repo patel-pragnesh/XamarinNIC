@@ -8,6 +8,7 @@ using Xamarin.Forms.Xaml;
 using xamarinJKH.Utils;
 using xamarinJKH.Server;
 using System.Runtime.CompilerServices;
+using Akavache;
 using Xamarin.Essentials;
 using xamarinJKH.Server.RequestModel;
 
@@ -178,5 +179,6 @@ namespace xamarinJKH.Main
             App.token = DependencyService.Get<xamarinJKH.InterfacesIntegration.IFirebaseTokenObtainer>().GetToken();
             var response = await (new RestClientMP()).RegisterDevice();
         }
+        
     }
 }

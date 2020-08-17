@@ -10,6 +10,7 @@ using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 using Application = Xamarin.Forms.Application;
 using System.Linq;
+using Akavache;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -210,7 +211,7 @@ namespace xamarinJKH
 
         protected override void OnStart()
         {
-            
+            Registrations.Start("XamarinJKH");
 
             //только темная тема в иос
             if (Device.RuntimePlatform != Device.iOS)
@@ -332,10 +333,13 @@ namespace xamarinJKH
 
         protected override void OnSleep()
         {
+           
         }
 
         protected override void OnResume()
         {
         }
+        
+        
     }
 }

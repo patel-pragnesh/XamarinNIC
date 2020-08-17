@@ -68,7 +68,11 @@ namespace xamarinJKH.Additional
             techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) =>
+            {
+                MessagingCenter.Send<Object>(this, "LoadGoods");
+                _ = await Navigation.PopAsync();
+            };
             BackStackLayout.GestureRecognizers.Add(backClick);
             
             var call = new TapGestureRecognizer();
@@ -88,6 +92,12 @@ namespace xamarinJKH.Additional
             
             SetText();
             BindingContext = this;
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            MessagingCenter.Send<Object>(this, "LoadGoods");
+            return base.OnBackButtonPressed();
         }
 
         async void SetText()
@@ -134,10 +144,10 @@ namespace xamarinJKH.Additional
             
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.Black);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.Black);
         }
 
 
