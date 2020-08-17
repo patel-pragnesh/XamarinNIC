@@ -29,6 +29,7 @@ namespace xamarinJKH.Server
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ukom"; // УК Огни Москвы
         //public const string SERVER_ADDR = "https://api.sm-center.ru/tsg_svyato-troitskii15"; // УК Свято троицк
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_uk_rks_aud"; // УК РКС
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/profikomfort"; // Профи комфорт
 
         public const string SEND_TEACH_MAIL = "Public/TechSupportAppeal"; // Создание обращения в тех поддержк
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутентификация сотрудника
@@ -45,6 +46,7 @@ namespace xamarinJKH.Server
         public const string GET_PHOTO_ADDITIONAL = "AdditionalServices/logo"; // Картинка доп услуги
         public const string GET_ACCOUNTING_INFO = "Accounting/Info"; // инфомация о начислениях
         public const string GET_SUM_COMISSION = "Accounting/SumWithComission"; // Возвращает сумму с комиссией
+        public const string GET_POINS_BALANCE = "Accounting/GetAccountBonusBalance "; // Возвращает бонусный баланс лицевого счета
         public const string GET_FILE_BILLS = "Bills/Download"; // Получить квитанцию
 
         public const string REGISTR_DISPATCHER_DEVICE = "Dispatcher/RegisterDevice"; //Регистрация устройства.
@@ -1968,6 +1970,25 @@ namespace xamarinJKH.Server
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 return new ComissionModel()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        public async Task<Bonus> GetAccountBonusBalance(int id)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_POINS_BALANCE, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddParameter("id", id);
+            var response = await restClientMp.ExecuteTaskAsync<Bonus>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new Bonus()
                 {
                     Error = $"Ошибка {response.StatusDescription}"
                 };

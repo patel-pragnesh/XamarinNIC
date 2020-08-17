@@ -260,6 +260,7 @@ namespace xamarinJKH.Apps
             {
                 if (close)
                 {
+                    MessagingCenter.Send<Object>(this, "LoadGoods");
                     await Navigation.PopToRootAsync();
                 }
                 else
@@ -303,6 +304,7 @@ namespace xamarinJKH.Apps
         {
             if (close)
             {
+                MessagingCenter.Send<Object>(this, "LoadGoods");
                 Navigation.PopToRootAsync();
                 return true;
             }

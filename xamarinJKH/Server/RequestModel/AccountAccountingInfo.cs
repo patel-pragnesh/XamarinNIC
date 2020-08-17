@@ -14,7 +14,7 @@ namespace xamarinJKH.Server.RequestModel
         public decimal InsuranceSum { get; set; }
         public int? HouseId { get; set; }
         public bool DontShowInsurance { get; set; }
-
+        public decimal BonusBalance{ get; set; }
         public List<BillInfo> Bills { get; set; }
         public List<MobilePayment> MobilePayments { get; set; }
         public List<PaymentInfo> Payments { get; set; }

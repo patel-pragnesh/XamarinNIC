@@ -51,6 +51,7 @@ namespace xamarinJKH.Main
             {
                 if (Settings.MobileSettings.сheckCrashSystem)
                     Crashes.GenerateTestCrash();
+               
                 await Navigation.PushAsync(new TechSendPage());
             };
             LabelTech.GestureRecognizers.Add(techSend); 

@@ -555,6 +555,16 @@
   </data>
   <data name="PayProcess" xml:space="preserve">
     <value>Платеж обрабатывается </value>
+  </data> 
+  
+  <data name="PayBonus" xml:space="preserve">
+    <value>Бонусы</value>
+  </data> 
+  <data name="PayPoints" xml:space="preserve">
+    <value> балл(ов)</value>
+  </data>
+  <data name="OffertDoc" xml:space="preserve">
+    <value>Принимаю условия договора оферты</value>
   </data>
   <data name="Pays" xml:space="preserve">
     <value>Оплата</value>
@@ -611,7 +621,7 @@
     <value>Профиль</value>
   </data>
   <data name="Shop_NavBar" xml:space="preserve">
-    <value>Услуги</value>
+    <value>Наш сервис</value>
   </data>
   <data name="QuestionsAmount" xml:space="preserve">
     <value>Количество вопросов</value>

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Reactive.Linq;
+using Akavache;
 using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
 using xamarinJKH.CustomRenderers;
@@ -10,7 +13,7 @@ namespace xamarinJKH.Additional
     public class AdditionalCell : ViewCell
     {
         Image image;
-        
+
         //MaterialFrame frame;
         PancakeView frame;
         RestClientMP _server = new RestClientMP();
@@ -18,20 +21,20 @@ namespace xamarinJKH.Additional
         public AdditionalCell()
         {
             image = new Image();
-
+            
 
             frame = new PancakeView(); // MaterialFrame();
             //frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
-           // frame.BackgroundColor =  Color.White;
+            // frame.BackgroundColor =  Color.White;
             frame.IsClippedToBounds = true;
             frame.Margin = new Thickness(10, 0, 10, 10);
             frame.Padding = new Thickness(0);
             frame.CornerRadius = 40;
 
             //frame.BackgroundColor = Color.Red;
-            
+
             //Frame cell = new Frame();
             //cell.Padding = new Thickness(0);
             //cell.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -41,9 +44,9 @@ namespace xamarinJKH.Additional
             //cell.CornerRadius = 40;
             //cell.Content = image;
             //cell.Children.Add(image);
-            
+
             frame.Content = image;
-            
+
             View = frame;
         }
 
@@ -89,22 +92,27 @@ namespace xamarinJKH.Additional
 
             if (BindingContext != null)
             {
-                byte[] imageByte = await _server.GetPhotoAdditional(Detail);
-                if (imageByte != null)
-                {
-                    Stream stream = new MemoryStream(imageByte);
-                    //image = new Image();       
+               
+                    byte[] imageByte = null;
+                    try {
+                        imageByte = await BlobCache.UserAccount.GetObject<byte[]>(Detail);
+                    } catch (KeyNotFoundException ex) {
+                        imageByte = await _server.GetPhotoAdditional(Detail);
+                        await BlobCache.UserAccount.InsertObject(Detail, imageByte);
+                    }
+                    if (imageByte != null)
+                    {
+                        Stream stream = new MemoryStream(imageByte);
+                        //image = new Image();       
+                        
+                        image.Source = ImageSource.FromStream(() => { return stream; });
+                        image.VerticalOptions = LayoutOptions.FillAndExpand;
+                        image.Aspect = Aspect.AspectFill;
+                        image.HorizontalOptions = LayoutOptions.FillAndExpand;
+                        image.HeightRequest = ImageHeight;
 
-                    image.Source = ImageSource.FromStream(() => { return stream; });
-                    image.VerticalOptions = LayoutOptions.FillAndExpand;
-                    image.Aspect = Aspect.AspectFill;
-                    image.HorizontalOptions = LayoutOptions.FillAndExpand;
-                    image.HeightRequest = ImageHeight;
-
-                    //frame.Content = image;
-              
-                }
-                
+                        //frame.Content = image;
+                    }
             }
         }
     }

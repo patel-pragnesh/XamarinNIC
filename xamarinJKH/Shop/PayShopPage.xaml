@@ -101,34 +101,11 @@
                                     </StackLayout>
                                     
                                 </StackLayout>
-                                <StackLayout Orientation="Horizontal"
-                                             IsVisible="{Binding GoodsIsVisible}"
-                                             HorizontalOptions="Center">
-                                    
-                                    <CheckBox
-                                        HorizontalOptions="Center"
-                                        VerticalOptions="Center"
-                                        Color="{Binding hex}" />
-                                    <Label
-                                        TextColor="Black"
-                                        HorizontalTextAlignment="Start"
-                                        HorizontalOptions="Start">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="Зачесть бонусами" TextColor="Gray"  FontSize="12" />
-                                                <Span Text=" 493" TextColor ="Gray" FontAttributes="Bold" FontSize="15" />
-                                                <Span Text=" балла" TextColor ="Gray"  FontSize="12" />
-                                                <Span Text="&#10; * не более 20% от суммы" TextColor ="Gray" FontSize="10" />
-                                                
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                        </Label>
-                                </StackLayout>
                                 <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand"
                                          Margin="10,0" />
-                                <Label FontSize="20" TextColor="Black" Text="{x:Static xamarinJkh:AppResources.Payment}" HorizontalOptions="Center"
+                                <Label FontSize="20" IsVisible="False" TextColor="Black" Text="{x:Static xamarinJkh:AppResources.Payment}" HorizontalOptions="Center"
                                        Margin="10,10" FontAttributes="Bold" />
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal" IsVisible="False" HorizontalOptions="FillAndExpand">
                                     <Frame x:Name="frameBtnCardPay" BackgroundColor="White" CornerRadius="10"
                                            BorderColor="Gray" Padding="0" MinimumWidthRequest="250" Margin="5,0"
                                            HorizontalOptions="FillAndExpand">
@@ -151,7 +128,7 @@
                                     </Frame>
 
                                 </StackLayout>
-                                <Label x:Name="PaymentDescription0" Text="{x:Static xamarinJkh:AppResources.PayText0}" FontSize="18"
+                                <Label x:Name="PaymentDescription0" IsVisible="False" Text="{x:Static xamarinJkh:AppResources.PayText0}" FontSize="18"
                                        FontAttributes="Bold" TextColor="Black"
                                        HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
                                        Margin="10,5" />
