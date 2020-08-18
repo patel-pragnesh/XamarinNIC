@@ -40,6 +40,7 @@ namespace xamarinJKH.Droid
             Messier16.Forms.Android.Controls.Messier16Controls.InitAll();
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            Xamarin.FormsMaps.Init(this, savedInstanceState);
             await CrossMedia.Current.Initialize();
             SimpleImageButton.SimpleImageButton.Initializator.Initializator.Init();
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
