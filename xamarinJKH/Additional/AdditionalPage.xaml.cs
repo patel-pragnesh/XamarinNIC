@@ -15,7 +15,12 @@ using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Shop;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
+using xamarinJKH.ViewModels.Additional;
 using static Akavache.BlobCache;
+
+using Xamarin.Forms.Maps;
+using AiForms.Dialogs;
+using xamarinJKH.DialogViews;
 
 namespace xamarinJKH.Additional
 {
@@ -115,6 +120,7 @@ namespace xamarinJKH.Additional
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            Map.BindingContext = new MapPageViewModel();
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -174,6 +180,11 @@ namespace xamarinJKH.Additional
                 await Task.Delay(TimeSpan.FromMilliseconds(500));
                 SetAdditional();
             });
+
+            MessagingCenter.Subscribe<MapPageViewModel, Xamarin.Forms.Maps.Position>(this, "FocusMap", (sender, args) =>
+            {
+                (Map.Children[0] as Xamarin.Forms.Maps.Map).MoveToRegion(MapSpan.FromCenterAndRadius(args, Distance.FromKilometers(2)));
+            });
         }
 
         void SetText()
@@ -211,6 +222,7 @@ namespace xamarinJKH.Additional
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
                 Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, null, "OK"));
+                return;
             }
 
             Groups.Clear();
@@ -292,6 +304,36 @@ namespace xamarinJKH.Additional
                 if (service.HasLogo && service.ShowInAdBlock != null)
                     if (!service.ShowInAdBlock.ToLower().Equals("не отображать"))
                         Additional.Add(service);
+            }
+        }
+
+        private void SwitchList(object sender, EventArgs args)
+        {
+            var label = sender as Label;
+            var mainColor = Application.Current.Resources["MainColor"];
+            label.TextColor = (Color)mainColor;
+            MapMenu.TextColor = Color.Black;
+            Map.IsVisible = false;
+            SetAdditional();
+        }
+
+        private void SwitchMap(object sender, EventArgs args)
+        {
+            var label = sender as Label;
+            var mainColor = Application.Current.Resources["MainColor"];
+            label.TextColor = (Color)mainColor;
+            CatalogMenu.TextColor = Color.Black;
+            Map.IsVisible = true;
+            (Map.BindingContext as MapPageViewModel).GetPermission.Execute(Additional);
+            (Map.BindingContext as MapPageViewModel).LoadPins.Execute(Additional);
+        }
+
+        private async void Pin_Clicked(object sender, EventArgs e)
+        {
+            var shop = Additional.FirstOrDefault(x => x.ID == Convert.ToInt32((sender as Xamarin.Forms.Maps.Pin).ClassId));
+            if (shop != null)
+            {
+                await Dialog.Instance.ShowAsync(new MapShopDialogView(shop));
             }
         }
     }

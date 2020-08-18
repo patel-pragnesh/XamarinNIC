@@ -6,6 +6,7 @@
              xmlns:additional="clr-namespace:xamarinJKH.Additional;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
+             xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="xamarinJKH.Additional.AdditionalPage">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -25,6 +26,11 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>-->
+            <Style TargetType="Label" x:Key="Tab">
+                <Setter Property="TextColor" Value="{AppThemeBinding Dark={x:DynamicResource MainColor}, Light=Black}"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -125,15 +131,38 @@
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
-                    <StackLayout
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="20"
+                                 Padding="30,0">
+                        <Label Text="Каталог" Style="{x:StaticResource Tab}"
+                               x:Name="CatalogMenu"
+                               TextColor="{x:DynamicResource MainColor}"
+                               HorizontalTextAlignment="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SwitchList"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="/"/>
+                        <Label Text="Карта" Style="{x:StaticResource Tab}"
+                               x:Name="MapMenu"
+                               HorizontalTextAlignment="Start">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SwitchMap"/>
+                            </Label.GestureRecognizers>
+
+                        </Label>
+
+                    </StackLayout>
+                    <Grid>
+                        <StackLayout
                         Margin="10, 10, 10, 0"
                         VerticalOptions="FillAndExpand">
-                        <Frame CornerRadius="40"
+                            <Frame CornerRadius="40"
                                Margin="10,0,-50,-70"
                                x:Name="FrameKind"
                                BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                Padding="20, 20, 80, 70">
-                            <CollectionView ItemsSource="{Binding Groups}"
+                                <CollectionView ItemsSource="{Binding Groups}"
                                         HeightRequest="30"
                                         SelectedItem="{Binding SelectedGroup}"
                                         SelectionMode="Single"
@@ -171,13 +200,13 @@
                                     </CollectionView.ItemTemplate>
                                 </CollectionView>
 
-                        </Frame>
-                        <ActivityIndicator Color="{Binding MainColor}"
+                            </Frame>
+                            <ActivityIndicator Color="{Binding MainColor}"
                                            IsRunning="{Binding IsBusy}"
                                            IsEnabled="{Binding IsBusy}"
                                            IsVisible="{Binding IsBusy}"/>
-                        <Grid>
-                            <ListView x:Name="additionalList"
+                            <Grid>
+                                <ListView x:Name="additionalList"
                                   HasUnevenRows="True"
                                   SeparatorVisibility="None"
                                   VerticalScrollBarVisibility="Never"
@@ -188,22 +217,38 @@
                                   ItemTapped="OnItemTapped"
                                   CachingStrategy="RecycleElement"
                                   ItemsSource="{Binding Additional}">
-                                <ListView.ItemTemplate>
+                                    <ListView.ItemTemplate>
 
-                                    <DataTemplate>
+                                        <DataTemplate>
 
-                                        <additional:AdditionalCell
+                                            <additional:AdditionalCell
                                         ImageWidth="45"
                                         ImageHeight="160"
                                         Detail="{Binding ID}" />
-                                    </DataTemplate>
+                                        </DataTemplate>
 
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            
-                        </Grid>
-                       
-                    </StackLayout>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+
+                            </Grid>
+
+                        </StackLayout>
+                        <Frame CornerRadius="40"
+                               x:Name="Map"
+                               IsVisible="False"
+                               IsClippedToBounds="True"
+                               Padding="0"
+                               Margin="20,10,-40,-40">
+                            <map:Map Margin="0,0,40,40" ItemsSource="{Binding Pins}" IsShowingUser="{Binding ShowUser}">
+                                <map:Map.ItemTemplate>
+                                    <DataTemplate>
+                                        <map:Pin Position="{Binding Position}" Label="{Binding Name}" MarkerClicked="Pin_Clicked" ClassId="{Binding ID}"/>
+                                    </DataTemplate>
+                                </map:Map.ItemTemplate>
+                            </map:Map>
+                        </Frame>
+                    </Grid>
+                    
                 </StackLayout>
             </Grid>
 
