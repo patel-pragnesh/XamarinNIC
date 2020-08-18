@@ -186,6 +186,9 @@
   <data name="Card" xml:space="preserve">
     <value>Картой</value>
   </data>
+  <data name="RatingTitle" xml:space="preserve">
+    <value>Поделитесь своим мнением:</value>
+  </data>
   <data name="ChangePenance" xml:space="preserve">
     <value>Изменить показания</value>
   </data>
@@ -540,6 +543,15 @@
   </data>
   <data name="Pay" xml:space="preserve">
     <value>Оплатить</value>
+  </data>
+  <data name="RateApp" xml:space="preserve">
+    <value>Оценить</value>
+  </data>
+  <data name="NotRateApp" xml:space="preserve">
+    <value>Не оценивать</value>
+  </data> 
+  <data name="LatteRateApp" xml:space="preserve">
+    <value>Позже</value>
   </data>
   <data name="PayApp" xml:space="preserve">
     <value>Оплатить</value>

@@ -640,6 +640,18 @@
   <data name="Choise" xml:space="preserve">
     <value>Виберіть</value>
   </data>
+  <data name="RatingTitle" xml:space="preserve">
+    <value>Поділіться своєю думкоюе:</value>
+  </data>
+  <data name="RateApp" xml:space="preserve">
+    <value>Оцінити</value>
+  </data>
+  <data name="NotRateApp" xml:space="preserve">
+    <value>Чи не оцінювати</value>
+  </data>
+  <data name="LatteRateApp" xml:space="preserve">
+    <value>Пізніше</value>
+  </data>
   <data name="MoveDispatcherStatus" xml:space="preserve">
     <value>Переклад заявки ..</value>
   </data>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using Plugin.FirebaseCrashlytics;
 using Plugin.Messaging;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.PlatformConfiguration;
@@ -13,6 +14,7 @@ using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Additional;
 using xamarinJKH.CustomRenderers;
+using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.News;
 using xamarinJKH.Questions;
@@ -98,6 +100,10 @@ namespace xamarinJKH.Main
                     return;
                 }
 
+            }); 
+            MessagingCenter.Subscribe<Object>(this, "StartTech", async (sender) =>
+            {
+                await Navigation.PushAsync(new TechSendPage());
             });
         }
 

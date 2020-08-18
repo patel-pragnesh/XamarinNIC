@@ -5,8 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
+using Rg.Plugins.Popup.Services;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.DialogViews;
 using xamarinJKH.Server;
 using xamarinJKH.Utils;
 using xamarinJKH.Server.RequestModel;
@@ -31,25 +34,6 @@ namespace xamarinJKH.Pays
                 int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                 BackStackLayout.Padding = new Thickness(0, statusBarHeight, 0, 0);
             }
-            // switch (Device.RuntimePlatform)
-            // {
-            //     case Device.iOS:
-            //         BackgroundColor = Color.White;
-            //         ImageTop.Margin = new Thickness(0, 0, 0, 0);
-            //         StackLayout.Margin = new Thickness(0, 33, 0, 0);
-            //         IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
-            //         break;
-            //     case Device.Android:
-            //         double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
-            //         if (Math.Abs(or - 0.5) < 0.02)
-            //         {
-            //             BackStackLayout.Margin = new Thickness(-5, 15, 0, 0);
-            //         }
-            //
-            //         break;
-            //     default:
-            //         break;
-            // }
 
             SetText();
 
@@ -131,6 +115,7 @@ namespace xamarinJKH.Pays
 
         public async Task StartProgressBar(string url)
         {
+            bool rate = Preferences.Get("rate", true);
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
                 Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
@@ -157,6 +142,10 @@ namespace xamarinJKH.Pays
                 else
                 {
                     await DisplayAlert(AppResources.AlertSuccess, result.message, "OK");
+                    if (rate)
+                    {
+                        await PopupNavigation.Instance.PushAsync(new RatingAppMarketDialog());
+                    }
                     await Navigation.PopToRootAsync();
                 }
             });

@@ -16,10 +16,12 @@ using xamarinJKH.Utils;
 using Xamarin.Forms.Internals;
 using System.Security.Cryptography;
 using Plugin.Messaging;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms.Markup;
 using Xamarin.Forms.PancakeView;
 using xamarinJKH.Tech;
 using Xamarin.Essentials;
+using xamarinJKH.DialogViews;
 
 namespace xamarinJKH.Counters
 {
@@ -553,6 +555,8 @@ namespace xamarinJKH.Counters
 
         public async void SaveInfoAccount(string count)
         {
+            bool rate = Preferences.Get("rate", true);
+
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
                 Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
@@ -572,6 +576,10 @@ namespace xamarinJKH.Counters
                     await DisplayAlert("", AppResources.AddMetersSuccess, "OK");
                     FrameBtnLogin.IsVisible = true;
                     progress.IsVisible = false;
+                    if (rate)
+                    {
+                        await PopupNavigation.Instance.PushAsync(new RatingAppMarketDialog());
+                    }
                     await Navigation.PopAsync();
                     _countersPage.RefreshCountersData();
                 }

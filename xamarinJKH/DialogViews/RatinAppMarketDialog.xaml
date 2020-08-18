@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+                 xmlns:controls="clr-namespace:Messier16.Forms.Controls;assembly=Messier16.Forms.Controls"
+                 x:Class="xamarinJKH.DialogViews.RatingAppMarketDialog">
+    <Frame CornerRadius="30"
+           x:Name="Frame"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="Start"
+           BackgroundColor="white"
+           HasShadow="True"
+           Margin="15,125,15,15"
+           Padding="25,20,25,20">
+        <StackLayout
+            Spacing="15"
+            Orientation="Vertical">
+            <xamarinJkh:IconView x:Name="IconViewClose"
+                                 Source="ic_close"
+                                 HeightRequest="15"
+                                 WidthRequest="15"
+                                 Foreground="Black"
+                                 HorizontalOptions="End"
+                                 VerticalOptions="Center" />
+            <Label
+                TextColor="Black"
+                Text="{x:Static xamarinJkh:AppResources.RatingTitle}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="17" />
+            <controls:RatingBar x:Name="RatingBar"
+                                FilledImage="star_filled.png"
+                                Image="star.png"
+                                MaxRating="5"
+                                Rating="0"
+                                FillColor="{x:DynamicResource MainColor}"
+                                Margin="35,0,35,0"
+                                HeightRequest="45" />
+            <StackLayout Orientation="Horizontal">
+                <Frame CornerRadius="15"
+                       BackgroundColor="{x:DynamicResource MainColor}"
+                       Margin="0, 10, 0, 20"
+                       HorizontalOptions="StartAndExpand"
+                       x:Name="FrameLater"
+                       Padding="0">
+                    <Button x:Name="BtnLater"
+                            Text="{x:Static xamarinJkh:AppResources.LatteRateApp}"
+                            Clicked="BtnLater_OnClicked"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            BackgroundColor="Transparent" />
+                </Frame>
+                <Frame CornerRadius="15"
+                       BackgroundColor="{x:DynamicResource MainColor}"
+                       Margin="0, 10, 0, 20"
+                       HorizontalOptions="Center"
+                       x:Name="FrameNot"
+                       Padding="0">
+                    <Button x:Name="BtnNot"
+                            Text="{x:Static xamarinJkh:AppResources.NotRateApp}"
+                            Clicked="BtnNot_OnClicked"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            BackgroundColor="Transparent" />
+                </Frame>
+                <Frame CornerRadius="15"
+                       BackgroundColor="{x:DynamicResource MainColor}"
+                       Margin="0, 10, 0, 20"
+                       HorizontalOptions="EndAndExpand"
+                       x:Name="FrameRate"
+                       Padding="0">
+                    <Button x:Name="BtnRate"
+                            Text="{x:Static xamarinJkh:AppResources.RateApp}"
+                            Clicked="OpenMarket"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            BackgroundColor="Transparent" />
+                </Frame>
+            </StackLayout>
+
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>
