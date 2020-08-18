@@ -240,6 +240,7 @@
                                                              Foreground="{Binding hex}"
                                                              HorizontalOptions="Center" />
                                         <Label
+                                            x:Name="lblAddFile"
                                             Text="{x:Static xamarinJkh:AppResources.NewAppAddFile}"
                                             FontSize="13"
                                             TextDecorations="Underline"
@@ -265,7 +266,8 @@
 
                                         <DataTemplate>
                                             <apps:FileCell
-                                                FileName="{Binding FileName}" />
+                                                FileName="{Binding FileName}"
+                                                FileSize="{Binding DataArray}"/>
                                         </DataTemplate>
 
                                     </ListView.ItemTemplate>

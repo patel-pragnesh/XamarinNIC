@@ -6,6 +6,9 @@ using System.Text;
 using Xamarin.Forms;
 using xamarinJKH.Server.RequestModel;
 
+using System.Linq;
+using AiForms.Dialogs.Abstractions;
+
 namespace xamarinJKH.ViewModels.DialogViewModels
 {
     public class ShopListViewModel:BaseViewModel
@@ -14,9 +17,13 @@ namespace xamarinJKH.ViewModels.DialogViewModels
         public List<Goods> SelectedItems { get; set; }
         public Command LoadItems { get; set; }
         public Command AddItems { get; set; }
-        public ShopListViewModel()
+        public Command Increase { get; set; }
+        public Command Decrease { get; set; }
+        readonly IDialogNotifier Dialog;
+        public ShopListViewModel(IDialogNotifier dialog)
         {
             Items = new ObservableCollection<Goods>();
+            Dialog = dialog;
             SelectedItems = new List<Goods>();
             LoadItems = new Command(async () =>
             {
@@ -32,8 +39,13 @@ namespace xamarinJKH.ViewModels.DialogViewModels
 
             AddItems = new Command(async () =>
             {
+                SelectedItems.AddRange(Items.Where(x => x.ColBusket > 0));
+                Dialog.Cancel();
                 MessagingCenter.Send<Object, List<Goods>>(this, "AddItems", SelectedItems);
             });
+
+            Increase = new Command<Goods>(item => item.ColBusket++);
+            Decrease = new Command<Goods>(item => item.ColBusket--);
         }
     }
 }

@@ -3,23 +3,21 @@
 <plist version="1.0">
   <dict>
     <key>CLIENT_ID</key>
-    <string>781697834817-1a00bpnah9ct02h60l587jrfg39i7dir.apps.googleusercontent.com</string>
+    <string>1075563506975-96armnqrb6g7458i80ovv3jt4ir9qehh.apps.googleusercontent.com</string>
     <key>REVERSED_CLIENT_ID</key>
-    <string>com.googleusercontent.apps.781697834817-1a00bpnah9ct02h60l587jrfg39i7dir</string>
-    <key>ANDROID_CLIENT_ID</key>
-    <string>781697834817-86jujvujhqasqbg6ahekutjhgfcl7m2g.apps.googleusercontent.com</string>
+    <string>com.googleusercontent.apps.1075563506975-96armnqrb6g7458i80ovv3jt4ir9qehh</string>
     <key>API_KEY</key>
-    <string>AIzaSyCEwACc4w9_F8AY_eoGBTbABgkqHs2DmyU</string>
+    <string>AIzaSyA9z_zGeXzFMWiYZ-Sw4nDE3ezwHr9LMfE</string>
     <key>GCM_SENDER_ID</key>
-    <string>781697834817</string>
+    <string>1075563506975</string>
     <key>PLIST_VERSION</key>
     <string>1</string>
     <key>BUNDLE_ID</key>
-    <string>rom.best.dom24</string>
+    <string>rom.best.profikomfort</string>
     <key>PROJECT_ID</key>
-    <string>djservice-33702</string>
+    <string>testproject-59796</string>
     <key>STORAGE_BUCKET</key>
-    <string>djservice-33702.appspot.com</string>
+    <string>testproject-59796.appspot.com</string>
     <key>IS_ADS_ENABLED</key>
     <false></false>
     <key>IS_ANALYTICS_ENABLED</key>
@@ -31,8 +29,8 @@
     <key>IS_SIGNIN_ENABLED</key>
     <true></true>
     <key>GOOGLE_APP_ID</key>
-    <string>1:781697834817:ios:c7f680f860bb1baed2cbc0</string>
+    <string>1:1075563506975:ios:e6e6123c56861716e4d42a</string>
     <key>DATABASE_URL</key>
-    <string>https://djservice-33702.firebaseio.com</string>
+    <string>https://testproject-59796.firebaseio.com</string>
   </dict>
 </plist>

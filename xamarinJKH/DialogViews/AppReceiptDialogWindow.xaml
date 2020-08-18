@@ -21,8 +21,9 @@
         </ResourceDictionary>
     </dialog:DialogView.Resources>
     <Frame CornerRadius="30"
-           Margin="50"
+           Margin="15"
            HeightRequest="400"
+           BorderColor="{AppThemeBinding Dark=White,Light={x:StaticResource MainColor}}"
            Padding="20">
         <StackLayout>
             <Grid VerticalOptions="StartAndExpand"
@@ -37,12 +38,16 @@
                        Style="{StaticResource Header}"/>
                 <Label Text="{x:Static app:AppResources.Amount1}"
                        Grid.Column="1"
+                       HorizontalTextAlignment="Center"
                        Style="{StaticResource Header}"/>
                 <Label Text="{x:Static app:AppResources.Price}"
                        Grid.Column="2"
+                       HorizontalTextAlignment="End"
+                       Margin="10,0"
                        Style="{StaticResource Header}"/>
             </Grid>
             <CollectionView ItemsSource="{Binding ReceiptItems}"
+                            BackgroundColor="White"
                             SelectionMode="None">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"/>
@@ -59,14 +64,30 @@
                             <Label Text="{Binding Name}"
                                    Grid.Column="0"/>
                             <Label Text="{Binding Amount}"
+                                   HorizontalTextAlignment="Center"
                                    Grid.Column="1"/>
                             <Label Text="{Binding Price, Converter={StaticResource Price}}"
+                                   HorizontalTextAlignment="End"
                                    Grid.Column="2"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
+            <Label HorizontalOptions="FillAndExpand"
+                   VerticalTextAlignment="Start"
+                   HorizontalTextAlignment="End"
+                   FontSize="16">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="{x:Static app:AppResources.Price}"
+                                  FontAttributes="Bold"/>
+                            <Span Text=" "/>
+                            <Span Text="{Binding Price, Converter={x:StaticResource Price}}"/>
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
         </StackLayout>
     </Frame>
 </dialog:DialogView>

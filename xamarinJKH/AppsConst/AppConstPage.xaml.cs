@@ -161,7 +161,6 @@ namespace xamarinJKH.AppsConst
             }
 
             DateUniq = newDate;
-
             baseForApp.Children.Add(data);
         }
 
@@ -254,6 +253,8 @@ namespace xamarinJKH.AppsConst
 
             getMessage2();
             MessagingCenter.Subscribe<Object>(this, "RefreshApp", (sender) => RefreshCommand.Execute(null));
+            MessagingCenter.Subscribe<Object>(this, "RefreshAppList", async (sender) =>
+                request = await _server.GetRequestsDetailListConst(_requestInfo.ID.ToString()));
            // additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
@@ -761,7 +762,12 @@ namespace xamarinJKH.AppsConst
 
         private async void ReceiptEdit(object sender, EventArgs e)
         {
-            await Dialog.Instance.ShowAsync(new AppConstDialogWindow(new ViewModels.DialogViewModels.AppRecieptConstViewModel(this.request.ReceiptItems, this.request.ID)));
+            List<RequestsReceiptItem> Items = new List<RequestsReceiptItem>();
+            foreach (var item in request.ReceiptItems)
+            {
+                Items.Add(item.Copy());
+            }
+            await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID));
         }
     }
 }

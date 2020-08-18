@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-                   x:Name="AppReciept"
+             x:Name="AppReciept"
              xmlns:dialog="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
              xmlns:converters="clr-namespace:xamarinJKH.Converters"
              xmlns:app="clr-namespace:xamarinJKH"
@@ -22,8 +22,10 @@
         </ResourceDictionary>
     </dialog:DialogView.Resources>
     <Frame CornerRadius="30"
-           HeightRequest="350"
-           Margin="30"
+           x:Name="Main"
+           BorderColor="{AppThemeBinding Dark=White,Light={x:StaticResource MainColor}}"
+           Margin="15"
+           HeightRequest="400"
            Padding="20,20,10,20">
         <StackLayout>
             <app:IconView Source="ic_shop_plus"
@@ -33,7 +35,7 @@
                     <TapGestureRecognizer Tapped="AddGoods"/>
                 </app:IconView.GestureRecognizers>
             </app:IconView>
-            <Grid HeightRequest="60">
+            <Grid HeightRequest="80">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.3*"/>
                     <ColumnDefinition Width="0.25*"/>
@@ -48,10 +50,14 @@
                        Grid.Column="1"
                        Style="{StaticResource Header}"/>
                 <Label Text="{x:Static app:AppResources.Price}"
+                       Margin="8,0"
                        Grid.Column="2"
+                       VerticalTextAlignment="End"
+                       HorizontalTextAlignment="End"
                        Style="{StaticResource Header}"/>
             </Grid>
             <CollectionView ItemsSource="{Binding ReceiptItems}"
+                            BackgroundColor="White"
                             SelectionMode="None">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"/>
@@ -114,6 +120,21 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <Label HorizontalOptions="FillAndExpand"
+                   VerticalTextAlignment="Start"
+                   HorizontalTextAlignment="End"
+                   FontSize="16">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="{x:Static app:AppResources.Price}"
+                                  FontAttributes="Bold"/>
+                            <Span Text=" "/>
+                            <Span Text="{Binding Price, Converter={x:StaticResource Price}}"/>
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
             <Button BackgroundColor="{x:DynamicResource MainColor}"
                     CornerRadius="30"
                     Margin="0,0,10,0"

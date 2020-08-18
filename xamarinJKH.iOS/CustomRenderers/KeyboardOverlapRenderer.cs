@@ -10,10 +10,11 @@ using xamarinJKH.iOS.Extensions;
 using xamarinJKH.Counters;
 
 using xamarinJKH.Apps;
+using xamarinJKH.AppsConst;
 
 [assembly: ExportRenderer(typeof(AddMetersPage), typeof(KeyboardOverlapRenderer))]
 [assembly: ExportRenderer(typeof(AppPage), typeof(KeyboardOverlapRenderer))]
-
+[assembly: ExportRenderer(typeof(AppConstPage), typeof(KeyboardOverlapRenderer))]
 namespace xamarinJKH.iOS.CustomRenderers
 {
     [Preserve(AllMembers = true)]

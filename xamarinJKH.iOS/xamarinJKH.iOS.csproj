@@ -73,12 +73,12 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>Apple Distribution: Evgeny Yurtaykin (UK4AR963E7)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>dom24Distr</CodesignProvision>
+    <CodesignProvision>distrProfiKomfort</CodesignProvision>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
     <MtouchLink>SdkOnly</MtouchLink>
     <BuildIpa>true</BuildIpa>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
-    <IpaPackageName>dom24_324</IpaPackageName>
+    <IpaPackageName>profiKomfort_327</IpaPackageName>
     <IpaIncludeArtwork>true</IpaIncludeArtwork>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
@@ -120,6 +120,7 @@
     <Compile Include="CustomRenderers\TapHighlightRemoveAdditionalCellRenderer.cs" />
     <Compile Include="CustomRenderers\TapHighlightRemoveNotificationCellRenderer.cs" />
     <Compile Include="CustomRenderers\RadioButtonEffect.cs" />
+    <Compile Include="DependencyImplementation\PrintService.cs" />
     <Compile Include="DependencyImplementation\StatusBar.cs" />
     <Compile Include="Extensions\ViewExtensions.cs" />
     <Compile Include="Main.cs" />
@@ -136,6 +137,18 @@
     <Compile Include="CustomRenderers\TapHighlightRemoveAppConstCellRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\ic_shop.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_shop.imageset\ic_shop1x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_shop.imageset\ic_shop2x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_shop.imageset\ic_shop3x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
