@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace xamarinJKH.Converters
 {
-    public class PriceConverter : IValueConverter
+    public class PriceConverter : IValueConverter, IMarkupExtension
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -17,6 +18,11 @@ namespace xamarinJKH.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return string.Empty;
+        }
+
+        public object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
         }
     }
 }

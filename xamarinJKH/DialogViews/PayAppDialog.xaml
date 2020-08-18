@@ -55,7 +55,6 @@
                 Margin="-10, 0, 0, 0"
                 HorizontalOptions="Center" />
             <StackLayout Orientation="Horizontal"
-                         IsVisible="False"
                          HorizontalOptions="FillAndExpand">
                 <Frame x:Name="frameBtnCardPay" BackgroundColor="White" CornerRadius="10"
                        BorderColor="Gray" Padding="0" MinimumWidthRequest="250" Margin="5,0"
