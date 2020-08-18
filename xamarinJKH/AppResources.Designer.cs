@@ -19,7 +19,7 @@ namespace xamarinJKH {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -1538,6 +1538,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Позже.
+        /// </summary>
+        internal static string LatteRateApp {
+            get {
+                return ResourceManager.GetString("LatteRateApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Светлая.
         /// </summary>
         internal static string Light {
@@ -1849,6 +1858,15 @@ namespace xamarinJKH {
         internal static string Notifications {
             get {
                 return ResourceManager.GetString("Notifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не оценивать.
+        /// </summary>
+        internal static string NotRateApp {
+            get {
+                return ResourceManager.GetString("NotRateApp", resourceCulture);
             }
         }
         
@@ -2909,6 +2927,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Оценить.
+        /// </summary>
+        internal static string RateApp {
+            get {
+                return ResourceManager.GetString("RateApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Закрыть заявку?.
         /// </summary>
         internal static string RatingBarClose {
@@ -2951,6 +2978,15 @@ namespace xamarinJKH {
         internal static string RatingBarText2 {
             get {
                 return ResourceManager.GetString("RatingBarText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Поделитесь своим мнением:.
+        /// </summary>
+        internal static string RatingTitle {
+            get {
+                return ResourceManager.GetString("RatingTitle", resourceCulture);
             }
         }
         

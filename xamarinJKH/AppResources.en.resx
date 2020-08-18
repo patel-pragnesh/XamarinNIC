@@ -196,6 +196,18 @@
   <data name="CheckInterval" xml:space="preserve">
     <value>Checks interval: </value>
   </data>
+  <data name="RatingTitle" xml:space="preserve">
+    <value>Share your opinion:</value>
+  </data>
+  <data name="RateApp" xml:space="preserve">
+    <value>Estimate</value>
+  </data>
+  <data name="NotRateApp" xml:space="preserve">
+    <value>Not to judge</value>
+  </data>
+  <data name="LatteRateApp" xml:space="preserve">
+    <value>Later</value>
+  </data>
   <data name="Choose" xml:space="preserve">
     <value>Choose</value>
   </data>
