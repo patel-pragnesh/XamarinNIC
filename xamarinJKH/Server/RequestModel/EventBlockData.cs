@@ -86,6 +86,27 @@ namespace xamarinJKH.Server.RequestModel
         public string ShowInAdBlock { get; set; }
         public string ShopName { get; set; }
         public int? ShopID { get; set; }
+        // координаты магазина на карте - широта
+        public double ShopLat { get; set; }
+        // координаты магазина на карте - долгота
+        public double ShopLng { get; set; }
+        // ссылка на логотип
+        public string LogoLink { get; set; }
+        // id файла
+        public string LogoFileId { get; set; }
+        // макс процент списания бонусов для лицевых счетов текущего пользователя
+        public List<BonusDiscountRate> BonusDiscountRates { get; set; }
+        public Xamarin.Forms.Maps.Position Position { get => new Xamarin.Forms.Maps.Position(this.ShopLat, this.ShopLng); }
+    }
+
+    public class BonusDiscountRate
+    {
+        // id л/сч
+        public string AccountId { get; set; }
+        // номер л/сч
+        public string Ident { get; set; }
+        // макс процент списания бонусов
+        public decimal Rate { get; set; }
     }
 
 }
