@@ -93,7 +93,7 @@
                                 HeightRequest="100"
                                 Padding="20,0,20,0">
                         <StackLayout Orientation="Horizontal"
-                                     WidthRequest="350"
+                                     WidthRequest="380"
                                      HeightRequest="100">
 
                             <StackLayout
