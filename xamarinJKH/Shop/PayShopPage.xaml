@@ -3,6 +3,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             xmlns:converters="clr-namespace:xamarinJKH.Converters;assembly=xamarinJKH"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Shop.PayShopPage">
 
@@ -56,19 +57,35 @@
                                 <Label HorizontalOptions="Center" Margin="10">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{x:Static xamarinJkh:AppResources.OrderText}" FontSize="20" TextColor="Black" FontAttributes="Bold" />
+                                            <Span Text="{x:Static xamarinJkh:AppResources.OrderText}" FontSize="20"
+                                                  TextColor="Black" FontAttributes="Bold" />
                                             <Span Text="{Binding orderNum}" FontSize="20" TextColor="{Binding hex}"
                                                   FontAttributes="Bold" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <StackLayout Spacing="0">
+                                <StackLayout
+                                    Spacing="0"
+                                    Margin="0,0,0,10"
+                                    HorizontalOptions="Center"
+                                    Orientation="Horizontal">
+
+                                    <Label
+                                        TextColor="Black"
+                                        Text="{x:Static xamarinJkh:AppResources.Ident}"
+                                        VerticalOptions="Center"
+                                        FontAttributes="Bold"
+                                        FontSize="17" />
+                                    <StackLayout
+                                        Spacing="0">
                                         <StackLayout Orientation="Horizontal">
-                                            <xamarinJkh:BorderlessPicker x:Name="PickerLs" Title="{x:Static xamarinJkh:AppResources.Choose}"
+                                            <xamarinJkh:BorderlessPicker x:Name="PickerLs"
+                                                                         Title="{Binding Ident}"
                                                                          TitleColor="{Binding hex}"
                                                                          TextColor="{Binding hex}"
                                                                          VerticalOptions="End"
                                                                          MinimumWidthRequest="0"
+                                                                         SelectedIndexChanged="PickerLs_OnSelectedIndexChanged"
                                                                          HorizontalOptions="Fill"
                                                                          ItemsSource="{Binding AllAcc}"
                                                                          ItemDisplayBinding="{Binding Ident}"
@@ -86,6 +103,7 @@
                                             BackgroundColor="{Binding hex}"
                                             HorizontalOptions="Fill" />
                                     </StackLayout>
+                                </StackLayout>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10,0">
 
                                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand"
@@ -108,7 +126,8 @@
                                     </StackLayout>
                                     <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical"
                                                  Padding="0,0,10,10">
-                                        <Label HorizontalOptions="Start" Text="{x:Static xamarinJkh:AppResources.PriceText}" TextColor="Black"
+                                        <Label HorizontalOptions="Start"
+                                               Text="{x:Static xamarinJkh:AppResources.PriceText}" TextColor="Black"
                                                FontAttributes="Bold"
                                                FontSize="14" />
                                         <Label HorizontalOptions="Start">
@@ -118,24 +137,69 @@
                                                           TextColor="{Binding hex}"
                                                           FontAttributes="Bold"
                                                           FontSize="24" />
-                                                    <Span Text="{x:Static xamarinJkh:AppResources.Currency}" TextColor="Gray" FontSize="12" />
+                                                    <Span Text="{x:Static xamarinJkh:AppResources.Currency}"
+                                                          TextColor="Gray" FontSize="12" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
                                     </StackLayout>
-                                    
+
                                 </StackLayout>
                                 <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand"
                                          Margin="10,0" />
-                                <Label FontSize="20" IsVisible="False" TextColor="Black" Text="{x:Static xamarinJkh:AppResources.Payment}" HorizontalOptions="Center"
+                                
+                                <StackLayout Orientation="Horizontal"
+                                             IsVisible="{Binding isBonusVisible}"
+                                             HorizontalOptions="Start">
+                                    
+                                    <CheckBox
+                                        HorizontalOptions="Center"
+                                        x:Name="CheckBoxBonus"
+                                        VerticalOptions="Center"
+                                        Color="{x:DynamicResource MainColor}" />
+                                    <Label
+                                        TextColor="Black"
+                                        x:Name="LabelBonus"
+                                        HorizontalTextAlignment="Start"
+                                        HorizontalOptions="Start">
+                                    </Label>
+
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             IsVisible="{Binding isBonusVisible}"
+                                             HorizontalOptions="Start">
+                                    
+                                    <CheckBox
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        x:Name="CheckBox"
+                                        CheckedChanged="CheckBox_OnCheckedChanged"
+                                        IsChecked="True"
+                                        Color="{x:DynamicResource MainColor}" />
+                                    <Label
+                                        TextColor="Black"
+                                        x:Name="LabelDoc"
+                                        HorizontalTextAlignment="Start"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        TextDecorations="Underline"
+                                        Text="{x:Static xamarinJkh:AppResources.OffertDoc}">
+                                    </Label>
+                                </StackLayout>
+                                
+                                <Label FontSize="20" IsVisible="False" TextColor="Black"
+                                       Text="{x:Static xamarinJkh:AppResources.Payment}" HorizontalOptions="Center"
                                        Margin="10,10" FontAttributes="Bold" />
-                                <StackLayout Orientation="Horizontal" IsVisible="False" HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal" IsVisible="False"
+                                             HorizontalOptions="FillAndExpand">
                                     <Frame x:Name="frameBtnCardPay" BackgroundColor="White" CornerRadius="10"
                                            BorderColor="Gray" Padding="0" MinimumWidthRequest="250" Margin="5,0"
                                            HorizontalOptions="FillAndExpand">
-                                        <Button x:Name="btnCardPay" Text="{x:Static xamarinJkh:AppResources.Card}       " FontAttributes="Bold"
+                                        <Button x:Name="btnCardPay"
+                                                Text="{x:Static xamarinJkh:AppResources.Card}       "
+                                                FontAttributes="Bold"
                                                 TextColor="Gray"
-                                                
+
                                                 BackgroundColor="Transparent" FontSize="15"
                                                 Clicked="btnCardPay_Clicked"
                                                 HorizontalOptions="FillAndExpand" />
@@ -144,7 +208,8 @@
                                            BorderColor="{Binding hex}" Padding="0" MinimumWidthRequest="250"
                                            Margin="5,0"
                                            HorizontalOptions="FillAndExpand">
-                                        <Button x:Name="btnCashPay" IsEnabled="True" Text="{x:Static xamarinJkh:AppResources.OnRecieving}"
+                                        <Button x:Name="btnCashPay" IsEnabled="True"
+                                                Text="{x:Static xamarinJkh:AppResources.OnRecieving}"
                                                 FontAttributes="Bold"
                                                 FontSize="15" TextColor="{Binding hex}"
                                                 BackgroundColor="Transparent" Clicked="btnCashPay_Clicked"
@@ -152,7 +217,8 @@
                                     </Frame>
 
                                 </StackLayout>
-                                <Label x:Name="PaymentDescription0" IsVisible="False" Text="{x:Static xamarinJkh:AppResources.PayText0}" FontSize="18"
+                                <Label x:Name="PaymentDescription0" IsVisible="False"
+                                       Text="{x:Static xamarinJkh:AppResources.PayText0}" FontSize="18"
                                        FontAttributes="Bold" TextColor="Black"
                                        HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
                                        Margin="10,5" />
@@ -185,7 +251,8 @@
                                             VerticalOptions="FillAndExpand"
                                             TextColor="White"
                                             FontAttributes="Bold"
-                                            Text="{x:Static xamarinJkh:AppResources.Confirm_order}" Font="18" Clicked="BtnCheckOut_Clicked" />
+                                            Text="{x:Static xamarinJkh:AppResources.Confirm_order}" Font="18"
+                                            Clicked="BtnCheckOut_Clicked" />
                                 </Frame>
                             </StackLayout>
                         </Frame>

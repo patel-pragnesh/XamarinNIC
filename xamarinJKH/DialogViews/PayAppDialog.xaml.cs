@@ -23,7 +23,7 @@ namespace xamarinJKH.DialogViews
         public string title { get; set; }
         private RequestContent request;
         private Page appPage;
-        
+
 
         public PayAppDialog(Color hexColor, RequestContent request, Page appPage)
         {
@@ -31,9 +31,8 @@ namespace xamarinJKH.DialogViews
             this.request = request;
             this.appPage = appPage;
             title = request.PaidServiceText;
-            isBonusVisible = Settings.MobileSettings.useBonusSystem;
+            isBonusVisible = false;
             InitializeComponent();
-            setBonus();
             Frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color),
                 Color.Transparent);
 
@@ -41,20 +40,7 @@ namespace xamarinJKH.DialogViews
             close.Tapped += async (s, e) => { await PopupNavigation.Instance.PopAsync(); };
             IconViewClose.GestureRecognizers.Add(close);
 
-            var openUrl = new TapGestureRecognizer();
-            openUrl.Tapped += async (s, e) =>
-            {
-                try
-                {
-                    await Launcher.OpenAsync("https://" + Settings.MobileSettings.bonusOfertaFile.Replace("https://", "").Replace("http://", ""));
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAdditionalLink, "OK");
-                }
-            };
-            LabelDoc.GestureRecognizers.Add(openUrl);
+          
             FormattedString formatted = new FormattedString();
             formatted.Spans.Add(new Span
             {
@@ -62,11 +48,12 @@ namespace xamarinJKH.DialogViews
                 FontSize = 17,
                 TextColor = Color.Black
             });
+            decimal bonusPaid = getBonusPaid();
             formatted.Spans.Add(new Span
             {
-                Text = request.PaidSumm.ToString(),
+                Text = (request.PaidSumm - bonusPaid).ToString(),
                 FontSize = 20,
-                TextColor = Color.FromHex(Settings.MobileSettings.color),
+                TextColor = hex,
                 FontAttributes = FontAttributes.Bold
             });
             formatted.Spans.Add(new Span
@@ -76,59 +63,36 @@ namespace xamarinJKH.DialogViews
                 TextColor = Color.FromHex("#777777")
             });
             LabelTotal.FormattedText = formatted;
+            if (bonusPaid > 0)
+            {
+                LabelBonusCount.Text = AppResources.BonusTotal + bonusPaid;
+            }
+            else
+            {
+                LabelBonusCount.IsVisible = false;
+            }
+
             BindingContext = this;
         }
 
-        async void setBonus()
+        decimal getBonusPaid()
         {
-            RestClientMP server = new RestClientMP();
-            Bonus accountBonusBalance = await server.GetAccountBonusBalance(Settings.Person.Accounts[1].ID);
-            bonusCount = accountBonusBalance.BonusBalance;
-                // <Label.FormattedText>
-                // <FormattedString>
-                // <Span Text="Зачесть бонусами " TextColor="Gray"  FontSize="12" />
-                // <Span Text="{Binding bonusCount}" TextColor ="Gray" FontAttributes="Bold" FontSize="15" />
-                // <Span Text=" {x:Static xamarinJkh:AppResources.PayPoints}" TextColor ="Gray"  FontSize="12" />
-                // <Span Text="&#10; * не более 20% от суммы" TextColor ="Gray" FontSize="10" />
-                //                                 
-                // </FormattedString>
-                
-                FormattedString formattedBonus = new FormattedString();
+            decimal count = 0;
+            foreach (var each in request.ReceiptItems)
+            {
+                count += each.BonusAmount;
+            }
 
-                formattedBonus.Spans.Add(new Span
-                {
-                    Text = "Зачесть бонусами ",
-                    FontSize = 12,
-                    TextColor = Color.Gray,
-                });
-                formattedBonus.Spans.Add(new Span
-                {
-                    Text = bonusCount.ToString(),
-                    TextColor = Color.Gray,
-                    FontAttributes = FontAttributes.Bold,
-                    FontSize = 15,
-                });
-                formattedBonus.Spans.Add(new Span
-                {
-                    Text = AppResources.PayPoints,
-                    TextColor = Color.Gray,
-                    FontSize = 12
-                });
-                formattedBonus.Spans.Add(new Span
-                {
-                    Text = "\n * не более 20% от суммы",
-                    TextColor = Color.Gray,
-                    FontSize = 10
-                });
-
-                LabelBonus.FormattedText = formattedBonus;
+            return count;
         }
-        
+
+
         private async void payApp(object sender, EventArgs e)
         {
             if (!request.IsPaidByUser)
             {
-                await appPage.Navigation.PushAsync(new PayServicePage("", request.PaidSumm, request.ID));
+                await appPage.Navigation.PushAsync(
+                    new PayServicePage("", request.PaidSumm - getBonusPaid(), request.ID));
                 await PopupNavigation.Instance.PopAsync();
             }
             else
@@ -144,11 +108,6 @@ namespace xamarinJKH.DialogViews
         private void btnCashPay_Clicked(object sender, EventArgs e)
         {
         }
-
-        private void CheckBox_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            FrameBtnAdd.IsEnabled = CheckBox.IsChecked;
-            BtnAdd.IsEnabled = CheckBox.IsChecked;
-        }
+        
     }
 }
