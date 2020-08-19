@@ -11,25 +11,23 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <!--<Style TargetType="Label">
-                <Setter Property="VisualStateManager.VisualStateGroups">
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal" />
-                            <VisualState x:Name="Selected">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor"
-                                        Value="Gray" />
-
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </Setter>
+                
             </Style>-->
             <Style TargetType="Label" x:Key="Tab">
                 <Setter Property="TextColor" Value="{AppThemeBinding Dark={x:DynamicResource MainColor}, Light=Black}"/>
                 <Setter Property="FontSize" Value="18"/>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="{AppThemeBinding Dark=White, Light=Black}"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -136,7 +134,7 @@
                                  Padding="30,0">
                         <Label Text="Каталог" Style="{x:StaticResource Tab}"
                                x:Name="CatalogMenu"
-                               TextColor="{x:DynamicResource MainColor}"
+                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalTextAlignment="End">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="SwitchList"/>
@@ -145,6 +143,7 @@
                         <Label Text="/"/>
                         <Label Text="Карта" Style="{x:StaticResource Tab}"
                                x:Name="MapMenu"
+                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalTextAlignment="Start">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="SwitchMap"/>

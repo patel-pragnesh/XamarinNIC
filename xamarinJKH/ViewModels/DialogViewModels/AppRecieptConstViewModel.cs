@@ -42,7 +42,7 @@ namespace xamarinJKH.ViewModels.DialogViewModels
 
             Notifier = dialog;
 
-            var total = ReceiptItems.Select(x => x.Price * x.Amount).Sum();
+            var total = ReceiptItems.Select(x => x.Price * x.Quantity).Sum();
             Price = Convert.ToDecimal(total);
 
             Delete = new Command<RequestsReceiptItem>(item =>
@@ -51,7 +51,7 @@ namespace xamarinJKH.ViewModels.DialogViewModels
                 {
                     ReceiptItems.Remove(item);
                 }
-                var total = ReceiptItems.Select(x => x.Price * x.Amount).Sum();
+                var total = ReceiptItems.Select(x => x.Price * x.Quantity).Sum();
                 Price = Convert.ToDecimal(total);
             });
 
@@ -68,7 +68,7 @@ namespace xamarinJKH.ViewModels.DialogViewModels
 
             MessagingCenter.Subscribe<Object>(this, "UpdatePrice", sender =>
             {
-                var total = ReceiptItems.Select(x => x.Price * x.Amount).Sum();
+                var total = ReceiptItems.Select(x => x.Price * x.Quantity).Sum();
                 Price = Convert.ToDecimal(total);
             });
 
@@ -78,14 +78,14 @@ namespace xamarinJKH.ViewModels.DialogViewModels
                 {
                     foreach (var item in args)
                     {
-                        var receipt_item = new RequestsReceiptItem { Name = item.Name, Price = item.Price, Amount = item.ColBusket };
+                        var receipt_item = new RequestsReceiptItem { Name = item.Name, Price = item.Price, Quantity = item.ColBusket };
                         if (!string.IsNullOrEmpty(item.Name))
                         {
                             var existing = ReceiptItems.FirstOrDefault(x => x.Name == item.Name);
                             if (existing == null)
                                 Device.BeginInvokeOnMainThread(() => ReceiptItems.Add(receipt_item));
                             else
-                                existing.Amount += item.ColBusket;
+                                existing.Quantity += item.ColBusket;
                         }
                         
                     }

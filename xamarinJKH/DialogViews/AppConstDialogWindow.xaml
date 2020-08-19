@@ -76,7 +76,7 @@
                             <Label Text="{Binding Name}"
                                    VerticalTextAlignment="Center"
                                    Grid.Column="0"/>
-                            <Label Text="{Binding Amount}"
+                            <Label Text="{Binding Quantity}"
                                    VerticalTextAlignment="Center"
                                    HorizontalTextAlignment="Center"
                                    Grid.Column="1"/>
