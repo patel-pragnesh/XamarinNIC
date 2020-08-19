@@ -163,11 +163,12 @@
                                Padding="20, 20, 80, 70">
                                 <CollectionView ItemsSource="{Binding Groups}"
                                         HeightRequest="30"
+                                        Scrolled="CollectionView_Scrolled"
                                         SelectedItem="{Binding SelectedGroup}"
                                         SelectionMode="Single"
                                         SelectionChanged="GroupChanged">
                                     <CollectionView.ItemsLayout>
-                                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="30"/>
+                                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="30" SnapPointsAlignment="Start" SnapPointsType="MandatorySingle"/>
                                     </CollectionView.ItemsLayout>
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>

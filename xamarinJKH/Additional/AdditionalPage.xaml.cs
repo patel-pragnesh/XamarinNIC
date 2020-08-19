@@ -350,5 +350,20 @@ namespace xamarinJKH.Additional
                 await Dialog.Instance.ShowAsync(new MapShopDialogView(shop));
             }
         }
+        private void CollectionView_Scrolled(object sender, ItemsViewScrolledEventArgs e)
+        {
+            var index = e.FirstVisibleItemIndex;
+            if (index >= 0)
+            {
+                if (index + 1 < Groups.Count - 1)
+                {
+                    SelectedGroup = Groups[index];
+                }
+                else
+                {
+                    SelectedGroup = Groups[e.LastVisibleItemIndex];
+                }
+            }
+        }
     }
 }
