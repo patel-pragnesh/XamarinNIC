@@ -25,6 +25,7 @@ namespace xamarinJKH.Server.RequestModel
         public string PaidRequestCompleteCode { get; set; }//  - код подтверждения(подтягивается только для жителя)
         public bool IsPaidByUser { get; set; }
         public bool IsPaid { get; set; }
+        public int ShopId { get; set; }
     }
 
     public class RequestContent : RequestInfo
