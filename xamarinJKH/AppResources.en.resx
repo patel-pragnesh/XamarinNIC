@@ -1281,4 +1281,16 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="PayPoints" xml:space="preserve">
     <value>score (s)</value>
   </data>
+  <data name="BonusTotal" xml:space="preserve">
+    <value>Bonuses</value>
+  </data>
+  <data name="AddBonus" xml:space="preserve">
+    <value>Set off with bonuses</value>
+  </data>
+  <data name="NoMore" xml:space="preserve">
+    <value>* no more</value>
+  </data>
+  <data name="AtSumm" xml:space="preserve">
+    <value>from the sum</value>
+  </data>
 </root>

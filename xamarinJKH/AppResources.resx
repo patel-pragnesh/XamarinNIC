@@ -1263,4 +1263,16 @@
   <data name="mb" xml:space="preserve">
     <value>Мб</value>
   </data>
+  <data name="BonusTotal" xml:space="preserve">
+    <value>Бонусами </value>
+  </data>
+  <data name="AddBonus" xml:space="preserve">
+    <value>Зачесть бонусами </value>
+  </data>
+  <data name="NoMore" xml:space="preserve">
+    <value> * не более </value>
+  </data>
+  <data name="AtSumm" xml:space="preserve">
+    <value>от суммы</value>
+  </data>
 </root>

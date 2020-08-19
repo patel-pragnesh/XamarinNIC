@@ -1265,4 +1265,16 @@
   <data name="Receipt" xml:space="preserve">
     <value>Чек</value>
   </data>
+  <data name="BonusTotal" xml:space="preserve">
+    <value>Бонусами </value>
+  </data>
+  <data name="AddBonus" xml:space="preserve">
+    <value>зарахувати бонусами</value>
+  </data>
+  <data name="NoMore" xml:space="preserve">
+    <value>* не більше</value>
+  </data>
+  <data name="AtSumm" xml:space="preserve">
+    <value>від суми</value>
+  </data>
 </root>

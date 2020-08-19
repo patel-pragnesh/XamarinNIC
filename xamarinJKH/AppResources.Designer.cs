@@ -106,6 +106,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Зачесть бонусами .
+        /// </summary>
+        internal static string AddBonus {
+            get {
+                return ResourceManager.GetString("AddBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to + Подключить лицевой счет.
         /// </summary>
         internal static string AddIdent {
@@ -304,6 +313,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to от суммы.
+        /// </summary>
+        internal static string AtSumm {
+            get {
+                return ResourceManager.GetString("AtSumm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Выбрать файл.
         /// </summary>
         internal static string AttachmentChooseFile {
@@ -408,6 +426,15 @@ namespace xamarinJKH {
         internal static string Bills {
             get {
                 return ResourceManager.GetString("Bills", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Бонусами .
+        /// </summary>
+        internal static string BonusTotal {
+            get {
+                return ResourceManager.GetString("BonusTotal", resourceCulture);
             }
         }
         
@@ -1849,6 +1876,15 @@ namespace xamarinJKH {
         internal static string NoAccounts {
             get {
                 return ResourceManager.GetString("NoAccounts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  * не более .
+        /// </summary>
+        internal static string NoMore {
+            get {
+                return ResourceManager.GetString("NoMore", resourceCulture);
             }
         }
         

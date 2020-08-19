@@ -54,6 +54,12 @@
                 x:Name="LabelTotal"
                 Margin="-10, 0, 0, 0"
                 HorizontalOptions="Center" />
+            <Label
+                x:Name="LabelBonusCount"
+                Margin="0, 0, 0, 10"
+                TextColor="#777777"
+                FontSize="12"
+                HorizontalOptions="Center" />
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="FillAndExpand">
                 <Frame x:Name="frameBtnCardPay" BackgroundColor="White" CornerRadius="10"
@@ -79,43 +85,6 @@
 
             </StackLayout>
             <StackLayout>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal"
-                         IsVisible="{Binding isBonusVisible}"
-                         HorizontalOptions="Start">
-                                    
-                <CheckBox
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    Color="{x:DynamicResource MainColor}" />
-                <Label
-                    TextColor="Black"
-                    x:Name="LabelBonus"
-                    HorizontalTextAlignment="Start"
-                    HorizontalOptions="Start">
-                </Label>
-
-            </StackLayout>
-            <StackLayout Orientation="Horizontal"
-                         IsVisible="{Binding isBonusVisible}"
-                         HorizontalOptions="Start">
-                                    
-                <CheckBox
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    x:Name="CheckBox"
-                    CheckedChanged="CheckBox_OnCheckedChanged"
-                    IsChecked="True"
-                    Color="{x:DynamicResource MainColor}" />
-                <Label
-                    TextColor="Black"
-                    x:Name="LabelDoc"
-                    HorizontalTextAlignment="Start"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Start"
-                    TextDecorations="Underline"
-                    Text="{x:Static xamarinJkh:AppResources.OffertDoc}">
-                </Label>
             </StackLayout>
 
             <Frame CornerRadius="15"
