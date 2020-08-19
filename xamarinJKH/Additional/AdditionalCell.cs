@@ -61,6 +61,9 @@ namespace xamarinJKH.Additional
 
         public static readonly BindableProperty DetailProperty =
             BindableProperty.Create("Detail", typeof(string), typeof(AdditionalCell), "");
+ 
+        public static readonly BindableProperty LogoFileIdProperty =
+            BindableProperty.Create("LogoFileId", typeof(string), typeof(AdditionalCell), "");
 
         public int ImageWidth
         {
@@ -84,6 +87,12 @@ namespace xamarinJKH.Additional
         {
             get { return (string) GetValue(DetailProperty); }
             set { SetValue(DetailProperty, value); }
+        } 
+        
+        public string LogoFileId
+        {
+            get { return (string) GetValue(LogoFileIdProperty); }
+            set { SetValue(LogoFileIdProperty, value); }
         }
 
         protected override async void OnBindingContextChanged()
@@ -95,10 +104,10 @@ namespace xamarinJKH.Additional
                
                     byte[] imageByte = null;
                     try {
-                        imageByte = await BlobCache.UserAccount.GetObject<byte[]>(Detail);
+                        imageByte = await BlobCache.UserAccount.GetObject<byte[]>(LogoFileId);
                     } catch (KeyNotFoundException ex) {
                         imageByte = await _server.GetPhotoAdditional(Detail);
-                        await BlobCache.UserAccount.InsertObject(Detail, imageByte);
+                        await BlobCache.UserAccount.InsertObject(LogoFileId, imageByte);
                     }
                     if (imageByte != null)
                     {
