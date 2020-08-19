@@ -224,7 +224,8 @@
                                             <additional:AdditionalCell
                                         ImageWidth="45"
                                         ImageHeight="160"
-                                        Detail="{Binding ID}" />
+                                        Detail="{Binding ID}"
+                                        LogoFileId="{Binding LogoFileId}" />
                                         </DataTemplate>
 
                                     </ListView.ItemTemplate>
