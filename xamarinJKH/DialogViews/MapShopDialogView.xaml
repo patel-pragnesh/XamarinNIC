@@ -9,15 +9,12 @@
              x:Class="xamarinJKH.DialogViews.MapShopDialogView">
     <Frame IsClippedToBounds="True"
            CornerRadius="30"
-           HeightRequest="150"
            Padding="0">
         <StackLayout>
             <ff:CachedImage Source="{Binding Image}"
-                            Aspect="AspectFill"
-                            HorizontalOptions="FillAndExpand"/>
-            <Label Text="{Binding Name}"
-                   FontSize="18"
-                   HorizontalTextAlignment="Center"/>
+                            Aspect="AspectFit"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"/>
         </StackLayout>
         <Frame.GestureRecognizers>
             <TapGestureRecognizer Command="{Binding Open}"/>

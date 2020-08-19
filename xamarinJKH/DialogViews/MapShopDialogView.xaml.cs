@@ -54,16 +54,8 @@ namespace xamarinJKH.DialogViews
             Open = new Command(async () =>
             {
                 DialogNotifier.Cancel();
-                return;
                 AdditionalService select = Service;
-                if (select.ShopID == null)
-                {
-                    await Application.Current.MainPage.Navigation.PushAsync(new AdditionalOnePage(select));
-                }
-                else
-                {
-                    await Application.Current.MainPage.Navigation.PushAsync(new ShopPage(select));
-                }
+                MessagingCenter.Send<Object, AdditionalService>(this, "OpenService", select);
             });
             BindingContext = this;
         }

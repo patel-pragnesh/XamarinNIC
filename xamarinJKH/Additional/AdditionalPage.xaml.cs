@@ -174,6 +174,7 @@ namespace xamarinJKH.Additional
             Additional = new ObservableCollection<AdditionalService>();
             Groups = new ObservableCollection<string>();
             this.BindingContext = this;
+            CatalogMenu.TextColor = (Color)Application.Current.Resources["MainColor"];
             MessagingCenter.Subscribe<Object>(this, "LoadGoods", async (s) =>
             {
                 IsBusy = true;
@@ -184,6 +185,19 @@ namespace xamarinJKH.Additional
             MessagingCenter.Subscribe<MapPageViewModel, Xamarin.Forms.Maps.Position>(this, "FocusMap", (sender, args) =>
             {
                 (Map.Children[0] as Xamarin.Forms.Maps.Map).MoveToRegion(MapSpan.FromCenterAndRadius(args, Distance.FromKilometers(2)));
+            });
+
+            MessagingCenter.Subscribe<Object, AdditionalService>(this, "OpenService", async (sender, args) =>
+            {
+                var select = args;
+                if (select.ShopID == null)
+                {
+                    await Navigation.PushAsync(new AdditionalOnePage(select));
+                }
+                else
+                {
+                    await Navigation.PushAsync(new ShopPage(select));
+                }
             });
         }
 
@@ -312,7 +326,7 @@ namespace xamarinJKH.Additional
             var label = sender as Label;
             var mainColor = Application.Current.Resources["MainColor"];
             label.TextColor = (Color)mainColor;
-            MapMenu.TextColor = Color.Black;
+            MapMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Dark ? Color.White : Color.Black;
             Map.IsVisible = false;
             SetAdditional();
         }
@@ -322,7 +336,7 @@ namespace xamarinJKH.Additional
             var label = sender as Label;
             var mainColor = Application.Current.Resources["MainColor"];
             label.TextColor = (Color)mainColor;
-            CatalogMenu.TextColor = Color.Black;
+            CatalogMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Dark ? Color.White : Color.Black;
             Map.IsVisible = true;
             (Map.BindingContext as MapPageViewModel).GetPermission.Execute(Additional);
             (Map.BindingContext as MapPageViewModel).LoadPins.Execute(Additional);
