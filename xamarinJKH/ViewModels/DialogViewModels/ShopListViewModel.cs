@@ -27,7 +27,8 @@ namespace xamarinJKH.ViewModels.DialogViewModels
             SelectedItems = new List<Goods>();
             LoadItems = new Command(async () =>
             {
-                var items = await Server.GetShopGoods();
+                
+                var items = await Server.GetShopGoods(1);
                 if (items.Error == null)
                 {
                     foreach (var item in items.Data)

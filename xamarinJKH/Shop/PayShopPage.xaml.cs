@@ -21,6 +21,8 @@ namespace xamarinJKH.Shop
         public Color hex { get; set; }
         private RestClientMP _server = new RestClientMP();
         public Dictionary<String, Goods> Goodset { get; set; }
+        public List<AccountInfo> AllAcc { get; set; }
+        public AccountInfo SelectedAcc { get; set; }
         public AdditionalService _Additional { get; set; }
         List<RequestsReceiptItem> ReceiptItems = new List<RequestsReceiptItem>();
         public PayShopPage(Dictionary<string, Goods> goodset, AdditionalService additional)
@@ -28,6 +30,8 @@ namespace xamarinJKH.Shop
             Goodset = goodset;
             _Additional = additional;
             GoodsIsVisible = Settings.GoodsIsVisible;
+            AllAcc = Settings.Person.Accounts;
+            SelectedAcc = Settings.Person.Accounts[0];
             InitializeComponent();
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
@@ -36,10 +40,6 @@ namespace xamarinJKH.Shop
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    // BackgroundColor = Color.White;
-                    // ImageTop.Margin = new Thickness(0, 0, 0, 0);
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    //IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
                 default:
@@ -68,58 +68,6 @@ namespace xamarinJKH.Shop
             BindingContext = this;
             SetPriceAndWeight();
         }
-
-        //async void PayGoods()
-        //{
-        //    try
-        //    {
-        //        progress.IsVisible = true;
-        //        BtnCheckOut.IsEnabled = false;
-        //        if (Settings.Person.Accounts.Count > 0)
-        //        {
-        //            IDResult result = await _server.newAppPay(Settings.Person.Accounts[0].Ident,
-        //                _Additional.id_RequestType.ToString(), getBuscketStr(), true, SetPriceAndWeight(), "Покупка в магазине " + _Additional.ShopName);
-
-        //            if (result.Error == null)
-        //            {
-        //                RequestsUpdate requestsUpdate =
-        //                    await _server.GetRequestsUpdates(Settings.UpdateKey, result.ID.ToString());
-        //                if (requestsUpdate.Error == null)
-        //                {
-        //                    Settings.UpdateKey = requestsUpdate.NewUpdateKey;
-        //                }
-
-        //                await DisplayAlert("Успешно", "Заказ успешно оформлен", "OK");
-        //                // foreach (var ePage in Settings.AppPAge)
-        //                // {
-        //                //     Navigation.RemovePage(ePage);
-        //                // }
-
-        //                RequestInfo requestInfo = new RequestInfo();
-        //                requestInfo.ID = result.ID;
-        //                await Navigation.PushAsync(new AppPage(requestInfo, true));
-
-        //            }
-        //            else
-        //            {
-        //                await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            await DisplayAlert(AppResources.ErrorTitle, "Подключите лицевой счет", "OK");
-        //        }
-
-        //        progress.IsVisible = false;
-        //        BtnCheckOut.IsEnabled = true;
-
-        //    }
-        //    catch (Exception ex)
-        //    {                
-        //        await DisplayAlert(AppResources.ErrorTitle, "Во время выполнения проищошла ошибка", "OK");
-        //        BtnCheckOut.IsEnabled = true;
-        //    }
-        //}
 
         string getBuscketStr()
         {
@@ -179,7 +127,9 @@ namespace xamarinJKH.Shop
                     if (Settings.Person.Accounts.Count > 0)
                     {
                         IDResult result = await _server.newAppPay(Settings.Person.Accounts[0].Ident,
-                            _Additional.id_RequestType.ToString(), getBuscketStr(), true, SetPriceAndWeight(), "Покупка в магазине " + _Additional.ShopName, ReceiptItems);
+                            _Additional.id_RequestType.ToString(), getBuscketStr(), true,
+                            SetPriceAndWeight(),
+                            "Покупка в магазине " + _Additional.ShopName, ReceiptItems, _Additional.ShopID);
 
                         if (result.Error == null)
                         {

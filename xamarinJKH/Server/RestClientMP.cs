@@ -464,7 +464,7 @@ namespace xamarinJKH.Server
         /// <param name="paidServiceText">Текст для оплаты</param>
         /// <returns>id новой заявки</returns>
         public async Task<IDResult> newAppPay(string ident, string typeID, string Text, bool isPaid, decimal paidSum,
-            string paidServiceText, List<RequestsReceiptItem> ReceiptItems)
+            string paidServiceText, List<RequestsReceiptItem> ReceiptItems, int? ShopId)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(NEW_APP, Method.POST);
@@ -478,7 +478,8 @@ namespace xamarinJKH.Server
                 isPaid,
                 paidSum,
                 paidServiceText,
-                ReceiptItems
+                ReceiptItems,
+                ShopId
             });
             var response = await restClientMp.ExecuteTaskAsync<IDResult>(restRequest);
             // Проверяем статус
@@ -1109,12 +1110,13 @@ namespace xamarinJKH.Server
         /// Получение товаров по магазину
         /// </summary>
         /// <returns>список товаров</returns>
-        public async Task<ItemsList<Goods>> GetShopGoods()
+        public async Task<ItemsList<Goods>> GetShopGoods(int? id)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(GET_SHOPS_GOODS, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddParameter("shopId", id);
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<Goods>>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)

@@ -4,6 +4,7 @@ namespace xamarinJKH.Server.RequestModel
 {
     public class RequestsReceiptItem:BaseViewModel
     {
+        public int ID { get; set; }
         public string Name { get; set; }
         public decimal? Price { get; set; }
         public decimal Quantity { get; set; }
@@ -22,5 +23,8 @@ namespace xamarinJKH.Server.RequestModel
         {
             return (RequestsReceiptItem)this.MemberwiseClone();
         }
+        
+        // кол-во бонусов для списания (оплаты)
+        public decimal BonusAmount { get; set; }
     }
 }

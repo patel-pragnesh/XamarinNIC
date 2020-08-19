@@ -1186,7 +1186,7 @@ A bot will call you on your number PHONE and tell an access code</value>
     <value>Choose a consultant</value>
   </data>
   <data name="MoveDispatcherChoose" xml:space="preserve">
-    <value>Выберите диспетчера:</value>
+    <value>Choose a consultant:</value>
   </data>
   <data name="MoveDispatcherConfirm" xml:space="preserve">
     <value>Pass</value>
@@ -1271,5 +1271,14 @@ A bot will call you on your number PHONE and tell an access code</value>
   </data>
   <data name="mb" xml:space="preserve">
     <value>Mb</value>
+  </data>
+  <data name="OffertDoc" xml:space="preserve">
+    <value>I accept the terms of the offer agreement</value>
+  </data>
+  <data name="PayBonus" xml:space="preserve">
+    <value>Bonuses</value>
+  </data>
+  <data name="PayPoints" xml:space="preserve">
+    <value>score (s)</value>
   </data>
 </root>

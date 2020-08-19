@@ -114,7 +114,7 @@ namespace xamarinJKH.Shop
 
         async void GetGoods()
         {
-            ItemsList<Goods> itemsGoods = await server.GetShopGoods();
+            ItemsList<Goods> itemsGoods = await server.GetShopGoods(_Additional.ShopID);
             if (itemsGoods.Error == null)
             {
                 Goodses = itemsGoods.Data;

@@ -62,6 +62,30 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
+                                <StackLayout Spacing="0">
+                                        <StackLayout Orientation="Horizontal">
+                                            <xamarinJkh:BorderlessPicker x:Name="PickerLs" Title="{x:Static xamarinJkh:AppResources.Choose}"
+                                                                         TitleColor="{Binding hex}"
+                                                                         TextColor="{Binding hex}"
+                                                                         VerticalOptions="End"
+                                                                         MinimumWidthRequest="0"
+                                                                         HorizontalOptions="Fill"
+                                                                         ItemsSource="{Binding AllAcc}"
+                                                                         ItemDisplayBinding="{Binding Ident}"
+                                                                         SelectedItem="{Binding SelectedAcc}" />
+                                            <xamarinJkh:IconView Source="ic_arrow_forward"
+                                                                 HeightRequest="12"
+                                                                 WidthRequest="12"
+                                                                 Rotation="90"
+                                                                 Margin="0,5,0,0"
+                                                                 VerticalOptions="Center"
+                                                                 Foreground="{Binding hex}" />
+                                        </StackLayout>
+                                        <Label
+                                            HeightRequest="1"
+                                            BackgroundColor="{Binding hex}"
+                                            HorizontalOptions="Fill" />
+                                    </StackLayout>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10,0">
 
                                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand"

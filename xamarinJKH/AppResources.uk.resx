@@ -1253,4 +1253,16 @@
   <data name="mb" xml:space="preserve">
     <value>Мб</value>
   </data>
+  <data name="OffertDoc" xml:space="preserve">
+    <value>Приймаю умови договору оферти</value>
+  </data>
+  <data name="PayBonus" xml:space="preserve">
+    <value>Бонуси</value>
+  </data>
+  <data name="PayPoints" xml:space="preserve">
+    <value>бал (ів)</value>
+  </data>
+  <data name="Receipt" xml:space="preserve">
+    <value>Чек</value>
+  </data>
 </root>
