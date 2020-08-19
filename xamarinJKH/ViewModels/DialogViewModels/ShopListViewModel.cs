@@ -20,15 +20,17 @@ namespace xamarinJKH.ViewModels.DialogViewModels
         public Command Increase { get; set; }
         public Command Decrease { get; set; }
         readonly IDialogNotifier Dialog;
-        public ShopListViewModel(IDialogNotifier dialog)
+        int ShopID { get; set; }
+        public ShopListViewModel(IDialogNotifier dialog, int shop)
         {
             Items = new ObservableCollection<Goods>();
             Dialog = dialog;
+            ShopID = shop;
             SelectedItems = new List<Goods>();
             LoadItems = new Command(async () =>
             {
                 
-                var items = await Server.GetShopGoods(1);
+                var items = await Server.GetShopGoods(ShopID);
                 if (items.Error == null)
                 {
                     foreach (var item in items.Data)

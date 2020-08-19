@@ -20,9 +20,11 @@ namespace xamarinJKH.DialogViews
     public partial class AppConstDialogWindow : DialogView
     {
         AppRecieptConstViewModel viewModel { get; set; }
-        public AppConstDialogWindow(List<RequestsReceiptItem> items, int id)
+        int Shop { get; set; }
+        public AppConstDialogWindow(List<RequestsReceiptItem> items, int id, int shop)
         {
             InitializeComponent();
+            Shop = shop;
             BindingContext = viewModel = new AppRecieptConstViewModel(items, id, this.DialogNotifier);
             
         }
@@ -92,7 +94,7 @@ namespace xamarinJKH.DialogViews
             
         async void AddGoods(object sender, EventArgs args)
         {
-            await Dialog.Instance.ShowAsync(new ShopListDialogView());
+            await Dialog.Instance.ShowAsync(new ShopListDialogView(Shop));
         }
 
     }

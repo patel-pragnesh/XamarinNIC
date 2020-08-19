@@ -16,10 +16,10 @@ namespace xamarinJKH.DialogViews
     public partial class ShopListDialogView : DialogView
     {
         ShopListViewModel viewModel;
-        public ShopListDialogView()
+        public ShopListDialogView(int shop)
         {
             InitializeComponent();
-            BindingContext = viewModel = new ShopListViewModel(DialogNotifier);
+            BindingContext = viewModel = new ShopListViewModel(DialogNotifier, shop);
 
             viewModel.LoadItems.Execute(null);
         }
