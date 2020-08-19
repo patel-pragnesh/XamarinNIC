@@ -63,7 +63,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Text="{Binding Name}"
                                    Grid.Column="0"/>
-                            <Label Text="{Binding Amount}"
+                            <Label Text="{Binding Quantity}"
                                    HorizontalTextAlignment="Center"
                                    Grid.Column="1"/>
                             <Label Text="{Binding Price, Converter={StaticResource Price}}"

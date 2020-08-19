@@ -28,7 +28,7 @@ namespace xamarinJKH.ViewModels.DialogViewModels
             {
                 Device.BeginInvokeOnMainThread(() => ReceiptItems.Add(item));
             }
-            var total = items.Select(x => x.Price * x.Amount).Sum();
+            var total = items.Select(x => x.Price * x.Quantity).Sum();
             Price = Convert.ToDecimal(total);
         }
     }
