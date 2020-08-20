@@ -1277,4 +1277,7 @@
   <data name="AtSumm" xml:space="preserve">
     <value>від суми</value>
   </data>
+  <data name="Gram" xml:space="preserve">
+    <value> гр.</value>
+  </data>
 </root>

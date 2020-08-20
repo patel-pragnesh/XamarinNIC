@@ -206,6 +206,9 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Shop\ShopPageNew.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tech\TechSendPage.xaml">
       <SubType>Designer</SubType>
       <Generator></Generator>

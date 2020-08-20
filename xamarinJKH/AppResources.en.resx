@@ -1293,4 +1293,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="AtSumm" xml:space="preserve">
     <value>from the sum</value>
   </data>
+  <data name="Gram" xml:space="preserve">
+    <value>g</value>
+  </data>
 </root>

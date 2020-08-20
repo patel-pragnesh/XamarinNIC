@@ -549,7 +549,7 @@
   </data>
   <data name="NotRateApp" xml:space="preserve">
     <value>Не оценивать</value>
-  </data> 
+  </data>
   <data name="LatteRateApp" xml:space="preserve">
     <value>Позже</value>
   </data>
@@ -567,11 +567,10 @@
   </data>
   <data name="PayProcess" xml:space="preserve">
     <value>Платеж обрабатывается </value>
-  </data> 
-  
+  </data>
   <data name="PayBonus" xml:space="preserve">
     <value>Бонусы</value>
-  </data> 
+  </data>
   <data name="PayPoints" xml:space="preserve">
     <value> балл(ов)</value>
   </data>
@@ -1274,5 +1273,8 @@
   </data>
   <data name="AtSumm" xml:space="preserve">
     <value>от суммы</value>
+  </data>
+  <data name="Gram" xml:space="preserve">
+    <value> гр.</value>
   </data>
 </root>
