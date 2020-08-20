@@ -18,6 +18,7 @@ using xamarinJKH.Android;
 using xamarinJKH.Utils;
 
 using Firebase.Iid;
+using xamarinJKH.Droid.CustomReader;
 
 
 namespace xamarinJKH.Droid
@@ -51,6 +52,7 @@ namespace xamarinJKH.Droid
             Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+            DependencyService.Register<OpenAppAndroid>();
             LoadApplication(new App());
 
         }

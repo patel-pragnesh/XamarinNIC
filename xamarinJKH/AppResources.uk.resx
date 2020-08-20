@@ -1277,4 +1277,7 @@
   <data name="AtSumm" xml:space="preserve">
     <value>від суми</value>
   </data>
+  <data name="TechDialogTitle" xml:space="preserve">
+    <value>Напишіть нам сюди</value>
+  </data>
 </root>

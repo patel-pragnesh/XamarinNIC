@@ -9,6 +9,7 @@ using System.Xml.Xsl;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
 using Plugin.Messaging;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
@@ -128,7 +129,11 @@ namespace xamarinJKH.Main
 
             hex = Color.FromHex(Settings.MobileSettings.color);
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new TechSendPage()); };
+            techSend.Tapped += async (s, e) =>
+            {
+                // await PopupNavigation.Instance.PushAsync(new TechDialog());
+                await Navigation.PushAsync(new TechSendPage());
+            };
             LabelTech.GestureRecognizers.Add(techSend);
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>

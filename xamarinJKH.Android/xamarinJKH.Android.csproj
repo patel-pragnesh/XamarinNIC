@@ -133,6 +133,7 @@
     <Compile Include="CustomReader\FirebaseTokenObtainer.cs" />
     <Compile Include="CustomReader\IconViewRenderer.cs" />
     <Compile Include="CustomReader\MessageAndroid.cs" />
+    <Compile Include="CustomReader\OpenAppAndroid.cs" />
     <Compile Include="CustomReader\PrintAdapter.cs" />
     <Compile Include="CustomReader\PrintManager.cs" />
     <Compile Include="CustomRenderers\BorderlessDatePickerRenderer.cs" />
@@ -234,9 +235,12 @@
     <AndroidResource Include="Resources\drawable\ic_time.png" />
     <AndroidResource Include="Resources\drawable\ic_top_event_back.png" />
     <AndroidResource Include="Resources\drawable\pay.png" />
+    <AndroidResource Include="Resources\drawable\telegram.png" />
     <AndroidResource Include="Resources\drawable\top_fon_login_light.png" />
     <AndroidResource Include="Resources\drawable\triangle.png" />
     <AndroidResource Include="Resources\drawable\up_arrow.png" />
+    <AndroidResource Include="Resources\drawable\viber.png" />
+    <AndroidResource Include="Resources\drawable\whatsapp.png" />
     <AndroidResource Include="Resources\layout\Tabbar.xml" />
     <AndroidResource Include="Resources\layout\Toolbar.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />
