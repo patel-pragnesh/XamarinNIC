@@ -47,7 +47,7 @@
       </intent-filter>
     </receiver>
 
-    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCjizvb4b1AbsDiMM_pV8jTZPy2FpKXxRY" />
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCzxAuVLYFr7QA_35KqJZ0AFcEGx9VL5Vc" />
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     <!-- Necessary for apps that target Android 9.0 or higher -->
     <uses-library android:name="org.apache.http.legacy" android:required="false" />
