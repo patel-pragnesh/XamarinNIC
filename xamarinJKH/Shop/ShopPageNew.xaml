@@ -18,6 +18,7 @@
             </Style>
 
             <converters:WeightDisplayConverter x:Key="Weight"/>
+            <converters:ArrowIconConverter x:Key="Arrow"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -137,7 +138,7 @@
                                                  Grid.Column="1"
                                                  HorizontalOptions="FillAndExpand"
                                                  Padding="0,8">
-                                        <xamarinJkh:IconView Source="ic_arrow_up"
+                                        <xamarinJkh:IconView Source="{Binding Asending,Converter={x:StaticResource Arrow}}"
                                                              Foreground="{x:DynamicResource MainColor}"/>
                                         <Label Text="Сортировать по цене"
                                                TextColor="{x:DynamicResource MainColor}"
@@ -228,7 +229,7 @@
                                                             <xamarinJkh:IconView Source="ic_shop_minus"
                                                                              Foreground="{x:DynamicResource MainColor}">
                                                                 <xamarinJkh:IconView.GestureRecognizers>
-                                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.Increase, Source={x:Reference ShopPage}}"
+                                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.Decrease, Source={x:Reference ShopPage}}"
                                                                                           CommandParameter="{Binding .}"/>
                                                                 </xamarinJkh:IconView.GestureRecognizers>
                                                             </xamarinJkh:IconView>
@@ -243,7 +244,7 @@
                                                                              Grid.Column="2"
                                                                              Foreground="{x:DynamicResource MainColor}">
                                                                 <xamarinJkh:IconView.GestureRecognizers>
-                                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.Decrease, Source={x:Reference ShopPage}}"
+                                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.Increase, Source={x:Reference ShopPage}}"
                                                                                           CommandParameter="{Binding .}"/>
                                                                 </xamarinJkh:IconView.GestureRecognizers>
                                                             </xamarinJkh:IconView>
@@ -283,9 +284,11 @@
                                 <Label x:Name="LabelWeightBuscket">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="0 " FontSize="18" FontAttributes="Bold"
+                                            <Span Text="{Binding TotalWeight}" FontSize="18" FontAttributes="Bold"
                                                   TextColor="Black" />
-                                            <Span Text="г" FontSize="12" TextColor="#8a8a8a" />
+                                                <Span Text=" " FontSize="18" FontAttributes="Bold"
+                                                  TextColor="Black" />
+                                                <Span Text="{x:Static xamarinJkh:AppResources.Gram}" FontSize="12" TextColor="#8a8a8a" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
@@ -298,7 +301,7 @@
                                     <Label x:Name="LabelPriceBuscket">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="0 " FontSize="18" FontAttributes="Bold"
+                                                <Span Text="{Binding TotalPrice}" FontSize="18" FontAttributes="Bold"
                                                   TextColor="{Binding hex}" />
                                                 <Span Text="{x:Static xamarinJkh:AppResources.Currency}" FontSize="12" TextColor="#8a8a8a" />
                                             </FormattedString>

@@ -35,11 +35,24 @@ namespace xamarinJKH.ViewModels.Shop
                 if (selected != value)
                 {
                     Goods.Clear();
-                    foreach (var good in AllGoods)
+                    if (!Asending)
                     {
-                        if (good.Categories.Contains(value))
+                        foreach (var good in AllGoods.OrderBy(_ => _.Price).ToList())
                         {
-                            Device.BeginInvokeOnMainThread(() => Goods.Add(good));
+                            if (good.Categories.Contains(value))
+                            {
+                                Device.BeginInvokeOnMainThread(() => Goods.Add(good));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (var good in AllGoods.OrderByDescending(_ => _.Price).ToList())
+                        {
+                            if (good.Categories.Contains(value))
+                            {
+                                Device.BeginInvokeOnMainThread(() => Goods.Add(good));
+                            }
                         }
                     }
                 }
@@ -61,8 +74,8 @@ namespace xamarinJKH.ViewModels.Shop
             }
         }
 
-        int totalPrice;
-        public int TotalPrice
+        decimal? totalPrice;
+        public decimal? TotalPrice
         {
             get => totalPrice;
             set
@@ -72,8 +85,8 @@ namespace xamarinJKH.ViewModels.Shop
             }
         }
 
-        int totalWeight;
-        public int TotalWeight
+        decimal? totalWeight;
+        public decimal? TotalWeight
         {
             get => totalWeight;
             set
@@ -88,6 +101,8 @@ namespace xamarinJKH.ViewModels.Shop
             Goods = new ObservableCollection<Goods>();
             Categories = new ObservableCollection<string>();
             var categories = new List<string>();
+            TotalPrice = 0;
+            TotalWeight = 0;
             LoadGoods = new Command(() =>
             {
                 Task.Run(async () =>
@@ -97,14 +112,14 @@ namespace xamarinJKH.ViewModels.Shop
                     {
                         AllGoods = new List<Goods>();
                         AllGoods.AddRange(goods.Data);
-                        
+
                         foreach (var good in goods.Data)
                         {
                             foreach (var category in good.Categories)
                             {
                                 if (!categories.Contains(category.Trim()))
                                 {
-                                     categories.Add(category);
+                                    categories.Add(category);
                                 }
                             }
                         }
@@ -124,11 +139,14 @@ namespace xamarinJKH.ViewModels.Shop
                     {
                         Device.BeginInvokeOnMainThread(() => Categories.Add(category));
                     }
+                    Device.BeginInvokeOnMainThread(() => SelectedCategory = Categories[0]);
                 });
             });
             Increase = new Command<Goods>(item =>
             {
                 item.ColBusket++;
+                TotalPrice = Goods.Select(x => x.Price * x.ColBusket).Sum();
+                TotalWeight = Goods.Sum(x => x.Weight * x.ColBusket);
             });
 
             Decrease = new Command<Goods>(item =>
@@ -137,11 +155,34 @@ namespace xamarinJKH.ViewModels.Shop
                 {
                     item.ColBusket--;
                 }
+                TotalPrice = Goods.Select(x => x.Price * x.ColBusket).Sum();
+                TotalWeight = Goods.Sum(x => x.Weight);
             });
 
             Sort = new Command(() =>
             {
-                
+                Goods.Clear();
+                if (Asending)
+                {
+                    foreach (var good in AllGoods.OrderBy(_ => _.Price).ToList())
+                    {
+                        if (good.Categories.Contains(SelectedCategory))
+                        {
+                            Device.BeginInvokeOnMainThread(() => Goods.Add(good));
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var good in AllGoods.OrderByDescending(_ => _.Price).ToList())
+                    {
+                        if (good.Categories.Contains(SelectedCategory))
+                        {
+                            Device.BeginInvokeOnMainThread(() => Goods.Add(good));
+                        }
+                    }
+                }
+                Asending = !Asending;
             });
         }
     }
