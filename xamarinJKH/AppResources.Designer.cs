@@ -3324,6 +3324,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Напишите нам сюда.
+        /// </summary>
+        internal static string TechDialogTitle {
+            get {
+                return ResourceManager.GetString("TechDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Опишите проблему....
         /// </summary>
         internal static string TechPlaceholder {

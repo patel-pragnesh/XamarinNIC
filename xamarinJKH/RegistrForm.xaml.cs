@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AiForms.Dialogs;
+using Rg.Plugins.Popup.Services;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
@@ -17,6 +18,7 @@ using xamarinJKH.Utils;
 
 using xamarinJKH.ViewModels;
 using Xamarin.Forms.PancakeView;
+using xamarinJKH.DialogViews;
 
 namespace xamarinJKH
 {
@@ -148,7 +150,7 @@ namespace xamarinJKH
         } 
         private async void Tech(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new TechSendPage(false));
+            await PopupNavigation.Instance.PushAsync(new TechDialog(false));
         }
 
         void returnOneStep()

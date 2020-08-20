@@ -25229,25 +25229,34 @@ namespace xamarinJKH.Droid
 			public const int star_filled = 2131165687;
 			
 			// aapt resource value: 0x7F0701F8
-			public const int test_custom_background = 2131165688;
+			public const int telegram = 2131165688;
 			
 			// aapt resource value: 0x7F0701F9
-			public const int tooltip_frame_dark = 2131165689;
+			public const int test_custom_background = 2131165689;
 			
 			// aapt resource value: 0x7F0701FA
-			public const int tooltip_frame_light = 2131165690;
+			public const int tooltip_frame_dark = 2131165690;
 			
 			// aapt resource value: 0x7F0701FB
-			public const int top_fon_login = 2131165691;
+			public const int tooltip_frame_light = 2131165691;
 			
 			// aapt resource value: 0x7F0701FC
-			public const int top_fon_login_light = 2131165692;
+			public const int top_fon_login = 2131165692;
 			
 			// aapt resource value: 0x7F0701FD
-			public const int triangle = 2131165693;
+			public const int top_fon_login_light = 2131165693;
 			
 			// aapt resource value: 0x7F0701FE
-			public const int up_arrow = 2131165694;
+			public const int triangle = 2131165694;
+			
+			// aapt resource value: 0x7F0701FF
+			public const int up_arrow = 2131165695;
+			
+			// aapt resource value: 0x7F070200
+			public const int viber = 2131165696;
+			
+			// aapt resource value: 0x7F070201
+			public const int whatsapp = 2131165697;
 			
 			static Drawable()
 			{

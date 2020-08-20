@@ -6,10 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.AppsConst;
+using xamarinJKH.DialogViews;
 using xamarinJKH.Server;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server.RequestModel;
@@ -99,7 +101,7 @@ namespace xamarinJKH.MainConst
                     break;
             }
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new TechSendPage()); };
+            techSend.Tapped += async (s, e) => {     await PopupNavigation.Instance.PushAsync(new TechDialog()); };
             LabelTech.GestureRecognizers.Add(techSend);
             
             var addClick = new TapGestureRecognizer();

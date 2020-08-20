@@ -15,7 +15,9 @@ using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 using System.Threading;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms.PancakeView;
+using xamarinJKH.DialogViews;
 using xamarinJKH.ViewModels.Main;
 
 namespace xamarinJKH.Main
@@ -191,7 +193,7 @@ namespace xamarinJKH.Main
 
            
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new TechSendPage()); };
+            techSend.Tapped += async (s, e) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); };
             LabelTech.GestureRecognizers.Add(techSend);
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>

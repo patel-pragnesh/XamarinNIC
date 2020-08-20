@@ -108,6 +108,9 @@
     <CodesignKey>Apple Development: Evgeny Yurtaykin (W7QP3Z4ZW5)</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
+    <BundleResource Include="Resources\telegram.png" />
+    <BundleResource Include="Resources\viber.png" />
+    <BundleResource Include="Resources\whatsapp.png" />
     <Compile Include="CusTomReader\CustomEntryRenderer.cs" />
     <Compile Include="CusTomReader\FileWorker.cs" />
     <Compile Include="CusTomReader\IconViewRenderer.cs" />
