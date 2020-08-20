@@ -355,7 +355,7 @@ namespace xamarinJKH.Additional
             var index = e.FirstVisibleItemIndex;
             if (index >= 0)
             {
-                if (index + 1 < Groups.Count - 1)
+                if (index + 1 <= Groups.Count - 1 && e.HorizontalOffset < 160)
                 {
                     SelectedGroup = Groups[index];
                 }
