@@ -26,6 +26,7 @@ using xamarinJKH.DialogViews;
 
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using Rg.Plugins.Popup.Services;
 using xamarinJKH.CustomRenderers;
 
 namespace xamarinJKH
@@ -291,7 +292,7 @@ namespace xamarinJKH
 
         private async void TechSend(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new TechSendPage(false));
+            await PopupNavigation.Instance.PushAsync(new TechDialog(false));
         }
 
         private async void ButtonClick(object sender, EventArgs e)

@@ -36,7 +36,7 @@ namespace xamarinJKH.DialogViews
                     {
                         if (Settings.TypeApp.Count > 0)
                         {
-                            await Navigation.PushAsync(new NewAppPage());
+                            await Navigation.PushModalAsync(new NewAppPage());
                         }
                         else
                         {
@@ -47,28 +47,41 @@ namespace xamarinJKH.DialogViews
                     {
                         await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppsNoIdent, "OK");
                     }
+                    await PopupNavigation.Instance.PopAsync();
                 }
             };
             FrameBtnApp.GestureRecognizers.Add(appOpen);
             var openUrlWhatsapp = new TapGestureRecognizer();
-            openUrlWhatsapp.Tapped += async (s, e) => { await LoadUrl("https://wa.me/79955052402"); };
+            openUrlWhatsapp.Tapped += async (s, e) => { await LoadUrl("https://wa.me/79955052402","com.whatsapp"); };
             ImageWhatsapp.GestureRecognizers.Add(item: openUrlWhatsapp);
             var openUrlTelegram = new TapGestureRecognizer();
-            openUrlTelegram.Tapped += async (s, e) => { await LoadUrl("https://teleg.run/oiCVE7GCt3Z0bot"); };
+            openUrlTelegram.Tapped += async (s, e) => { await LoadUrl("https://teleg.run/oiCVE7GCt3Z0bot","org.telegram.messenger"); };
             ImageTelegram.GestureRecognizers.Add(item: openUrlTelegram);
             var openUrlVider = new TapGestureRecognizer();
-            openUrlVider.Tapped += async (s, e) =>
-            {
-                DependencyService.Get<IOpenApp>().OpenExternalApp("viber://pa/info?uri=smcenter");
-            };
+            openUrlVider.Tapped += async (s, e) => { await LoadUrl("https://clc.am/4YSqZg", "com.viber.voip"); };
             ImageViber.GestureRecognizers.Add(item: openUrlVider);
         }
 
-        private async Task LoadUrl(string url)
+        private async Task LoadUrl(string url, string package)
         {
             try
             {
-                await Launcher.OpenAsync(url);
+                if (Device.RuntimePlatform == "Android")
+                {
+                    if (DependencyService.Get<IOpenApp>().IsOpenApp(package))
+                    {
+                        await Launcher.OpenAsync(url);
+                    }
+                    else
+                    {
+                        await Launcher.OpenAsync($"https://play.google.com/store/apps/details?id={package}");
+                    }
+                }
+                else
+                {
+                    await Launcher.OpenAsync(url);
+                }
+                await PopupNavigation.Instance.PopAsync();
             }
             catch (Exception ex)
             {

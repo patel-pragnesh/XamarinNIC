@@ -20,6 +20,7 @@ using static Akavache.BlobCache;
 
 using Xamarin.Forms.Maps;
 using AiForms.Dialogs;
+using Rg.Plugins.Popup.Services;
 using xamarinJKH.DialogViews;
 
 namespace xamarinJKH.Additional
@@ -154,7 +155,7 @@ namespace xamarinJKH.Additional
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new TechSendPage()); };
+            techSend.Tapped += async (s, e) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); };
             LabelTech.GestureRecognizers.Add(techSend);
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>

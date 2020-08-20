@@ -1,5 +1,7 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.Net;
 using Xamarin.Forms;
 using xamarinJKH.Droid.CustomReader;
@@ -17,22 +19,18 @@ namespace xamarinJKH.Droid.CustomReader
         {
         }
 
-        public void OpenExternalApp(string url)
+        public bool IsOpenApp(string package)
         {
-            Intent intent = Application.Context.PackageManager.GetLaunchIntentForPackage(url);
-
-            // If not NULL run the app, if not, take the user to the app store
-            if (intent != null)
+            try
             {
-                intent.AddFlags(ActivityFlags.NewTask);
-                Forms.Context.StartActivity(intent);
+                PackageInfo packageInfo = Application.Context.PackageManager.GetPackageInfo(package, 0);
+                
+                return true;
             }
-            else
+            catch (Exception e)
             {
-                intent = new Intent(Intent.ActionView);
-                intent.AddFlags(ActivityFlags.NewTask);
-                intent.SetData(Uri.Parse("market://details?id=" + url));
-                Forms.Context.StartActivity(intent);
+                Console.WriteLine(e);
+                return false;
             }
         }
     }

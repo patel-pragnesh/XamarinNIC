@@ -54,7 +54,7 @@ namespace xamarinJKH.Main
                 if (Settings.MobileSettings.сheckCrashSystem)
                     Crashes.GenerateTestCrash();
                
-                await Navigation.PushAsync(new TechSendPage());
+                await PopupNavigation.Instance.PushAsync(new TechDialog());
             };
             LabelTech.GestureRecognizers.Add(techSend); 
             
@@ -103,7 +103,7 @@ namespace xamarinJKH.Main
             }); 
             MessagingCenter.Subscribe<Object>(this, "StartTech", async (sender) =>
             {
-                await Navigation.PushAsync(new TechSendPage());
+                await PopupNavigation.Instance.PushAsync(new TechDialog());
             });
         }
 

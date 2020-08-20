@@ -2,6 +2,6 @@
 {
     public interface IOpenApp
         {
-            void OpenExternalApp(string url);
+            bool IsOpenApp(string package);
         }
 }

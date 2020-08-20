@@ -52,7 +52,7 @@ namespace xamarinJKH.DialogViews
             }
             else
             {
-                await Navigation.PushModalAsync(new TechSendPage());
+                await PopupNavigation.Instance.PushAsync(new TechDialog());
             }
 
             await PopupNavigation.Instance.PopAsync();
