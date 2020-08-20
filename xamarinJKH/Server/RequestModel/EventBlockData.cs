@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace xamarinJKH.Server.RequestModel
 {
@@ -87,16 +88,16 @@ namespace xamarinJKH.Server.RequestModel
         public string ShopName { get; set; }
         public int? ShopID { get; set; }
         // координаты магазина на карте - широта
-        public double ShopLat { get; set; }
+        public string  ShopLat { get; set; }
         // координаты магазина на карте - долгота
-        public double ShopLng { get; set; }
+        public string  ShopLng { get; set; }
         // ссылка на логотип
         public string LogoLink { get; set; }
         // id файла
         public string LogoFileId { get; set; }
         // макс процент списания бонусов для лицевых счетов текущего пользователя
         public List<BonusDiscountRate> BonusDiscountRates { get; set; }
-        public Xamarin.Forms.Maps.Position Position { get => new Xamarin.Forms.Maps.Position(this.ShopLat, this.ShopLng); }
+        public Xamarin.Forms.Maps.Position Position { get => new Xamarin.Forms.Maps.Position(double.Parse(this.ShopLat), double.Parse(this.ShopLng)); }
     }
 
     public class BonusDiscountRate
