@@ -87,10 +87,34 @@ namespace xamarinJKH.Server.RequestModel
         public string ShowInAdBlock { get; set; }
         public string ShopName { get; set; }
         public int? ShopID { get; set; }
+        string lat;
         // координаты магазина на карте - широта
-        public string  ShopLat { get; set; }
+        public string  ShopLat
+        {
+            get
+            {
+                if (lat == null) return "0";
+                return lat;
+            }
+            set
+            {
+                lat = value;
+            }
+        }
+        string lng;
         // координаты магазина на карте - долгота
-        public string  ShopLng { get; set; }
+        public string ShopLng
+        {
+            get
+            {
+                if (lng == null) return "0";
+                return lng;
+            }
+            set
+            {
+                lng = value;
+            }
+        }
         // ссылка на логотип
         public string LogoLink { get; set; }
         // id файла
