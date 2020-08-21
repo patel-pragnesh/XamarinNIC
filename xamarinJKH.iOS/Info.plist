@@ -21,7 +21,7 @@
 	<key>MinimumOSVersion</key>
 	<string>10.0</string>
 	<key>CFBundleIdentifier</key>
-	<string>rom.best.tafgai</string>
+	<string>rom.best.vodokanalnarof</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
@@ -65,7 +65,7 @@
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>CFBundleDisplayName</key>
-	<string>УК Тафгай</string>
+	<string>МУП Водоканал Наро-Фоминск</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

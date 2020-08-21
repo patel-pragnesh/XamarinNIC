@@ -51,17 +51,25 @@ namespace xamarinJKH.DialogViews
             {
                 if (code != null)
                 {
-                    var success = await Server.SendCodeRequestForpaidService(new PaidRequestCodeModel { RequestId = this.requestID, Code = code });
-                    if (success)
+                    try
                     {
-                        dialog.CloseDialog();
-                        MessagingCenter.Send<Object>(this, "ChangeThemeConst");
-                        DependencyService.Get<IMessage>().ShortAlert(AppResources.EnterCodeSuccess);
+                        var success = await Server.SendCodeRequestForpaidService(new PaidRequestCodeModel { RequestId = this.requestID, Code = code });
+                        if (success)
+                        {
+                            dialog.CloseDialog();
+                            MessagingCenter.Send<Object>(this, "ChangeThemeConst");                                                       
+                            DependencyService.Get<IMessage>().ShortAlert(AppResources.EnterCodeSuccess);
+                        }
+                        else
+                        {
+                            DependencyService.Get<IMessage>().ShortAlert(AppResources.EnterCodeWrongCode);
+                        }
                     }
-                    else
+                    catch(Exception e)
                     {
-                        DependencyService.Get<IMessage>().ShortAlert(AppResources.EnterCodeWrongCode);
+                        throw e;
                     }
+                    
                 }
                 else
                 {

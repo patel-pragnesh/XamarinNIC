@@ -75,12 +75,12 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>Apple Distribution: Evgeny Yurtaykin (UK4AR963E7)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>distrProfiKomfort</CodesignProvision>
+    <CodesignProvision>distrVodokanalNarof</CodesignProvision>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
     <MtouchLink>SdkOnly</MtouchLink>
     <BuildIpa>true</BuildIpa>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
-    <IpaPackageName>profiKomfort_327</IpaPackageName>
+    <IpaPackageName>naroF_328</IpaPackageName>
     <IpaIncludeArtwork>true</IpaIncludeArtwork>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
@@ -125,6 +125,7 @@
     <Compile Include="CustomRenderers\TapHighlightRemoveAdditionalCellRenderer.cs" />
     <Compile Include="CustomRenderers\TapHighlightRemoveNotificationCellRenderer.cs" />
     <Compile Include="CustomRenderers\RadioButtonEffect.cs" />
+    <Compile Include="DependencyImplementation\MessageIos.cs" />
     <Compile Include="DependencyImplementation\PrintService.cs" />
     <Compile Include="DependencyImplementation\StatusBar.cs" />
     <Compile Include="Extensions\ViewExtensions.cs" />
