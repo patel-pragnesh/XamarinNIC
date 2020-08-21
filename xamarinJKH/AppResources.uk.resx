@@ -1280,4 +1280,7 @@
   <data name="Gram" xml:space="preserve">
     <value> гр.</value>
   </data>
+  <data name="TechDialogTitle" xml:space="preserve">
+    <value>Напишіть нам сюди</value>
+  </data>
 </root>

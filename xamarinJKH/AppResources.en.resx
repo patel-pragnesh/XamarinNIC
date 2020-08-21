@@ -1296,4 +1296,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="Gram" xml:space="preserve">
     <value>g</value>
   </data>
+  <data name="TechDialogTitle" xml:space="preserve">
+    <value>Write to us here</value>
+  </data>
 </root>
