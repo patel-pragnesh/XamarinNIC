@@ -122,30 +122,18 @@ namespace xamarinJKH.Additional
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             Map.BindingContext = new MapPageViewModel();
-            switch (Device.RuntimePlatform)
-            {
-                case Device.iOS:
-                    //BackgroundColor = Color.White;
-                    // ImageTop.Margin = new Thickness(0, 0, 0, 0);
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
-                    break;
-                case Device.Android:
-                    // double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
-                    // if (Math.Abs(or - 0.5) < 0.02)
-                    // {
-                    //     RelativeLayoutTop.Margin = new Thickness(0,0,0,-90);
-                    // }
-                    break;
-                default:
-                    break;
-            }
 
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    
+                    MenuDelimiter.IsEnabled = false;
+                    MenuDelimiter.IsVisible = false;
+
+                    MapMenu.IsEnabled = false;
+                    MapMenu.IsVisible = false;
                     break;
                 default:
                     break;
@@ -326,7 +314,7 @@ namespace xamarinJKH.Additional
         {
             var label = sender as Label;
             var mainColor = Application.Current.Resources["MainColor"];
-            label.TextColor = (Color)mainColor;
+            label.TextColor =  (Color)mainColor;
             MapMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Dark ? Color.White : Color.Black;
             Map.IsVisible = false;
             SetAdditional();

@@ -132,15 +132,26 @@
                     <StackLayout Orientation="Horizontal"
                                  Spacing="20"
                                  Padding="30,0">
+                        <!--<Frame BackgroundColor="White" CornerRadius="10" Opacity="0.25" x:Name="frameMenuCatalog" Padding="5" HorizontalOptions="End">
+                            <Label Text="Каталог" Style="{x:StaticResource Tab}"
+                               x:Name="CatalogMenu"
+                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                               HorizontalTextAlignment="End" Opacity="2">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SwitchList"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>-->
                         <Label Text="Каталог" Style="{x:StaticResource Tab}"
                                x:Name="CatalogMenu"
                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                               HorizontalTextAlignment="End">
+                               HorizontalTextAlignment="End" Opacity="2">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="SwitchList"/>
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label Text="/"/>
+
+                        <Label x:Name="MenuDelimiter" Text="/"/>
                         <Label Text="Карта" Style="{x:StaticResource Tab}"
                                x:Name="MapMenu"
                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
@@ -165,25 +176,22 @@
                                         HeightRequest="30"
                                         Scrolled="CollectionView_Scrolled"
                                         SelectedItem="{Binding SelectedGroup}"
-                                        SelectionMode="Single"
-                                        SelectionChanged="GroupChanged">
+                                        SelectionMode="Single"                                                
+                                        SelectionChanged="GroupChanged">                                    
                                     <CollectionView.ItemsLayout>
-                                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="30" SnapPointsAlignment="Start" SnapPointsType="MandatorySingle"/>
+                                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="30" 
+                                                           SnapPointsAlignment="Start" SnapPointsType="MandatorySingle" />
                                     </CollectionView.ItemsLayout>
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>
-                                            <Label Text="{Binding}"
-                                           VerticalTextAlignment="Center"
-                                           HorizontalTextAlignment="Start"
-                                           TextColor="#FF0713"
-                                           FontSize="Medium"
-                                           Margin="5">
+                                            <additional:UnderLineLabel BackgroundColor="Transparent">
                                                 <VisualStateManager.VisualStateGroups>
                                                     <VisualStateGroup x:Name="CommonStates">
                                                         <VisualState x:Name="Normal">
                                                             <VisualState.Setters>
                                                                 <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White}"/>
                                                                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#49494}"/>
+                                                                <Setter Property="LineColor" Value="Transparent"/>
                                                             </VisualState.Setters>
                                                         </VisualState>
 
@@ -191,11 +199,12 @@
                                                             <VisualState.Setters>
                                                                 <Setter Property="TextColor" Value="{x:DynamicResource MainColor}"/>
                                                                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#49494}"/>
+                                                                <Setter Property="LineColor" Value="{x:DynamicResource MainColor}"/>
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                     </VisualStateGroup>
                                                 </VisualStateManager.VisualStateGroups>
-                                            </Label>
+                                            </additional:UnderLineLabel>
                                         </DataTemplate>
                                     </CollectionView.ItemTemplate>
                                 </CollectionView>
