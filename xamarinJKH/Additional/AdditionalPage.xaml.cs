@@ -209,7 +209,7 @@ namespace xamarinJKH.Additional
             //AiForms.Dialogs.Loading.Instance.Show();
             IsBusy = true;
             SetText();
-
+            SetAdditional();
             //await RefreshData();
         }
 
@@ -294,7 +294,7 @@ namespace xamarinJKH.Additional
             }
             else
             {
-                await Navigation.PushAsync(new ShopPage(select));
+                await Navigation.PushAsync(new ShopPageNew(select));
             }
         }
 
@@ -315,7 +315,7 @@ namespace xamarinJKH.Additional
             var label = sender as Label;
             var mainColor = Application.Current.Resources["MainColor"];
             label.TextColor =  (Color)mainColor;
-            MapMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Dark ? Color.White : Color.Black;
+            MapMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Dark || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? Color.White : Color.Black;
             Map.IsVisible = false;
             SetAdditional();
         }
@@ -325,7 +325,7 @@ namespace xamarinJKH.Additional
             var label = sender as Label;
             var mainColor = Application.Current.Resources["MainColor"];
             label.TextColor = (Color)mainColor;
-            CatalogMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Dark ? Color.White : Color.Black;
+            CatalogMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Dark || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? Color.White : Color.Black;
             Map.IsVisible = true;
             (Map.BindingContext as MapPageViewModel).GetPermission.Execute(Additional);
             (Map.BindingContext as MapPageViewModel).LoadPins.Execute(Additional);
