@@ -17,12 +17,12 @@ namespace xamarinJKH.Server
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
         // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
         // public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_yegkh"; //Легкая жизнъ
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/vodokanal_narof"; // Водоканал
+         public const string SERVER_ADDR = "https://api.sm-center.ru/vodokanal_narof"; // Водоканал
         //public const string SERVER_ADDR = "https://api.sm-center.ru/uk_egokomfort"; // Эгокомфорт
         // public const string SERVER_ADDR = "https://api.sm-center.ru/tsg_sivtsev_vrazhek14"; // ТСЖ Сивцев Вражек 14
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_zip"; // ЗИП
@@ -1036,13 +1036,26 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(SAVE_METER_VALUE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("acx", Settings.Person.acx);
+
+            var d1 = Convert.ToDecimal(Value);
+            var d2 = string.IsNullOrWhiteSpace(ValueT2) ? 0 : Convert.ToDecimal(ValueT2);
+            var d3 = string.IsNullOrWhiteSpace(ValueT3) ? 0 : Convert.ToDecimal(ValueT3);
+
             restRequest.AddBody(new
             {
                 MeterId,
-                Value,
-                ValueT2,
-                ValueT3
+                d1,
+                d2,
+                d3
             });
+
+            //restRequest.AddBody(new
+            //{
+            //    MeterId,
+            //    Value,
+            //    ValueT2,
+            //    ValueT3
+            //});
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
