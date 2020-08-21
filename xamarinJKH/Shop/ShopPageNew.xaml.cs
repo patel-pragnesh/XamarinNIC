@@ -17,12 +17,7 @@ namespace xamarinJKH.Shop
         public ShopPageNew(xamarinJKH.Server.RequestModel.AdditionalService select)
         {
             InitializeComponent();
-            BindingContext = viewModel = new ShopViewModel(select);
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
+            BindingContext = viewModel = new ShopViewModel(select, this.Navigation);
             viewModel.LoadGoods.Execute(null);
         }
 
