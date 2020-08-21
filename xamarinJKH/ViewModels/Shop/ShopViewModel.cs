@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Shop;
 
 namespace xamarinJKH.ViewModels.Shop
 {
@@ -95,8 +96,15 @@ namespace xamarinJKH.ViewModels.Shop
                 OnPropertyChanged(nameof(TotalWeight));
             }
         }
-        public ShopViewModel(AdditionalService service)
+
+        readonly INavigation Navigation;
+        public Command GoToBasket { get; set; }
+        public Command GoToPay { get; set; }
+        public AdditionalService Service { get; set; }
+        public ShopViewModel(AdditionalService service, INavigation navigation)
         {
+            this.Navigation = navigation;
+            Service = service;
             ShopName = service.ShopName;
             Goods = new ObservableCollection<Goods>();
             Categories = new ObservableCollection<string>();
@@ -156,7 +164,7 @@ namespace xamarinJKH.ViewModels.Shop
                     item.ColBusket--;
                 }
                 TotalPrice = Goods.Select(x => x.Price * x.ColBusket).Sum();
-                TotalWeight = Goods.Sum(x => x.Weight);
+                TotalWeight = Goods.Sum(x => x.Weight * x.ColBusket);
             });
 
             Sort = new Command(() =>
@@ -183,6 +191,35 @@ namespace xamarinJKH.ViewModels.Shop
                     }
                 }
                 Asending = !Asending;
+            });
+
+            GoToBasket = new Command(async () =>
+            {
+                if (this.TotalPrice > 0)
+                    await Navigation.PushAsync(new BasketPageNew(this));
+                else
+                    this.ShowError(AppResources.ErrorBasketEmpty);
+            });
+
+            GoToPay = new Command(async () =>
+            {
+                var goodset = new Dictionary<string, Goods>();
+                foreach (var item in AllGoods)
+                {
+                    if (item.ColBusket > 0)
+                    {
+                        goodset.Add(item.ID.ToString(), item);
+                    }
+                }
+
+                if (goodset.Count > 0)
+                {
+                    await Navigation.PushAsync(new PayShopPage(goodset, Service));
+                }
+                else
+                {
+                    this.ShowError(AppResources.ErrorBasketEmpty);
+                }
             });
         }
     }
