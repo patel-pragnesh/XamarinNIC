@@ -2,10 +2,13 @@ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Globalization;
+using AiForms.Dialogs;
+using AiForms.Dialogs.Abstractions;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using xamarinJKH.CustomRenderers;
 using xamarinJKH.DialogViews;
+using xamarinJKH.Server;
 using xamarinJKH.Utils;
 using xamarinJKH.Server.RequestModel;
 
@@ -40,10 +43,14 @@ namespace xamarinJKH.Main
         StackLayout count2Stack = new StackLayout();
         StackLayout count3Stack = new StackLayout();
 
+        private Label labelЗPeriod = new Label();
+        private Label editLabel = new Label();
+
         public MetersThreeCell()
         {
             MaterialFrame frame = new MaterialFrame();
-            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
+            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color),
+                Color.White);
             frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
@@ -159,13 +166,19 @@ namespace xamarinJKH.Main
             adress.HorizontalOptions = LayoutOptions.Fill;
             adress.MaxLines = 3;
             if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
-            { adress.WidthRequest = 450; adressLbl.FontSize = 13; adress.FontSize = 13; }
-            else
-            if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
-            { adress.WidthRequest = 500; adressLbl.FontSize = 14; adress.FontSize = 14; }
+            {
+                adress.WidthRequest = 450;
+                adressLbl.FontSize = 13;
+                adress.FontSize = 13;
+            }
+            else if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
+            {
+                adress.WidthRequest = 500;
+                adressLbl.FontSize = 14;
+                adress.FontSize = 14;
+            }
             else
                 adress.WidthRequest = Convert.ToInt32(Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width * 0.7);
-
 
 
             grid.Children.Add(adress);
@@ -424,59 +437,70 @@ namespace xamarinJKH.Main
         public static readonly BindableProperty DecimalPointProperty =
             BindableProperty.Create("DecimalPoint", typeof(int), typeof(MetersThreeCell), 3);
 
+        public static readonly BindableProperty MeterIDProperty =
+            BindableProperty.Create("MeterIDPoint", typeof(int), typeof(MetersThreeCell), 3);
+
         public List<MeterValueInfo> Values
         {
-            get { return (List<MeterValueInfo>)GetValue(ValuesProperty); }
+            get { return (List<MeterValueInfo>) GetValue(ValuesProperty); }
             set { SetValue(ValuesProperty, value); }
         }
+
         public int DecimalPoint
         {
             get => Convert.ToInt32(GetValue(DecimalPointProperty));
             set => SetValue(DecimalPointProperty, value);
         }
 
+        public int MeterID
+        {
+            get => Convert.ToInt32(GetValue(MeterIDProperty));
+            set => SetValue(MeterIDProperty, value);
+        }
+
         public string Resource
         {
             get
             {
-                return ((string)GetValue(ResourceProperty)).ToLower().Contains("водоснабжение")
-                    ? $"{(string)GetValue(ResourceProperty)}, м3"
-                    : $"{(string)GetValue(ResourceProperty)}, кВт";
+                return ((string) GetValue(ResourceProperty)).ToLower().Contains("водоснабжение")
+                    ? $"{(string) GetValue(ResourceProperty)}, м3"
+                    : $"{(string) GetValue(ResourceProperty)}, кВт";
             }
             set { SetValue(ResourceProperty, value); }
         }
 
         public string Address
         {
-            get { return (string)GetValue(AddressProperty); }
+            get { return (string) GetValue(AddressProperty); }
             set { SetValue(AddressProperty, value); }
         }
+
         public string CustomName
         {
             get
             {
-                return ((string)GetValue(ResourceProperty)).ToLower().Contains("водоснабжение")
-                    ? $"{(string)GetValue(CustomNameProperty)}, м3"
-                    : $"{(string)GetValue(CustomNameProperty)}, кВт";
+                return ((string) GetValue(ResourceProperty)).ToLower().Contains("водоснабжение")
+                    ? $"{(string) GetValue(CustomNameProperty)}, м3"
+                    : $"{(string) GetValue(CustomNameProperty)}, кВт";
             }
             set { SetValue(CustomNameProperty, value); }
         }
 
         public string UniqueNum
         {
-            get { return (string)GetValue(UniqueNumProperty); }
+            get { return (string) GetValue(UniqueNumProperty); }
             set { SetValue(UniqueNumProperty, value); }
         }
 
         public string CheckupDate
         {
-            get { return (string)GetValue(CheckupDateProperty); }
+            get { return (string) GetValue(CheckupDateProperty); }
             set { SetValue(CheckupDateProperty, value); }
         }
 
         public string RecheckInterval
         {
-            get { return (string)GetValue(RecheckIntervalProperty); }
+            get { return (string) GetValue(RecheckIntervalProperty); }
             set { SetValue(RecheckIntervalProperty, value); }
         }
 
@@ -486,26 +510,32 @@ namespace xamarinJKH.Main
             var stack = (View as Frame).Content as StackLayout;
             try
             {
-
-
                 int currDay = DateTime.Now.Day;
                 if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
                      Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
                     (Settings.Person.Accounts[0].MetersStartDay == 0 &&
                      Settings.Person.Accounts[0].MetersEndDay == 0))
                 {
-                    stack.Children.RemoveAt(stack.Children.Count - 2);
-                    stack.Children.RemoveAt(stack.Children.Count - 1);
+                    int indexOf = stack.Children.IndexOf(editLabel);
+                    int index = stack.Children.IndexOf(labelЗPeriod);
+                    int indexframeBtn = stack.Children.IndexOf(frameBtn);
+                    if (indexframeBtn != -1)
+                        stack.Children.RemoveAt(indexframeBtn);
+                    if (indexOf != -1 && index != -1)
+                    {
+                        stack.Children.RemoveAt(indexOf);
+                        stack.Children.RemoveAt(index);
+                    }
 
-
-                    stack.Children.Add(new Label()
+                    labelЗPeriod = new Label()
                     {
                         Text = $"{AppResources.PenencePassed} {Values[0].Period}",
                         FontSize = 14,
                         VerticalTextAlignment = TextAlignment.Center,
                         HorizontalTextAlignment = TextAlignment.Center
-                    });
-                    var editLabel = new Label()
+                    };
+                    stack.Children.Add(labelЗPeriod);
+                    editLabel = new Label()
                     {
                         Text = AppResources.ChangePenance,
                         FontAttributes = FontAttributes.Bold,
@@ -518,9 +548,9 @@ namespace xamarinJKH.Main
             }
             catch (Exception e)
             {
-
             }
         }
+
         string GetFormat()
         {
             var dec = DecimalPoint;
@@ -530,8 +560,8 @@ namespace xamarinJKH.Main
                 case 1: return "{0:0.0}";
                 case 2: return "{0:0.00}";
                 case 3: return "{0:0.000}";
-
             }
+
             return "{0:0.000}";
         }
 
@@ -611,13 +641,41 @@ namespace xamarinJKH.Main
                 if (Values.Count > 0 && int.Parse(Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
                 {
                     SetEditButton();
+                    SetDellValue();
                 }
+                else
+                {
+                    frameBtn.IsVisible = true;
+                    var stack = (View as Frame).Content as StackLayout;
+                    try
+                    {
+                        stack.Children.RemoveAt(stack.Children.IndexOf(editLabel));
+                        stack.Children.RemoveAt(stack.Children.IndexOf(labelЗPeriod));
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+
+                    stack.Children.Add(frameBtn);
+                    if (Values.Count > 0)
+                    {
+                        Label lines = new Label();
+                        lines.HeightRequest = 1;
+                        lines.BackgroundColor = Color.LightGray;
+                        lines.VerticalOptions = LayoutOptions.Center;
+                        lines.HorizontalOptions = LayoutOptions.FillAndExpand;
+                        count1Stack.Children[1] = lines;
+                    }
+                }
+
 
                 if (Resource.ToLower().Contains("холодное") || Resource.ToLower().Contains("хвс"))
                 {
                     img.Source = ImageSource.FromFile("ic_cold_water");
                 }
-                else if (Resource.ToLower().Contains("горячее") || Resource.ToLower().Contains("гвс") || Resource.ToLower().Contains("подог") || Resource.ToLower().Contains("отопл"))
+                else if (Resource.ToLower().Contains("горячее") || Resource.ToLower().Contains("гвс") ||
+                         Resource.ToLower().Contains("подог") || Resource.ToLower().Contains("отопл"))
                 {
                     img.Source = ImageSource.FromFile("ic_heat_water");
                 }
@@ -654,7 +712,8 @@ namespace xamarinJKH.Main
                                 {
                                     formattedDate.Spans.Add(new Span
                                     {
-                                        Text = $"{AppResources.From} " + Settings.Person.Accounts[0].MetersStartDay + $" {AppResources.To} " +
+                                        Text = $"{AppResources.From} " + Settings.Person.Accounts[0].MetersStartDay +
+                                               $" {AppResources.To} " +
                                                Settings.Person.Accounts[0].MetersEndDay + " числа ",
                                         TextColor = Color.FromHex(Settings.MobileSettings.color),
                                         FontAttributes = FontAttributes.Bold,
@@ -705,6 +764,60 @@ namespace xamarinJKH.Main
                                 canCount.IsVisible = true;
                             }
                         }
+            }
+        }
+
+        private void SetDellValue()
+        {
+            int currentDay = DateTime.Now.Day;
+            if ((Settings.Person.Accounts[0].MetersStartDay <= currentDay &&
+                 Settings.Person.Accounts[0].MetersEndDay >= currentDay) ||
+                (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                 Settings.Person.Accounts[0].MetersEndDay == 0))
+            {
+                Label del = new Label();
+                del.TextColor = (Color) Application.Current.Resources["MainColor"];
+                del.Text = "Удалить";
+                del.TextDecorations = TextDecorations.Underline;
+                del.FontAttributes = FontAttributes.Bold;
+                del.VerticalOptions = LayoutOptions.Center;
+                del.VerticalTextAlignment = TextAlignment.Center;
+                del.HorizontalTextAlignment = TextAlignment.Center;
+                del.HorizontalOptions = LayoutOptions.FillAndExpand;
+                count1Stack.Children[1] = del;
+                var dellClick = new TapGestureRecognizer();
+                RestClientMP server = new RestClientMP();
+                dellClick.Tapped += async (s, e) =>
+                {
+                    Configurations.LoadingConfig = new LoadingConfig
+                    {
+                        IndicatorColor = (Color) Application.Current.Resources["MainColor"],
+                        OverlayColor = Color.Black,
+                        Opacity = 0.8,
+                        DefaultMessage = "",
+                    };
+                    bool displayAlert = await Settings.mainPage.DisplayAlert("", AppResources.DellCouneter,
+                        AppResources.Yes, AppResources.Cancel);
+                    if (displayAlert)
+                    {
+                        await Loading.Instance.StartAsync(async progress =>
+                        {
+                            CommonResult result = await server.DeleteMeterValue(MeterID);
+                            if (result.Error == null)
+                            {
+                                MessagingCenter.Send<Object>(this, "UpdateCounters");
+                            }
+                            else
+                            {
+                                await Settings.mainPage.DisplayAlert(AppResources.ErrorTitle, result.Error,
+                                    "OK");
+                            }
+
+                            // });
+                        });
+                    }
+                };
+                del.GestureRecognizers.Add(dellClick);
             }
         }
     }

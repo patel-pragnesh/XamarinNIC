@@ -1283,4 +1283,7 @@
   <data name="TechDialogTitle" xml:space="preserve">
     <value>Напишіть нам сюди</value>
   </data>
+  <data name="DellCouneter" xml:space="preserve">
+    <value>Видалити свідчення?</value>
+  </data>
 </root>

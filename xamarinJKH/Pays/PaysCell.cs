@@ -229,7 +229,7 @@ namespace xamarinJKH.Main
                 var delLs = new TapGestureRecognizer();
                 delLs.Tapped += async (s, e) =>
                 {
-                    Settings.mainPage.DellLs(Ident);
+                    ((PaysPage) Settings.mainPage).DellLs(Ident);
                 };
                 dell.GestureRecognizers.Add(delLs);
                 

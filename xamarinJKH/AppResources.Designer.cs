@@ -773,6 +773,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Удалить показания?.
+        /// </summary>
+        internal static string DellCouneter {
+            get {
+                return ResourceManager.GetString("DellCouneter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Подробнее.
         /// </summary>
         internal static string Details {

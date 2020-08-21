@@ -37,7 +37,7 @@ namespace xamarinJKH.Utils
             "Декабрь"
         };
 
-        public static PaysPage mainPage;
+        public static Page mainPage;
         public static Page Page;
         public static bool? isSelf = null;
 

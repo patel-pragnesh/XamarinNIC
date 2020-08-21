@@ -127,7 +127,7 @@ namespace xamarinJKH.Main
                     break;
             }
 
-            hex = Color.FromHex(Settings.MobileSettings.color);
+            hex = (Color) Application.Current.Resources["MainColor"];
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) =>
             {
@@ -171,7 +171,7 @@ namespace xamarinJKH.Main
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
+            Settings.mainPage = this;
             new Task(SyncSetup).Start(); // This could be an await'd task if need be
         }
 
@@ -620,7 +620,7 @@ namespace xamarinJKH.Main
 
 
             var delLs = new TapGestureRecognizer();
-            delLs.Tapped += async (s, e) => { Settings.mainPage.DellLs(info.Ident); };
+            delLs.Tapped += async (s, e) => { ((PaysPage) Settings.mainPage).DellLs(info.Ident); };
             dell.GestureRecognizers.Add(delLs);
 
             FormattedString formattedIdent = new FormattedString();

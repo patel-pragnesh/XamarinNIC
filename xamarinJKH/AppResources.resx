@@ -1280,4 +1280,7 @@
   <data name="TechDialogTitle" xml:space="preserve">
     <value>Напишите нам сюда</value>
   </data>
+  <data name="DellCouneter" xml:space="preserve">
+    <value>Удалить показания?</value>
+  </data>
 </root>

@@ -100,6 +100,7 @@ namespace xamarinJKH.Server
         public const string GET_METERS_THREE = "Meters/List"; // Получить последние 3 показания по приборам
         public const string SAVE_METER_VALUE = "Meters/SaveMeterValue"; // Получить полную инфу по новости
         public const string SET_METER_NAME = "Meters/SetMeterCustomName"; // Смена произвольного имени прибора
+        public const string DELETE_METER_VALUE = "Meters/DeleteMeterValue "; // Удаляет значение показаний прибора учета
 
         public const string GET_NEWS_FULL = "News/Content"; // Получить полную инфу по новости
         public const string GET_NEWS_IMAGE = "News/Image"; // Получить полную инфу по новости
@@ -1071,6 +1072,33 @@ namespace xamarinJKH.Server
             {
                 MeterUniqueNumber,
                 CustomName
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        /// <summary>
+        /// Удаляет значение показаний прибора учета
+        /// </summary>
+        /// <param name="MeterUniqueNumber"> ID прибора учета</param>
+        /// <returns></returns>
+        public async Task<CommonResult> DeleteMeterValue (int MeterId)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(DELETE_METER_VALUE, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                MeterId
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус

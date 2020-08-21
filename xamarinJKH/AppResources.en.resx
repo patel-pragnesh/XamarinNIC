@@ -1299,4 +1299,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="TechDialogTitle" xml:space="preserve">
     <value>Write to us here</value>
   </data>
+  <data name="DellCouneter" xml:space="preserve">
+    <value>Delete readings?</value>
+  </data>
 </root>

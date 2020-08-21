@@ -88,6 +88,7 @@ namespace xamarinJKH.Main
         public CountersPage()
         {
             InitializeComponent();
+            Settings.mainPage = this;
             NavigationPage.SetHasNavigationBar(this, false);
             switch (Device.RuntimePlatform)
             {

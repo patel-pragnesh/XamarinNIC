@@ -184,6 +184,7 @@
                                 RecheckInterval="{Binding RecheckInterval}"
                                 DecimalPoint="{Binding NumberOfDecimalPlaces}"
                                 CustomName = "{Binding CustomName}"
+                                MeterID = "{Binding ID}"
                                 Values="{Binding Values}" />
                         </DataTemplate>
 
