@@ -74,6 +74,7 @@
                     </StackLayout>
                     <StackLayout VerticalOptions="FillAndExpand">
                         <yummy:PancakeView CornerRadius="40,0,40,0" BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
+                                           BorderColor="{AppThemeBinding Light=White, Dark=#494949}"
                                            Margin="15,10,0,-50"
                                            x:Name="PancakeViewKind"
                                            BorderThickness="1"
@@ -270,6 +271,7 @@
                         x:Name="PancakeBot"
                         BorderThickness="1"
                         Margin="0,0,0,0" VerticalOptions="EndAndExpand" Padding="0" CornerRadius="50,50,0,0"
+                        BorderColor="{AppThemeBinding Light={x:DynamicResource MainColor}, Dark=#e7e7e7}"
                         BackgroundColor="{AppThemeBinding Light=White, Dark=#e7e7e7}">
                         <yummy:PancakeView.Shadow>
                             <yummy:DropShadow Opacity="0.7" Color="Gray" />
@@ -317,7 +319,8 @@
                                         TextColor="White"
                                         FontAttributes="Bold"
                                         Padding="5,0"
-                                        Text="{x:Static xamarinJkh:AppResources.ShopCheckout}"/>
+                                        Text="{x:Static xamarinJkh:AppResources.ShopCheckout}"
+                                        Command="{Binding GoToBasket}"/>
                             </StackLayout>
                     </yummy:PancakeView>
 

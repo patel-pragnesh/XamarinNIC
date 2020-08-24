@@ -38,6 +38,7 @@ namespace xamarinJKH.ViewModels.Additional
                 {
                     try
                     {
+                        if (service.Position.Latitude != 0 && service.Position.Longitude != 0)
                         Pins.Add(service);
                     }
                     catch { }

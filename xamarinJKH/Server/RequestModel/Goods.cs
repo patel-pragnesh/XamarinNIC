@@ -25,8 +25,8 @@ namespace xamarinJKH.Server.RequestModel
                 }
             }
         }
-        public decimal priceBusket = 0;
-        public decimal weightBusket = 0;
+        public decimal priceBusket { get => System.Convert.ToDecimal(this.Price * this.ColBusket); set => priceBusket = value; }
+        public decimal weightBusket { get => System.Convert.ToDecimal(this.Weight * this.ColBusket); set => weightBusket = value; }
         
         public List<string> Categories { get; set; }
         string image;

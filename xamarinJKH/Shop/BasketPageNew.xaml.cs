@@ -11,19 +11,18 @@ using xamarinJKH.ViewModels.Shop;
 namespace xamarinJKH.Shop
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ShopPageNew : ContentPage
+    public partial class BasketPageNew : ContentPage
     {
-        ShopViewModel viewModel { get; set; }
-        public ShopPageNew(xamarinJKH.Server.RequestModel.AdditionalService select)
+        
+        public BasketPageNew(ShopViewModel vm)
         {
             InitializeComponent();
-            BindingContext = viewModel = new ShopViewModel(select, this.Navigation);
-            viewModel.LoadGoods.Execute(null);
+            BindingContext = vm;
         }
-
         async void Back(object sender, EventArgs args)
         {
             await Navigation.PopAsync();
         }
+
     }
 }
