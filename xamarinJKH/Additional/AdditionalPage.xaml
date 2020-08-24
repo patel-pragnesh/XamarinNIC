@@ -7,6 +7,7 @@
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:converters="clr-namespace:xamarinJKH.Converters"
              x:Class="xamarinJKH.Additional.AdditionalPage">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -29,6 +30,7 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+            <converters:TextDecorationsUnderline x:Key="Underline"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -184,7 +186,36 @@
                                     </CollectionView.ItemsLayout>
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>
-                                            <additional:UnderLineLabel BackgroundColor="Transparent">
+                                            <Label Text="{Binding .}"
+                                               x:Name="Category"
+                                               VerticalTextAlignment="Center"
+                                               HorizontalTextAlignment="Center"
+                                               TextDecorations="{Binding Path=TextColor, Source={x:Reference Category}, Converter={x:StaticResource Underline}}"
+                                               Margin="5,5,5,-5"
+                                               FontSize="Medium"
+                                               BackgroundColor="Transparent">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White}"/>
+                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#49494}"/>
+                                                                <Setter Property="TextDecorations" Value="None"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+
+                                                        <VisualState x:Name="Selected">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="TextColor" Value="{x:DynamicResource MainColor}"/>
+                                                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                <Setter Property="TextDecorations" Value="Underline"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                            </Label>
+
+                                            <!--<additional:UnderLineLabel BackgroundColor="Transparent">
                                                 <VisualStateManager.VisualStateGroups>
                                                     <VisualStateGroup x:Name="CommonStates">
                                                         <VisualState x:Name="Normal">
@@ -204,7 +235,7 @@
                                                         </VisualState>
                                                     </VisualStateGroup>
                                                 </VisualStateManager.VisualStateGroups>
-                                            </additional:UnderLineLabel>
+                                            </additional:UnderLineLabel>-->
                                         </DataTemplate>
                                     </CollectionView.ItemTemplate>
                                 </CollectionView>

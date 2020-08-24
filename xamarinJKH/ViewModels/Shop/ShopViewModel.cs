@@ -33,7 +33,7 @@ namespace xamarinJKH.ViewModels.Shop
             get => selected;
             set
             {
-                if (selected != value)
+                if (selected != value && value != " ")
                 {
                     Goods.Clear();
                     if (!Asending)
@@ -146,6 +146,11 @@ namespace xamarinJKH.ViewModels.Shop
                     foreach (var category in categories)
                     {
                         Device.BeginInvokeOnMainThread(() => Categories.Add(category));
+                    }
+                    //Пока костыль, чтобы места было больше для скролла, т.к. пока категорий мало
+                    for (int i = 0; i < 20; i++)
+                    {
+                        Device.BeginInvokeOnMainThread(() => Categories.Add(" "));
                     }
                     Device.BeginInvokeOnMainThread(() => SelectedCategory = Categories[0]);
                 });
