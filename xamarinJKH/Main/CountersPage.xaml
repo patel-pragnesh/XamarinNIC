@@ -185,6 +185,7 @@
                                 DecimalPoint="{Binding NumberOfDecimalPlaces}"
                                 CustomName = "{Binding CustomName}"
                                 MeterID = "{Binding ID}"
+                                IsDisabled = "{Binding IsDisabled}"
                                 Values="{Binding Values}" />
                         </DataTemplate>
 

@@ -1302,4 +1302,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="DellCouneter" xml:space="preserve">
     <value>Delete readings?</value>
   </data>
+  <data name="CounterLeave" xml:space="preserve">
+    <value>The counter is out</value>
+  </data>
 </root>

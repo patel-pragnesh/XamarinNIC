@@ -46,6 +46,7 @@ namespace xamarinJKH.Main
         private Label labelЗPeriod = new Label();
         private Label editLabel = new Label();
 
+        private Label labelDisable = new Label();
         public MetersThreeCell()
         {
             MaterialFrame frame = new MaterialFrame();
@@ -406,7 +407,17 @@ namespace xamarinJKH.Main
             canCount.HorizontalOptions = LayoutOptions.CenterAndExpand;
             canCount.HorizontalTextAlignment = TextAlignment.Center;
 
+            labelDisable = new Label()
+            {
+                Text = AppResources.CounterLeave,
+                FontSize = 14,
+                IsVisible = false,
+                VerticalTextAlignment = TextAlignment.Center,
+                HorizontalTextAlignment = TextAlignment.Center
+            };
+            
             container.Children.Add(canCount);
+            container.Children.Add(labelDisable);
             frame.Content = container;
 
             View = frame;
@@ -414,6 +425,9 @@ namespace xamarinJKH.Main
 
         public static readonly BindableProperty ResourceProperty =
             BindableProperty.Create("Resource", typeof(string), typeof(MetersThreeCell), "");
+
+        public static readonly BindableProperty IsDisabledProperty =
+            BindableProperty.Create("IsDisabled", typeof(bool), typeof(MetersThreeCell), false);
 
         public static readonly BindableProperty CustomNameProperty =
             BindableProperty.Create("CustomName", typeof(string), typeof(MetersThreeCell), "");
@@ -456,6 +470,11 @@ namespace xamarinJKH.Main
         {
             get => Convert.ToInt32(GetValue(MeterIDProperty));
             set => SetValue(MeterIDProperty, value);
+        }  
+        public bool IsDisabled
+        {
+            get => (bool) GetValue(IsDisabledProperty);
+            set => SetValue(IsDisabledProperty, value);
         }
 
         public string Resource
@@ -637,8 +656,21 @@ namespace xamarinJKH.Main
                     count1Stack.IsVisible = count2Stack.IsVisible = count3Stack.IsVisible = false;
                 }
 
-
-                if (Values.Count > 0 && int.Parse(Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
+                if (IsDisabled)
+                {
+                    labelDisable.IsVisible = true;
+                    imgEdit.IsVisible = false;
+                    try
+                    {
+                        var stack = (View as Frame).Content as StackLayout;
+                        stack.Children.RemoveAt(stack.Children.IndexOf(frameBtn));
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                    
+                }else if (Values.Count > 0 && int.Parse(Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
                 {
                     SetEditButton();
                     SetDellValue();

@@ -638,6 +638,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Счетчик выбыл.
+        /// </summary>
+        internal static string CounterLeave {
+            get {
+                return ResourceManager.GetString("CounterLeave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  текущего месяца! .
         /// </summary>
         internal static string CountersCurrentMonth {

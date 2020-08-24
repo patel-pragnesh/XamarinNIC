@@ -25,6 +25,8 @@ namespace xamarinJKH.Server.RequestModel
         public int NumberOfDecimalPlaces { get; set; }
         // Показания
         public List<MeterValueInfo> Values { get; set; }
+        // отключен
+        public bool IsDisabled { get; set; }
     }
 
     public class MeterValueInfo
