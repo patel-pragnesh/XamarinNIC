@@ -17,7 +17,7 @@ namespace xamarinJKH.Server
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
         // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
@@ -31,7 +31,9 @@ namespace xamarinJKH.Server
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_uk_rks_aud"; // УК РКС
         // public const string SERVER_ADDR = "https://api.sm-center.ru/profikomfort"; // Профи комфорт
         //public const string SERVER_ADDR = "https://api.sm-center.ru/tafgai"; // Профи комфорт
-        public const string SERVER_ADDR = "https://api.sm-center.ru/avalon_eco_lk"; // Авалон эко
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/avalon_eco_lk"; // Авалон эко
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/avalon_ci_lk"; // Центр инвестиций
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/avalon_ur_lk"; // Универсальные решения
 
         public const string SEND_TEACH_MAIL = "Public/TechSupportAppeal"; // Создание обращения в тех поддержк
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутентификация сотрудника
@@ -48,7 +50,10 @@ namespace xamarinJKH.Server
         public const string GET_PHOTO_ADDITIONAL = "AdditionalServices/logo"; // Картинка доп услуги
         public const string GET_ACCOUNTING_INFO = "Accounting/Info"; // инфомация о начислениях
         public const string GET_SUM_COMISSION = "Accounting/SumWithComission"; // Возвращает сумму с комиссией
-        public const string GET_POINS_BALANCE = "Accounting/GetAccountBonusBalance "; // Возвращает бонусный баланс лицевого счета
+
+        public const string
+            GET_POINS_BALANCE = "Accounting/GetAccountBonusBalance "; // Возвращает бонусный баланс лицевого счета
+
         public const string GET_FILE_BILLS = "Bills/Download"; // Получить квитанцию
 
         public const string REGISTR_DISPATCHER_DEVICE = "Dispatcher/RegisterDevice"; //Регистрация устройства.
@@ -134,8 +139,13 @@ namespace xamarinJKH.Server
 
         public const string PAY_ONLINE = "PayOnline/GetPayLink"; // Метод возвращает ссылку на оплату
 
-        public const string SEND_CODE = "RequestsDispatcher/CheckPaidRequestCompleteCode"; //Проверка кода подтверждения заказа
-        public const string TRANSIT_ORDER = "RequestsDispatcher/SetPaidRequestStatusOnTheWay";// Установка статуса платной заявки в 'курьер в пути'
+        public const string
+            SEND_CODE = "RequestsDispatcher/CheckPaidRequestCompleteCode"; //Проверка кода подтверждения заказа
+
+        public const string
+            TRANSIT_ORDER =
+                "RequestsDispatcher/SetPaidRequestStatusOnTheWay"; // Установка статуса платной заявки в 'курьер в пути'
+
         public const string UPDATE_RECEIPT = "RequestsDispatcher/UpdateRequestReceipts";
 
         /// <summary>
@@ -1063,7 +1073,7 @@ namespace xamarinJKH.Server
         /// <param name="MeterUniqueNumber">уникальный номер прибора</param>
         /// <param name="CustomName">произвольное имя прибора</param>
         /// <returns>CommonResult</returns>
-        public async Task<CommonResult> SetMeterCustomName(string MeterUniqueNumber,string CustomName )
+        public async Task<CommonResult> SetMeterCustomName(string MeterUniqueNumber, string CustomName)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(SET_METER_NAME, Method.POST);
@@ -1086,12 +1096,13 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         /// <summary>
         /// Удаляет значение показаний прибора учета
         /// </summary>
         /// <param name="MeterUniqueNumber"> ID прибора учета</param>
         /// <returns></returns>
-        public async Task<CommonResult> DeleteMeterValue (int MeterId)
+        public async Task<CommonResult> DeleteMeterValue(int MeterId)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(DELETE_METER_VALUE, Method.POST);
@@ -1113,6 +1124,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         public async Task<CommonResult> SetPaidRequestStatusOnTheWay(string RequestId)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
@@ -1930,7 +1942,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
-        
+
         /// <summary>
         /// Возвращает список помещений и л/сч по дому
         /// </summary>
@@ -2009,6 +2021,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+
         public async Task<Bonus> GetAccountBonusBalance(int id)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
