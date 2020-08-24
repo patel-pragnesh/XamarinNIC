@@ -350,12 +350,16 @@ namespace xamarinJKH.Main
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             int currDay = DateTime.Now.Day;
+            MeterInfo select = e.Item as MeterInfo;
+            if (select.IsDisabled)
+            {
+                return;
+            }
             if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
                  Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
                 (Settings.Person.Accounts[0].MetersStartDay == 0 &&
                  Settings.Person.Accounts[0].MetersEndDay == 0))
             {
-                MeterInfo select = e.Item as MeterInfo;
                 if (select.Values.Count >= 1 && int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
                 {
                     var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;

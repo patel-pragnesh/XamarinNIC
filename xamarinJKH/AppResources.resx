@@ -1283,4 +1283,7 @@
   <data name="DellCouneter" xml:space="preserve">
     <value>Удалить показания?</value>
   </data>
+  <data name="CounterLeave" xml:space="preserve">
+    <value>Счетчик выбыл</value>
+  </data>
 </root>

@@ -29,10 +29,14 @@ namespace xamarinJKH.Pays
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
-            if(Device.RuntimePlatform==Device.iOS)
-            {
+            if (Device.RuntimePlatform == Device.iOS)
+            {                
                 int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                BackStackLayout.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                //BackStackLayout.Padding = new Thickness(0, statusBarHeight, 0, 0);
+
+                iosBarSeparator.IsVisible = true;
+                iosBarSeparator.IsEnabled = true;
+                iosBarSeparator.HeightRequest = statusBarHeight;
             }
 
             SetText();
