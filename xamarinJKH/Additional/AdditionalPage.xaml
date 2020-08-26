@@ -36,14 +36,16 @@
     <ContentPage.Content>
         <StackLayout>
            <Grid>
-                <Image x:Name="ImageFon"
+                <xamarinJkh:HeaderViewMain Picture="ic_additional_top"
+                                           Title="{x:Static xamarinJkh:AppResources.Offers}"/>
+                <!--<Image x:Name="ImageFon"
                        Source="{AppThemeBinding Light=ic_additional_top_Light, Dark=ic_additional_top}"
                        VerticalOptions="Start"
 					   Margin="0,20,0,0"
                        Aspect="AspectFill"
-                       HorizontalOptions="FillAndExpand" />
-                <StackLayout>
-                    <pancakeView:PancakeView
+                       HorizontalOptions="FillAndExpand" />-->
+                <StackLayout Margin="0,150,0,0" VerticalOptions="FillAndExpand">
+                    <!--<pancakeView:PancakeView
                         Padding="0"
                         CornerRadius="0,0,25,25"
                         BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
@@ -130,7 +132,7 @@
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
-                    </StackLayout>
+                    </StackLayout>-->
                     <StackLayout Orientation="Horizontal"
                                  Spacing="20"
                                  Padding="30,0">
@@ -172,6 +174,7 @@
                             <Frame CornerRadius="40"
                                Margin="10,0,-50,-70"
                                x:Name="FrameKind"
+                                   BorderColor="{AppThemeBinding Dark=#494949, Light={x:StaticResource MainColor}}"
                                BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                Padding="20, 20, 80, 70">
                                 <CollectionView ItemsSource="{Binding Groups}"

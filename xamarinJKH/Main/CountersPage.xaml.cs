@@ -94,7 +94,7 @@ namespace xamarinJKH.Main
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    //Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     //BackgroundColor = Color.White;                    
                     break;
                 default:
@@ -102,7 +102,7 @@ namespace xamarinJKH.Main
             }
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); };
-            LabelTech.GestureRecognizers.Add(techSend);
+            //LabelTech.GestureRecognizers.Add(techSend);
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
             {
@@ -116,8 +116,7 @@ namespace xamarinJKH.Main
 
 
             };
-            LabelPhone.GestureRecognizers.Add(call);
-            SetTextAndColor();
+            //LabelPhone.GestureRecognizers.Add(call);
             getInfo();
             SetTitle();
 
@@ -126,11 +125,11 @@ namespace xamarinJKH.Main
                 countersList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
 
             Color hexColor = (Color)Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            //PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameTop.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
             ChangeTheme = new Command(async () =>
             {
@@ -297,11 +296,6 @@ namespace xamarinJKH.Main
         {
         }
 
-        void SetTextAndColor()
-        {
-            UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-        }
 
         async void getInfo()
         {

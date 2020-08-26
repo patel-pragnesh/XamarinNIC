@@ -8,102 +8,16 @@
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Main.CountersPage">
     <ContentPage.Content>
-        <StackLayout>
-             <Grid>
-                <Image x:Name="ImageFon"
+        <Grid Padding="0">
+            <xamarinJkh:HeaderViewMain Picture="ic_background_counter"
+                                           Title="{x:Static xamarinJkh:AppResources.Meters_NavBar}"/>
+            <!--<Image x:Name="ImageFon"
                        Source="{AppThemeBinding Light=ic_background_counter_light, Dark=ic_background_counter}"
                        VerticalOptions="Start"
 					   Margin="0,20,0,0"
                        Aspect="AspectFill"
-                       HorizontalOptions="FillAndExpand" />
-                <StackLayout>
-                    <pancakeView:PancakeView
-                        Padding="0"
-                        CornerRadius="0,0,25,25"
-                        BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
-                        BorderThickness="1"
-                        HorizontalOptions="Fill"
-						MinimumHeightRequest="102"
-                        VerticalOptions="Start"
-                        x:Name="Pancake"
-                        IsClippedToBounds="True">                        
-                        <Grid IsClippedToBounds="True">
-                            <StackLayout Orientation="Horizontal"
-                                         VerticalOptions="Fill"
-                                         HorizontalOptions="FillAndExpand">
-                                <StackLayout Padding="10"
-                                             HorizontalOptions="FillAndExpand">
-                                    <Label x:Name="UkName"
-                                           Text="Название"
-                                           FontAttributes="Bold"
-                                           FontSize="16"
-                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
-                                    <StackLayout
-                                        Spacing="0"
-                                        Orientation="Horizontal">
-                                        <xamarinJkh:IconView x:Name="IconViewLogin"
-                                                             Source="ic_phone"
-                                                             HeightRequest="15"
-                                                             Foreground="White"
-                                                             Margin="-10, 0,0,0"
-                                                             HorizontalOptions="Start"
-                                                             VerticalOptions="Center" />
-                                        <Label x:Name="LabelPhone"
-                                               Text="{x:Static xamarinJkh:AppResources.PhoneLabel}"
-                                               FontSize="14"
-                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                                               Margin="-5, 0, 0, 0"
-                                               VerticalOptions="Center" />
-                                    </StackLayout>
-                                </StackLayout>
-                                <pancakeView:PancakeView
-                                    BorderColor="Gray"
-                                    x:Name="PancakeViewIcon"
-                                    BorderThickness="1"
-                                    Padding="15"
-                                    CornerRadius="25,0,25,25"
-                                    BackgroundColor="White"
-                                    HorizontalOptions="End"
-                                    IsClippedToBounds="True">
-                                    <Image x:Name="IconViewNameUk"
-                                           Source="icon_login"
-                                           HeightRequest="50" />
-                                </pancakeView:PancakeView>
-                            </StackLayout>
-                        </Grid>
-                    </pancakeView:PancakeView>
-                    <StackLayout
-                        HorizontalOptions="End"
-                        Margin="0,0,15,0"
-                        Orientation="Horizontal">
-                        <xamarinJkh:IconView x:Name="IconViewTech"
-                                             Source="ic_tech"
-                                             HeightRequest="20"
-                                             Foreground="White"
-                                             Margin="0, 0,0,0"
-                                             HorizontalOptions="Start"
-                                             VerticalOptions="Center" />
-                        <Label x:Name="LabelTech"
-                               Text="{x:Static xamarinJkh:AppResources.Support}"
-                               FontSize="14"
-                               TextDecorations="Underline"
-                               TextColor="White"
-                               Margin="-10, 0, 0, 0"
-                               VerticalOptions="Center" />
-                    </StackLayout>
-                    <StackLayout
-                        x:Name="BackStackLayout"
-                        Orientation="Horizontal"
-                        Margin="25, 0, 0, 0"
-                        HorizontalOptions="Start">
-                        <Label
-                            Text="{x:Static xamarinJkh:AppResources.Meters_NavBar}"
-                            FontSize="23"
-                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                            FontAttributes="Bold"
-                            HorizontalOptions="Start" />
-                    </StackLayout>
-                    <StackLayout
+                       HorizontalOptions="FillAndExpand" />-->
+            <StackLayout Margin="0,150,0,0"
                 VerticalOptions="StartAndExpand">
                 <Frame CornerRadius="40"
                        Margin="20, 10, 20, -40"
@@ -192,9 +106,6 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-                </StackLayout>
-            </Grid>
-            
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
