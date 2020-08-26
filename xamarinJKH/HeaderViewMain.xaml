@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             xmlns:converters="clr-namespace:xamarinJKH.Converters"
+             x:Class="xamarinJKH.HeaderViewMain">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:BackgroundImageThemeConverter x:Key="Background"/>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid VerticalOptions="FillAndExpand">
+            <Image x:Name="ImageFon"
+                       Source="{Binding Picture, Converter={x:StaticResource Background}}"
+                       Margin="0,20,0,0"
+                       VerticalOptions="Start"
+                       Aspect="AspectFill"
+                       HorizontalOptions="FillAndExpand" />
+            <StackLayout>
+                <pancakeView:PancakeView
+                        Padding="0"
+                        CornerRadius="0,0,25,25"
+                        BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
+                        BorderColor="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=#131313}"
+                        MinimumHeightRequest="102"
+                        HorizontalOptions="Fill"
+                        BorderThickness="1"
+                        VerticalOptions="Start"
+                        x:Name="Pancake"
+                        IsClippedToBounds="True">
+                    <Grid IsClippedToBounds="True">
+                        <StackLayout Orientation="Horizontal"
+                                         VerticalOptions="FillAndExpand"
+                                         HorizontalOptions="FillAndExpand">
+                            <StackLayout Padding="10"
+                                             HorizontalOptions="FillAndExpand">
+                                <Label x:Name="UkName"
+                                           Text="{Binding Name}"
+                                           FontAttributes="Bold"
+                                           FontSize="16"
+                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                                <StackLayout
+                                        Spacing="0"
+                                        Orientation="Horizontal">
+                                    <xamarinJkh:IconView x:Name="IconViewLogin"
+                                                             Source="ic_phone"
+                                                             HeightRequest="15"
+                                                             Foreground="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=White}"
+                                                             Margin="-10, 0,0,0"
+                                                             HorizontalOptions="Start"
+                                                             VerticalOptions="Center" />
+                                    <Label Text="{Binding Phone}"
+                                               FontSize="14"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                               Margin="-5, 0, 0, 0"
+                                               VerticalOptions="Center" />
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Call"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </StackLayout>
+                            <pancakeView:PancakeView
+                                    BorderColor="Gray"
+                                    x:Name="PancakeViewIcon"
+                                    BorderThickness="1"
+                                    Padding="15"
+                                    CornerRadius="25,0,25,25"
+                                    BackgroundColor="White"
+                                    HorizontalOptions="End"
+                                    IsClippedToBounds="True">
+                                <Image x:Name="IconViewNameUk"
+                                           Source="icon_login"
+                                           HeightRequest="50" />
+                            </pancakeView:PancakeView>
+                        </StackLayout>
+                    </Grid>
+                </pancakeView:PancakeView>
+                <StackLayout
+                        HorizontalOptions="End"
+                        Margin="0,0,15,0"
+                        Orientation="Horizontal">
+                    <xamarinJkh:IconView x:Name="IconViewTech"
+                                             Source="ic_tech"
+                                             HeightRequest="20"
+                                             Foreground="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=White}"
+                                             Margin="0, 0,0,0"
+                                             HorizontalOptions="Start"
+                                             VerticalOptions="Center" />
+                    <Label x:Name="LabelTech"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
+                               FontSize="14"
+                               TextDecorations="Underline"
+                               TextColor="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=White}"
+                               Margin="-10, 0, 0, 0"
+                               VerticalOptions="Center" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Tech"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout
+                        x:Name="BackStackLayout"
+                        Orientation="Horizontal"
+                        Margin="25, 0, 0, 0"
+                        HorizontalOptions="Start">
+                    <Label
+                            Text="{Binding Title}"
+                            FontSize="23"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start" />
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
