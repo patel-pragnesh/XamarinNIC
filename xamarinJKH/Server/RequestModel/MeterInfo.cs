@@ -27,6 +27,9 @@ namespace xamarinJKH.Server.RequestModel
         public List<MeterValueInfo> Values { get; set; }
         // отключен
         public bool IsDisabled { get; set; }
+        
+        // ед измерения
+        public string Units { get; set; }
     }
 
     public class MeterValueInfo

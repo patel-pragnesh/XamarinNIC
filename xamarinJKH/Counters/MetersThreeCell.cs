@@ -435,6 +435,9 @@ namespace xamarinJKH.Main
         public static readonly BindableProperty AddressProperty =
             BindableProperty.Create("Address", typeof(string), typeof(MetersThreeCell), "");
 
+        public static readonly BindableProperty UnitsProperty =
+            BindableProperty.Create("FactoryNumber", typeof(string), typeof(MetersThreeCell), "");
+   
         public static readonly BindableProperty UniqueNumProperty =
             BindableProperty.Create("FactoryNumber", typeof(string), typeof(MetersThreeCell), "");
 
@@ -481,9 +484,7 @@ namespace xamarinJKH.Main
         {
             get
             {
-                return ((string) GetValue(ResourceProperty)).ToLower().Contains("водоснабжение")
-                    ? $"{(string) GetValue(ResourceProperty)}, м3"
-                    : $"{(string) GetValue(ResourceProperty)}, кВт";
+                return (string) GetValue(ResourceProperty);
             }
             set { SetValue(ResourceProperty, value); }
         }
@@ -498,9 +499,7 @@ namespace xamarinJKH.Main
         {
             get
             {
-                return ((string) GetValue(ResourceProperty)).ToLower().Contains("водоснабжение")
-                    ? $"{(string) GetValue(CustomNameProperty)}, м3"
-                    : $"{(string) GetValue(CustomNameProperty)}, кВт";
+                return $"{(string) GetValue(CustomNameProperty)}";
             }
             set { SetValue(CustomNameProperty, value); }
         }
@@ -509,6 +508,11 @@ namespace xamarinJKH.Main
         {
             get { return (string) GetValue(UniqueNumProperty); }
             set { SetValue(UniqueNumProperty, value); }
+        }
+        public string Units
+        {
+            get { return (string) GetValue(UnitsProperty); }
+            set { SetValue(UnitsProperty, value); }
         }
 
         public string CheckupDate
@@ -605,12 +609,12 @@ namespace xamarinJKH.Main
                     imgEdit.GestureRecognizers.Add(editName);
                 }
 
-                string name = (!CustomName.Equals(", м3") && !CustomName.Equals(", кВт")) ? CustomName : Resource;
+                string name = (!string.IsNullOrWhiteSpace(CustomName)) ? CustomName : Resource;
 
                 FormattedString formattedResource = new FormattedString();
                 formattedResource.Spans.Add(new Span
                 {
-                    Text = name,
+                    Text = name + ", " + Units,
                     TextColor = Color.Black,
                     FontAttributes = FontAttributes.Bold,
                     FontSize = 18

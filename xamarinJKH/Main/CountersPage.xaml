@@ -186,6 +186,7 @@
                                 CustomName = "{Binding CustomName}"
                                 MeterID = "{Binding ID}"
                                 IsDisabled = "{Binding IsDisabled}"
+                                Units = "{Binding Units}"
                                 Values="{Binding Values}" />
                         </DataTemplate>
 
