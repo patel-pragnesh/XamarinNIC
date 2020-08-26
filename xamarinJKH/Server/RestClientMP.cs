@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
@@ -161,6 +162,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(LOGIN_DISPATCHER, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddBody(new
             {
                 login,
@@ -191,6 +193,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(LOGIN, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddBody(new
             {
                 phone,
@@ -220,6 +223,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(REQUEST_CODE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddBody(new
             {
                 phone
@@ -248,6 +252,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(SEND_TEACH_MAIL, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddBody(new
             {
                 appeal.Login,
@@ -287,6 +292,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(REGISTR_BY_PHONE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddBody(new
             {
                 fio,
@@ -321,6 +327,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(REQUEST_CHECK_CODE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddBody(new
             {
                 phone,
@@ -351,6 +358,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_MOBILE_SETTINGS, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddParameter("appVersion", appVersion);
             restRequest.AddParameter("dontCheckAppBlocking", dontCheckAppBlocking);
 
@@ -377,6 +385,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_EVENT_BLOCK_DATA, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
 
             var response = await restClientMp.ExecuteTaskAsync<EventBlockData>(restRequest);
@@ -402,6 +411,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_ACCOUNTING_INFO, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
 
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<AccountAccountingInfo>>(restRequest);
@@ -430,6 +440,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(NEW_APP, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -457,6 +468,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(NEW_APP_CONST, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -495,6 +507,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(NEW_APP, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -528,6 +541,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(NEW_APP_CONST, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -562,6 +576,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(REQUEST_LIST, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
 
             var response = await restClientMp.ExecuteTaskAsync<RequestList>(restRequest);
@@ -583,6 +598,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(REQUEST_LIST_CONST, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
 
             var response = await restClientMp.ExecuteTaskAsync<RequestList>(restRequest);
@@ -608,6 +624,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_TYPE, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<NamedValue>>(restRequest);
             // Проверяем статус
@@ -628,6 +645,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_TYPE_CONST, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<NamedValue>>(restRequest);
             // Проверяем статус
@@ -648,6 +666,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(DISPATCHERS_LIST_CONST, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<NamedValue>>(restRequest);
             // Проверяем статус
@@ -673,6 +692,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(REQUEST_DETAIL_LIST + "/" + id, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = await restClientMp.ExecuteTaskAsync<RequestContent>(restRequest);
             // Проверяем статус
@@ -693,6 +713,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(REQUEST_DETAIL_LIST_CONST + "/" + id, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = await restClientMp.ExecuteTaskAsync<RequestContent>(restRequest);
             // Проверяем статус
@@ -719,6 +740,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(REQUEST_UPDATES, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -745,6 +767,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(REQUEST_UPDATES_CONST, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -777,6 +800,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(ADD_MESSAGE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -803,6 +827,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(ADD_MESSAGE_CONST, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -830,6 +855,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(ADD_FILE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddParameter("requestId", requestId);
             restRequest.AddFile(path, source, name);
@@ -853,6 +879,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(ADD_FILE_CONST, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddParameter("requestId", requestId);
             restRequest.AddFile(path, source, name);
@@ -876,6 +903,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_FILE_APP + "/" + id, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = restClientMp.Execute(restRequest);
             // Проверяем статус
@@ -893,6 +921,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_FILE_APP_CONST + "/" + id, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = restClientMp.Execute(restRequest);
             // Проверяем статус
@@ -915,6 +944,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_NEWS_FULL + "/" + id, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = await restClientMp.ExecuteTaskAsync<NewsInfoFull>(restRequest);
             // Проверяем статус
@@ -940,6 +970,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_PHOTO_ADDITIONAL + "/" + id, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = restClientMp.Execute(restRequest);
             // Проверяем статус
@@ -962,6 +993,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_NEWS_IMAGE + "/" + id, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = restClientMp.Execute(restRequest);
             // Проверяем статус
@@ -979,6 +1011,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_FILE_BILLS + "/" + id, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = restClientMp.Execute(restRequest);
             // Проверяем статус
@@ -1000,6 +1033,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_METERS_THREE, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
 
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<MeterInfo>>(restRequest);
@@ -1027,6 +1061,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(UPDATE_PROFILE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1052,6 +1087,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(UPDATE_PROFILE_CONST, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1083,6 +1119,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(SAVE_METER_VALUE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1116,6 +1153,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(SET_METER_NAME, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1146,6 +1184,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(DELETE_METER_VALUE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1170,6 +1209,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(TRANSIT_ORDER, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1198,6 +1238,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_SHOPS_GOODS, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddParameter("shopId", id);
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<Goods>>(restRequest);
@@ -1219,6 +1260,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_SHOPS_GOODS_IMAGE + "/" + id, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = restClientMp.Execute(restRequest);
             // Проверяем статус
@@ -1236,6 +1278,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(ADD_IDENT_PROFILE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1261,6 +1304,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(DEL_IDENT_PROFILE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1285,6 +1329,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(SAVE_RESULT_POLL, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1316,6 +1361,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_OSS, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1341,6 +1387,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_OSS_BASE, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
 
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<OSSBase>>(restRequest);
@@ -1362,6 +1409,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_OSS_BY_ID + "/" + id, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
 
             var response = await restClientMp.ExecuteTaskAsync<OSS>(restRequest);
@@ -1390,6 +1438,7 @@ namespace xamarinJKH.Server
 
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
 
             restRequest.AddBody(new
@@ -1423,6 +1472,7 @@ namespace xamarinJKH.Server
 
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1455,6 +1505,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(OSS_SAVE_PIN, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1488,6 +1539,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_PERSONAL_DATA, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1528,6 +1580,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(ADD_PERSONAL_DATA, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1574,6 +1627,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(url, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1606,6 +1660,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(SAVE_ANSWER_OSS, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(
                 ossAnswer
@@ -1634,6 +1689,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(FINISH_OSS, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1663,6 +1719,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(SET_ACQUAINTED_OSS, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1692,6 +1749,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(SET_START_OSS, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1772,6 +1830,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(CLOSE_APP, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1798,6 +1857,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(CLOSE_APP_CONST, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1822,6 +1882,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(LOCK_APP_CONST, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1846,6 +1907,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(PERFORM_APP_CONST, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1870,6 +1932,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(CHANGE_DISPATCHER_CONST, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1895,6 +1958,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(PAY_ONLINE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1921,6 +1985,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(PAY_ONLINE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -1945,7 +2010,7 @@ namespace xamarinJKH.Server
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(url, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
-    
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             var response = await restClientMp.ExecuteTaskAsync<PayResult>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
@@ -1969,6 +2034,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_HOUSES_GROUP, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
 
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<NamedValue>>(restRequest);
@@ -1995,6 +2061,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_HOUSES, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
 
             var response = await restClientMp.ExecuteTaskAsync<ItemsList<HouseProfile>>(restRequest);
@@ -2022,6 +2089,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_HOUSE_DATA, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddParameter("id", id);
             restRequest.AddParameter("loadAllAccs", loadAllAccs);
@@ -2050,6 +2118,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_REQUESTS_STATS, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddParameter("districtId", districtId);
             restRequest.AddParameter("houseId", houseId);
@@ -2077,6 +2146,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_SUM_COMISSION, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddParameter("sum", sum.Replace(",", "."));
             var response = await restClientMp.ExecuteTaskAsync<ComissionModel>(restRequest);
@@ -2098,6 +2168,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(GET_POINS_BALANCE, Method.GET);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddParameter("id", id);
             var response = await restClientMp.ExecuteTaskAsync<Bonus>(restRequest);
@@ -2119,6 +2190,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(SEND_CODE, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
@@ -2135,6 +2207,7 @@ namespace xamarinJKH.Server
             RestRequest restRequest = new RestRequest(UPDATE_RECEIPT, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
