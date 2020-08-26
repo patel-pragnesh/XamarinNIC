@@ -709,7 +709,7 @@ namespace xamarinJKH.AppsConst
             {
                 Source = "ic_status_new";
             }
-            if (request.Phone.Contains("+") == false && request.Phone.Substring(0, 2) == "79")
+            if (request.Phone != null && request.Phone.Contains("+") == false && request.Phone.Substring(0, 2) == "79")
             {
                 request.Phone = "+" + request.Phone;
             }

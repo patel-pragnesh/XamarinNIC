@@ -61,6 +61,7 @@ namespace xamarinJKH.Main
             var profile = new TapGestureRecognizer();
             profile.Tapped += async (s, e) =>
             {
+               
                 await Navigation.PushAsync(new ProfilePage());
             };
             IconViewProfile.GestureRecognizers.Add(profile);
