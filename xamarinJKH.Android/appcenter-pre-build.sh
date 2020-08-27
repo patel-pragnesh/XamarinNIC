@@ -3,9 +3,9 @@
 if [ ! ${APPCENTER_SOURCE_DIRECTORY} ]
 then
     echo "Скрипт запущен локально"
-    if [ ! $1 ] && [ ! $2 ] && [ ! $3 ] && [ ! $4 ]
+    if [ ! $1 ] && [ ! $2 ] && [ ! $3 ] && [ ! $4 ] && [ ! $5 ] && [ ! $6 ]
         then 
-            echo -e "Нет аргумента для задания имени пакета, отмена.\nИспользование: sh <скрипт> <имя пакета> <имя приложения> <версия> <база>"
+            echo -e "Нет аргумента для задания имени пакета, отмена.\nИспользование: sh <скрипт> <имя пакета> <имя приложения> <версия> <база> <приминение цвета(true/false)> <RGB код цвета>"
             exit 1
     fi
 
@@ -13,6 +13,8 @@ then
     LABEL=$2
     VERSION=$3
     BASE=$4
+    DECLARE_CUSTOM_COLOR=$5
+    CUSTOM_COLOR=$6
     ACTIVITY=MainActivity.cs
     MANIFEST=Properties/AndroidManifest.xml
     CLIENT_SCRIPT=../xamarinJKH/Server/RestClientMP.cs
@@ -20,6 +22,7 @@ then
     GS_PATH=google-services_${PACKAGENAME//"."/"_"}.json
     ORIGINAL_ICON=Resources/drawable/icon_login.png 
     ICON_PATH=Resources/drawable/icon_login_${PACKAGENAME//"."/"_"}.png 
+    MAINPAGE=../xamarinJKH/MainPage.xaml.cs
 else
     echo "##[section][Pre-Build] Setting up Environment variables"
     echo "##[section][Pre-Build] Getting data from variable PACKAGE_NAME"
@@ -59,10 +62,19 @@ else
     ICON_PATH=${ROOT}/Resources/drawable/icon_login_${PACKAGENAME//"."/"_"}.png 
     ORIGINAL_GS=${ROOT}/google-services.json
     GS_PATH=${ROOT}/google-services_${PACKAGENAME//"."/"_"}.json
+    DECLARE_CUSTOM_COLOR=${DECLARECOLOR}
+    CUSTOM_COLOR=${CUSTOMCOLOR}
+    MAINPAGE=${APPCENTER_SOURCE_DIRECTORY}/xamarinJKH/MainPage.xaml.cs
 fi
 
-# PACKAGENAME="sys_rom.ru.vodokanal2"
-# LABEL="Водоканал"
+if [ ${DECLARE_CUSTOM_COLOR} == 1 ]; then
+    if [ ${CUSTOM_COLOR} ]; then
+        echo "##[section][Pre-Build] Setting custom color for an interface"
+        sed -i.bak "s/var color = !string.IsNullOrEmpty(Settings.MobileSettings.color) ? $\"#{Settings.MobileSettings.color}\" :\"#FF0000\";/var color = \"#${CUSTOM_COLOR}\";\n\t\t\t\tSettings.MobileSettings.color = \"${CUSTOM_COLOR}\";/" ${MAINPAGE}
+        echo "##[section][Pre-Build] Custom color is set to #${CUSTOM_COLOR}"
+        cat ${MAINPAGE} | grep "var color = \"#[0-9|A-Za-z]*\";"
+    fi
+fi
 if [ ${#LABEL} -gt 0 ]
  then
     if [ -a ${ACTIVITY} ]; then
@@ -129,5 +141,6 @@ else
     echo ERROR: "##[section][Pre-Build] No RestClientMP.cs found. Aborting"
     exit 1
 fi
+
 echo
 echo DONE
