@@ -1314,4 +1314,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="Type" xml:space="preserve">
     <value>Type</value>
   </data>
+  <data name="SortByPrice" xml:space="preserve">
+    <value>By price</value>
+  </data>
 </root>

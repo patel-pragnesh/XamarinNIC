@@ -181,8 +181,12 @@ namespace xamarinJKH.Apps
                     request = requestsUpdate.CurrentRequestUpdates;
                     foreach (var each in requestsUpdate.CurrentRequestUpdates.Messages)
                     {
-                        Device.BeginInvokeOnMainThread(() => addAppMessage(each));
-                        messages.Add(each);
+                        if (!messages.Contains(each))
+                        {
+                            Device.BeginInvokeOnMainThread(() => addAppMessage(each));
+                            messages.Add(each);
+                        }                          
+                        
                     }
                     // additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
                     var lastChild = baseForApp.Children.LastOrDefault();
@@ -671,8 +675,14 @@ namespace xamarinJKH.Apps
                 Settings.DateUniq = "";
                 foreach (var message in request.Messages)
                 {
-                    messages.Add(message);
-                    Device.BeginInvokeOnMainThread(() => addAppMessage(message));
+                    if (!messages.Contains(message))
+                    {
+                        Device.BeginInvokeOnMainThread(() => addAppMessage(message));
+                        messages.Add(message);
+                    }
+
+                    //messages.Add(message);
+                    //Device.BeginInvokeOnMainThread(() => addAppMessage(message));
                 }
                 LabelNumber.Text = "№ " + request.RequestNumber;
             }

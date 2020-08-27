@@ -186,11 +186,12 @@
                                     </CollectionView.ItemsLayout>
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>
-                                            <Label Text="{Binding .}"
+                                            <Label Text="{Binding .}" 
                                                x:Name="Category"
                                                VerticalTextAlignment="Center"
                                                HorizontalTextAlignment="Center"
-                                               TextDecorations="{Binding Path=TextColor, Source={x:Reference Category}, Converter={x:StaticResource Underline}}"
+                                               TextDecorations="{Binding Path=TextColor, Source={x:Reference Category},
+                                                Converter={x:StaticResource Underline}}"
                                                Margin="5,5,5,-5"
                                                FontSize="Medium"
                                                BackgroundColor="Transparent">
@@ -199,7 +200,7 @@
                                                         <VisualState x:Name="Normal">
                                                             <VisualState.Setters>
                                                                 <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White}"/>
-                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#49494}"/>
+                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#494949}"/>
                                                                 <Setter Property="TextDecorations" Value="None"/>
                                                             </VisualState.Setters>
                                                         </VisualState>
@@ -207,7 +208,7 @@
                                                         <VisualState x:Name="Selected">
                                                             <VisualState.Setters>
                                                                 <Setter Property="TextColor" Value="{x:DynamicResource MainColor}"/>
-                                                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#494949}"/>
                                                                 <Setter Property="TextDecorations" Value="Underline"/>
                                                             </VisualState.Setters>
                                                         </VisualState>

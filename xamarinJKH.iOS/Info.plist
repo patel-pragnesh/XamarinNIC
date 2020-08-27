@@ -21,7 +21,7 @@
 	<key>MinimumOSVersion</key>
 	<string>10.0</string>
 	<key>CFBundleIdentifier</key>
-	<string>rom.best.vodokanalnarof</string>
+	<string>rom.best.ClearCity</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
@@ -35,7 +35,7 @@
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.29</string>
+	<string>3.30</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
@@ -57,7 +57,7 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Вы можете приложить фото к заявке</string>
 	<key>CFBundleVersion</key>
-	<string>3.29</string>
+	<string>3.30</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
@@ -65,7 +65,7 @@
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>CFBundleDisplayName</key>
-	<string>МУП Водоканал Наро-Фоминск</string>
+	<string>Чистый город г.Одинцево</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

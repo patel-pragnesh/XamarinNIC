@@ -1295,4 +1295,7 @@
   <data name="Type" xml:space="preserve">
     <value>Тип</value>
   </data>
+  <data name="SortByPrice" xml:space="preserve">
+    <value>Сортировать по цене</value>
+  </data>
 </root>
