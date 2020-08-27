@@ -1305,4 +1305,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="CounterLeave" xml:space="preserve">
     <value>The counter is out</value>
   </data>
+  <data name="SortByPrice" xml:space="preserve">
+    <value>By price</value>
+  </data>
 </root>

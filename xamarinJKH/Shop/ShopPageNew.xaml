@@ -10,13 +10,13 @@
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:converters="clr-namespace:xamarinJKH.Converters"
              x:Name="ShopPage"
-             x:Class="xamarinJKH.Shop.ShopPageNew">
+             x:Class="xamarinJKH.Shop.ShopPageNew"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="yummy:PancakeView">
                 <Setter Property="BorderColor" Value="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=White}"/>
             </Style>
-
             <converters:WeightDisplayConverter x:Key="Weight"/>
             <converters:ArrowIconConverter x:Key="Arrow"/>
             <converters:TextDecorationsUnderline x:Key="Underline"/>
@@ -104,7 +104,7 @@
                                                         <VisualState x:Name="Normal">
                                                             <VisualState.Setters>
                                                                 <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White}"/>
-                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#49494}"/>
+                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#494949}"/>
                                                                 <Setter Property="TextDecorations" Value="None"/>
                                                             </VisualState.Setters>
                                                         </VisualState>
@@ -112,7 +112,7 @@
                                                     <VisualState x:Name="Selected">
                                                         <VisualState.Setters>
                                                             <Setter Property="TextColor" Value="{x:DynamicResource MainColor}"/>
-                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#494949}"/>
                                                             <Setter Property="TextDecorations" Value="Underline"/>
                                                         </VisualState.Setters>
                                                     </VisualState>
@@ -141,14 +141,16 @@
                                        FontSize="16"
                                        FontAttributes="Bold"
                                        HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="Center"
                                        TextColor="Black"/>
                                     <StackLayout Orientation="Horizontal"
                                                  Grid.Column="1"
                                                  HorizontalOptions="FillAndExpand"
+                                                 VerticalOptions="Center"
                                                  Padding="0,8">
                                         <xamarinJkh:IconView Source="{Binding Asending,Converter={x:StaticResource Arrow}}"
                                                              Foreground="{x:DynamicResource MainColor}"/>
-                                        <Label Text="Сортировать по цене"
+                                        <Label Text= "{x:Static xamarinJkh:AppResources.SortByPrice}"
                                                TextColor="{x:DynamicResource MainColor}"
                                                Margin="-10,0"
                                                HorizontalTextAlignment="Center"

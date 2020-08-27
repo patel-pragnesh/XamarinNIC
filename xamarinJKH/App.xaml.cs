@@ -36,6 +36,10 @@ namespace xamarinJKH
         {
             InitializeComponent();
 
+
+           
+
+
             //только темная тема в иос
             if (Device.RuntimePlatform == Device.iOS)
                 Application.Current.UserAppTheme = OSAppTheme.Dark;
