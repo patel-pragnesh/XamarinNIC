@@ -294,7 +294,12 @@ namespace xamarinJKH.Additional
             }
             else
             {
+#if DEBUG
+                //"новый" магазин пока на отладке 
                 await Navigation.PushAsync(new ShopPageNew(select));
+#else
+           await Navigation.PushAsync(new ShopPage(select));
+#endif
             }
         }
 

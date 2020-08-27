@@ -1286,4 +1286,7 @@
   <data name="CounterLeave" xml:space="preserve">
     <value>Счетчик выбыл</value>
   </data>
+  <data name="SortByPrice" xml:space="preserve">
+    <value>Сортировать по цене</value>
+  </data>
 </root>
