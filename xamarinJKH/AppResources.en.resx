@@ -1282,7 +1282,7 @@ A bot will call you on your number PHONE and tell an access code</value>
     <value>score (s)</value>
   </data>
   <data name="BonusTotal" xml:space="preserve">
-    <value>Bonuses</value>
+    <value>Bonuses </value>
   </data>
   <data name="AddBonus" xml:space="preserve">
     <value>Set off with bonuses</value>
@@ -1304,5 +1304,14 @@ A bot will call you on your number PHONE and tell an access code</value>
   </data>
   <data name="CounterLeave" xml:space="preserve">
     <value>The counter is out</value>
+  </data>
+  <data name="CheckCode" xml:space="preserve">
+    <value>Confirmation code: </value>
+  </data>
+  <data name="StatusOrder" xml:space="preserve">
+    <value>Order status: </value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
   </data>
 </root>

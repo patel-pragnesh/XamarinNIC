@@ -24,7 +24,7 @@ namespace xamarinJKH.DialogViews
         public InfoAppDialog()
         {
             InitializeComponent();
-            code.IsVisible = !Settings.Person.IsDispatcher;
+            
             IconViewPhone.IsVisible = Settings.Person.IsDispatcher;
             Frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
             switch (Device.RuntimePlatform)
@@ -43,7 +43,8 @@ namespace xamarinJKH.DialogViews
 
             
             BindingContext = this;
-            
+            // if(code.IsVisible)
+            //     code.IsVisible = !Settings.Person.IsDispatcher;
             
         }
 

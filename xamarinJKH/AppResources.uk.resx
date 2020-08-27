@@ -1289,4 +1289,13 @@
   <data name="CounterLeave" xml:space="preserve">
     <value>Лічильник вибув</value>
   </data>
+  <data name="CheckCode" xml:space="preserve">
+    <value>Код підтвердження: </value>
+  </data>
+  <data name="StatusOrder" xml:space="preserve">
+    <value>Статус замовлення: </value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
 </root>

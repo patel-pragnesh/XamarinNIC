@@ -52,6 +52,7 @@ namespace xamarinJKH.Utils
                     TimerTime = 59;
                 }
             }
+
             return TimerStart;
         }
 
@@ -93,17 +94,20 @@ namespace xamarinJKH.Utils
 
             return null;
         }
+
         public static async Task StartProgressBar(string title = "Загрузка", double opacity = 0.6)
         {
             // Loading settings
-            Configurations.LoadingConfig = new LoadingConfig {
+            Configurations.LoadingConfig = new LoadingConfig
+            {
                 IndicatorColor = Color.FromHex(MobileSettings.color),
                 OverlayColor = Color.Black,
                 Opacity = opacity,
                 DefaultMessage = title,
             };
 
-            await Loading.Instance.StartAsync(async progress =>{
+            await Loading.Instance.StartAsync(async progress =>
+            {
                 // some heavy process.
                 for (var i = 0; i < 100; i++)
                 {
@@ -113,23 +117,37 @@ namespace xamarinJKH.Utils
                 }
             });
         }
+
         public static async Task StartOverlayBackground(Color hex)
         {
             // Loading settings
-            Configurations.LoadingConfig = new LoadingConfig {
+            Configurations.LoadingConfig = new LoadingConfig
+            {
                 IndicatorColor = Color.Transparent,
                 OverlayColor = Color.Black,
                 Opacity = 0.8,
                 DefaultMessage = "",
             };
 
-            await Loading.Instance.StartAsync(async progress =>{
+            await Loading.Instance.StartAsync(async progress =>
+            {
                 // some heavy process.
                 var ret = await Dialog.Instance.ShowAsync<RatingBarView>(new
                 {
                     HexColor = hex
                 });
             });
+        }
+
+        public static string GetStatusIcon(int id)
+        {
+            switch (id)
+            {
+                case 6:
+                case 7: return "ic_status_done";
+                case 1: return "ic_status_new";
+                default: return "ic_status_wait";
+            }
         }
     }
 }

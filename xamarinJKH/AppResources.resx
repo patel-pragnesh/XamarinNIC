@@ -1286,4 +1286,13 @@
   <data name="CounterLeave" xml:space="preserve">
     <value>Счетчик выбыл</value>
   </data>
+  <data name="CheckCode" xml:space="preserve">
+    <value>Код подтверждения: </value>
+  </data>
+  <data name="StatusOrder" xml:space="preserve">
+    <value>Статус заказа: </value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
 </root>

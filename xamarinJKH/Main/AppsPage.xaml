@@ -127,6 +127,7 @@
                                 Number="{Binding RequestNumber}"
                                 Status="{Binding Status}"
                                 DateApp="{Binding Added}"
+                                StatusID="{Binding StatusID}"
                                 TextApp="{Binding Name}" />
                         </DataTemplate>
 

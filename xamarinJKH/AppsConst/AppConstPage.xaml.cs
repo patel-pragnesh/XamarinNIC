@@ -700,15 +700,7 @@ namespace xamarinJKH.AppsConst
         private async void ShowInfo()
         {
             string Status = request.Status;
-            string Source = "ic_status_wait";
-            if (Status.ToString().Contains("выполнена") || Status.ToString().Contains("закрыл"))
-            {
-                Source = "ic_status_done";
-            }
-            else if (Status.ToString().Contains("новая"))
-            {
-                Source = "ic_status_new";
-            }
+            string Source = Settings.GetStatusIcon(request.StatusID);
             if (request.Phone != null && request.Phone.Contains("+") == false && request.Phone.Substring(0, 2) == "79")
             {
                 request.Phone = "+" + request.Phone;

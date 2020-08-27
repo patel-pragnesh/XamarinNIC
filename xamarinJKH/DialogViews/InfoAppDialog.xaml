@@ -43,7 +43,8 @@
                 HorizontalOptions="Start">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Тип: " TextColor="Black" FontAttributes="Bold" FontSize="15" />
+                        <Span Text="{x:Static xamarinJkh:AppResources.Type}" TextColor="Black" FontAttributes="Bold" FontSize="15" />
+                        <Span Text=": " TextColor="Black" FontAttributes="Bold" FontSize="15" />
                         <Span Text=" {Binding _Request.TypeName}" FontSize="15" />
                     </FormattedString>
                 </Label.FormattedText>
@@ -54,7 +55,8 @@
                 HorizontalOptions="Start">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Адрес: " TextColor="Black" FontAttributes="Bold" FontSize="15" />
+                        <Span Text="{x:Static xamarinJkh:AppResources.Adress}" TextColor="Black" FontAttributes="Bold" FontSize="15" />
+                        <Span Text=": " TextColor="Black" FontAttributes="Bold" FontSize="15" />
                         <Span Text=" {Binding _Request.Address}" FontSize="15" />
                     </FormattedString>
                 </Label.FormattedText>
@@ -68,7 +70,8 @@
                     HorizontalOptions="Start">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Телефон: " TextColor="Black" FontAttributes="Bold" FontSize="15" />
+                            <Span Text="{x:Static xamarinJkh:AppResources.Phone}" TextColor="Black" FontAttributes="Bold" FontSize="15" />
+                            <Span Text=": " TextColor="Black" FontAttributes="Bold" FontSize="15" />
                             <Span Text=" {Binding _Request.Phone}" FontSize="15" />
                         </FormattedString>
                     </Label.FormattedText>
@@ -101,8 +104,8 @@
                     HorizontalOptions="Start">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Статус заказа: " TextColor="Black" FontAttributes="Bold" FontSize="15" />
-                            <Span Text=" {Binding _Request.PaidRequestStatus}" FontSize="15" />
+                            <Span Text="{x:Static xamarinJkh:AppResources.StatusOrder}" TextColor="Black" FontAttributes="Bold" FontSize="15" />
+                            <Span Text="{Binding _Request.PaidRequestStatus}" FontSize="15" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -118,7 +121,7 @@
                     HorizontalOptions="Start">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Код подтверждения: " TextColor="Black" FontAttributes="Bold" FontSize="15" />
+                            <Span Text="{x:Static xamarinJkh:AppResources.CheckCode}" TextColor="Black" FontAttributes="Bold" FontSize="15" />
                             <Span Text=" {Binding _Request.PaidRequestCompleteCode}" FontSize="15" />
                         </FormattedString>
                     </Label.FormattedText>

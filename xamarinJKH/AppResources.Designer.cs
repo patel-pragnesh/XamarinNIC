@@ -511,6 +511,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Код подтверждения: .
+        /// </summary>
+        internal static string CheckCode {
+            get {
+                return ResourceManager.GetString("CheckCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Межповерочный интервал:.
         /// </summary>
         internal static string CheckInterval {
@@ -3234,6 +3243,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Статус заказа: .
+        /// </summary>
+        internal static string StatusOrder {
+            get {
+                return ResourceManager.GetString("StatusOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Шаг.
         /// </summary>
         internal static string Step {
@@ -3491,6 +3509,15 @@ namespace xamarinJKH {
         internal static string TSA {
             get {
                 return ResourceManager.GetString("TSA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Тип.
+        /// </summary>
+        internal static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
         

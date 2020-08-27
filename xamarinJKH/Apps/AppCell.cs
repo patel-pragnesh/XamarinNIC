@@ -16,7 +16,8 @@ namespace xamarinJKH.Apps
         public AppCell()
         {
             MaterialFrame frame = new MaterialFrame();
-            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
+            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color),
+                Color.White);
             frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
@@ -45,10 +46,10 @@ namespace xamarinJKH.Apps
             numberAndDate.FontSize = 12;
             numberAndDate.VerticalOptions = LayoutOptions.StartAndExpand;
             numberAndDate.HorizontalOptions = LayoutOptions.StartAndExpand;
-            
+
             LabelDate.TextColor = Color.Black;
             LabelDate.FontSize = 15;
-            LabelDate.Margin = new Thickness(0, -5,0,0);
+            LabelDate.Margin = new Thickness(0, -5, 0, 0);
 
             StackLayout status = new StackLayout();
             status.Orientation = StackOrientation.Horizontal;
@@ -80,19 +81,19 @@ namespace xamarinJKH.Apps
             {
                 RowDefinitions =
                 {
-                    new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+                    new RowDefinition {Height = new GridLength(1, GridUnitType.Star)},
                 },
                 ColumnDefinitions =
                 {
-                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                    new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
                 }
             };
-            
+
             // status.Children.Add(numberAndDate);
             // status.Children.Add(LabelText);
 
             grid.Children.Add(numberAndDate, 0, 0);
-            
+
             StackLayout stackLayoutStatus = new StackLayout();
             stackLayoutStatus.Orientation = StackOrientation.Horizontal;
             // stackLayoutStatus.Spacing = 0;
@@ -109,8 +110,8 @@ namespace xamarinJKH.Apps
             container.Children.Add(arrow);
 
             frame.Content = container;
-            
-            
+
+
             View = frame;
         }
 
@@ -127,6 +128,9 @@ namespace xamarinJKH.Apps
         public static readonly BindableProperty TextAppProperty =
             BindableProperty.Create("TextApp", typeof(string), typeof(AppCell), "");
 
+        public static readonly BindableProperty StatusIDProperty =
+            BindableProperty.Create("StatusID", typeof(int), typeof(AppCell), 0);
+
         public string Number
         {
             get { return (string) GetValue(NumberProperty); }
@@ -137,6 +141,11 @@ namespace xamarinJKH.Apps
         {
             get { return (string) GetValue(StatusProperty); }
             set { SetValue(StatusProperty, value); }
+        } 
+        public int StatusID
+        {
+            get { return (int) GetValue(StatusIDProperty); }
+            set { SetValue(StatusIDProperty, value); }
         }
 
         public string DateApp
@@ -178,18 +187,8 @@ namespace xamarinJKH.Apps
 
                 LabelDate.Text = DateApp;
 
-                if (Status.ToString().Contains("выполнена") || Status.ToString().Contains("закрыл"))
-                {
-                    ImageStatus.Source = "ic_status_done";
-                }
-                else if (Status.ToString().Contains("новая"))
-                {
-                    ImageStatus.Source = "ic_status_new";
-                }
-                else
-                {
-                    ImageStatus.Source = "ic_status_wait";
-                }
+                ImageStatus.Source = Settings.GetStatusIcon(StatusID);
+                
             }
         }
     }
