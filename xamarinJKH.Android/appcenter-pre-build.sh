@@ -15,6 +15,7 @@ then
     BASE=$4
     DECLARE_CUSTOM_COLOR=$5
     CUSTOM_COLOR=$6
+    CUSTOM_NAME=$7
     ACTIVITY=MainActivity.cs
     MANIFEST=Properties/AndroidManifest.xml
     CLIENT_SCRIPT=../xamarinJKH/Server/RestClientMP.cs
@@ -65,6 +66,7 @@ else
     DECLARE_CUSTOM_COLOR=${DECLARECOLOR}
     CUSTOM_COLOR=${CUSTOMCOLOR}
     MAINPAGE=${APPCENTER_SOURCE_DIRECTORY}/xamarinJKH/MainPage.xaml.cs
+    CUSTOM_NAME=${CUSTOMNAME}
 fi
 
 if [ ${DECLARE_CUSTOM_COLOR} == 1 ]; then
@@ -73,6 +75,12 @@ if [ ${DECLARE_CUSTOM_COLOR} == 1 ]; then
         sed -i.bak "s/var color = !string.IsNullOrEmpty(Settings.MobileSettings.color) ? $\"#{Settings.MobileSettings.color}\" :\"#FF0000\";/var color = \"#${CUSTOM_COLOR}\";\n\t\t\t\tSettings.MobileSettings.color = \"${CUSTOM_COLOR}\";/" ${MAINPAGE}
         echo "##[section][Pre-Build] Custom color is set to #${CUSTOM_COLOR}"
         cat ${MAINPAGE} | grep "var color = \"#[0-9|A-Za-z]*\";"
+    fi
+
+    if [ ${CUSTOM_NAME} ]; then
+        echo "##[section][Pre-Build] Setting custom name of a company"
+        sed -i.bak "s/UkName.Text = Settings.MobileSettings.main_name;/UkName.Text = \"${CUSTOM_NAME}\";\n\t\t\t\tSettings.MobileSettings.main_name = \"${CUSTOM_NAME}\";/" ${MAINPAGE}
+        echo "##[section][Pre-Build] Custom name is set to ${CUSTOM_NAME}"
     fi
 fi
 if [ ${#LABEL} -gt 0 ]
