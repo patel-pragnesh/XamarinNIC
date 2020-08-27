@@ -10,106 +10,23 @@
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Main.AppsPage">
     <ContentPage.Content>
-        <StackLayout>
-           <Grid>
-                <Image x:Name="ImageFon"
-                       Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top}"
-                       VerticalOptions="Start"
-					   Margin="0,20,0,0"
-                       Aspect="AspectFill"
-                       HorizontalOptions="FillAndExpand" />
-                <StackLayout>
-                    <pancakeView:PancakeView
-                        Padding="0"
-                        CornerRadius="0,0,25,25"
-                        BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
-                        BorderThickness="1"
-                        HorizontalOptions="Fill"
-						MinimumHeightRequest="102"
-                        VerticalOptions="Start"
-                        x:Name="Pancake"
-                        IsClippedToBounds="True">
-                        <!--<pancakeView:PancakeView.Padding>
-                            <OnPlatform x:TypeArguments="Thickness" iOS="0, 25, 0, 0" ></OnPlatform>
-                        </pancakeView:PancakeView.Padding>-->
-                        <Grid IsClippedToBounds="True">
-                            <StackLayout Orientation="Horizontal"
-                                         VerticalOptions="Fill"
-                                         HorizontalOptions="FillAndExpand">
-                                <StackLayout Padding="10"
-                                             HorizontalOptions="FillAndExpand">
-                                    <Label x:Name="UkName"
-                                           Text="Название"
-                                           FontAttributes="Bold"
-                                           FontSize="16"
-                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
-                                    <StackLayout
-                                        Spacing="0"
-                                        Orientation="Horizontal">
-                                        <xamarinJkh:IconView x:Name="IconViewLogin"
-                                                             Source="ic_phone"
-                                                             HeightRequest="15"
-                                                             Foreground="White"
-                                                             Margin="-10, 0,0,0"
-                                                             HorizontalOptions="Start"
-                                                             VerticalOptions="Center" />
-                                        <Label x:Name="LabelPhone"
-                                               Text="Телефон"
-                                               FontSize="14"
-                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                                               Margin="-5, 0, 0, 0"
-                                               VerticalOptions="Center" />
-                                    </StackLayout>
-                                </StackLayout>
-                                <pancakeView:PancakeView
-                                    BorderColor="Gray"
-                                    x:Name="PancakeViewIcon"
-                                    BorderThickness="1"
-                                    Padding="15"
-                                    CornerRadius="25,0,25,25"
-                                    BackgroundColor="White"
-                                    HorizontalOptions="End"
-                                    IsClippedToBounds="True">
-                                    <Image x:Name="IconViewNameUk"
-                                           Source="icon_login"
-                                           HeightRequest="50" />
-                                </pancakeView:PancakeView>
-                            </StackLayout>
-                        </Grid>
-                    </pancakeView:PancakeView>
-                    <StackLayout
-                        HorizontalOptions="End"
-                        Margin="0,0,15,0"
-                        Orientation="Horizontal">
-                        <xamarinJkh:IconView x:Name="IconViewTech"
-                                             Source="ic_tech"
-                                             HeightRequest="20"
-                                             Foreground="White"
-                                             Margin="0, 0,0,0"
-                                             HorizontalOptions="Start"
-                                             VerticalOptions="Center" />
-                        <Label x:Name="LabelTech"
-                               Text="{x:Static xamarinJkh:AppResources.Support}"
-                               FontSize="14"
-                               TextDecorations="Underline"
-                               TextColor="White"
-                               Margin="-10, 0, 0, 0"
-                               VerticalOptions="Center" />
-                    </StackLayout>
-                    <StackLayout
-                        x:Name="BackStackLayout"
-                        Orientation="Horizontal"
-                        Margin="25, 0, 0, 0"
-                        HorizontalOptions="Start">
-                        <Label
-                            Text="{x:Static xamarinJkh:AppResources.App_NavBar}"
-                            FontSize="23"
-                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                            FontAttributes="Bold"
-                            HorizontalOptions="Start" />
-                    </StackLayout>
-                    <StackLayout VerticalOptions="FillAndExpand">
-                <ListView x:Name="additionalList"
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <xamarinJkh:HeaderViewMain Title="{x:Static xamarinJkh:AppResources.App_NavBar}"
+                                       Grid.Row="0"
+                                       Grid.RowSpan="3"
+                                       Picture="ic_app_top"/>
+            <StackLayout Grid.Row="1"
+                         BackgroundColor="Transparent"
+                         Grid.RowSpan="2">
+                <StackLayout VerticalOptions="FillAndExpand"
+                             BackgroundColor="Transparent">
+                    <ListView x:Name="additionalList"
                           HasUnevenRows="True"
                           Margin="10, 10, 10, 0"
                           SelectionMode="None"
@@ -119,47 +36,47 @@
                           CachingStrategy="RecycleElement"
                           ItemsSource="{Binding Requests, Mode=TwoWay}"
                           >
-                    
-                    <ListView.ItemTemplate>
 
-                        <DataTemplate>
-                            <apps:AppCell
+                        <ListView.ItemTemplate>
+
+                            <DataTemplate>
+                                <apps:AppCell
                                 Number="{Binding RequestNumber}"
                                 Status="{Binding Status}"
                                 DateApp="{Binding Added}"
                                 TextApp="{Binding Name}" />
-                        </DataTemplate>
+                            </DataTemplate>
 
-                    </ListView.ItemTemplate>
-                </ListView>
-                <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0" BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0" BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
                                          Padding="0,10,0,2"
                                          BorderThickness="1"
                                          Margin="0"
                                          VerticalOptions="FillAndExpand">
-                    <StackLayout
+                        <StackLayout
                         HorizontalOptions="Center"
                         Margin="20, 10, 20, 15"
                         Spacing="20"
                         Orientation="Horizontal">
-                        <StackLayout
+                            <StackLayout
                             Orientation="Horizontal">
-                            <Switch
+                                <Switch
                                 OnColor="{x:DynamicResource MainColor}"
                                 IsToggled="{Binding ShowClosed, Mode=TwoWay}"
                                 x:Name="SwitchApp"
                                 VerticalOptions="Center"  />
 
-                            <Label Text="{x:Static xamarinJkh:AppResources.ShowClosedApps}"
+                                <Label Text="{x:Static xamarinJkh:AppResources.ShowClosedApps}"
                                    x:Name="LabelSwitch"
                                    FontAttributes="Bold"
                                    FontSize="15"
                                    TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                    VerticalOptions="CenterAndExpand"
                                    HorizontalOptions="Center" />
-                        </StackLayout>
-                        <!-- iphone -->
-                        <Frame CornerRadius="10"
+                            </StackLayout>
+                            <!-- iphone -->
+                            <Frame CornerRadius="10"
                                x:Name="FrameBtnAddIos"
                                Padding="15,5,15,5"
                                Margin="0,0,0,3"
@@ -168,41 +85,41 @@
                                HeightRequest="3"
                                BackgroundColor="{x:DynamicResource MainColor}"
                                HorizontalOptions="FillAndExpand">
-                            <StackLayout
+                                <StackLayout
                                 Orientation="Horizontal"
                                 VerticalOptions="Center"
                                 HorizontalOptions="FillAndExpand">
-                                <local:IconView x:Name="IconAddApp"
+                                    <local:IconView x:Name="IconAddApp"
                                                 Source="icon_add_app"
                                                 HeightRequest="20"
                                                 WidthRequest="20"
                                                 VerticalOptions="Center" />
-                                <Label x:Name="BtnExit"
+                                    <Label x:Name="BtnExit"
                                        Text="{x:Static xamarinJkh:AppResources.Create}"
                                        FontSize="15"
                                        TextColor="White"
                                        HorizontalOptions="FillAndExpand"
                                        VerticalOptions="Center" />
-                            </StackLayout>
-                        </Frame>
-                        <Frame CornerRadius="10"
+                                </StackLayout>
+                            </Frame>
+                            <Frame CornerRadius="10"
                                x:Name="FrameBtnAdd"
                                Padding="0"
                                BackgroundColor="{Binding hex}"
                                HorizontalOptions="FillAndExpand">
-                            <StackLayout
+                                <StackLayout
                                 Orientation="Horizontal"
                                 Spacing="0"
                                 Margin="18,0,0,0"
                                 VerticalOptions="CenterAndExpand"
                                 HorizontalOptions="Center">
-                                <xamarinJkh:IconView
+                                    <xamarinJkh:IconView
                                     Source="icon_add_app"
                                     Foreground="White"
                                     x:Name="IconViewSaldos"
                                     HeightRequest="24"
                                     WidthRequest="20" />
-                                <Button x:Name="LabelSaldos"
+                                    <Button x:Name="LabelSaldos"
                                         Text="{x:Static xamarinJkh:AppResources.Create}"
                                         FontSize="15"
                                         Padding="0"
@@ -210,16 +127,13 @@
                                         TextColor="White"
                                         Clicked="startNewApp"
                                         BackgroundColor="Transparent" />
-                            </StackLayout>
-                        </Frame>
-                    </StackLayout>
-                </pancakeView:PancakeView>
-            </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </pancakeView:PancakeView>
                 </StackLayout>
-            </Grid>
-            
-            
-            
-        </StackLayout>
+            </StackLayout>
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>

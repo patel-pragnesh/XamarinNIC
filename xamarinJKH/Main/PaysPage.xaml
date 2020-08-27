@@ -9,110 +9,26 @@
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Main.PaysPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Grid VerticalOptions="FillAndExpand">
-                <Image x:Name="ImageFon"
-                       Source="{AppThemeBinding Light=ic_pays_top_light, Dark=ic_pays_top}"
-                       Margin="0,20,0,0"
-                       VerticalOptions="Start"
-                       Aspect="AspectFill"
-                       HorizontalOptions="FillAndExpand" />
-                <StackLayout>
-                    <pancakeView:PancakeView
-                        Padding="0"
-                        CornerRadius="0,0,25,25"
-                        BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
-                        MinimumHeightRequest="102"
-                        HorizontalOptions="Fill"
-                        BorderThickness="1"
-                        VerticalOptions="Start"
-                        x:Name="Pancake"
-                        IsClippedToBounds="True">
-                        <Grid IsClippedToBounds="True">
-                            <StackLayout Orientation="Horizontal"
-                                         VerticalOptions="FillAndExpand"
-                                         HorizontalOptions="FillAndExpand">
-                                <StackLayout Padding="10"
-                                             HorizontalOptions="FillAndExpand">
-                                    <Label x:Name="UkName"
-                                           Text="Название"
-                                           FontAttributes="Bold"
-                                           FontSize="16"
-                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
-                                    <StackLayout
-                                        Spacing="0"
-                                        Orientation="Horizontal">
-                                        <xamarinJkh:IconView x:Name="IconViewLogin"
-                                                             Source="ic_phone"
-                                                             HeightRequest="15"
-                                                             Foreground="White"
-                                                             Margin="-10, 0,0,0"
-                                                             HorizontalOptions="Start"
-                                                             VerticalOptions="Center" />
-                                        <Label x:Name="LabelPhone"
-                                               Text="Телефон"
-                                               FontSize="14"
-                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                                               Margin="-5, 0, 0, 0"
-                                               VerticalOptions="Center" />
-                                    </StackLayout>
-                                </StackLayout>
-                                <pancakeView:PancakeView
-                                    BorderColor="Gray"
-                                    x:Name="PancakeViewIcon"
-                                    BorderThickness="1"
-                                    Padding="15"
-                                    CornerRadius="25,0,25,25"
-                                    BackgroundColor="White"
-                                    HorizontalOptions="End"
-                                    IsClippedToBounds="True">
-                                    <Image x:Name="IconViewNameUk"
-                                           Source="icon_login"
-                                           HeightRequest="50" />
-                                </pancakeView:PancakeView>
-                            </StackLayout>
-                        </Grid>
-                    </pancakeView:PancakeView>
-                    <StackLayout
-                        HorizontalOptions="End"
-                        Margin="0,0,15,0"
-                        Orientation="Horizontal">
-                        <xamarinJkh:IconView x:Name="IconViewTech"
-                                             Source="ic_tech"
-                                             HeightRequest="20"
-                                             Foreground="White"
-                                             Margin="0, 0,0,0"
-                                             HorizontalOptions="Start"
-                                             VerticalOptions="Center" />
-                        <Label x:Name="LabelTech"
-                               Text="{x:Static xamarinJkh:AppResources.Support}"
-                               FontSize="14"
-                               TextDecorations="Underline"
-                               TextColor="White"
-                               Margin="-10, 0, 0, 0"
-                               VerticalOptions="Center" />
-                    </StackLayout>
-                    <StackLayout
-                        x:Name="BackStackLayout"
-                        Orientation="Horizontal"
-                        Margin="25, 0, 0, 0"
-                        HorizontalOptions="Start">
-                        <Label
-                            Text="{x:Static xamarinJkh:AppResources.Pays}"
-                            FontSize="23"
-                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                            FontAttributes="Bold"
-                            HorizontalOptions="Start" />
-                    </StackLayout>
-                    <StackLayout VerticalOptions="FillAndExpand"
-                       >
-                        <Frame x:Name="FrameAddIdent"
+        <Grid VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <xamarinJkh:HeaderViewMain Picture="ic_pays_top"
+                                       Grid.RowSpan="3"
+                                       Title="{x:Static xamarinJkh:AppResources.Pays_NavBar}"/>
+            <StackLayout Grid.Row="1"
+                         Grid.RowSpan="2">
+                
+                <StackLayout VerticalOptions="FillAndExpand">
+                    <Frame x:Name="FrameAddIdent"
                                CornerRadius="40"
                                Margin="20, 10, 20, -60"
                                VerticalOptions="Start"
                                BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                Padding="20,20,20,60">
-                            <Label
+                        <Label
                                 Text="{x:Static xamarinJkh:AppResources.AddIdent}"
                                 TextDecorations="Underline"
                                 FontAttributes="Bold"
@@ -120,13 +36,13 @@
                                 HorizontalOptions="CenterAndExpand"
                                 TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                 FontSize="15" />
-                        </Frame>
-                        <RefreshView x:Name="paysRefreshView" Margin="10, 0, 10, 0" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" VerticalOptions="FillAndExpand">
-                            <ScrollView x:Name="scrollForPays" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
-                                <StackLayout x:Name="baseForPays" VerticalOptions="FillAndExpand"></StackLayout>
-                            </ScrollView>
-                        </RefreshView>
-                        <!--<ListView x:Name="additionalList"
+                    </Frame>
+                    <RefreshView x:Name="paysRefreshView" Margin="10, 0, 10, 0" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" VerticalOptions="FillAndExpand">
+                        <ScrollView x:Name="scrollForPays" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
+                            <StackLayout x:Name="baseForPays" VerticalOptions="FillAndExpand"></StackLayout>
+                        </ScrollView>
+                    </RefreshView>
+                    <!--<ListView x:Name="additionalList"
                                   HasUnevenRows="True"
                                   Margin="10, 0, 10, 0"
                                   SeparatorVisibility="None"
@@ -148,42 +64,42 @@
 
                             </ListView.ItemTemplate>
                         </ListView>-->
-                        <StackLayout VerticalOptions="End"
+                    <StackLayout VerticalOptions="End"
                             >
-                            <pancakeView:PancakeView x:Name="GoodsLayot" Elevation="20" CornerRadius="50,50,0,0"
+                        <pancakeView:PancakeView x:Name="GoodsLayot" Elevation="20" CornerRadius="50,50,0,0"
                                                      BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
                                                      Padding="0,20,0,10"
                                                      BorderThickness="1"
                                                      VerticalOptions="FillAndExpand">
-                                <!-- <StackLayout -->
-                                <!--     HorizontalOptions="FillAndExpand" -->
-                                <!--   -->
-                                <!--     Orientation="Horizontal"> -->
-                                <Grid HorizontalOptions="FillAndExpand"
+                            <!-- <StackLayout -->
+                            <!--     HorizontalOptions="FillAndExpand" -->
+                            <!--   -->
+                            <!--     Orientation="Horizontal"> -->
+                            <Grid HorizontalOptions="FillAndExpand"
                                       ColumnSpacing="10"
                                       Margin="20, 0, 20, 10">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Frame CornerRadius="10"
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Frame CornerRadius="10"
                                            x:Name="FrameBtnHistory"
                                            Padding="0"
                                            Grid.Column="0" Grid.Row="0">
-                                        <StackLayout
+                                    <StackLayout
                                             Orientation="Horizontal"
                                             Spacing="7"
                                             VerticalOptions="CenterAndExpand"
                                             HorizontalOptions="Center">
-                                            <xamarinJkh:IconView
+                                        <xamarinJkh:IconView
                                                 Source="ic_history_pay"
                                                 Foreground="{Binding hex}"
                                                 HeightRequest="24"
                                                 WidthRequest="20" />
-                                            <Button x:Name="LabelHistory"
+                                        <Button x:Name="LabelHistory"
                                                     Text="{x:Static xamarinJkh:AppResources.PayHistory}"
                                                     TextColor="White"
                                                     Padding="0"
@@ -191,28 +107,28 @@
                                                     Clicked="OpenHistory"
                                                     FontSize="12"
                                                     BackgroundColor="Transparent" />
-                                        </StackLayout>
-                                    </Frame>
+                                    </StackLayout>
+                                </Frame>
 
-                                    <Frame CornerRadius="10"
+                                <Frame CornerRadius="10"
                                            x:Name="FrameBtnSaldos"
                                            Padding="0"
                                            Grid.Column="1" Grid.Row="0"
                                            IsVisible="{x:DynamicResource Saldo}"
                                            HorizontalOptions="FillAndExpand">
-                                        <StackLayout
+                                    <StackLayout
                                             Orientation="Horizontal"
                                             Spacing="0"
                                             Margin="18,0,0,0"
                                             VerticalOptions="CenterAndExpand"
                                             HorizontalOptions="Center">
-                                            <xamarinJkh:IconView
+                                        <xamarinJkh:IconView
                                                 Source="ic_saldos"
                                                 Foreground="{Binding hex}"
                                                 x:Name="IconViewSaldos"
                                                 HeightRequest="24"
                                                 WidthRequest="20" />
-                                            <Button x:Name="LabelSaldos"
+                                        <Button x:Name="LabelSaldos"
                                                     Text="{x:Static xamarinJkh:AppResources.Bills}"
                                                     FontSize="12"
                                                     Padding="0"
@@ -220,17 +136,15 @@
                                                     TextColor="White"
                                                     Clicked="openSaldo"
                                                     BackgroundColor="Transparent" />
-                                        </StackLayout>
-                                    </Frame>
-                                </Grid>
-                                <!-- </StackLayout> -->
-                            </pancakeView:PancakeView>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                            <!-- </StackLayout> -->
+                        </pancakeView:PancakeView>
 
-                        </StackLayout>
                     </StackLayout>
                 </StackLayout>
-            </Grid>
-
-        </StackLayout>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
