@@ -294,7 +294,7 @@ namespace xamarinJKH.Additional
             }
             else
             {
-                await Navigation.PushAsync(new ShopPageNew(select));
+                await Navigation.PushAsync(new ShopPage(select));
             }
         }
 
