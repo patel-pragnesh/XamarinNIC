@@ -128,11 +128,11 @@ namespace xamarinJKH.Additional
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     
-                    MenuDelimiter.IsEnabled = false;
-                    MenuDelimiter.IsVisible = false;
+                    //MenuDelimiter.IsEnabled = false;
+                    //MenuDelimiter.IsVisible = false;
 
-                    MapMenu.IsEnabled = false;
-                    MapMenu.IsVisible = false;
+                    //MapMenu.IsEnabled = false;
+                    //MapMenu.IsVisible = false;
                     break;
                 default:
                     break;
@@ -165,7 +165,7 @@ namespace xamarinJKH.Additional
                 }
                 else
                 {
-                    await Navigation.PushAsync(new ShopPage(select));
+                    await Navigation.PushAsync(new ShopPageNew(select));
                 }
             });
         }
@@ -266,13 +266,8 @@ namespace xamarinJKH.Additional
                 await Navigation.PushAsync(new AdditionalOnePage(select));
             }
             else
-            {
-#if DEBUG
-                //"новый" магазин пока на отладке 
+            { 
                 await Navigation.PushAsync(new ShopPageNew(select));
-#else
-           await Navigation.PushAsync(new ShopPage(select));
-#endif
             }
         }
 
