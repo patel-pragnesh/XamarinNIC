@@ -1301,4 +1301,7 @@
   <data name="CheckCode2" xml:space="preserve">
     <value>Код подтверждения: </value>
   </data>
+  <data name="TitleLogin" xml:space="preserve">
+    <value>Если вы ранее входили по № л.с. или логину, зарегистрируйтесь по № телефона и подключите свой лицевой счет </value>
+  </data>
 </root>

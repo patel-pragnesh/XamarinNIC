@@ -1304,4 +1304,7 @@
   <data name="CheckCode2" xml:space="preserve">
     <value>Код підтвердження: </value>
   </data>
+  <data name="TitleLogin" xml:space="preserve">
+    <value>Якщо ви раніше входили по № к.с. або логіну, зареєструйтеся за № телефону та підключіть свій особовий рахунок</value>
+  </data>
 </root>

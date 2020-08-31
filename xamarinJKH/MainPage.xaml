@@ -95,7 +95,12 @@
                                            TextColor="Black"
                                            HorizontalOptions="Center" />
                                     </StackLayout>
-
+                                    <Label FontSize="11"
+                                           x:Name="LabelTitle"
+                                           TextColor="Gray"
+                                           HorizontalTextAlignment="Center"
+                                           Text="{x:Static resources:AppResources.TitleLogin}"
+                                           VerticalOptions="Center" />
                                     <StackLayout
                                     Orientation="Vertical"
                                     Margin="5, 0, 5, 10">

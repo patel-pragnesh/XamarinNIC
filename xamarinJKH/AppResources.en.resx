@@ -1320,4 +1320,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="CheckCode2" xml:space="preserve">
     <value>Confirmation code: </value>
   </data>
+  <data name="TitleLogin" xml:space="preserve">
+    <value>If you previously logged in by your personal account number or login, register by phone number and connect your personal account</value>
+  </data>
 </root>

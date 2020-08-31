@@ -243,6 +243,7 @@ namespace xamarinJKH
                 EntryLoginConst.IsVisible = true;
                 EntryPass.IsVisible = false;
                 EntryPassConst.IsVisible = true;
+                LabelTitle.IsVisible = false;
                 IconViewLogin.Source = "ic_fio_reg";
             }
             else
@@ -256,6 +257,7 @@ namespace xamarinJKH
                 EntryLoginConst.IsVisible = false;
                 EntryPass.IsVisible = true;
                 EntryPassConst.IsVisible = false;
+                LabelTitle.IsVisible = true;
                 IconViewLogin.Source = "ic_phone_login";
             }
         }
@@ -273,6 +275,7 @@ namespace xamarinJKH
                 EntryLoginConst.IsVisible = false;
                 EntryPass.IsVisible = true;
                 EntryPassConst.IsVisible = false;
+                LabelTitle.IsVisible = true;
                 IconViewLogin.Source = "ic_phone_login";
             }
             else
@@ -286,6 +289,7 @@ namespace xamarinJKH
                 EntryLoginConst.IsVisible = true;
                 EntryPass.IsVisible = false;
                 EntryPassConst.IsVisible = true;
+                LabelTitle.IsVisible = false;
                 IconViewLogin.Source = "ic_fio_reg";
             }
         }
