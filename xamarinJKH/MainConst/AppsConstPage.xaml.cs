@@ -31,7 +31,9 @@ namespace xamarinJKH.MainConst
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
         public Color hex { get; set; }
-
+        
+        private HashSet<RequestInfo> CheckRequestInfos = new HashSet<RequestInfo>();
+        
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -56,7 +58,8 @@ namespace xamarinJKH.MainConst
                 });
             }
         }
-
+        
+        
         public async Task RefreshData()
         {
             getApps();
@@ -119,9 +122,56 @@ namespace xamarinJKH.MainConst
                 SetAdminName();
             });
             MessagingCenter.Subscribe<Object>(this, "ChangeAdminApp", (sender) => ChangeTheme.Execute(null));
+            MessagingCenter.Subscribe<Object, string>(this, "ChechApp", async (sender, args) =>
+            {
+                RequestInfo requestInfo = getRequestInfo(args);
+                if (requestInfo != null)
+                {
+                    CheckRequestInfos.Add(requestInfo);
+                }
+
+                IsVisibleFunction();
+            });  
+            MessagingCenter.Subscribe<Object, string>(this, "ChechDownApp", async (sender, args) =>
+            {
+                RequestInfo requestInfo = getRequestInfo(args);
+                if (requestInfo != null)
+                {
+                    CheckRequestInfos.Remove(requestInfo);
+                }
+
+                IsVisibleFunction();
+            });
 
         }
 
+        private RequestInfo getRequestInfo(string number)
+        {
+            foreach (var each in RequestInfos)
+            {
+                if (number.Equals(each.RequestNumber))
+                {
+                    return each;
+                }
+            }
+
+            return null;
+        }
+
+        private void IsVisibleFunction()
+        {
+            if (CheckRequestInfos.Count > 0)
+            {
+                StackLayoutFunction.IsVisible = true;
+                StackLayoutBot.IsVisible = false;
+            }
+            else
+            {
+                StackLayoutFunction.IsVisible = false;
+                StackLayoutBot.IsVisible = true;
+            }
+        }
+        
         private void SetAdminName()
         {
             FormattedString formattedName = new FormattedString();

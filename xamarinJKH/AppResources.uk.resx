@@ -1301,4 +1301,7 @@
   <data name="SortByPrice" xml:space="preserve">
     <value>За цiною</value>
   </data>
+  <data name="CheckCode2" xml:space="preserve">
+    <value>Код підтвердження: </value>
+  </data>
 </root>

@@ -1317,4 +1317,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="SortByPrice" xml:space="preserve">
     <value>By price</value>
   </data>
+  <data name="CheckCode2" xml:space="preserve">
+    <value>Confirmation code: </value>
+  </data>
 </root>

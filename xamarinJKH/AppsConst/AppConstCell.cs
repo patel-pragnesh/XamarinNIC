@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 using Xamarin.Forms;
 using xamarinJKH.CustomRenderers;
 using xamarinJKH.Utils;
@@ -12,7 +13,7 @@ namespace xamarinJKH.AppsConst
         private IconView ImageStatus = new IconView();
         private Label LabelStatus = new Label();
         private Label LabelText = new Label();
-
+        private CheckBox checkBox;
         public AppConstCell()
         {
             MaterialFrame frame = new MaterialFrame();
@@ -22,7 +23,7 @@ namespace xamarinJKH.AppsConst
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;
             frame.Margin = new Thickness(10, 0, 10, 14);
-            frame.Padding = new Thickness(25, 15, 25, 20);
+            frame.Padding = new Thickness(20, 15, 20, 20);
             frame.CornerRadius = 40;
 
             StackLayout container = new StackLayout();
@@ -39,6 +40,7 @@ namespace xamarinJKH.AppsConst
             arrow.Foreground = hex;
             arrow.HeightRequest = 25;
             arrow.WidthRequest = 25;
+            arrow.Margin = new Thickness(0,0,-5,0);
             arrow.VerticalOptions = LayoutOptions.CenterAndExpand;
             arrow.HorizontalOptions = LayoutOptions.End;
 
@@ -113,6 +115,23 @@ namespace xamarinJKH.AppsConst
 
 
             container.Children.Add(containerData);
+            
+            //     <CheckBox
+            //     HorizontalOptions="Center"
+            // x:Name="CheckBoxBonus"
+            // VerticalOptions="Center"
+            // Color="{x:DynamicResource MainColor}" />
+
+            checkBox = new CheckBox()
+            {
+                HorizontalOptions=LayoutOptions.End,
+                VerticalOptions = LayoutOptions.Center,
+                Margin = new Thickness(0,0,-5,0),
+                Color = hex
+            };
+#if DEBUG
+            container.Children.Add(checkBox);
+#endif
             container.Children.Add(arrow);
 
             frame.Content = container;
@@ -133,11 +152,20 @@ namespace xamarinJKH.AppsConst
 
         public static readonly BindableProperty TextAppProperty =
             BindableProperty.Create("TextApp", typeof(string), typeof(AppConstCell), "");
-
+        
+        public static readonly BindableProperty CheckCommandProperty =
+            BindableProperty.Create("CheckCommand", typeof(ICommand), typeof(AppConstCell), null);
+        
         public string Number
         {
             get { return (string)GetValue(NumberProperty); }
             set { SetValue(NumberProperty, value); }
+        } 
+        
+        public ICommand CheckCommand
+        {
+            get { return (ICommand)GetValue(CheckCommandProperty); }
+            set { SetValue(CheckCommandProperty, value); }
         }
 
         public string Status
@@ -229,7 +257,34 @@ namespace xamarinJKH.AppsConst
                 {
                     ImageStatus.Source = "ic_status_wait";
                 }
+
+
+                EventHandler<CheckedChangedEventArgs> checkBoxOnCheckedChanged = (sender, args) =>
+                {
+                    
+                    if (checkBox.IsChecked)
+                    {
+                        MessagingCenter.Send<Object, string>(this, "ChechApp", Number);
+                    }
+                    else
+                    {
+                        MessagingCenter.Send<Object, string>(this, "ChechDownApp", Number);
+                    }
+                };
+                try
+                {
+                    checkBox.CheckedChanged -= checkBoxOnCheckedChanged;
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+                checkBox.CheckedChanged += checkBoxOnCheckedChanged;
+                
             }
         }
+        
+        
     }
 }

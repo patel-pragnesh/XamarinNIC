@@ -11,13 +11,13 @@
              x:Class="xamarinJKH.MainConst.AppsConstPage">
     <ContentPage.Content>
         <StackLayout>
-           
-            
+
+
             <Grid>
                 <Image x:Name="ImageFon"
                        Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top}"
                        VerticalOptions="Start"
-					   Margin="0,20,0,0"
+                       Margin="0,20,0,0"
                        Aspect="AspectFill"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout>
@@ -27,7 +27,7 @@
                         BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
                         HorizontalOptions="Fill"
                         BorderThickness="1"
-						MinimumHeightRequest="102"
+                        MinimumHeightRequest="102"
                         VerticalOptions="Start"
                         x:Name="Pancake"
                         IsClippedToBounds="True">
@@ -108,94 +108,133 @@
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
-                   <StackLayout VerticalOptions="FillAndExpand">
-                <ListView x:Name="additionalList"
-                          HasUnevenRows="True"
-                          Margin="10, 10, 10, 0"
-                          SeparatorVisibility="None"
-                          VerticalScrollBarVisibility="Never"
-                          IsPullToRefreshEnabled="True"
-                          RefreshCommand="{Binding RefreshCommand}"
-                          IsRefreshing="{Binding IsRefreshing}"
-                          SelectionMode="None"
-                          ItemTapped="OnItemTapped"
-                          CachingStrategy="RecycleElement"
-                          ItemsSource="{Binding RequestInfos}">
-                    <ListView.Header>
+                    <StackLayout VerticalOptions="FillAndExpand">
+                        <ListView x:Name="additionalList"
+                                  HasUnevenRows="True"
+                                  Margin="10, 10, 10, 0"
+                                  SeparatorVisibility="None"
+                                  VerticalScrollBarVisibility="Never"
+                                  IsPullToRefreshEnabled="True"
+                                  RefreshCommand="{Binding RefreshCommand}"
+                                  IsRefreshing="{Binding IsRefreshing}"
+                                  SelectionMode="None"
+                                  ItemTapped="OnItemTapped"
+                                  CachingStrategy="RecycleElement"
+                                  ItemsSource="{Binding RequestInfos}">
+                            <ListView.Header>
 
-                    </ListView.Header>
-                    <ListView.ItemTemplate>
+                            </ListView.Header>
+                            <ListView.ItemTemplate>
 
-                        <DataTemplate>
-                            <apps:AppConstCell
-                                Number="{Binding RequestNumber}"
-                                Status="{Binding Status}"
-                                DateApp="{Binding Added}"
-                                TextApp="{Binding Name}" />
-                        </DataTemplate>
+                                <DataTemplate>
+                                    <apps:AppConstCell
+                                        Number="{Binding RequestNumber}"
+                                        Status="{Binding Status}"
+                                        DateApp="{Binding Added}"
+                                        TextApp="{Binding Name}" />
+                                </DataTemplate>
 
-                    </ListView.ItemTemplate>
-                </ListView>
-                <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0" BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
-                                         Padding="0,10,0,2"
-                                         BorderThickness="1"
-                                         Margin="0"
-                                         VerticalOptions="FillAndExpand">
-                    <StackLayout
-                        HorizontalOptions="Center"
-                        Margin="20, 10, 20, 15"
-                        Spacing="20"
-                        Orientation="Horizontal">
-                        <StackLayout
-                            Orientation="Horizontal">
-                            <Switch
-                                OnColor="{Binding hex}"
-                                IsToggled="False"
-                                PropertyChanged="change"
-                                x:Name="SwitchApp"
-                                VerticalOptions="Center"/>
-
-                                    <Label Text="{x:Static xamarinJkh:AppResources.ShowReadApps}"
-                                   x:Name="LabelSwitch"
-                                   FontAttributes="Bold"
-                                   FontSize="15"
-                                   TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="Center" />
-                        </StackLayout>
-
-                        <Frame CornerRadius="10"
-                               x:Name="FrameBtnAdd"
-                               Padding="15,10,15,10"
-                               Margin="0,0,0,3"
-                               MinimumWidthRequest="300"
-                               MinimumHeightRequest="40"
-                               BackgroundColor="{Binding hex}"
-                               HorizontalOptions="FillAndExpand">
-                            <StackLayout
-                                Orientation="Horizontal"
-                                VerticalOptions="Center"
-                                HorizontalOptions="FillAndExpand">
-                                <local:IconView x:Name="IconAddApp"
-                                            Source="icon_add_app"
-                                            HeightRequest="20"
-                                            WidthRequest="20"
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0"
+                                                 BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
+                                                 Padding="0,10,0,2"
+                                                 BorderThickness="1"
+                                                 Margin="0"
+                                                 VerticalOptions="FillAndExpand">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             IsVisible="False"
+                                             Margin="0,0,0,10"
+                                             x:Name="StackLayoutFunction"
+                                             HorizontalOptions="Center">
+                                    <StackLayout
+                                        Margin="0,5,0,0"
+                                        x:Name="StackLayoutExecute"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="StartAndExpand">
+                                        <xamarinJkh:IconView Source="ic_check_mark"
+                                                             Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                             WidthRequest="25"
+                                                             HeightRequest="25" />
+                                        <Label Text="{x:Static xamarinJkh:AppResources.CompleteApp}"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                               FontAttributes="Bold"
+                                               FontSize="10" />
+                                    </StackLayout>
+                                    <StackLayout
+                                        Margin="0,5,0,0"
+                                        VerticalOptions="Center"
+                                        x:Name="StackLayoutClose"
+                                        HorizontalOptions="EndAndExpand">
+                                        <xamarinJkh:IconView Source="ic_close_app1"
+                                                             Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                             HeightRequest="25"
+                                                             WidthRequest="25" />
+                                        <Label Text="{x:Static xamarinJkh:AppResources.CloseApp}"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                               FontAttributes="Bold"
+                                               FontSize="10" />
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout
+                                    x:Name="StackLayoutBot"
+                                    HorizontalOptions="Center"
+                                    Margin="20, 10, 20, 15"
+                                    Spacing="20"
+                                    
+                                    Orientation="Horizontal">
+                                    <StackLayout
+                                        Orientation="Horizontal">
+                                        <Switch
+                                            OnColor="{Binding hex}"
+                                            IsToggled="False"
+                                            PropertyChanged="change"
+                                            x:Name="SwitchApp"
                                             VerticalOptions="Center" />
-                                <Label x:Name="BtnExit"
-                                        Text="{x:Static xamarinJkh:AppResources.AddApp}"
-                                        FontSize="15"
-                                        TextColor="White"
-                                        HorizontalOptions="FillAndExpand" 
-                                        VerticalOptions="Center"/>
+
+                                        <Label Text="{x:Static xamarinJkh:AppResources.ShowReadApps}"
+                                               x:Name="LabelSwitch"
+                                               FontAttributes="Bold"
+                                               FontSize="15"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                               VerticalOptions="CenterAndExpand"
+                                               HorizontalOptions="Center" />
+                                    </StackLayout>
+
+                                    <Frame CornerRadius="10"
+                                           x:Name="FrameBtnAdd"
+                                           Padding="15,10,15,10"
+                                           Margin="0,0,0,3"
+                                           MinimumWidthRequest="300"
+                                           MinimumHeightRequest="40"
+                                           BackgroundColor="{Binding hex}"
+                                           HorizontalOptions="FillAndExpand">
+                                        <StackLayout
+                                            Orientation="Horizontal"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="FillAndExpand">
+                                            <local:IconView x:Name="IconAddApp"
+                                                            Source="icon_add_app"
+                                                            HeightRequest="20"
+                                                            WidthRequest="20"
+                                                            VerticalOptions="Center" />
+                                            <Label x:Name="BtnExit"
+                                                   Text="{x:Static xamarinJkh:AppResources.AddApp}"
+                                                   FontSize="15"
+                                                   TextColor="White"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   VerticalOptions="Center" />
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
                             </StackLayout>
-                        </Frame>
+                        </pancakeView:PancakeView>
                     </StackLayout>
-                </pancakeView:PancakeView>
-            </StackLayout>
                 </StackLayout>
             </Grid>
-            
-            
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

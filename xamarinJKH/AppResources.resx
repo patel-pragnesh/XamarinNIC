@@ -1298,4 +1298,7 @@
   <data name="SortByPrice" xml:space="preserve">
     <value>Сортировать по цене</value>
   </data>
+  <data name="CheckCode2" xml:space="preserve">
+    <value>Код подтверждения: </value>
+  </data>
 </root>
