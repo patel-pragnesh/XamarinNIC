@@ -87,6 +87,7 @@ namespace xamarinJKH.Pays
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     if(Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width<700)
                     {
                         kvitLabel2.FontSize = 14;
@@ -101,6 +102,7 @@ namespace xamarinJKH.Pays
 
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await PopupNavigation.Instance.PushAsync(new TechDialog()); };
+            LabelTech.GestureRecognizers.Add(techSend);
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
             {
@@ -114,9 +116,11 @@ namespace xamarinJKH.Pays
 
             
             };
+            LabelPhone.GestureRecognizers.Add(call);
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            BackStackLayout.GestureRecognizers.Add(backClick);
             var sortDate = new TapGestureRecognizer();
             sortDate.Tapped += async (s, e) => { SortDate(); };
             StackLayoutSortDate.GestureRecognizers.Add(sortDate);
@@ -236,12 +240,19 @@ namespace xamarinJKH.Pays
         
         void SetText()
         {
+            UkName.Text = Settings.MobileSettings.main_name;
+            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
             // IconViewSortIdent.Foreground = Color.FromHex(Settings.MobileSettings.color);
 
             IconViewSortDate.Foreground = hex;
             LabelDate.TextColor = hex;
             
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameSaldo.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
         }
 

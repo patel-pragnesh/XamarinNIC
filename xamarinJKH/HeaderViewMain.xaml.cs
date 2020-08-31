@@ -31,7 +31,7 @@ namespace xamarinJKH
 
         public string Picture
         {
-            get => (string)GetValue(PictureSource) + (Application.Current.UserAppTheme == OSAppTheme.Dark || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? string.Empty : "_light");
+            get => (string)GetValue(PictureSource);
             set
             {
                 SetValue(PictureSource, value);
@@ -63,19 +63,6 @@ namespace xamarinJKH
                     break;
             }
             BindingContext = this;
-
-            MessagingCenter.Subscribe<Object>(this, "ChangeTheme", (sender) =>
-            {
-                if (Application.Current.UserAppTheme == OSAppTheme.Dark || Application.Current.UserAppTheme == OSAppTheme.Unspecified)
-                {
-                    Picture = Picture.Replace("_light", "");
-                }
-                else
-                {
-                    Picture = Picture.Replace("_light", "");
-                    Picture += "_light";
-                }
-            });
         }
 
         private void Call(object sender, EventArgs args)

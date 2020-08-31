@@ -8,30 +8,114 @@
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Main.CountersPage">
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.3*"/>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <xamarinJkh:HeaderViewMain Picture="ic_background_counter"
-                                       Grid.RowSpan="3"
-                                       Title="{x:Static xamarinJkh:AppResources.Meters_NavBar}"/>
-            <StackLayout Grid.Row="1"
-                         Grid.RowSpan="2">
-                <StackLayout
+        <StackLayout>
+             <Grid>
+                <Image x:Name="ImageFon"
+                       Source="{AppThemeBinding Light=ic_background_counter_light, Dark=ic_background_counter}"
+                       VerticalOptions="Start"
+					   Margin="0,20,0,0"
+                       Aspect="AspectFill"
+                       HorizontalOptions="FillAndExpand" />
+                <StackLayout>
+                    <pancakeView:PancakeView
+                        Padding="0"
+                        CornerRadius="0,0,25,25"
+                        BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
+                        BorderThickness="1"
+                        HorizontalOptions="Fill"
+						MinimumHeightRequest="102"
+                        VerticalOptions="Start"
+                        x:Name="Pancake"
+                        IsClippedToBounds="True">                        
+                        <Grid IsClippedToBounds="True">
+                            <StackLayout Orientation="Horizontal"
+                                         VerticalOptions="Fill"
+                                         HorizontalOptions="FillAndExpand">
+                                <StackLayout Padding="10"
+                                             HorizontalOptions="FillAndExpand">
+                                    <Label x:Name="UkName"
+                                           Text="Название"
+                                           FontAttributes="Bold"
+                                           FontSize="16"
+                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                                    <StackLayout
+                                        Spacing="0"
+                                        Orientation="Horizontal">
+                                        <xamarinJkh:IconView x:Name="IconViewLogin"
+                                                             Source="ic_phone"
+                                                             HeightRequest="15"
+                                                             Foreground="White"
+                                                             Margin="-10, 0,0,0"
+                                                             HorizontalOptions="Start"
+                                                             VerticalOptions="Center" />
+                                        <Label x:Name="LabelPhone"
+                                               Text="{x:Static xamarinJkh:AppResources.PhoneLabel}"
+                                               FontSize="14"
+                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                               Margin="-5, 0, 0, 0"
+                                               VerticalOptions="Center" />
+                                    </StackLayout>
+                                </StackLayout>
+                                <pancakeView:PancakeView
+                                    BorderColor="Gray"
+                                    x:Name="PancakeViewIcon"
+                                    BorderThickness="1"
+                                    Padding="15"
+                                    CornerRadius="25,0,25,25"
+                                    BackgroundColor="White"
+                                    HorizontalOptions="End"
+                                    IsClippedToBounds="True">
+                                    <Image x:Name="IconViewNameUk"
+                                           Source="icon_login"
+                                           HeightRequest="50" />
+                                </pancakeView:PancakeView>
+                            </StackLayout>
+                        </Grid>
+                    </pancakeView:PancakeView>
+                    <StackLayout
+                        HorizontalOptions="End"
+                        Margin="0,0,15,0"
+                        Orientation="Horizontal">
+                        <xamarinJkh:IconView x:Name="IconViewTech"
+                                             Source="ic_tech"
+                                             HeightRequest="20"
+                                             Foreground="White"
+                                             Margin="0, 0,0,0"
+                                             HorizontalOptions="Start"
+                                             VerticalOptions="Center" />
+                        <Label x:Name="LabelTech"
+                               Text="{x:Static xamarinJkh:AppResources.Support}"
+                               FontSize="14"
+                               TextDecorations="Underline"
+                               TextColor="White"
+                               Margin="-10, 0, 0, 0"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout
+                        x:Name="BackStackLayout"
+                        Orientation="Horizontal"
+                        Margin="25, 0, 0, 0"
+                        HorizontalOptions="Start">
+                        <Label
+                            Text="{x:Static xamarinJkh:AppResources.Meters_NavBar}"
+                            FontSize="23"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start" />
+                    </StackLayout>
+                    <StackLayout
                 VerticalOptions="StartAndExpand">
-                    <Frame CornerRadius="40"
+                <Frame CornerRadius="40"
                        Margin="20, 10, 20, -40"
                        VerticalOptions="Start"
                        x:Name="FrameTop"
                        BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                        Padding="20,20,20,60">
-                        <StackLayout Orientation="Vertical"
+                    <StackLayout Orientation="Vertical"
                                  HorizontalOptions="CenterAndExpand">
-                            <StackLayout Orientation="Horizontal"
+                        <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="CenterAndExpand">
-                                <Label
+                            <Label
                                 Text="{x:Static xamarinJkh:AppResources.Ident}"
                                 HeightRequest="20"
                                 FontAttributes="Bold"
@@ -39,30 +123,30 @@
                                 HorizontalOptions="CenterAndExpand"
                                 TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                 FontSize="15" />
-                                <StackLayout Spacing="0">
-                                    <StackLayout Orientation="Horizontal">
-                                        <xamarinJkh:BorderlessPicker
+                            <StackLayout Spacing="0">
+                                <StackLayout Orientation="Horizontal">
+                                    <xamarinJkh:BorderlessPicker
                                         x:Name="Picker" Title="{x:Static xamarinJkh:AppResources.Choose}"
                                         TitleColor="{AppThemeBinding Light=Black, Dark=White}"
                                         TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                         BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                         VerticalOptions="Start"
                                         SelectedIndexChanged="picker_SelectedIndexChanged" />
-                                        <xamarinJkh:IconView Source="ic_arrow_forward"
+                                    <xamarinJkh:IconView Source="ic_arrow_forward"
                                                          HeightRequest="12"
                                                          WidthRequest="12"
                                                          Rotation="90"
                                                          Margin="0,5,0,0"
                                                          VerticalOptions="Center"
                                                          Foreground="{AppThemeBinding Light=Black, Dark=White}" />
-                                    </StackLayout>
-                                    <Label
+                                </StackLayout>
+                                <Label
                                     HeightRequest="1"
                                     BackgroundColor="White"
                                     HorizontalOptions="Fill" />
-                                </StackLayout>
                             </StackLayout>
-                            <Label x:Name="PeriodSendLbl"
+                        </StackLayout>
+                        <Label x:Name="PeriodSendLbl"
                                Text="Возможность передавать показания доступна с 15 по 25 число текущего месяца!"
                                Margin="0,10,0,10"
                                TextDecorations="Underline"
@@ -71,10 +155,10 @@
                                HorizontalTextAlignment="Center"
                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                FontSize="15" />
-                        </StackLayout>
+                    </StackLayout>
 
-                    </Frame>
-                    <ListView x:Name="countersList"
+                </Frame>
+                <ListView x:Name="countersList"
                           HasUnevenRows="True"
                           Margin="10, 0, 10, 0"
                           SeparatorVisibility="None"
@@ -87,12 +171,12 @@
                           BackgroundColor="Transparent"
                           CachingStrategy="RecycleElement"
                           ItemsSource="{Binding _meterInfo}">
-                        <ListView.Header>
+                    <ListView.Header>
 
-                        </ListView.Header>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <main:MetersThreeCell
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <main:MetersThreeCell
                                 Resource="{Binding Resource}"
                                 Address="{Binding Address}"
                                 UniqueNum="{Binding FactoryNumber}"
@@ -104,12 +188,14 @@
                                 IsDisabled = "{Binding IsDisabled}"
                                 Units = "{Binding Units}"
                                 Values="{Binding Values}" />
-                            </DataTemplate>
+                        </DataTemplate>
 
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
-        </Grid>
+                </StackLayout>
+            </Grid>
+            
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
