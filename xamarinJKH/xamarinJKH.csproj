@@ -241,6 +241,9 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="VideoStreaming\TestVideoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
