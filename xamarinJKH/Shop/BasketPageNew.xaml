@@ -54,7 +54,7 @@
                         <xamarinJkh:IconView x:Name="IconViewTech"
                                              Source="ic_tech"
                                              HeightRequest="20"
-                                             Foreground="White"
+                                             Foreground="{AppThemeBinding Dark=White, Light={x:StaticResource MainColor}}"
                                              Margin="0, 10,0,0"
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
@@ -62,7 +62,7 @@
                                Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="16"
                                TextDecorations="Underline"
-                               TextColor="White"
+                               TextColor="{AppThemeBinding Dark=White, Light={x:StaticResource MainColor}}"
                                Margin="-10, 10, 0, 0"
                                VerticalOptions="Center" />
                     </StackLayout>
@@ -133,7 +133,32 @@
                                                         </Label.FormattedText>
                                                     </Label>
 
-                                                    <Grid Grid.Column="2"
+                                                    <StackLayout Grid.Column="2"
+                                                          Grid.Row="1" Orientation="Vertical" Margin="0, -5, 0, 0" >
+                                                        <StackLayout  HorizontalOptions="Center" Orientation="Horizontal">
+                                                            <xamarinJkh:IconView Source="ic_shop_minus" WidthRequest="22" HeightRequest="22"
+                                                                             Foreground="{x:DynamicResource MainColor}">
+                                                                <xamarinJkh:IconView.GestureRecognizers>
+                                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.Decrease, Source={x:Reference BasketPage}}"
+                                                                                          CommandParameter="{Binding .}"/>
+                                                                </xamarinJkh:IconView.GestureRecognizers>
+                                                            </xamarinJkh:IconView>
+                                                            <Label FontSize="15"
+                                                               TextColor="Gray"
+                                                               Text="{Binding ColBusket}"
+                                                               HorizontalTextAlignment="Center"/>
+                                                            <xamarinJkh:IconView Source="ic_shop_plus" WidthRequest="22" HeightRequest="22"
+                                                                             Foreground="{x:DynamicResource MainColor}">
+                                                                <xamarinJkh:IconView.GestureRecognizers>
+                                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.Increase, Source={x:Reference BasketPage}}"
+                                                                                          CommandParameter="{Binding .}"/>
+                                                                </xamarinJkh:IconView.GestureRecognizers>
+                                                            </xamarinJkh:IconView>
+                                                        </StackLayout>
+                                                        <BoxView Color="{x:DynamicResource MainColor}" HeightRequest="1" Margin="0, -2, 0, 0" />
+                                                    </StackLayout>
+                                                    
+                                                    <!--<Grid Grid.Column="2"
                                                           Grid.Row="1">
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="Auto"/>
@@ -171,7 +196,7 @@
                                                         <BoxView Color="{x:DynamicResource MainColor}"
                                                                  Grid.ColumnSpan="3"
                                                                  Grid.Row="1"/>
-                                                    </Grid>
+                                                    </Grid>-->
 
                                                 </Grid>
                                                 <BoxView HeightRequest="2"

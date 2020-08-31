@@ -94,30 +94,11 @@ namespace xamarinJKH.Main
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     //BackgroundColor = Color.White;                    
                     break;
                 default:
                     break;
             }
-            var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); };
-            LabelTech.GestureRecognizers.Add(techSend);
-            var call = new TapGestureRecognizer();
-            call.Tapped += async (s, e) =>
-            {
-                if (Settings.Person.Phone != null)
-                {
-                    IPhoneCallTask phoneDialer;
-                    phoneDialer = CrossMessaging.Current.PhoneDialer;
-                    if (phoneDialer.CanMakePhoneCall)
-                        phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
-                }
-
-
-            };
-            LabelPhone.GestureRecognizers.Add(call);
-            SetTextAndColor();
             getInfo();
             SetTitle();
 
@@ -126,11 +107,6 @@ namespace xamarinJKH.Main
                 countersList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
 
             Color hexColor = (Color)Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameTop.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
             ChangeTheme = new Command(async () =>
             {
@@ -293,15 +269,6 @@ namespace xamarinJKH.Main
             countersList.ItemsSource = _meterInfo;
         }
 
-        private async void ButtonClick(object sender, EventArgs e)
-        {
-        }
-
-        void SetTextAndColor()
-        {
-            UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-        }
 
         async void getInfo()
         {

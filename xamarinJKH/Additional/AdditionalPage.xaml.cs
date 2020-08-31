@@ -127,36 +127,16 @@ namespace xamarinJKH.Additional
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     
-                    MenuDelimiter.IsEnabled = false;
-                    MenuDelimiter.IsVisible = false;
+                    //MenuDelimiter.IsEnabled = false;
+                    //MenuDelimiter.IsVisible = false;
 
-                    MapMenu.IsEnabled = false;
-                    MapMenu.IsVisible = false;
+                    //MapMenu.IsEnabled = false;
+                    //MapMenu.IsVisible = false;
                     break;
                 default:
                     break;
             }
-
-            var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
-            BackStackLayout.GestureRecognizers.Add(backClick);
-            var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); };
-            LabelTech.GestureRecognizers.Add(techSend);
-            var call = new TapGestureRecognizer();
-            call.Tapped += async (s, e) =>
-            {
-                if (Settings.Person.Phone != null)
-                {
-                    IPhoneCallTask phoneDialer;
-                    phoneDialer = CrossMessaging.Current.PhoneDialer;
-                    if (phoneDialer.CanMakePhoneCall)
-                        phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
-                }
-            };
-            LabelPhone.GestureRecognizers.Add(call);
             additionalList.BackgroundColor = Color.Transparent;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
             MainColor = "#" + Settings.MobileSettings.color;
@@ -185,22 +165,15 @@ namespace xamarinJKH.Additional
                 }
                 else
                 {
-                    await Navigation.PushAsync(new ShopPage(select));
+                    await Navigation.PushAsync(new ShopPageNew(select));
                 }
             });
         }
 
         void SetText()
         {
-            UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             FrameKind.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
         }
 
         protected override async void OnAppearing()
@@ -293,13 +266,8 @@ namespace xamarinJKH.Additional
                 await Navigation.PushAsync(new AdditionalOnePage(select));
             }
             else
-            {
-#if DEBUG
-                //"новый" магазин пока на отладке 
+            { 
                 await Navigation.PushAsync(new ShopPageNew(select));
-#else
-           await Navigation.PushAsync(new ShopPage(select));
-#endif
             }
         }
 
