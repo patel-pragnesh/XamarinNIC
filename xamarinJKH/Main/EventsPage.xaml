@@ -366,6 +366,47 @@
                                         VerticalOptions="Center" />
                                 </StackLayout>
                             </Frame>
+
+                            <Frame CornerRadius="30"
+                                   Margin="10, 10, 10, 10"
+                                   IsVisible="{Binding ShowCameras}"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="Start"
+                                   BackgroundColor="White"
+                                   BorderColor="{AppThemeBinding Dark=Transparent, Light={x:StaticResource MainColor}}"
+                                   
+                                   Padding="0, 25, 0, 25">
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <xamarinJkh:IconView
+                                        Source="ic_camera"
+                                        HeightRequest="30"
+                                        Foreground="{x:DynamicResource MainColor}"
+                                        WidthRequest="60"
+                                        Margin="10, 0, 0, 0"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Text="{x:Static xamarinJkh:AppResources.EventsCam}"
+                                        FontSize="20"
+                                        TextColor="Black"
+                                        Margin="0, 0, 0, 0"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Center" />
+                                    <xamarinJkh:IconView
+                                        Source="ic_arrow_forward"
+                                        HeightRequest="25"
+                                        Foreground="{x:DynamicResource MainColor}"
+                                        WidthRequest="25"
+                                        Margin="0,0,15,0"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TestCameras"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
                         </StackLayout>
                     </ScrollView>
                 </StackLayout>

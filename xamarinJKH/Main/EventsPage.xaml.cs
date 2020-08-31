@@ -214,6 +214,11 @@ namespace xamarinJKH.Main
             FrameOSS.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
             FrameNotification.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
         }
+
+        protected async void TestCameras(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new xamarinJKH.VideoStreaming.TestVideoPage());
+        }
     }
 
     public class EventsPageViewModel : xamarinJKH.ViewModels.BaseViewModel
@@ -260,6 +265,11 @@ namespace xamarinJKH.Main
             }
         }
         public Command LoadData { get; set; }
+        public bool ShowCameras
+        {
+            get => Device.RuntimePlatform == "iOS" ? false : true;
+        }
+        public Command OpenCameras { get; set; }
         public EventsPageViewModel()
         {
             LoadData = new Command(async () =>
