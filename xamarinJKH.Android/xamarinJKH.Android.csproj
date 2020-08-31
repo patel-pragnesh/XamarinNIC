@@ -89,6 +89,21 @@
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
     <PackageReference Include="SimpleImageButton" Version="1.0.3" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
+    <PackageReference Include="Xam.Plugins.Android.ExoPlayer.Core">
+      <Version>2.11.8</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugins.Android.ExoPlayer.Dash">
+      <Version>2.11.8</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugins.Android.ExoPlayer.Hls">
+      <Version>2.11.8</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugins.Android.ExoPlayer.SmoothStreaming">
+      <Version>2.11.8</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugins.Android.ExoPlayer.UI">
+      <Version>2.11.8</Version>
+    </PackageReference>
     <PackageReference Include="Xam.Plugins.Messaging" Version="5.2.0" />
     <PackageReference Include="Xamarin.Android.Crashlytics" Version="2.9.4.4" />
     <PackageReference Include="Xamarin.Android.Crashlytics.Core" Version="2.6.3.4" />
@@ -129,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomReader\CustomEntryRenderer.cs" />
+    <Compile Include="CustomReader\ExoPlayer.cs" />
     <Compile Include="CustomReader\FileWorker.cs" />
     <Compile Include="CustomReader\FirebaseTokenObtainer.cs" />
     <Compile Include="CustomReader\IconViewRenderer.cs" />
@@ -145,8 +161,10 @@
     <Compile Include="CustomRenderers\ListViewHighlightEffect.cs" />
     <Compile Include="CustomRenderers\MaterialFrameRenderer.cs" />
     <Compile Include="CustomRenderers\RadioButtonEffect.cs" />
+    <Compile Include="CustomRenderers\VideoPlayerRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />
+    <Compile Include="PlayerActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -565,6 +583,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_receipt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_camera.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
