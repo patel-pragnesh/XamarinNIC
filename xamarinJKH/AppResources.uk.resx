@@ -1307,4 +1307,7 @@
   <data name="TitleLogin" xml:space="preserve">
     <value>Якщо ви раніше входили по № к.с. або логіну, зареєструйтеся за № телефону та підключіть свій особовий рахунок</value>
   </data>
+  <data name="EventsCam" xml:space="preserve">
+    <value>Камери</value>
+  </data>
 </root>
