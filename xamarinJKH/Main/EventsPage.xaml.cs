@@ -25,6 +25,7 @@ using xamarinJKH.Server;
 using xamarinJKH.Shop;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
+using xamarinJKH.VideoStreaming;
 using Application = Xamarin.Forms.Application;
 using NavigationPage = Xamarin.Forms.NavigationPage;
 using VisualElement = Xamarin.Forms.VisualElement;
@@ -261,6 +262,11 @@ namespace xamarinJKH.Main
             FrameOSS.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
             FrameNotification.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
         }
+
+        private async void Cameras(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CameraListPage());
+        }
     }
 
     public class EventsPageViewModel : xamarinJKH.ViewModels.BaseViewModel
@@ -305,6 +311,11 @@ namespace xamarinJKH.Main
                 _showAddService = value;
                 OnPropertyChanged("ShowAdditionalServices");
             }
+        }
+        bool _showCameras;
+        public bool ShowCameras
+        {
+            get => false;// Settings.MobileSettings.menu.Find(x => x.name_app == "Web-камеры") != null && Device.RuntimePlatform == "Android";
         }
         public Command LoadData { get; set; }
         public EventsPageViewModel()
