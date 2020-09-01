@@ -83,22 +83,22 @@ if [ ${DECLARE_CUSTOM_COLOR} == 1 ]; then
         echo "##[section][Pre-Build] Custom name is set to ${CUSTOM_NAME}"
     fi
 fi
-if [ ${#LABEL} -gt 0 ]
- then
-    if [ -a ${ACTIVITY} ]; then
-        sed -i.bak "s/Label = \"[' '| А-Яа-я]*\"/Label = \"${LABEL}\"/"  $ACTIVITY
-        rm -f ${ACTIVITY}.bak
-        echo "##[section][Pre-Build] Label changed";
-        cat ${ACTIVITY}
-        echo
-    else 
-        echo ERROR: "##[section][Pre-Build] File MainActivity.cs not found. Check the path, aborting"
-        exit 1
-    fi
-    else 
-        echo ERROR: "##[section][Pre-Build] Label is not set, this change will not apply. Aborting"
-        exit 1
-fi
+# if [ ${#LABEL} -gt 0 ]
+ # then
+    # if [ -a ${ACTIVITY} ]; then
+        # sed -i.bak "s/Label = \"[' '| А-Яа-я]*\"/Label = \"${LABEL}\"/"  $ACTIVITY
+        # rm -f ${ACTIVITY}.bak
+        # echo "##[section][Pre-Build] Label changed";
+        # cat ${ACTIVITY}
+        # echo
+    # else 
+        # echo ERROR: "##[section][Pre-Build] File MainActivity.cs not found. Check the path, aborting"
+        # exit 1
+    # fi
+    # else 
+        # echo ERROR: "##[section][Pre-Build] Label is not set, this change will not apply. Aborting"
+        # exit 1
+# fi
 if [ ${#PACKAGENAME} -gt 0 ]
  then
  if [ -a ${MANIFEST} ]
