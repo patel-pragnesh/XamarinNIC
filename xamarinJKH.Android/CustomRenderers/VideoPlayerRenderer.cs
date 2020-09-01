@@ -28,6 +28,7 @@ using System.Security.Policy;
 using Android.Net;
 using Com.Google.Android.Exoplayer2.Source.Hls;
 using Util = Com.Google.Android.Exoplayer2.Util;
+using Android.Graphics.Drawables;
 
 [assembly: ExportRenderer(typeof(VideoPlayerExo), typeof(VideoPlayerRenderer))]
 namespace xamarinJKH.Droid.CustomRenderers
@@ -40,16 +41,25 @@ namespace xamarinJKH.Droid.CustomRenderers
         public VideoPlayerRenderer(Context context) : base(context) { Context = context; }
         SimpleExoPlayer _player;
         SimpleExoPlayerView _view;
+        string url;
 
         protected override void OnElementChanged(ElementChangedEventArgs<VideoPlayerExo> e)
         {
             base.OnElementChanged(e);
+            if (_player != null)
+            {
+                _player.Release();
+            }
             if (_player == null)
             {
                 _player = ExoPlayerFactory.NewSimpleInstance(Context);
                 _player.PlayWhenReady = true;
                 _view = new SimpleExoPlayerView(Context);
+                _view.Background = new GradientDrawable(GradientDrawable.Orientation.BottomTop, new int[] { Color.Transparent.ToAndroid(), Color.Transparent.ToAndroid() });
+                _view.ControllerAutoShow = false;
+                _view.UseController = false;
                 _view.Player = _player;
+                url = e.NewElement.SourceUrl;
                 SetNativeControl(_view);
             }
 
@@ -58,16 +68,20 @@ namespace xamarinJKH.Droid.CustomRenderers
 
         private void Play()
         {
-            Uri uri = Uri.Parse("https://vs.domru.ru/translation?id=331972335&guid=dc3b372c7e421f19192a&mode=hls");
-            var agent = Com.Google.Android.Exoplayer2.Util.Util.GetUserAgent(Context, Context.ApplicationInfo.Name);
-            DefaultHttpDataSourceFactory httpDataSourceFactory = new DefaultHttpDataSourceFactory(agent);
-            DefaultSsChunkSource.Factory ssChunkFactory = new DefaultSsChunkSource.Factory(httpDataSourceFactory);
-            Handler emptyHandler = new Handler();
+            if (!string.IsNullOrEmpty(url))
+            {
+                Uri uri = Uri.Parse(url);
+                var agent = Com.Google.Android.Exoplayer2.Util.Util.GetUserAgent(Context, Context.ApplicationInfo.Name);
+                DefaultHttpDataSourceFactory httpDataSourceFactory = new DefaultHttpDataSourceFactory(agent);
+                DefaultSsChunkSource.Factory ssChunkFactory = new DefaultSsChunkSource.Factory(httpDataSourceFactory);
+                Handler emptyHandler = new Handler();
 
-            //SsMediaSource ssMediaSource = new SsMediaSource(uri, httpDataSourceFactory, ssChunkFactory, emptyHandler);
-            var mediaSource = new HlsMediaSource.Factory(httpDataSourceFactory).CreateMediaSource(uri);
-            _player.Prepare(mediaSource);
-            var playing = _player.IsPlaying;
+                //SsMediaSource ssMediaSource = new SsMediaSource(uri, httpDataSourceFactory, ssChunkFactory, emptyHandler);
+                var mediaSource = new HlsMediaSource.Factory(httpDataSourceFactory).CreateMediaSource(uri);
+                _player.Prepare(mediaSource);
+                var playing = _player.IsPlaying;
+            }
+            
         }
 
         public void OnDownstreamFormatChanged(int p0, Format p1, int p2, Object p3, long p4)
