@@ -5,7 +5,7 @@ then
     echo "Скрипт запущен локально"
     if [ ! $1 ] && [ ! $2 ] && [ ! $3 ] && [ ! $4 ] && [ ! $5 ] && [ ! $6 ]
         then 
-            echo -e "Нет аргумента для задания имени пакета, отмена.\nИспользование: sh <скрипт> <имя пакета> <имя приложения> <версия> <база> <приминение цвета(true/false)> <RGB код цвета>"
+            echo -e "Нет аргумента для задания имени пакета, отмена.\nИспользование: sh <скрипт> <имя пакета> <имя приложения> <версия> <база> <приминение цвета(true/false)> <RGB код цвета> <версия>"
             exit 1
     fi
 
@@ -16,6 +16,7 @@ then
     DECLARE_CUSTOM_COLOR=$5
     CUSTOM_COLOR=$6
     CUSTOM_NAME=$7
+    BUILD_ID=$8
     ACTIVITY=MainActivity.cs
     MANIFEST=Properties/AndroidManifest.xml
     CLIENT_SCRIPT=../xamarinJKH/Server/RestClientMP.cs
@@ -55,6 +56,9 @@ else
         exit 1
     fi
 
+    
+    BUILD_ID=${BUILDID}
+
     ROOT=${APPCENTER_SOURCE_DIRECTORY}/xamarinJKH.Android
     CLIENT_SCRIPT=${APPCENTER_SOURCE_DIRECTORY}/xamarinJKH/Server/RestClientMP.cs
     ACTIVITY=${ROOT}/MainActivity.cs
@@ -68,6 +72,7 @@ else
     MAINPAGE=${APPCENTER_SOURCE_DIRECTORY}/xamarinJKH/MainPage.xaml.cs
     CUSTOM_NAME=${CUSTOMNAME}
 fi
+
 
 if [ ${DECLARE_CUSTOM_COLOR} == 1 ]; then
     if [ ${CUSTOM_COLOR} ]; then
@@ -112,6 +117,12 @@ if [ ${#PACKAGENAME} -gt 0 ]
         echo "##[section][Pre-Build] Setting up version"
         sed -i.bak "s/versionName=\"[0-9|.]*\"/versionName=\"${VERSION}\"/" $MANIFEST
         rm -f ${MANIFEST}.bak
+    fi
+
+    if [ ${BUILD_ID} ]; then
+    echo "##[section][Pre-Build] Setting version code"
+    sed -i.bak "s/android:versionCode=\"[0-9]*\"/android:versionCode=\"${BUILD_ID}\"/" ${MANIFEST}
+    rm -f ${MANIFEST}.bak
     fi
     cat ${MANIFEST}
  fi
