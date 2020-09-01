@@ -15,6 +15,17 @@ namespace xamarinJKH
     {
         public static BindableProperty HeaderPicture = BindableProperty.Create("HeaderPicture", typeof(string), typeof(string));
         public static BindableProperty ShowBackButton = BindableProperty.Create("ShowBackButton", typeof(bool), typeof(bool));
+        public static BindableProperty TitleProperty = BindableProperty.Create("TitleProperty", typeof(string), typeof(string));
+
+        public string Title
+        {
+            get => (string)GetValue(TitleProperty);
+            set
+            {
+                SetValue(TitleProperty, value);
+                OnPropertyChanged("Title");
+            }
+        }
         public string Picture
         {
             get => (string)GetValue(HeaderPicture);

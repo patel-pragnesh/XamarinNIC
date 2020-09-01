@@ -8,11 +8,12 @@
              x:Class="xamarinJKH.HeaderView">
   <ContentView.Content>
         <Grid VerticalOptions="FillAndExpand">
+            <Frame BackgroundColor="#494949"/>
             <Image x:Name="ImageFon"
                        Source="{Binding Picture}"
                        Margin="0,0,0,0"
                        VerticalOptions="Start"
-                       Aspect="AspectFill"
+                       Aspect="AspectFit"
                        HorizontalOptions="FillAndExpand" />
             <StackLayout Margin="0,10,0,0" VerticalOptions="FillAndExpand">
                 <StackLayout
@@ -26,7 +27,8 @@
                                              Foreground="{AppThemeBinding Light=Black, Dark=White}"
                                              HorizontalOptions="Center" />
                     <Label
-                            Text="{x:Static xamarinJkh:AppResources.Back}"
+                            Text="{Binding Title}"
+                            BackgroundColor="Red"
                             FontSize="20"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             HorizontalOptions="Start" />

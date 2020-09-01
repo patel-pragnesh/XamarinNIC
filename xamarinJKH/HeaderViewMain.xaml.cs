@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,7 @@ namespace xamarinJKH
 
         public string Picture
         {
-            get => (string)GetValue(PictureSource);
+            get => (string)GetValue(PictureSource) + (Application.Current.UserAppTheme == OSAppTheme.Dark || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? string.Empty : "_light");
             set
             {
                 SetValue(PictureSource, value);
@@ -39,7 +40,7 @@ namespace xamarinJKH
             }
         }
 
-        
+
         public string Title
         {
             get => (string)GetValue(TitleSource);
@@ -63,6 +64,19 @@ namespace xamarinJKH
                     break;
             }
             BindingContext = this;
+
+            MessagingCenter.Subscribe<Object>(this, "ChangeTheme", (sender) =>
+            {
+                if (Application.Current.UserAppTheme == OSAppTheme.Dark || Application.Current.UserAppTheme == OSAppTheme.Unspecified)
+                {
+                    Picture = Picture.Replace("_light", "");
+                }
+                else
+                {
+                    Picture = Picture.Replace("_light", "");
+                    Picture += "_light";
+                }
+            });
         }
 
         private void Call(object sender, EventArgs args)
