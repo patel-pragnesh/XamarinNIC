@@ -7,6 +7,7 @@ using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Pays;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
@@ -23,6 +24,8 @@ namespace xamarinJKH.DialogViews
         public string title { get; set; }
         private RequestContent request;
         private Page appPage;
+        private RestClientMP server = new RestClientMP();
+        private bool isCardPay = true;
 
 
         public PayAppDialog(Color hexColor, RequestContent request, Page appPage)
@@ -91,9 +94,34 @@ namespace xamarinJKH.DialogViews
         {
             if (!request.IsPaidByUser)
             {
-                await appPage.Navigation.PushAsync(
-                    new PayServicePage("", request.PaidSumm - getBonusPaid(), request.ID));
-                await PopupNavigation.Instance.PopAsync();
+                if (isCardPay)
+                {
+                    await appPage.Navigation.PushAsync(
+                        new PayServicePage("", request.PaidSumm - getBonusPaid(), request.ID));
+                    await PopupNavigation.Instance.PopAsync();
+                }
+                else
+                {
+                    CommonResult result = await server.SendPaidRequestCompleteCodeOnlineAndCah(request.ID, Settings.Person.Phone, false);
+                    if (result.Error != null)
+                    {
+                        await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
+                    }
+                    else
+                    {
+                        if (Device.RuntimePlatform == Device.iOS)
+                        {
+                            await DisplayAlert("", AppResources.AlertCodeSent, "OK");
+                        }
+                        else
+                        {
+                            DependencyService.Get<IMessage>().ShortAlert(AppResources.AlertCodeSent);
+                        }  
+                        await PopupNavigation.Instance.PopAsync();
+                    }
+                }
+                
+              
             }
             else
             {
@@ -103,10 +131,27 @@ namespace xamarinJKH.DialogViews
 
         private void btnCardPay_Clicked(object sender, EventArgs e)
         {
+            isCardPay = true;
+            frameBtnCardPay.BorderColor = hex;
+            btnCardPay.TextColor = hex;
+            
+            frameBtnCashPay.BorderColor = Color.Gray;
+            btnCashPay.TextColor = Color.Gray;
+            BtnAdd.Text = AppResources.Pay;
+            LabelTitle.Text = AppResources.ValidateCodeCard;
         }
 
         private void btnCashPay_Clicked(object sender, EventArgs e)
         {
+            isCardPay = false;
+            frameBtnCashPay.BorderColor = hex;
+            btnCashPay.TextColor = hex;
+            
+            frameBtnCardPay.BorderColor = Color.Gray;
+            btnCardPay.TextColor = Color.Gray;
+
+            BtnAdd.Text = AppResources.GetCode;
+            LabelTitle.Text = AppResources.ValidateCodeCash;
         }
         
     }

@@ -805,6 +805,10 @@ namespace xamarinJKH.Main
 
         private void SetDellValue()
         {
+            if (Settings.Person.Accounts.Count == 0)
+            {
+                return;
+            }
             int currentDay = DateTime.Now.Day;
             if ((Settings.Person.Accounts[0].MetersStartDay <= currentDay &&
                  Settings.Person.Accounts[0].MetersEndDay >= currentDay) ||

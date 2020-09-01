@@ -1502,6 +1502,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Получить код.
+        /// </summary>
+        internal static string GetCode {
+            get {
+                return ResourceManager.GetString("GetCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to , добрый день!.
         /// </summary>
         internal static string GoodDay {
@@ -3378,7 +3387,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Напишите нам сюда.
+        ///   Looks up a localized string similar to Для обращения в тех. поддержку сообщите код оператору .
         /// </summary>
         internal static string TechDialogTitle {
             get {
@@ -3563,6 +3572,24 @@ namespace xamarinJKH {
         internal static string UpdateDialogUpdate {
             get {
                 return ResourceManager.GetString("UpdateDialogUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to После успешной оплаты вам придет код подтверждения в смс.
+        /// </summary>
+        internal static string ValidateCodeCard {
+            get {
+                return ResourceManager.GetString("ValidateCodeCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Передайте код подтверждения курьеру.
+        /// </summary>
+        internal static string ValidateCodeCash {
+            get {
+                return ResourceManager.GetString("ValidateCodeCash", resourceCulture);
             }
         }
         
