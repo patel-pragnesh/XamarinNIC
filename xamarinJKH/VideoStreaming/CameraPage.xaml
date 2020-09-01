@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:xamarinJKH"
+             xmlns:video="clr-namespace:xamarinJKH.VideoStreaming"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="xamarinJKH.VideoStreaming.CameraPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <local:HeaderViewStack Title="{x:Static local:AppResources.Back}"
+                                   Grid.RowSpan="3"/>
+            <StackLayout Grid.Row="1"
+                         Padding="10">
+                <video:VideoPlayerExo Source="{Binding Link}"
+                                      HeightRequest="{Binding Path=Width, Source={x:Reference Video}}"
+                                      x:Name="Video"/>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
