@@ -76,6 +76,9 @@
     <EmbeddedResource Update="HeaderViewMain.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="HeaderViewStack.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Main\BottomNavigationPage.xaml">
       <SubType>Designer</SubType>
       <Generator></Generator>
@@ -240,6 +243,12 @@
     <EmbeddedResource Update="DialogViews\RatinAppMarketDialog.xaml">
       <SubType>Designer</SubType>
       <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="VideoStreaming\CameraListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="VideoStreaming\CameraPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="VideoStreaming\TestVideoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
