@@ -217,7 +217,7 @@ namespace xamarinJKH.Main
 
         protected async void TestCameras(object sender, EventArgs args)
         {
-            await Navigation.PushAsync(new xamarinJKH.VideoStreaming.TestVideoPage());
+            await Navigation.PushAsync(new xamarinJKH.VideoStreaming.CameraListPage());
         }
     }
 
