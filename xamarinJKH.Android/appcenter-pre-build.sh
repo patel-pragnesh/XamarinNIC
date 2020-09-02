@@ -79,7 +79,6 @@ if [ ${DECLARE_CUSTOM_COLOR} == 1 ]; then
         echo "##[section][Pre-Build] Setting custom color for an interface"
         sed -i.bak "s/var color = !string.IsNullOrEmpty(Settings.MobileSettings.color) ? $\"#{Settings.MobileSettings.color}\" :\"#FF0000\";/var color = \"#${CUSTOM_COLOR}\";Settings.MobileSettings.color = \"${CUSTOM_COLOR}\";/" ${MAINPAGE}
         echo "##[section][Pre-Build] Custom color is set to #${CUSTOM_COLOR}"
-        cat ${MAINPAGE} | grep "var color = \"#[0-9|A-Za-z]*\";"
     fi
 
     if [ ${#CUSTOM_NAME} -gt 0 ]; then
@@ -87,6 +86,7 @@ if [ ${DECLARE_CUSTOM_COLOR} == 1 ]; then
         sed -i.bak "s/UkName.Text = Settings.MobileSettings.main_name;/UkName.Text = \"${CUSTOM_NAME}\";Settings.MobileSettings.main_name = \"${CUSTOM_NAME}\";/" ${MAINPAGE}
         echo "##[section][Pre-Build] Custom name is set to ${CUSTOM_NAME}"
     fi
+    cat ${MAINPAGE}
 fi
 if [ ${#LABEL} -gt 0 ]
  then
