@@ -124,6 +124,24 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Каталог.
+        /// </summary>
+        internal static string AdditionalList {
+            get {
+                return ResourceManager.GetString("AdditionalList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Карта.
+        /// </summary>
+        internal static string AdditionalMap {
+            get {
+                return ResourceManager.GetString("AdditionalMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to При передаче показаний произошла ошибка.
         /// </summary>
         internal static string AddMetersError {

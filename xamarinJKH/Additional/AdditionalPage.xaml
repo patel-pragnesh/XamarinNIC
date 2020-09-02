@@ -144,7 +144,7 @@
                                 </Label.GestureRecognizers>
                             </Label>
                         </Frame>-->
-                        <Label Text="Каталог" Style="{x:StaticResource Tab}"
+                        <Label Text="{x:Static xamarinJkh:AppResources.AdditionalList}" Style="{x:StaticResource Tab}"
                                x:Name="CatalogMenu"
                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalTextAlignment="End" Opacity="2">
@@ -154,7 +154,7 @@
                         </Label>
 
                         <Label x:Name="MenuDelimiter" Text="/"/>
-                        <Label Text="Карта" Style="{x:StaticResource Tab}"
+                        <Label Text="{x:Static xamarinJkh:AppResources.AdditionalMap}" Style="{x:StaticResource Tab}"
                                x:Name="MapMenu"
                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                HorizontalTextAlignment="Start">
