@@ -21,7 +21,7 @@ namespace xamarinJKH.Additional
         public AdditionalCell()
         {
             image = new Image();
-            
+
 
             frame = new PancakeView(); // MaterialFrame();
             //frame.Elevation = 20;
@@ -61,7 +61,7 @@ namespace xamarinJKH.Additional
 
         public static readonly BindableProperty DetailProperty =
             BindableProperty.Create("Detail", typeof(string), typeof(AdditionalCell), "");
- 
+
         public static readonly BindableProperty LogoFileIdProperty =
             BindableProperty.Create("LogoFileId", typeof(string), typeof(AdditionalCell), "");
 
@@ -87,8 +87,8 @@ namespace xamarinJKH.Additional
         {
             get { return (string) GetValue(DetailProperty); }
             set { SetValue(DetailProperty, value); }
-        } 
-        
+        }
+
         public string LogoFileId
         {
             get { return (string) GetValue(LogoFileIdProperty); }
@@ -101,27 +101,33 @@ namespace xamarinJKH.Additional
 
             if (BindingContext != null)
             {
-               
-                    byte[] imageByte = null;
-                    try {
-                        imageByte = await BlobCache.UserAccount.GetObject<byte[]>(LogoFileId);
-                    } catch (KeyNotFoundException ex) {
-                        imageByte = await _server.GetPhotoAdditional(Detail);
-                        await BlobCache.UserAccount.InsertObject(LogoFileId, imageByte);
-                    }
-                    if (imageByte != null)
-                    {
-                        Stream stream = new MemoryStream(imageByte);
-                        //image = new Image();       
-                        
-                        image.Source = ImageSource.FromStream(() => { return stream; });
-                        image.VerticalOptions = LayoutOptions.FillAndExpand;
-                        image.Aspect = Aspect.AspectFill;
-                        image.HorizontalOptions = LayoutOptions.FillAndExpand;
-                        image.HeightRequest = ImageHeight;
+                byte[] imageByte = null;
+                try
+                {
+                    imageByte = await BlobCache.UserAccount.GetObject<byte[]>(LogoFileId);
+                }
+                catch (KeyNotFoundException ex)
+                {
+                }
 
-                        //frame.Content = image;
-                    }
+                if (imageByte == null)
+                {
+                    imageByte = await _server.GetPhotoAdditional(Detail);
+                    await BlobCache.UserAccount.InsertObject(LogoFileId, imageByte);
+                }
+                else
+                {
+                    Stream stream = new MemoryStream(imageByte);
+                    //image = new Image();       
+
+                    image.Source = ImageSource.FromStream(() => { return stream; });
+                    image.VerticalOptions = LayoutOptions.FillAndExpand;
+                    image.Aspect = Aspect.AspectFill;
+                    image.HorizontalOptions = LayoutOptions.FillAndExpand;
+                    image.HeightRequest = ImageHeight;
+
+                    //frame.Content = image;
+                }
             }
         }
     }
