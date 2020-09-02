@@ -21,16 +21,18 @@ namespace xamarinJKH.Pays
     public partial class PayServicePage : ContentPage
     {
         private RestClientMP server = new RestClientMP();
+        private int? idRequset;
 
         public PayServicePage(string ident, decimal sum, int? idRequset = null)
         {
+            this.idRequset = idRequset;
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
             if (Device.RuntimePlatform == Device.iOS)
-            {                
+            {
                 int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                 //BackStackLayout.Padding = new Thickness(0, statusBarHeight, 0, 0);
 
@@ -55,9 +57,11 @@ namespace xamarinJKH.Pays
         {
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
-                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                Device.BeginInvokeOnMainThread(async () =>
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
+
             await Settings.StartProgressBar();
             PayService payLink = await server.GetPayLink(ident, sum);
             if (payLink.payLink != null)
@@ -70,14 +74,17 @@ namespace xamarinJKH.Pays
                 await DisplayAlert(AppResources.ErrorTitle, payLink.Error, "OK");
                 await Navigation.PopAsync();
             }
-        } 
+        }
+
         async void GetPayLinkRequest(int? id, decimal sum)
         {
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
-                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                Device.BeginInvokeOnMainThread(async () =>
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
+
             await Settings.StartProgressBar();
             PayService payLink = await server.GetPayLink(id, sum);
             if (payLink.payLink != null)
@@ -122,9 +129,11 @@ namespace xamarinJKH.Pays
             bool rate = Preferences.Get("rate", true);
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
-                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                Device.BeginInvokeOnMainThread(async () =>
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
+
             // Loading settings
             Configurations.LoadingConfig = new LoadingConfig
             {
@@ -141,6 +150,8 @@ namespace xamarinJKH.Pays
                 if (result.error != null && result.Equals(""))
                 {
                     await DisplayAlert(AppResources.ErrorTitle, result.error, "OK");
+                    
+
                     await Navigation.PopAsync();
                 }
                 else
@@ -150,9 +161,34 @@ namespace xamarinJKH.Pays
                     {
                         await PopupNavigation.Instance.PushAsync(new RatingAppMarketDialog());
                     }
+                    if (idRequset != null)
+                    {
+                        await GetCodePay();
+                    }
                     await Navigation.PopToRootAsync();
                 }
             });
+        }
+
+        private async Task GetCodePay()
+        {
+            CommonResult resultCode =
+                await server.SendPaidRequestCompleteCodeOnlineAndCah(idRequset, Settings.Person.Phone);
+            if (resultCode.Error != null)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, resultCode.Error, "OK");
+            }
+            else
+            {
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+                    await DisplayAlert("", AppResources.AlertCodeSent, "OK");
+                }
+                else
+                {
+                    DependencyService.Get<IMessage>().ShortAlert(AppResources.AlertCodeSent);
+                }
+            }
         }
     }
 }

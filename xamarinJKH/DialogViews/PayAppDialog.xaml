@@ -61,26 +61,29 @@
                 FontSize="12"
                 HorizontalOptions="Center" />
             <StackLayout Orientation="Horizontal"
-                         IsVisible="False"
                          HorizontalOptions="FillAndExpand">
                 <Frame x:Name="frameBtnCardPay" BackgroundColor="White" CornerRadius="10"
-                       BorderColor="Gray" Padding="0" MinimumWidthRequest="250" Margin="5,0"
+                       Padding="0"
+                       BorderColor="{Binding hex}"
+                       MinimumWidthRequest="250" Margin="5,0"
                        HorizontalOptions="FillAndExpand">
                     <Button x:Name="btnCardPay" Text="{x:Static xamarinJkh:AppResources.Card}       " FontAttributes="Bold"
-                            TextColor="Gray"
-                                                
+                            TextColor="{Binding hex}"
                             BackgroundColor="Transparent" FontSize="15"
                             Clicked="btnCardPay_Clicked"
                             HorizontalOptions="FillAndExpand" />
                 </Frame>
                 <Frame x:Name="frameBtnCashPay" BackgroundColor="White" CornerRadius="10"
-                       BorderColor="{Binding hex}" Padding="0" MinimumWidthRequest="250"
+                       BorderColor="Gray"
+                       Padding="0" MinimumWidthRequest="250"
                        Margin="5,0"
                        HorizontalOptions="FillAndExpand">
                     <Button x:Name="btnCashPay" IsEnabled="True" Text="{x:Static xamarinJkh:AppResources.OnRecieving}"
                             FontAttributes="Bold"
-                            FontSize="15" TextColor="{Binding hex}"
-                            BackgroundColor="Transparent" Clicked="btnCashPay_Clicked"
+                            TextColor="Gray"
+                            FontSize="15" 
+                            BackgroundColor="Transparent"
+                            Clicked="btnCashPay_Clicked"
                             HorizontalOptions="FillAndExpand" />
                 </Frame>
 
@@ -100,6 +103,14 @@
                         FontAttributes="Bold"
                         BackgroundColor="Transparent" />
             </Frame>
+            
+            <Label FontSize="11"
+                   x:Name="LabelTitle"
+                   TextColor="Gray"
+                   HorizontalTextAlignment="Center"
+                   Text="{x:Static xamarinJkh:AppResources.ValidateCodeCard}"
+                   VerticalOptions="Center" />
+            
         </StackLayout>
     </Frame>
 </pages:PopupPage>

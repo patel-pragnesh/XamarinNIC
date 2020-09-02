@@ -1307,4 +1307,13 @@
   <data name="TitleLogin" xml:space="preserve">
     <value>Якщо ви раніше входили по № к.с. або логіну, зареєструйтеся за № телефону та підключіть свій особовий рахунок</value>
   </data>
+  <data name="GetCode" xml:space="preserve">
+    <value>Отримати код</value>
+  </data>
+  <data name="ValidateCodeCard" xml:space="preserve">
+    <value>Після успішної оплати вам прийде код підтвердження в смс</value>
+  </data>
+  <data name="ValidateCodeCash" xml:space="preserve">
+    <value>Передайте код підтвердження кур'єру</value>
+  </data>
 </root>
