@@ -20,11 +20,20 @@
                                    Grid.RowSpan="3"/>
             <StackLayout Grid.Row="1"
                          Padding="10">
+                
                 <video:VideoPlayerExo Source="{Binding Link}"
-                                      HeightRequest="{Binding Path=Width, Source={x:Reference Video}}"
+                                      BackgroundColor="Red"
+                                      Opacity="0"
+                                      IsVisible="True"
+                                      HeightRequest="{Binding PlayerHeight}"
+                                      HorizontalOptions="FillAndExpand"
                                       x:Name="Video"/>
 
             </StackLayout>
+            <ActivityIndicator Grid.Row="2"
+                               IsVisible="{Binding IsLoading}"
+                               IsEnabled="{Binding IsLoading}"
+                               IsRunning="{Binding IsLoading}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

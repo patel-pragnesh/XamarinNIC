@@ -22,11 +22,44 @@ namespace xamarinJKH.VideoStreaming
                 OnPropertyChanged("Link");
             }
         }
+        bool isLoading;
+        public bool IsLoading
+        {
+            get => isLoading;
+            set
+            {
+                isLoading = value;
+                OnPropertyChanged(nameof(IsLoading));
+            }
+        }
+        double _pHeight;
+        public double PlayerHeight
+        {
+            get => _pHeight;
+            set
+            {
+                _pHeight = value;
+                OnPropertyChanged(nameof(PlayerHeight));
+            }
+        }
         public CameraPage(string link)
         {
             InitializeComponent();
             BindingContext = this;
+            IsLoading = true;
             Link = link;
+            PlayerHeight = 100;
+            MessagingCenter.Subscribe<object>(this, "StopLoadingPlayer", sender =>
+            {
+                IsLoading = false;
+                Video.Opacity = 1;
+            });
+
+            MessagingCenter.Subscribe<object, float>(this, "SetRatio", (sender, args) =>
+            {
+                var width = Video.Width;
+                PlayerHeight = Convert.ToDouble(width * args);
+            });
         }
     }
 }
