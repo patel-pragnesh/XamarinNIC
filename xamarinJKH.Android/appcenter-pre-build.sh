@@ -82,7 +82,7 @@ if [ ${DECLARE_CUSTOM_COLOR} == 1 ]; then
         cat ${MAINPAGE} | grep "var color = \"#[0-9|A-Za-z]*\";"
     fi
 
-    if [ ${CUSTOM_NAME} ]; then
+    if [ ${#CUSTOM_NAME} -gt 0 ]; then
         echo "##[section][Pre-Build] Setting custom name of a company"
         sed -i.bak "s/UkName.Text = Settings.MobileSettings.main_name;/UkName.Text = \"${CUSTOM_NAME}\";Settings.MobileSettings.main_name = \"${CUSTOM_NAME}\";/" ${MAINPAGE}
         echo "##[section][Pre-Build] Custom name is set to ${CUSTOM_NAME}"
