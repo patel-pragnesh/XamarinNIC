@@ -1337,4 +1337,10 @@
   <data name="AutoPennance" xml:space="preserve">
     <value>Aвто свідчення</value>
   </data>
+  <data name="AdditionalList" xml:space="preserve">
+    <value>Каталог</value>
+  </data>
+  <data name="AdditionalMap" xml:space="preserve">
+    <value>Карта</value>
+  </data>
 </root>

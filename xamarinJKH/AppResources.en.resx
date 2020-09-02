@@ -1353,4 +1353,10 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="AutoPennance" xml:space="preserve">
     <value>Auto pennance</value>
   </data>
+  <data name="AdditionalList" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
+  <data name="AdditionalMap" xml:space="preserve">
+    <value>Map</value>
+  </data>
 </root>
