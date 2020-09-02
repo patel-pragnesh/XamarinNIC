@@ -8,8 +8,9 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Views;
+using Views = Android.Views;
 using Android.Widget;
+using Andr = Android.Content;
 
 using Xamarin.Forms;
 using Com.Google.Android.Exoplayer2;
@@ -29,11 +30,13 @@ using Android.Net;
 using Com.Google.Android.Exoplayer2.Source.Hls;
 using Util = Com.Google.Android.Exoplayer2.Util;
 using Android.Graphics.Drawables;
+using Com.Google.Android.Exoplayer2.Video;
+using Com.Google.Android.Exoplayer2.Analytics;
+using Java.Interop;
 
 [assembly: ExportRenderer(typeof(VideoPlayerExo), typeof(VideoPlayerRenderer))]
 namespace xamarinJKH.Droid.CustomRenderers
 {
-    [System.Obsolete]
     public class VideoPlayerRenderer: ViewRenderer<VideoPlayerExo, SimpleExoPlayerView>, IAdaptiveMediaSourceEventListener
     {
 
@@ -43,9 +46,13 @@ namespace xamarinJKH.Droid.CustomRenderers
         SimpleExoPlayerView _view;
         string url;
 
+        IVideoListener listener;
+
+        
         protected override void OnElementChanged(ElementChangedEventArgs<VideoPlayerExo> e)
         {
             base.OnElementChanged(e);
+            
             if (_player != null)
             {
                 _player.Release();
@@ -57,13 +64,36 @@ namespace xamarinJKH.Droid.CustomRenderers
                 _view = new SimpleExoPlayerView(Context);
                 _view.Background = new GradientDrawable(GradientDrawable.Orientation.BottomTop, new int[] { Color.Transparent.ToAndroid(), Color.Transparent.ToAndroid() });
                 _view.ControllerAutoShow = false;
+                
                 _view.UseController = false;
+                _player.RenderedFirstFrame += _player_RenderedFirstFrame;
+                _player.VideoSizeChanged += _player_VideoSizeChanged;
+                
                 _view.Player = _player;
                 url = e.NewElement.SourceUrl;
                 SetNativeControl(_view);
             }
 
             Play();
+        }
+
+        private void _player_VideoSizeChanged(object sender, VideoSizeChangedEventArgs e)
+        {
+            var player = sender as SimpleExoPlayer;
+            var format = player.VideoFormat;
+            var ratio = (float)format.Height / (float)format.Width;
+            MessagingCenter.Send<object, float>(sender, "SetRatio", ratio);
+
+            var activity = Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity;
+            _view.SetMinimumHeight(1000);
+            
+
+            //activity.RequestedOrientation = Andr.PM.ScreenOrientation.Landscape;
+        }
+
+        private void _player_RenderedFirstFrame(object sender, System.EventArgs e)
+        {
+            MessagingCenter.Send<object>(sender, "StopLoadingPlayer");
         }
 
         private void Play()
@@ -84,23 +114,24 @@ namespace xamarinJKH.Droid.CustomRenderers
             
         }
 
-        public void OnDownstreamFormatChanged(int p0, Format p1, int p2, Object p3, long p4)
+        public void OnDownstreamFormatChanged(int p0, Format p1, int p2, Java.Lang.Object p3, long p4)
         {
         }
 
-        public void OnLoadCanceled(DataSpec p0, int p1, int p2, Format p3, int p4, Object p5, long p6, long p7, long p8, long p9, long p10)
+        public void OnLoadCanceled(DataSpec p0, int p1, int p2, Format p3, int p4, Java.Lang.Object p5, long p6, long p7, long p8, long p9, long p10)
         {
         }
 
-        public void OnLoadCompleted(DataSpec p0, int p1, int p2, Format p3, int p4, Object p5, long p6, long p7, long p8, long p9, long p10)
+        public void OnLoadCompleted(DataSpec p0, int p1, int p2, Format p3, int p4, Java.Lang.Object p5, long p6, long p7, long p8, long p9, long p10)
+        {
+            
+        }
+
+        public void OnLoadError(DataSpec p0, int p1, int p2, Format p3, int p4, Java.Lang.Object p5, long p6, long p7, long p8, long p9, long p10, IOException p11, bool p12)
         {
         }
 
-        public void OnLoadError(DataSpec p0, int p1, int p2, Format p3, int p4, Object p5, long p6, long p7, long p8, long p9, long p10, IOException p11, bool p12)
-        {
-        }
-
-        public void OnLoadStarted(DataSpec p0, int p1, int p2, Format p3, int p4, Object p5, long p6, long p7, long p8)
+        public void OnLoadStarted(DataSpec p0, int p1, int p2, Format p3, int p4, Java.Lang.Object p5, long p6, long p7, long p8)
         {
         }
 
