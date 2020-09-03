@@ -220,7 +220,7 @@ namespace xamarinJKH
             //только темная тема в иос
             if (Device.RuntimePlatform != Device.iOS)
             {
-                int theme = Preferences.Get("Theme", 0);
+                int theme = Preferences.Get("Theme", 2);
                 switch (theme)
                 {
                     case 0:
