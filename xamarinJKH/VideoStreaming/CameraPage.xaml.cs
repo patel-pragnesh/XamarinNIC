@@ -42,6 +42,7 @@ namespace xamarinJKH.VideoStreaming
                 OnPropertyChanged(nameof(PlayerHeight));
             }
         }
+        bool rotated;
         public CameraPage(string link)
         {
             InitializeComponent();
@@ -60,6 +61,24 @@ namespace xamarinJKH.VideoStreaming
                 var width = Video.Width;
                 PlayerHeight = Convert.ToDouble(width * args);
             });
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            MessagingCenter.Send<object, bool>(this, "FullScreen", rotated);
+            rotated = !rotated;
+            var parent = this.Parent.Parent as TabbedPage;
+            if (rotated)
+            {
+                Video.ScaleTo(1.5);
+                Video.BackgroundColor = Color.Black;
+
+            }
+            else
+            {
+                Video.BackgroundColor = Color.Transparent;
+                Video.ScaleTo(1);
+            }
         }
     }
 }
