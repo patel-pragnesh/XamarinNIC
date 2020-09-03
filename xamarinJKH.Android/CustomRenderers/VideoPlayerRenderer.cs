@@ -41,10 +41,33 @@ namespace xamarinJKH.Droid.CustomRenderers
     {
 
         Context Context;
-        public VideoPlayerRenderer(Context context) : base(context) { Context = context; }
+        public VideoPlayerRenderer(Context context) : base(context) 
+        { 
+            Context = context;
+            MessagingCenter.Subscribe<object, bool>(this, "FullScreen", (sender, rotated) =>
+            {
+                var activity = Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity;
+                
+                if (rotated)
+                {
+                    activity.RequestedOrientation = Andr.PM.ScreenOrientation.Portrait;
+                }
+                else
+                {
+                    activity.RequestedOrientation = Andr.PM.ScreenOrientation.Landscape;
+                    activity.SetActionBar(null);
+                    //activity.SetContentView(_view);
+                }
+            });
+        }
         SimpleExoPlayer _player;
         SimpleExoPlayerView _view;
         string url;
+
+        int viewWidth;
+        int viewHeight;
+
+        View view;
 
         IVideoListener listener;
 
@@ -70,6 +93,7 @@ namespace xamarinJKH.Droid.CustomRenderers
                 _player.VideoSizeChanged += _player_VideoSizeChanged;
                 
                 _view.Player = _player;
+                
                 url = e.NewElement.SourceUrl;
                 SetNativeControl(_view);
             }
@@ -85,7 +109,8 @@ namespace xamarinJKH.Droid.CustomRenderers
             MessagingCenter.Send<object, float>(sender, "SetRatio", ratio);
 
             var activity = Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity;
-            _view.SetMinimumHeight(1000);
+            viewHeight = _view.Height;
+            viewWidth = _view.Width;
             
 
             //activity.RequestedOrientation = Andr.PM.ScreenOrientation.Landscape;
