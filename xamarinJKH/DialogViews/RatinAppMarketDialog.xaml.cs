@@ -49,13 +49,15 @@ namespace xamarinJKH.DialogViews
                 {
                     await Xamarin.Essentials.Launcher.OpenAsync(uri);
                 }
+                await PopupNavigation.Instance.PopAsync();
             }
             else
             {
+                await PopupNavigation.Instance.PopAsync();
                 await PopupNavigation.Instance.PushAsync(new TechDialog());
             }
 
-            await PopupNavigation.Instance.PopAsync();
+           
         }
 
         private async void BtnNot_OnClicked(object sender, EventArgs e)
