@@ -1,4 +1,35 @@
-ЧAM9Xk8Y"
+{
+  "project_info": {
+    "project_number": "486573125776",
+    "firebase_url": "https://myprojects-e5656.firebaseio.com",
+    "project_id": "myprojects-e5656",
+    "storage_bucket": "myprojects-e5656.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486573125776:android:ec04d7db91bc0922",
+        "android_client_info": {
+          "package_name": "com.metinvest.nfc_marks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "486573125776-tttd4u905qgiifjcjpj7f7ovar5nec5e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.metinvest.nfc_marks",
+            "certificate_hash": "276b9decdbcd3def8d004fde47bcbecd46077b84"
+          }
+        },
+        {
+          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
         }
       ],
       "services": {
