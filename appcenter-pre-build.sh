@@ -125,8 +125,11 @@ then
     echo "Updating package name to $PACKAGE_NAME in Info.plist"
 	
 	echo "Updating display name to $LABEL in Info.plist"
-    plutil -replace CFBundleDisplayName -string $LABEL $INFO_PLIST_FILE
+    plutil -replace CFBundleDisplayName -string "${LABEL}" ${INFO_PLIST_FILE}
+	# /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName  NewBundleDisplayName" $INFO_PLIST_FILE
     echo "Updating display name to $LABEL in Info.plist"
+	
+	
 	
 	echo "Updating version to $VERSION in Info.plist"
     plutil -replace CFBundleVersion -string $VERSION $INFO_PLIST_FILE
