@@ -1991,7 +1991,7 @@ namespace xamarinJKH.Server
             return response.Data;
         }
 
-        public async Task<PayService> GetPayLink(string Ident, decimal Sum, List<int> Services = null)
+        public async Task<PayService> GetPayLink(string Ident, decimal Sum, bool PayInsurance = false, List<int> Services = null)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(PAY_ONLINE, Method.POST);
@@ -2004,6 +2004,7 @@ namespace xamarinJKH.Server
                 Ident,
                 Sum,
                 Services,
+                PayInsurance
             });
             var response = await restClientMp.ExecuteTaskAsync<PayService>(restRequest);
             // Проверяем статус
