@@ -166,7 +166,6 @@ namespace xamarinJKH.Additional
             CatalogMenu.TextColor = (Color)Application.Current.Resources["MainColor"];
             MessagingCenter.Subscribe<Object>(this, "LoadGoods", async (s) =>
             {
-                IsBusy = true;
                 await Task.Delay(TimeSpan.FromMilliseconds(500));
                 SetAdditional();
             });
@@ -207,17 +206,9 @@ namespace xamarinJKH.Additional
         {
             base.OnAppearing();
             //AiForms.Dialogs.Loading.Instance.Show();
-            IsBusy = true;
             SetText();
             //SetAdditional();
             //await RefreshData();
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-            Groups.Clear();
-            Additional.Clear();
         }
 
         void SetAdditional()
@@ -228,6 +219,7 @@ namespace xamarinJKH.Additional
                 return;
             }
 
+            IsBusy = true;
             Groups.Clear();
             Additional.Clear();
             Task.Run(() =>

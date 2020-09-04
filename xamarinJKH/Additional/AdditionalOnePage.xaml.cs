@@ -72,7 +72,7 @@ namespace xamarinJKH.Additional
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) =>
             {
-                MessagingCenter.Send<Object>(this, "LoadGoods");
+                //MessagingCenter.Send<Object>(this, "LoadGoods");
                 _ = await Navigation.PopAsync();
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
@@ -98,7 +98,7 @@ namespace xamarinJKH.Additional
 
         protected override bool OnBackButtonPressed()
         {
-            MessagingCenter.Send<Object>(this, "LoadGoods");
+            //MessagingCenter.Send<Object>(this, "LoadGoods");
             return base.OnBackButtonPressed();
         }
 
