@@ -1601,6 +1601,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Страхование 111 руб..
+        /// </summary>
+        internal static string InsuranceText {
+            get {
+                return ResourceManager.GetString("InsuranceText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Кб.
         /// </summary>
         internal static string kb {

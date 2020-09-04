@@ -1332,4 +1332,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="ValidateCodeCash" xml:space="preserve">
     <value>Pass the confirmation code to the courier</value>
   </data>
+  <data name="InsuranceText" xml:space="preserve">
+    <value>Insurance 111 rubles.</value>
+  </data>
 </root>

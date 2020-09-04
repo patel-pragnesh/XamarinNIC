@@ -1313,4 +1313,7 @@
   <data name="ValidateCodeCash" xml:space="preserve">
     <value>Передайте код подтверждения курьеру</value>
   </data>
+  <data name="InsuranceText" xml:space="preserve">
+    <value>Страхование 111 руб.</value>
+  </data>
 </root>

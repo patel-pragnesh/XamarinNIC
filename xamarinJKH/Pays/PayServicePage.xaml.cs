@@ -23,7 +23,7 @@ namespace xamarinJKH.Pays
         private RestClientMP server = new RestClientMP();
         private int? idRequset;
 
-        public PayServicePage(string ident, decimal sum, int? idRequset = null)
+        public PayServicePage(string ident, decimal sum, int? idRequset = null, bool isInsurance= false)
         {
             this.idRequset = idRequset;
             InitializeComponent();
@@ -45,7 +45,7 @@ namespace xamarinJKH.Pays
 
             if (idRequset == null)
             {
-                GetPayLink(ident, sum);
+                GetPayLink(ident, sum, isInsurance);
             }
             else
             {
@@ -53,7 +53,7 @@ namespace xamarinJKH.Pays
             }
         }
 
-        async void GetPayLink(string ident, decimal sum)
+        async void GetPayLink(string ident, decimal sum, bool isInsurance)
         {
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
@@ -63,7 +63,7 @@ namespace xamarinJKH.Pays
             }
 
             await Settings.StartProgressBar();
-            PayService payLink = await server.GetPayLink(ident, sum);
+            PayService payLink = await server.GetPayLink(ident, sum, isInsurance);
             if (payLink.payLink != null)
             {
                 webView.Source = payLink.payLink;
