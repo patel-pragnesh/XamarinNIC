@@ -185,6 +185,11 @@ namespace xamarinJKH.Main
             {
                 FrameOSS.IsVisible = false;
             }
+
+            if (RestClientMP.SERVER_ADDR.ToLower().Contains("water"))
+            {
+                FrameOSS.IsVisible = true;
+            }
         }
 
         private void StartShop()

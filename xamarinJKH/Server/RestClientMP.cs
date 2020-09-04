@@ -37,6 +37,8 @@ namespace xamarinJKH.Server
         // public const string SERVER_ADDR = "https://api.sm-center.ru/ur_lk"; // Универсальные решения
         // public const string SERVER_ADDR = "https://api.sm-center.ru/chg_lk/"; // Чистый город
 
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/tsgopaliha/"; // Новая Опалиха
+        
         public const string SEND_TEACH_MAIL = "Public/TechSupportAppeal"; // Создание обращения в тех поддержк
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутентификация сотрудника
         public const string LOGIN = "auth/Login"; // Аутентификация пользователя

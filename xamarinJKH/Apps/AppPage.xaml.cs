@@ -749,7 +749,7 @@ namespace xamarinJKH.Apps
         {
             string Status = request.Status;
             string Source = Settings.GetStatusIcon(request.StatusID);
-            if (request.Phone.Contains("+") == false && request.Phone.Substring(0, 2) == "79")
+            if (!string.IsNullOrWhiteSpace(request.Phone) && (request.Phone.Contains("+") == false && request.Phone.Substring(0, 2) == "79"))
             {
                 request.Phone = "+" + request.Phone;
             }

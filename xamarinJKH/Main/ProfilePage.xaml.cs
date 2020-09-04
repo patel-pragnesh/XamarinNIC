@@ -195,7 +195,7 @@ namespace xamarinJKH.Main
             RadioButtonDark.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
             RadioButtonLigth.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
             
-            int theme = Preferences.Get("Theme", 0);
+            int theme = Preferences.Get("Theme", 2);
             switch (theme)
             {
                 case 0:

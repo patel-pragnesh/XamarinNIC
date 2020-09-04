@@ -200,7 +200,7 @@
                                                 Margin="-5, 0, 0, 0"
                                                 VerticalOptions="Center" />
                                         </StackLayout>
-
+                                       
                                         <StackLayout
                                             Orientation="Horizontal">
                                             <Label
@@ -215,7 +215,23 @@
                                                 HorizontalOptions="FillAndExpand" />
 
                                         </StackLayout>
+                                        <StackLayout
+                                            Margin="5,0,0,0"
+                                            x:Name="LayoutInsurance"
+                                            Orientation="Horizontal">
 
+                                            <Switch
+                                                OnColor="{x:DynamicResource MainColor}"
+                                                IsToggled="False"
+                                                Toggled="SwitchLogin_OnToggled"
+                                                x:Name="SwitchInsurance" />
+
+                                            <Label Text="{x:Static xamarinJkh:AppResources.InsuranceText}"
+                                                   x:Name="LabelInsurance"
+                                                   FontSize="15"
+                                                   TextColor="Gray"
+                                                   HorizontalOptions="Center" />
+                                        </StackLayout>
                                         <Label
                                             HeightRequest="1"
                                             Margin="-10, 0, 0, 0"

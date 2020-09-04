@@ -140,6 +140,9 @@ namespace xamarinJKH.Pays
                 totalSum = result.TotalSum.ToString();
             }
 
+            LayoutInsurance.IsVisible = account.InsuranceSum != 0;
+            
+            LabelInsurance.Text = AppResources.InsuranceText.Replace("111", account.InsuranceSum.ToString());
             formatted.Spans.Add(new Span
             {
                 Text = $"{AppResources.Total}: ",
@@ -198,24 +201,35 @@ namespace xamarinJKH.Pays
 
         private async void EntrySum_OnTextChanged(object sender, TextChangedEventArgs e)
         {
+            await SetSumPay();
+        }
+
+        private async Task SetSumPay()
+        {
             FormattedString formatted = new FormattedString();
 
 
             string sumText = EntrySum.Text.Equals("") ? "0" : EntrySum.Text;
-          
-            string totalSum = sumText;
+
+            decimal totalSum = Decimal.Parse(sumText);
 
             // if (isComission)
             // {
-                ComissionModel result = await server.GetSumWithComission(sumText);
-                if (result.Error == null && !result.Comission.Equals("0"))
-                {
-                    isComission = true;
-                    LabelCommision.Text = $"{AppResources.Commision} " + result.Comission + $" {AppResources.Currency}";
-                totalSum = result.TotalSum.ToString();
-                }
+            if (SwitchInsurance.IsToggled && SwitchInsurance.IsVisible)
+            {
+                totalSum += account.InsuranceSum;
+            }
+            ComissionModel result = await server.GetSumWithComission(totalSum.ToString());
+            if (result.Error == null && !result.Comission.Equals("0"))
+            {
+                isComission = true;
+                LabelCommision.Text = $"{AppResources.Commision} " + result.Comission + $" {AppResources.Currency}";
+                totalSum = result.TotalSum;
+            }
             // }
 
+           
+            
             formatted.Spans.Add(new Span
             {
                 Text = $"{AppResources.Total}: ",
@@ -225,7 +239,7 @@ namespace xamarinJKH.Pays
 
             formatted.Spans.Add(new Span
             {
-                Text = totalSum,
+                Text = totalSum.ToString(),
                 FontSize = 20,
                 TextColor = Color.FromHex(Settings.MobileSettings.color),
                 FontAttributes = FontAttributes.Bold
@@ -264,7 +278,7 @@ namespace xamarinJKH.Pays
                 decimal sum = Decimal.Parse(sumText);
                 if (sum > 0)
                 {
-                    await Navigation.PushAsync(new PayServicePage(account.Ident, sum));
+                    await Navigation.PushAsync(new PayServicePage(account.Ident, sum, null, SwitchInsurance.IsToggled && SwitchInsurance.IsVisible));
                 }
                 else
                 {
@@ -275,6 +289,11 @@ namespace xamarinJKH.Pays
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorEnterSum, "OK");
             }
+        }
+
+        private async void SwitchLogin_OnToggled(object sender, ToggledEventArgs e)
+        {
+            await SetSumPay();
         }
     }
 }
