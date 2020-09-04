@@ -11,6 +11,7 @@ using System.Runtime.CompilerServices;
 using Akavache;
 using Xamarin.Essentials;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.Additional;
 
 namespace xamarinJKH.Main
 {
@@ -82,6 +83,21 @@ namespace xamarinJKH.Main
             });
             
             MessagingCenter.Subscribe<Object>(this, "ChangeTheme", (sender) => ChangeTheme.Execute(null));
+            if (RestClientMP.SERVER_ADDR.Contains("water2"))
+            {
+                SetServices(); 
+            }
+        }
+
+        async void SetServices()
+        {
+            var services = this.Children.FirstOrDefault(x => x.Title == AppResources.Shop_NavBar);
+            if (services != null)
+            {
+                this.CurrentPage = services;
+                await Task.Delay(TimeSpan.FromMilliseconds(700));
+                MessagingCenter.Send<Object>(this, "LoadGoods");
+            }
         }
 
         void StartUpdateToken()
