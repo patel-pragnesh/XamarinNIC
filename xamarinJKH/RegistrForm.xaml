@@ -541,6 +541,7 @@
 
                                 <StackLayout
                                     Margin="0, 20, 0, 0"
+                                    x:Name="LayoutConfirm"
                                     Orientation="Horizontal">
                                     <xamarinJkh:IconView x:Name="IconViewConfirmPass"
                                                          Source="ic_password_login"
@@ -571,6 +572,7 @@
 
                                 </StackLayout>
                                 <StackLayout
+                                    x:Name="LayoutConfirmLines"
                                     Orientation="Horizontal">
                                     <!-- <Image Source="ic_separator" -->
                                     <!--        VerticalOptions="Start" -->
@@ -619,7 +621,7 @@
                                                     HorizontalOptions="Start"
                                                     VerticalOptions="Center" />
                                     <Label x:Name="BtnSave"
-                                           Text="{x:Static xamarinJkh:AppResources.Register}"
+                                           Text="{x:Static xamarinJkh:AppResources.Register2}"
                                            Margin="0, 0, 0, 0"
                                            FontSize="15"
                                            TextColor="White"

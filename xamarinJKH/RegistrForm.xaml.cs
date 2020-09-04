@@ -110,9 +110,13 @@ namespace xamarinJKH
                 if (EntryPassNew.IsPassword)
                 {
                     ImageClosePass.Foreground = Color.FromHex(Settings.MobileSettings.color);
+                    LayoutConfirm.IsVisible = true;
+                    LayoutConfirmLines.IsVisible = true;
                 }
                 else
                 {
+                    LayoutConfirm.IsVisible = false;
+                    LayoutConfirmLines.IsVisible = false;
                     ImageClosePass.Foreground = Color.DarkSlateGray;
                 }
             };
@@ -419,7 +423,7 @@ namespace xamarinJKH
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorRegisterFillPasswordConfirm, "OK");
             }
-            else if (!pass.Equals(passConfirm))
+            else if (EntryPassNew.IsPassword && !pass.Equals(passConfirm))
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorRegisterPassword, "OK");
             }
