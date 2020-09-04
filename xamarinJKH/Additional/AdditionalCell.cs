@@ -122,7 +122,7 @@ namespace xamarinJKH.Additional
 
                     image.Source = ImageSource.FromStream(() => { return stream; });
                     image.VerticalOptions = LayoutOptions.FillAndExpand;
-                    image.Aspect = Aspect.AspectFill;
+                    image.Aspect = Aspect.Fill;
                     image.HorizontalOptions = LayoutOptions.FillAndExpand;
                     image.HeightRequest = ImageHeight;
 
