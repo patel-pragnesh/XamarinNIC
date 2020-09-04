@@ -107,8 +107,8 @@ namespace xamarinJKH.Additional
             if (Settings.EventBlockData.Error == null)
             {
                 SetAdditional();
-                additionalList.ItemsSource = null;
-                additionalList.ItemsSource = Additional;
+                //additionalList.ItemsSource = null;
+                //additionalList.ItemsSource = Additional;
                 
             }
             else
@@ -209,7 +209,7 @@ namespace xamarinJKH.Additional
             //AiForms.Dialogs.Loading.Instance.Show();
             IsBusy = true;
             SetText();
-            SetAdditional();
+            //SetAdditional();
             //await RefreshData();
         }
 
@@ -269,11 +269,12 @@ namespace xamarinJKH.Additional
                     }
 
 
-                    if (SelectedGroup == null)
-                    {
                         if (groups.Count > 0)
+                        {
+                            SelectedGroup = null;
                             Device.BeginInvokeOnMainThread(() => SelectedGroup = Groups[0]);
-                    }
+
+                        }
                 }
 
                 IsBusy = false;
@@ -300,14 +301,22 @@ namespace xamarinJKH.Additional
 
         private void GroupChanged(object sender, SelectionChangedEventArgs e)
         {
-            string group = e.CurrentSelection[0] as string;
-            Additional.Clear();
-            foreach (var service in Settings.EventBlockData.AdditionalServices.Where(x => x.Group == group))
+            try
             {
-                if (service.HasLogo && service.ShowInAdBlock != null)
-                    if (!service.ShowInAdBlock.ToLower().Equals("не отображать"))
-                        Additional.Add(service);
+                string group = e.CurrentSelection[0] as string;
+                Additional.Clear();
+                foreach (var service in Settings.EventBlockData.AdditionalServices.Where(x => x.Group == group))
+                {
+                    if (service.HasLogo && service.ShowInAdBlock != null)
+                        if (!service.ShowInAdBlock.ToLower().Equals("не отображать"))
+                            Additional.Add(service);
+                }
             }
+            catch
+            {
+
+            }
+            
         }
 
         private void SwitchList(object sender, EventArgs args)
