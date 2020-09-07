@@ -70,14 +70,18 @@ namespace xamarinJKH.VideoStreaming
             var parent = this.Parent.Parent as TabbedPage;
             if (rotated)
             {
-                Video.ScaleTo(1.5);
+                Video.ScaleTo(1.4);
                 //HeightRequest = App.ScreenWidth;
+                Video.Margin = new Thickness(3, -15, 0, 0);
                 Video.BackgroundColor = Color.Black;
+                (VideoContainer.Parent as StackLayout).BackgroundColor = Color.Black; 
 
             }
             else
             {
                 Video.BackgroundColor = Color.Transparent;
+                (VideoContainer.Parent as StackLayout).BackgroundColor = Color.Transparent;
+                Video.Margin = new Thickness(0);
                 Video.ScaleTo(1);
             }
         }
