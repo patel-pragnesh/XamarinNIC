@@ -71,6 +71,7 @@ namespace xamarinJKH.VideoStreaming
             if (rotated)
             {
                 Video.ScaleTo(1.5);
+                //HeightRequest = App.ScreenWidth;
                 Video.BackgroundColor = Color.Black;
 
             }
