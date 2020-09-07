@@ -7,12 +7,14 @@ using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
 using xamarinJKH.CustomRenderers;
 using xamarinJKH.Server;
+using FFImageLoading.Forms.Args;
 
 namespace xamarinJKH.Additional
 {
     public class AdditionalCell : ViewCell
     {
         Image image;
+        FFImageLoading.Forms.CachedImage CachedImage;
 
         //MaterialFrame frame;
         PancakeView frame;
@@ -21,9 +23,15 @@ namespace xamarinJKH.Additional
         public AdditionalCell()
         {
             image = new Image();
+            CachedImage = new FFImageLoading.Forms.CachedImage();
+            CachedImage.VerticalOptions = LayoutOptions.FillAndExpand;
+            CachedImage.HorizontalOptions = LayoutOptions.FillAndExpand;
+            CachedImage.Aspect = Aspect.AspectFill;
+            CachedImage.HeightRequest = ImageHeight;
 
 
             frame = new PancakeView(); // MaterialFrame();
+            
             //frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
@@ -45,7 +53,7 @@ namespace xamarinJKH.Additional
             //cell.Content = image;
             //cell.Children.Add(image);
 
-            frame.Content = image;
+            frame.Content = CachedImage;// image;
 
             View = frame;
         }
@@ -98,6 +106,9 @@ namespace xamarinJKH.Additional
         protected override async void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
+            CachedImage.Source = RestClientMP.SERVER_ADDR + $"/AdditionalServices/logo/{Detail}";
+            CachedImage.HeightRequest = ImageHeight;
+            return;
 
             if (BindingContext != null)
             {
