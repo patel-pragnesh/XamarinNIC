@@ -20,9 +20,9 @@
                                    Grid.RowSpan="3"/>
             <StackLayout Grid.Row="1"
                          Grid.RowSpan="2">
-                <Grid 
-                         x:Name="VideoContainer"
-                         Padding="10">
+                <Grid   HeightRequest="{Binding PlayerHeight}"
+                        Padding="10"
+                         x:Name="VideoContainer">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="200"/>
                         <RowDefinition Height="50"/>
@@ -41,7 +41,11 @@
                                               Grid.ColumnSpan="2"
                                       HorizontalOptions="FillAndExpand"
                                       x:Name="Video"/>
-                    <Button Clicked="Button_Clicked"
+                    <ImageButton Clicked="Button_Clicked"
+                                Source="ic_flip"
+                                 Aspect="AspectFit"
+                                 BackgroundColor="Transparent"
+                                          Margin="0,-50,10,0"
                                 Grid.Row="1"
                                 Grid.Column="1"/>
                 </Grid>

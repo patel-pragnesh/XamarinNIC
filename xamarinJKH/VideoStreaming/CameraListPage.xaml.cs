@@ -21,7 +21,16 @@ namespace xamarinJKH.VideoStreaming
 
             MessagingCenter.Subscribe<HeaderViewStack>(this, "GoBack", sender =>
             {
-                Navigation.PopAsync();
+                if (Application.Current.MainPage.Navigation.ModalStack.Count > 1)
+                {
+
+                    Navigation.PopModalAsync();
+                }
+                else
+                {
+
+                    Navigation.PopAsync();
+                }
             });
         }
 
@@ -30,7 +39,7 @@ namespace xamarinJKH.VideoStreaming
             try
             {
                 var camera = args.CurrentSelection[0] as CameraModel;
-                await Navigation.PushAsync(new CameraPage(camera.Link));
+                await Navigation.PushModalAsync(new CameraPage(camera.Link));
                 (sender as CollectionView).SelectedItem = null;
             }
             catch
