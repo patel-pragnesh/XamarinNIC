@@ -264,7 +264,7 @@
 
                                             <additional:AdditionalCell
                                         ImageWidth="45"
-                                        ImageHeight="160"
+                                        ImageHeight="180"
                                         Detail="{Binding ID}"
                                         LogoFileId="{Binding LogoFileId}" />
                                         </DataTemplate>
