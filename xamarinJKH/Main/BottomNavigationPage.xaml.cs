@@ -29,16 +29,55 @@ namespace xamarinJKH.Main
             SelectedTabColor = hex;
 
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
-            if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
-                currentTheme = OSAppTheme.Dark;
+            //только темная тема в ios
+            //if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+            //    currentTheme = OSAppTheme.Dark;
+
             Color unselect = hex.AddLuminosity(0.3);
+            //switch (currentTheme)
+            //{
+            //    case OSAppTheme.Light: UnselectedTabColor = unselect;
+            //        break;
+            //    case OSAppTheme.Dark: UnselectedTabColor = Color.Gray;
+            //        break;
+            //}
+
             switch (currentTheme)
             {
-                case OSAppTheme.Light: UnselectedTabColor = unselect;
+                case OSAppTheme.Light:
+                    UnselectedTabColor = unselect;
+                    if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                    {
+                        EventsNavPage.BarTextColor = Color.Black;
+                        PayPage.BarTextColor = Color.Black;
+                        CounterPage.BarTextColor = Color.Black;
+                        AppPage.BarTextColor = Color.Black;
+                        ShopNavPage.BarTextColor = Color.Black;
+                    }
                     break;
-                case OSAppTheme.Dark: UnselectedTabColor = Color.Gray;
+                case OSAppTheme.Dark:
+                    UnselectedTabColor = Color.Gray;
+                    if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                    {
+                        EventsNavPage.BarTextColor = Color.White;
+                        PayPage.BarTextColor = Color.White;
+                        CounterPage.BarTextColor = Color.White;
+                        AppPage.BarTextColor = Color.White;
+                        ShopNavPage.BarTextColor = Color.White;
+                    }
+                    break;
+                case OSAppTheme.Unspecified:
+                    if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                    {
+                        EventsNavPage.BarTextColor = Color.Black;
+                        PayPage.BarTextColor = Color.Black;
+                        CounterPage.BarTextColor = Color.Black;
+                        AppPage.BarTextColor = Color.Black;
+                        ShopNavPage.BarTextColor = Color.Black;
+                    }
                     break;
             }
+
             CheckAccounts();
             Application.Current.Resources["Saldo"] = true;
             visibleMenu();
@@ -68,22 +107,49 @@ namespace xamarinJKH.Main
             ChangeTheme = new Command(async () =>
             {
                 OSAppTheme currentTheme = Application.Current.RequestedTheme;
-                if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
-                    currentTheme = OSAppTheme.Dark;
+                //только темная тема в ios
+                //if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+                //    currentTheme = OSAppTheme.Dark;
 
 
                 Color unselect = hex.AddLuminosity(0.3);
                 switch (currentTheme)
                 {
                     case OSAppTheme.Light: UnselectedTabColor = unselect;
+                        if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                        {
+                            EventsNavPage.BarTextColor = Color.Black;
+                            PayPage.BarTextColor = Color.Black;
+                            CounterPage.BarTextColor = Color.Black;
+                            AppPage.BarTextColor = Color.Black;
+                            ShopNavPage.BarTextColor = Color.Black;
+                        }
                         break;
                     case OSAppTheme.Dark: UnselectedTabColor = Color.Gray;
+                        if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                        {
+                            EventsNavPage.BarTextColor = Color.White;
+                            PayPage.BarTextColor = Color.White;
+                            CounterPage.BarTextColor = Color.White;
+                            AppPage.BarTextColor = Color.White;
+                            ShopNavPage.BarTextColor = Color.White;
+                        }
+                        break;
+                    case OSAppTheme.Unspecified:
+                        if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                        {
+                            EventsNavPage.BarTextColor = Color.Black;
+                            PayPage.BarTextColor = Color.Black;
+                            CounterPage.BarTextColor = Color.Black;
+                            AppPage.BarTextColor = Color.Black;
+                            ShopNavPage.BarTextColor = Color.Black;
+                        }
                         break;
                 }
             });
             
             MessagingCenter.Subscribe<Object>(this, "ChangeTheme", (sender) => ChangeTheme.Execute(null));
-            if (RestClientMP.SERVER_ADDR.Contains("water2"))
+            if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
             {
                 SetServices(); 
             }

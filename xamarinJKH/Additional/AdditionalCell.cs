@@ -26,7 +26,7 @@ namespace xamarinJKH.Additional
             CachedImage = new FFImageLoading.Forms.CachedImage();
             CachedImage.VerticalOptions = LayoutOptions.FillAndExpand;
             CachedImage.HorizontalOptions = LayoutOptions.FillAndExpand;
-            CachedImage.Aspect = Aspect.AspectFill;
+            CachedImage.Aspect = Aspect.Fill;
             CachedImage.HeightRequest = ImageHeight;
 
 
@@ -108,6 +108,7 @@ namespace xamarinJKH.Additional
             base.OnBindingContextChanged();
             CachedImage.Source = RestClientMP.SERVER_ADDR + $"/AdditionalServices/logo/{Detail}";
             CachedImage.HeightRequest = ImageHeight;
+           
             return;
 
             if (BindingContext != null)
@@ -133,7 +134,7 @@ namespace xamarinJKH.Additional
 
                     image.Source = ImageSource.FromStream(() => { return stream; });
                     image.VerticalOptions = LayoutOptions.FillAndExpand;
-                    image.Aspect = Aspect.AspectFill;
+                    image.Aspect = Aspect.Fill;
                     image.HorizontalOptions = LayoutOptions.FillAndExpand;
                     image.HeightRequest = ImageHeight;
 

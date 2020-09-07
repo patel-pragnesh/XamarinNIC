@@ -75,12 +75,12 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>Apple Distribution: Evgeny Yurtaykin (UK4AR963E7)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>distrNewOpaliha</CodesignProvision>
+    <CodesignProvision>distrGranel</CodesignProvision>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
     <MtouchLink>SdkOnly</MtouchLink>
     <BuildIpa>true</BuildIpa>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
-    <IpaPackageName>new-opaliha_335</IpaPackageName>
+    <IpaPackageName>UkComfort_341</IpaPackageName>
     <IpaIncludeArtwork>true</IpaIncludeArtwork>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
@@ -315,7 +315,9 @@
     <BundleResource Include="Resources\ic_add_ls.png" />
     <BundleResource Include="Resources\ic_app_top.png" />
     <BundleResource Include="Resources\ic_app_top_in.png" />
-    <BundleResource Include="Resources\ic_app_top_light.png" />
+    <BundleResource Include="Resources\ic_app_top_light.png">
+      <SubType>Designer</SubType>
+    </BundleResource>
     <BundleResource Include="Resources\ic_arrow_back.png" />
     <BundleResource Include="Resources\ic_arrow_down.png" />
     <BundleResource Include="Resources\ic_arrow_tech.png" />

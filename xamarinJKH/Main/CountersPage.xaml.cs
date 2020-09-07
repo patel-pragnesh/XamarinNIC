@@ -143,8 +143,8 @@ namespace xamarinJKH.Main
         private void SetTitle()
         {
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
-            if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
-                currentTheme = OSAppTheme.Dark;
+            //if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+            //    currentTheme = OSAppTheme.Dark;
             if (Settings.Person != null)
                 if (Settings.Person.Accounts != null)
                     if (Settings.Person.Accounts.Count > 0)

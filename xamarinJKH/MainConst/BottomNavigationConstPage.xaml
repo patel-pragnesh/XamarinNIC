@@ -9,17 +9,17 @@
             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
             android:TabbedPage.ToolbarPlacement="Bottom"
             x:Class="xamarinJKH.MainConst.BottomNavigationConstPage">
-    <NavigationPage Title="{x:Static xamarinZkh:AppResources.App_NavBar}" IconImageSource="ic_apps" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage x:Name="appNavBar" Title="{x:Static xamarinZkh:AppResources.App_NavBar}" IconImageSource="ic_apps" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
             <local:AppsConstPage Title="{x:Static xamarinZkh:AppResources.App_NavBar}" IconImageSource="ic_apps" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="{x:Static xamarinZkh:AppResources.Monitoring_NavBar}" IconImageSource="ic_monitor" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage x:Name="monNavBar" Title="{x:Static xamarinZkh:AppResources.Monitoring_NavBar}" IconImageSource="ic_monitor" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
             <mainConst:MonitorPage Title="{x:Static xamarinZkh:AppResources.Monitoring_NavBar}" IconImageSource="ic_monitor" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="{x:Static xamarinZkh:AppResources.Profile_NavBar}" IconImageSource="ic_profile" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage x:Name="profNavBar" Title="{x:Static xamarinZkh:AppResources.Profile_NavBar}" IconImageSource="ic_profile" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
             <local:ProfileConstPage Title="{x:Static xamarinZkh:AppResources.Profile_NavBar}" IconImageSource="ic_profile" />
         </x:Arguments>

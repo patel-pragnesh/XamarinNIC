@@ -449,8 +449,8 @@ namespace xamarinJKH.Counters
         void SetTextAndColor()
         {
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
-            if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
-                currentTheme = OSAppTheme.Dark;
+            //if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+            //    currentTheme = OSAppTheme.Dark;
             if (meter.Resource.ToLower().Contains("холодное") || meter.Resource.ToLower().Contains("хвс"))
             {
                 img.Source = ImageSource.FromFile("ic_cold_water");

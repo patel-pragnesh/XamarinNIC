@@ -9,7 +9,7 @@
             xmlns:resources="clr-namespace:xamarinJKH"
             xmlns:additional="clr-namespace:xamarinJKH.Additional;assembly=xamarinJKH"
             x:Class="xamarinJKH.Main.BottomNavigationPage">
-    <NavigationPage HasNavigationBar="False" Title="{x:Static resources:AppResources.Events_NavBar}" IconImageSource="ic_events" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage x:Name="EventsNavPage" HasNavigationBar="False" Title="{x:Static resources:AppResources.Events_NavBar}" IconImageSource="ic_events" BarBackgroundColor="Black" BarTextColor="White" >
         <x:Arguments>
             <local:EventsPage  Title="{x:Static resources:AppResources.Events_NavBar}" IconImageSource="ic_events" />
         </x:Arguments>
@@ -29,7 +29,7 @@
             <local:AppsPage Title="{x:Static resources:AppResources.App_NavBar}" IconImageSource="ic_apps" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="{x:Static resources:AppResources.Shop_NavBar}" IconImageSource="ic_shop" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage  x:Name="ShopNavPage" Title="{x:Static resources:AppResources.Shop_NavBar}" IconImageSource="ic_shop" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
             <additional:AdditionalPage Title="{x:Static resources:AppResources.Shop_NavBar}" IconImageSource="ic_shop" />
         </x:Arguments>

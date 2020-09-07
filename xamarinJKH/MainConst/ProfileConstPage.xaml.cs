@@ -58,9 +58,9 @@ namespace xamarinJKH.MainConst
                 case Device.iOS:
 
                     // //только темная тема в ios
-                    themelabel.IsVisible = false;
-                    ThemeButtonBlock.IsVisible = false;
-                    ThemeButtonBlock.IsEnabled = false;
+                    //themelabel.IsVisible = false;
+                    //ThemeButtonBlock.IsVisible = false;
+                    //ThemeButtonBlock.IsEnabled = false;
 
                     //BackgroundColor = Color.White;
                     // ImageFon.Margin = new Thickness(0, 0, 0, 0);
@@ -206,8 +206,13 @@ namespace xamarinJKH.MainConst
             RadioButtonAuto.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
             RadioButtonDark.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
             RadioButtonLigth.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
-            
-            int theme = Preferences.Get("Theme", 0);
+
+            int theme = Preferences.Get("Theme", 2);
+
+            //задание темы для ios
+            //if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+            //    theme = Preferences.Get("Theme", 1);
+
             switch (theme)
             {
                 case 0:
@@ -231,15 +236,15 @@ namespace xamarinJKH.MainConst
         private void RadioButtonAuto_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             //только темная тема в ios
-            if (Xamarin.Essentials.DeviceInfo.Platform != DevicePlatform.iOS)
-            {
+            //if (Xamarin.Essentials.DeviceInfo.Platform != DevicePlatform.iOS)
+            //{
                 Application.Current.UserAppTheme = OSAppTheme.Unspecified;
                 Preferences.Set("Theme", 0);
                 MessagingCenter.Send<Object>(this, "ChangeThemeConst");
                 MessagingCenter.Send<Object>(this, "ChangeAdminApp");
                 MessagingCenter.Send<Object>(this, "ChangeAdminMonitor");
                 SetAdminName();
-            }
+            //}
                 
         }
 

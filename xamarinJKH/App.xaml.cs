@@ -36,22 +36,20 @@ namespace xamarinJKH
         {
             InitializeComponent();
 
-
-           
-
-
-            //только темная тема в иос
-            if (Device.RuntimePlatform == Device.iOS)
-                Application.Current.UserAppTheme = OSAppTheme.Dark;
+            //только темная тема в ios
+            if (Device.RuntimePlatform == Device.iOS && Application.Current.UserAppTheme == OSAppTheme.Unspecified)
+                Application.Current.UserAppTheme = OSAppTheme.Light;
 
             DependencyService.Register<RestClientMP>();
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
+
+                    var color = Application.Current.UserAppTheme == OSAppTheme.Light || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? Color.Black : Color.White;
                     var nav = new Xamarin.Forms.NavigationPage(new MainPage())
                     {
                         BarBackgroundColor = Color.Black,
-                        BarTextColor = Color.White
+                        BarTextColor = color
                     };
 
                     nav.On<iOS>().SetIsNavigationBarTranslucent(true);
@@ -216,12 +214,14 @@ namespace xamarinJKH
         protected override void OnStart()
         {
             Registrations.Start("XamarinJKH");
+                                    
+            int theme = Preferences.Get("Theme", 2);
 
-            //только темная тема в иос
-            if (Device.RuntimePlatform != Device.iOS)
-            {
-                int theme = Preferences.Get("Theme", 2);
-                switch (theme)
+            //только темная тема в ios
+            //if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+            //    theme = Preferences.Get("Theme", 1);
+
+            switch (theme)
                 {
                     case 0:
                         Current.UserAppTheme = OSAppTheme.Unspecified;
@@ -233,9 +233,7 @@ namespace xamarinJKH
                         Current.UserAppTheme = OSAppTheme.Light;
                         break;
                 }
-            }
-            else
-                Current.UserAppTheme = OSAppTheme.Dark;
+            
 
 
             AppCenter.Start("android=4384b8c4-8639-411c-b011-9d9e8408acde;"
