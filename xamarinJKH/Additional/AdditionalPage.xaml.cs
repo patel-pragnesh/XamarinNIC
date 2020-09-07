@@ -75,7 +75,46 @@ namespace xamarinJKH.Additional
                 {
                     IsRefreshing = true;
 
-                    await RefreshData();
+                    if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+                    {
+                        Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, null, "OK"));
+                        IsRefreshing = false;
+                    }
+                    else
+                    {
+                        if (Settings.EventBlockData.AdditionalServices != null)
+                        {
+                            var l = Settings.EventBlockData.AdditionalServices.Where(x => x.HasLogo && x.ShowInAdBlock != null && !x.ShowInAdBlock.ToLower().Equals("не отображать"));
+                            var groups = l.GroupBy(x => x.Group).Select(x => x.First())
+                                .Select(y => y.Group).ToList();
+
+                            var groups1 = Settings.EventBlockData.AdditionalServices.GroupBy(x => x.Group).Select(x => x.First())
+                                .Select(y => y.Group).ToList();
+                            Additional.Clear();
+
+                            foreach (var each in Settings.EventBlockData.AdditionalServices)
+                            {
+                                //try
+                                //{
+                                if (each.HasLogo)
+                                    if (each.ShowInAdBlock != null)
+                                        if (!each.ShowInAdBlock.ToLower().Equals("не отображать"))
+                                        {
+                                            if (SelectedGroup != null)
+                                            {
+                                                if (each.Group == SelectedGroup)
+                                                {
+                                                    Device.BeginInvokeOnMainThread(() => Additional.Add(each));
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Device.BeginInvokeOnMainThread(() => Additional.Add(each));
+                                            }
+                                        }
+                            }
+                        }
+                    }
 
                     IsRefreshing = false;
                 });
