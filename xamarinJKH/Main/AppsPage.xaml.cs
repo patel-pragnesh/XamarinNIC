@@ -166,7 +166,6 @@ namespace xamarinJKH.Main
             MessagingCenter.Subscribe<Object>(this, "AutoUpdate", (sender) =>
             {
                 StartAutoUpdate();
-                viewModel.LoadRequests.Execute(null);
             });
 
 
@@ -237,6 +236,7 @@ namespace xamarinJKH.Main
                     Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(new AppPage(request)));
                 }
             });
+            viewModel.LoadRequests.Execute(null);
 
             //            PropertyChanged = "change"
 
