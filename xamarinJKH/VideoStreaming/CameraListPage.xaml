@@ -11,7 +11,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label" x:Key="Number">
-                <Setter Property="FontSize" Value="17"/>
+                <Setter Property="FontSize" Value="14"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="Black"/>
             </Style>
@@ -36,7 +36,7 @@
                                 SelectionChanged="CameraSelect">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical"
-                                           ItemSpacing="10"/>
+                                           ItemSpacing="20"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -47,10 +47,24 @@
                                      BorderThickness="1"
                                      BorderColor="{AppThemeBinding Dark=White, Light={x:StaticResource MainColor}}">
                                 <StackLayout>
-                                    <Label Text="{Binding ID}"
-                                           Style="{x:StaticResource Number}"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.2*"/>
+                                            <ColumnDefinition Width="0.8*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Column="1">
 
-                                    <Label Text="{Binding Name}"/>
+                                            <Label 
+                                           Style="{x:StaticResource Number}"
+                                               Text="Камера по адресу"/>
+                                            <Label Text="{Binding Address}"/>
+                                        </StackLayout>
+                                        <local:IconView Source="ic_camera"
+                                                        Foreground="{x:DynamicResource MainColor}"
+                                                        HeightRequest="50"
+                                                        WidthRequest="50"
+                                                        Margin="0,15"/>
+                                    </Grid>
                                 </StackLayout>
                             </pancake:PancakeView>
                         </DataTemplate>
