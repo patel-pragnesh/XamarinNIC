@@ -22,6 +22,7 @@ using Xamarin.Forms.Maps;
 using AiForms.Dialogs;
 using Rg.Plugins.Popup.Services;
 using xamarinJKH.DialogViews;
+using Xamarin.Essentials;
 
 namespace xamarinJKH.Additional
 {
@@ -355,7 +356,10 @@ namespace xamarinJKH.Additional
             var label = sender as Label;
             var mainColor = Application.Current.Resources["MainColor"];
             label.TextColor =  (Color)mainColor;
-            MapMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Dark || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? Color.White : Color.Black;
+            if(DevicePlatform.iOS==DevicePlatform.iOS)
+                MapMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Light || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? Color.Black : Color.White;
+            else
+                MapMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Dark || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? Color.White : Color.Black;
             Map.IsVisible = false;
             SetAdditional();
         }
@@ -365,7 +369,12 @@ namespace xamarinJKH.Additional
             var label = sender as Label;
             var mainColor = Application.Current.Resources["MainColor"];
             label.TextColor = (Color)mainColor;
-            CatalogMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Dark || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? Color.White : Color.Black;
+
+            if (DevicePlatform.iOS == DevicePlatform.iOS)
+                CatalogMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Light || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? Color.Black : Color.White;
+            else
+                CatalogMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Dark || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? Color.White : Color.Black;
+            
             Map.IsVisible = true;
             (Map.BindingContext as MapPageViewModel).GetPermission.Execute(Additional);
             (Map.BindingContext as MapPageViewModel).LoadPins.Execute(Additional);

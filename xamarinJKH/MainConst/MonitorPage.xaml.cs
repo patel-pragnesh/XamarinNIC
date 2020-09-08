@@ -1053,8 +1053,8 @@ namespace xamarinJKH.MainConst
         {
             FormattedString formatted = new FormattedString();
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
-            if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
-                currentTheme = OSAppTheme.Dark;
+            //if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+            //    currentTheme = OSAppTheme.Dark;
             
             formatted.Spans.Add(new Span
             {

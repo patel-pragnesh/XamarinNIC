@@ -25,14 +25,44 @@ namespace xamarinJKH.MainConst
             SelectedTabColor = hex;
             UnselectedTabColor = Color.Gray;
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
-            if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
-                currentTheme = OSAppTheme.Dark;
+            //if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+            //    currentTheme = OSAppTheme.Dark;
             Color unselect = hex.AddLuminosity(0.3);
+            //switch (currentTheme)
+            //{
+            //    case OSAppTheme.Light: UnselectedTabColor = unselect;
+            //        break;
+            //    case OSAppTheme.Dark: UnselectedTabColor = Color.Gray;
+            //        break;
+            //}
+
             switch (currentTheme)
             {
-                case OSAppTheme.Light: UnselectedTabColor = unselect;
+                case OSAppTheme.Light:
+                    UnselectedTabColor = unselect;
+                    if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                    {
+                        appNavBar.BarTextColor = Color.Black;
+                        monNavBar.BarTextColor = Color.Black;
+                        profNavBar.BarTextColor = Color.Black;
+                    }
                     break;
-                case OSAppTheme.Dark: UnselectedTabColor = Color.Gray;
+                case OSAppTheme.Dark:
+                    UnselectedTabColor = Color.Gray;
+                    if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                    {
+                        appNavBar.BarTextColor = Color.White;
+                        monNavBar.BarTextColor = Color.White;
+                        profNavBar.BarTextColor = Color.White;
+                    }
+                    break;
+                case OSAppTheme.Unspecified:
+                    if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                    {
+                        appNavBar.BarTextColor = Color.Black;
+                        monNavBar.BarTextColor = Color.Black;
+                        profNavBar.BarTextColor = Color.Black;
+                    }
                     break;
             }
 
@@ -40,19 +70,42 @@ namespace xamarinJKH.MainConst
             ChangeTheme = new Command(async () =>
             {
                 OSAppTheme currentTheme = Application.Current.RequestedTheme;
-                if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
-                    currentTheme = OSAppTheme.Dark;
                 
                 Color unselect = hex.AddLuminosity(0.3);
                 switch (currentTheme)
                 {
-                    case OSAppTheme.Light: UnselectedTabColor = unselect;
+                    case OSAppTheme.Light: 
+                        UnselectedTabColor = unselect;
+                        if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                        {
+                            appNavBar.BarTextColor = Color.Black;
+                            monNavBar.BarTextColor = Color.Black;
+                            profNavBar.BarTextColor = Color.Black;
+                        }
+                            break;
+                    case OSAppTheme.Dark: 
+                        UnselectedTabColor = Color.Gray;
+                        if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                        {
+                            appNavBar.BarTextColor = Color.White;
+                            monNavBar.BarTextColor = Color.White;
+                            profNavBar.BarTextColor = Color.White;
+                        }
                         break;
-                    case OSAppTheme.Dark: UnselectedTabColor = Color.Gray;
+                    case OSAppTheme.Unspecified:
+                        if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
+                        {
+                            appNavBar.BarTextColor = Color.Black;
+                            monNavBar.BarTextColor = Color.Black;
+                            profNavBar.BarTextColor = Color.Black;
+                        }
                         break;
                 }
             });
             MessagingCenter.Subscribe<Object>(this, "ChangeThemeConst", (sender) => ChangeTheme.Execute(null));
+
+            
+
         }
         void StartUpdateToken()
         {

@@ -80,11 +80,11 @@ namespace xamarinJKH.Main
                     ImageFon.Margin = new Thickness(0, 0, 0, 0);
 
                     //только темная тема в ios
-                    themelabel.IsVisible = false;
-                    ThemeButtonBlock.IsVisible = false;
-                    ThemeButtonBlock.IsEnabled = false;
+                    //themelabel.IsVisible = false;
+                    //ThemeButtonBlock.IsVisible = false;
+                    //ThemeButtonBlock.IsEnabled = false;
 
-                    
+
                     break;
                 case Device.Android:
                     // double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
@@ -194,8 +194,12 @@ namespace xamarinJKH.Main
             RadioButtonAuto.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
             RadioButtonDark.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
             RadioButtonLigth.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
-            
+
             int theme = Preferences.Get("Theme", 2);
+            
+            //if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+            //    theme = Preferences.Get("Theme", 1);
+
             switch (theme)
             {
                 case 0:
@@ -236,13 +240,15 @@ namespace xamarinJKH.Main
         private void RadioButtonAuto_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             //только темная тема в ios 
-            if (Xamarin.Essentials.DeviceInfo.Platform != DevicePlatform.iOS)
-            {
+            //if (Xamarin.Essentials.DeviceInfo.Platform != DevicePlatform.iOS)
+            //{
                 Application.Current.UserAppTheme = OSAppTheme.Unspecified;
                 MessagingCenter.Send<Object>(this, "ChangeTheme");
                 MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
                 Preferences.Set("Theme", 0);
-            }                
+            //}                
+
+            
         }
 
         private void RadioButtonLigth_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
