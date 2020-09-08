@@ -14,10 +14,11 @@ namespace xamarinJKH.VideoStreaming
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CameraListPage : ContentPage
     {
+        CameraListViewModel viewModel;
         public CameraListPage()
         {
             InitializeComponent();
-            BindingContext = new CameraListViewModel();
+            BindingContext = viewModel = new CameraListViewModel();
 
             MessagingCenter.Subscribe<HeaderViewStack>(this, "GoBack", sender =>
             {
@@ -32,6 +33,7 @@ namespace xamarinJKH.VideoStreaming
                     Navigation.PopAsync();
                 }
             });
+            viewModel.LoadCameras.Execute(null);
         }
 
         async void CameraSelect(object sender, SelectionChangedEventArgs args)
@@ -39,7 +41,7 @@ namespace xamarinJKH.VideoStreaming
             try
             {
                 var camera = args.CurrentSelection[0] as CameraModel;
-                await Navigation.PushModalAsync(new CameraPage(camera.Link));
+                await Navigation.PushModalAsync(new CameraPage(camera.Url));
                 (sender as CollectionView).SelectedItem = null;
             }
             catch
