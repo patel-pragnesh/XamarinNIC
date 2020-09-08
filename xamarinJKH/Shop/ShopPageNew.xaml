@@ -226,7 +226,7 @@
                                                         <StackLayout Grid.Column="2"
                                                           Grid.Row="1" Orientation="Vertical" Margin="0, -5, 0, 0" >
                                                             <StackLayout  HorizontalOptions="Center" Orientation="Horizontal">
-                                                                <xamarinJkh:IconView Source="ic_shop_minus" WidthRequest="22" HeightRequest="22"
+                                                                <xamarinJkh:IconView Source="ic_shop_minus" WidthRequest="25" HeightRequest="25"
                                                                              Foreground="{x:DynamicResource MainColor}">
                                                                     <xamarinJkh:IconView.GestureRecognizers>
                                                                         <TapGestureRecognizer Command="{Binding Path=BindingContext.Decrease, Source={x:Reference ShopPage}}"
@@ -236,8 +236,8 @@
                                                                 <Label FontSize="15"
                                                                TextColor="Gray"
                                                                Text="{Binding ColBusket}"
-                                                               HorizontalTextAlignment="Center"/>
-                                                                <xamarinJkh:IconView Source="ic_shop_plus" WidthRequest="22" HeightRequest="22"
+                                                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center"/>
+                                                                <xamarinJkh:IconView Source="ic_shop_plus" WidthRequest="25" HeightRequest="25"
                                                                              Foreground="{x:DynamicResource MainColor}">
                                                                     <xamarinJkh:IconView.GestureRecognizers>
                                                                         <TapGestureRecognizer Command="{Binding Path=BindingContext.Increase, Source={x:Reference ShopPage}}"
