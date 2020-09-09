@@ -145,7 +145,7 @@
                                        TextColor="Black"/>
                                     <StackLayout Orientation="Horizontal"
                                                  Grid.Column="1"
-                                                 HorizontalOptions="FillAndExpand"
+                                                 HorizontalOptions="EndAndExpand"
                                                  VerticalOptions="Center"
                                                  Padding="0,8">
                                         <xamarinJkh:IconView Source="{Binding Asending,Converter={x:StaticResource Arrow}}"
@@ -168,14 +168,14 @@
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>
                                             <Frame BackgroundColor="White"
-                                                   HasShadow="False"
+                                                   HasShadow="False" Padding="5,20"
                                                BorderColor="{AppThemeBinding Dark=White, Light={x:DynamicResource MainColor}}">
                                                 <StackLayout>
-                                                    <Grid>
+                                                    <Grid ColumnSpacing="6">
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="50"/>
                                                             <ColumnDefinition Width="*"/>
-                                                            <ColumnDefinition Width="0.45*"/>
+                                                            <ColumnDefinition Width="0.5*"/>
                                                         </Grid.ColumnDefinitions>
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="25"/>
@@ -185,7 +185,9 @@
                                                            BackgroundColor="#e7e7e7"
                                                            Padding="5"
                                                            Grid.RowSpan="2"
-                                                           HasShadow="False">
+                                                           HasShadow="False" 
+                                                           Grid.Column="0"
+                                                               Grid.Row="0">
 
                                                             <ff:CachedImage Source="{Binding Image}"
                                                                 ErrorPlaceholder="ic_no_photo"/>
@@ -193,6 +195,7 @@
                                                         </Frame>
                                                         <Label 
                                                            Grid.Column="1"
+                                                            Grid.Row="0"
                                                            Grid.RowSpan="2">
                                                             <Label.FormattedText>
                                                                 <FormattedString>
@@ -208,7 +211,7 @@
                                                             </Label.FormattedText>
                                                         </Label>
 
-                                                        <Label Grid.Column="2" HorizontalTextAlignment="End">
+                                                        <Label Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="End">
                                                             <Label.FormattedText>
                                                                 <FormattedString>
                                                                     <FormattedString.Spans>
@@ -226,7 +229,7 @@
                                                         <StackLayout Grid.Column="2"
                                                           Grid.Row="1" Orientation="Vertical" Margin="0, -5, 0, 0" >
                                                             <StackLayout  HorizontalOptions="Center" Orientation="Horizontal">
-                                                                <xamarinJkh:IconView Source="ic_shop_minus" WidthRequest="22" HeightRequest="22"
+                                                                <xamarinJkh:IconView Source="ic_shop_minus" WidthRequest="25" HeightRequest="25"
                                                                              Foreground="{x:DynamicResource MainColor}">
                                                                     <xamarinJkh:IconView.GestureRecognizers>
                                                                         <TapGestureRecognizer Command="{Binding Path=BindingContext.Decrease, Source={x:Reference ShopPage}}"
@@ -236,8 +239,8 @@
                                                                 <Label FontSize="15"
                                                                TextColor="Gray"
                                                                Text="{Binding ColBusket}"
-                                                               HorizontalTextAlignment="Center"/>
-                                                                <xamarinJkh:IconView Source="ic_shop_plus" WidthRequest="22" HeightRequest="22"
+                                                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center"/>
+                                                                <xamarinJkh:IconView Source="ic_shop_plus" WidthRequest="25" HeightRequest="25" 
                                                                              Foreground="{x:DynamicResource MainColor}">
                                                                     <xamarinJkh:IconView.GestureRecognizers>
                                                                         <TapGestureRecognizer Command="{Binding Path=BindingContext.Increase, Source={x:Reference ShopPage}}"

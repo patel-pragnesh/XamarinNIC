@@ -80,7 +80,7 @@ namespace xamarinJKH.ViewModels.Main
                         AllRequests.AddRange(response.Requests);
                         if (Requests == null) Requests = new ObservableCollection<RequestInfo>();
                         Requests.Clear();
-                        foreach (var App in AllRequests.Where(x => !x.IsClosed))
+                        foreach (var App in AllRequests.Where(x => x.IsClosed == ShowClosed))
                         {
                             Device.BeginInvokeOnMainThread(() => Requests.Add(App));
                         }

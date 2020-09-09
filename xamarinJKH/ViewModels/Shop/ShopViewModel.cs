@@ -158,8 +158,8 @@ namespace xamarinJKH.ViewModels.Shop
             Increase = new Command<Goods>(item =>
             {
                 item.ColBusket++;
-                TotalPrice = Goods.Select(x => x.Price * x.ColBusket).Sum();
-                TotalWeight = Goods.Sum(x => x.Weight * x.ColBusket);
+                TotalPrice = AllGoods.Select(x => x.Price * x.ColBusket).Sum();
+                TotalWeight = AllGoods.Sum(x => x.Weight * x.ColBusket);
             });
 
             Decrease = new Command<Goods>(item =>
@@ -168,8 +168,8 @@ namespace xamarinJKH.ViewModels.Shop
                 {
                     item.ColBusket--;
                 }
-                TotalPrice = Goods.Select(x => x.Price * x.ColBusket).Sum();
-                TotalWeight = Goods.Sum(x => x.Weight * x.ColBusket);
+                TotalPrice = AllGoods.Select(x => x.Price * x.ColBusket).Sum();
+                TotalWeight = AllGoods.Sum(x => x.Weight * x.ColBusket);
             });
 
             Sort = new Command(() =>
