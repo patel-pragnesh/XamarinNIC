@@ -172,7 +172,8 @@
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="50"/>
                                                             <ColumnDefinition Width="*"/>
-                                                            <ColumnDefinition Width="0.4*"/>
+                                                            <ColumnDefinition Width="{Binding ColumnAdditionWidth}"/>
+                                                            <!--<ColumnDefinition Width="0.4*"/>-->
                                                         </Grid.ColumnDefinitions>
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="25"/>
@@ -222,7 +223,7 @@
                                                             </Label.FormattedText>
                                                         </Label>
 
-                                                        <StackLayout Grid.Column="2"
+                                                        <StackLayout Grid.Column="2" HorizontalOptions="End"
                                                           Grid.Row="1" Orientation="Vertical" Margin="0, -5, 0, 0" >
                                                             <StackLayout  HorizontalOptions="Center" Orientation="Horizontal">
                                                                 <xamarinJkh:IconView Source="ic_shop_minus" WidthRequest="25" HeightRequest="25"

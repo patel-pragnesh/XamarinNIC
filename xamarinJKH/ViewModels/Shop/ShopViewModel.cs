@@ -5,13 +5,14 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Shop;
 
 namespace xamarinJKH.ViewModels.Shop
 {
-    public class ShopViewModel:BaseViewModel
+    public class ShopViewModel : BaseViewModel
     {
         public ObservableCollection<Goods> Goods { get; set; }
         public ObservableCollection<string> Categories { get; set; }
@@ -101,9 +102,21 @@ namespace xamarinJKH.ViewModels.Shop
         public Command GoToBasket { get; set; }
         public Command GoToPay { get; set; }
         public AdditionalService Service { get; set; }
+
+        public string ColumnAdditionWidth {get;set;}
         public ShopViewModel(AdditionalService service, INavigation navigation)
         {
             this.Navigation = navigation;
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                if (DeviceDisplay.MainDisplayInfo.Width > 700)
+                    ColumnAdditionWidth = "0.5*";
+                else
+                    ColumnAdditionWidth = "0.4*";
+            }
+            else
+                ColumnAdditionWidth = "0.4*";
+
             Service = service;
             ShopName = service.ShopName;
             Goods = new ObservableCollection<Goods>();

@@ -5,7 +5,9 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
-             x:Class="xamarinJKH.Additional.AdditionalOnePage">
+             x:Class="xamarinJKH.Additional.AdditionalOnePage"
+                          xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+>
     <ContentPage.Content>
         <StackLayout>
             <pancakeView:PancakeView

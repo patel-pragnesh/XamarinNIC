@@ -11,6 +11,7 @@ using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Apps;
 using xamarinJKH.DialogViews;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
@@ -63,6 +64,8 @@ namespace xamarinJKH.Shop
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    OrderConfirmStackMain.Padding = new Thickness(0, statusBarHeight, 0, 0);                    
                     break;
                 case Device.Android:
                 default:
@@ -88,7 +91,7 @@ namespace xamarinJKH.Shop
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
-            GoodsLayot.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
+            GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.White);
             BindingContext = this;
             SetPriceAndWeight();
         }

@@ -44,18 +44,7 @@ namespace xamarinJKH.Additional
         {
             this.additionalService = additionalService;
             InitializeComponent();
-            switch (Device.RuntimePlatform)
-            {
-                case Device.iOS:
-                    //BackgroundColor = Color.White;
-                    // ImageTop.Margin = new Thickness(0, 0, 0, 0);
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
-                    break;
-                case Device.Android:
-                default:
-                    break;
-            }
+            
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
