@@ -1278,7 +1278,7 @@
     <value> гр.</value>
   </data>
   <data name="TechDialogTitle" xml:space="preserve">
-    <value>Напишите нам сюда</value>
+    <value>Для обращения в тех. поддержку сообщите код оператору </value>
   </data>
   <data name="DellCouneter" xml:space="preserve">
     <value>Удалить показания?</value>
@@ -1303,6 +1303,15 @@
   </data>
   <data name="TitleLogin" xml:space="preserve">
     <value>Если вы ранее входили по № л.с. или логину, зарегистрируйтесь по № телефона и подключите свой лицевой счет </value>
+  </data>
+  <data name="GetCode" xml:space="preserve">
+    <value>Получить код</value>
+  </data>
+  <data name="ValidateCodeCard" xml:space="preserve">
+    <value>После успешной оплаты вам придет код подтверждения в смс</value>
+  </data>
+  <data name="ValidateCodeCash" xml:space="preserve">
+    <value>Передайте код подтверждения курьеру</value>
   </data>
   <data name="EventsCam" xml:space="preserve">
     <value>Камеры</value>

@@ -19,7 +19,7 @@ namespace xamarinJKH {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -1525,6 +1525,15 @@ namespace xamarinJKH {
         internal static string From {
             get {
                 return ResourceManager.GetString("From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Получить код.
+        /// </summary>
+        internal static string GetCode {
+            get {
+                return ResourceManager.GetString("GetCode", resourceCulture);
             }
         }
         
@@ -3405,7 +3414,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Напишите нам сюда.
+        ///   Looks up a localized string similar to Для обращения в тех. поддержку сообщите код оператору .
         /// </summary>
         internal static string TechDialogTitle {
             get {
@@ -3590,6 +3599,24 @@ namespace xamarinJKH {
         internal static string UpdateDialogUpdate {
             get {
                 return ResourceManager.GetString("UpdateDialogUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to После успешной оплаты вам придет код подтверждения в смс.
+        /// </summary>
+        internal static string ValidateCodeCard {
+            get {
+                return ResourceManager.GetString("ValidateCodeCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Передайте код подтверждения курьеру.
+        /// </summary>
+        internal static string ValidateCodeCash {
+            get {
+                return ResourceManager.GetString("ValidateCodeCash", resourceCulture);
             }
         }
         

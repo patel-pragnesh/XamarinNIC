@@ -1323,6 +1323,15 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="TitleLogin" xml:space="preserve">
     <value>If you previously logged in by your personal account number or login, register by phone number and connect your personal account</value>
   </data>
+  <data name="GetCode" xml:space="preserve">
+    <value>To get the code</value>
+  </data>
+  <data name="ValidateCodeCard" xml:space="preserve">
+    <value>After successful payment you will receive a confirmation code in an SMS</value>
+  </data>
+  <data name="ValidateCodeCash" xml:space="preserve">
+    <value>Pass the confirmation code to the courier</value>
+  </data>
   <data name="EventsCam" xml:space="preserve">
     <value>Cameras</value>
   </data>

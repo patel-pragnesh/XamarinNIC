@@ -93,6 +93,8 @@ namespace xamarinJKH.Server
         public const string GET_TYPE = "Requests/RequestTypes"; // Получение типов заявок
         public const string GET_FILE_APP = "Requests/File"; // Получение файлов
         public const string CLOSE_APP = "Requests/Close "; // Закрытие заявки
+        public const string PAY_CASH_VALIDATE_CODE = "Requests/SendPaidRequestCompleteCodeCash"; // Отправка пин-кода в SMS по платной заявке после онлайн оплаты
+        public const string PAY_CARD_VALIDATE_CODE = "Requests/SendPaidRequestCompleteCodeCash"; // Отправка пин-кода в SMS по платной заявке после оплаты наличными
 
         public const string UPDATE_PROFILE_CONST = "Dispatcher/UpdateProfile"; // Обновить данные диспетчера
         public const string UPDATE_PROFILE = "User/UpdateProfile"; // Обновить данные профиля
@@ -246,7 +248,7 @@ namespace xamarinJKH.Server
         /// </summary>
         /// <param name="appeal"></param>
         /// <returns>CommonResult</returns>
-        public async Task<CommonResult> TechSupportAppeal(TechSupportAppealArguments appeal)
+        public async Task<TechId> TechSupportAppeal(TechSupportAppealArguments appeal)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(SEND_TEACH_MAIL, Method.POST);
@@ -264,11 +266,11 @@ namespace xamarinJKH.Server
                 appeal.Info,
                 appeal.AppVersion
             });
-            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            var response = await restClientMp.ExecuteTaskAsync<TechId>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                return new CommonResult()
+                return new TechId()
                 {
                     Error = $"Ошибка {response.StatusDescription}"
                 };
@@ -1837,6 +1839,41 @@ namespace xamarinJKH.Server
                 RequestId,
                 Text,
                 Mark
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        
+        /// <summary>
+        /// Отправка пин-кода в SMS по платной заявке после онлайн оплаты
+        ///  Отправка пин-кода в SMS по платной заявке после онлайн оплаты
+        /// </summary>
+        /// <param name="RequestId"> ID платной заявки</param>
+        /// <param name="Phone">номер телефона</param>
+        /// <param name="isCard">Онлайн оплата или наличные</param>
+        /// <returns></returns>
+        public async Task<CommonResult> SendPaidRequestCompleteCodeOnlineAndCah(int? RequestId, string Phone, bool isCard = true)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            string url = isCard ? PAY_CARD_VALIDATE_CODE : PAY_CASH_VALIDATE_CODE;
+            RestRequest restRequest = new RestRequest(url, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                RequestId,
+                Phone
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус

@@ -145,7 +145,7 @@ namespace xamarinJKH.Tech
             arguments.Address = GetAdres();
             arguments.Login = Settings.Person.Login;
 
-            CommonResult result = await server.TechSupportAppeal(arguments);
+            TechId result = await server.TechSupportAppeal(arguments);
             if (result.Error == null)
             {
                 await DisplayAlert(AppResources.AlertSuccess, AppResources.TechSendSuccess, "OK");

@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 
 using AiForms.Dialogs.Abstractions;
 using AiForms.Dialogs;
-
+using Xamarin.Essentials;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH;
@@ -145,7 +145,23 @@ namespace xamarinJKH.DialogViews
                     Progress = false;
 
                     accountDialogView.CloseDialog();
+                    string login = Preferences.Get("login", "");
+                    string pass = Preferences.Get("pass", "");
+                    if (!pass.Equals("") && !login.Equals(""))
+                    {
+                        if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+                        {
+                            Device.BeginInvokeOnMainThread(async () => await Application.Current.MainPage.DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                            return;
+                        }
+                        LoginResult loginResult = await _server.Login(login, pass);
+                        if (loginResult.Error == null)
+                        {
+                            Settings.Person = loginResult;
+                        }
+                    }
                     MessagingCenter.Send<Object>(this, "UpdateIdent");
+                    MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
                     MessagingCenter.Send<Object>(this, "UpdateEvents");
                     //_paysPage.RefreshPaysData();
                 }
