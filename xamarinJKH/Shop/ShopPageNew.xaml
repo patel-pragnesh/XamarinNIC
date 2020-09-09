@@ -32,12 +32,27 @@
                        Aspect="AspectFill"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout x:Name="Pancake" Margin="0,10,0,0" VerticalOptions="FillAndExpand">
-                    <Label x:Name="ShopName"
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Start"
+                                 Margin="10,10,0,0">
+
+                        <xamarinJkh:IconView Source="ic_arrow_back"
+                                             HeightRequest="15"
+                                             Margin="0,5"
+                                             Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                             HorizontalOptions="Center" />
+
+                        <Label x:Name="ShopName"
                            Text="{Binding ShopName}"
                            FontAttributes="Bold"
                            Margin="10,0,0,0"
                            FontSize="30"
                            TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Back"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
                     <StackLayout
                         Orientation="Horizontal">
                         <xamarinJkh:IconView x:Name="IconViewTech"
@@ -55,27 +70,9 @@
                                Margin="-10, 10, 0, 0"
                                VerticalOptions="Center" />
                     </StackLayout>
-                    <StackLayout
-                        x:Name="BackStackLayout"
-                        Orientation="Horizontal"
-                        Margin="10, 10, 0, 0"
-                        HorizontalOptions="Start">
-                        <xamarinJkh:IconView Source="ic_arrow_back"
-                                             HeightRequest="15"
-                                             Foreground="{AppThemeBinding Light=Black, Dark=White}"
-                                             HorizontalOptions="Center" />
-                        <Label
-                            Text="{x:Static xamarinJkh:AppResources.Back} "
-                            FontSize="15"
-                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                            HorizontalOptions="Start" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="Back"/>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
                     <StackLayout VerticalOptions="FillAndExpand">
                         <yummy:PancakeView CornerRadius="40,0,40,0" BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
-                                           BorderColor="{AppThemeBinding Light=White, Dark=#494949}"
+                                           BorderColor="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=#494949}"
                                            Margin="15,10,0,-50"
                                            x:Name="PancakeViewKind"
                                            BorderThickness="1"
@@ -175,7 +172,7 @@
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="50"/>
                                                             <ColumnDefinition Width="*"/>
-                                                            <ColumnDefinition Width="0.5*"/>
+                                                            <ColumnDefinition Width="0.4*"/>
                                                         </Grid.ColumnDefinitions>
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="25"/>
@@ -201,8 +198,7 @@
                                                                 <FormattedString>
                                                                     <FormattedString.Spans>
                                                                         <Span Text="{Binding Name}"
-                                                                          FontSize="15"
-                                                                          FontAttributes="Bold"/>
+                                                                          FontSize="15"/>
                                                                         <Span Text="{Binding Weight, Converter={x:StaticResource Weight}}"
                                                                           FontSize="10"
                                                                           FontAttributes="None"/>
@@ -248,7 +244,7 @@
                                                                     </xamarinJkh:IconView.GestureRecognizers>
                                                                 </xamarinJkh:IconView>
                                                             </StackLayout>
-                                                            <BoxView Color="{x:DynamicResource MainColor}" HeightRequest="1" Margin="0, -2, 0, 0" />
+                                                            <BoxView Color="{x:DynamicResource MainColor}" HeightRequest="1" Margin="0, -2, 0, 0" HorizontalOptions="FillAndExpand"/>
                                                         </StackLayout>
 
                                                         <!--<Grid Grid.Column="2"
