@@ -567,7 +567,7 @@ namespace xamarinJKH.AppsConst
             {
                 progress.IsVisible = true;
                 IconViewSend.IsVisible = false;
-                CommonResult result = await _server.AddMessageConst(message, _requestInfo.ID.ToString(), false);
+                CommonResult result = await _server.AddMessageConst(message, _requestInfo.ID.ToString(), CheckBoxHidden.IsChecked);
                 if (result.Error == null)
                 {
                     EntryMess.Text = "";
