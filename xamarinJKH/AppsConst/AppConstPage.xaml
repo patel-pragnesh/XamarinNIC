@@ -329,6 +329,7 @@
                         Spacing="-5">
 
                         <CheckBox
+                            x:Name="CheckBoxHidden"
                             HorizontalOptions="Center"
                             Color="{Binding hex}" />
                         <Label
