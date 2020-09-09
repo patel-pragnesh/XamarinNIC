@@ -214,6 +214,7 @@
                                                Grid.Column="1"
                                                AutoSize="TextChanges"
                                                Placeholder="{x:Static xamarinJkh:AppResources.ChatPlaceholder}"
+                                               TextChanged="EntryMess_TextChanged"
                                                TextColor="#A2A2A2"
                                                HorizontalOptions="FillAndExpand" />
                         <xamarinJkh:IconView

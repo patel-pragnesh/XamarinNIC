@@ -786,5 +786,27 @@ namespace xamarinJKH.Apps
         {
             await Dialog.Instance.ShowAsync(new AppReceiptDialogWindow(new ViewModels.DialogViewModels.AppRecieptViewModel(request.ReceiptItems)));
         }
+
+        private void EntryMess_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var entry = sender as BordlessEditor;
+            
+            if (entry != null)
+            {
+                if (entry.Height > 121)
+                {
+                    entry.HeightRequest = 120;
+                    entry.AutoSize = EditorAutoSizeOption.Disabled;
+                }
+                else
+                {
+                    if (e.OldTextValue != null && e.NewTextValue.Length < e.OldTextValue.Length && e.NewTextValue.Length < 100)
+                    {
+                        entry.HeightRequest = -1;
+                    }
+                    entry.AutoSize = EditorAutoSizeOption.TextChanges;
+                }
+            }
+        }
     }
 }
