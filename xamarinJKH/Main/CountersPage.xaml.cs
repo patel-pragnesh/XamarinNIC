@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
+using Xamarin.Forms.Markup;
 using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Counters;
@@ -81,8 +82,49 @@ namespace xamarinJKH.Main
                 _meterInfo = meters;
             }
 
-            countersList.ItemsSource = null;
-            countersList.ItemsSource = _meterInfo;
+            baseForCounters.Children.Clear();
+
+            foreach(var mi in _meterInfo)
+            {
+                var mtc = new MetersThreeCell( mi);
+                TapGestureRecognizer tap = new TapGestureRecognizer();
+                tap.Tapped += Tap_Tapped;
+                mtc.GestureRecognizers.Add(tap);
+
+                baseForCounters.Children.Add(mtc);
+            }
+
+            //countersList.ItemsSource = null;
+            //countersList.ItemsSource = _meterInfo;
+        }
+
+        private async void Tap_Tapped(object sender, EventArgs e)
+        {
+            int currDay = DateTime.Now.Day;
+
+            MeterInfo select = ((MetersThreeCell)sender).meterInfo;// as MeterInfo;
+            if (select.IsDisabled)
+            {
+                return;
+            }
+            if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
+                 Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
+                (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                 Settings.Person.Accounts[0].MetersEndDay == 0))
+            {
+                if (select.Values.Count >= 1 && int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
+                {
+                    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
+                    var counterThisMonth2 = (select.Values.Count >= 2) ? select.Values[1].Value : 0;
+                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, counterThisMonth,
+                        counterThisMonth2));
+                }
+                else
+                {
+                    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
+                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0, counterThisMonth));
+                }
+            }
         }
 
         public CountersPage()
@@ -121,9 +163,10 @@ namespace xamarinJKH.Main
             getInfo();
             SetTitle();
 
-            countersList.BackgroundColor = Color.Transparent;
-            if (Device.RuntimePlatform != Device.iOS)
-                countersList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+            //countersList.BackgroundColor = Color.Transparent;
+            baseForCounters.BackgroundColor = Color.Transparent;
+            //if (Device.RuntimePlatform != Device.iOS)
+            //    countersList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
 
             Color hexColor = (Color)Application.Current.Resources["MainColor"];
             IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
@@ -289,8 +332,15 @@ namespace xamarinJKH.Main
                 _meterInfo = meters;
             }
 
-            countersList.ItemsSource = null;
-            countersList.ItemsSource = _meterInfo;
+            baseForCounters.Children.Clear();
+
+            foreach (var mi in _meterInfo)
+            {
+                baseForCounters.Children.Add(new MetersThreeCell(mi));
+            }
+
+            //countersList.ItemsSource = null;
+            //countersList.ItemsSource = _meterInfo;
         }
 
         private async void ButtonClick(object sender, EventArgs e)
@@ -374,5 +424,14 @@ namespace xamarinJKH.Main
                 }
             }
         }
+
+        private async void RefreshView_RefreshingAsync(object sender, EventArgs e)
+        {
+            IsRefreshing = true;
+            await RefreshCountersData();
+            IsRefreshing = false;
+        }
+
+        
     }
 }

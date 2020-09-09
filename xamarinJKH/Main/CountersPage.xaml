@@ -158,8 +158,46 @@
                     </StackLayout>
 
                 </Frame>
-                <ListView x:Name="countersList"
-                          HasUnevenRows="True"
+
+                        <!--<RefreshView Command="{Binding RefreshCommand}"
+                          IsRefreshing="{Binding IsRefreshing}">
+                            <CollectionView x:Name="countersList"
+                          Margin="10, 0, 10, 0"
+                          VerticalScrollBarVisibility="Never"
+                          SelectionMode="None"
+                          
+                          BackgroundColor="Transparent"                          
+                          ItemsSource="{Binding _meterInfo}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <main:MetersThreeCell
+                                Resource="{Binding Resource}"
+                                Address="{Binding Address}"
+                                UniqueNum="{Binding FactoryNumber}"
+                                CheckupDate="{Binding LastCheckupDate}"
+                                RecheckInterval="{Binding RecheckInterval}"
+                                DecimalPoint="{Binding NumberOfDecimalPlaces}"
+                                CustomName = "{Binding CustomName}"
+                                MeterID = "{Binding ID}"
+                                IsDisabled = "{Binding IsDisabled}"
+                                Units = "{Binding Units}"
+                                Values="{Binding Values}" />
+                                    </DataTemplate>
+
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </RefreshView>-->
+
+                        <RefreshView Command="{Binding RefreshCommand}"
+                          IsRefreshing="{Binding IsRefreshing}">
+                            <ScrollView x:Name="scrollForCounters" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
+                                <StackLayout x:Name="baseForCounters" VerticalOptions="FillAndExpand"></StackLayout>
+                            </ScrollView>
+                        </RefreshView>
+
+                        <!--<ListView x:Name="countersList"
+                          HasUnevenRows="False"
+                                  RowHeight="300"
                           Margin="10, 0, 10, 0"
                           SeparatorVisibility="None"
                           VerticalScrollBarVisibility="Never"
@@ -171,9 +209,6 @@
                           BackgroundColor="Transparent"
                           CachingStrategy="RecycleElement"
                           ItemsSource="{Binding _meterInfo}">
-                    <ListView.Header>
-
-                    </ListView.Header>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <main:MetersThreeCell
@@ -191,7 +226,8 @@
                         </DataTemplate>
 
                     </ListView.ItemTemplate>
-                </ListView>
+                </ListView>-->
+                        
             </StackLayout>
                 </StackLayout>
             </Grid>
