@@ -1325,4 +1325,7 @@
   <data name="AdditionalMap" xml:space="preserve">
     <value>Карта</value>
   </data>
+  <data name="VoiceInput" xml:space="preserve">
+    <value>Голосовий ввід!</value>
+  </data>
 </root>

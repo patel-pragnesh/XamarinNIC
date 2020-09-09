@@ -106,5 +106,12 @@ namespace xamarinJKH.Droid
             base.OnNewIntent(intent);
             FirebasePushNotificationManager.ProcessIntent(this, intent);
         }
+        
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            Plugin.CrossSpeechToText.Droid.SpeechToText.OnActivityResult(requestCode, resultCode, data);
+        }
+
     }
 }

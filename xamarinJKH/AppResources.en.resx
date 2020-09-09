@@ -1341,4 +1341,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="AdditionalMap" xml:space="preserve">
     <value>Map</value>
   </data>
+  <data name="VoiceInput" xml:space="preserve">
+    <value>Voice Input!</value>
+  </data>
 </root>

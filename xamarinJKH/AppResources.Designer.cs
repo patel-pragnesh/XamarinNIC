@@ -3621,6 +3621,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Голосовой ввод!.
+        /// </summary>
+        internal static string VoiceInput {
+            get {
+                return ResourceManager.GetString("VoiceInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to За неделю.
         /// </summary>
         internal static string WeekPeriod {

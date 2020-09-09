@@ -203,6 +203,12 @@
                                                TextColor="#A2A2A2"
                                                HorizontalOptions="FillAndExpand" />
                     <xamarinJkh:IconView
+                        x:Name="IconViewMic"
+                        Source="ic_microphone"
+                        Foreground="{Binding hex}"
+                        HeightRequest="20"
+                        WidthRequest="20" />
+                    <xamarinJkh:IconView
                         x:Name="IconViewSend"
                         Source="ic_send_mess"
                         Foreground="{Binding hex}"

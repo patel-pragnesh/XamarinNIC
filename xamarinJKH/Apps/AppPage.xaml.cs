@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Plugin.CrossSpeechToText.Stt;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -278,6 +279,9 @@ namespace xamarinJKH.Apps
             var sendMess = new TapGestureRecognizer();
             sendMess.Tapped += async (s, e) => { sendMessage(); };
             IconViewSend.GestureRecognizers.Add(sendMess);
+            var recordmic = new TapGestureRecognizer();
+            recordmic.Tapped += async (s, e) => { RecordMic(); };
+            IconViewMic.GestureRecognizers.Add(recordmic);
             var addFile = new TapGestureRecognizer();
             addFile.Tapped += async (s, e) => { addFileApp(); };
             IconViewAddFile.GestureRecognizers.Add(addFile);
@@ -302,6 +306,12 @@ namespace xamarinJKH.Apps
             StackLayoutPlay.GestureRecognizers.Add(pay);
             setText();
             //additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+        }
+
+        private async void RecordMic()
+        {
+            var result = await CrossSpeechToText.StartVoiceInput(AppResources.VoiceInput);
+            EntryMess.Text +=  " " + result;
         }
 
         protected override bool OnBackButtonPressed()
