@@ -78,7 +78,7 @@ namespace xamarinJKH.Main
                     break;
             }
 
-            CheckAccounts();
+            // CheckAccounts();
             Application.Current.Resources["Saldo"] = true;
             visibleMenu();
             StartUpdateToken();

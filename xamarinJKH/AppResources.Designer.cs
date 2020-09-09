@@ -3450,7 +3450,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Если вы ранее входили по № л.с. или логину, зарегистрируйтесь по № телефона и подключите свой лицевой счет .
+        ///   Looks up a localized string similar to Если вы ранее входили по № лицевого счета или логину, зарегистрируйтесь по № телефона и подключите свой лицевой счет .
         /// </summary>
         internal static string TitleLogin {
             get {
