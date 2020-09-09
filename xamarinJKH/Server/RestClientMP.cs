@@ -18,11 +18,11 @@ namespace xamarinJKH.Server
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
         // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_yegkh"; //Легкая жизнъ
+         public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_yegkh"; //Легкая жизнъ
         // public const string SERVER_ADDR = "https://api.sm-center.ru/vodokanal_narof"; // Водоканал
         //public const string SERVER_ADDR = "https://api.sm-center.ru/uk_egokomfort"; // Эгокомфорт
         // public const string SERVER_ADDR = "https://api.sm-center.ru/tsg_sivtsev_vrazhek14"; // ТСЖ Сивцев Вражек 14
@@ -151,6 +151,7 @@ namespace xamarinJKH.Server
                 "RequestsDispatcher/SetPaidRequestStatusOnTheWay"; // Установка статуса платной заявки в 'курьер в пути'
 
         public const string UPDATE_RECEIPT = "RequestsDispatcher/UpdateRequestReceipts";
+        public const string CAMERAS_LIST = "Houses/WebCams";
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -2252,6 +2253,18 @@ namespace xamarinJKH.Server
                 data.ReceiptItems
             });
             var response = await client.ExecuteTaskAsync<CommonResult>(restRequest);
+            return response.Data;
+        }
+
+        public async Task<ItemsList<CameraModel>> GetCameras(int all = 0)
+        {
+            RestClient client = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(CAMERAS_LIST, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = await client.ExecuteTaskAsync<ItemsList<CameraModel>>(restRequest);
             return response.Data;
         }
     }
