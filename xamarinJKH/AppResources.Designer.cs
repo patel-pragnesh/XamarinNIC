@@ -304,6 +304,24 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Заявки закрыты.
+        /// </summary>
+        internal static string AppsClosed {
+            get {
+                return ResourceManager.GetString("AppsClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заявки выполнены.
+        /// </summary>
+        internal static string AppsPerformed {
+            get {
+                return ResourceManager.GetString("AppsPerformed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Выбора района.
         /// </summary>
         internal static string AreaChoose {
