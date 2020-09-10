@@ -102,6 +102,16 @@ namespace xamarinJKH.ViewModels.Shop
         public Command GoToBasket { get; set; }
         public Command GoToPay { get; set; }
         public AdditionalService Service { get; set; }
+        bool showWeight;
+        public bool ShowWeight
+        {
+            get => showWeight;
+            set
+            {
+                showWeight = value;
+                OnPropertyChanged(nameof(ShowWeight));
+            }
+        }
 
         public string ColumnAdditionWidth {get;set;}
         public ShopViewModel(AdditionalService service, INavigation navigation)
@@ -119,6 +129,7 @@ namespace xamarinJKH.ViewModels.Shop
 
             Service = service;
             ShopName = service.ShopName;
+            ShowWeight = this.Service.ShopType == "goods";
             Goods = new ObservableCollection<Goods>();
             Categories = new ObservableCollection<string>();
             var categories = new List<string>();
