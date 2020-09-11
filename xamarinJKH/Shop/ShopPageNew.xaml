@@ -185,11 +185,9 @@
                                                            Grid.RowSpan="2"
                                                            HasShadow="False" 
                                                            Grid.Column="0"
-                                                               Grid.Row="0">
-
+                                                           Grid.Row="0">
                                                             <ff:CachedImage Source="{Binding Image}"
                                                                 ErrorPlaceholder="ic_no_photo"/>
-
                                                         </Frame>
                                                         <Label 
                                                            Grid.Column="1"
@@ -311,50 +309,63 @@
                             <yummy:DropShadow Opacity="0.7" Color="Gray" />
                         </yummy:PancakeView.Shadow>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"
-                                     Padding="20,0,20,0">
-                            <StackLayout HorizontalOptions="StartAndExpand" Margin="0,20" IsVisible="{Binding ShowWeight}">
-                        <Label Text="{x:Static xamarinJkh:AppResources.Mass}"
+                                     Padding="30,0">
+                                <!--<Grid Padding="0">                                    
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.4*"/>
+                                        <ColumnDefinition Width="0.1*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                    </Grid.ColumnDefinitions>-->
+                                    <StackLayout  Orientation="Horizontal" HorizontalOptions="Start"  VerticalOptions="Center"> 
+                                        <StackLayout HorizontalOptions="StartAndExpand" Margin="0,20" IsVisible="{Binding ShowWeight}">
+                                            <Label Text="{x:Static xamarinJkh:AppResources.Mass}"
                                        TextColor="Black"
                                        FontSize="12"
                                        FontAttributes="Bold" />
-                                <Label x:Name="LabelWeightBuscket">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="{Binding TotalWeight}" FontSize="18" FontAttributes="Bold"
+                                            <Label x:Name="LabelWeightBuscket">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding TotalWeight}" FontSize="18" FontAttributes="Bold"
                                                   TextColor="Black" />
-                                                <Span Text=" " FontSize="18" FontAttributes="Bold"
+                                                        <Span Text=" " FontSize="18" FontAttributes="Bold"
                                                   TextColor="Black" />
-                                                <Span Text="{x:Static xamarinJkh:AppResources.Gram}" FontSize="12" TextColor="#8a8a8a" />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                            </StackLayout>
-                                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,20">
-                                    <Label Text="{x:Static xamarinJkh:AppResources.TotalPrice}"
+                                                        <Span Text="{x:Static xamarinJkh:AppResources.Gram}" FontSize="12" TextColor="#8a8a8a" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,20">
+                                            <Label Text="{x:Static xamarinJkh:AppResources.TotalPrice}"
                                        TextColor="Black"
                                        FontSize="12"
                                        FontAttributes="Bold" />
-                                    <Label x:Name="LabelPriceBuscket">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{Binding TotalPrice}" FontSize="18" FontAttributes="Bold"
+                                            <Label x:Name="LabelPriceBuscket">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding TotalPrice}" FontSize="18" FontAttributes="Bold"
                                                   TextColor="{Binding hex}" />
-                                                <Span Text="{x:Static xamarinJkh:AppResources.Currency}" FontSize="12" TextColor="#8a8a8a" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </StackLayout>
-                                <Button x:Name="BtnCheckOut"
+                                                        <Span Text="{x:Static xamarinJkh:AppResources.Currency}" FontSize="12" TextColor="#8a8a8a" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                    </StackLayout>
+
+                                    <Button x:Name="BtnCheckOut" 
                                         Margin="0,20"
                                         CornerRadius="10"
                                         BackgroundColor="{x:DynamicResource MainColor}" 
-                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalOptions="EndAndExpand"
+                                        
                                         VerticalOptions="FillAndExpand"
                                         TextColor="White"
                                         FontAttributes="Bold"
                                         Padding="5,0"
                                         Text="{x:Static xamarinJkh:AppResources.ShopCheckout}"
-                                        Command="{Binding GoToBasket}"/>
+                                        Command="{Binding GoToBasket}"
+                                        />
+                                <!--</Grid>-->
+                               
                             </StackLayout>
                     </yummy:PancakeView>
 
