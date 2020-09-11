@@ -131,6 +131,7 @@
                                         Number="{Binding RequestNumber}"
                                         Status="{Binding Status}"
                                         DateApp="{Binding Added}"
+                                        CheckCommand = "False"
                                         TextApp="{Binding Name}" />
                                 </DataTemplate>
 

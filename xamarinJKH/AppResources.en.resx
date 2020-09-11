@@ -1344,4 +1344,10 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="VoiceInput" xml:space="preserve">
     <value>Voice Input!</value>
   </data>
+  <data name="AppsPerformed" xml:space="preserve">
+    <value>Applications completed</value>
+  </data>
+  <data name="AppsClosed" xml:space="preserve">
+    <value>Applications closed</value>
+  </data>
 </root>

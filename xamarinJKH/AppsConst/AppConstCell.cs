@@ -14,10 +14,12 @@ namespace xamarinJKH.AppsConst
         private Label LabelStatus = new Label();
         private Label LabelText = new Label();
         private CheckBox checkBox;
+
         public AppConstCell()
         {
             MaterialFrame frame = new MaterialFrame();
-            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
+            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color),
+                Color.White);
             frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
@@ -40,7 +42,7 @@ namespace xamarinJKH.AppsConst
             arrow.Foreground = hex;
             arrow.HeightRequest = 25;
             arrow.WidthRequest = 25;
-            arrow.Margin = new Thickness(0,0,-5,0);
+            arrow.Margin = new Thickness(0, 0, -5, 0);
             arrow.VerticalOptions = LayoutOptions.CenterAndExpand;
             arrow.HorizontalOptions = LayoutOptions.End;
 
@@ -83,11 +85,11 @@ namespace xamarinJKH.AppsConst
             {
                 RowDefinitions =
                 {
-                    new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+                    new RowDefinition {Height = new GridLength(1, GridUnitType.Star)},
                 },
                 ColumnDefinitions =
                 {
-                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                    new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
                 }
             };
 
@@ -99,7 +101,7 @@ namespace xamarinJKH.AppsConst
             StackLayout stackLayoutStatus = new StackLayout();
             stackLayoutStatus.Orientation = StackOrientation.Horizontal;
             stackLayoutStatus.HorizontalOptions = LayoutOptions.Fill;
-            
+
             // stackLayoutStatus.Spacing = 0;
             stackLayoutStatus.Children.Add(numberAndDate);
             stackLayoutStatus.Children.Add(ImageStatus);
@@ -115,7 +117,7 @@ namespace xamarinJKH.AppsConst
 
 
             container.Children.Add(containerData);
-            
+
             //     <CheckBox
             //     HorizontalOptions="Center"
             // x:Name="CheckBoxBonus"
@@ -124,14 +126,14 @@ namespace xamarinJKH.AppsConst
 
             checkBox = new CheckBox()
             {
-                HorizontalOptions=LayoutOptions.End,
+                HorizontalOptions = LayoutOptions.End,
                 VerticalOptions = LayoutOptions.Center,
-                Margin = new Thickness(0,0,-5,0),
+                Margin = new Thickness(0, 0, -5, 0),
                 Color = hex
             };
-#if DEBUG
+
             container.Children.Add(checkBox);
-#endif
+
             container.Children.Add(arrow);
 
             frame.Content = container;
@@ -144,6 +146,9 @@ namespace xamarinJKH.AppsConst
         public static readonly BindableProperty NumberProperty =
             BindableProperty.Create("Number", typeof(string), typeof(AppConstCell), "");
 
+        public static readonly BindableProperty CheckProperty =
+            BindableProperty.Create("Check", typeof(bool), typeof(AppConstCell), false);
+
         public static readonly BindableProperty StatusProperty =
             BindableProperty.Create("Status", typeof(string), typeof(AppConstCell), "");
 
@@ -152,37 +157,42 @@ namespace xamarinJKH.AppsConst
 
         public static readonly BindableProperty TextAppProperty =
             BindableProperty.Create("TextApp", typeof(string), typeof(AppConstCell), "");
-        
+
         public static readonly BindableProperty CheckCommandProperty =
-            BindableProperty.Create("CheckCommand", typeof(ICommand), typeof(AppConstCell), null);
-        
+            BindableProperty.Create("CheckCommand", typeof(bool), typeof(AppConstCell), true);
+
         public string Number
         {
-            get { return (string)GetValue(NumberProperty); }
+            get { return (string) GetValue(NumberProperty); }
             set { SetValue(NumberProperty, value); }
         } 
-        
-        public ICommand CheckCommand
+        public bool Check
         {
-            get { return (ICommand)GetValue(CheckCommandProperty); }
+            get { return (bool) GetValue(CheckProperty); }
+            set { SetValue(CheckProperty, value); }
+        }
+
+        public bool CheckCommand
+        {
+            get { return (bool) GetValue(CheckCommandProperty); }
             set { SetValue(CheckCommandProperty, value); }
         }
 
         public string Status
         {
-            get { return (string)GetValue(StatusProperty); }
+            get { return (string) GetValue(StatusProperty); }
             set { SetValue(StatusProperty, value); }
         }
 
         public string DateApp
         {
-            get { return (string)GetValue(DateAppProperty); }
+            get { return (string) GetValue(DateAppProperty); }
             set { SetValue(DateAppProperty, value); }
         }
 
         public string TextApp
         {
-            get { return (string)GetValue(TextAppProperty); }
+            get { return (string) GetValue(TextAppProperty); }
             set { SetValue(TextAppProperty, value); }
         }
 
@@ -198,7 +208,7 @@ namespace xamarinJKH.AppsConst
                 if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
                 {
                     fNum = 11;
-                     fdt = 9;
+                    fdt = 9;
                     if (Status.Length > 17)
                     {
                         ImageStatus.HorizontalOptions = LayoutOptions.End;
@@ -207,12 +217,11 @@ namespace xamarinJKH.AppsConst
                         LabelStatus.WidthRequest = w;
                     }
                 }
-                else
-                if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
+                else if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
                 {
                     fNum = 13;
                     fdt = 11;
-                    
+
                     if (Status.Length > 17)
                     {
                         ImageStatus.HorizontalOptions = LayoutOptions.End;
@@ -221,6 +230,7 @@ namespace xamarinJKH.AppsConst
                         LabelStatus.WidthRequest = w;
                     }
                 }
+
                 FormattedString formatted = new FormattedString();
                 formatted.Spans.Add(new Span
                 {
@@ -239,7 +249,7 @@ namespace xamarinJKH.AppsConst
                 numberAndDate.MaxLines = 1;
                 LabelStatus.Text = Status;
                 LabelStatus.FontSize = fdt;
-                
+
 
                 // LabelText.Text = "• " + TextApp;
 
@@ -258,10 +268,12 @@ namespace xamarinJKH.AppsConst
                     ImageStatus.Source = "ic_status_wait";
                 }
 
+                checkBox.IsVisible = CheckCommand;
+                
+                checkBox.IsChecked = Check;
 
                 EventHandler<CheckedChangedEventArgs> checkBoxOnCheckedChanged = (sender, args) =>
                 {
-                    
                     if (checkBox.IsChecked)
                     {
                         MessagingCenter.Send<Object, string>(this, "ChechApp", Number);
@@ -274,17 +286,14 @@ namespace xamarinJKH.AppsConst
                 try
                 {
                     checkBox.CheckedChanged -= checkBoxOnCheckedChanged;
-
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
                 }
+
                 checkBox.CheckedChanged += checkBoxOnCheckedChanged;
-                
             }
         }
-        
-        
     }
 }

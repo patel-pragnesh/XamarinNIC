@@ -1325,4 +1325,10 @@
   <data name="VoiceInput" xml:space="preserve">
     <value>Голосовой ввод!</value>
   </data>
+  <data name="AppsPerformed" xml:space="preserve">
+    <value>Заявки выполнены</value>
+  </data>
+  <data name="AppsClosed" xml:space="preserve">
+    <value>Заявки закрыты</value>
+  </data>
 </root>

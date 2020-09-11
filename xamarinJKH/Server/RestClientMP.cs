@@ -79,6 +79,8 @@ namespace xamarinJKH.Server
         public const string GET_HOUSES_GROUP = "RequestsDispatcher/HouseGroups"; // Возвращает список районов
         public const string GET_HOUSES = "RequestsDispatcher/Houses"; // Возвращает список домов. 
         public const string GET_HOUSE_DATA = "RequestsDispatcher/HouseData"; // Возвращает список домов. 
+        public const string CLOSE_APP_LIST_DISP = "RequestsDispatcher/CloseList"; // Закрытие списка заявки. 
+        public const string PERFORM_APP_LIST_DISP = "RequestsDispatcher/PerformList"; // Закрытие списка заявки. 
 
         public const string
             GET_REQUESTS_STATS = "RequestsDispatcher/RequestStats"; // Возвращает статистику по заявкам.  
@@ -837,6 +839,68 @@ namespace xamarinJKH.Server
                 text,
                 requestId,
                 IsHidden
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        } 
+        
+        /// <summary>
+        /// Закрытие списка заявки.
+        /// </summary>
+        /// <param name="Requests">Список id заявок для закрытия</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> CloseList(List<int> Requests)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(CLOSE_APP_LIST_DISP, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                Requests
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        } 
+        
+        /// <summary>
+        /// Выполнение списка заявок.
+        /// </summary>
+        /// <param name="Requests">Список id заявок для выполнения</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> PerformList(List<int> Requests)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(PERFORM_APP_LIST_DISP, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                Requests
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
 
