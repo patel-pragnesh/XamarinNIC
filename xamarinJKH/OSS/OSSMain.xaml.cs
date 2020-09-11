@@ -108,26 +108,31 @@ namespace xamarinJKH
 
         async void action(Frame frme, bool hide=false)
         {
-            var idAdditional = frames[frme.Id];
-            var additionalStack = ((StackLayout)frme.Content).Children.FirstOrDefault(_ => _.Id == idAdditional);
-            if(hide)
+            try
             {
-                additionalStack.IsVisible = false;
-            }
-            else
-            {
-                var additionalStackVisibility = additionalStack.IsVisible;
-                additionalStack.IsVisible = !additionalStackVisibility;
-            }
+                var idAdditional = frames[frme.Id];
+                var additionalStack = ((StackLayout)frme.Content).Children.FirstOrDefault(_ => _.Id == idAdditional);
+                if (hide)
+                {
+                    additionalStack.IsVisible = false;
+                }
+                else
+                {
+                    var additionalStackVisibility = additionalStack.IsVisible;
+                    additionalStack.IsVisible = !additionalStackVisibility;
+                }
 
-            var idArrow = arrows[frme.Id];
-            var arrow = ((StackLayout)((StackLayout)frme.Content).Children.First()).Children.FirstOrDefault(_ => _.Id == idArrow);
-            if (additionalStack.IsVisible)
-                await arrow.RotateTo(270);
-            else
-            {
-                await arrow.RotateTo(90);
+                var idArrow = arrows[frme.Id];
+                var arrow = ((StackLayout)((StackLayout)frme.Content).Children.First()).Children.FirstOrDefault(_ => _.Id == idArrow);
+                if (additionalStack.IsVisible)
+                    await arrow.RotateTo(270);
+                else
+                {
+                    await arrow.RotateTo(90);
+                }
             }
+            catch { }
+            
         }
 
         

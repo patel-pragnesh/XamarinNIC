@@ -321,14 +321,14 @@ namespace xamarinJKH
             progress.IsVisible = true;
             FrameBtnLogin.IsVisible = false;
 
-            var replace = loginAuth
+            var replace = !string.IsNullOrEmpty(loginAuth) ? loginAuth
                 .Replace("+", "")
                 .Replace(" ", "")
                 .Replace("(", "")
                 .Replace(")", "")
-                .Replace("-", "");
+                .Replace("-", "") : null;
 
-            if (!replace.Equals("") && !pass.Equals(""))
+            if (!string.IsNullOrEmpty(replace) && !string.IsNullOrEmpty(pass))
             {
                 if (replace.Length < 11)
                 {

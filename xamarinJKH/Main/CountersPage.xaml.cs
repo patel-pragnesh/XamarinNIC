@@ -84,9 +84,9 @@ namespace xamarinJKH.Main
 
             baseForCounters.Children.Clear();
 
-            foreach(var mi in _meterInfo)
+            foreach (var mi in _meterInfo)
             {
-                var mtc = new MetersThreeCell( mi);
+                var mtc = new MetersThreeCell(mi);
                 TapGestureRecognizer tap = new TapGestureRecognizer();
                 tap.Tapped += Tap_Tapped;
                 mtc.GestureRecognizers.Add(tap);
@@ -264,7 +264,7 @@ namespace xamarinJKH.Main
                                         FontSize = 15
                                     });
                                 }
-                                
+
                             }
                             else
                             {
@@ -449,24 +449,27 @@ namespace xamarinJKH.Main
             {
                 return;
             }
-            if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
-                 Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
-                (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                 Settings.Person.Accounts[0].MetersEndDay == 0))
-            {
-                if (select.Values.Count >= 1 && int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
-                {
-                    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
-                    var counterThisMonth2 = (select.Values.Count >= 2) ? select.Values[1].Value : 0;
-                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, counterThisMonth,
-                        counterThisMonth2));
-                }
-                else
-                {
-                    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
-                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0, counterThisMonth));
-                }
-            }
+            if (Settings.Person != null)
+                if (Settings.Person.Accounts != null)
+                    if (Settings.Person.Accounts.Count > 0)
+                        if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
+                             Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
+                            (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                             Settings.Person.Accounts[0].MetersEndDay == 0))
+                        {
+                            if (select.Values.Count >= 1 && int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
+                            {
+                                var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
+                                var counterThisMonth2 = (select.Values.Count >= 2) ? select.Values[1].Value : 0;
+                                await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, counterThisMonth,
+                                    counterThisMonth2));
+                            }
+                            else
+                            {
+                                var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
+                                await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0, counterThisMonth));
+                            }
+                        }
         }
 
         private async void RefreshView_RefreshingAsync(object sender, EventArgs e)
@@ -476,6 +479,6 @@ namespace xamarinJKH.Main
             IsRefreshing = false;
         }
 
-        
+
     }
 }
