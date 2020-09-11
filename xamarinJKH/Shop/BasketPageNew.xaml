@@ -85,7 +85,8 @@
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="50"/>
                                                         <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="0.45*"/>
+                                                        <ColumnDefinition Width="{Binding ColumnAdditionWidth}"/>
+                                                        <!--<ColumnDefinition Width="0.45*"/>-->
                                                     </Grid.ColumnDefinitions>
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="25"/>
@@ -133,10 +134,10 @@
                                                         </Label.FormattedText>
                                                     </Label>
 
-                                                    <StackLayout Grid.Column="2"
+                                                    <StackLayout Grid.Column="2"  HorizontalOptions="End"
                                                           Grid.Row="1" Orientation="Vertical" Margin="0, -5, 0, 0" >
                                                         <StackLayout  HorizontalOptions="Center" Orientation="Horizontal">
-                                                            <xamarinJkh:IconView Source="ic_shop_minus" WidthRequest="22" HeightRequest="22"
+                                                            <xamarinJkh:IconView Source="ic_shop_minus" WidthRequest="25" HeightRequest="25"
                                                                              Foreground="{x:DynamicResource MainColor}">
                                                                 <xamarinJkh:IconView.GestureRecognizers>
                                                                     <TapGestureRecognizer Command="{Binding Path=BindingContext.Decrease, Source={x:Reference BasketPage}}"
@@ -146,8 +147,8 @@
                                                             <Label FontSize="15"
                                                                TextColor="Gray"
                                                                Text="{Binding ColBusket}"
-                                                               HorizontalTextAlignment="Center"/>
-                                                            <xamarinJkh:IconView Source="ic_shop_plus" WidthRequest="22" HeightRequest="22"
+                                                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center"/>
+                                                            <xamarinJkh:IconView Source="ic_shop_plus" WidthRequest="25" HeightRequest="25"
                                                                              Foreground="{x:DynamicResource MainColor}">
                                                                 <xamarinJkh:IconView.GestureRecognizers>
                                                                     <TapGestureRecognizer Command="{Binding Path=BindingContext.Increase, Source={x:Reference BasketPage}}"
@@ -222,10 +223,10 @@
                 <yummy:PancakeView.Shadow>
                     <yummy:DropShadow Opacity="0.7" Color="Gray" />
                 </yummy:PancakeView.Shadow>
-                <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand"
-                            Padding="30,0">
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="0">
-                        <StackLayout HorizontalOptions="StartAndExpand" Margin="0,20" IsVisible="{Binding ShowWeight}">
+                <!--<ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand"
+                            Padding="30,0">-->
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="30,0">
+                        <!--<StackLayout HorizontalOptions="StartAndExpand" Margin="0,20" IsVisible="{Binding ShowWeight}">
                             <Label Text="{x:Static xamarinJkh:AppResources.Mass}"
                                TextColor="Black"
                                FontSize="12"
@@ -256,23 +257,56 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
+                        </StackLayout>-->
+                        <StackLayout  Orientation="Horizontal" HorizontalOptions="Start"  VerticalOptions="Center">
+                            <StackLayout HorizontalOptions="StartAndExpand" Margin="0,20" IsVisible="{Binding ShowWeight}">
+                                <Label Text="{x:Static xamarinJkh:AppResources.Mass}"
+                                       TextColor="Black"
+                                       FontSize="12"
+                                       FontAttributes="Bold" />
+                                <Label x:Name="LabelWeightBuscket">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span x:Name="TotalWeigth" Text="{Binding TotalWeight}" FontSize="18" FontAttributes="Bold"
+                                                  TextColor="Black" />
+                                            <Span Text=" "  />
+                                            <Span Text="{x:Static xamarinJkh:AppResources.Gram}" FontSize="12" TextColor="#8a8a8a" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,20">
+                                <Label Text="{x:Static xamarinJkh:AppResources.TotalPrice}"
+                                       TextColor="Black"
+                                       FontSize="12"
+                                       FontAttributes="Bold" />
+                                <Label x:Name="LabelPriceBuscket">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span x:Name="TotalPrice" Text="{Binding TotalPrice}" FontSize="18" FontAttributes="Bold"
+                                                  TextColor="{Binding hex}" />
+                                            <Span Text=" "/>
+                                            <Span Text="{x:Static xamarinJkh:AppResources.Currency}" FontSize="12" TextColor="#8a8a8a" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
                         </StackLayout>
-                        <Frame CornerRadius="10"
-                           x:Name="FrameBtn"
-                               BackgroundColor="{x:DynamicResource MainColor}"
-                           Padding="0"
-                           Margin="0,20">
+                        
                             <Button x:Name="BtnCheckOut"
-                                BackgroundColor="{x:DynamicResource MainColor}" HorizontalOptions="FillAndExpand"
+                                    HorizontalOptions="EndAndExpand"
+                                    Margin="0,20"
+                                        CornerRadius="10"
+                                BackgroundColor="{x:DynamicResource MainColor}" 
                                 VerticalOptions="FillAndExpand"
                                 TextColor="White"
                                 FontAttributes="Bold"
                                 Padding="5,0"
                                 Text="{x:Static xamarinJkh:AppResources.Confirm_order}"
                                 Command="{Binding GoToPay}"/>
-                        </Frame>
+                        
                     </StackLayout>
-                </ScrollView>
+                <!--</ScrollView>-->
             </yummy:PancakeView>
         </StackLayout>
     </ContentPage.Content>
