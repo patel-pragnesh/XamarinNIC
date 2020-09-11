@@ -32,6 +32,21 @@ namespace xamarinJKH.Shop
         public AccountInfo SelectedAcc { get; set; }
         public AdditionalService _Additional { get; set; }
         List<RequestsReceiptItem> ReceiptItems = new List<RequestsReceiptItem>();
+        bool showWeight;
+        public bool ShowWeight
+        {
+            get => showWeight;
+            set
+            {
+                showWeight = value;
+                OnPropertyChanged(nameof(ShowWeight));
+                if (!showWeight)
+                {
+                    PriceStack.HorizontalOptions = LayoutOptions.Center;
+                    (PriceStack.Parent as StackLayout).HorizontalOptions = LayoutOptions.Center;
+                }
+            }
+        }
 
         public PayShopPage(Dictionary<string, Goods> goodset, AdditionalService additional)
         {
@@ -94,6 +109,7 @@ namespace xamarinJKH.Shop
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.White);
             BindingContext = this;
             SetPriceAndWeight();
+            
         }
 
         string getBuscketStr()
@@ -146,7 +162,7 @@ namespace xamarinJKH.Shop
             }
 
             stringBuilder.Append($"{AppResources.TotalPrice}: ").Append(LabelPriceBuscket.Text)
-                .Append($"{AppResources.Currency}\n").Append(LabelWeightBuscket.Text).Append(" г.");
+                .Append($"{AppResources.Currency}\n").Append(LabelWeightBuscket.Text != null ? $"{LabelWeightBuscket.Text} {AppResources.Gram}" : string.Empty);
             // stringBuilder.Append("\nБезналичный расчет.");
 
             return stringBuilder.ToString();
@@ -175,7 +191,11 @@ namespace xamarinJKH.Shop
             sumWeightBasket = Goodset.Sum(_ => _.Value.weightBusket);
 
             LabelPriceBuscket.Text = Convert.ToString(sumBasket);
-            LabelWeightBuscket.Text = Convert.ToString(sumWeightBasket);
+            if (sumWeightBasket > 0)
+                LabelWeightBuscket.Text = Convert.ToString(sumWeightBasket);
+            else
+                LabelWeightBuscket.Text = null;
+            ShowWeight = sumWeightBasket > 0;
 
             return sumBasket;
         }

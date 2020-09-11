@@ -19,7 +19,7 @@ namespace xamarinJKH {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -1925,6 +1925,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to следующего месяца.
+        /// </summary>
+        internal static string NextMonth {
+            get {
+                return ResourceManager.GetString("NextMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Нет.
         /// </summary>
         internal static string No {
@@ -2923,6 +2932,15 @@ namespace xamarinJKH {
         internal static string PrebiousData {
             get {
                 return ResourceManager.GetString("PrebiousData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to предыдущего месяца.
+        /// </summary>
+        internal static string PreviousMonth {
+            get {
+                return ResourceManager.GetString("PreviousMonth", resourceCulture);
             }
         }
         

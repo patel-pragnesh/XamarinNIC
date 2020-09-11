@@ -1335,4 +1335,10 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="InsuranceText" xml:space="preserve">
     <value>Insurance 111 rubles.</value>
   </data>
+  <data name="NextMonth" xml:space="preserve">
+    <value>of the next month</value>
+  </data>
+  <data name="PreviousMonth" xml:space="preserve">
+    <value>of previous month</value>
+  </data>
 </root>

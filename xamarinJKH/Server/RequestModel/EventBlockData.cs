@@ -121,7 +121,8 @@ namespace xamarinJKH.Server.RequestModel
         public string LogoFileId { get; set; }
         // макс процент списания бонусов для лицевых счетов текущего пользователя
         public List<BonusDiscountRate> BonusDiscountRates { get; set; }
-        public Xamarin.Forms.Maps.Position Position { get => new Xamarin.Forms.Maps.Position(double.Parse(this.ShopLat.Replace(".", ",")), double.Parse(this.ShopLng.Replace(".", ","))); set => this.Position = value; }
+        public Xamarin.Forms.Maps.Position Position { get => new Xamarin.Forms.Maps.Position(double.Parse(this.ShopLat.Replace(',','.')), double.Parse(this.ShopLng.Replace(',', '.'))); set => this.Position = value; }
+        public string ShopType { get; set; }
     }
 
     public class BonusDiscountRate

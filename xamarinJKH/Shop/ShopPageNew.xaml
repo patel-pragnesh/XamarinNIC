@@ -312,7 +312,7 @@
                         </yummy:PancakeView.Shadow>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"
                                      Padding="20,0,20,0">
-                            <StackLayout HorizontalOptions="StartAndExpand" Margin="0,20">
+                            <StackLayout HorizontalOptions="StartAndExpand" Margin="0,20" IsVisible="{Binding ShowWeight}">
                         <Label Text="{x:Static xamarinJkh:AppResources.Mass}"
                                        TextColor="Black"
                                        FontSize="12"

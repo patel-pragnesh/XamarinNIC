@@ -109,7 +109,8 @@
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10,0">
 
                                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand"
-                                                 Padding="-20,0,15,0">
+                                                 Padding="-20,0,15,0"
+                                                 IsVisible="{Binding ShowWeight}">
                                         <Label Text="{x:Static xamarinJkh:AppResources.Mass}" HorizontalOptions="End"
                                                TextColor="Black"
                                                FontAttributes="Bold"
@@ -127,6 +128,7 @@
                                         </Label>
                                     </StackLayout>
                                     <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical"
+                                                 x:Name="PriceStack"
                                                  Padding="0,0,10,10">
                                         <Label HorizontalOptions="Start"
                                                Text="{x:Static xamarinJkh:AppResources.PriceText}" TextColor="Black"

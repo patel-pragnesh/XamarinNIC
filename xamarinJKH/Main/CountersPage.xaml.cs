@@ -186,6 +186,7 @@ namespace xamarinJKH.Main
         private void SetTitle()
         {
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
+            var day = DateTime.Now.Day;
             //if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
             //    currentTheme = OSAppTheme.Dark;
             if (Settings.Person != null)
@@ -206,21 +207,64 @@ namespace xamarinJKH.Main
                             if (Settings.Person.Accounts[0].MetersStartDay != 0 &&
                                 Settings.Person.Accounts[0].MetersEndDay != 0)
                             {
-                                formattedResource.Spans.Add(new Span
+                                if (Settings.Person.Accounts[0].MetersStartDay > Settings.Person.Accounts[0].MetersEndDay)
                                 {
-                                    Text = AppResources.From + Settings.Person.Accounts[0].MetersStartDay + AppResources.To +
+                                    if (day <= Settings.Person.Accounts[0].MetersEndDay)
+                                    {
+                                        formattedResource.Spans.Add(new Span
+                                        {
+                                            Text = $" {AppResources.From} {Settings.Person.Accounts[0].MetersStartDay} " +
+                                            $"{AppResources.PreviousMonth} {AppResources.To} {Settings.Person.Accounts[0].MetersEndDay} ",
+                                            TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                                            FontAttributes = FontAttributes.Bold,
+                                            FontSize = 15
+                                        });
+                                        formattedResource.Spans.Add(new Span
+                                        {
+                                            Text = AppResources.CountersCurrentMonth,
+                                            TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                                            FontAttributes = FontAttributes.None,
+                                            FontSize = 15
+                                        });
+                                    }
+                                    else
+                                    {
+                                        formattedResource.Spans.Add(new Span
+                                        {
+                                            Text = $" {AppResources.From} {Settings.Person.Accounts[0].MetersStartDay} " +
+                                            $"{AppResources.CountersCurrentMonth} {AppResources.To} {Settings.Person.Accounts[0].MetersEndDay} ",
+                                            TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                                            FontAttributes = FontAttributes.Bold,
+                                            FontSize = 15
+                                        });
+                                        formattedResource.Spans.Add(new Span
+                                        {
+                                            Text = AppResources.NextMonth,
+                                            TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                                            FontAttributes = FontAttributes.None,
+                                            FontSize = 15
+                                        });
+                                    }
+                                }
+                                else
+                                {
+                                    formattedResource.Spans.Add(new Span
+                                    {
+                                        Text = AppResources.From + Settings.Person.Accounts[0].MetersStartDay + AppResources.To +
                                            Settings.Person.Accounts[0].MetersEndDay + AppResources.DayOfMounth,
-                                    TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
-                                    FontAttributes = FontAttributes.Bold,
-                                    FontSize = 15
-                                });
-                                formattedResource.Spans.Add(new Span
-                                {
-                                    Text = AppResources.CountersCurrentMonth,
-                                    TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
-                                    FontAttributes = FontAttributes.None,
-                                    FontSize = 15
-                                });
+                                        TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                                        FontAttributes = FontAttributes.Bold,
+                                        FontSize = 15
+                                    });
+                                    formattedResource.Spans.Add(new Span
+                                    {
+                                        Text = AppResources.CountersCurrentMonth,
+                                        TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                                        FontAttributes = FontAttributes.None,
+                                        FontSize = 15
+                                    });
+                                }
+                                
                             }
                             else
                             {
