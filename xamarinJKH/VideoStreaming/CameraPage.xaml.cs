@@ -85,5 +85,20 @@ namespace xamarinJKH.VideoStreaming
                 Video.ScaleTo(1);
             }
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            if (rotated)
+            {
+                MessagingCenter.Send<object, bool>(this, "FullScreen", rotated);
+                Video.BackgroundColor = Color.Transparent;
+                (VideoContainer.Parent as StackLayout).BackgroundColor = Color.Transparent;
+                Video.Margin = new Thickness(0);
+                Video.ScaleTo(1);
+                rotated = !rotated;
+                return true;
+            }
+            return base.OnBackButtonPressed();
+        }
     }
 }
