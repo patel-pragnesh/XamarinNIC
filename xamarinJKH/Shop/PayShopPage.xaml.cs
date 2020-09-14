@@ -232,7 +232,7 @@ namespace xamarinJKH.Shop
 
                             RequestInfo requestInfo = new RequestInfo();
                             requestInfo.ID = result.ID;
-                            await Navigation.PushAsync(new AppPage(requestInfo, true));
+                            await Navigation.PushAsync(new AppPage(requestInfo, true, true));
                         }
                         else
                         {

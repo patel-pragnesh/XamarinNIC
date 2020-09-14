@@ -218,10 +218,14 @@ namespace xamarinJKH.Apps
 
         public bool close = false;
 
-        public AppPage(RequestInfo requestInfo, bool closeAll = false)
+        public AppPage(RequestInfo requestInfo, bool closeAll = false, bool paid = false)
         {
             close = closeAll;
             isPayd = requestInfo.IsPaid;
+            if (paid)
+            {
+                isPayd = paid;
+            }
             _requestInfo = requestInfo;
             InitializeComponent();
             if (!isPayd)
