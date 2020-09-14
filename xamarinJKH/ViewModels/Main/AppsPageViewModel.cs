@@ -100,7 +100,11 @@ namespace xamarinJKH.ViewModels.Main
                     var newRequests = response.Requests.Where(x => !ids.Contains(x.ID)).ToList();
                     foreach (var newApp in newRequests)
                     {
-                        Device.BeginInvokeOnMainThread(() => Requests.Add(newApp));
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            AllRequests.Insert(0, newApp);
+                            Requests.Insert(0, newApp);
+                        });
                     }
                 }
 
