@@ -143,7 +143,39 @@
                                 BackgroundColor="Transparent"
                                 Clicked="ButtonClick" />
                     </Frame>
-            
+                    <CollectionView ItemsSource="{Binding Files}" 
+                                    SelectionMode="Single"
+                                    SelectionChanged="OnCollectionViewSelectionChanged"
+                                    HorizontalOptions="CenterAndExpand"  x:Name="CollectionViewFiles">
+                        
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="10" HorizontalOptions="CenterAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <xamarinJkh:IconView 
+                                           Source="ic_file_download"
+                                           Grid.Row="0"
+                                           Foreground="{x:DynamicResource MainColor}"
+                                           HeightRequest="60"
+                                           HorizontalOptions="CenterAndExpand"
+                                           WidthRequest="60" />
+                                    <Label Grid.Column="0"
+                                           Grid.Row="1"
+                                           HorizontalTextAlignment="Center"
+                                           Text="{Binding Description}"
+                                           FontAttributes="Bold"
+                                            />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
                 </StackLayout>
             </ScrollView>
         </StackLayout>

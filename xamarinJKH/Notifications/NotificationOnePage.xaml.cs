@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
@@ -17,6 +18,7 @@ using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
+using FileInfo = xamarinJKH.Server.RequestModel.FileInfo;
 
 namespace xamarinJKH.Notifications
 {
@@ -27,13 +29,15 @@ namespace xamarinJKH.Notifications
         private AdditionalService _additional;
         private PollInfo _polls;
         private RestClientMP _server = new RestClientMP();
+        
+        public List<FileInfo> Files { get; set; }
 
         public NotificationOnePage(AnnouncementInfo announcementInfo)
         {
             
             _announcementInfo = announcementInfo;
             InitializeComponent();
-
+            CollectionViewFiles.ItemsLayout = new GridItemsLayout(2, ItemsLayoutOrientation.Vertical);
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -67,6 +71,8 @@ namespace xamarinJKH.Notifications
             backClick.Tapped += async (s, e) => { close(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
             SetText();
+            Files = announcementInfo.Files;
+            BindingContext = this;
         }
 
         async void SetText()
@@ -134,6 +140,20 @@ namespace xamarinJKH.Notifications
         private async void ButtonClick(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PollsPage(_polls, false));
+        }
+
+        private async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FileInfo select = (e.CurrentSelection.FirstOrDefault() as FileInfo);
+            try
+            {
+                if (@select != null) await Launcher.OpenAsync(@select.Link);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAdditionalLink, "OK");
+            }
         }
     }
 }
