@@ -52,6 +52,8 @@ namespace xamarinJKH.Server.RequestModel
         public int AdditionalServiceId { get; set; }
         public bool IsReaded { get; set; }
         public string Header { get; set; }
+        // файлы объявлений
+        public List<FileInfo> Files { get; set; }
     }
 
     public class NewsInfo
