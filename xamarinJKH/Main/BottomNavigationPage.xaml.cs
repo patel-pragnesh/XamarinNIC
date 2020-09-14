@@ -25,7 +25,7 @@ namespace xamarinJKH.Main
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            Color hex = Color.FromHex(Utils.Settings.MobileSettings.color);
+            Color hex = (Color) Application.Current.Resources["MainColor"];
             SelectedTabColor = hex;
 
             OSAppTheme currentTheme = Application.Current.RequestedTheme;

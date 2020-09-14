@@ -52,14 +52,14 @@
                             BorderColor="Gray"
                             x:Name="PancakeViewIcon"
                             BorderThickness="1"
-                            Padding="15"
+                            Padding="5"
                             CornerRadius="25,0,25,25"
                             BackgroundColor="White"
                             HorizontalOptions="End"
                             IsClippedToBounds="True">
                             <Image x:Name="IconViewNameUk"
                                    Source="icon_login"
-                                   HeightRequest="50" />
+                                   HeightRequest="70" />
                         </pancakeView:PancakeView>
                     </StackLayout>
                 </Grid>

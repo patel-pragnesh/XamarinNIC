@@ -68,7 +68,7 @@
                     <Image x:Name="IconViewNameUk"
                            Source="icon_login"
                            Margin="0, 0, 0, 0"
-                           HeightRequest="60"
+                           HeightRequest="70"
                            HorizontalOptions="Center" />
 
                     <Label x:Name="UkName"
