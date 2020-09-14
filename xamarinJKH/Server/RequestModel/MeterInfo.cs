@@ -27,7 +27,13 @@ namespace xamarinJKH.Server.RequestModel
         public List<MeterValueInfo> Values { get; set; }
         // отключен
         public bool IsDisabled { get; set; }
-        
+
+        public int ValuesStartDay { get; set; }
+        public int ValuesEndDay { get; set; }
+        public bool ValuesCanAdd { get; set; }
+        public bool ValuesPeriodStartIsCurrent { get; set; }
+        public bool ValuesPeriodEndIsCurrent { get; set; }
+
         // ед измерения
         public string Units { get; set; }
     }

@@ -52,6 +52,8 @@ namespace xamarinJKH.Server.RequestModel
         public int MetersStartDay { get; set; }
         public int MetersEndDay { get; set; }
         public bool MetersAccessFlag { get; set; }
+        public bool MetersPeriodStartIsCurrent { get; set; }
+        public bool MetersPeriodEndIsCurrent { get; set; }
 
         public override string ToString()
         {
