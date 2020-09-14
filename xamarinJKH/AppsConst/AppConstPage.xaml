@@ -204,7 +204,7 @@
 
 
                             <StackLayout
-                                IsVisible="True"
+                                IsVisible="{Binding IsRequestPaid}"
                                 Margin="0,5,0,0"
                                 VerticalOptions="Center"
                                 HorizontalOptions="EndAndExpand">
