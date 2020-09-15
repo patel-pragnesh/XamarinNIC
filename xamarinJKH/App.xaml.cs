@@ -241,7 +241,7 @@ namespace xamarinJKH
                 "ios=4a45a15f-a591-4860-b748-a856636cf982;"
                 ,
                 typeof(Analytics), typeof(Crashes));
-
+            AppCenter.LogLevel = LogLevel.Verbose;
             // Handle when your app starts
             CrossFirebasePushNotification.Current.Subscribe("general");
             CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
