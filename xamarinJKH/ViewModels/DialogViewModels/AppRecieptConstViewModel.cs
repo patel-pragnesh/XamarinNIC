@@ -83,11 +83,15 @@ namespace xamarinJKH.ViewModels.DialogViewModels
                         {
                             var existing = ReceiptItems.FirstOrDefault(x => x.Name == item.Name);
                             if (existing == null)
+                            {
                                 Device.BeginInvokeOnMainThread(() => ReceiptItems.Add(receipt_item));
+                            }
                             else
+                            {
                                 existing.Quantity += item.ColBusket;
+                                existing.Amount = Convert.ToDecimal(existing.Quantity * existing.Price);
+                            }
 
-                            existing.Amount = Convert.ToDecimal(existing.Quantity * existing.Price);
                         }
                         
                     }
