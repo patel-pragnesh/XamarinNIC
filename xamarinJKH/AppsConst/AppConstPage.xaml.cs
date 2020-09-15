@@ -24,7 +24,9 @@ using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
+using xamarinJKH.Models;
 using PermissionStatus = Plugin.Permissions.Abstractions.PermissionStatus;
+using System.Collections.ObjectModel;
 
 namespace xamarinJKH.AppsConst
 {
@@ -170,6 +172,7 @@ namespace xamarinJKH.AppsConst
 
         public bool close = false;
         public bool isNotRead { get; set; }
+        public ObservableCollection<AppOption> Options { get; set; }
 
         public AppConstPage(RequestInfo requestInfo, bool isNotRead = true, bool closeAll = false)
         {
@@ -197,6 +200,25 @@ namespace xamarinJKH.AppsConst
                 default:
                     break;
             }
+            Options = new ObservableCollection<AppOption>();
+            Options.Add(new AppOption { Name = AppResources.InfoApp, Image = "ic_info_app1", Command = new Command(() => ShowInfo()) });
+            Options.Add(new AppOption { Name = AppResources.AcceptApp, Image = "ic_accept_app", Command = new Command(() => acceptApp())});
+            Options.Add(new AppOption { Name = AppResources.CompleteApp, Image = "ic_check_mark", Command = new Command(() => performApp()) });
+            Options.Add(new AppOption { Name = AppResources.PassApp, Image = "ic_next_disp", Command = new Command(async () =>
+            {
+                // await ShowRating();
+                await PopupNavigation.Instance.PushAsync(new MoveDispatcherView(hex, _requestInfo, true));
+                await RefreshData();
+            }) });
+            Options.Add(new AppOption { Name = AppResources.Transit, Image = "ic_in_way", Command = new Command(() => Transit_OnTapped(null, null)), IsPaid = requestInfo.IsPaid });
+            Options.Add(new AppOption { Name = AppResources.SendCodeApp, Image = "ic_send_code", Command = new Command(() => SendCode(null, null)), IsPaid = requestInfo.IsPaid });
+            Options.Add(new AppOption { Name = AppResources.Receipt, Image = "ic_receipt", Command = new Command(() => ReceiptEdit(null, null)), IsPaid = requestInfo.IsPaid });
+            Options.Add(new AppOption { Name = AppResources.CloseApp, Image = "ic_close_app1", Command = new Command(async () =>
+            {
+                // await ShowRating();
+                await PopupNavigation.Instance.PushAsync(new RatingBarContentView(hex, _requestInfo, true));
+                await RefreshData();
+            }) });
 
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
