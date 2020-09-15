@@ -54,6 +54,8 @@
 	<string>Предоставьте доступ к календарю и дате</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Вы можете приложить фото к заявке</string>
+  <key>NSSpeechRecognitionUsageDescription</key>
+  <string>Предоставьте доступ к распознованию речи чтобы была возможность отпрапвлять сообщения в заявку голосом</string>
 	<key>CFBundleVersion</key>
 	<string>3.46</string>
 	<key>UIBackgroundModes</key>

@@ -128,7 +128,7 @@ namespace xamarinJKH.Apps
                             await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
                         }
                     }
-                    
+
                 }
                 catch
                 {
@@ -185,8 +185,8 @@ namespace xamarinJKH.Apps
                         {
                             Device.BeginInvokeOnMainThread(() => addAppMessage(each));
                             messages.Add(each);
-                        }                          
-                        
+                        }
+
                     }
                     // additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
                     var lastChild = baseForApp.Children.LastOrDefault();
@@ -228,6 +228,39 @@ namespace xamarinJKH.Apps
             }
             _requestInfo = requestInfo;
             InitializeComponent();
+
+            try
+            {
+                _speechRecongnitionInstance = DependencyService.Get<ISpeechToText>();
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                //ошибку выводить в сообщение для дебага
+                EntryMess.Text = ex.Message;
+#endif
+                throw ex;
+            }
+
+            MessagingCenter.Subscribe<ISpeechToText, string>(this, "STT", (sender, args) =>
+            {
+                SpeechToTextFinalResultRecieved(args);
+            });
+
+            MessagingCenter.Subscribe<ISpeechToText>(this, "Final", (sender) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {                    
+                    IconViewMic.Foreground = hex;
+                });                
+            });
+
+            MessagingCenter.Subscribe<IMessageSender, string>(this, "STT", (sender, args) =>
+            {
+                SpeechToTextFinalResultRecieved(args);
+            });
+
+
             if (!isPayd)
             {
                 ScrollView.WidthRequest = 100;
@@ -308,6 +341,39 @@ namespace xamarinJKH.Apps
             //additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
+
+        private async void RecordMic()
+        {
+            try
+            {
+                _speechRecongnitionInstance.StartSpeechToText();
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                EntryMess.Text = ex.Message;
+#endif
+            }
+
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    IconViewMic.Foreground = Color.FromHex("#A2A2A2");
+                });                
+            }
+
+            //var result = await CrossSpeechToText.StartVoiceInput(AppResources.VoiceInput);
+            //EntryMess.Text +=  " " + result;
+        }
+
+        private void SpeechToTextFinalResultRecieved(string args)
+        {
+                EntryMess.Text += " " + args;            
+        }
+
+        private ISpeechToText _speechRecongnitionInstance;
+        
         protected override bool OnBackButtonPressed()
         {
             if (close)
@@ -780,5 +846,28 @@ namespace xamarinJKH.Apps
         {
             await Dialog.Instance.ShowAsync(new AppReceiptDialogWindow(new ViewModels.DialogViewModels.AppRecieptViewModel(request.ReceiptItems)));
         }
-    }
+
+        
+        private void EntryMess_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var entry = sender as BordlessEditor;
+
+            if (entry != null)
+            {
+                if (entry.Height > 121)
+                {
+                    entry.HeightRequest = 120;
+                    entry.AutoSize = EditorAutoSizeOption.Disabled;
+                }
+                else
+                {
+                    if (e.OldTextValue != null && e.NewTextValue.Length < e.OldTextValue.Length && e.NewTextValue.Length < 100)
+                    {
+                        entry.HeightRequest = -1;
+                    }
+                    entry.AutoSize = EditorAutoSizeOption.TextChanges;
+                }
+            }
+        }
+}
 }

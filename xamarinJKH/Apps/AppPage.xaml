@@ -181,39 +181,63 @@
                 <StackLayout
                     Spacing="10"
                     Orientation="Horizontal">
-                    <ActivityIndicator x:Name="progressFile"
-                                       IsRunning="true"
-                                       HeightRequest="25"
-                                       WidthRequest="25"
-                                       IsVisible="False"
-                                       HorizontalOptions="StartAndExpand"
-                                       Color="{Binding hex}" />
-                    <xamarinJkh:IconView
+                    <Grid Padding="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.06*"/>
+                            <ColumnDefinition Width="0.8*"/>
+                            <ColumnDefinition Width="0.06*"/>
+                            <ColumnDefinition Width="0.06*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <xamarinJkh:IconView
                         x:Name="IconViewAddFile"
                         Source="ic_add_file"
                         Foreground="{Binding hex}"
                         HeightRequest="20"
+                        Grid.Column="0"
                         WidthRequest="20" />
-                    <xamarinJkh:BordlessEditor x:Name="EntryMess"
+
+                        <ActivityIndicator x:Name="progressFile"
+                                       IsRunning="true"
+                                       HeightRequest="25"
+                                       WidthRequest="25"
+                                       IsVisible="False"
+                                          
+                                       Grid.Column="0"
+                                       HorizontalOptions="StartAndExpand"
+                                       Color="{Binding hex}" />
+                        <xamarinJkh:BordlessEditor x:Name="EntryMess"
                                                FontSize="18"
                                                VerticalOptions="Center"
                                                Text=""
-                                               AutoSize="Disabled"
+                                               Grid.Column="1"
+                                               AutoSize="TextChanges"
                                                Placeholder="{x:Static xamarinJkh:AppResources.ChatPlaceholder}"
+                                               TextChanged="EntryMess_TextChanged"
                                                TextColor="#A2A2A2"
                                                HorizontalOptions="FillAndExpand" />
-                    <xamarinJkh:IconView
+                        <xamarinJkh:IconView
+                        x:Name="IconViewMic"
+                        Source="ic_microphone"
+                        Foreground="{Binding hex}"
+                        HeightRequest="20"
+                        Grid.Column="2"
+                        WidthRequest="20" />
+                        <xamarinJkh:IconView
                         x:Name="IconViewSend"
                         Source="ic_send_mess"
                         Foreground="{Binding hex}"
                         HeightRequest="20"
+                        Grid.Column="3"
                         WidthRequest="20" />
-                    <ActivityIndicator x:Name="progress"
+                        <ActivityIndicator x:Name="progress"
                                        IsRunning="true"
                                        HeightRequest="20"
                                        WidthRequest="20"
                                        IsVisible="False"
+                                       Grid.Column="3"
                                        Color="{Binding hex}" />
+                    </Grid>
                     <StackLayout
                         IsVisible="False"
                         Spacing="-5">
