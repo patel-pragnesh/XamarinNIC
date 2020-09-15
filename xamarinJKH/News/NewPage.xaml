@@ -51,7 +51,7 @@
                             BorderColor="Gray"
                             x:Name="PancakeViewIcon"
                             BorderThickness="1"
-                            Padding="5"
+                            Padding="0"
                             CornerRadius="25,0,25,25"
                             BackgroundColor="White"
                             HorizontalOptions="End"
