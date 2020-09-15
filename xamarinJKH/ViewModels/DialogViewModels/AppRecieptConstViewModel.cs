@@ -86,11 +86,13 @@ namespace xamarinJKH.ViewModels.DialogViewModels
                                 Device.BeginInvokeOnMainThread(() => ReceiptItems.Add(receipt_item));
                             else
                                 existing.Quantity += item.ColBusket;
+
+                            existing.Amount = Convert.ToDecimal(existing.Quantity * existing.Price);
                         }
                         
                     }
                 }
-                var total = ReceiptItems.Select(x => x.Price * x.Amount).Sum();
+                var total = ReceiptItems.Select(x => x.Price * x.Quantity).Sum();
                 Price = Convert.ToDecimal(total);
             });
         }

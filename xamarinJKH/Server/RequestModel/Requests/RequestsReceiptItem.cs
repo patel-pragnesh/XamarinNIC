@@ -7,7 +7,16 @@ namespace xamarinJKH.Server.RequestModel
         public int ID { get; set; }
         public string Name { get; set; }
         public decimal? Price { get; set; }
-        public decimal Quantity { get; set; }
+        decimal _quantity;
+        public decimal Quantity
+        {
+            get => _quantity;
+            set
+            {
+                _quantity = value;
+                OnPropertyChanged(nameof(Quantity));
+            }
+        }
         decimal _amount;
         public decimal Amount
         {
