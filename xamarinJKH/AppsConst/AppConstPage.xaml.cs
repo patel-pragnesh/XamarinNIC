@@ -759,7 +759,7 @@ namespace xamarinJKH.AppsConst
             {
                 Items.Add(item.Copy());
             }
-            await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, _requestInfo.ShopId));
+            await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, request.ShopId));
         }
     }
 }

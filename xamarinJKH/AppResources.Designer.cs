@@ -1826,7 +1826,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Наименование.
+        ///   Looks up a localized string similar to Название.
         /// </summary>
         internal static string Name {
             get {
