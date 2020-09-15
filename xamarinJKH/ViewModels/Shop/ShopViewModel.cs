@@ -39,7 +39,7 @@ namespace xamarinJKH.ViewModels.Shop
                     Goods.Clear();
                     if (!Asending)
                     {
-                        foreach (var good in AllGoods.OrderBy(_ => _.Price).ToList())
+                        foreach (var good in AllGoods.OrderBy(_ => _.Price).Where(x => x.Categories != null || x.Categories.Count > 0).ToList())
                         {
                             if (good.Categories.Contains(value))
                             {
@@ -49,7 +49,7 @@ namespace xamarinJKH.ViewModels.Shop
                     }
                     else
                     {
-                        foreach (var good in AllGoods.OrderByDescending(_ => _.Price).ToList())
+                        foreach (var good in AllGoods.OrderByDescending(_ => _.Price).Where(x => x.Categories != null || x.Categories.Count > 0).ToList())
                         {
                             if (good.Categories.Contains(value))
                             {
@@ -143,9 +143,9 @@ namespace xamarinJKH.ViewModels.Shop
                     if (goods.Error == null)
                     {
                         AllGoods = new List<Goods>();
-                        AllGoods.AddRange(goods.Data);
+                        AllGoods.AddRange(goods.Data.Where(x => x.Categories != null || x.Categories.Count > 0));
 
-                        foreach (var good in goods.Data)
+                        foreach (var good in goods.Data.Where(x => x.Categories != null || x.Categories.Count > 0))
                         {
                             foreach (var category in good.Categories)
                             {

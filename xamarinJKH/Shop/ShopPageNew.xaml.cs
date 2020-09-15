@@ -59,7 +59,8 @@ namespace xamarinJKH.Shop
             if (viewModel.SelectedCategory == " ")
             {
                 var id = viewModel.Categories.ToList().IndexOf(" ");
-                (sender as CollectionView).ScrollTo(id - 1);// viewModel.Categories[id - 1];
+                if (id > 0)
+                    (sender as CollectionView).ScrollTo(id - 1);// viewModel.Categories[id - 1];
             }
         }
     }
