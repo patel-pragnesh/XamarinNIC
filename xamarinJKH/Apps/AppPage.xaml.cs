@@ -14,7 +14,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Plugin.CrossSpeechToText.Stt;
+//using Plugin.CrossSpeechToText.Stt;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -129,7 +129,7 @@ namespace xamarinJKH.Apps
                             await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
                         }
                     }
-                    
+
                 }
                 catch
                 {
@@ -186,8 +186,8 @@ namespace xamarinJKH.Apps
                         {
                             Device.BeginInvokeOnMainThread(() => addAppMessage(each));
                             messages.Add(each);
-                        }                          
-                        
+                        }
+
                     }
                     // additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
                     var lastChild = baseForApp.Children.LastOrDefault();
@@ -225,6 +225,39 @@ namespace xamarinJKH.Apps
             isPayd = requestInfo.IsPaid;
             _requestInfo = requestInfo;
             InitializeComponent();
+
+            try
+            {
+                _speechRecongnitionInstance = DependencyService.Get<ISpeechToText>();
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                //ошибку выводить в сообщение для дебага
+                EntryMess.Text = ex.Message;
+#endif
+                throw ex;
+            }
+
+            MessagingCenter.Subscribe<ISpeechToText, string>(this, "STT", (sender, args) =>
+            {
+                SpeechToTextFinalResultRecieved(args);
+            });
+
+            MessagingCenter.Subscribe<ISpeechToText>(this, "Final", (sender) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {                    
+                    IconViewMic.Foreground = hex;
+                });                
+            });
+
+            MessagingCenter.Subscribe<IMessageSender, string>(this, "STT", (sender, args) =>
+            {
+                SpeechToTextFinalResultRecieved(args);
+            });
+
+
             if (!isPayd)
             {
                 ScrollView.WidthRequest = 100;
@@ -310,9 +343,35 @@ namespace xamarinJKH.Apps
 
         private async void RecordMic()
         {
-            var result = await CrossSpeechToText.StartVoiceInput(AppResources.VoiceInput);
-            EntryMess.Text +=  " " + result;
+            try
+            {
+                _speechRecongnitionInstance.StartSpeechToText();
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                EntryMess.Text = ex.Message;
+#endif
+            }
+
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    IconViewMic.Foreground = Color.FromHex("#A2A2A2");
+                });                
+            }
+
+            //var result = await CrossSpeechToText.StartVoiceInput(AppResources.VoiceInput);
+            //EntryMess.Text +=  " " + result;
         }
+
+        private void SpeechToTextFinalResultRecieved(string args)
+        {
+                EntryMess.Text += " " + args;            
+        }
+
+        private ISpeechToText _speechRecongnitionInstance;
 
         protected override bool OnBackButtonPressed()
         {
@@ -790,7 +849,7 @@ namespace xamarinJKH.Apps
         private void EntryMess_TextChanged(object sender, TextChangedEventArgs e)
         {
             var entry = sender as BordlessEditor;
-            
+
             if (entry != null)
             {
                 if (entry.Height > 121)

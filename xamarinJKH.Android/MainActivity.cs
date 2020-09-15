@@ -19,12 +19,14 @@ using xamarinJKH.Utils;
 
 using Firebase.Iid;
 using xamarinJKH.Droid.CustomReader;
+using xamarinJKH.InterfacesIntegration;
 
+using Android.Speech;
 
 namespace xamarinJKH.Droid
 {
     [Activity(Label = "Тихая Гавань", Icon = "@drawable/icon_login", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity 
+    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IMessageSender
     {
         protected override async void OnCreate(Bundle savedInstanceState)
         {
@@ -34,8 +36,8 @@ namespace xamarinJKH.Droid
             global::Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental", "AppTheme_Experimental");
             XamEffects.Droid.Effects.Init();
             AiForms.Dialogs.Dialogs.Init(this);
-            App.ScreenHeight = (int) (Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
-            App.ScreenWidth = (int) (Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
+            App.ScreenHeight = (int)(Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
+            App.ScreenWidth = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
             App.version = Build.VERSION.Sdk;
             App.model = Build.Model;
             Messier16.Forms.Android.Controls.Messier16Controls.InitAll();
@@ -106,9 +108,31 @@ namespace xamarinJKH.Droid
             base.OnNewIntent(intent);
             FirebasePushNotificationManager.ProcessIntent(this, intent);
         }
-        
+
+        private readonly int VOICE = 10;
+
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
+
+            if (requestCode == VOICE)
+            {
+                if (resultCode == Result.Ok)
+                {
+                    var matches = data.GetStringArrayListExtra(RecognizerIntent.ExtraResults);
+                    if (matches.Count != 0)
+                    {
+                        string textInput = matches[0];
+                        MessagingCenter.Send<IMessageSender, string>(this, "STT", textInput);
+                    }
+                    else
+                    {
+                        MessagingCenter.Send<IMessageSender, string>(this, "STT", "No input");
+                    }
+
+                }
+            }
+
+
             base.OnActivityResult(requestCode, resultCode, data);
             Plugin.CrossSpeechToText.Droid.SpeechToText.OnActivityResult(requestCode, resultCode, data);
         }
