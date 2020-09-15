@@ -54,7 +54,7 @@ namespace xamarinJKH.DialogViews
             decimal bonusPaid = getBonusPaid();
             formatted.Spans.Add(new Span
             {
-                Text = (request.PaidSumm - bonusPaid).ToString(),
+                Text = (GetSumPaid(request) - bonusPaid).ToString(),
                 FontSize = 20,
                 TextColor = hex,
                 FontAttributes = FontAttributes.Bold
@@ -89,6 +89,11 @@ namespace xamarinJKH.DialogViews
             return count;
         }
 
+        decimal GetSumPaid(RequestContent info)
+        {
+            var sum = info.ReceiptItems.Aggregate<RequestsReceiptItem, decimal>(0, (current, each) => (decimal) (current + (each.Quantity * each.Price)));
+            return sum;
+        }
 
         private async void payApp(object sender, EventArgs e)
         {
@@ -97,7 +102,7 @@ namespace xamarinJKH.DialogViews
                 if (isCardPay)
                 {
                     await appPage.Navigation.PushAsync(
-                        new PayServicePage("", request.PaidSumm - getBonusPaid(), request.ID));
+                        new PayServicePage("", GetSumPaid(request) - getBonusPaid(), request.ID));
                     await PopupNavigation.Instance.PopAsync();
                 }
                 else
