@@ -2024,6 +2024,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Заказ скоректирован: .
+        /// </summary>
+        internal static string OrderCorrected {
+            get {
+                return ResourceManager.GetString("OrderCorrected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Заказ успешно оформлен.
         /// </summary>
         internal static string OrderSuccess {

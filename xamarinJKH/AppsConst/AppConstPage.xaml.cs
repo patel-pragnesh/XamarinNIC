@@ -252,7 +252,7 @@ namespace xamarinJKH.AppsConst
             messages = new List<RequestMessage>();
 
             getMessage2();
-            MessagingCenter.Subscribe<Object>(this, "RefreshApp", (sender) => RefreshCommand.Execute(null));
+            MessagingCenter.Subscribe<Object>(this, "RefreshApp", async (sender) => await RefreshData());
             MessagingCenter.Subscribe<Object>(this, "RefreshAppList", async (sender) =>
                 request = await _server.GetRequestsDetailListConst(_requestInfo.ID.ToString()));
            // additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));

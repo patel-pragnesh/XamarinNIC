@@ -1341,4 +1341,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="PreviousMonth" xml:space="preserve">
     <value>of previous month</value>
   </data>
+  <data name="OrderCorrected" xml:space="preserve">
+    <value>Order corrected: </value>
+  </data>
 </root>

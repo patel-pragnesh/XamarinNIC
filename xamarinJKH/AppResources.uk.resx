@@ -1325,4 +1325,7 @@
   <data name="PreviousMonth" xml:space="preserve">
     <value>попереднього місяця</value>
   </data>
+  <data name="OrderCorrected" xml:space="preserve">
+    <value>Замовлення скоректировать: </value>
+  </data>
 </root>
