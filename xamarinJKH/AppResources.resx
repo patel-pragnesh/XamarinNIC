@@ -1322,4 +1322,7 @@
   <data name="NextMonth" xml:space="preserve">
     <value>следующего месяца</value>
   </data>
+  <data name="OrderCorrected" xml:space="preserve">
+    <value>Заказ скоректирован: </value>
+  </data>
 </root>

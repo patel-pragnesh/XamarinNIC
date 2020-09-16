@@ -164,6 +164,7 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpeechToTextImplementation.cs" />
   </ItemGroup>
   <ItemGroup>
     <GoogleServicesJson Include="google-services.json">
@@ -219,6 +220,7 @@
     <AndroidResource Include="Resources\drawable\ic_home.png" />
     <AndroidResource Include="Resources\drawable\ic_info_app1.png" />
     <AndroidResource Include="Resources\drawable\ic_in_way.png" />
+    <AndroidResource Include="Resources\drawable\ic_microphone.png" />
     <AndroidResource Include="Resources\drawable\ic_minus.png" />
     <AndroidResource Include="Resources\drawable\ic_monitor.png" />
     <AndroidResource Include="Resources\drawable\ic_monitor_top.png" />
