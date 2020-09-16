@@ -109,6 +109,7 @@
     <CodesignKey>Apple Development: Evgeny Yurtaykin (W7QP3Z4ZW5)</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
+    <BundleResource Include="Resources\ic_microphone.png" />
     <BundleResource Include="Resources\telegram.png" />
     <BundleResource Include="Resources\viber.png" />
     <BundleResource Include="Resources\whatsapp.png" />

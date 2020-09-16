@@ -6,11 +6,11 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:dialogViews="clr-namespace:xamarinJKH.DialogViews;assembly=xamarinJKH"
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
-             xmlns:selector ="clr-namespace:xamarinJKH.Apps"
-             xmlns:datatypes ="clr-namespace:xamarinJKH.Server.RequestModel"
-             
+             xmlns:selector="clr-namespace:xamarinJKH.Apps"
+             xmlns:datatypes="clr-namespace:xamarinJKH.Server.RequestModel"
+
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
-             x:Class="xamarinJKH.Apps.AppPage">    
+             x:Class="xamarinJKH.Apps.AppPage">
     <ContentPage.Content>
         <StackLayout>
             <RelativeLayout
@@ -29,7 +29,7 @@
                              Constant=0}"
                        Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top_in}"
                        VerticalOptions="Fill"
-                       HorizontalOptions="Fill" />                
+                       HorizontalOptions="Fill" />
             </RelativeLayout>
             <StackLayout HorizontalOptions="Fill"
                          Orientation="Horizontal">
@@ -41,9 +41,9 @@
                         Orientation="Horizontal"
                         HorizontalOptions="Start">
                         <xamarinJkh:IconView Source="ic_arrow_back"
-                               HeightRequest="15"
-                               Foreground="{AppThemeBinding Light=Black, Dark=White}"
-                               HorizontalOptions="Center" />
+                                             HeightRequest="15"
+                                             Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                             HorizontalOptions="Center" />
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.Back}"
                             FontSize="15"
@@ -64,10 +64,9 @@
                     <ScrollView
                         x:Name="ScrollView"
                         Orientation="Horizontal"
-                                WidthRequest="125"
-                                HeightRequest="100">
-                        <StackLayout Orientation="Horizontal"
-                                     >
+                        WidthRequest="125"
+                        HeightRequest="100">
+                        <StackLayout Orientation="Horizontal">
                             <StackLayout
                                 Margin="0,5,0,0"
                                 x:Name="StackLayoutInfo"
@@ -75,28 +74,28 @@
                                 HorizontalOptions="StartAndExpand">
                                 <xamarinJkh:IconView Source="ic_info_app1"
                                                      Foreground="{AppThemeBinding Light=Black, Dark=White}"
-                                       HeightRequest="25"
-                                                     WidthRequest="25"/>
+                                                     HeightRequest="25"
+                                                     WidthRequest="25" />
                                 <Label Text="{x:Static xamarinJkh:AppResources.InfoApp}"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
                             </StackLayout>
-                            
+
                             <StackLayout
                                 Margin="0,5,0,0"
                                 VerticalOptions="Center"
                                 x:Name="StackLayoutClose"
                                 HorizontalOptions="EndAndExpand">
                                 <xamarinJkh:IconView Source="ic_close_app1"
-                                       HeightRequest="25"
-                                       Foreground="{AppThemeBinding Light=Black, Dark=White}"
-                                       WidthRequest="25" />
+                                                     HeightRequest="25"
+                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                     WidthRequest="25" />
                                 <Label Text="{x:Static xamarinJkh:AppResources.CloseApp}"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
-                            </StackLayout> 
+                            </StackLayout>
                             <StackLayout
                                 IsVisible="{Binding isPayd}"
                                 Margin="0,5,0,0"
@@ -104,9 +103,9 @@
                                 x:Name="StackLayoutPlay"
                                 HorizontalOptions="EndAndExpand">
                                 <xamarinJkh:IconView Source="pay"
-                                       HeightRequest="25"
-                                       Foreground="{AppThemeBinding Light=Black, Dark=White}"
-                                       WidthRequest="25" />
+                                                     HeightRequest="25"
+                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                     WidthRequest="25" />
                                 <Label Text="{x:Static xamarinJkh:AppResources.PayApp}"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
@@ -119,15 +118,15 @@
                                 VerticalOptions="Center"
                                 HorizontalOptions="EndAndExpand">
                                 <xamarinJkh:IconView Source="ic_receipt"
-                                       HeightRequest="25"
-                                       Foreground="{AppThemeBinding Light=Black, Dark=White}"
-                                       WidthRequest="25" />
+                                                     HeightRequest="25"
+                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                     WidthRequest="25" />
                                 <Label Text="{x:Static xamarinJkh:AppResources.Receipt}"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
                                        FontSize="10" />
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OpenReceipt"/>
+                                    <TapGestureRecognizer Tapped="OpenReceipt" />
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
 
@@ -142,12 +141,14 @@
                                            Margin="15, 0, 15, -30"
                                            BackgroundColor="White"
                                            Padding="5,0,5,70" VerticalOptions="FillAndExpand">
-                <RefreshView x:Name="messageRefreshView" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" VerticalOptions="FillAndExpand">
-                    <ScrollView x:Name="scrollFroAppMessages" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
-                        <StackLayout x:Name="baseForApp" VerticalOptions="FillAndExpand"></StackLayout>
+                <RefreshView x:Name="messageRefreshView" Command="{Binding RefreshCommand}"
+                             IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" VerticalOptions="FillAndExpand">
+                    <ScrollView x:Name="scrollFroAppMessages" VerticalScrollBarVisibility="Never"
+                                VerticalOptions="FillAndExpand">
+                        <StackLayout x:Name="baseForApp" VerticalOptions="FillAndExpand" />
                     </ScrollView>
-                </RefreshView>                
-                
+                </RefreshView>
+
                 <!--<ListView x:Name="additionalList"
                           HasUnevenRows="True"
                           Margin="0, 0, 0, 0"
@@ -183,60 +184,60 @@
                     Orientation="Horizontal">
                     <Grid Padding="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.06*"/>
-                            <ColumnDefinition Width="0.8*"/>
-                            <ColumnDefinition Width="0.06*"/>
-                            <ColumnDefinition Width="0.06*"/>
+                            <ColumnDefinition Width="0.06*" />
+                            <ColumnDefinition Width="0.8*" />
+                            <ColumnDefinition Width="0.06*" />
+                            <ColumnDefinition Width="0.06*" />
                         </Grid.ColumnDefinitions>
 
                         <xamarinJkh:IconView
-                        x:Name="IconViewAddFile"
-                        Source="ic_add_file"
-                        Foreground="{Binding hex}"
-                        HeightRequest="20"
-                        Grid.Column="0"
-                        WidthRequest="20" />
+                            x:Name="IconViewAddFile"
+                            Source="ic_add_file"
+                            Foreground="{Binding hex}"
+                            HeightRequest="20"
+                            Grid.Column="0"
+                            WidthRequest="20" />
 
                         <ActivityIndicator x:Name="progressFile"
-                                       IsRunning="true"
-                                       HeightRequest="25"
-                                       WidthRequest="25"
-                                       IsVisible="False"
-                                          
-                                       Grid.Column="0"
-                                       HorizontalOptions="StartAndExpand"
-                                       Color="{Binding hex}" />
+                                           IsRunning="true"
+                                           HeightRequest="25"
+                                           WidthRequest="25"
+                                           IsVisible="False"
+
+                                           Grid.Column="0"
+                                           HorizontalOptions="StartAndExpand"
+                                           Color="{Binding hex}" />
                         <xamarinJkh:BordlessEditor x:Name="EntryMess"
-                                               FontSize="18"
-                                               VerticalOptions="Center"
-                                               Text=""
-                                               Grid.Column="1"
-                                               AutoSize="TextChanges"
-                                               Placeholder="{x:Static xamarinJkh:AppResources.ChatPlaceholder}"
-                                               TextChanged="EntryMess_TextChanged"
-                                               TextColor="#A2A2A2"
-                                               HorizontalOptions="FillAndExpand" />
+                                                   FontSize="18"
+                                                   VerticalOptions="Center"
+                                                   Text=""
+                                                   Grid.Column="1"
+                                                   AutoSize="TextChanges"
+                                                   Placeholder="{x:Static xamarinJkh:AppResources.ChatPlaceholder}"
+                                                   TextChanged="EntryMess_TextChanged"
+                                                   TextColor="#A2A2A2"
+                                                   HorizontalOptions="FillAndExpand" />
                         <xamarinJkh:IconView
-                        x:Name="IconViewMic"
-                        Source="ic_microphone"
-                        Foreground="{Binding hex}"
-                        HeightRequest="20"
-                        Grid.Column="2"
-                        WidthRequest="20" />
+                            x:Name="IconViewMic"
+                            Source="ic_microphone"
+                            Foreground="{Binding hex}"
+                            HeightRequest="20"
+                            Grid.Column="2"
+                            WidthRequest="20" />
                         <xamarinJkh:IconView
-                        x:Name="IconViewSend"
-                        Source="ic_send_mess"
-                        Foreground="{Binding hex}"
-                        HeightRequest="20"
-                        Grid.Column="3"
-                        WidthRequest="20" />
+                            x:Name="IconViewSend"
+                            Source="ic_send_mess"
+                            Foreground="{Binding hex}"
+                            HeightRequest="20"
+                            Grid.Column="3"
+                            WidthRequest="20" />
                         <ActivityIndicator x:Name="progress"
-                                       IsRunning="true"
-                                       HeightRequest="20"
-                                       WidthRequest="20"
-                                       IsVisible="False"
-                                       Grid.Column="3"
-                                       Color="{Binding hex}" />
+                                           IsRunning="true"
+                                           HeightRequest="20"
+                                           WidthRequest="20"
+                                           IsVisible="False"
+                                           Grid.Column="3"
+                                           Color="{Binding hex}" />
                     </Grid>
                     <StackLayout
                         IsVisible="False"

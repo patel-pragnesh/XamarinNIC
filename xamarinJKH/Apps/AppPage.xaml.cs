@@ -315,6 +315,9 @@ namespace xamarinJKH.Apps
             var sendMess = new TapGestureRecognizer();
             sendMess.Tapped += async (s, e) => { sendMessage(); };
             IconViewSend.GestureRecognizers.Add(sendMess);
+            var recordmic = new TapGestureRecognizer();
+            recordmic.Tapped += async (s, e) => { RecordMic(); };
+            IconViewMic.GestureRecognizers.Add(recordmic);
             var addFile = new TapGestureRecognizer();
             addFile.Tapped += async (s, e) => { addFileApp(); };
             IconViewAddFile.GestureRecognizers.Add(addFile);
