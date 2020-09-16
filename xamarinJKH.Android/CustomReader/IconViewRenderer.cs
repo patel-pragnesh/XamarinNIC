@@ -7,8 +7,9 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
  using xamarinJKH;
  using xamarinJKH.Android;
+using Android.Content;
 
- [assembly: ExportRendererAttribute(typeof(IconView), typeof(IconViewRenderer))]
+[assembly: ExportRendererAttribute(typeof(IconView), typeof(IconViewRenderer))]
 
 namespace xamarinJKH.Android
 {
@@ -16,7 +17,7 @@ namespace xamarinJKH.Android
     {
         private bool _isDisposed;
 
-        public IconViewRenderer()
+        public IconViewRenderer(Context context):base(context)
         {
             base.AutoPackage = false;
         }
