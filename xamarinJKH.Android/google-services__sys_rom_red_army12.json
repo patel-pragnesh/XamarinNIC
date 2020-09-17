@@ -1,0 +1,371 @@
+{
+  "project_info": {
+    "project_number": "286222649128",
+    "firebase_url": "https://xamarin-62054.firebaseio.com",
+    "project_id": "xamarin-62054",
+    "storage_bucket": "xamarin-62054.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286222649128:android:521eace2537f9d1810321d",
+        "android_client_info": {
+          "package_name": "sys_rom.red_army12"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_ho2jBOy4gwGmzMxd-vh1W_6IBZFwD1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "286222649128-bfqcc8n5imhdl1rh3hje38mbfa60g336.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.saburovo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286222649128:android:de6e33135de9c94010321d",
+        "android_client_info": {
+          "package_name": "sys_rom.ru.avalon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_ho2jBOy4gwGmzMxd-vh1W_6IBZFwD1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "286222649128-bfqcc8n5imhdl1rh3hje38mbfa60g336.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.saburovo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286222649128:android:0b40bc21461a0f4b10321d",
+        "android_client_info": {
+          "package_name": "sys_rom.ru.divno_sea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_ho2jBOy4gwGmzMxd-vh1W_6IBZFwD1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "286222649128-bfqcc8n5imhdl1rh3hje38mbfa60g336.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.saburovo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286222649128:android:54b131ada13aeed210321d",
+        "android_client_info": {
+          "package_name": "sys_rom.ru.holy_trinity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_ho2jBOy4gwGmzMxd-vh1W_6IBZFwD1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "286222649128-bfqcc8n5imhdl1rh3hje38mbfa60g336.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.saburovo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286222649128:android:49552009a0c1aaa910321d",
+        "android_client_info": {
+          "package_name": "sys_rom.ru.icon_eks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_ho2jBOy4gwGmzMxd-vh1W_6IBZFwD1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "286222649128-bfqcc8n5imhdl1rh3hje38mbfa60g336.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.saburovo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286222649128:android:55fed5f426c68d8710321d",
+        "android_client_info": {
+          "package_name": "sys_rom.ru.profi_comfort"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_ho2jBOy4gwGmzMxd-vh1W_6IBZFwD1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "286222649128-bfqcc8n5imhdl1rh3hje38mbfa60g336.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.saburovo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286222649128:android:917de11361ed3ac210321d",
+        "android_client_info": {
+          "package_name": "sys_rom.ru.remKS"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_ho2jBOy4gwGmzMxd-vh1W_6IBZFwD1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "286222649128-bfqcc8n5imhdl1rh3hje38mbfa60g336.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.saburovo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286222649128:android:809241320bc43fd610321d",
+        "android_client_info": {
+          "package_name": "sys_rom.ru.tsg_saburovo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_ho2jBOy4gwGmzMxd-vh1W_6IBZFwD1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "286222649128-bfqcc8n5imhdl1rh3hje38mbfa60g336.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.saburovo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286222649128:android:58639360b32bc8a410321d",
+        "android_client_info": {
+          "package_name": "sys_rom.ru.uk_tomsc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_ho2jBOy4gwGmzMxd-vh1W_6IBZFwD1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "286222649128-bfqcc8n5imhdl1rh3hje38mbfa60g336.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.saburovo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286222649128:android:59536c52ba747ef910321d",
+        "android_client_info": {
+          "package_name": "sys_rom.ru.vesta_est"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_ho2jBOy4gwGmzMxd-vh1W_6IBZFwD1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286222649128-4m7l1ogp6ct2qk0urfarbdgs3sedd2l0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "286222649128-bfqcc8n5imhdl1rh3hje38mbfa60g336.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.saburovo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
