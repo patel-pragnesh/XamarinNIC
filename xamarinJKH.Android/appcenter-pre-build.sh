@@ -5,7 +5,7 @@ then
     echo "Скрипт запущен локально"
     if [ ! $1 ] && [ ! $2 ] && [ ! $3 ] && [ ! $4 ] && [ ! $5 ] && [ ! $6 ]
         then 
-            echo -e "Нет аргумента для задания имени пакета, отмена.\nИспользование: sh <скрипт> <имя пакета> <имя приложения> <версия> <база> <приминение цвета(true/false)> <RGB код цвета> <версия>"
+            echo -e "Нет аргумента для задания имени пакета, отмена.\nИспользование: sh <скрипт> <имя пакета> <имя приложения> <версия> <база> <приминение цвета(true/false)> <RGB код цвета> <версия> <appcenterkey>"
             exit 1
     fi
 
@@ -17,6 +17,7 @@ then
     CUSTOM_COLOR=$6
     CUSTOM_NAME=$7
     BUILD_ID=$8
+    APPCENTER_KEY=$9
     ACTIVITY=MainActivity.cs
     MANIFEST=Properties/AndroidManifest.xml
     CLIENT_SCRIPT=../xamarinJKH/Server/RestClientMP.cs
@@ -25,6 +26,7 @@ then
     ORIGINAL_ICON=Resources/drawable/icon_login.png 
     ICON_PATH=Resources/drawable/icon_login_${PACKAGENAME//"."/"_"}.png 
     MAINPAGE=../xamarinJKH/MainPage.xaml.cs
+    APP=../xamarinJKH/App.xaml.cs
 else
     echo "##[section][Pre-Build] Setting up Environment variables"
     echo "##[section][Pre-Build] Getting data from variable PACKAGE_NAME"
@@ -56,6 +58,13 @@ else
         exit 1
     fi
 
+    echo "##[section][Pre-Build] Getting data from variable APPCENTER_KEY"
+    APPCENTER_KEY=${APPCENTERKEY}
+    if [ ! ${APPCENTER_KEY} ]; then
+        echo "##[section][Pre-Build] No appcenter key provided. Aborting"
+        exit 1
+    fi
+
     
     BUILD_ID=${BUILDID}
 
@@ -71,8 +80,19 @@ else
     CUSTOM_COLOR=${CUSTOMCOLOR}
     MAINPAGE=${APPCENTER_SOURCE_DIRECTORY}/xamarinJKH/MainPage.xaml.cs
     CUSTOM_NAME=${CUSTOMNAME}
+    APP=${APPCENTER_SOURCE_DIRECTORY}/xamarinJKH/App.xaml.cs
 fi
 
+if [ ${#APPCENTER_KEY} -gt 0 ]
+    then
+        echo "##[section][Pre-Build] Setting appcenter key"
+        sed -i.bak "s/AppCenter.Start/AppCenter.Start(\"${APPCENTER_KEY}\",typeof(Analytics), typeof(Crashes));\/\//" ${APP}
+        re -f ${APP}.bak
+        echo 
+        echo
+fi
+
+cat ${APP} | grep "AppCenter.Start([A-Za-z|\"|=|-|;|,|0-9|\-|\n|+|' '|(|)]*);"
 
 if [ ${DECLARE_CUSTOM_COLOR} == 1 ]; then
     if [ ${CUSTOM_COLOR} ]; then

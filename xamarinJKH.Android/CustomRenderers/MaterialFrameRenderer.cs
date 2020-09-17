@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using Android.Animation;
+using Android.Content;
 using Android.Support.V4.View;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -11,6 +12,8 @@ namespace xamarinJKH.Droid.CustomRenderers
 {
     public class MaterialFrameRenderer  : Xamarin.Forms.Platform.Android.AppCompat.FrameRenderer
     {
+
+        public MaterialFrameRenderer(Context context) : base(context) { }
         protected override void OnElementChanged(ElementChangedEventArgs<Frame> e)
         {
             base.OnElementChanged(e);
