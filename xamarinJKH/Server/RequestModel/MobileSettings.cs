@@ -9,6 +9,8 @@ namespace xamarinJKH.Server.RequestModel
         public string adsCodeIOS { get; set; }
         public string adsCodeAndroid { get; set; }
         public string bonusOfertaFile { get; set; }
+        
+        public string startScreen { get; set; }
         public bool enableOSS { get; set; }    
         
         public bool chooseIdentByHouse { get; set; }    

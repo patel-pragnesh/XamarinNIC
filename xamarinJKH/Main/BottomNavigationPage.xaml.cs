@@ -19,8 +19,9 @@ namespace xamarinJKH.Main
     public partial class BottomNavigationPage : TabbedPage
     {
         private RestClientMP server = new RestClientMP();
-        
+
         public Command ChangeTheme { get; set; }
+
         public BottomNavigationPage()
         {
             InitializeComponent();
@@ -78,7 +79,8 @@ namespace xamarinJKH.Main
                     break;
             }
 
-            // CheckAccounts();
+            
+            CheckAccounts();
             Application.Current.Resources["Saldo"] = true;
             visibleMenu();
             StartUpdateToken();
@@ -103,7 +105,7 @@ namespace xamarinJKH.Main
                 this.CurrentPage = this.Children[3];
                 MessagingCenter.Send<Object, int>(this, "OpenApp", index);
             });
-            
+
             ChangeTheme = new Command(async () =>
             {
                 OSAppTheme currentTheme = Application.Current.RequestedTheme;
@@ -144,10 +146,14 @@ namespace xamarinJKH.Main
                             AppPage.BarTextColor = Color.Black;
                             ShopNavPage.BarTextColor = Color.Black;
                         }
+
                         break;
+                        
                 }
             });
-            
+
+            Loadtab();
+
             MessagingCenter.Subscribe<Object>(this, "ChangeTheme", (sender) => ChangeTheme.Execute(null));
             if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
             {
@@ -171,7 +177,52 @@ namespace xamarinJKH.Main
             Device.StartTimer(TimeSpan.FromMinutes(5), OnTimerTick);
         }
 
-        private  bool OnTimerTick()
+        async void SetTab(string title)
+        {
+            var services = this.Children.FirstOrDefault(x => x.Title == title);
+            if (services != null)
+            {
+                this.CurrentPage = services;
+            }
+        }
+
+        async void Loadtab()
+        {
+            switch (Settings.MobileSettings.startScreen.ToLower().Trim())
+            {
+                case "оплата":
+                {
+                    SetTab(AppResources.Pays);
+                    break;
+                }
+                case "события":
+                {
+                    SetTab(AppResources.Events_NavBar);
+                    break;
+                }
+                case "показания":
+                {
+                    SetTab(AppResources.Meters_NavBar);
+                    break;
+                }case "заявки":
+                {
+                    SetTab(AppResources.App_NavBar);
+                    break;
+                }
+                case "наши услуги":
+                {
+                    SetTab(AppResources.Shop_NavBar);
+                    await Task.Delay(TimeSpan.FromMilliseconds(700));
+                    MessagingCenter.Send<Object>(this, "LoadGoods");
+                    break;
+                }
+                default:
+                    SetTab(AppResources.Events_NavBar);
+                    break;
+            }
+        }
+
+        private bool OnTimerTick()
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
@@ -181,16 +232,17 @@ namespace xamarinJKH.Main
                 {
                     if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
                     {
-                        Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                        Device.BeginInvokeOnMainThread(async () =>
+                            await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                         return;
                     }
+
                     LoginResult loginResult = await server.Login(login, pass);
                     if (loginResult.Error == null)
                     {
                         Settings.Person = loginResult;
                     }
                 }
-
             });
             return true;
         }
@@ -205,39 +257,44 @@ namespace xamarinJKH.Main
                     {
                         Children.Remove(AppPage);
                         Settings.AppIsVisible = false;
-
                     }
-                }else if (each.name_app.Equals("Показания счетчиков") || each.name_app.Equals("Показания приборов") )
+                }
+                else if (each.name_app.Equals("Показания счетчиков") || each.name_app.Equals("Показания приборов"))
                 {
                     if (each.visible == 0)
                     {
                         Children.Remove(CounterPage);
                     }
-                }else if (each.name_app.Equals("Оплата ЖКУ"))
+                }
+                else if (each.name_app.Equals("Оплата ЖКУ"))
                 {
                     if (each.visible == 0)
                     {
                         Children.Remove(PayPage);
                     }
-                }else if (each.name_app.Equals("Уведомления"))
+                }
+                else if (each.name_app.Equals("Уведомления"))
                 {
                     if (each.visible == 0)
                     {
                         Settings.NotifVisible = false;
                     }
-                }else if (each.name_app.Equals("Опросы"))
+                }
+                else if (each.name_app.Equals("Опросы"))
                 {
                     if (each.visible == 0)
                     {
                         Settings.QuestVisible = false;
                     }
-                }else if (each.name_app.Equals("Квитанции"))
+                }
+                else if (each.name_app.Equals("Квитанции"))
                 {
                     if (each.visible == 0)
                     {
                         Application.Current.Resources["Saldo"] = false;
                     }
-                }else if (each.name_app.Equals("Дополнительные услуги"))
+                }
+                else if (each.name_app.Equals("Дополнительные услуги"))
                 {
                     if (each.visible == 0)
                     {
@@ -262,7 +319,8 @@ namespace xamarinJKH.Main
             if (i == 0)
                 MessagingCenter.Send<Object>(this, "UpdateEvents");
 
-            if (CurrentPage is AppsPage || CurrentPage is xamarinJKH.MainConst.AppsConstPage || CurrentPage.Title == AppResources.App_NavBar)
+            if (CurrentPage is AppsPage || CurrentPage is xamarinJKH.MainConst.AppsConstPage ||
+                CurrentPage.Title == AppResources.App_NavBar)
                 MessagingCenter.Send<Object>(this, "AutoUpdate");
 
             if (CurrentPage.Title == AppResources.Shop_NavBar)
@@ -275,6 +333,5 @@ namespace xamarinJKH.Main
             App.token = DependencyService.Get<xamarinJKH.InterfacesIntegration.IFirebaseTokenObtainer>().GetToken();
             var response = await (new RestClientMP()).RegisterDevice();
         }
-        
     }
 }
