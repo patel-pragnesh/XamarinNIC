@@ -250,8 +250,8 @@ namespace xamarinJKH.Apps
             MessagingCenter.Subscribe<ISpeechToText>(this, "Final", (sender) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
-                {                    
-                    IconViewMic.Foreground = hex;
+                {
+                    IconViewMic.ReplaceStringMap = new Dictionary<string, string> { { "#000000", hex.ToHex() } };
                 });                
             });
 
@@ -362,7 +362,7 @@ namespace xamarinJKH.Apps
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    IconViewMic.Foreground = Color.FromHex("#A2A2A2");
+                    IconViewMic.ReplaceStringMap = new Dictionary<string, string> { { "#000000", "#A2A2A2" } };
                 });                
             }
 

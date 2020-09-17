@@ -6,6 +6,7 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:dialogViews="clr-namespace:xamarinJKH.DialogViews;assembly=xamarinJKH"
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:selector="clr-namespace:xamarinJKH.Apps"
              xmlns:datatypes="clr-namespace:xamarinJKH.Server.RequestModel"
 
@@ -40,10 +41,11 @@
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
                         HorizontalOptions="Start">
-                        <xamarinJkh:IconView Source="ic_arrow_back"
-                                             HeightRequest="15"
-                                             Foreground="{AppThemeBinding Light=Black, Dark=White}"
-                                             HorizontalOptions="Center" />
+                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
+                                     HeightRequest="15"
+                                     WidthRequest="15"
+                                     ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000|#FFFFFF'}"
+                                     HorizontalOptions="Center" />
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.Back}"
                             FontSize="15"
@@ -72,10 +74,10 @@
                                 x:Name="StackLayoutInfo"
                                 VerticalOptions="Center"
                                 HorizontalOptions="StartAndExpand">
-                                <xamarinJkh:IconView Source="ic_info_app1"
-                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
-                                                     HeightRequest="25"
-                                                     WidthRequest="25" />
+                                <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_info_app1.svg"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000|#FFFFFF'}" />
                                 <Label Text="{x:Static xamarinJkh:AppResources.InfoApp}"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontAttributes="Bold"
@@ -190,10 +192,10 @@
                             <ColumnDefinition Width="0.06*" />
                         </Grid.ColumnDefinitions>
 
-                        <xamarinJkh:IconView
+                        <svg:SvgCachedImage
                             x:Name="IconViewAddFile"
-                            Source="ic_add_file"
-                            Foreground="{Binding hex}"
+                            Source="resource://xamarinJKH.Resources.ic_add_file.svg"
+                            ReplaceStringMap="{Binding hex,Converter={x:StaticResource SvgColor}}"
                             HeightRequest="20"
                             Grid.Column="0"
                             WidthRequest="20" />
@@ -217,17 +219,17 @@
                                                    TextChanged="EntryMess_TextChanged"
                                                    TextColor="#A2A2A2"
                                                    HorizontalOptions="FillAndExpand" />
-                        <xamarinJkh:IconView
+                        <svg:SvgCachedImage
                             x:Name="IconViewMic"
-                            Source="ic_microphone"
-                            Foreground="{Binding hex}"
+                            Source="resource://xamarinJKH.Resources.ic_microphone.svg"
+                            ReplaceStringMap="{Binding hex,Converter={x:StaticResource SvgColor}}"
                             HeightRequest="20"
                             Grid.Column="2"
                             WidthRequest="20" />
-                        <xamarinJkh:IconView
+                        <svg:SvgCachedImage
                             x:Name="IconViewSend"
-                            Source="ic_send_mess"
-                            Foreground="{Binding hex}"
+                            Source="resource://xamarinJKH.Resources.ic_send_mess.svg"
+                            ReplaceStringMap="{Binding hex,Converter={x:StaticResource SvgColor}}"
                             HeightRequest="20"
                             Grid.Column="3"
                             WidthRequest="20" />

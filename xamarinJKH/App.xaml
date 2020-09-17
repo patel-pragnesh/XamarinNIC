@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:xamarinJKH.Converters"
              mc:Ignorable="d"
              x:Class="xamarinJKH.App">
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="MainColor">#FF0000</Color>
+            <converters:SvgColorConverter x:Key="SvgColor"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

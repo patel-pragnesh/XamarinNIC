@@ -8,6 +8,9 @@
             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
             xmlns:resources="clr-namespace:xamarinJKH"
             xmlns:additional="clr-namespace:xamarinJKH.Additional;assembly=xamarinJKH"
+            xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+            xmlns:ff="clr-namespace:FFImageLoading.Forms.Args;assembly=FFImageLoading.Forms"     
+            xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
             x:Class="xamarinJKH.Main.BottomNavigationPage">
     <NavigationPage x:Name="EventsNavPage" HasNavigationBar="False" Title="{x:Static resources:AppResources.Events_NavBar}" IconImageSource="ic_events" BarBackgroundColor="Black" BarTextColor="White" >
         <x:Arguments>
