@@ -19,9 +19,8 @@ namespace xamarinJKH.Main
     public partial class BottomNavigationPage : TabbedPage
     {
         private RestClientMP server = new RestClientMP();
-
+        
         public Command ChangeTheme { get; set; }
-
         public BottomNavigationPage()
         {
             InitializeComponent();
@@ -83,6 +82,8 @@ namespace xamarinJKH.Main
             }
 
             
+
+            CheckAccounts();
             Application.Current.Resources["Saldo"] = true;
             visibleMenu();
             StartUpdateToken();
@@ -150,7 +151,6 @@ namespace xamarinJKH.Main
                         }
 
                         break;
-                        
                 }
             });
 
@@ -175,30 +175,24 @@ namespace xamarinJKH.Main
 
         async void Loadtab()
         {
-           
-            
-            switch (Settings.MobileSettings.startScreen.ToLower().Trim())
+            switch (Settings.MobileSettings.startScreen.Trim())
             {
-                case "оплата":
+                case "Оплата":
                 {
                     SetTab(AppResources.Pays);
                     break;
                 }
-                case "события":
+                case "События":
                 {
                     SetTab(AppResources.Events_NavBar);
                     break;
                 }
-                case "показания":
+                case "Показания":
                 {
                     SetTab(AppResources.Meters_NavBar);
                     break;
-                }case "заявки":
-                {
-                    SetTab(AppResources.App_NavBar);
-                    break;
                 }
-                case "наши услуги":
+                case "Наши услуги":
                 {
                     SetTab(AppResources.Shop_NavBar);
                     await Task.Delay(TimeSpan.FromMilliseconds(700));
@@ -232,6 +226,7 @@ namespace xamarinJKH.Main
                         Settings.Person = loginResult;
                     }
                 }
+
             });
             return true;
         }
@@ -254,44 +249,39 @@ namespace xamarinJKH.Main
                     {
                         Children.Remove(AppPage);
                         Settings.AppIsVisible = false;
+
                     }
-                }
-                else if (each.name_app.Equals("Показания счетчиков") || each.name_app.Equals("Показания приборов"))
+                }else if (each.name_app.Equals("Показания счетчиков") || each.name_app.Equals("Показания приборов") )
                 {
                     if (each.visible == 0)
                     {
                         Children.Remove(CounterPage);
                     }
-                }
-                else if (each.name_app.Equals("Оплата ЖКУ"))
+                }else if (each.name_app.Equals("Оплата ЖКУ"))
                 {
                     if (each.visible == 0)
                     {
                         Children.Remove(PayPage);
                     }
-                }
-                else if (each.name_app.Equals("Уведомления"))
+                }else if (each.name_app.Equals("Уведомления"))
                 {
                     if (each.visible == 0)
                     {
                         Settings.NotifVisible = false;
                     }
-                }
-                else if (each.name_app.Equals("Опросы"))
+                }else if (each.name_app.Equals("Опросы"))
                 {
                     if (each.visible == 0)
                     {
                         Settings.QuestVisible = false;
                     }
-                }
-                else if (each.name_app.Equals("Квитанции"))
+                }else if (each.name_app.Equals("Квитанции"))
                 {
                     if (each.visible == 0)
                     {
                         Application.Current.Resources["Saldo"] = false;
                     }
-                }
-                else if (each.name_app.Equals("Дополнительные услуги"))
+                }else if (each.name_app.Equals("Дополнительные услуги"))
                 {
                     if (each.visible == 0)
                     {
