@@ -174,7 +174,9 @@
                     </ListView.ItemTemplate>
                 </ListView>-->
             </customRenderers:MaterialFrame>
-            <Frame CornerRadius="30"
+            <Frame
+                   x:Name="entryFrame"
+                   CornerRadius="30"
                    Margin="15, -30, 15, 5"
                    BackgroundColor="White"
                    BorderColor="{Binding hex}"
@@ -216,7 +218,9 @@
                                                    Placeholder="{x:Static xamarinJkh:AppResources.ChatPlaceholder}"
                                                    TextChanged="EntryMess_TextChanged"
                                                    TextColor="#A2A2A2"
-                                                   HorizontalOptions="FillAndExpand" />
+                                                   HorizontalOptions="FillAndExpand"                                                    
+                                                   Unfocused="EntryMess_UnFocused"
+                                                   Focused="EntryMess_Focused"/>
                         <xamarinJkh:IconView
                             x:Name="IconViewMic"
                             Source="ic_microphone"

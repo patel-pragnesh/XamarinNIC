@@ -137,7 +137,7 @@ namespace xamarinJKH.iOS.CustomRenderers
             var pageFrame = Element.Bounds;
 
             var newY = pageFrame.Y - CalculateShiftByAmount(pageFrame.Height, keyboardHeight, activeViewBottom);
-
+            //var newY = 0;
             Element.LayoutTo(new Rectangle(pageFrame.X, newY,
                 pageFrame.Width, pageFrame.Height));
 
