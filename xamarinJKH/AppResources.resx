@@ -338,7 +338,7 @@
     <value>Последняя поверка:</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>Войти</value>
+    <value>Логин</value>
   </data>
   <data name="LoginTitle" xml:space="preserve">
     <value>Вход</value>
@@ -1324,5 +1324,8 @@
   </data>
   <data name="OrderCorrected" xml:space="preserve">
     <value>Заказ скоректирован: </value>
+  </data>
+  <data name="LoginAuth" xml:space="preserve">
+    <value>Войти</value>
   </data>
 </root>

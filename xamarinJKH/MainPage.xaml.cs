@@ -39,6 +39,12 @@ namespace xamarinJKH
     {
         private RestClientMP server = new RestClientMP();
         Color _hex;
+        public Dictionary<string, string> ColorHex {get;set;}
+        public string adress
+        {
+            get;
+            set;
+        }
         public Color hex
         {
             get => _hex;
@@ -51,9 +57,9 @@ namespace xamarinJKH
 
         public MainPage()
         {
+            adress = "sdf";
             InitializeComponent();
             getSettings();
-           
             NavigationPage.SetHasNavigationBar(this, false);
             var startRegForm = new TapGestureRecognizer();
             startRegForm.Tapped += async (s, e) => { await Navigation.PushModalAsync(new RegistrForm(this)); };
@@ -85,11 +91,18 @@ namespace xamarinJKH
                 EntryPassConst.IsPassword = !EntryPassConst.IsPassword;
                 if (EntryPass.IsPassword)
                 {
-                    ImageClosePass.Foreground = Color.FromHex(Settings.MobileSettings.color);
+                    ImageClosePass.ReplaceStringMap = new Dictionary<string, string>
+                    {
+                        {"#000000", $"#{Settings.MobileSettings.color}"}
+                    }; 
                 }
                 else
                 {
-                    ImageClosePass.Foreground = Color.DarkSlateGray;
+                    ImageClosePass.ReplaceStringMap = new Dictionary<string, string>
+                    {
+                        { "#000000", Color.DarkSlateGray.ToHex()}
+                    }; 
+                    
                 }
 
             };
@@ -148,6 +161,7 @@ namespace xamarinJKH
                 default:
                     break;
             }
+            
         }
 
         protected async override void OnAppearing()
@@ -186,6 +200,12 @@ namespace xamarinJKH
                 var color = !string.IsNullOrEmpty(Settings.MobileSettings.color) ? $"#{Settings.MobileSettings.color}" :"#FF0000";
                 hex = Color.FromHex(color);
                 Application.Current.Resources["MainColor"] = hex;
+                
+                ColorHex = new Dictionary<string, string>
+                {
+                    { "#000000",  $"#{Settings.MobileSettings.color}" }
+                };
+                BindingContext = this;
                 //IconViewLogin.Foreground = hex;
                 //IconViewPass.Foreground = hex;
                 //ImageClosePass.Foreground = hex;
@@ -244,12 +264,12 @@ namespace xamarinJKH
                 EntryPass.IsVisible = false;
                 EntryPassConst.IsVisible = true;
                 LabelTitle.IsVisible = false;
-                IconViewLogin.Source = "ic_fio_reg";
+                IconViewLogin.Source = "resource://xamarinJKH.Resources.ic_fio_reg.svg";
             }
             else
             {
                 Settings.ConstAuth = false;
-                EntryLabel.Text = AppResources.Login;
+                EntryLabel.Text = AppResources.LoginAuth;
                 LabelSotr.Text = AppResources.ConstLogin;
                 LabelPhone.Text = AppResources.PhoneLabel;
                 RegStackLayout.IsVisible = true;
@@ -258,7 +278,7 @@ namespace xamarinJKH
                 EntryPass.IsVisible = true;
                 EntryPassConst.IsVisible = false;
                 LabelTitle.IsVisible = true;
-                IconViewLogin.Source = "ic_phone_login";
+                IconViewLogin.Source = "resource://xamarinJKH.Resources.ic_phone_login.svg";
             }
         }
 
@@ -267,7 +287,7 @@ namespace xamarinJKH
             if (Settings.ConstAuth)
             {
                 Settings.ConstAuth = false;
-                EntryLabel.Text = AppResources.Login;
+                EntryLabel.Text = AppResources.LoginAuth;
                 LabelSotr.Text = AppResources.ConstLogin;
                 LabelPhone.Text = AppResources.PhoneLabel;
                 RegStackLayout.IsVisible = true;
@@ -276,7 +296,7 @@ namespace xamarinJKH
                 EntryPass.IsVisible = true;
                 EntryPassConst.IsVisible = false;
                 LabelTitle.IsVisible = true;
-                IconViewLogin.Source = "ic_phone_login";
+                IconViewLogin.Source = "resource://xamarinJKH.Resources.ic_phone_login.svg";
             }
             else
             {
@@ -290,7 +310,7 @@ namespace xamarinJKH
                 EntryPass.IsVisible = false;
                 EntryPassConst.IsVisible = true;
                 LabelTitle.IsVisible = false;
-                IconViewLogin.Source = "ic_fio_reg";
+                IconViewLogin.Source = "resource://xamarinJKH.Resources.ic_fio_reg.svg";
             }
         }
 

@@ -109,16 +109,24 @@ namespace xamarinJKH
                 EntryPassNew.IsPassword = !EntryPassNew.IsPassword;
                 if (EntryPassNew.IsPassword)
                 {
-                    ImageClosePass.Foreground = Color.FromHex(Settings.MobileSettings.color);
                     LayoutConfirm.IsVisible = true;
                     LayoutConfirmLines.IsVisible = true;
+                    ImageClosePass.ReplaceStringMap = new Dictionary<string, string>
+                    {
+                        {"#000000", $"#{Settings.MobileSettings.color}"}
+                    }; 
                 }
                 else
                 {
                     LayoutConfirm.IsVisible = false;
                     LayoutConfirmLines.IsVisible = false;
-                    ImageClosePass.Foreground = Color.DarkSlateGray;
+                    ImageClosePass.ReplaceStringMap = new Dictionary<string, string>
+                    {
+                        { "#000000", Color.DarkSlateGray.ToHex()}
+                    }; 
+                    
                 }
+                
             };
             ImageClosePass.GestureRecognizers.Add(passwordVisible);
             switch (Device.RuntimePlatform)
@@ -144,6 +152,7 @@ namespace xamarinJKH
             //RegistrationFrameStep1.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.White);
             //RegistrationFrameStep2.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.White);
             //RegistrationFrameStep3.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.White);
+            BindingContext = this;
         }
 
      

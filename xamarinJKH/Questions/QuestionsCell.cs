@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System.Collections.Generic;
+using FFImageLoading.Svg.Forms;
+using Xamarin.Forms;
 using xamarinJKH.CustomRenderers;
 using xamarinJKH.Utils;
 
@@ -108,9 +110,12 @@ namespace xamarinJKH.Questions
             containerBtn.Orientation = StackOrientation.Horizontal;
             containerBtn.HorizontalOptions = LayoutOptions.CenterAndExpand;
 
-            IconView image = new IconView();
-            image.Source = "ic_questions2";
-            image.Foreground = Color.White;
+            SvgCachedImage image = new SvgCachedImage();
+            image.Source = "resource://xamarinJKH.Resources.ic_questions2.svg";
+            image.ReplaceStringMap = new Dictionary<string, string>
+            {
+                {"#000000","#FFFFFF"}
+            };
             // image.Margin = new Thickness(-40, 0, 0, 0);
             image.HeightRequest = 25;
             image.WidthRequest = 25;
