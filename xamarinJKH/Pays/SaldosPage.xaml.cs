@@ -31,7 +31,7 @@ namespace xamarinJKH.Pays
         private RestClientMP server = new RestClientMP();
         private bool isSortDate = true;
         private bool isSortLs = true;
-        Color hex = Color.FromHex(Settings.MobileSettings.color);
+        private Color hex { get; set; }= Color.FromHex(Settings.MobileSettings.color);
 
         public bool IsRefreshing
         {
@@ -151,10 +151,16 @@ namespace xamarinJKH.Pays
             }
             BillinfoComarable comarable = new BillinfoComarable();
 
-            IconViewSortDate.Foreground = hex;
+            IconViewSortDate.ReplaceStringMap  = new Dictionary<string, string>
+            {
+                {"#000000", hex.ToHex()}
+            }; 
             LabelDate.TextColor = hex;
             Color fromHex = Color.FromHex("#8B8B8B");
-            IconViewSortIdent.Foreground = fromHex;
+            IconViewSortIdent.ReplaceStringMap =  new Dictionary<string, string>
+            {
+                {"#000000","#8B8B8B" }
+            }; 
             LabelLs.TextColor = fromHex;
             if (isSortDate)
             {
@@ -183,10 +189,16 @@ namespace xamarinJKH.Pays
         private void SortLs()
         {
             Color fromHex = Color.FromHex("#8B8B8B");
-            IconViewSortDate.Foreground = fromHex;
+            IconViewSortDate.ReplaceStringMap =  new Dictionary<string, string>
+            {
+                {"#000000","#8B8B8B"}
+            }; 
             LabelDate.TextColor = fromHex;
 
-            IconViewSortIdent.Foreground = hex;
+            IconViewSortIdent.ReplaceStringMap  = new Dictionary<string, string>
+            {
+                {"#000000", $"#{Settings.MobileSettings.color}"}
+            }; 
             LabelLs.TextColor = hex;
             if (!isSortLs)
             {
@@ -244,11 +256,14 @@ namespace xamarinJKH.Pays
             LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
             // IconViewSortIdent.Foreground = Color.FromHex(Settings.MobileSettings.color);
 
-            IconViewSortDate.Foreground = hex;
+            IconViewSortDate.ReplaceStringMap =  new Dictionary<string, string>
+            {
+                {"#000000",$"#{Settings.MobileSettings.color}" }
+            };  
             LabelDate.TextColor = hex;
             
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            // IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);

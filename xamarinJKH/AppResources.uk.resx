@@ -1328,4 +1328,7 @@
   <data name="OrderCorrected" xml:space="preserve">
     <value>Замовлення скоректировать: </value>
   </data>
+  <data name="LoginAuth" xml:space="preserve">
+    <value>Увійти</value>
+  </data>
 </root>

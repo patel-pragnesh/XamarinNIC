@@ -29,7 +29,8 @@ namespace xamarinJKH.Questions
         private List<Label> indicators = new List<Label>();
 
         private PollingResult _pollingResult = new PollingResult();
-
+        
+        public string IsRefreshing { get; set; }
         public PollsPage(PollInfo pollInfo, bool isComplite)
         {
             _pollInfo = pollInfo;
@@ -87,6 +88,8 @@ namespace xamarinJKH.Questions
             {
                 Container.IsEnabled = false;
             }
+
+            BindingContext = this;
         }
 
         private async void FinishClick()
