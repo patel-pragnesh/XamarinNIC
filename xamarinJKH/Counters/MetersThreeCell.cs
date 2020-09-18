@@ -11,6 +11,7 @@ using xamarinJKH.DialogViews;
 using xamarinJKH.Server;
 using xamarinJKH.Utils;
 using xamarinJKH.Server.RequestModel;
+using FFImageLoading.Svg.Forms;
 
 namespace xamarinJKH.Main
 {
@@ -84,9 +85,15 @@ namespace xamarinJKH.Main
             imgEdit.Source = "edit";
             imgEdit.Foreground = Color.FromHex(Settings.MobileSettings.color);
 
+            var Edit = new SvgCachedImage();
+            Edit.WidthRequest = 25;
+            Edit.HeightRequest = 25;
+            Edit.ReplaceStringMap = new Dictionary<string, string> { { "#000000", $"#{Settings.MobileSettings.color}" } };
+            Edit.Source = "resource://xamarinJKH.Resources.edit.svg";
+
             header.Children.Add(img);
             header.Children.Add(resource);
-            header.Children.Add(imgEdit);
+            header.Children.Add(Edit);
 
             StackLayout addressStack = new StackLayout();
             addressStack.Orientation = StackOrientation.Horizontal;
@@ -353,9 +360,10 @@ namespace xamarinJKH.Main
             btn.VerticalTextAlignment = TextAlignment.Center;
             btn.FontSize = 15;
             btn.Text = AppResources.PassPenance;
-            containerBtn.Children.Add(new Image()
+            containerBtn.Children.Add(new SvgCachedImage
             {
-                Source = "ic_counter",
+                Source= "resource://xamarinJKH.Resources.ic_counter.svg",
+                ReplaceStringMap = new Dictionary<string, string> { { "#000000","#FFFFFF"} },
                 HeightRequest = 20
             });
             containerBtn.Children.Add(btn);

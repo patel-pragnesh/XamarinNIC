@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FFImageLoading.Svg.Forms;
+using System;
 using Xamarin.Forms;
 using xamarinJKH.CustomRenderers;
 using xamarinJKH.Utils;
@@ -9,7 +10,7 @@ namespace xamarinJKH.Apps
     {
         private Label numberAndDate = new Label();
         private Label LabelDate = new Label();
-        private IconView ImageStatus = new IconView();
+        SvgCachedImage ImageStatus = new SvgCachedImage();
         private Label LabelStatus = new Label();
         private Label LabelText = new Label();
 
@@ -33,10 +34,10 @@ namespace xamarinJKH.Apps
             containerData.HorizontalOptions = LayoutOptions.FillAndExpand;
 
 
-            IconView arrow = new IconView();
-            arrow.Source = "ic_arrow_forward";
+            var arrow = new SvgCachedImage();
+            arrow.Source = "resource://xamarinJKH.Resources.ic_arrow_forward.svg";
             Color hex = Color.FromHex(Settings.MobileSettings.color);
-            arrow.Foreground = hex;
+            arrow.ReplaceStringMap = new System.Collections.Generic.Dictionary<string, string> { { "#000000", $"#{Settings.MobileSettings.color}" } };
             arrow.HeightRequest = 25;
             arrow.WidthRequest = 25;
             arrow.VerticalOptions = LayoutOptions.CenterAndExpand;
@@ -54,8 +55,8 @@ namespace xamarinJKH.Apps
             StackLayout status = new StackLayout();
             status.Orientation = StackOrientation.Horizontal;
             status.HorizontalOptions = LayoutOptions.FillAndExpand;
-            ImageStatus.Foreground = hex;
-            ImageStatus.Source = "ic_status_new";
+            arrow.ReplaceStringMap = new System.Collections.Generic.Dictionary<string, string> { { "#000000", $"#{Settings.MobileSettings.color}" } };
+            ImageStatus.Source = "resource://xamarinJKH.Resources.ic_status_new.svg";
             ImageStatus.HeightRequest = 15;
             ImageStatus.VerticalOptions = LayoutOptions.End;
             ImageStatus.WidthRequest = 15;

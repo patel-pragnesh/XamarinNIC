@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -240,7 +240,26 @@ namespace xamarinJKH.Main
 
             //            PropertyChanged = "change"
 
-            SwitchApp.Toggled += SwitchApp_Toggled; 
+            SwitchApp.Toggled += SwitchApp_Toggled;
+            MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) => 
+            {
+
+                OSAppTheme currentTheme = Application.Current.RequestedTheme;
+                var colors = new Dictionary<string, string>();
+                var arrowcolor = new Dictionary<string, string>();
+                if (currentTheme == OSAppTheme.Light || currentTheme == OSAppTheme.Unspecified)
+                {
+                    colors.Add("#000000", ((Color)Application.Current.Resources["MainColor"]).ToHex());
+                    arrowcolor.Add("#000000", "#494949");
+                }
+                else
+                {
+                    colors.Add("#000000", "#FFFFFF");
+                    arrowcolor.Add("#000000", "#FFFFFF");
+                }
+                IconViewLogin.ReplaceStringMap = colors;
+                IconViewTech.ReplaceStringMap = colors;
+            });
         }
 
         private void SwitchApp_Toggled(object sender, ToggledEventArgs e)
@@ -306,10 +325,10 @@ namespace xamarinJKH.Main
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
             SwitchApp.OnColor = hex;
-            IconAddApp.Foreground = Color.White;
+            //IconAddApp.Foreground = Color.White;
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);

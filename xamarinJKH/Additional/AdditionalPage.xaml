@@ -72,7 +72,8 @@
                                                      Source="resource://xamarinJKH.Resources.ic_phone.svg"
                                                      HeightRequest="15"
                                                      HorizontalOptions="Start"
-                                                     ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                                     Margin="0,0,10,0"
+                                                     ReplaceStringMap="{Binding Groups, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                                                      VerticalOptions="Center" />
                                         <Label x:Name="LabelPhone"
                                                Text="Телефон"
@@ -105,7 +106,7 @@
                         <svg:SvgCachedImage x:Name="IconViewTech"
                                      Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                      HeightRequest="25"
-                                     ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000'}"
+                                     ReplaceStringMap="{Binding Groups, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                                      Margin="-10, -10,10,-10"
                                      HorizontalOptions="Start"
                                      VerticalOptions="Center" />

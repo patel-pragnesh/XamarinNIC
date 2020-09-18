@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FFImageLoading.Svg.Forms;
+using System;
 using Xamarin.Forms;
 using xamarinJKH.Utils;
 
@@ -8,7 +9,7 @@ namespace xamarinJKH.Apps
     {
         private Label LabelName = new Label();
         private Label LabelSize = new Label();
-        IconView IconViewDell = new IconView();
+        SvgCachedImage IconViewDell = new SvgCachedImage();
 
         public FileCell()
         {
@@ -38,8 +39,8 @@ namespace xamarinJKH.Apps
             LabelSize.HorizontalTextAlignment = TextAlignment.End;
             LabelSize.VerticalOptions = LayoutOptions.Center;
 
-            IconViewDell.Source = "ic_close";
-            IconViewDell.Foreground = hex;
+            IconViewDell.Source = "resource://xamarinJKH.Resources.ic_close.svg";
+            IconViewDell.ReplaceStringMap = new System.Collections.Generic.Dictionary<string, string> { { "#000000", $"#{Settings.MobileSettings.color}" } };
             IconViewDell.HorizontalOptions = LayoutOptions.End;
             IconViewDell.VerticalOptions = LayoutOptions.Center;
             IconViewDell.HeightRequest = 12;

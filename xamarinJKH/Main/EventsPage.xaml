@@ -51,7 +51,7 @@
                                                      Source="resource://xamarinJKH.Resources.ic_phone.svg"
                                                      HeightRequest="15"
                                                      HorizontalOptions="Start"
-                                                     ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                                     ReplaceStringMap="{Binding ShowAnnouncements, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                                                      VerticalOptions="Center" />
                                         <Label x:Name="LabelPhone"
                                                Text="Телефон"
@@ -89,10 +89,10 @@
                         Margin="0,0,15,0"
                         IsVisible="False"
                         Orientation="Horizontal">
-                        <xamarinJkh:IconView x:Name="IconViewTech"
-                                             Source="ic_tech"
+                        <svg:SvgCachedImage x:Name="IconViewTech"
+                                             Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                              HeightRequest="20"
-                                             Foreground="White"
+                                             ReplaceStringMap="{Binding ShowAnnouncements, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                                              Margin="0, 0,0,0"
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />

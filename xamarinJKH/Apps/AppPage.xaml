@@ -89,9 +89,9 @@
                                 VerticalOptions="Center"
                                 x:Name="StackLayoutClose"
                                 HorizontalOptions="EndAndExpand">
-                                <xamarinJkh:IconView Source="ic_close_app1"
+                                <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_close_app1.svg"
                                                      HeightRequest="25"
-                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                    ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000|#FFFFFF'}"
                                                      WidthRequest="25" />
                                 <Label Text="{x:Static xamarinJkh:AppResources.CloseApp}"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
@@ -104,9 +104,9 @@
                                 VerticalOptions="Center"
                                 x:Name="StackLayoutPlay"
                                 HorizontalOptions="EndAndExpand">
-                                <xamarinJkh:IconView Source="pay"
+                                <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.pay.svg"
                                                      HeightRequest="25"
-                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                    ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000|#FFFFFF'}"
                                                      WidthRequest="25" />
                                 <Label Text="{x:Static xamarinJkh:AppResources.PayApp}"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
@@ -119,9 +119,9 @@
                                 Margin="0,5,0,0"
                                 VerticalOptions="Center"
                                 HorizontalOptions="EndAndExpand">
-                                <xamarinJkh:IconView Source="ic_receipt"
+                                <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_receipt.svg"
                                                      HeightRequest="25"
-                                                     Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                                    ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000|#FFFFFF'}"
                                                      WidthRequest="25" />
                                 <Label Text="{x:Static xamarinJkh:AppResources.Receipt}"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"

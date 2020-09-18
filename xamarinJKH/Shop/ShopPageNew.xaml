@@ -11,6 +11,7 @@
              xmlns:converters="clr-namespace:xamarinJKH.Converters"
              x:Name="ShopPage"
              x:Class="xamarinJKH.Shop.ShopPageNew"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -36,10 +37,10 @@
                                  HorizontalOptions="Start"
                                  Margin="10,10,0,0">
 
-                        <xamarinJkh:IconView Source="ic_arrow_back"
-                                             HeightRequest="15"
+                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
+                                             HeightRequest="25"
                                              Margin="0,5"
-                                             Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                             ReplaceStringMap="{Binding ShopName,Converter={x:StaticResource SvgColor}, ConverterParameter='#000000|#FFFFFF'}"
                                              HorizontalOptions="Center" />
 
                         <Label x:Name="ShopName"
@@ -55,11 +56,9 @@
                     </StackLayout>
                     <StackLayout
                         Orientation="Horizontal">
-                        <xamarinJkh:IconView x:Name="IconViewTech"
-                                             Source="ic_tech"
+                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                              HeightRequest="20"
-                                             Foreground="{x:DynamicResource MainColor}"
-                                             Margin="10, 10,0,0"
+                                             ReplaceStringMap="{Binding ShopName,Converter={x:StaticResource SvgColor}, ConverterParameter='#000000|#FFFFFF'}"
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
