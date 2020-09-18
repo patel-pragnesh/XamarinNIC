@@ -701,13 +701,13 @@ namespace xamarinJKH.AppsConst
         {
             string Status = request.Status;
             string Source = Settings.GetStatusIcon(request.StatusID);
-            if (request.Phone != null && request.Phone.Contains("+") == false && request.Phone.Substring(0, 2) == "79")
+            if (!string.IsNullOrWhiteSpace(request.Phone) && (request.Phone.Contains("+") == false && request.Phone.Substring(0, 2) == "79"))
             {
                 request.Phone = "+" + request.Phone;
             }
             Call = new Command<string>(async (phone) =>
             {
-                if (phone!= null)
+                if (!string.IsNullOrWhiteSpace(phone))
                 {
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
