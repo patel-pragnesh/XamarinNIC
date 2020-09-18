@@ -15,7 +15,13 @@ namespace xamarinJKH.Converters
             Color mainColor = (Color)Application.Current.Resources["MainColor"];
             var colors = new string[2];
             if (parameter != null)
-                colors = parameter.ToString().Split('|');
+            {
+                var colors_ = parameter.ToString().Split('|');
+                for (int i = 0; i < colors_.Length; i++)
+                {
+                    colors[i] = colors_[i];
+                }
+            }
             else
                 colors[0] = mainColor.ToHex();
             if (colors[1] != null)
