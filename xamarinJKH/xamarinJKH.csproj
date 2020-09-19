@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <None Remove="Resources\edit.svg" />
+    <None Remove="Resources\icon_add_app.svg" />
     <None Remove="Resources\ic_accept_app.svg" />
     <None Remove="Resources\ic_add_file.svg" />
     <None Remove="Resources\ic_arrow_back.svg" />
@@ -79,6 +80,7 @@
     <EmbeddedResource Include="Resources\edit.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\icon_add_app.svg" />
     <EmbeddedResource Include="Resources\ic_password_login.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

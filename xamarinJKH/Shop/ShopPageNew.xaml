@@ -40,7 +40,7 @@
                         <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
                                              HeightRequest="25"
                                              Margin="0,5"
-                                             ReplaceStringMap="{Binding ShopName,Converter={x:StaticResource SvgColor}, ConverterParameter='#000000|#FFFFFF'}"
+                                             ReplaceStringMap="{Binding ShopName,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
                                              HorizontalOptions="Center" />
 
                         <Label x:Name="ShopName"
@@ -58,15 +58,16 @@
                         Orientation="Horizontal">
                         <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                              HeightRequest="20"
-                                             ReplaceStringMap="{Binding ShopName,Converter={x:StaticResource SvgColor}, ConverterParameter='#000000|#FFFFFF'}"
+                                             ReplaceStringMap="{Binding ShopName,Converter={x:StaticResource SvgColor}}"
                                              HorizontalOptions="Start"
+                                            Margin="10,0"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
                                Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="16"
                                TextDecorations="Underline"
                                TextColor="{x:DynamicResource MainColor}"
-                               Margin="-10, 10, 0, 0"
+                               Margin="0, 0, 0, 0"
                                VerticalOptions="Center" />
                     </StackLayout>
                     <StackLayout VerticalOptions="FillAndExpand">
@@ -144,11 +145,11 @@
                                                  HorizontalOptions="EndAndExpand"
                                                  VerticalOptions="Center"
                                                  Padding="0,8">
-                                        <xamarinJkh:IconView Source="{Binding Asending,Converter={x:StaticResource Arrow}}"
-                                                             Foreground="{x:DynamicResource MainColor}"/>
+                                        <svg:SvgCachedImage Source="{Binding Asending,Converter={x:StaticResource Arrow}}"
+                                                             ReplaceStringMap="{Binding Asending, Converter={x:StaticResource SvgColor}}"/>
                                         <Label Text= "{x:Static xamarinJkh:AppResources.SortByPrice}"
                                                TextColor="{x:DynamicResource MainColor}"
-                                               Margin="-10,0"
+                                               Margin="0,0"
                                                HorizontalTextAlignment="Center"
                                                FontSize="12"/>
                                         <StackLayout.GestureRecognizers>
@@ -223,24 +224,24 @@
                                                         <StackLayout Grid.Column="2" HorizontalOptions="End"
                                                           Grid.Row="1" Orientation="Vertical" Margin="0, -5, 0, 0" >
                                                             <StackLayout  HorizontalOptions="Center" Orientation="Horizontal">
-                                                                <xamarinJkh:IconView Source="ic_shop_minus" WidthRequest="25" HeightRequest="25"
-                                                                             Foreground="{x:DynamicResource MainColor}">
-                                                                    <xamarinJkh:IconView.GestureRecognizers>
+                                                                <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_shop_minus.svg" WidthRequest="25" HeightRequest="25"
+                                                                             ReplaceStringMap="{Binding Asending,Converter={x:StaticResource SvgColor}}">
+                                                                    <svg:SvgCachedImage.GestureRecognizers>
                                                                         <TapGestureRecognizer Command="{Binding Path=BindingContext.Decrease, Source={x:Reference ShopPage}}"
                                                                                           CommandParameter="{Binding .}"/>
-                                                                    </xamarinJkh:IconView.GestureRecognizers>
-                                                                </xamarinJkh:IconView>
+                                                                    </svg:SvgCachedImage.GestureRecognizers>
+                                                                </svg:SvgCachedImage>
                                                                 <Label FontSize="15"
                                                                TextColor="Gray"
                                                                Text="{Binding ColBusket}"
                                                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center"/>
-                                                                <xamarinJkh:IconView Source="ic_shop_plus" WidthRequest="25" HeightRequest="25" 
-                                                                             Foreground="{x:DynamicResource MainColor}">
-                                                                    <xamarinJkh:IconView.GestureRecognizers>
+                                                                <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_shop_plus.svg" WidthRequest="25" HeightRequest="25"
+                                                                             ReplaceStringMap="{Binding Asending,Converter={x:StaticResource SvgColor}}">
+                                                                    <svg:SvgCachedImage.GestureRecognizers>
                                                                         <TapGestureRecognizer Command="{Binding Path=BindingContext.Increase, Source={x:Reference ShopPage}}"
                                                                                           CommandParameter="{Binding .}"/>
-                                                                    </xamarinJkh:IconView.GestureRecognizers>
-                                                                </xamarinJkh:IconView>
+                                                                    </svg:SvgCachedImage.GestureRecognizers>
+                                                                </svg:SvgCachedImage>
                                                             </StackLayout>
                                                             <BoxView Color="{x:DynamicResource MainColor}" HeightRequest="1" Margin="0, -2, 0, 0" HorizontalOptions="FillAndExpand"/>
                                                         </StackLayout>

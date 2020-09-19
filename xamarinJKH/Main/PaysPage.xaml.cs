@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Xml.Xsl;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
+using FFImageLoading.Svg.Forms;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
@@ -214,8 +215,8 @@ namespace xamarinJKH.Main
             LabelHistory.TextColor = hex;
 
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
@@ -517,9 +518,9 @@ namespace xamarinJKH.Main
             if (Settings.MobileSettings.useBonusSystem)
                 identAdress.Children.Add(bonus);
 
-            IconView x = new IconView();
-            x.Source = "ic_close";
-            x.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            SvgCachedImage x = new SvgCachedImage();
+            x.Source = "resource://xamarinJKH.Resources.ic_close.svg";
+            x.ReplaceStringMap = new Dictionary<string, string> { { "#000000", $"#{Settings.MobileSettings.color}"} };
             x.HeightRequest = 10;
             x.WidthRequest = 10;
 
@@ -579,9 +580,9 @@ namespace xamarinJKH.Main
             containerBtn.Spacing = 0;
             containerBtn.HorizontalOptions = LayoutOptions.CenterAndExpand;
 
-            IconView image = new IconView();
+            SvgCachedImage image = new SvgCachedImage();
             image.Source = "ic_pays";
-            image.Foreground = Color.White;
+            image.ReplaceStringMap = new Dictionary<string, string> { { "#000000", "#FFFFFF" } };
             // image.Margin = new Thickness(-45, 0, 0, 0);
             image.HeightRequest = 30;
             image.WidthRequest = 30;

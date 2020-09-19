@@ -169,8 +169,8 @@ namespace xamarinJKH.Main
             //    countersList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
 
             Color hexColor = (Color)Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);

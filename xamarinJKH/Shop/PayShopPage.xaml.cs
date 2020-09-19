@@ -104,7 +104,7 @@ namespace xamarinJKH.Shop
 
             hex = Color.FromHex(Settings.MobileSettings.color);
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.White);
             BindingContext = this;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using Plugin.Messaging;
@@ -102,6 +103,28 @@ namespace xamarinJKH.Main
             EntryFio.Text = Settings.Person.FIO;
             EntryEmail.Text = Settings.Person.Email;
             BindingContext = this;
+
+            MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) =>
+            {
+
+                OSAppTheme currentTheme = Application.Current.RequestedTheme;
+                var colors = new Dictionary<string, string>();
+                var arrowcolor = new Dictionary<string, string>();
+                if (currentTheme == OSAppTheme.Light || currentTheme == OSAppTheme.Unspecified)
+                {
+                    colors.Add("#000000", ((Color)Application.Current.Resources["MainColor"]).ToHex());
+                    arrowcolor.Add("#000000", "#494949");
+                }
+                else
+                {
+                    colors.Add("#000000", "#FFFFFF");
+                    arrowcolor.Add("#000000", "#FFFFFF");
+                }
+                IconViewLogin.ReplaceStringMap = colors;
+                IconViewTech.ReplaceStringMap = colors;
+
+                Back.ReplaceStringMap = arrowcolor;
+            });
         }
         
         private async void ButtonClick(object sender, EventArgs e)
@@ -175,11 +198,11 @@ namespace xamarinJKH.Main
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
 
             UkName.Text = Settings.MobileSettings.main_name;
-            IconViewSave.Foreground = Color.White;
+            //IconViewSave.Foreground = Color.White;
             // IconViewNameUk.Foreground = hexColor;
-            IconViewFio.Foreground = hexColor;
-            IconViewEmail.Foreground = hexColor;
-            IconViewExit.Foreground = hexColor;
+            //IconViewFio.Foreground = hexColor;
+            //IconViewEmail.Foreground = hexColor;
+            //IconViewExit.Foreground = hexColor;
 
             FrameBtnExit.BackgroundColor = Color.White;
             FrameBtnExit.BorderColor = hexColor;
@@ -212,9 +235,25 @@ namespace xamarinJKH.Main
                     RadioButtonLigth.IsChecked = true;
                     break;
             }
+            var theme_ = Application.Current.RequestedTheme;
+            var arrow = new Dictionary<string, string>();
+            var colors = new Dictionary<string, string>();
+            if (theme_ == OSAppTheme.Dark)
+            {
+                colors.Add("#000000", "#FFFFFF");
+                arrow.Add("#000000", "#FFFFFF");
+            }
+            else
+            {
+                colors.Add("#000000", $"#{Settings.MobileSettings.color}");
+                arrow.Add("#000000", "#000000");
+            }
+            Back.ReplaceStringMap = arrow;
+            IconViewLogin.ReplaceStringMap = colors;
+            IconViewTech.ReplaceStringMap = colors;
             
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
