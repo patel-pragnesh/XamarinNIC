@@ -120,7 +120,7 @@ namespace xamarinJKH.MainConst
 
             _visibleModels.Add(AppResources.FailedRequests, new VisibleModel()
             {
-                IconView = IconViewArrow,
+                //IconView = IconViewArrow,
                 _materialFrame = MaterialFrameNotDoingContainer,
                 _grid = LayoutGrid
             });
@@ -272,7 +272,7 @@ namespace xamarinJKH.MainConst
                 {
                     _visibleModels[period[i]] = new VisibleModel()
                     {
-                        IconView = IconViewArrow,
+                        //IconView = IconViewArrow,
                         _materialFrame = container,
                         _grid = stackLayoutBot
                     };

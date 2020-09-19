@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FFImageLoading.Svg.Forms;
+using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 using xamarinJKH.CustomRenderers;
@@ -10,7 +11,7 @@ namespace xamarinJKH.AppsConst
     {
         private Label numberAndDate = new Label();
         private Label LabelDate = new Label();
-        private IconView ImageStatus = new IconView();
+        private SvgCachedImage ImageStatus = new SvgCachedImage();
         private Label LabelStatus = new Label();
         private Label LabelText = new Label();
         private CheckBox checkBox;
@@ -34,10 +35,10 @@ namespace xamarinJKH.AppsConst
             containerData.HorizontalOptions = LayoutOptions.FillAndExpand;
 
 
-            IconView arrow = new IconView();
-            arrow.Source = "ic_arrow_forward";
+            SvgCachedImage arrow = new SvgCachedImage();
+            arrow.Source = "resource://xamarinJKH.Resources.ic_arrow_forward.svg";
             Color hex = Color.FromHex(Settings.MobileSettings.color);
-            arrow.Foreground = hex;
+            arrow.ReplaceStringMap = new System.Collections.Generic.Dictionary<string, string> { { "#000000", $"#{Settings.MobileSettings.color}" } };
             arrow.HeightRequest = 25;
             arrow.WidthRequest = 25;
             arrow.Margin = new Thickness(0,0,-5,0);
@@ -53,8 +54,8 @@ namespace xamarinJKH.AppsConst
             numberAndDate.VerticalOptions = LayoutOptions.CenterAndExpand;
             numberAndDate.HorizontalOptions = LayoutOptions.Fill;
 
-            ImageStatus.Foreground = hex;
-            ImageStatus.Source = "ic_status_new";
+            ImageStatus.ReplaceStringMap = new System.Collections.Generic.Dictionary<string, string> { { "#000000", $"#{Settings.MobileSettings.color}" } };
+            ImageStatus.Source = "resource://xamarinJKH.Resources.ic_status_new.svg";
             ImageStatus.HeightRequest = 15;
             ImageStatus.VerticalOptions = LayoutOptions.Center;
             ImageStatus.WidthRequest = 15;
@@ -247,15 +248,15 @@ namespace xamarinJKH.AppsConst
 
                 if (Status.ToString().Contains("выполнена") || Status.ToString().Contains("закрыл"))
                 {
-                    ImageStatus.Source = "ic_status_done";
+                    ImageStatus.Source = "resource://xamarinJKH.Resources.ic_status_done.svg";
                 }
                 else if (Status.ToString().Contains("новая"))
                 {
-                    ImageStatus.Source = "ic_status_new";
+                    ImageStatus.Source = "resource://xamarinJKH.Resources.ic_status_new.svg";
                 }
                 else
                 {
-                    ImageStatus.Source = "ic_status_wait";
+                    ImageStatus.Source = "resource://xamarinJKH.Resources.ic_status_wait.svg";
                 }
 
 

@@ -220,11 +220,11 @@ namespace xamarinJKH.MainConst
             SetAdminName();
             SwitchApp.OnColor = hex;
             FrameBtnAdd.BackgroundColor = hex;
-            IconAddApp.Foreground = Color.White;
+            //IconAddApp.Foreground = Color.White;
             
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);

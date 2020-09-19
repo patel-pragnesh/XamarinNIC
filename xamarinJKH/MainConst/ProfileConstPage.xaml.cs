@@ -86,6 +86,8 @@ namespace xamarinJKH.MainConst
             BindingContext = this;
         }
 
+        bool svg { get; set; }
+
         private async void ButtonClick(object sender, EventArgs e)
         {
             SaveInfoAccount(EntryFio.Text, EntryEmail.Text);
@@ -189,11 +191,11 @@ namespace xamarinJKH.MainConst
         {
             Color hexColor = Color.FromHex(Settings.MobileSettings.color);
             UkName.Text = Settings.MobileSettings.main_name;
-            IconViewSave.Foreground = Color.White;
+            //IconViewSave.Foreground = Color.White;
             // IconViewNameUk.Foreground = hexColor;
-            IconViewFio.Foreground = hexColor;
-            IconViewEmail.Foreground = hexColor;
-            IconViewExit.Foreground = hexColor;
+            //IconViewFio.Foreground = hexColor;
+            //IconViewEmail.Foreground = hexColor;
+            //IconViewExit.Foreground = hexColor;
 
             FrameBtnExit.BackgroundColor = Color.White;
             FrameBtnExit.BorderColor = hexColor;
