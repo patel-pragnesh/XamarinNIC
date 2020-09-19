@@ -24,6 +24,8 @@ namespace xamarinJKH.Pays
         RestClientMP server = new RestClientMP();
         private List<AccountAccountingInfo> Accounts { get; set; }
         private bool isComission = false;
+        
+        public string svg { get; set; }
 
         public CostPage(AccountAccountingInfo account, List<AccountAccountingInfo> accounts)
         {
@@ -108,7 +110,7 @@ namespace xamarinJKH.Pays
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
             Picker.Title = account.Ident;
-            IconViewUslugi.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            // IconViewUslugi.Foreground = Color.FromHex(Settings.MobileSettings.color);
             Labelseparator.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             FrameBtnLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
             LabelSaldos.TextColor = Color.FromHex(Settings.MobileSettings.color);

@@ -294,7 +294,7 @@
                                         WidthRequest="15"
                                         Margin="5,0,5,0"
                                         HorizontalOptions="Start"
-                                        ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                        ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#FFFFFF'}"
                                         VerticalOptions="Center" />
                                 </StackLayout>
                             </Frame>
@@ -475,7 +475,7 @@
                                         WidthRequest="15"
                                         Margin="5,0,5,0"
                                         HorizontalOptions="Start"
-                                        ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                        ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#FFFFFF'}"
                                         VerticalOptions="Center" />
                                 </StackLayout>
                             </Frame>

@@ -34,7 +34,7 @@ namespace xamarinJKH.Counters
         private CountersPage _countersPage;
 
         public Color CellColor { get; set; } 
-
+        public decimal PrevCounter { get; set; }
         decimal PrevValue;
         bool SetPrev;
         int DecimalPoint { get; set; }
