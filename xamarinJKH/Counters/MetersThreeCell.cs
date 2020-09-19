@@ -18,7 +18,7 @@ namespace xamarinJKH.Main
     public class MetersThreeCell : StackLayout
     {
         private Image img = new Image();
-        private IconView imgEdit = new IconView();
+        private SvgCachedImage Edit = new SvgCachedImage();
         private Label resource = new Label();
         private Label adress = new Label();
         private Label number = new Label();
@@ -80,12 +80,12 @@ namespace xamarinJKH.Main
             resource.HorizontalTextAlignment = TextAlignment.Center;
 
             img.WidthRequest = 25;
-            imgEdit.WidthRequest = 20;
-            imgEdit.HeightRequest = 20;
-            imgEdit.Source = "edit";
-            imgEdit.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            // imgEdit.WidthRequest = 20;
+            // imgEdit.HeightRequest = 20;
+            // imgEdit.Source = "edit";
+            // imgEdit.Foreground = Color.FromHex(Settings.MobileSettings.color);
 
-            var Edit = new SvgCachedImage();
+            Edit = new SvgCachedImage();
             Edit.WidthRequest = 25;
             Edit.HeightRequest = 25;
             Edit.ReplaceStringMap = new Dictionary<string, string> { { "#000000", $"#{Settings.MobileSettings.color}" } };
@@ -471,13 +471,13 @@ namespace xamarinJKH.Main
                     await PopupNavigation.Instance.PushAsync(
                         new EditCounterNameDialog(Color.FromHex(Settings.MobileSettings.color), UniqueNum));
                 };
-                if (imgEdit.GestureRecognizers.Count > 0)
+                if (Edit.GestureRecognizers.Count > 0)
                 {
-                    imgEdit.GestureRecognizers[0] = editName;
+                    Edit.GestureRecognizers[0] = editName;
                 }
                 else
                 {
-                    imgEdit.GestureRecognizers.Add(editName);
+                    Edit.GestureRecognizers.Add(editName);
                 }
 
                 string name = (!string.IsNullOrWhiteSpace(CustomName)) ? CustomName : Resource;
@@ -534,7 +534,7 @@ namespace xamarinJKH.Main
                 if (IsDisabled)
                 {
                     labelDisable.IsVisible = true;
-                    imgEdit.IsVisible = false;
+                    Edit.IsVisible = false;
                     try
                     {
                         var stack = frame.Content as StackLayout;
