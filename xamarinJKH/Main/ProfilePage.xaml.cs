@@ -177,9 +177,9 @@ namespace xamarinJKH.Main
             UkName.Text = Settings.MobileSettings.main_name;
             IconViewSave.Foreground = Color.White;
             // IconViewNameUk.Foreground = hexColor;
-            IconViewFio.Foreground = hexColor;
-            IconViewEmail.Foreground = hexColor;
-            IconViewExit.Foreground = hexColor;
+            // IconViewFio.Foreground = hexColor;
+            // IconViewEmail.Foreground = hexColor;
+            // IconViewExit.Foreground = hexColor;
 
             FrameBtnExit.BackgroundColor = Color.White;
             FrameBtnExit.BorderColor = hexColor;
@@ -223,6 +223,25 @@ namespace xamarinJKH.Main
             
         }
 
+        private void SetTheme()
+        {
+            switch (Application.Current.RequestedTheme)
+            {
+                case OSAppTheme.Dark:
+                    IconViewLogin.ReplaceStringMap = IconViewTech.ReplaceStringMap = ImageBack.ReplaceStringMap = new Dictionary<string, string>
+                    {
+                        {"#000000", "#FFFFFF"}
+                    };
+                    break;
+                case OSAppTheme.Light:
+                    IconViewLogin.ReplaceStringMap = IconViewTech.ReplaceStringMap = ImageBack.ReplaceStringMap = new Dictionary<string, string>
+                    {
+                        {"#000000", $"#{Settings.MobileSettings.color}"}
+                    };
+                    break;
+            }
+        }
+        
         private void SwitchSavePass_OnPropertyChanged(object sender, ToggledEventArgs toggledEventArgs)
         {
             Preferences.Set("isPass",isSave);
@@ -234,6 +253,7 @@ namespace xamarinJKH.Main
             MessagingCenter.Send<Object>(this, "ChangeTheme");
             MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
             Preferences.Set("Theme", 1);
+            SetTheme();
 
         }
 
@@ -246,9 +266,10 @@ namespace xamarinJKH.Main
                 MessagingCenter.Send<Object>(this, "ChangeTheme");
                 MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
                 Preferences.Set("Theme", 0);
-            //}                
+                SetTheme();
+                //}                
 
-            
+
         }
 
         private void RadioButtonLigth_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -257,6 +278,7 @@ namespace xamarinJKH.Main
             MessagingCenter.Send<Object>(this, "ChangeTheme");
             MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
             Preferences.Set("Theme", 2);
+            SetTheme();
         }
 
         private async void GoBack(object sender, EventArgs args)

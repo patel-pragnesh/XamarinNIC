@@ -30,7 +30,7 @@ namespace xamarinJKH.Converters
             }
             if (mainColor != null)
             {
-                var colorReplace = Application.Current.UserAppTheme == OSAppTheme.Light || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? ColorToString(mainColor) : colors[0];
+                var colorReplace = Application.Current.RequestedTheme == OSAppTheme.Light || Application.Current.RequestedTheme == OSAppTheme.Unspecified ? ColorToString(mainColor) : colors[0];
                 return new Dictionary<string, string>
                 {
                     { "#000000", colorReplace }
