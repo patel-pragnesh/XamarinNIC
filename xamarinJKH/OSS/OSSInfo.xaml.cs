@@ -44,9 +44,15 @@ namespace xamarinJKH
             return statusInt;
         }
 
+        public bool forsvg { get; set; }
+
+
         public OSSInfo(OSS sObj)
         {
             InitializeComponent();
+            forsvg = false;
+            BindingContext = this;
+
             NavigationPage.SetHasNavigationBar(this, false);
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await PopupNavigation.Instance.PushAsync(new TechDialog()); };

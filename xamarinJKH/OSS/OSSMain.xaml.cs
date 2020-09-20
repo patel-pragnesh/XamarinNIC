@@ -21,9 +21,12 @@ namespace xamarinJKH
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OSSMain : ContentPage
     {
+        public bool forsvg { get; set; }
         public OSSMain()
         {
             InitializeComponent();
+            forsvg = false;
+            this.BindingContext = this;
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await PopupNavigation.Instance.PushAsync(new TechDialog()); };
             LabelTech.GestureRecognizers.Add(techSend);

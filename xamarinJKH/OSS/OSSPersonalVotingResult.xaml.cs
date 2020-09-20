@@ -20,10 +20,15 @@ namespace xamarinJKH
     public partial class OSSPersonalVotingResult : ContentPage
     {
         Color colorFromMobileSettings = Color.FromHex(Settings.MobileSettings.color);
+        public bool forsvg { get; set; }
 
         public OSSPersonalVotingResult(OSS oSS, bool userFinishPool=false)
         {
             InitializeComponent();
+
+            forsvg = false;
+            this.BindingContext = this;
+
             NavigationPage.SetHasNavigationBar(this, false);
 
             if(userFinishPool)
