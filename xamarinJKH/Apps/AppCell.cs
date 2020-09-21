@@ -1,5 +1,6 @@
 ﻿using FFImageLoading.Svg.Forms;
 using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using xamarinJKH.CustomRenderers;
 using xamarinJKH.Utils;
@@ -187,8 +188,11 @@ namespace xamarinJKH.Apps
                 // LabelText.Text = "• " + TextApp;
 
                 LabelDate.Text = DateApp;
-
-                ImageStatus.Source = Settings.GetStatusIcon(StatusID);
+                ImageStatus.ReplaceStringMap = new Dictionary<string, string>
+                {
+                    {"#000000",  $"#{Settings.MobileSettings.color}"}
+                };
+                ImageStatus.Source = "resource://xamarinJKH.Resources."+Settings.GetStatusIcon(StatusID)+".svg";
                 
             }
         }

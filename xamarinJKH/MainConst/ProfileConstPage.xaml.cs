@@ -25,6 +25,7 @@ namespace xamarinJKH.MainConst
         private LoginResult Person = new LoginResult();
         private RestClientMP _server = new RestClientMP();
         public bool isSave { get; set; }
+        public string svg2 { get; set; }
         public ProfileConstPage()
         {
             InitializeComponent();

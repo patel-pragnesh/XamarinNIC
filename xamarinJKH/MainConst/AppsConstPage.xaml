@@ -19,7 +19,7 @@
                        Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top}"
                        VerticalOptions="Start"
                        Margin="0,20,0,0"
-                       Aspect="AspectFill"
+                       Aspect="Fill"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout>
                     <pancakeView:PancakeView
@@ -85,7 +85,7 @@
                         <svg:SvgCachedImage x:Name="IconViewTech"
                                              Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                              HeightRequest="20"
-                                             ReplaceStringMap="{Binding Requests, Converter={x:StaticResource SvgColor}}"
+                                             ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}}"
                                              Margin="0, 0,0,0"
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />

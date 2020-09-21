@@ -19,7 +19,7 @@
                        Margin="0,20,0,0"
                        Source="ic_background_OSS"
                        VerticalOptions="Start"
-                       Aspect="AspectFill"
+                       Aspect="Fill"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout>
                     <pancakeView:PancakeView

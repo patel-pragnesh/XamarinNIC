@@ -581,7 +581,7 @@ namespace xamarinJKH.Main
             containerBtn.HorizontalOptions = LayoutOptions.CenterAndExpand;
 
             SvgCachedImage image = new SvgCachedImage();
-            image.Source = "ic_pays";
+            image.Source = "resource://xamarinJKH.Resources.ic_pays.svg";
             image.ReplaceStringMap = new Dictionary<string, string> { { "#000000", "#FFFFFF" } };
             // image.Margin = new Thickness(-45, 0, 0, 0);
             image.HeightRequest = 30;

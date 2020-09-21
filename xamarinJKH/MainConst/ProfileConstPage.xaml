@@ -20,7 +20,7 @@
                        Source="{AppThemeBinding Light=ic_background_profile_light, Dark=ic_background_profile}"
                        VerticalOptions="Start"
                        Margin="0,20,0,0"
-                       Aspect="AspectFill"
+                       Aspect="Fill"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout>
                     <pancakeView:PancakeView
@@ -51,7 +51,7 @@
                                                              Source="resource://xamarinJKH.Resources.ic_phone.svg"
                                                              HeightRequest="15"
                                                              IsVisible="False"
-                                                             ReplaceStringMap="{Binding svg, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000'}"
+                                                             ReplaceStringMap="{Binding svg2, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000'}"
                                                              Margin="0, 0,0,0"
                                                              HorizontalOptions="Start"
                                                              VerticalOptions="Center" />
@@ -86,7 +86,7 @@
                         <svg:SvgCachedImage x:Name="IconViewTech"
                                              Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                              HeightRequest="20"
-                                             ReplaceStringMap="{Binding svg, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000'}"
+                                             ReplaceStringMap="{Binding svg2, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                                              Margin="0, 0,0,0"
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
@@ -145,7 +145,7 @@
                                             <svg:SvgCachedImage x:Name="IconViewFio"
                                                             Source="resource://xamarinJKH.Resources.ic_fio_reg.svg"
                                                             HeightRequest="25"
-                                                             ReplaceStringMap="{Binding svg, Converter={x:StaticResource SvgColor}}"
+                                                             ReplaceStringMap="{Binding svg2, Converter={x:StaticResource SvgColor}}"
                                                             HorizontalOptions="Start"
                                                             VerticalOptions="Center" />
                                             <Label x:Name="LabelPhone2"
@@ -187,19 +187,20 @@
                                         <StackLayout
                                             Margin="0, 20, 0, 0"
                                             Orientation="Horizontal">
-                                            <svg:SvgCachedImage x:Name="IconViewEmail"
-                                                            Source="resrouce://xamarinJKH.Resources.ic_profile_email.svg"
-                                                            HeightRequest="25"
-                                                             ReplaceStringMap="{Binding svg, Converter={x:StaticResource SvgColor}}"
-
-                                                            VerticalOptions="Center" />
+                                            <svg:SvgCachedImage
+                                                Source="resource://xamarinJKH.Resources.ic_profile_email.svg"
+                                                HeightRequest="25"
+                                                HorizontalOptions="Start"
+                                                Margin="5,0,0,0"
+                                                ReplaceStringMap="{Binding svg2, Converter={x:StaticResource SvgColor}}"
+                                                VerticalOptions="Center" />
 
                                             <Label Text="E-mail"
                                                    MinimumWidthRequest="50"
                                                    MaxLines="1"
                                                    FontSize="16"
                                                    TextColor="Black"
-                                                   Margin="-5, 0, 0, 5"
+                                                   Margin="0, 0, 0, 5"
                                                    VerticalOptions="Center" />
 
                                             <Entry x:Name="EntryEmail"
@@ -250,7 +251,7 @@
                                                             Margin="0, 10, 0, 10"
                                                             Source="resource://xamarinJKH.Resources.ic_check_mark.svg"
                                                             HeightRequest="25"
-                                                                ReplaceStringMap="{Binding svg, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#FFFFFF'}"
+                                                                ReplaceStringMap="{Binding svg2, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#FFFFFF'}"
                                                             WidthRequest="35"
                                                             VerticalOptions="Center" />
                                             <Label x:Name="BtnSave"
@@ -320,7 +321,7 @@
                                     <svg:SvgCachedImage x:Name="IconViewExit"
                                                     Margin="0, 10, 0, 10"
                                                     Source="resource://xamarinJKH.Resources.ic_exit.svg"
-                                                    ReplaceStringMap="{Binding svg, Converter={x:StaticResource SvgColor}}"
+                                                    ReplaceStringMap="{Binding svg2, Converter={x:StaticResource SvgColor}}"
                                                     HeightRequest="25"
                                                     WidthRequest="35"
                                                     VerticalOptions="Center" />

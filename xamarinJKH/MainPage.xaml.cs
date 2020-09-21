@@ -205,6 +205,9 @@ namespace xamarinJKH
                 {
                     { "#000000",  $"#{Settings.MobileSettings.color}" }
                 };
+                IconViewPass.ReplaceStringMap = ColorHex;
+                ImageClosePass.ReplaceStringMap = ColorHex;
+                ic_questions.ReplaceStringMap = ColorHex;
                 BindingContext = this;
                 //IconViewLogin.Foreground = hex;
                 //IconViewPass.Foreground = hex;

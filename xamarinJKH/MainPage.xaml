@@ -21,7 +21,8 @@
             </Grid.RowDefinitions>
             <StackLayout Grid.RowSpan="2">
                 <Image Source="{AppThemeBinding Light=top_fon_login_light, Dark=top_fon_login}"
-                       HorizontalOptions="Center" />
+                       HorizontalOptions="FillAndExpand"
+                       Aspect="Fill"/>
                 <StackLayout
                     Margin="20, -120, 0, 0"
                     Orientation="Horizontal">
@@ -288,6 +289,7 @@
                                 Spacing="0"
                                 HorizontalOptions="Center">
                                     <forms:SvgCachedImage
+                                        x:Name="ic_questions"
                                         Source="resource://xamarinJKH.Resources.ic_questions.svg"
                                         HeightRequest="20"
                                         WidthRequest="20"
