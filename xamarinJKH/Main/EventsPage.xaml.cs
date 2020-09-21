@@ -76,10 +76,13 @@ namespace xamarinJKH.Main
                 {
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
-                    Settings.Person.companyPhone = null;
+#if DEBUG
+                    //Settings.Person.companyPhone = null;
+#endif
                     try
                     {
-                        if (phoneDialer.CanMakePhoneCall)
+
+                        if (phoneDialer.CanMakePhoneCall && string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
                             phoneDialer.MakePhoneCall(System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
                     }
                     catch(Exception ex)

@@ -726,7 +726,7 @@ namespace xamarinJKH.AppsConst
                 {
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
-                    if (phoneDialer.CanMakePhoneCall) 
+                    if (phoneDialer.CanMakePhoneCall && string.IsNullOrWhiteSpace(Settings.Person.companyPhone)) 
                         phoneDialer.MakePhoneCall(phone);
                 }
             });
