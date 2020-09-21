@@ -195,7 +195,7 @@ namespace xamarinJKH.Main
             RadioButtonDark.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
             RadioButtonLigth.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
 
-            int theme = Preferences.Get("Theme", 2);
+            int theme = Preferences.Get("Theme", 1);
             
             //if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
             //    theme = Preferences.Get("Theme", 1);

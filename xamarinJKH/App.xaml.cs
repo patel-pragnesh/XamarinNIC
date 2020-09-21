@@ -215,7 +215,7 @@ namespace xamarinJKH
         {
             Registrations.Start("XamarinJKH");
                                     
-            int theme = Preferences.Get("Theme", 2);
+            int theme = Preferences.Get("Theme", 1);
 
             //только темная тема в ios
             //if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)

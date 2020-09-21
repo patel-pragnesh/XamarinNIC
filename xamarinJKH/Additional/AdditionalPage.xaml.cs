@@ -184,7 +184,7 @@ namespace xamarinJKH.Additional
             BackStackLayout.GestureRecognizers.Add(backClick);
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); };
-            LabelTech.GestureRecognizers.Add(techSend);
+            StackLayoutTech.GestureRecognizers.Add(techSend);
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
             {

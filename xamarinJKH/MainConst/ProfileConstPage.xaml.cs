@@ -210,7 +210,7 @@ namespace xamarinJKH.MainConst
             RadioButtonDark.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
             RadioButtonLigth.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
 
-            int theme = Preferences.Get("Theme", 2);
+            int theme = Preferences.Get("Theme", 1);
 
             //задание темы для ios
             //if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
