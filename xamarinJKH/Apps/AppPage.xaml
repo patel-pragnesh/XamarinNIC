@@ -13,25 +13,36 @@
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Apps.AppPage">
     <ContentPage.Content>
-        <StackLayout>
-            <RelativeLayout
-                x:Name="ScrollViewContainer"
-                Margin="0,0,0,-170"
-                VerticalOptions="Start"
-                HorizontalOptions="FillAndExpand">
-                <Image x:Name="ImageTop" Margin="0, -26, 0 ,0"
-                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0,
-                             Constant=0}"
-                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Height,
-                             Factor=0,
-                             Constant=0}"
-                       Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top_in}"
-                       VerticalOptions="Fill"
-                       HorizontalOptions="Fill" />
-            </RelativeLayout>
+        <Grid x:Name="ScrollViewContainer" >
+            <Image x:Name="ImageFon"
+                   
+                   Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top_in}"
+                   VerticalOptions="Start"
+                   Margin="0,0,0,0"
+                   Aspect="Fill"
+                   HorizontalOptions="FillAndExpand" />
+        <StackLayout
+            Margin="0,20,0,0">
+            <!-- <RelativeLayout -->
+            <!--     x:Name="ScrollViewContainer" -->
+            <!--     Margin="0,0,0,-170" -->
+            <!--     VerticalOptions="Start" -->
+            <!--     HorizontalOptions="FillAndExpand"> -->
+            <!--     <Image x:Name="ImageTop" Margin="0, -26, 0 ,0" -->
+            <!--            Aspect="AspectFill" -->
+            <!--            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, -->
+            <!--                  Property=Width, -->
+            <!--                  Factor=0, -->
+            <!--                  Constant=0}" -->
+            <!--            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, -->
+            <!--                  Property=Height, -->
+            <!--                  Factor=0, -->
+            <!--                  Constant=0}" -->
+            <!--            Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top_in}" -->
+            <!--            VerticalOptions="Fill" -->
+            <!--            HorizontalOptions="FillAndExpand" /> -->
+            <!-- </RelativeLayout> -->
+            
             <StackLayout HorizontalOptions="Fill"
                          Orientation="Horizontal">
                 <StackLayout
@@ -44,7 +55,7 @@
                         <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
                                      HeightRequest="15"
                                      WidthRequest="15"
-                                     ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#FFFFFF'}"
+                                     ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
                                      HorizontalOptions="Center" />
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.Back}"
@@ -77,9 +88,9 @@
                                 <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_info_app1.svg"
                                      HeightRequest="25"
                                      WidthRequest="25"
-                                     ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000|#FFFFFF'}" />
+                                     ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}" />
                                 <Label Text="{x:Static xamarinJkh:AppResources.InfoApp}"
-                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                       TextColor="Black"
                                        FontAttributes="Bold"
                                        FontSize="10" />
                             </StackLayout>
@@ -91,10 +102,10 @@
                                 HorizontalOptions="EndAndExpand">
                                 <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_close_app1.svg"
                                                      HeightRequest="25"
-                                                    ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000|#FFFFFF'}"
+                                                    ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
                                                      WidthRequest="25" />
                                 <Label Text="{x:Static xamarinJkh:AppResources.CloseApp}"
-                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                       TextColor="Black"
                                        FontAttributes="Bold"
                                        FontSize="10" />
                             </StackLayout>
@@ -109,7 +120,7 @@
                                                     ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000|#FFFFFF'}"
                                                      WidthRequest="25" />
                                 <Label Text="{x:Static xamarinJkh:AppResources.PayApp}"
-                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                       TextColor="Black"
                                        FontAttributes="Bold"
                                        FontSize="10" />
                             </StackLayout>
@@ -124,7 +135,7 @@
                                                     ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000|#FFFFFF'}"
                                                      WidthRequest="25" />
                                 <Label Text="{x:Static xamarinJkh:AppResources.Receipt}"
-                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                       TextColor="Black"
                                        FontAttributes="Bold"
                                        FontSize="10" />
                                 <StackLayout.GestureRecognizers>
@@ -258,5 +269,6 @@
                 </StackLayout>
             </Frame>
         </StackLayout>
+            </Grid>
     </ContentPage.Content>
 </ContentPage>

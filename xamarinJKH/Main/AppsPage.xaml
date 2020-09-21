@@ -201,7 +201,7 @@
                                 HorizontalOptions="Center">
                                 <svg:SvgCachedImage
                                     Source="resource://xamarinJKH.Resources.icon_add_app.svg"
-                                    ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                    ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#FFFFFF'}"
                                     x:Name="IconViewSaldos"
                                     HeightRequest="24"
                                     WidthRequest="20" />

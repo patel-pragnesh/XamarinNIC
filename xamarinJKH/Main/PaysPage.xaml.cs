@@ -403,7 +403,7 @@ namespace xamarinJKH.Main
 
         public void PaysPageViewModel(StackLayout baseForPays, List<AccountAccountingInfo> _accountingInfo)
         {
-            hex = Color.FromHex(Settings.MobileSettings.color);
+            hex = (Color) Application.Current.Resources["MainColor"];
             Accounts = new List<AccountAccountingInfo>();
             LoadAccounts = new Command<List<AccountAccountingInfo>>(async (accounts) =>
             {
