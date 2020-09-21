@@ -82,7 +82,7 @@ namespace xamarinJKH.Main
                     try
                     {
 
-                        if (phoneDialer.CanMakePhoneCall && string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
+                        if (phoneDialer.CanMakePhoneCall && !string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
                             phoneDialer.MakePhoneCall(System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
                     }
                     catch(Exception ex)
