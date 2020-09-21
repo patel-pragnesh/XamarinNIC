@@ -28,6 +28,8 @@ using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Rg.Plugins.Popup.Services;
 using xamarinJKH.CustomRenderers;
+using System.Globalization;
+using System.Threading;
 
 namespace xamarinJKH
 {
@@ -58,6 +60,19 @@ namespace xamarinJKH
         public MainPage()
         {
             adress = "sdf";
+            if (Application.Current.Properties.ContainsKey("Culture"))
+            {
+                var culture = Application.Current.Properties["Culture"];
+                if (culture != null)
+                {
+
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo(culture as string);
+
+                    AppResources.Culture = new CultureInfo(culture as string);
+                    CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture as string);
+                }
+
+            }
             InitializeComponent();
             getSettings();
             NavigationPage.SetHasNavigationBar(this, false);
