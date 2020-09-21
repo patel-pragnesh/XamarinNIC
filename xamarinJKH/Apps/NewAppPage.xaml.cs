@@ -27,6 +27,7 @@ using Rg.Plugins.Popup.Services;
 using Xamarin.Forms.PancakeView;
 using xamarinJKH.DialogViews;
 using Xamarin.Essentials;
+using System.Text.RegularExpressions;
 
 namespace xamarinJKH.Apps
 {
@@ -101,7 +102,7 @@ namespace xamarinJKH.Apps
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
                     if (phoneDialer.CanMakePhoneCall) 
-                        phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
+                        phoneDialer.MakePhoneCall(System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
                 }
 
             

@@ -23,6 +23,7 @@ using AiForms.Dialogs;
 using Rg.Plugins.Popup.Services;
 using xamarinJKH.DialogViews;
 using Xamarin.Essentials;
+using System.Text.RegularExpressions;
 
 namespace xamarinJKH.Additional
 {
@@ -193,7 +194,7 @@ namespace xamarinJKH.Additional
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
                     if (phoneDialer.CanMakePhoneCall)
-                        phoneDialer.MakePhoneCall(Settings.Person.companyPhone);
+                        phoneDialer.MakePhoneCall(System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
                 }
             };
             LabelPhone.GestureRecognizers.Add(call);
