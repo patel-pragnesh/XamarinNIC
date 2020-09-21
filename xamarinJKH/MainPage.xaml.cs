@@ -129,6 +129,8 @@ namespace xamarinJKH
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
+                    //headerImg.HorizontalOptions = LayoutOptions.Center;
+                    //headerImg.Aspect = Aspect.AspectFit;
                     if (App.ScreenHeight < 600 || Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width<700)
                     {
                         RegistLabel.FontSize = 12;
