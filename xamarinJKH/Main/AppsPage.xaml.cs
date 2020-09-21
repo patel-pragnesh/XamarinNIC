@@ -218,8 +218,8 @@ namespace xamarinJKH.Main
             additionalList.BackgroundColor = Color.Transparent;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
             this.CancellationTokenSource = new CancellationTokenSource();
-
-            MessagingCenter.Subscribe<Object, int>(this, "OpenApp", async (sender, args) =>
+            MessagingCenter.Subscribe<Object>(this, "UpdateAppCons", (sender) => RefreshData());
+            MessagingCenter.Subscribe<Object, int>(this, "CloseAPP", async (sender, args) =>
             {
                 await RefreshData();
                 var request = RequestInfos?.Find(x => x.ID == args);

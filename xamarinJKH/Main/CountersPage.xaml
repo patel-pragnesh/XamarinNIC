@@ -14,7 +14,7 @@
                        Source="{AppThemeBinding Light=ic_background_counter_light, Dark=ic_background_counter}"
                        VerticalOptions="Start"
 					   Margin="0,20,0,0"
-                       Aspect="AspectFill"
+                       Aspect="Fill"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout>
                     <pancakeView:PancakeView
