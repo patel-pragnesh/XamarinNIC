@@ -96,6 +96,7 @@ namespace xamarinJKH.DialogViews
                     CommonResult result = await server.CloseAppConst(_Request.ID.ToString());
                     if (result.Error == null)
                     {
+                        MessagingCenter.Send<Object>(this, "CloseAPP");
                         await ShowToast(AppResources.AppClosed);
                         await PopupNavigation.Instance.PopAsync();
                     }

@@ -255,6 +255,21 @@ namespace xamarinJKH.AppsConst
             MessagingCenter.Subscribe<Object>(this, "RefreshApp", async (sender) => await RefreshData());
             MessagingCenter.Subscribe<Object>(this, "RefreshAppList", async (sender) =>
                 request = await _server.GetRequestsDetailListConst(_requestInfo.ID.ToString()));
+            
+            MessagingCenter.Subscribe<Object>(this, "CloseAPP", callback: async (sender) =>
+            {
+                MessagingCenter.Send<Object>(this, "UpdateAppCons");
+                if (close)
+                {
+                    await Navigation.PopToRootAsync();
+                }
+                else
+                {
+                    Settings.isSelf = null;
+                    Settings.DateUniq = "";
+                    _ = await Navigation.PopAsync();
+                }
+            });
            // additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 

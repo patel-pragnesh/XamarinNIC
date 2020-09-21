@@ -16,7 +16,7 @@
                        Source="{Binding Picture}"
                        Margin="0,20,0,0"
                        VerticalOptions="Start"
-                       Aspect="AspectFill"
+                       Aspect="Fill"
                        HorizontalOptions="FillAndExpand" />
             <StackLayout>
                 <pancakeView:PancakeView
