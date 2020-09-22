@@ -58,15 +58,15 @@
                         Orientation="Horizontal">
                         <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                              HeightRequest="20"
-                                             ReplaceStringMap="{Binding ShopName,Converter={x:StaticResource SvgColor}}"
+                                             ReplaceStringMap="{Binding ShopName,Converter={x:StaticResource SvgColor} , ConverterParameter='#FFFFFF|#000000'} "
                                              HorizontalOptions="Start"
-                                            Margin="10,0"
+                                            Margin="10,0, 0 ,0"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
                                Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="16"
                                TextDecorations="Underline"
-                               TextColor="{x:DynamicResource MainColor}"
+                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                Margin="0, 0, 0, 0"
                                VerticalOptions="Center" />
                     </StackLayout>
@@ -225,7 +225,7 @@
                                                           Grid.Row="1" Orientation="Vertical" Margin="0, -5, 0, 0" >
                                                             <StackLayout  HorizontalOptions="Center" Orientation="Horizontal">
                                                                 <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_shop_minus.svg" WidthRequest="25" HeightRequest="25"
-                                                                             ReplaceStringMap="{Binding Asending,Converter={x:StaticResource SvgColor}}">
+                                                                             ReplaceStringMap="{Binding ColBusket,Converter={x:StaticResource SvgColor}}">
                                                                     <svg:SvgCachedImage.GestureRecognizers>
                                                                         <TapGestureRecognizer Command="{Binding Path=BindingContext.Decrease, Source={x:Reference ShopPage}}"
                                                                                           CommandParameter="{Binding .}"/>
@@ -236,7 +236,7 @@
                                                                Text="{Binding ColBusket}"
                                                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center"/>
                                                                 <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_shop_plus.svg" WidthRequest="25" HeightRequest="25"
-                                                                             ReplaceStringMap="{Binding Asending,Converter={x:StaticResource SvgColor}}">
+                                                                             ReplaceStringMap="{Binding ColBusket,Converter={x:StaticResource SvgColor}}">
                                                                     <svg:SvgCachedImage.GestureRecognizers>
                                                                         <TapGestureRecognizer Command="{Binding Path=BindingContext.Increase, Source={x:Reference ShopPage}}"
                                                                                           CommandParameter="{Binding .}"/>

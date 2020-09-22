@@ -136,7 +136,8 @@ namespace xamarinJKH.Shop
                         }
                         else
                         {
-                            bonus = 0;
+                            bonus = bonusCount;
+                            bonusCount = 0;
                         }
                     }
 

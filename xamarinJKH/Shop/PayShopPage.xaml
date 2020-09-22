@@ -26,8 +26,9 @@
                         HorizontalOptions="Start">
                         <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
                                              HeightRequest="25"
-                                             Margin="0,5"
-                                             ReplaceStringMap="{Binding orderNum,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
+                                             Margin="0,0"
+                                             VerticalOptions="Center"
+                                             ReplaceStringMap="{Binding hex,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
                                              HorizontalOptions="Center" />
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.ConfirmingOrder}"
@@ -38,17 +39,17 @@
                     <StackLayout
                         Orientation="Horizontal">
                         <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_tech.svg"
-                                             HeightRequest="20"
-                                             ReplaceStringMap="{Binding orderNum,Converter={x:StaticResource SvgColor}}"
-                                             HorizontalOptions="Start"
-                                            Margin="10,0"
-                                             VerticalOptions="Center" />
+                                            HeightRequest="20"
+                                            ReplaceStringMap="{Binding hex,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
+                                            HorizontalOptions="Start"
+                                            Margin="10,0,0,0"
+                                            VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
                                Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="16"
                                TextDecorations="Underline"
                                TextColor="White"
-                               Margin="-10, 10, 0, 0"
+                               Margin="0, 0, 0, 0"
                                VerticalOptions="Center" />
                     </StackLayout>
                     <ScrollView Margin="10,10,10,10">
