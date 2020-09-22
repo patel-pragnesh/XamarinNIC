@@ -796,12 +796,15 @@ namespace xamarinJKH.Apps
         {
             await Task.Delay(milliseconds);
 
-
-            //additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
-            var lastChild = baseForApp.Children.LastOrDefault();
-
-            //await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true);// (lastChild.X, lastChild.Y + 30, true);
-            await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
+            try
+            {
+                //additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
+                var lastChild = baseForApp.Children.LastOrDefault();
+                if (lastChild != null)
+                //await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true);// (lastChild.X, lastChild.Y + 30, true);
+                await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
+            }
+            catch { }
         }
 
         async void setText()
