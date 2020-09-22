@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Xml.Xsl;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
+using FFImageLoading.Svg.Forms;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -167,6 +168,25 @@ namespace xamarinJKH.Main
             MessagingCenter.Subscribe<Object>(this, "UpdateIdent", (sender) => SyncSetup());
             PaysPageViewModel(this.baseForPays, _accountingInfo);
             BindingContext = this;
+            MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) =>
+            {
+
+                OSAppTheme currentTheme = Application.Current.RequestedTheme;
+                var colors = new Dictionary<string, string>();
+                var arrowcolor = new Dictionary<string, string>();
+                if (currentTheme == OSAppTheme.Light || currentTheme == OSAppTheme.Unspecified)
+                {
+                    colors.Add("#000000", ((Color)Application.Current.Resources["MainColor"]).ToHex());
+                    arrowcolor.Add("#000000", "#494949");
+                }
+                else
+                {
+                    colors.Add("#000000", "#FFFFFF");
+                    arrowcolor.Add("#000000", "#FFFFFF");
+                }
+                IconViewLogin.ReplaceStringMap = colors;
+                IconViewTech.ReplaceStringMap = colors;
+            });
         }
 
         protected override void OnAppearing()
@@ -196,8 +216,8 @@ namespace xamarinJKH.Main
             LabelHistory.TextColor = hex;
 
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);if (Device.RuntimePlatform == Device.iOS){ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
@@ -384,7 +404,7 @@ namespace xamarinJKH.Main
 
         public void PaysPageViewModel(StackLayout baseForPays, List<AccountAccountingInfo> _accountingInfo)
         {
-            hex = Color.FromHex(Settings.MobileSettings.color);
+            hex = (Color) Application.Current.Resources["MainColor"];
             Accounts = new List<AccountAccountingInfo>();
             LoadAccounts = new Command<List<AccountAccountingInfo>>(async (accounts) =>
             {
@@ -499,9 +519,9 @@ namespace xamarinJKH.Main
             if (Settings.MobileSettings.useBonusSystem)
                 identAdress.Children.Add(bonus);
 
-            IconView x = new IconView();
-            x.Source = "ic_close";
-            x.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            SvgCachedImage x = new SvgCachedImage();
+            x.Source = "resource://xamarinJKH.Resources.ic_close.svg";
+            x.ReplaceStringMap = new Dictionary<string, string> { { "#000000", $"#{Settings.MobileSettings.color}"} };
             x.HeightRequest = 10;
             x.WidthRequest = 10;
 
@@ -561,9 +581,9 @@ namespace xamarinJKH.Main
             containerBtn.Spacing = 0;
             containerBtn.HorizontalOptions = LayoutOptions.CenterAndExpand;
 
-            IconView image = new IconView();
-            image.Source = "ic_pays";
-            image.Foreground = Color.White;
+            SvgCachedImage image = new SvgCachedImage();
+            image.Source = "resource://xamarinJKH.Resources.ic_pays.svg";
+            image.ReplaceStringMap = new Dictionary<string, string> { { "#000000", "#FFFFFF" } };
             // image.Margin = new Thickness(-45, 0, 0, 0);
             image.HeightRequest = 30;
             image.WidthRequest = 30;

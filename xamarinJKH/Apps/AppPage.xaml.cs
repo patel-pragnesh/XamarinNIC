@@ -251,8 +251,8 @@ namespace xamarinJKH.Apps
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    IconViewMic.Foreground = hex;
-                });
+                    IconViewMic.ReplaceStringMap = new Dictionary<string, string> { { "#000000", hex.ToHex() } };
+                });                
             });
 
             MessagingCenter.Subscribe<IMessageSender, string>(this, "STT", (sender, args) =>
@@ -274,17 +274,14 @@ namespace xamarinJKH.Apps
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-
-                    EntryMess.AutoSize = EditorAutoSizeOption.Disabled;
-                    ////EntryMess.VerticalOptions = LayoutOptions.FillAndExpand;
-                    startHeight = EntryMess.Height;
-
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     if (DeviceDisplay.MainDisplayInfo.Width < 700)
                         ScrollViewContainer.Padding = new Thickness(0, statusBarHeight * 2, 0, 0);
                     else
                         ScrollViewContainer.Padding = new Thickness(0, statusBarHeight, 0, 0);
-
+                    // ImageTop.Margin = new Thickness(0, 33, 0, 0);
+                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
+                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
                     break;
                 case Device.Android:
                     double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
@@ -347,7 +344,6 @@ namespace xamarinJKH.Apps
             //additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
-        double startHeight = 0;
 
         private async void RecordMic()
         {
@@ -366,8 +362,8 @@ namespace xamarinJKH.Apps
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    IconViewMic.Foreground = Color.FromHex("#A2A2A2");
-                });
+                    IconViewMic.ReplaceStringMap = new Dictionary<string, string> { { "#000000", "#A2A2A2" } };
+                });                
             }
 
             //var result = await CrossSpeechToText.StartVoiceInput(AppResources.VoiceInput);
@@ -376,11 +372,11 @@ namespace xamarinJKH.Apps
 
         private void SpeechToTextFinalResultRecieved(string args)
         {
-            EntryMess.Text += " " + args;
+                EntryMess.Text += " " + args;            
         }
 
         private ISpeechToText _speechRecongnitionInstance;
-
+        
         protected override bool OnBackButtonPressed()
         {
             if (close)
@@ -396,7 +392,49 @@ namespace xamarinJKH.Apps
                 return base.OnBackButtonPressed();
             }
         }
-    
+
+
+        //private async void OnItemTapped(object sender, ItemTappedEventArgs e)
+        //{
+        //    RequestMessage select = e.Item as RequestMessage;
+        //    if (@select != null && @select.FileID != -1)
+        //    {
+        //        string fileName = FileName(@select.Text);
+        //        if (await DependencyService.Get<IFileWorker>().ExistsAsync(fileName))
+        //        {
+        //            await Launcher.OpenAsync(new OpenFileRequest
+        //            {
+        //                File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+        //            });
+        //        }
+        //        else
+        //        {
+        //            await Settings.StartProgressBar("Загрузка", 0.8);
+        //            byte[] memoryStream = await _server.GetFileAPP(select.FileID.ToString());
+        //            if (memoryStream != null)
+        //            {
+        //                await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
+        //                Loading.Instance.Hide();
+        //                await Launcher.OpenAsync(new OpenFileRequest
+        //                {
+        //                    File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+        //                });
+        //            }
+        //            else
+        //            {
+        //                await DisplayAlert("Ошибка", "Не удалось скачать файл", "OK");
+        //            }
+        //        }
+        //    }
+        //}
+
+        //string FileName(string text)
+        //{
+        //    return text
+        //        .Replace("Отправлен новый файл: ", "")
+        //        .Replace("\"", "")
+        //        .Replace("\"", "");
+        //}
 
         async void addFileApp()
         {
@@ -812,86 +850,27 @@ namespace xamarinJKH.Apps
             await Dialog.Instance.ShowAsync(new AppReceiptDialogWindow(new ViewModels.DialogViewModels.AppRecieptViewModel(request.ReceiptItems)));
         }
 
-
+        
         private void EntryMess_TextChanged(object sender, TextChangedEventArgs e)
         {
-
             var entry = sender as BordlessEditor;
 
             if (entry != null)
             {
-                if (Device.RuntimePlatform == Device.Android)
+                if (entry.Height > 121)
                 {
-                    if (entry.Height > 121)
+                    entry.HeightRequest = 120;
+                    entry.AutoSize = EditorAutoSizeOption.Disabled;
+                }
+                else
+                {
+                    if (e.OldTextValue != null && e.NewTextValue.Length < e.OldTextValue.Length && e.NewTextValue.Length < 100)
                     {
-                        entry.HeightRequest = 120;
-                        entry.AutoSize = EditorAutoSizeOption.Disabled;
+                        entry.HeightRequest = -1;
                     }
-                    else
-                    {
-                        if (e.OldTextValue != null && e.NewTextValue.Length < e.OldTextValue.Length && e.NewTextValue.Length < 100)
-                        {
-                            entry.HeightRequest = -1;
-                        }
-                        entry.AutoSize = EditorAutoSizeOption.TextChanges;
-                    }
-                }
-                //else
-                //{
-                //    double m1 = entry.Text.Length / 22.0;
-                //    if (m1 > m)
-                //    {
-                //        var c = Convert.ToInt32(m1);
-                //        m = c;
-                //        if (c - m1 > 0)
-                //        {
-
-                //        }
-                //        if (startHeight == -1)
-                //            startHeight = entry.Height;
-                //        entry.HeightRequest = m * startHeight * 0.8;
-                //    }
-                //    else if (Convert.ToInt32(m1) < m && m1 > 1)
-                //    {
-                //        m--;
-                //        entry.HeightRequest = entry.Height - startHeight;
-                //    }
-                //}
-            }
-
-        }
-
-        int m = 1;
-
-        Thickness entryFrameThinkness =  new Thickness(-1); 
-
-        private void EntryMess_UnFocused(object sender, FocusEventArgs e)
-        {
-            if (Device.RuntimePlatform != Device.Android)
-            {
-                //if (entryFrameThinkness != new Thickness(-1))
-                //    entryFrame.Margin = entryFrameThinkness;
-                var c = EntryMess.Text.Length / 22 * 0.8;
-                if (c > 1)
-                {
-                    EntryMess.HeightRequest = startHeight * Convert.ToInt32(c);
+                    entry.AutoSize = EditorAutoSizeOption.TextChanges;
                 }
             }
         }
-
-        private void EntryMess_Focused(object sender, FocusEventArgs e)
-        {
-            if (Device.RuntimePlatform != Device.Android)
-            {
-                //entryFrameThinkness = entryFrame.Margin;// new Thickness(0,);
-                //entryFrame.Margin = new Thickness(entryFrameThinkness.Left, entryFrameThinkness.Top - 900, entryFrameThinkness.Right, entryFrameThinkness.Bottom);
-
-                var c = EntryMess.Text.Length / 22 * 0.8;
-                if (c > 1)
-                {
-                    EntryMess.HeightRequest = startHeight * Convert.ToInt32(c);
-                }
-            }
-        }
-    }
+}
 }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using FFImageLoading.Svg.Forms;
 using Xamarin.Forms;
 using xamarinJKH.Utils;
 
@@ -9,7 +11,7 @@ namespace xamarinJKH.Pays
     {
         private Label identDate = new Label();
         private Label sum = new Label();
-        private IconView file = new IconView();
+        private SvgCachedImage file = new SvgCachedImage();
 
         public SaldosCell()
         {
@@ -21,12 +23,14 @@ namespace xamarinJKH.Pays
             sum.HorizontalOptions = LayoutOptions.End;
             sum.HorizontalTextAlignment = TextAlignment.End;
             file.HorizontalOptions = LayoutOptions.End;
-            file.Foreground = Color.FromHex(Settings.MobileSettings.color);
-            file.HeightRequest = 35;
-            file.WidthRequest = 25;
+            file.ReplaceStringMap = new Dictionary<string, string>
+            {
+                {"#000000", $"#{Settings.MobileSettings.color}"}
+            }; 
+            file.HeightRequest = 40;
             file.Margin = new Thickness(10, 0, 0, 0);
             file.VerticalOptions = LayoutOptions.End;
-            file.Source = "ic_file";
+            file.Source = "resource://xamarinJKH.Resources.ic_file.svg";
             container.Children.Add(identDate);
             container.Children.Add(sum);
             container.Children.Add(file);

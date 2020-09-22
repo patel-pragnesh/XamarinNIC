@@ -121,6 +121,25 @@ namespace xamarinJKH.Main
             {
                 await PopupNavigation.Instance.PushAsync(new TechDialog());
             });
+            MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) =>
+            {
+
+                OSAppTheme currentTheme = Application.Current.RequestedTheme;
+                var colors = new Dictionary<string, string>();
+                var arrowcolor = new Dictionary<string, string>();
+                if (currentTheme == OSAppTheme.Light || currentTheme == OSAppTheme.Unspecified)
+                {
+                    colors.Add("#000000", ((Color)Application.Current.Resources["MainColor"]).ToHex());
+                    arrowcolor.Add("#000000", "#494949");
+                }
+                else
+                {
+                    colors.Add("#000000", "#FFFFFF");
+                    arrowcolor.Add("#000000", "#FFFFFF");
+                }
+                IconViewLogin.ReplaceStringMap = colors;
+                IconViewTech.ReplaceStringMap = colors;
+            });
         }
 
         protected override void OnAppearing()
@@ -221,8 +240,8 @@ namespace xamarinJKH.Main
         void SetColor()
         {
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);if (Device.RuntimePlatform == Device.iOS){ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);

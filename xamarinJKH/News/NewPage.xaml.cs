@@ -28,6 +28,7 @@ namespace xamarinJKH.News
         private NewsInfoFull newsInfoFull;
         private RestClientMP _server = new RestClientMP();
        
+        public string hex { get; set; }
 
         public NewPage(NewsInfo newsInfo)
         {
@@ -67,6 +68,7 @@ namespace xamarinJKH.News
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
             SetText();
+            BindingContext = this;
         }
 
         async void SetText()

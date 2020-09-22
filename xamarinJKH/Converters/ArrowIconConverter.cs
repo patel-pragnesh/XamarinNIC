@@ -14,11 +14,11 @@ namespace xamarinJKH.Converters
             bool asending = (bool)value;
             if (asending)
             {
-                return "ic_arrow_down";
+                return "resource://xamarinJKH.Resources.ic_arrow_down.svg";
             }
             else
             {
-                return "ic_arrow_up";
+                return "resource://xamarinJKH.Resources.ic_arrow_up.svg";
             }
         }
 

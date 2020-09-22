@@ -18,6 +18,8 @@ using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
+using System.Threading;
+using System.Globalization;
 
 namespace xamarinJKH.Main
 {
@@ -178,9 +180,9 @@ namespace xamarinJKH.Main
             UkName.Text = Settings.MobileSettings.main_name;
             IconViewSave.Foreground = Color.White;
             // IconViewNameUk.Foreground = hexColor;
-            IconViewFio.Foreground = hexColor;
-            IconViewEmail.Foreground = hexColor;
-            IconViewExit.Foreground = hexColor;
+            // IconViewFio.Foreground = hexColor;
+            // IconViewEmail.Foreground = hexColor;
+            // IconViewExit.Foreground = hexColor;
 
             FrameBtnExit.BackgroundColor = Color.White;
             FrameBtnExit.BorderColor = hexColor;
@@ -195,8 +197,27 @@ namespace xamarinJKH.Main
             RadioButtonAuto.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
             RadioButtonDark.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
             RadioButtonLigth.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
+            Russian.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
+            Ukranian.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
+            English.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
 
-            int theme = Preferences.Get("Theme", 2);
+            if (!Application.Current.Properties.ContainsKey("Culture"))
+            {
+                Application.Current.Properties.Add("Culture", string.Empty);
+            }
+
+            int theme = Preferences.Get("Theme", 1);
+            var culture = CultureInfo.InstalledUICulture;
+
+            switch (Application.Current.Properties["Culture"])
+            {
+                case "en":English.IsChecked = true;
+                    break;
+                case "ru":Russian.IsChecked = true;
+                    break;
+                case "uk":Ukranian.IsChecked = true;
+                    break;
+            }
             
             //if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
             //    theme = Preferences.Get("Theme", 1);
@@ -224,6 +245,25 @@ namespace xamarinJKH.Main
             
         }
 
+        private void SetTheme()
+        {
+            switch (Application.Current.RequestedTheme)
+            {
+                case OSAppTheme.Dark:
+                    IconViewLogin.ReplaceStringMap = IconViewTech.ReplaceStringMap = ImageBack.ReplaceStringMap = new Dictionary<string, string>
+                    {
+                        {"#000000", "#FFFFFF"}
+                    };
+                    break;
+                case OSAppTheme.Light:
+                    IconViewLogin.ReplaceStringMap = IconViewTech.ReplaceStringMap = ImageBack.ReplaceStringMap = new Dictionary<string, string>
+                    {
+                        {"#000000", $"#{Settings.MobileSettings.color}"}
+                    };
+                    break;
+            }
+        }
+        
         private void SwitchSavePass_OnPropertyChanged(object sender, ToggledEventArgs toggledEventArgs)
         {
             Preferences.Set("isPass",isSave);
@@ -235,6 +275,7 @@ namespace xamarinJKH.Main
             MessagingCenter.Send<Object>(this, "ChangeTheme");
             MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
             Preferences.Set("Theme", 1);
+            SetTheme();
 
         }
 
@@ -247,9 +288,10 @@ namespace xamarinJKH.Main
                 MessagingCenter.Send<Object>(this, "ChangeTheme");
                 MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
                 Preferences.Set("Theme", 0);
-            //}                
+                SetTheme();
+                //}                
 
-            
+
         }
 
         private void RadioButtonLigth_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -258,11 +300,43 @@ namespace xamarinJKH.Main
             MessagingCenter.Send<Object>(this, "ChangeTheme");
             MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
             Preferences.Set("Theme", 2);
+            SetTheme();
         }
 
         private async void GoBack(object sender, EventArgs args)
         {
             await Navigation.PopAsync();
+        }
+
+        private async void Russian_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru");
+
+            AppResources.Culture = new CultureInfo("ru");
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("ru");
+
+            Application.Current.Properties["Culture"] = "ru";
+            await Application.Current.SavePropertiesAsync();
+        }
+
+        private async void English_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            var cultures = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+
+            AppResources.Culture = new CultureInfo("en");
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en");
+            Application.Current.Properties["Culture"] = "en";
+            await Application.Current.SavePropertiesAsync();
+        }
+        
+        private async void Ukranian_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("uk");
+
+            AppResources.Culture = new CultureInfo("uk");
+            Application.Current.Properties["Culture"] = "uk";
+            await Application.Current.SavePropertiesAsync();
         }
     }
 }

@@ -68,7 +68,8 @@ namespace xamarinJKH.DialogViews
             openUrlVider.Tapped += async (s, e) => { await LoadUrl("https://clc.am/4YSqZg", "com.viber.voip"); };
             ImageViber.GestureRecognizers.Add(item: openUrlVider);
         }
-        public async Task SendTechTask()
+
+        private async Task SendTechTask()
         {
             // Loading settings
             Configurations.LoadingConfig = new LoadingConfig

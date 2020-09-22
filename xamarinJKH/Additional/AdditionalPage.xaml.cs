@@ -188,7 +188,7 @@ namespace xamarinJKH.Additional
             BackStackLayout.GestureRecognizers.Add(backClick);
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); };
-            LabelTech.GestureRecognizers.Add(techSend);
+            StackLayoutTech.GestureRecognizers.Add(techSend);
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
             {
@@ -231,6 +231,26 @@ namespace xamarinJKH.Additional
                     await Navigation.PushAsync(new ShopPageNew(select));
                 }
             });
+
+            MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) =>
+            {
+
+                OSAppTheme currentTheme = Application.Current.RequestedTheme;
+                var colors = new Dictionary<string, string>();
+                var arrowcolor = new Dictionary<string, string>();
+                if (currentTheme == OSAppTheme.Light || currentTheme == OSAppTheme.Unspecified)
+                {
+                    colors.Add("#000000", ((Color)Application.Current.Resources["MainColor"]).ToHex());
+                    arrowcolor.Add("#000000", "#494949");
+                }
+                else
+                {
+                    colors.Add("#000000", "#FFFFFF");
+                    arrowcolor.Add("#000000", "#FFFFFF");
+                }
+                IconViewLogin.ReplaceStringMap = colors;
+                IconViewTech.ReplaceStringMap = colors;
+            });
         }
 
         void SetText()
@@ -238,8 +258,8 @@ namespace xamarinJKH.Additional
             UkName.Text = Settings.MobileSettings.main_name;
             LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);if (Device.RuntimePlatform == Device.iOS){ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
             FrameKind.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#494949"));

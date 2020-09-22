@@ -1344,4 +1344,10 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="OrderCorrected" xml:space="preserve">
     <value>Order corrected: </value>
   </data>
+  <data name="LoginAuth" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
 </root>

@@ -11,13 +11,14 @@ using xamarinJKH.DialogViews;
 using xamarinJKH.Server;
 using xamarinJKH.Utils;
 using xamarinJKH.Server.RequestModel;
+using FFImageLoading.Svg.Forms;
 
 namespace xamarinJKH.Main
 {
     public class MetersThreeCell : StackLayout
     {
         private Image img = new Image();
-        private IconView imgEdit = new IconView();
+        private SvgCachedImage Edit = new SvgCachedImage();
         private Label resource = new Label();
         private Label adress = new Label();
         private Label number = new Label();
@@ -79,14 +80,20 @@ namespace xamarinJKH.Main
             resource.HorizontalTextAlignment = TextAlignment.Center;
 
             img.WidthRequest = 25;
-            imgEdit.WidthRequest = 20;
-            imgEdit.HeightRequest = 20;
-            imgEdit.Source = "edit";
-            imgEdit.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            // imgEdit.WidthRequest = 20;
+            // imgEdit.HeightRequest = 20;
+            // imgEdit.Source = "edit";
+            // imgEdit.Foreground = Color.FromHex(Settings.MobileSettings.color);
+
+            Edit = new SvgCachedImage();
+            Edit.WidthRequest = 25;
+            Edit.HeightRequest = 25;
+            Edit.ReplaceStringMap = new Dictionary<string, string> { { "#000000", $"#{Settings.MobileSettings.color}" } };
+            Edit.Source = "resource://xamarinJKH.Resources.edit.svg";
 
             header.Children.Add(img);
             header.Children.Add(resource);
-            header.Children.Add(imgEdit);
+            header.Children.Add(Edit);
 
             StackLayout addressStack = new StackLayout();
             addressStack.Orientation = StackOrientation.Horizontal;
@@ -353,9 +360,10 @@ namespace xamarinJKH.Main
             btn.VerticalTextAlignment = TextAlignment.Center;
             btn.FontSize = 15;
             btn.Text = AppResources.PassPenance;
-            containerBtn.Children.Add(new Image()
+            containerBtn.Children.Add(new SvgCachedImage
             {
-                Source = "ic_counter",
+                Source= "resource://xamarinJKH.Resources.ic_counter.svg",
+                ReplaceStringMap = new Dictionary<string, string> { { "#000000","#FFFFFF"} },
                 HeightRequest = 20
             });
             containerBtn.Children.Add(btn);
@@ -463,13 +471,13 @@ namespace xamarinJKH.Main
                     await PopupNavigation.Instance.PushAsync(
                         new EditCounterNameDialog(Color.FromHex(Settings.MobileSettings.color), UniqueNum));
                 };
-                if (imgEdit.GestureRecognizers.Count > 0)
+                if (Edit.GestureRecognizers.Count > 0)
                 {
-                    imgEdit.GestureRecognizers[0] = editName;
+                    Edit.GestureRecognizers[0] = editName;
                 }
                 else
                 {
-                    imgEdit.GestureRecognizers.Add(editName);
+                    Edit.GestureRecognizers.Add(editName);
                 }
 
                 string name = (!string.IsNullOrWhiteSpace(CustomName)) ? CustomName : Resource;
@@ -526,7 +534,7 @@ namespace xamarinJKH.Main
                 if (IsDisabled)
                 {
                     labelDisable.IsVisible = true;
-                    imgEdit.IsVisible = false;
+                    Edit.IsVisible = false;
                     try
                     {
                         var stack = frame.Content as StackLayout;

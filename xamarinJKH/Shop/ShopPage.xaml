@@ -13,7 +13,7 @@
                        Source="{AppThemeBinding Light=ic_additional_top_Light, Dark=ic_basket_top}"
                        Margin="0,0,0,0"
                        VerticalOptions="Start"
-                       Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
+                       Aspect="Fill"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout Margin="0,10,0,0" VerticalOptions="FillAndExpand">
                     <Label x:Name="ShopName"

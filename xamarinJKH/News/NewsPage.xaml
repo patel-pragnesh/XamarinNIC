@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.News.NewsPage">
     <ContentPage.Content>
@@ -13,7 +14,7 @@
                        Source="{AppThemeBinding Light=ic_news_top_light, Dark=ic_news_top}"
                        VerticalOptions="Start"
 					   Margin="0,20,0,0"
-                       Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
+                       Aspect="Fill"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout>
                     <pancakeView:PancakeView
@@ -40,18 +41,20 @@
                                     <StackLayout
                                         Spacing="0"
                                         Orientation="Horizontal">
-                                        <xamarinJkh:IconView x:Name="IconViewLogin"
-                                                             Source="ic_phone"
-                                                             HeightRequest="15"
-                                                             Foreground="White"
-                                                             Margin="-10, 0,0,0"
-                                                             HorizontalOptions="Start"
-                                                             VerticalOptions="Center" />
+                                        <forms:SvgCachedImage
+                                            x:Name="IconViewLogin"
+                                            Source="resource://xamarinJKH.Resources.ic_phone.svg"
+                                            HeightRequest="15"
+                                            WidthRequest="15"
+                                            Margin="0, 0,5,0"
+                                            HorizontalOptions="Start"
+                                            ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                            VerticalOptions="Center" />
                                         <Label x:Name="LabelPhone"
                                                Text="Телефон"
                                                FontSize="14"
                                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                                               Margin="-5, 0, 0, 0"
+                                               Margin="0, 0, 0, 0"
                                                VerticalOptions="Center" />
                                     </StackLayout>
                                 </StackLayout>
@@ -75,13 +78,15 @@
                         HorizontalOptions="End"
                         Margin="0,0,15,0"
                         Orientation="Horizontal">
-                        <xamarinJkh:IconView x:Name="IconViewTech"
-                                             Source="ic_tech"
-                                             HeightRequest="20"
-                                             Foreground="White"
-                                             Margin="0, 0,0,0"
-                                             HorizontalOptions="Start"
-                                             VerticalOptions="Center" />
+                        <forms:SvgCachedImage
+                            x:Name="IconViewTech"
+                            Source="resource://xamarinJKH.Resources.ic_tech.svg"
+                            HeightRequest="25"
+                            WidthRequest="25"
+                            Margin="0, 0,5,0"
+                            HorizontalOptions="Start"
+                            ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                            VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
                                Text="{x:Static xamarinJkh:AppResources.Support}"
                                FontSize="14"
@@ -97,10 +102,12 @@
                         Spacing="0"
                         Margin="25, 0, 0, 0"
                         HorizontalOptions="Start">
-                        <xamarinJkh:IconView Source="ic_arrow_back"
-                               HeightRequest="15"
-                               Foreground="{AppThemeBinding Light=Black, Dark=White}"
-                               HorizontalOptions="Center" />
+                        <forms:SvgCachedImage
+                            Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
+                            HeightRequest="25"
+                            HorizontalOptions="Start"
+                            ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                            VerticalOptions="Center" />
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.News}"
                             FontSize="18"

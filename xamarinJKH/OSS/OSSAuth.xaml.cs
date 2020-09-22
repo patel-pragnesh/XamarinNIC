@@ -19,6 +19,8 @@ namespace xamarinJKH
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OSSAuth : ContentPage
     {
+        public bool forsvg { get; set;}
+
         readonly RestClientMP rc = new RestClientMP();
 
         Color hex = Color.FromHex(Settings.MobileSettings.color);
@@ -28,6 +30,8 @@ namespace xamarinJKH
         public OSSAuth()
         {
             InitializeComponent();
+            forsvg = false;
+            BindingContext = this;
             NavigationPage.SetHasNavigationBar(this, false);
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await PopupNavigation.Instance.PushAsync(new TechDialog()); };

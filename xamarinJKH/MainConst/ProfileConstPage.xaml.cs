@@ -25,6 +25,7 @@ namespace xamarinJKH.MainConst
         private LoginResult Person = new LoginResult();
         private RestClientMP _server = new RestClientMP();
         public bool isSave { get; set; }
+        public string svg2 { get; set; }
         public ProfileConstPage()
         {
             InitializeComponent();
@@ -85,6 +86,8 @@ namespace xamarinJKH.MainConst
             EntryEmail.Text = Settings.Person.Email;
             BindingContext = this;
         }
+
+        bool svg { get; set; }
 
         private async void ButtonClick(object sender, EventArgs e)
         {
@@ -189,11 +192,11 @@ namespace xamarinJKH.MainConst
         {
             Color hexColor = Color.FromHex(Settings.MobileSettings.color);
             UkName.Text = Settings.MobileSettings.main_name;
-            IconViewSave.Foreground = Color.White;
+            //IconViewSave.Foreground = Color.White;
             // IconViewNameUk.Foreground = hexColor;
-            IconViewFio.Foreground = hexColor;
-            IconViewEmail.Foreground = hexColor;
-            IconViewExit.Foreground = hexColor;
+            //IconViewFio.Foreground = hexColor;
+            //IconViewEmail.Foreground = hexColor;
+            //IconViewExit.Foreground = hexColor;
 
             FrameBtnExit.BackgroundColor = Color.White;
             FrameBtnExit.BorderColor = hexColor;
@@ -207,7 +210,7 @@ namespace xamarinJKH.MainConst
             RadioButtonDark.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
             RadioButtonLigth.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
 
-            int theme = Preferences.Get("Theme", 2);
+            int theme = Preferences.Get("Theme", 1);
 
             //задание темы для ios
             //if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)

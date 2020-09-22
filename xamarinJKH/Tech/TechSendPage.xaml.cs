@@ -23,7 +23,7 @@ namespace xamarinJKH.Tech
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TechSendPage : ContentPage
     {
-        public Color hex { get; set; } = Color.FromHex(Settings.MobileSettings.color);
+        public Color hex { get; set; } = (Color) Application.Current.Resources["MainColor"];
         private RestClientMP server = new RestClientMP();
 
         public TechSendPage(bool isVisibleApp = true)

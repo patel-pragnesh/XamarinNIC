@@ -1,4 +1,5 @@
 ﻿using AiForms.Dialogs;
+using FFImageLoading.Svg.Forms;
 using System;
 using System.IO;
 using Xamarin.Essentials;
@@ -19,7 +20,7 @@ namespace xamarinJKH.Apps
     //    private Label LabelTextA = new Label();
     //    private Label LabelDateA = new Label();
     //    Frame frameDateA = new Frame();
-    //    IconView imageA = new IconView();
+    //    SvgCachedImage imageA = new IconView();
     //    Frame frameA = new Frame();
 
     //    public MessageCellA()
@@ -235,7 +236,7 @@ namespace xamarinJKH.Apps
         private Label LabelTextA = new Label();
         private Label LabelDateA = new Label();
         Frame frameDateA = new Frame();
-        IconView imageA = new IconView();
+        SvgCachedImage imageA = new SvgCachedImage();
         Frame frameA = new Frame();
 
         public MessageCellAuthor(RequestMessage message, Page p, string DateUniq, out string newDate)
@@ -297,8 +298,8 @@ namespace xamarinJKH.Apps
             imageA.HorizontalOptions = LayoutOptions.CenterAndExpand;
             imageA.HeightRequest = 40;
             imageA.WidthRequest = 40;
-            imageA.Foreground = Color.White;
-            imageA.Source = "ic_file_download";
+            imageA.ReplaceStringMap = new System.Collections.Generic.Dictionary<string, string> { { "#000000", $"#FFFFFF" } };
+            imageA.Source = "resource://xamarinJKH.Resources.ic_file_download.svg";
 
             
             if (message.FileID != -1)
@@ -423,7 +424,7 @@ namespace xamarinJKH.Apps
     //    //private Label LabelTextA = new Label();
     //    //private Label LabelDateA = new Label();
     //    //Frame frameDateA = new Frame();
-    //    //IconView imageA = new IconView();
+    //    //SvgCachedImage imageA = new IconView();
     //    //Frame frameA = new Frame();
 
     //    private StackLayout Container = new StackLayout();
@@ -433,7 +434,7 @@ namespace xamarinJKH.Apps
     //    private Label LabelText = new Label();
     //    private Label LabelDate = new Label();
     //    Frame frameDate = new Frame();
-    //    IconView image = new IconView();
+    //    SvgCachedImage image = new IconView();
     //    Frame frame = new Frame();
 
     //    public MessageCellU()
@@ -745,7 +746,7 @@ namespace xamarinJKH.Apps
         private Label LabelText = new Label();
         private Label LabelDate = new Label();
         Frame frameDate = new Frame();
-        IconView image = new IconView();
+        SvgCachedImage image = new SvgCachedImage();
         Frame frame = new Frame();
 
         private RestClientMP _server = new RestClientMP();
@@ -801,8 +802,8 @@ namespace xamarinJKH.Apps
             image.HorizontalOptions = LayoutOptions.CenterAndExpand;
             image.HeightRequest = 40;
             image.WidthRequest = 40;
-            image.Foreground = Color.White;
-            image.Source = "ic_file_download";
+            image.ReplaceStringMap = new System.Collections.Generic.Dictionary<string, string> { { "#000000", "#FFFFFF" } };
+            image.Source = "resource://xamarinJKH.Resources.ic_file_download.svg";
 
             if (message.FileID != -1)
             {
@@ -939,7 +940,7 @@ namespace xamarinJKH.Apps
         private Label LabelTextA = new Label();
         private Label LabelDateA = new Label();
         Frame frameDateA = new Frame();
-        IconView imageA = new IconView();
+        SvgCachedImage imageA = new SvgCachedImage();
         Frame frameA = new Frame();
 
         private StackLayout Container = new StackLayout();
@@ -949,7 +950,7 @@ namespace xamarinJKH.Apps
         private Label LabelText = new Label();
         private Label LabelDate = new Label();
         Frame frameDate = new Frame();
-        IconView image = new IconView();
+        SvgCachedImage image = new SvgCachedImage();
         Frame frame = new Frame();
 
         public MessageCell()
@@ -1087,8 +1088,8 @@ namespace xamarinJKH.Apps
             imageA.HorizontalOptions = LayoutOptions.CenterAndExpand;
             imageA.HeightRequest = 40;
             imageA.WidthRequest = 40;
-            imageA.Foreground = Color.White;
-            imageA.Source = "ic_file_download";
+            imageA.ReplaceStringMap = new System.Collections.Generic.Dictionary<string, string> { { "#000000", "#FFFFFF" } };
+            imageA.Source = "resource://xamarinJKH.Resources.ic_file_download.svg";
 
             image.HeightRequest = 40;
 
@@ -1096,8 +1097,8 @@ namespace xamarinJKH.Apps
             image.WidthRequest = 40;
 
 
-            image.Foreground = Color.White;
-            image.Source = "ic_file_download"; 
+            image.ReplaceStringMap = new System.Collections.Generic.Dictionary<string, string> { { "#000000", "#FFFFFF" } };
+            image.Source = "resource://xamarinJKH.Resources.ic_file_download.svg"; 
 
             StackLayout stackLayoutContentA = new StackLayout();
             stackLayoutContentA.HorizontalOptions = LayoutOptions.End;

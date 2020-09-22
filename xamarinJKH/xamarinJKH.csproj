@@ -11,6 +11,256 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\edit.svg" />
+    <None Remove="Resources\icon_add_app.svg" />
+    <None Remove="Resources\ic_accept_app.svg" />
+    <None Remove="Resources\ic_add_file.svg" />
+    <None Remove="Resources\ic_arrow_back.svg" />
+    <None Remove="Resources\ic_arrow_down.svg" />
+    <None Remove="Resources\ic_arrow_forward.svg" />
+    <None Remove="Resources\ic_arrow_up.svg" />
+    <None Remove="Resources\ic_calendar.svg" />
+    <None Remove="Resources\ic_call_app.svg" />
+    <None Remove="Resources\ic_check_mark.svg" />
+    <None Remove="Resources\ic_close.svg" />
+    <None Remove="Resources\ic_close_app1.svg" />
+    <None Remove="Resources\ic_close_password.svg" />
+    <None Remove="Resources\ic_counter.svg" />
+    <None Remove="Resources\ic_date.svg" />
+    <None Remove="Resources\ic_discont.svg" />
+    <None Remove="Resources\ic_dislike.svg" />
+    <None Remove="Resources\ic_exit.svg" />
+    <None Remove="Resources\ic_export_pdf.svg" />
+    <None Remove="Resources\ic_file.svg" />
+    <None Remove="Resources\ic_file_download.svg" />
+    <None Remove="Resources\ic_fio_reg.svg" />
+    <None Remove="Resources\ic_history_pay.svg" />
+    <None Remove="Resources\ic_home.svg" />
+    <None Remove="Resources\ic_info.svg" />
+    <None Remove="Resources\ic_info_app1.svg" />
+    <None Remove="Resources\ic_info_property.svg" />
+    <None Remove="Resources\ic_in_way.svg" />
+    <None Remove="Resources\ic_microphone.svg" />
+    <None Remove="Resources\ic_minus.svg" />
+    <None Remove="Resources\ic_monitor.svg" />
+    <None Remove="Resources\ic_news.svg" />
+    <None Remove="Resources\ic_notification.svg" />
+    <None Remove="Resources\ic_no_photo.svg" />
+    <None Remove="Resources\ic_OssCircleStatus.svg" />
+    <None Remove="Resources\ic_ossEnd.svg" />
+    <None Remove="Resources\ic_phone.svg" />
+    <None Remove="Resources\ic_phone_login.svg" />
+    <None Remove="Resources\ic_plus.svg" />
+    <None Remove="Resources\ic_print.svg" />
+    <None Remove="Resources\ic_profile_email.svg" />
+    <None Remove="Resources\ic_profile_top.svg" />
+    <None Remove="Resources\ic_questions.svg" />
+    <None Remove="Resources\ic_questions2.svg" />
+    <None Remove="Resources\ic_send_code.svg" />
+    <None Remove="Resources\ic_send_mess.svg" />
+    <None Remove="Resources\ic_shop.svg" />
+    <None Remove="Resources\ic_shop_minus.svg" />
+    <None Remove="Resources\ic_shop_plus.svg" />
+    <None Remove="Resources\ic_star.svg" />
+    <None Remove="Resources\ic_status_done.svg" />
+    <None Remove="Resources\ic_status_new.svg" />
+    <None Remove="Resources\ic_status_wait.svg" />
+    <None Remove="Resources\ic_tech.svg" />
+    <None Remove="Resources\pay.svg" />
+    <None Remove="Resources\star.svg" />
+    <None Remove="Resources\star_filled.svg" />
+    <None Remove="Resources\telegram.svg" />
+    <None Remove="Resources\up_arrow.svg" />
+    <None Remove="Resources\viber.svg" />
+    <None Remove="Resources\ic_password_login.svg" />
+    <None Remove="Resources\ic_pays.svg" />
+    <None Remove="Resources\whatsapp.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\edit.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource> 
+    <EmbeddedResource Include="Resources\ic_pays.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\icon_add_app.svg" />
+    <EmbeddedResource Include="Resources\ic_password_login.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_accept_app.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_add_file.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_arrow_back.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_arrow_down.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_arrow_forward.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_arrow_up.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_calendar.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_call_app.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_check_mark.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_close.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_close_app1.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_close_password.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_counter.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_date.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_discont.svg" />
+    <EmbeddedResource Include="Resources\ic_dislike.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_exit.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_export_pdf.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_file.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_file_download.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_fio_reg.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_history_pay.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_home.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_info.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_info_app1.svg" />
+    <EmbeddedResource Include="Resources\ic_info_property.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_in_way.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_microphone.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_minus.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_monitor.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_news.svg" />
+    <EmbeddedResource Include="Resources\ic_notification.svg" />
+    <EmbeddedResource Include="Resources\ic_no_photo.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_OssCircleStatus.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_ossEnd.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_phone.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_phone_login.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_plus.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_print.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_profile_email.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_profile_top.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_questions.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_questions2.svg" />
+    <EmbeddedResource Include="Resources\ic_send_code.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_send_mess.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_shop.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_shop_minus.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_shop_plus.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_star.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_status_done.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_status_new.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_status_wait.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_tech.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\pay.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\star.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\star_filled.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\telegram.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\up_arrow.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\viber.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\whatsapp.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AiForms.Dialogs" Version="1.0.3" />
     <PackageReference Include="akavache" Version="6.10.20" />
     <PackageReference Include="Messier16.Forms.Controls" Version="2.2.0" />
@@ -25,6 +275,8 @@
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
     <PackageReference Include="Xam.Plugins.Messaging" Version="5.2.0" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="4.7.0.968" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="SimpleJson" Version="0.38.0" />
