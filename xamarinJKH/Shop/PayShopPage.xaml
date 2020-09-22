@@ -16,7 +16,7 @@
                        Source="{AppThemeBinding Light=ic_additional_top_Light, Dark=ic_basket_top}"
                        Margin="0,0,0,0"
                        VerticalOptions="Start"
-                       Aspect="Fill"
+                       Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout x:Name="OrderConfirmStackMain" Margin="0,10,0,0" VerticalOptions="FillAndExpand">
                     <StackLayout

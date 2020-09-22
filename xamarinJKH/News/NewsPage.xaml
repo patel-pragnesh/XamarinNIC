@@ -14,7 +14,7 @@
                        Source="{AppThemeBinding Light=ic_news_top_light, Dark=ic_news_top}"
                        VerticalOptions="Start"
 					   Margin="0,20,0,0"
-                       Aspect="Fill"
+                       Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout>
                     <pancakeView:PancakeView
