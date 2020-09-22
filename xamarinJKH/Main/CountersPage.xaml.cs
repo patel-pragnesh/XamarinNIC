@@ -104,28 +104,35 @@ namespace xamarinJKH.Main
             int currDay = DateTime.Now.Day;
 
             MeterInfo select = ((MetersThreeCell)sender).meterInfo;// as MeterInfo;
-            if (select.IsDisabled)
+            if (select != null)
             {
-                return;
-            }
-            if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
-                 Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
-                (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                 Settings.Person.Accounts[0].MetersEndDay == 0))
-            {
-                if (select.Values.Count >= 1 && int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
+                if (select.IsDisabled)
                 {
-                    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
-                    var counterThisMonth2 = (select.Values.Count >= 2) ? select.Values[1].Value : 0;
-                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, counterThisMonth,
-                        counterThisMonth2));
+                    return;
                 }
-                else
-                {
-                    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
-                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0, counterThisMonth));
-                }
+                if (Settings.Person != null)
+                    if (Settings.Person.Accounts != null)
+                        if (Settings.Person.Accounts.Count > 0)
+                            if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
+                                 Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
+                                (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                                 Settings.Person.Accounts[0].MetersEndDay == 0))
+                            {
+                                if (select.Values.Count >= 1 && int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
+                                {
+                                    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
+                                    var counterThisMonth2 = (select.Values.Count >= 2) ? select.Values[1].Value : 0;
+                                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, counterThisMonth,
+                                        counterThisMonth2));
+                                }
+                                else
+                                {
+                                    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
+                                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0, counterThisMonth));
+                                }
+                            }
             }
+
         }
 
         public CountersPage()
@@ -173,7 +180,7 @@ namespace xamarinJKH.Main
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);if (Device.RuntimePlatform == Device.iOS){ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent); if (Device.RuntimePlatform == Device.iOS) { if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo") { PancakeViewIcon.Padding = new Thickness(0); } }
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameTop.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
             ChangeTheme = new Command(async () =>
@@ -196,7 +203,7 @@ namespace xamarinJKH.Main
             }
             else
             {
-                colors.Add("#000000", "#FFFFFF"); 
+                colors.Add("#000000", "#FFFFFF");
                 arrowcolor.Add("#000000", "#FFFFFF");
             }
             IconViewLogin.ReplaceStringMap = colors;
