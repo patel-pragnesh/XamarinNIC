@@ -339,16 +339,12 @@
     <BundleResource Include="Resources\ic_calendar.png" />
     <BundleResource Include="Resources\ic_call_app.png" />
     <BundleResource Include="Resources\ic_card_pay_black.png" />
-    <BundleResource Include="Resources\ic_close.png" />
     <BundleResource Include="Resources\ic_close_app1.png" />
-    <BundleResource Include="Resources\ic_close_password.png" />
     <BundleResource Include="Resources\ic_cold_water.png" />
-    <BundleResource Include="Resources\ic_date.png" />
     <BundleResource Include="Resources\ic_diskont.png" />
     <BundleResource Include="Resources\ic_dislike.png" />
     <BundleResource Include="Resources\ic_electr.png" />
     <BundleResource Include="Resources\ic_file.png" />
-    <BundleResource Include="Resources\ic_files_app1.png" />
     <BundleResource Include="Resources\ic_file_download.png" />
     <BundleResource Include="Resources\ic_fio_reg.png" />
     <BundleResource Include="Resources\ic_heat_water.png" />
@@ -363,7 +359,6 @@
     <BundleResource Include="Resources\ic_news.png" />
     <BundleResource Include="Resources\ic_news_top.png" />
     <BundleResource Include="Resources\ic_news_top_light.png" />
-    <BundleResource Include="Resources\ic_new_app_top.png" />
     <BundleResource Include="Resources\ic_next_disp.png" />
     <BundleResource Include="Resources\ic_notification.png" />
     <BundleResource Include="Resources\ic_notification_top.png" />
@@ -371,27 +366,19 @@
     <BundleResource Include="Resources\ic_not_author.png" />
     <BundleResource Include="Resources\ic_no_photo.png" />
     <BundleResource Include="Resources\ic_password_login.png" />
-    <BundleResource Include="Resources\ic_payed_ident.png" />
     <BundleResource Include="Resources\ic_pays_top.png" />
     <BundleResource Include="Resources\ic_pays_top_light.png" />
     <BundleResource Include="Resources\ic_phone_login.png" />
     <BundleResource Include="Resources\ic_phone.png" />
     <BundleResource Include="Resources\ic_plus.png" />
-    <BundleResource Include="Resources\ic_profile_top.png">
-      <SubType>Designer</SubType>
-    </BundleResource>
     <BundleResource Include="Resources\ic_questions.png" />
     <BundleResource Include="Resources\ic_questions2.png" />
     <BundleResource Include="Resources\ic_questions_top.png" />
     <BundleResource Include="Resources\ic_reg_separrator.png" />
     <BundleResource Include="Resources\ic_saldos.png" />
-    <BundleResource Include="Resources\ic_saldos_top.png" />
     <BundleResource Include="Resources\ic_send_mess.png" />
     <BundleResource Include="Resources\ic_separator.png" />
     <BundleResource Include="Resources\ic_shop.png" />
-    <BundleResource Include="Resources\ic_shop_top.png">
-      <SubType>Designer</SubType>
-    </BundleResource>
     <BundleResource Include="Resources\ic_star.png" />
     <BundleResource Include="Resources\ic_status_done.png" />
     <BundleResource Include="Resources\ic_status_new.png" />
@@ -401,8 +388,6 @@
     <BundleResource Include="Resources\ic_steps_two.png" />
     <BundleResource Include="Resources\ic_tech.png" />
     <BundleResource Include="Resources\ic_time.png" />
-    <BundleResource Include="Resources\ic_top_event_back.png" />
-    <BundleResource Include="Resources\ic_top_event.png" />
     <BundleResource Include="Resources\pay.png" />
     <BundleResource Include="Resources\top_fon_login.png" />
     <BundleResource Include="Resources\ic_background_pay.png" />
@@ -413,7 +398,6 @@
     <BundleResource Include="Resources\star_filled.png" />
     <BundleResource Include="Resources\star.png" />
     <BundleResource Include="Resources\top_fon_login_light.png" />
-    <BundleResource Include="Resources\triangle.png" />
     <BundleResource Include="Resources\up_arrow.png" />
     <BundleResource Include="Resources\icon_add_app.png" />
     <BundleResource Include="Resources\ic_execute.png" />
