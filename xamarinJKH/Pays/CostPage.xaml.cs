@@ -90,7 +90,13 @@ namespace xamarinJKH.Pays
 
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) => {
+                try
+                {
+                    _ = await Navigation.PopAsync();
+                }
+                catch { }
+            };
             BackStackLayout.GestureRecognizers.Add(backClick);
             var openSaldos = new TapGestureRecognizer();
             openSaldos.Tapped += async (s, e) => { await Navigation.PushAsync(new SaldosPage(Accounts)); };

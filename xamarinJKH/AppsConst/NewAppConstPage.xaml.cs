@@ -89,7 +89,13 @@ namespace xamarinJKH.AppsConst
 
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) => {
+                try
+                {
+                    _ = await Navigation.PopAsync();
+                }
+                catch { }
+            };
             BackStackLayout.GestureRecognizers.Add(backClick);
             var addFile = new TapGestureRecognizer();
             addFile.Tapped += async (s, e) => { AddFile(); };
@@ -512,7 +518,11 @@ namespace xamarinJKH.AppsConst
                     {
                         sendFiles(result.ID.ToString());
                         await DisplayAlert(AppResources.AlertSuccess, AppResources.AppCreated, "OK");
-                        await Navigation.PopAsync();
+                        try
+                        {
+                            _ = await Navigation.PopAsync();
+                        }
+                        catch { }
                     }
                     else
                     {

@@ -59,7 +59,13 @@ namespace xamarinJKH.Pays
             _paysPage = paysPage;
             SetText();
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) => {
+                try
+                {
+                    _ = await Navigation.PopAsync();
+                }
+                catch { }
+            };
             BackStackLayout.GestureRecognizers.Add(backClick);
         }
         
@@ -152,8 +158,12 @@ namespace xamarinJKH.Pays
                     await DisplayAlert("", $"{AppResources.Acc} " + ident + " успешно подключён, для дальнейшей работы перезагрузите приложение", "ОК");
                     FrameBtnAdd.IsVisible = true;
                     progress.IsVisible = false;
-                   
-                    await Navigation.PopAsync();
+
+                    try
+                    {
+                        _ = await Navigation.PopAsync();
+                    }
+                    catch { }
                     _paysPage.RefreshPaysData();
                 }
                 else

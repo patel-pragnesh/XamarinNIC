@@ -76,7 +76,11 @@ namespace xamarinJKH.Shop
             backClick.Tapped += async (s, e) =>
             {
                 MessagingCenter.Send<Object>(this, "LoadGoods");
-                _ = await Navigation.PopAsync();
+                try
+                {
+                    _ = await Navigation.PopAsync();
+                }
+                catch { }
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
             hex = Color.FromHex(Settings.MobileSettings.color);

@@ -308,7 +308,11 @@ namespace xamarinJKH.Apps
                 {
                     Settings.isSelf = null;
                     Settings.DateUniq = "";
-                    _ = await Navigation.PopAsync();
+                    try
+                    {
+                        _ = await Navigation.PopAsync();
+                    }
+                    catch { }
                 }
             };
             BackStackLayout.GestureRecognizers.Add(backClick);

@@ -38,7 +38,11 @@ namespace xamarinJKH.Shop
 
         async void Back(object sender, EventArgs args)
         {
-            await Navigation.PopAsync();
+            try
+            {
+                _ = await Navigation.PopAsync();
+            }
+            catch { }
         }
 
         private void CollectionView_Scrolled(object sender, ItemsViewScrolledEventArgs e)

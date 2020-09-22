@@ -305,7 +305,11 @@ namespace xamarinJKH.Main
 
         private async void GoBack(object sender, EventArgs args)
         {
-            await Navigation.PopAsync();
+            try
+            {
+                _ = await Navigation.PopAsync();
+            }
+            catch { }
         }
 
         private async void Russian_CheckedChanged(object sender, CheckedChangedEventArgs e)

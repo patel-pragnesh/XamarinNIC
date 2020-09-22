@@ -29,7 +29,13 @@ namespace xamarinJKH.Pays
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) => {
+                try
+                {
+                    _ = await Navigation.PopAsync();
+                }
+                catch { }
+            };
             BackStackLayout.GestureRecognizers.Add(backClick);
             if (Device.RuntimePlatform == Device.iOS)
             {
@@ -72,7 +78,11 @@ namespace xamarinJKH.Pays
             {
                 Loading.Instance.Hide();
                 await DisplayAlert(AppResources.ErrorTitle, payLink.Error, "OK");
-                await Navigation.PopAsync();
+                try
+                {
+                    _ = await Navigation.PopAsync();
+                }
+                catch { }
             }
         }
 
@@ -95,7 +105,11 @@ namespace xamarinJKH.Pays
             {
                 Loading.Instance.Hide();
                 await DisplayAlert(AppResources.ErrorTitle, payLink.Error, "OK");
-                await Navigation.PopAsync();
+                try
+                {
+                    _ = await Navigation.PopAsync();
+                }
+                catch { }
             }
         }
 
@@ -150,9 +164,13 @@ namespace xamarinJKH.Pays
                 if (result.error != null && result.Equals(""))
                 {
                     await DisplayAlert(AppResources.ErrorTitle, result.error, "OK");
-                    
 
-                    await Navigation.PopAsync();
+
+                    try
+                    {
+                        _ = await Navigation.PopAsync();
+                    }
+                    catch { }
                 }
                 else
                 {

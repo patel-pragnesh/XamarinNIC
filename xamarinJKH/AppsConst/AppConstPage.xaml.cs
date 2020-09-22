@@ -210,7 +210,11 @@ namespace xamarinJKH.AppsConst
                 {
                     Settings.isSelf = null;
                     Settings.DateUniq = "";
-                    _ = await Navigation.PopAsync();
+                    try
+                    {
+                        _ = await Navigation.PopAsync();
+                    }
+                    catch { }
                 }
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
@@ -267,7 +271,11 @@ namespace xamarinJKH.AppsConst
                 {
                     Settings.isSelf = null;
                     Settings.DateUniq = "";
-                    _ = await Navigation.PopAsync();
+                    try
+                    {
+                        _ = await Navigation.PopAsync();
+                    }
+                    catch { }
                 }
             });
            // additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));

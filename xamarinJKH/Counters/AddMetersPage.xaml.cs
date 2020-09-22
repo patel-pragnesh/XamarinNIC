@@ -98,7 +98,13 @@ namespace xamarinJKH.Counters
             this.meter = meter;
             this.meters = meters;
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) => {
+                try
+                {
+                    _ = await Navigation.PopAsync();
+                }
+                catch { }
+            };
             BackStackLayout.GestureRecognizers.Add(backClick);
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await PopupNavigation.Instance.PushAsync(new TechDialog()); };
@@ -580,7 +586,11 @@ namespace xamarinJKH.Counters
                     {
                         await PopupNavigation.Instance.PushAsync(new RatingAppMarketDialog());
                     }
-                    await Navigation.PopAsync();
+                    try
+                    {
+                        _ = await Navigation.PopAsync();
+                    }
+                    catch { }
                     _countersPage.RefreshCountersData();
                 }
                 else

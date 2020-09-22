@@ -60,7 +60,11 @@ namespace xamarinJKH.Shop
             backClick.Tapped += async (s, e) =>
             {
                 UpdateShop();
-                _ = await Navigation.PopAsync();
+                try
+                {
+                    _ = await Navigation.PopAsync();
+                }
+                catch { }
             };
 
             BackStackLayout.GestureRecognizers.Add(backClick);

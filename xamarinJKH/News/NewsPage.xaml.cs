@@ -104,7 +104,13 @@ namespace xamarinJKH.News
             LabelPhone.GestureRecognizers.Add(call);
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) => {
+                try
+                {
+                    _ = await Navigation.PopAsync();
+                }
+                catch { }
+            };
             BackStackLayout.GestureRecognizers.Add(backClick);
             SetText();
             NewsInfos = Settings.EventBlockData.News;

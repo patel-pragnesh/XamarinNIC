@@ -61,7 +61,11 @@ namespace xamarinJKH.Pays
 
         async void GoBack(object sender, EventArgs args)
         {
-            await Navigation.PopAsync();
+            try
+            {
+                _ = await Navigation.PopAsync();
+            }
+            catch { }
         }
 
         async void ShareBill(object sender, EventArgs args)

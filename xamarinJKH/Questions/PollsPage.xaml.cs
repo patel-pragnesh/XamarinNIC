@@ -52,7 +52,13 @@ namespace xamarinJKH.Questions
 
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
+            backClick.Tapped += async (s, e) => {
+                try
+                {
+                    _ = await Navigation.PopAsync();
+                }
+                catch { }
+            };
             BackStackLayout.GestureRecognizers.Add(backClick);
             var nextClick = new TapGestureRecognizer();
             nextClick.Tapped += async (s, e) => { NextQuest(); };
@@ -100,7 +106,11 @@ namespace xamarinJKH.Questions
             if (result.Error == null)
             {
                 await DisplayAlert(AppResources.AlertSuccess, AppResources.SuccessOSSPollPass, "OK");
-                _ = await Navigation.PopAsync();
+                try
+                {
+                    _ = await Navigation.PopAsync();
+                }
+                catch { }
             }
             else
             {
