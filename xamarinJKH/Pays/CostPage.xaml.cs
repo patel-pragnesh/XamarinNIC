@@ -216,11 +216,20 @@ namespace xamarinJKH.Pays
         private async Task SetSumPay()
         {
             FormattedString formatted = new FormattedString();
+            //
+            string sumText = string.IsNullOrEmpty(EntrySum.Text) ? "0" : EntrySum.Text.Replace('.',',');
 
 
-            string sumText = EntrySum.Text.Equals("") ? "0" : EntrySum.Text;
+            decimal totalSum = 0;
+            try
+            {
+                totalSum = Decimal.Parse(sumText);
+            }
+            catch
+            {
 
-            decimal totalSum = Decimal.Parse(sumText);
+                totalSum = Decimal.Parse(sumText.Replace(',','.'));
+            }
 
             // if (isComission)
             // {
