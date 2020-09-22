@@ -374,15 +374,23 @@ namespace xamarinJKH.Counters
         List<string> GetNumbers(decimal counter)
         {
             var retList = new List<string>();
-            var counter8 =Convert.ToInt32( counter * 1000);
-            for (int i=0; i<8; i++)
+            try
             {
-                var d = counter8 % 10;
-                retList.Add(d.ToString());
-                counter8 = (counter8 - d) / 10;
+                var counter8 = Convert.ToInt64(counter * 1000);
+                for (int i = 0; i < 8; i++)
+                {
+                    var d = counter8 % 10;
+                    retList.Add(d.ToString());
+                    counter8 = (counter8 - d) / 10;
+                }
+
+                return retList;
             }
-            
+            catch
+            {
+            }
             return retList;
+
         }
 
         void SetPrevious(decimal counterPrevMonth)
