@@ -9,54 +9,62 @@
              BackgroundColor="#F3F3F3"
              x:Class="xamarinJKH.AppsConst.AppConstPage">
     <ContentPage.Content>
-        <StackLayout>
-            <RelativeLayout
-                x:Name="ScrollViewContainer"
-                Margin="0,0,0,-170"
-                VerticalOptions="Start"
-                HorizontalOptions="FillAndExpand">
-                <Image x:Name="ImageTop" Margin="0, -26, 0 ,0"
-                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Width,
-                             Factor=0,
-                             Constant=0}"
-                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                             Property=Height,
-                             Factor=0,
-                             Constant=0}"
-                       Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top_in}"
-                       VerticalOptions="Fill"
-                       HorizontalOptions="Fill" />
-                <!-- <StackLayout x:Name="StackLayout" -->
-                <!--              RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, -->
-                <!--              Property=Width, -->
-                <!--              Factor=0, -->
-                <!--              Constant=15}" -->
-                <!--              RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, -->
-                <!--              Property=Height, -->
-                <!--              Factor=0, -->
-                <!--              Constant=0}" -->
-                <!--              Orientation="Vertical"> -->
-                <!--     <StackLayout -->
-                <!--         x:Name="BackStackLayout" -->
-                <!--         Orientation="Horizontal" -->
-                <!--         Margin="0, 40, 0, 0" -->
-                <!--         HorizontalOptions="Start"> -->
-                <!--         <Image Source="ic_arrow_back" -->
-                <!--                HeightRequest="15" -->
-                <!--                HorizontalOptions="Center" /> -->
-                <!--         <Label -->
-                <!--             Text="Назад " -->
-                <!--             FontSize="15" -->
-                <!--             TextColor="White" -->
-                <!--             HorizontalOptions="Start" /> -->
-                <!--     </StackLayout> -->
-                <!--     <Label x:Name="LabelNumber" -->
-                <!--            FontSize="20" -->
-                <!--            Margin="10, 15 ,0,0" -->
-                <!--            TextColor="White" /> -->
-                <!-- </StackLayout> -->
-            </RelativeLayout>
+        <Grid x:Name="ScrollViewContainer" >
+            <Image x:Name="ImageFon"
+                   
+                   Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top_in}"
+                   VerticalOptions="Start"
+                   Margin="0,0,0,0"
+                   Aspect="Fill"
+                   HorizontalOptions="FillAndExpand" />
+        <StackLayout Margin="0,20,0,0">
+            <!-- <RelativeLayout -->
+            <!--     x:Name="ScrollViewContainer" -->
+            <!--     Margin="0,0,0,-170" -->
+            <!--     VerticalOptions="Start" -->
+            <!--     HorizontalOptions="FillAndExpand"> -->
+            <!--     <Image x:Name="ImageTop" Margin="0, -26, 0 ,0" -->
+            <!--            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, -->
+            <!--                  Property=Width, -->
+            <!--                  Factor=0, -->
+            <!--                  Constant=0}" -->
+            <!--            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, -->
+            <!--                  Property=Height, -->
+            <!--                  Factor=0, -->
+            <!--                  Constant=0}" -->
+            <!--            Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top_in}" -->
+            <!--            VerticalOptions="Fill" -->
+            <!--            HorizontalOptions="Fill" /> -->
+            <!--     ~1~ <StackLayout x:Name="StackLayout" @1@ -->
+            <!--     ~1~              RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, @1@ -->
+            <!--     ~1~              Property=Width, @1@ -->
+            <!--     ~1~              Factor=0, @1@ -->
+            <!--     ~1~              Constant=15}" @1@ -->
+            <!--     ~1~              RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, @1@ -->
+            <!--     ~1~              Property=Height, @1@ -->
+            <!--     ~1~              Factor=0, @1@ -->
+            <!--     ~1~              Constant=0}" @1@ -->
+            <!--     ~1~              Orientation="Vertical"> @1@ -->
+            <!--     ~1~     <StackLayout @1@ -->
+            <!--     ~1~         x:Name="BackStackLayout" @1@ -->
+            <!--     ~1~         Orientation="Horizontal" @1@ -->
+            <!--     ~1~         Margin="0, 40, 0, 0" @1@ -->
+            <!--     ~1~         HorizontalOptions="Start"> @1@ -->
+            <!--     ~1~         <Image Source="ic_arrow_back" @1@ -->
+            <!--     ~1~                HeightRequest="15" @1@ -->
+            <!--     ~1~                HorizontalOptions="Center" /> @1@ -->
+            <!--     ~1~         <Label @1@ -->
+            <!--     ~1~             Text="Назад " @1@ -->
+            <!--     ~1~             FontSize="15" @1@ -->
+            <!--     ~1~             TextColor="White" @1@ -->
+            <!--     ~1~             HorizontalOptions="Start" /> @1@ -->
+            <!--     ~1~     </StackLayout> @1@ -->
+            <!--     ~1~     <Label x:Name="LabelNumber" @1@ -->
+            <!--     ~1~            FontSize="20" @1@ -->
+            <!--     ~1~            Margin="10, 15 ,0,0" @1@ -->
+            <!--     ~1~            TextColor="White" /> @1@ -->
+            <!--     ~1~ </StackLayout> @1@ -->
+            <!-- </RelativeLayout> -->
             <StackLayout HorizontalOptions="Fill"
                          Orientation="Horizontal">
                 <StackLayout
@@ -342,5 +350,6 @@
                 </StackLayout>
             </Frame>
         </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
