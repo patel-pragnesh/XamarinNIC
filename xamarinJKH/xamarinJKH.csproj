@@ -74,11 +74,15 @@
     <None Remove="Resources\viber.svg" />
     <None Remove="Resources\ic_password_login.svg" />
     <None Remove="Resources\ic_pays.svg" />
+    <None Remove="Resources\ic_receipt.svg" />
     <None Remove="Resources\whatsapp.svg" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\edit.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_receipt.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource> 
     <EmbeddedResource Include="Resources\ic_pays.svg">

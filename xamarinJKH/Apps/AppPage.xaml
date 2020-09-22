@@ -136,6 +136,7 @@
                                                      WidthRequest="25" />
                                 <Label Text="{x:Static xamarinJkh:AppResources.Receipt}"
                                        TextColor="Black"
+                                       HorizontalOptions="Center"
                                        FontAttributes="Bold"
                                        FontSize="10" />
                                 <StackLayout.GestureRecognizers>
