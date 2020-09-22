@@ -215,7 +215,14 @@ namespace xamarinJKH
                 
                 UkName.Text = Settings.MobileSettings.main_name;
                 var color = !string.IsNullOrEmpty(Settings.MobileSettings.color) ? $"#{Settings.MobileSettings.color}" :"#FF0000";
-                hex = Color.FromHex(color);
+                try
+                {
+                    hex = Color.FromHex(color);
+                }
+                catch
+                {
+                    hex = Color.FromHex("#FF0000");
+                }
                 Application.Current.Resources["MainColor"] = hex;
                 
                 ColorHex = new Dictionary<string, string>
