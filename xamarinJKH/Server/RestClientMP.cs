@@ -45,8 +45,8 @@ namespace xamarinJKH.Server
         //public const string SERVER_ADDR = "https://api.sm-center.ru/grinvay/"; // Грин-Вэй Сочи
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ikon/"; // Айкон
 
-         //public const string SERVER_ADDR = "https://api.sm-center.ru/mup_kc/"; // МУП КС г. Новочебоксарска
-        public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_cdo/"; // ООО ЦДО г.Тверь
+         public const string SERVER_ADDR = "https://api.sm-center.ru/mup_kc/"; // МУП КС г. Новочебоксарска
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_cdo/"; // ООО ЦДО г.Тверь
 
 
         public const string SEND_TEACH_MAIL = "Public/TechSupportAppeal"; // Создание обращения в тех поддержк

@@ -429,12 +429,12 @@ namespace xamarinJKH.Main
                 return;
             }
             ItemsList<MeterInfo> info = await _server.GetThreeMeters();
-            if (info.Error == null)
+            if (info.Error == null && info.Data.Count>0)
             {
                 _meterInfo = info.Data;
                 _meterInfoAll = info.Data;
                 this.BindingContext = this;
-                if (_meterInfo != null)
+                if (_meterInfo != null && _meterInfo.Count>0)
                 {
                     account = "Все";
                     Accounts.Add("Все");

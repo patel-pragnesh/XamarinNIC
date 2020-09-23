@@ -76,12 +76,12 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>Apple Distribution: Evgeny Yurtaykin (UK4AR963E7)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>distrCDOTver</CodesignProvision>
+    <CodesignProvision>distrNovocheboksarsk</CodesignProvision>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
     <MtouchLink>SdkOnly</MtouchLink>
     <BuildIpa>true</BuildIpa>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
-    <IpaPackageName>cdotver_362</IpaPackageName>
+    <IpaPackageName>mupksnovocheboksarsk_363</IpaPackageName>
     <IpaIncludeArtwork>true</IpaIncludeArtwork>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">

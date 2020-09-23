@@ -166,6 +166,14 @@
                                                                      WidthRequest="25"
                                                                      Grid.Row="0"
                                                                      Grid.Column="0" />
+                                                <!--<forms:SvgCachedImage
+                            Source="resource://xamarinJKH.Resources.ic_OssCircleStatus.svg"
+                            HeightRequest="25"
+                            WidthRequest="25"
+                            HorizontalOptions="Center"
+                            ReplaceStringMap="{Binding forsvg, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                            Grid.Row="0"
+                            Grid.Column="0" />-->
                                                 <Label x:Name="lCntYes"
                                                        FontSize="12" VerticalOptions="Center"
                                                        HorizontalOptions="Center" Text="0" TextColor="White"
