@@ -44,14 +44,19 @@ namespace xamarinJKH
 
         public RegistrForm(MainPage mainPage)
         {
-            InitializeComponent();
-            this.BindingContext = viewModel = new RegistrFormViewModel(this.Navigation);
+            InitializeComponent(); 
+            viewModel = new RegistrFormViewModel(this.Navigation);
+            this.BindingContext = viewModel;
+            UkName.Text = viewModel.Title;
             hex = Color.FromHex(Settings.MobileSettings.color);
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
                     //BackgroundColor = Color.White;
-                    BackStackLayout.Margin = new Thickness(10, 20, 0, 0);
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    BackStackLayout.Padding = new Thickness(0, statusBarHeight, 0, 0);
+
+                    //BackStackLayout.Margin = new Thickness(10, 20, 0, 0);
                     RegLbl.Margin = new Thickness(20, 60, 0, 0);
 
                     //DOB.IsVisible = false;

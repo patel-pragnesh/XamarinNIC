@@ -45,7 +45,17 @@ namespace xamarinJKH
             {
                 case Device.iOS:
 
-                    var color = Application.Current.UserAppTheme == OSAppTheme.Light || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? Color.Black : Color.White;
+                    Color color;
+
+                    int theme = Preferences.Get("Theme", 1);
+
+
+                    if (theme!=1)
+                        color = Color.Black;
+                    else
+                        color = Color.White;
+
+                    //var color = Application.Current.UserAppTheme == OSAppTheme.Light /*|| Application.Current.UserAppTheme == OSAppTheme.Unspecified*/ ? Color.Black : Color.White;
                     var nav = new Xamarin.Forms.NavigationPage(new MainPage())
                     {
                         BarBackgroundColor = Color.Black,

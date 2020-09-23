@@ -30,6 +30,7 @@ using Rg.Plugins.Popup.Services;
 using xamarinJKH.CustomRenderers;
 using System.Globalization;
 using System.Threading;
+using xamarinJKH.InterfacesIntegration;
 
 namespace xamarinJKH
 {
@@ -159,6 +160,9 @@ namespace xamarinJKH
                 case Device.iOS:
                     //headerImg.HorizontalOptions = LayoutOptions.Center;
                     //headerImg.Aspect = Aspect.AspectFit;
+
+                    
+
                     if (App.ScreenHeight < 600 || Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width<700)
                     {
                         RegistLabel.FontSize = 12;

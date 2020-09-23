@@ -9,6 +9,8 @@ using System.Runtime.CompilerServices;
 using xamarinJKH.Server;
 using AiForms.Dialogs;
 
+using xamarinJKH.Utils;
+
 namespace xamarinJKH.ViewModels
 {
     public class BaseViewModel:INotifyPropertyChanged
@@ -54,7 +56,7 @@ namespace xamarinJKH.ViewModels
         string title;
         public string Title
         {
-            get => xamarinJKH.Utils.Settings.MobileSettings.main_name;// title;
+            get => Settings.MobileSettings.main_name;// title;
             //set
             //{
             //    title = value;

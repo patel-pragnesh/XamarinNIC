@@ -276,9 +276,9 @@ namespace xamarinJKH.Apps
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     if (DeviceDisplay.MainDisplayInfo.Width < 700)
-                        ScrollViewContainer.Padding = new Thickness(0, statusBarHeight * 2, 0, 0);
+                        mainStack.Padding = new Thickness(0, statusBarHeight * 2, 0, 0);
                     else
-                        ScrollViewContainer.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                        mainStack.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     // ImageTop.Margin = new Thickness(0, 33, 0, 0);
                     // StackLayout.Margin = new Thickness(0, 33, 0, 0);
                     // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
