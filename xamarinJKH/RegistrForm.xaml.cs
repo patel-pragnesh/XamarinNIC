@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AiForms.Dialogs;
+using AiForms.Dialogs.Abstractions;
 using Rg.Plugins.Popup.Services;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
@@ -381,43 +382,56 @@ namespace xamarinJKH
 
         private async void RegCodeRequest(object sender, EventArgs e)
         {
-            // FrameBtnReg.IsVisible = false;
-            // progress.IsVisible = true;
-            await Settings.StartProgressBar(title: "Подождите", opacity: 0.4);
-            CommonResult result = await _server.RequestAccessCode(Person.Phone);
-            if (result.Error == null)
+            await RequestCodeTask();
+        }
+
+        private async Task RequestCodeTask()
+        {
+            Configurations.LoadingConfig = new LoadingConfig
             {
-                Console.WriteLine("Отправлено");
-                TimerStart = true;
-                FrameBtnReg.IsVisible = false;
-                FrameTimer.IsVisible = true;
-                Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
-                if (Device.RuntimePlatform == Device.iOS)
+                IndicatorColor = (Color) Application.Current.Resources["MainColor"],
+                OverlayColor = Color.Black,
+                Opacity = 0.8,
+                DefaultMessage = AppResources.Loading,
+            };
+            await Loading.Instance.StartAsync(async progress =>
+            {
+                CommonResult result = await _server.RequestAccessCode(Person.Phone);
+                if (result.Error == null)
                 {
-                    await DisplayAlert("", AppResources.AlertCodeSent, "OK");
+                    Console.WriteLine("Отправлено");
+                    TimerStart = true;
+                    FrameBtnReg.IsVisible = false;
+                    FrameTimer.IsVisible = true;
+                    Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
+                    if (Device.RuntimePlatform == Device.iOS)
+                    {
+                        await DisplayAlert("", AppResources.AlertCodeSent, "OK");
+                    }
+                    else
+                    {
+                        DependencyService.Get<IMessage>().ShortAlert(AppResources.AlertCodeSent);
+                    }
+
+                    // FrameBtnReg.IsVisible = true;
+                    // progress.IsVisible = false;
+                    Loading.Instance.Hide();
                 }
                 else
                 {
-                    DependencyService.Get<IMessage>().ShortAlert(AppResources.AlertCodeSent);
-                }                
-                // FrameBtnReg.IsVisible = true;
-                // progress.IsVisible = false;
-                Loading.Instance.Hide();
-            }
-            else
-            {
-                // FrameBtnReg.IsVisible = true;
-                // progress.IsVisible = false;
-                Loading.Instance.Hide();
-                if (Device.RuntimePlatform == Device.iOS)
-                {
-                    await DisplayAlert("", result.Error, "OK");
+                    // FrameBtnReg.IsVisible = true;
+                    // progress.IsVisible = false;
+                    Loading.Instance.Hide();
+                    if (Device.RuntimePlatform == Device.iOS)
+                    {
+                        await DisplayAlert("", result.Error, "OK");
+                    }
+                    else
+                    {
+                        DependencyService.Get<IMessage>().ShortAlert(result.Error);
+                    }
                 }
-                else
-                {
-                    DependencyService.Get<IMessage>().ShortAlert(result.Error);
-                }
-            }
+            });
         }
 
         private async void ButtonReg(object sender, EventArgs e)
