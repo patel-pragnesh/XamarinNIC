@@ -279,9 +279,7 @@ namespace xamarinJKH.Apps
                         mainStack.Padding = new Thickness(0, statusBarHeight * 2, 0, 0);
                     else
                         mainStack.Padding = new Thickness(0, statusBarHeight, 0, 0);
-                    // ImageTop.Margin = new Thickness(0, 33, 0, 0);
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
+
                     break;
                 case Device.Android:
                     double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);

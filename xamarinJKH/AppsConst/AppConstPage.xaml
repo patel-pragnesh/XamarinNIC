@@ -17,7 +17,7 @@
                    Margin="0,0,0,0"
                    Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
                    HorizontalOptions="FillAndExpand" />
-        <StackLayout Margin="0,20,0,0">
+            <StackLayout Margin="0,20,0,0" x:Name="mainStack">
             <!-- <RelativeLayout -->
             <!--     x:Name="ScrollViewContainer" -->
             <!--     Margin="0,0,0,-170" -->
