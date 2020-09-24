@@ -215,7 +215,7 @@ namespace xamarinJKH.AppsConst
         private RestClientMP _server = new RestClientMP();
 
 
-        public MessageCellService(RequestMessage message, Page p, string DateUniq, out string newDate)
+        public MessageCellService(RequestMessage message, Page p, string DateUniq, out string newDate, string prevAuthor)
         {
             frame.HorizontalOptions = LayoutOptions.Start;
             frame.VerticalOptions = LayoutOptions.Start;
@@ -357,7 +357,7 @@ namespace xamarinJKH.AppsConst
             containerDate.Margin = new Thickness(0, 0, 60, 0);
 
             var dateMess = message.DateAdd;
-            if (DateUniq.Equals(dateMess))
+            if (DateUniq.Equals(dateMess) && message.AuthorName == prevAuthor)
             {
                 frameDate.IsVisible = false;
 
@@ -381,6 +381,10 @@ namespace xamarinJKH.AppsConst
 
             newDate = dateMess;
 
+            if (DateUniq == dateMess && message.AuthorName != prevAuthor)
+            {
+                frameDate.IsVisible = false;
+            }
 
             LabelDate.Text = dateMess;
             LabelName.Text = message.AuthorName;
