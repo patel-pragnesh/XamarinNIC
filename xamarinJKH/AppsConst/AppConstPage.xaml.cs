@@ -196,10 +196,7 @@ namespace xamarinJKH.AppsConst
                     {
                         Device.BeginInvokeOnMainThread(async () => 
                         {
-                            var index = messages.IndexOf(each);
-                            string pa = null;
-                            if (index > 0)
-                                addAppMessage(each, messages[index - 1].AuthorName);
+                            addAppMessage(each, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
                             var lastChild = baseForApp.Children.LastOrDefault();
                             await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
                         });
@@ -718,10 +715,8 @@ namespace xamarinJKH.AppsConst
                     messages.Add(message);
                     Device.BeginInvokeOnMainThread(() =>
                     {
-                        var index = messages.IndexOf(message);
-                        string pa = null;
-                        if (index > 0)
-                            addAppMessage(message, messages[index - 1].AuthorName);
+
+                        addAppMessage(message, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
                     });
                 }
                 LabelNumber.Text = "№ " + request.RequestNumber;
