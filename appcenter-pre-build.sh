@@ -48,14 +48,16 @@ else
 
     echo "##[section][Pre-Build] Getting data from variable VERSION_BUILD"
     VERSION=${VERSION_BUILD}
-    if [ ! ${VERSION}]; then
+    if [ ! ${VERSION} ] 
+	then
         echo "##[section][Pre-Build] No version provided. Aborting"
         exit 1
     fi
 
     echo "##[section][Pre-Build] Getting data from variable DATABASE"
     BASE=${DATABASE}
-    if [ ! ${BASE}]; then
+    if [ ! ${BASE} ]
+	then
         echo "##[section][Pre-Build] No database name provided. Aborting"
         exit 1
     fi
