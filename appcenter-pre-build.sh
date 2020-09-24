@@ -169,7 +169,7 @@ fi
 if [ ${#PROJFILE} -gt 0 ]; then
     if [ ${BASE} ]; then
         echo "##[section][Pre-Build] Changing ipa name in ${PROJFILE} to ${PACKAGE_NAME}"
-        sed -i.bak -e "s/\<IpaPackageName\>[a-z|A-Z|0-9|\.|\/|\:|\-|\_|]\<\/IpaPackageName\>\";/\<IpaPackageName\>${PACKAGE_NAME}\<\/IpaPackageName\>\";/" $PROJFILE
+        sed -i.bak -e "s/<IpaPackageName>[a-z|A-Z|0-9|\.|\/|\:|\-|\_|]<\/IpaPackageName>\";/<IpaPackageName>${PACKAGE_NAME}<\/IpaPackageName>\";/" $PROJFILE
         rm -f ${PROJFILE}.bak
     else
         echo ERROR: "##[section][Pre-Build] No PACKAGE_NAME variable set. Aborting"
