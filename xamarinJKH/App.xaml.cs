@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -10,6 +11,7 @@ using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 using Application = Xamarin.Forms.Application;
 using System.Linq;
+using System.Text;
 using Akavache;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -35,7 +37,10 @@ namespace xamarinJKH
         public App()
         {
             InitializeComponent();
-
+            Crashes.SendingErrorReport += SendingErrorReportHandler;
+            Crashes.SentErrorReport += SentErrorReportHandler;
+            Crashes.FailedToSendErrorReport += FailedToSendErrorReportHandler;
+            Crashes.GetErrorAttachments += GetErrorAttachmentHandler;
             //только темная тема в ios
             if (Device.RuntimePlatform == Device.iOS && Application.Current.UserAppTheme == OSAppTheme.Unspecified)
                 Application.Current.UserAppTheme = OSAppTheme.Light;
@@ -221,6 +226,83 @@ namespace xamarinJKH
             };
         }
 
+        private IEnumerable<ErrorAttachmentLog> GetErrorAttachmentHandler(ErrorReport report)
+        {
+            string accountsJson = Newtonsoft.Json.JsonConvert.SerializeObject(Settings.Person.Accounts);
+            // Your code goes here.
+            return new ErrorAttachmentLog[]
+            {
+                ErrorAttachmentLog.AttachmentWithBinary(Encoding.UTF8.GetBytes(accountsJson), "Accounts.json", "application/json")
+            };
+        }
+
+        private void FailedToSendErrorReportHandler(object sender, FailedToSendErrorReportEventArgs e)
+        {
+            AppCenterLog.Info(LogTag, "Failed to send error report");
+
+            var args = e as FailedToSendErrorReportEventArgs;
+            ErrorReport report = args.Report;
+            string AccountsJson = Newtonsoft.Json.JsonConvert.SerializeObject(Settings.Person.Accounts);
+            //test some values
+            if (report.Exception != null)
+            {
+                AppCenterLog.Info(LogTag, report.Exception.ToString());
+            }
+            else if (report.AndroidDetails != null)
+            {
+                AppCenterLog.Info(LogTag, report.AndroidDetails.ThreadName );
+            }
+
+            if (e.Exception != null)
+            {
+                AppCenterLog.Info(LogTag, "There is an exception associated with the failure");
+            }
+        }
+
+        private void SentErrorReportHandler(object sender, SentErrorReportEventArgs e)
+        {
+            AppCenterLog.Info(LogTag, "Sent error report");
+
+            var args = e as SentErrorReportEventArgs;
+            ErrorReport report = args.Report;
+            string AccountsJson = Newtonsoft.Json.JsonConvert.SerializeObject(Settings.Person.Accounts);
+
+            //test some values
+            if (report.Exception != null)
+            {
+                AppCenterLog.Info(LogTag, report.Exception.ToString());
+            }
+            else
+            {
+                AppCenterLog.Info(LogTag, "No system exception was found" );
+            }
+
+            if (report.AndroidDetails != null)
+            {
+                AppCenterLog.Info(LogTag, report.AndroidDetails.ThreadName );
+            }
+        }
+
+        private void SendingErrorReportHandler(object sender, SendingErrorReportEventArgs e)
+        {
+            AppCenterLog.Info(LogTag, "Sending error report");
+
+            var args = e as SendingErrorReportEventArgs;
+            ErrorReport report = args.Report;
+
+            //test some values
+            if (report.Exception != null)
+            {
+                AppCenterLog.Info(LogTag, report.Exception.ToString());
+            }
+            else if (report.AndroidDetails != null)
+            {
+                AppCenterLog.Info(LogTag, report.AndroidDetails.ThreadName);
+            }
+        }
+
+        public string LogTag { get; set; } = "CrashLog";
+
         protected override void OnStart()
         {
             Registrations.Start("XamarinJKH");
@@ -248,6 +330,9 @@ namespace xamarinJKH
 
             AppCenter.Start("android=4384b8c4-8639-411c-b011-9d9e8408acde;ios=4a45a15f-a591-4860-b748-a856636cf982;",typeof(Analytics), typeof(Crashes));
             AppCenter.LogLevel = LogLevel.Verbose;
+            
+        
+            
             // Handle when your app starts
             CrossFirebasePushNotification.Current.Subscribe("general");
             CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>

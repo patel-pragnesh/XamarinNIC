@@ -152,7 +152,15 @@ namespace xamarinJKH.Questions
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
+            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
+            {
+                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
+            }
+            else
+            {
+                IconViewLogin.IsVisible = false;
+                LabelPhone.IsVisible = false;
+            }
             LabelTitle.Text = _pollInfo.Name;
 
             FrameBtnNext.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);

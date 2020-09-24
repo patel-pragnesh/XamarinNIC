@@ -22,6 +22,11 @@
             <local:PaysPage Title="{x:Static resources:AppResources.Pays_NavBar}" IconImageSource="ic_pays" />
         </x:Arguments>
     </NavigationPage>
+    <NavigationPage  x:Name="ShopNavPage2" Title="{x:Static resources:AppResources.Shop_NavBar}" IconImageSource="ic_shop" BarBackgroundColor="Black" BarTextColor="White">
+        <x:Arguments>
+            <additional:AdditionalPage Title="{x:Static resources:AppResources.Shop_NavBar}" IconImageSource="ic_shop" />
+        </x:Arguments>
+    </NavigationPage>
     <NavigationPage x:Name="CounterPage" Title="{x:Static resources:AppResources.Meters_NavBar}" IconImageSource="ic_counters" BarBackgroundColor="Black" BarTextColor="White">
         <x:Arguments>
             <local:CountersPage Title="{x:Static resources:AppResources.Meters_NavBar}" IconImageSource="ic_counters" />

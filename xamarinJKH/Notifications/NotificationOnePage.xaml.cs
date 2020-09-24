@@ -78,7 +78,15 @@ namespace xamarinJKH.Notifications
         async void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
+            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
+            {
+                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
+            }
+            else
+            {
+                IconViewLogin.IsVisible = false;
+                LabelPhone.IsVisible = false;
+            }
             LabelTitle.Text = _announcementInfo.Header;
             LabelDate.Text = _announcementInfo.Created;
             LabelText.Text = _announcementInfo.Text;

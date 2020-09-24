@@ -59,7 +59,15 @@ namespace xamarinJKH
             NavigationPage.SetHasNavigationBar(this, false);
 
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
+            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
+            {
+                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
+            }
+            else
+            {
+                IconViewLogin.IsVisible = false;
+                LabelPhone.IsVisible = false;
+            }
             IconViewCode.Foreground = hex;
 
             // IconViewLogin.Foreground = hex;
