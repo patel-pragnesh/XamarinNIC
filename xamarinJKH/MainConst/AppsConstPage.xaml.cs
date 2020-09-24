@@ -111,7 +111,7 @@ namespace xamarinJKH.MainConst
             var addClick = new TapGestureRecognizer();
             addClick.Tapped += async (s, e) => { startNewApp(FrameBtnAdd, null); };
             FrameBtnAdd.GestureRecognizers.Add(addClick);
-            hex = Color.FromHex(Settings.MobileSettings.color);
+            hex = (Color) Application.Current.Resources["MainColor"];
             SetText();
             additionalList.BackgroundColor = Color.Transparent;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));

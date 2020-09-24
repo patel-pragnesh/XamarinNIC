@@ -697,11 +697,18 @@ namespace xamarinJKH.AppsConst
 
         public async Task MethodWithDelayAsync(int milliseconds)
         {
-            await Task.Delay(milliseconds);
+            try
+            {
+                await Task.Delay(milliseconds);
 
-            //additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
-            var lastChild = baseForApp.Children.LastOrDefault();
-            await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
+                //additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
+                var lastChild = baseForApp.Children.LastOrDefault();
+                await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         void setText()
