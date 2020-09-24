@@ -459,6 +459,8 @@ namespace xamarinJKH.Apps
                     string ident = Settings.Person.Accounts[PickerLs.SelectedIndex].Ident;
                     string typeId = Settings.TypeApp[PickerType.SelectedIndex].ID;
                     IDResult result = await _server.newApp(ident, typeId, text);
+                    var update = await _server.GetRequestsUpdates(Settings.UpdateKey, result.ID.ToString());
+                    Settings.UpdateKey = update.NewUpdateKey;
 
 
                     if (result.Error == null)
