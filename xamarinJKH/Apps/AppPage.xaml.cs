@@ -97,12 +97,15 @@ namespace xamarinJKH.Apps
                                 {
                                     if (!messages.Contains(each))
                                         //Device.BeginInvokeOnMainThread(() => messages.Add(each));
-                                        Device.BeginInvokeOnMainThread(() => addAppMessage(each));
+                                        Device.BeginInvokeOnMainThread(async () =>
+                                        {
+                                            addAppMessage(each);
+                                            var lastChild = baseForApp.Children.LastOrDefault();
+                                            //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true));
+                                            await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
+                                        });
                                 }
                                 //Device.BeginInvokeOnMainThread(() => additionalList.ScrollTo(messages[messages.Count - 1], 0, true));
-                                var lastChild = baseForApp.Children.LastOrDefault();
-                                //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true));
-                                Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true));
                             }
                         }
                     }
@@ -183,7 +186,16 @@ namespace xamarinJKH.Apps
                     {
                         if (!messages.Contains(each))
                         {
-                            Device.BeginInvokeOnMainThread(() => addAppMessage(each));
+                            Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                addAppMessage(each);
+                                var lastChild = baseForApp.Children.LastOrDefault();
+
+                                //var y = lastChild.Y- scrollFroAppMessages.Y;
+                                //var x = lastChild.X;
+                                //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(x, y + 30, true));
+                                Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true));
+                            });
                             messages.Add(each);
                         }
 
@@ -675,7 +687,7 @@ namespace xamarinJKH.Apps
                     {
                         EntryMess.Text = "";
                         await ShowToast(AppResources.MessageSent);
-                        await RefreshData();
+                        //await RefreshData();
 
                         var lastChild = baseForApp.Children.LastOrDefault();
 
