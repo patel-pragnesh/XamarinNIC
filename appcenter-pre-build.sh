@@ -5,7 +5,7 @@ then
     echo "Скрипт запущен локально"
     if [ ! $1 ] && [ ! $2 ] && [ ! $3 ] && [ ! $4 ] && [ ! $5 ] && [ ! $6 ]
         then 
-            echo -e "Нет аргумента для задания имени пакета, отмена.\nИспользование: sh <скрипт> <имя пакета> <имя приложения> <версия> <база> <приминение цвета(true/false)> <RGB код цвета>"
+            echo -e "Нет аргумента для задания имени пакета, отмена.\nИспользование: sh <скрипт> <имя пакета> <имя приложения> <версия> <база> <приминение цвета(true/false)> <RGB код цвета> <appcenterkey>"
             exit 1
     fi
 
@@ -14,9 +14,8 @@ then
     VERSION=$3
     BASE=$4
     DECLARE_CUSTOM_COLOR=$5
-    CUSTOM_COLOR=$6
-    CUSTOM_NAME=$7
-
+    CUSTOM_COLOR=$6    
+    APPCENTER_KEY=$7
 	
 	INFO_PLIST_FILE=xamarinJKH.iOS/info.plist
     CLIENT_SCRIPT=xamarinJKH/Server/RestClientMP.cs
@@ -29,6 +28,7 @@ then
 	APPSET=xamarinJKH.iOS/AppIcon.appiconset_${PACKAGENAME}
 	APPSETCURR=xamarinJKH.iOS/Assets.xcassets/AppIcon.appiconset
 	PROJFILE=xamarinJKH.iOS/xamarinJKH.iOS.csproj
+	APP=../xamarinJKH/App.xaml.cs
 	
 else
     echo "##[section][Pre-Build] Setting up Environment variables"
@@ -62,6 +62,13 @@ else
         echo "##[section][Pre-Build] No database name provided. Aborting"
         exit 1
     fi
+	
+	echo "##[section][Pre-Build] Getting data from variable APPCENTER_KEY"
+    APPCENTER_KEY=${APPCENTERKEY}
+    if [ ! ${APPCENTER_KEY} ]; then
+        echo "##[section][Pre-Build] No appcenter key provided. Aborting"
+        exit 1
+    fi
 
     ROOT=${APPCENTER_SOURCE_DIRECTORY}/xamarinJKH.iOS
     CLIENT_SCRIPT=${APPCENTER_SOURCE_DIRECTORY}/xamarinJKH/Server/RestClientMP.cs
@@ -77,8 +84,20 @@ else
 	APPSET=${ROOT}/AppIcon.appiconset_${PACKAGENAME}
 	APPSETCURR=${ROOT}/Assets.xcassets/AppIcon.appiconset
 	PROJFILE=${ROOT}/xamarinJKH.iOS.csproj
+	APP=${APPCENTER_SOURCE_DIRECTORY}/xamarinJKH/App.xaml.cs
 	
 fi
+
+if [ ${#APPCENTER_KEY} -gt 0 ]
+    then
+        echo "##[section][Pre-Build] Setting appcenter key"
+        sed -i.bak "s/AppCenter.Start/AppCenter.Start(\"${APPCENTER_KEY}\",typeof(Analytics), typeof(Crashes));\/\//" ${APP}
+        rm -f ${APP}.bak
+        echo 
+        echo
+fi
+
+cat ${APP} | grep "AppCenter.Start([A-Za-z|\"|=|-|;|,|0-9|\-|\n|+|' '|(|)]*);"
 
 if [ ${DECLARE_CUSTOM_COLOR} == 1 ]
  then
