@@ -25,6 +25,9 @@ using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 using PermissionStatus = Plugin.Permissions.Abstractions.PermissionStatus;
+using System.Threading.Tasks.Sources;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace xamarinJKH.AppsConst
 {
@@ -78,11 +81,70 @@ namespace xamarinJKH.AppsConst
                 });
             }
         }
+        CancellationTokenSource TokenSource { get; set; }
+        CancellationToken Token { get; set; }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
             await Task.Delay(TimeSpan.FromSeconds(1));
+            TokenSource = new CancellationTokenSource();
+            Token = TokenSource.Token;
+            var UpdateTask = new Task(async () =>
+            {
+                try
+                {
+                    while (!Token.IsCancellationRequested)
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(2));
+                        var update = await _server.GetRequestsUpdatesConst(Settings.UpdateKey, _requestInfo.ID.ToString());
+                        if (update.Error == null)
+                        {
+                            Settings.UpdateKey = update.NewUpdateKey;
+                            if (update.CurrentRequestUpdates != null)
+                            {
+                                //Settings.DateUniq = "";
+
+                                request = update.CurrentRequestUpdates;
+                                foreach (var each in update.CurrentRequestUpdates.Messages)
+                                {
+                                    if (!messages.Contains(each))
+                                        //Device.BeginInvokeOnMainThread(() => messages.Add(each));
+                                        Device.BeginInvokeOnMainThread(async () =>
+                                        {
+                                            addAppMessage(each);
+                                            var lastChild = baseForApp.Children.LastOrDefault();
+                                            //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true));
+                                            await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
+                                        });
+                                }
+                                //Device.BeginInvokeOnMainThread(() => additionalList.ScrollTo(messages[messages.Count - 1], 0, true));
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+
+                }
+
+            }, Token);
+            UpdateTask.Start();
+        }
+
+        protected override void OnDisappearing()
+        {
+            try
+            {
+                TokenSource.Cancel();
+                TokenSource.Dispose();
+            }
+            catch
+            {
+
+            }
+            //MessagingCenter.Send<Object>(this, "AutoUpdate");
+            base.OnDisappearing();
         }
 
         //private async Task RefreshData()
@@ -132,11 +194,14 @@ namespace xamarinJKH.AppsConst
                     request = requestsUpdate.CurrentRequestUpdates;
                     foreach (var each in requestsUpdate.CurrentRequestUpdates.Messages)
                     {
-                        Device.BeginInvokeOnMainThread(() => addAppMessage(each));
+                        Device.BeginInvokeOnMainThread(async () => 
+                        {
+                            addAppMessage(each);
+                            var lastChild = baseForApp.Children.LastOrDefault();
+                            await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
+                        });
                         messages.Add(each);
                     }
-                    var lastChild = baseForApp.Children.LastOrDefault();
-                    Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true));
                 }
             }
             else
