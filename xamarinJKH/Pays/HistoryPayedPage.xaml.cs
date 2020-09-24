@@ -165,7 +165,15 @@ namespace xamarinJKH.Pays
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
+            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
+            {
+                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
+            }
+            else
+            {
+                IconViewLogin.IsVisible = false;
+                LabelPhone.IsVisible = false;
+            }
             
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             // IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);

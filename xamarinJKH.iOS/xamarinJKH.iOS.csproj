@@ -82,7 +82,7 @@
     <BuildIpa>true</BuildIpa>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <IpaPackageName>mupksnovocheboksarsk_363</IpaPackageName>
-    <IpaIncludeArtwork>true</IpaIncludeArtwork>
+    <IpaIncludeArtwork>false</IpaIncludeArtwork>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />

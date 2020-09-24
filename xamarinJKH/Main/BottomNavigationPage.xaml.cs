@@ -155,21 +155,6 @@ namespace xamarinJKH.Main
             Loadtab();
 
             MessagingCenter.Subscribe<Object>(this, "ChangeTheme", (sender) => ChangeTheme.Execute(null));
-            if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
-            {
-                SetServices(); 
-            }
-        }
-
-        async void SetServices()
-        {
-            var services = this.Children.FirstOrDefault(x => x.Title == AppResources.Shop_NavBar);
-            if (services != null)
-            {
-                this.CurrentPage = services;
-                await Task.Delay(TimeSpan.FromMilliseconds(700));
-                MessagingCenter.Send<Object>(this, "LoadGoods");
-            }
         }
 
         void StartUpdateToken()
@@ -188,6 +173,8 @@ namespace xamarinJKH.Main
 
         async void Loadtab()
         {
+           
+            
             switch (Settings.MobileSettings.startScreen.ToLower().Trim())
             {
                 case "оплата":
@@ -249,6 +236,14 @@ namespace xamarinJKH.Main
 
         void visibleMenu()
         {
+            if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
+            {
+                Children.Remove(ShopNavPage);
+            }
+            else
+            {
+                Children.Remove(ShopNavPage2);
+            }
             foreach (var each in Settings.MobileSettings.menu)
             {
                 if (each.name_app.Equals("Заявки"))
@@ -298,7 +293,14 @@ namespace xamarinJKH.Main
                 {
                     if (each.visible == 0)
                     {
-                        Settings.AddVisible = false;
+                        if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
+                        {
+                            Children.Remove(ShopNavPage2);
+                        }
+                        else
+                        {
+                            Children.Remove(ShopNavPage2);
+                        }
                     }
                 }
             }

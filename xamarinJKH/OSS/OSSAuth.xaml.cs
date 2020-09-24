@@ -65,7 +65,15 @@ namespace xamarinJKH
             }
 
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
+            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
+            {
+                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
+            }
+            else
+            {
+                IconViewLogin.IsVisible = false;
+                LabelPhone.IsVisible = false;
+            }
             //IconViewLogin.Foreground = hex;
             IconViewPass.Foreground = hex;
             ImageClosePass.Foreground = hex;

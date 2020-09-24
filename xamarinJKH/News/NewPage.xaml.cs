@@ -80,7 +80,15 @@ namespace xamarinJKH.News
         async void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
+            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
+            {
+                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
+            }
+            else
+            {
+                IconViewLogin.IsVisible = false;
+                LabelPhone.IsVisible = false;
+            }
             LabelTitle.Text = newsInfo.Header;
             LabelDate.Text = newsInfo.Created;
             newsInfoFull = await _server.GetNewsFull(newsInfo.ID.ToString());
