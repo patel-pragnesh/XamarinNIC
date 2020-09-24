@@ -9,7 +9,7 @@ namespace xamarinJKH.Server.RequestModel
         public bool accessOSS { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; } = "";
-        public string companyPhone { get; set; } = "";
+        public string companyPhone { get; set; }
         public string Birthday { get; set; }
         public string FIO { get; set; }
         // токен доступа. 
