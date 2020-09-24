@@ -92,7 +92,7 @@ if [ ${#APPCENTER_KEY} -gt 0 ]
     then
         echo "##[section][Pre-Build] Setting appcenter key"
         sed -i.bak "s/AppCenter.Start/AppCenter.Start(\"${APPCENTER_KEY}\",typeof(Analytics), typeof(Crashes));\/\//" ${APP}
-        re -f ${APP}.bak
+        rm -f ${APP}.bak
         echo 
         echo
 fi
