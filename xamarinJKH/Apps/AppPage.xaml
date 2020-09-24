@@ -226,10 +226,9 @@
                                                    VerticalOptions="Center"
                                                    Text=""
                                                    Grid.Column="1"
-                                                   AutoSize="TextChanges"
                                                    Placeholder="{x:Static xamarinJkh:AppResources.ChatPlaceholder}"
-                                                   TextChanged="EntryMess_TextChanged"
                                                    TextColor="#A2A2A2"
+                                                   MinimumHeightRequest="35"
                                                    HorizontalOptions="FillAndExpand" />
                         <svg:SvgCachedImage
                             x:Name="IconViewMic"
