@@ -212,7 +212,15 @@ namespace xamarinJKH.Questions
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
+            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
+            {
+                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
+            }
+            else
+            {
+                IconViewLogin.IsVisible = false;
+                LabelPhone.IsVisible = false;
+            }
             SwitchQuest.ThumbColor = Color.Black;
             SwitchQuest.OnColor = Color.FromHex(Settings.MobileSettings.color);
             Color hexColor = (Color) Application.Current.Resources["MainColor"];

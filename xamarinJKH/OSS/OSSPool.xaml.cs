@@ -75,7 +75,15 @@ namespace xamarinJKH
             BackStackLayout.GestureRecognizers.Add(backClick);
 
             UkName.Text = Settings.MobileSettings.main_name;
-            LabelPhone.Text =  "+" + Settings.Person.companyPhone.Replace("+","");
+            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
+            {
+                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
+            }
+            else
+            {
+                IconViewLogin.IsVisible = false;
+                LabelPhone.IsVisible = false;
+            }
 
             
             //FrameBack.BackgroundColor = colorFromMobileSettings;
