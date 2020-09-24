@@ -99,7 +99,7 @@ namespace xamarinJKH.Apps
                                         //Device.BeginInvokeOnMainThread(() => messages.Add(each));
                                         Device.BeginInvokeOnMainThread(async () =>
                                         {
-                                            addAppMessage(each);
+                                            addAppMessage(each, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
                                             var lastChild = baseForApp.Children.LastOrDefault();
                                             //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true));
                                             await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
@@ -188,7 +188,7 @@ namespace xamarinJKH.Apps
                         {
                             Device.BeginInvokeOnMainThread(async () =>
                             {
-                                addAppMessage(each);
+                                addAppMessage(each, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
                                 var lastChild = baseForApp.Children.LastOrDefault();
 
                                 //var y = lastChild.Y- scrollFroAppMessages.Y;
@@ -764,7 +764,7 @@ namespace xamarinJKH.Apps
                 {
                     if (!messages.Contains(message))
                     {
-                        Device.BeginInvokeOnMainThread(() => addAppMessage(message));
+                        Device.BeginInvokeOnMainThread(() => addAppMessage(message, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null));
                         messages.Add(message);
                     }
 
@@ -782,7 +782,7 @@ namespace xamarinJKH.Apps
 
         }
 
-        void addAppMessage(RequestMessage message)
+        void addAppMessage(RequestMessage message, string prevAuthor)
         {
             StackLayout data;
             string newDate;
@@ -792,7 +792,7 @@ namespace xamarinJKH.Apps
             }
             else
             {
-                data = new MessageCellService(message, this, DateUniq, out newDate);
+                data = new MessageCellService(message, this, DateUniq, out newDate, prevAuthor);
             }
 
             DateUniq = newDate;
@@ -871,6 +871,7 @@ namespace xamarinJKH.Apps
         private void EntryMess_TextChanged(object sender, TextChangedEventArgs e)
         {
             var entry = sender as BordlessEditor;
+            entry.MinimumHeightRequest = 100;
 
             if (entry != null)
             {
