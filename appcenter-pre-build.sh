@@ -28,6 +28,7 @@ then
 	
 	APPSET=xamarinJKH.iOS/AppIcon.appiconset_${PACKAGENAME}
 	APPSETCURR=xamarinJKH.iOS/Assets.xcassets/AppIcon.appiconset
+	PROJFILE=xamarinJKH.iOS/xamarinJKH.iOS.csproj
 	
 else
     echo "##[section][Pre-Build] Setting up Environment variables"
@@ -75,17 +76,22 @@ else
     CUSTOM_NAME=${CUSTOMNAME}
 	APPSET=${ROOT}/AppIcon.appiconset_${PACKAGENAME}
 	APPSETCURR=${ROOT}/Assets.xcassets/AppIcon.appiconset
+	PROJFILE=${ROOT}/xamarinJKH.iOS.csproj
+	
 fi
 
-if [ ${DECLARE_CUSTOM_COLOR} == 1 ]; then
-    if [ ${CUSTOM_COLOR} ]; then
+if [ ${DECLARE_CUSTOM_COLOR} == 1 ]
+ then
+    if [ ${CUSTOM_COLOR} ]
+	then
         echo "##[section][Pre-Build] Setting custom color for an interface"
         sed -i.bak "s/var color = !string.IsNullOrEmpty(Settings.MobileSettings.color) ? $\"#{Settings.MobileSettings.color}\" :\"#FF0000\";/var color = \"#${CUSTOM_COLOR}\";Settings.MobileSettings.color = \"${CUSTOM_COLOR}\";/" ${MAINPAGE}
         echo "##[section][Pre-Build] Custom color is set to #${CUSTOM_COLOR}"
         cat ${MAINPAGE} | grep "var color = \"#[0-9|A-Za-z]*\";"
     fi
 
-    if [ ${CUSTOM_NAME} ]; then
+    if [ ${CUSTOM_NAME} ]
+	then
         echo "##[section][Pre-Build] Setting custom name of a company"
         sed -i.bak "s/UkName.Text = Settings.MobileSettings.main_name;/UkName.Text = \"${CUSTOM_NAME}\";Settings.MobileSettings.main_name = \"${CUSTOM_NAME}\";/" ${MAINPAGE}
         echo "##[section][Pre-Build] Custom name is set to ${CUSTOM_NAME}"
@@ -146,44 +152,6 @@ then
 fi
 
 
-
-# if [ ${#PACKAGENAME} -gt 0 ]
- # then
- # if [ -a ${MANIFEST} ]
- # then
-    # echo "##[section][Pre-Build] Setting up Package name"
-    # sed -i.bak "s/label=\"[а-яА-Я|' ']*\"/label=\"${LABEL}\"/"  $MANIFEST
-    # rm -f ${MANIFEST}.bak
-    # sed -i.bak "s/package=\"[a-z0-9 | . | _]*\"/package=\"${PACKAGENAME}\"/" $MANIFEST
-    # rm -f ${MANIFEST}.bak
-    # if [ ${VERSION} ]; then
-        # echo "##[section][Pre-Build] Setting up version"
-        # sed -i.bak "s/versionName=\"[0-9|.]*\"/versionName=\"${VERSION}\"/" $MANIFEST
-        # rm -f ${MANIFEST}.bak
-    # fi
-    # cat ${MANIFEST}
- # fi
-    
-    # if [  -a ${ICON_PATH} ]
-    # then
-        # cat ${ICON_PATH} > ${ORIGINAL_ICON}
-        # echo "##[section][Pre-Build] Icon data is copied to original icon"
-    # else
-        # echo ERROR: "##[section][Pre-Build] Icon file is not found, this change will not apply. Aborting"
-        # exit 1
-    # fi
-
-    # if [ -a ${GS_PATH} ]
-    # then
-        # cat ${GS_PATH} > ${ORIGINAL_GS}
-        # echo "##[section][Pre-Build] Google Services file has been changed to one for ${PACKAGENAME}"
-    # else
-        # echo ERROR: "##[section][Pre-Build] Google Services for ${PACKAGENAME} not found. Aborting"
-        # exit 1
-    # fi
-
-# fi
-
 if [ ${#CLIENT_SCRIPT} -gt 0 ]; then
     if [ ${BASE} ]; then
         echo "##[section][Pre-Build] Changing database name in ${CLIENT_SCRIPT} to ${BASE}"
@@ -195,6 +163,20 @@ if [ ${#CLIENT_SCRIPT} -gt 0 ]; then
     fi
 else
     echo ERROR: "##[section][Pre-Build] No RestClientMP.cs found. Aborting"
+    exit 1
+fi
+
+if [ ${#PROJFILE} -gt 0 ]; then
+    if [ ${BASE} ]; then
+        echo "##[section][Pre-Build] Changing ipa name in ${PROJFILE} to ${PACKAGE_NAME}"
+        sed -i.bak -e "s/<IpaPackageName>[a-z|A-Z|0-9|\.|\/|\:|\-|\_|]<\/IpaPackageName>\";/<IpaPackageName>${PACKAGE_NAME}<\/IpaPackageName>\";/" $PROJFILE
+        rm -f ${PROJFILE}.bak
+    else
+        echo ERROR: "##[section][Pre-Build] No PACKAGE_NAME variable set. Aborting"
+        exit 1
+    fi
+else
+    echo ERROR: "##[section][Pre-Build] No xamarinJKH.iOS.csproj found. Aborting"
     exit 1
 fi
 
