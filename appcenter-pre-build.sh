@@ -28,6 +28,7 @@ then
 	
 	APPSET=xamarinJKH.iOS/AppIcon.appiconset_${PACKAGENAME}
 	APPSETCURR=xamarinJKH.iOS/Assets.xcassets/AppIcon.appiconset
+	PROJFILE=xamarinJKH.iOS/xamarinJKH.iOS.csproj
 	
 else
     echo "##[section][Pre-Build] Setting up Environment variables"
@@ -75,17 +76,22 @@ else
     CUSTOM_NAME=${CUSTOMNAME}
 	APPSET=${ROOT}/AppIcon.appiconset_${PACKAGENAME}
 	APPSETCURR=${ROOT}/Assets.xcassets/AppIcon.appiconset
+	PROJFILE=${ROOT}/xamarinJKH.iOS.csproj
+	
 fi
 
-if [ ${DECLARE_CUSTOM_COLOR} == 1 ]; then
-    if [ ${CUSTOM_COLOR} ]; then
+if [ ${DECLARE_CUSTOM_COLOR} == 1 ]
+ then
+    if [ ${CUSTOM_COLOR} ]
+	then
         echo "##[section][Pre-Build] Setting custom color for an interface"
         sed -i.bak "s/var color = !string.IsNullOrEmpty(Settings.MobileSettings.color) ? $\"#{Settings.MobileSettings.color}\" :\"#FF0000\";/var color = \"#${CUSTOM_COLOR}\";Settings.MobileSettings.color = \"${CUSTOM_COLOR}\";/" ${MAINPAGE}
         echo "##[section][Pre-Build] Custom color is set to #${CUSTOM_COLOR}"
         cat ${MAINPAGE} | grep "var color = \"#[0-9|A-Za-z]*\";"
     fi
 
-    if [ ${CUSTOM_NAME} ]; then
+    if [ ${CUSTOM_NAME} ]
+	then
         echo "##[section][Pre-Build] Setting custom name of a company"
         sed -i.bak "s/UkName.Text = Settings.MobileSettings.main_name;/UkName.Text = \"${CUSTOM_NAME}\";Settings.MobileSettings.main_name = \"${CUSTOM_NAME}\";/" ${MAINPAGE}
         echo "##[section][Pre-Build] Custom name is set to ${CUSTOM_NAME}"
@@ -189,6 +195,21 @@ if [ ${#CLIENT_SCRIPT} -gt 0 ]; then
         echo "##[section][Pre-Build] Changing database name in ${CLIENT_SCRIPT} to ${BASE}"
         sed -i.bak -e "s/public const string SERVER_ADDR = \"https:\/\/api.sm-center.ru\/[a-z|A-Z|0-9|\.|\/|\:|\-|\_|]*\";/public const string SERVER_ADDR = \"https:\/\/api.sm-center.ru\/${BASE}\";/" $CLIENT_SCRIPT
         rm -f ${CLIENT_SCRIPT}.bak
+    else
+        echo ERROR: "##[section][Pre-Build] No base variable set. Aborting"
+        exit 1
+    fi
+else
+    echo ERROR: "##[section][Pre-Build] No RestClientMP.cs found. Aborting"
+    exit 1
+fi
+
+if [ ${#PROJFILE} -gt 0 ]; then
+    if [ ${BASE} ]; then
+        echo "##[section][Pre-Build] Changing ipa name in ${PROJFILE} to ${PACKAGE_NAME}"
+		<IpaPackageName>mupksnovocheboksarsk_363</IpaPackageName>
+        sed -i.bak -e "s/\<IpaPackageName\>[a-z|A-Z|0-9|\.|\/|\:|\-|\_|]\<\/IpaPackageName\>\";/\<IpaPackageName\>${PACKAGE_NAME}\<\/IpaPackageName\>\";/" $PROJFILE
+        rm -f ${PROJFILE}.bak
     else
         echo ERROR: "##[section][Pre-Build] No base variable set. Aborting"
         exit 1
