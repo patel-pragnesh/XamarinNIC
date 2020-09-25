@@ -235,14 +235,14 @@ namespace xamarinJKH.Main
 
         void visibleMenu()
         {
-            if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
-            {
-                Children.Remove(ShopNavPage);
-            }
-            else
-            {
+            // if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
+            // {
+            Children.Remove(ShopNavPage);
+            // }
+            // else
+            // {
                 Children.Remove(ShopNavPage2);
-            }
+            // }
             foreach (var each in Settings.MobileSettings.menu)
             {
                 if (each.name_app.Equals("Заявки"))
@@ -292,14 +292,14 @@ namespace xamarinJKH.Main
                 {
                     if (each.visible == 0)
                     {
-                        if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
-                        {
-                            Children.Remove(ShopNavPage2);
-                        }
-                        else
-                        {
-                            Children.Remove(ShopNavPage);
-                        }
+                        // if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
+                        // {
+                        //     Children.Remove(ShopNavPage2);
+                        // }
+                        // else
+                        // {
+                        //     Children.Remove(ShopNavPage);
+                        // }
                     }
                 }
             }
