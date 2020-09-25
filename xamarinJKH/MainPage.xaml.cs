@@ -61,6 +61,7 @@ namespace xamarinJKH
         public MainPage()
         {
             adress = "sdf";
+            //Application.Current.Properties.Remove("Culture");
             if (Application.Current.Properties.ContainsKey("Culture"))
             {
                 var culture = Application.Current.Properties["Culture"];
@@ -73,6 +74,10 @@ namespace xamarinJKH
                     CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture as string);
                 }
 
+            }
+            else
+            {
+                Application.Current.Properties.Add("Culture", CultureInfo.CurrentUICulture.Name.Substring(0,2));
             }
             InitializeComponent();
             getSettings();
@@ -204,6 +209,7 @@ namespace xamarinJKH
         private async void getSettings()
         {
             Version.Text = "ver " + Xamarin.Essentials.AppInfo.VersionString;
+
 
             Settings.MobileSettings = await server.MobileAppSettings("4.02", "0");
             if (Settings.MobileSettings.Error == null)

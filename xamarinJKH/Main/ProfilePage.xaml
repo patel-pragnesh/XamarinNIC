@@ -346,7 +346,7 @@
                                             FontSize="16"
                                             Text="{x:Static xamarinJkh:AppResources.Light}" />
                                     </StackLayout>
-                                    <StackLayout  IsVisible="False" Orientation="Horizontal" >
+                                    <StackLayout Orientation="Horizontal" >
 
                                         <Label Text="{x:Static xamarinJkh:AppResources.Language}"
                                                Margin="10, 0, 0, 0"
@@ -357,7 +357,6 @@
                                     </StackLayout>
 
                                     <StackLayout 
-                                       IsVisible="False"
                                         Margin="5,0,0,0">
                                         <RadioButton
                                             x:Name="Russian"

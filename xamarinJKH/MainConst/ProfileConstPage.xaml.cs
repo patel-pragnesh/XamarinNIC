@@ -16,6 +16,8 @@ using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
+using System.Globalization;
+using System.Threading;
 
 namespace xamarinJKH.MainConst
 {
@@ -78,6 +80,31 @@ namespace xamarinJKH.MainConst
                     // }
                     break;
                 default:
+                    break;
+            }
+            Russian.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
+            Ukranian.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
+            English.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
+
+            if (!Application.Current.Properties.ContainsKey("Culture"))
+            {
+                Application.Current.Properties.Add("Culture", string.Empty);
+            }
+            var culture = CultureInfo.InstalledUICulture;
+
+            switch (Application.Current.Properties["Culture"])
+            {
+                case "en-EN":
+                case "en":
+                    English.IsChecked = true;
+                    break;
+                case "ru-RU":
+                case "ru":
+                    Russian.IsChecked = true;
+                    break;
+                case "uk-UA":
+                case "uk":
+                    Ukranian.IsChecked = true;
                     break;
             }
             SetText();
@@ -269,6 +296,49 @@ namespace xamarinJKH.MainConst
             MessagingCenter.Send<Object>(this, "ChangeAdminApp");
             MessagingCenter.Send<Object>(this, "ChangeAdminMonitor");
             SetAdminName();
+        }
+
+        private async void Russian_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (Application.Current.Properties["Culture"].ToString() != "ru")
+            {
+                await DisplayAlert(null, "Для того, чтобы изменения вступили в силу, необходимо перезапустить приложение", "OK");
+            }
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru");
+
+            AppResources.Culture = new CultureInfo("ru");
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("ru");
+
+            Application.Current.Properties["Culture"] = "ru";
+            await Application.Current.SavePropertiesAsync();
+        }
+
+        private async void English_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (Application.Current.Properties["Culture"].ToString() != "en")
+            {
+                await DisplayAlert(null, "In order for the changes to take effect, you must restart the application", "OK");
+            }
+            var cultures = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+
+            AppResources.Culture = new CultureInfo("en");
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en");
+            Application.Current.Properties["Culture"] = "en";
+            await Application.Current.SavePropertiesAsync();
+        }
+
+        private async void Ukranian_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (Application.Current.Properties["Culture"].ToString() != "uk")
+            {
+                await DisplayAlert(null, "Для того, щоб зміни вступили в силу, необхідно перезапустити програму", "OK");
+            }
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("uk");
+
+            AppResources.Culture = new CultureInfo("uk");
+            Application.Current.Properties["Culture"] = "uk";
+            await Application.Current.SavePropertiesAsync();
         }
     }
 }

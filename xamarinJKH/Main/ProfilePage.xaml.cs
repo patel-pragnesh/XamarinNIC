@@ -225,10 +225,13 @@ namespace xamarinJKH.Main
 
             switch (Application.Current.Properties["Culture"])
             {
+                case "en-EN":
                 case "en":English.IsChecked = true;
                     break;
+                case "ru-RU":
                 case "ru":Russian.IsChecked = true;
                     break;
+                case "uk-UA":
                 case "uk":Ukranian.IsChecked = true;
                     break;
             }
@@ -328,6 +331,10 @@ namespace xamarinJKH.Main
 
         private async void Russian_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
+            if (Application.Current.Properties["Culture"].ToString() != "ru")
+            {
+                await DisplayAlert(null, "Для того, чтобы изменения вступили в силу, необходимо перезапустить приложение", "OK");
+            }
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru");
 
             AppResources.Culture = new CultureInfo("ru");
@@ -339,6 +346,10 @@ namespace xamarinJKH.Main
 
         private async void English_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
+            if (Application.Current.Properties["Culture"].ToString() != "en")
+            {
+                await DisplayAlert(null, "In order for the changes to take effect, you must restart the application", "OK");
+            }
             var cultures = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
 
@@ -350,6 +361,10 @@ namespace xamarinJKH.Main
         
         private async void Ukranian_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
+            if (Application.Current.Properties["Culture"].ToString() != "uk")
+            {
+                await DisplayAlert(null, "Для того, щоб зміни вступили в силу, необхідно перезапустити програму", "OK");
+            }
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("uk");
 
             AppResources.Culture = new CultureInfo("uk");
