@@ -112,7 +112,7 @@ namespace xamarinJKH.AppsConst
                                         //Device.BeginInvokeOnMainThread(() => messages.Add(each));
                                         Device.BeginInvokeOnMainThread(async () =>
                                         {
-                                            addAppMessage(each);
+                                            addAppMessage(each,messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
                                             var lastChild = baseForApp.Children.LastOrDefault();
                                             //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true));
                                             await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
@@ -196,7 +196,7 @@ namespace xamarinJKH.AppsConst
                     {
                         Device.BeginInvokeOnMainThread(async () => 
                         {
-                            addAppMessage(each);
+                            addAppMessage(each, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
                             var lastChild = baseForApp.Children.LastOrDefault();
                             await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
                         });
@@ -212,7 +212,7 @@ namespace xamarinJKH.AppsConst
 
         public string DateUniq = "";
 
-        void addAppMessage(RequestMessage message)
+        void addAppMessage(RequestMessage message, string prevAuthor)
         {
             StackLayout data;
             string newDate;
@@ -222,7 +222,7 @@ namespace xamarinJKH.AppsConst
             }
             else
             {
-                data = new MessageCellService(message, this, DateUniq, out newDate);
+                data = new MessageCellService(message, this, DateUniq, out newDate, prevAuthor);
             }
 
             DateUniq = newDate;
@@ -713,7 +713,11 @@ namespace xamarinJKH.AppsConst
                 foreach (var message in request.Messages)
                 {
                     messages.Add(message);
-                    Device.BeginInvokeOnMainThread(() => addAppMessage(message));
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+
+                        addAppMessage(message, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
+                    });
                 }
                 LabelNumber.Text = "№ " + request.RequestNumber;
                 IsRequestPaid = request.IsPaid;
