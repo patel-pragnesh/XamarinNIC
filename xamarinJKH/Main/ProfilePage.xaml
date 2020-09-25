@@ -109,12 +109,13 @@
                             x:Name="ImageBack"
                             Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
                             HeightRequest="25"
+                            IsVisible="False"
                             HorizontalOptions="Start"
                             ReplaceStringMap="{Binding isSave, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                             VerticalOptions="Center" />
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.Profile_NavBar}"
-                            FontSize="18"
+                            FontSize="23"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />

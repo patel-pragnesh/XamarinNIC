@@ -77,6 +77,7 @@
                                 <svg:SvgCachedImage  x:Name="IconViewProfile"
                                                      Source="resource://xamarinJKH.Resources.ic_profile_top.svg"
                                                      HeightRequest="70"
+                                                     IsVisible="False"
                                                      WidthRequest="30"
                                                      Margin="0, 0,0,0"
                                                      HorizontalOptions="Start"
@@ -87,7 +88,6 @@
                     <StackLayout
                         HorizontalOptions="End"
                         Margin="0,0,15,0"
-                        IsVisible="False"
                         Orientation="Horizontal">
                         <svg:SvgCachedImage x:Name="IconViewTech"
                                              Source="resource://xamarinJKH.Resources.ic_tech.svg"
@@ -101,7 +101,7 @@
                                FontSize="14"
                                TextDecorations="Underline"
                                TextColor="White"
-                               Margin="-10, 0, 0, 0"
+                               Margin="0, 0, 0, 0"
                                VerticalOptions="Center" />
                     </StackLayout>
                     <StackLayout

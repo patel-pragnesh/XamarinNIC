@@ -298,7 +298,7 @@ namespace xamarinJKH.Main
                         }
                         else
                         {
-                            Children.Remove(ShopNavPage2);
+                            Children.Remove(ShopNavPage);
                         }
                     }
                 }

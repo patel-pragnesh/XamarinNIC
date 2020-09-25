@@ -30,6 +30,12 @@ namespace xamarinJKH.Main
         private RestClientMP _server = new RestClientMP();
         public bool isSave  {get;set;}
         public bool GoodsIsVisible  {get;set;}
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            SetTheme();
+        }
+
         public ProfilePage()
         {
             InitializeComponent();
