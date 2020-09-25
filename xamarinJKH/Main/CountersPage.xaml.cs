@@ -42,7 +42,9 @@ namespace xamarinJKH.Main
                 OnPropertyChanged(nameof(IsRefreshing));
             }
         }
+
         public Command ChangeTheme { get; set; }
+
         public ICommand RefreshCommand
         {
             get
@@ -60,9 +62,11 @@ namespace xamarinJKH.Main
         {
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
-                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                Device.BeginInvokeOnMainThread(async () =>
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
+
             ItemsList<MeterInfo> info = await _server.GetThreeMeters();
             _meterInfoAll = info.Data;
             if (account == "Все")
@@ -103,13 +107,14 @@ namespace xamarinJKH.Main
         {
             int currDay = DateTime.Now.Day;
 
-            MeterInfo select = ((MetersThreeCell)sender).meterInfo;// as MeterInfo;
+            MeterInfo select = ((MetersThreeCell) sender).meterInfo; // as MeterInfo;
             if (select != null)
             {
                 if (select.IsDisabled)
                 {
                     return;
                 }
+
                 if (Settings.Person != null)
                     if (Settings.Person.Accounts != null)
                         if (Settings.Person.Accounts.Count > 0)
@@ -118,21 +123,23 @@ namespace xamarinJKH.Main
                                 (Settings.Person.Accounts[0].MetersStartDay == 0 &&
                                  Settings.Person.Accounts[0].MetersEndDay == 0))
                             {
-                                if (select.Values.Count >= 1 && int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
+                                if (select.Values.Count >= 1 && int.Parse(select.Values[0].Period.Split('.')[1]) ==
+                                    DateTime.Now.Month)
                                 {
                                     var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
                                     var counterThisMonth2 = (select.Values.Count >= 2) ? select.Values[1].Value : 0;
-                                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, counterThisMonth,
+                                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this,
+                                        counterThisMonth,
                                         counterThisMonth2));
                                 }
                                 else
                                 {
                                     var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
-                                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0, counterThisMonth));
+                                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
+                                        counterThisMonth));
                                 }
                             }
             }
-
         }
 
         public CountersPage()
@@ -150,6 +157,7 @@ namespace xamarinJKH.Main
                 default:
                     break;
             }
+
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); };
             LabelTech.GestureRecognizers.Add(techSend);
@@ -161,10 +169,9 @@ namespace xamarinJKH.Main
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
                     if (phoneDialer.CanMakePhoneCall && !string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-                        phoneDialer.MakePhoneCall(System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
+                        phoneDialer.MakePhoneCall(
+                            System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
                 }
-
-
             };
             LabelPhone.GestureRecognizers.Add(call);
             SetTextAndColor();
@@ -176,17 +183,22 @@ namespace xamarinJKH.Main
             //if (Device.RuntimePlatform != Device.iOS)
             //    countersList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
 
-            Color hexColor = (Color)Application.Current.Resources["MainColor"];
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent); if (Device.RuntimePlatform == Device.iOS) { if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo") { PancakeViewIcon.Padding = new Thickness(0); } }
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo")
+                {
+                    PancakeViewIcon.Padding = new Thickness(0);
+                }
+            }
+
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameTop.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
-            ChangeTheme = new Command(async () =>
-            {
-                SetTitle();
-            });
+            ChangeTheme = new Command(async () => { SetTitle(); });
             MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) => ChangeTheme.Execute(null));
             MessagingCenter.Subscribe<Object>(this, "UpdateCounters", (sender) => RefreshCommand.Execute(null));
         }
@@ -198,7 +210,7 @@ namespace xamarinJKH.Main
             var arrowcolor = new Dictionary<string, string>();
             if (currentTheme == OSAppTheme.Light || currentTheme == OSAppTheme.Unspecified)
             {
-                colors.Add("#000000", ((Color)Application.Current.Resources["MainColor"]).ToHex());
+                colors.Add("#000000", ((Color) Application.Current.Resources["MainColor"]).ToHex());
                 arrowcolor.Add("#000000", "#494949");
             }
             else
@@ -206,6 +218,7 @@ namespace xamarinJKH.Main
                 colors.Add("#000000", "#FFFFFF");
                 arrowcolor.Add("#000000", "#FFFFFF");
             }
+
             IconViewLogin.ReplaceStringMap = colors;
             IconViewTech.ReplaceStringMap = colors;
             Arrow.ReplaceStringMap = arrowcolor;
@@ -231,22 +244,28 @@ namespace xamarinJKH.Main
                             if (Settings.Person.Accounts[0].MetersStartDay != 0 &&
                                 Settings.Person.Accounts[0].MetersEndDay != 0)
                             {
-                                if (Settings.Person.Accounts[0].MetersStartDay > Settings.Person.Accounts[0].MetersEndDay)
+                                if (Settings.Person.Accounts[0].MetersStartDay >
+                                    Settings.Person.Accounts[0].MetersEndDay)
                                 {
                                     if (day <= Settings.Person.Accounts[0].MetersEndDay)
                                     {
                                         formattedResource.Spans.Add(new Span
                                         {
-                                            Text = $" {AppResources.From} {Settings.Person.Accounts[0].MetersStartDay} " +
-                                            $"{AppResources.PreviousMonth} {AppResources.To} {Settings.Person.Accounts[0].MetersEndDay} ",
-                                            TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                                            Text =
+                                                $" {AppResources.From} {Settings.Person.Accounts[0].MetersStartDay} " +
+                                                $"{AppResources.PreviousMonth} {AppResources.To} {Settings.Person.Accounts[0].MetersEndDay} ",
+                                            TextColor = currentTheme.Equals(OSAppTheme.Light)
+                                                ? Color.Black
+                                                : Color.White,
                                             FontAttributes = FontAttributes.Bold,
                                             FontSize = 15
                                         });
                                         formattedResource.Spans.Add(new Span
                                         {
                                             Text = AppResources.CountersCurrentMonth,
-                                            TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                                            TextColor = currentTheme.Equals(OSAppTheme.Light)
+                                                ? Color.Black
+                                                : Color.White,
                                             FontAttributes = FontAttributes.None,
                                             FontSize = 15
                                         });
@@ -255,16 +274,21 @@ namespace xamarinJKH.Main
                                     {
                                         formattedResource.Spans.Add(new Span
                                         {
-                                            Text = $" {AppResources.From} {Settings.Person.Accounts[0].MetersStartDay} " +
-                                            $"{AppResources.CountersCurrentMonth} {AppResources.To} {Settings.Person.Accounts[0].MetersEndDay} ",
-                                            TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                                            Text =
+                                                $" {AppResources.From} {Settings.Person.Accounts[0].MetersStartDay} " +
+                                                $"{AppResources.CountersCurrentMonth} {AppResources.To} {Settings.Person.Accounts[0].MetersEndDay} ",
+                                            TextColor = currentTheme.Equals(OSAppTheme.Light)
+                                                ? Color.Black
+                                                : Color.White,
                                             FontAttributes = FontAttributes.Bold,
                                             FontSize = 15
                                         });
                                         formattedResource.Spans.Add(new Span
                                         {
                                             Text = AppResources.NextMonth,
-                                            TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
+                                            TextColor = currentTheme.Equals(OSAppTheme.Light)
+                                                ? Color.Black
+                                                : Color.White,
                                             FontAttributes = FontAttributes.None,
                                             FontSize = 15
                                         });
@@ -274,8 +298,9 @@ namespace xamarinJKH.Main
                                 {
                                     formattedResource.Spans.Add(new Span
                                     {
-                                        Text = AppResources.From + Settings.Person.Accounts[0].MetersStartDay + AppResources.To +
-                                           Settings.Person.Accounts[0].MetersEndDay + AppResources.DayOfMounth,
+                                        Text = AppResources.From + Settings.Person.Accounts[0].MetersStartDay +
+                                               AppResources.To +
+                                               Settings.Person.Accounts[0].MetersEndDay + AppResources.DayOfMounth,
                                         TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
                                         FontAttributes = FontAttributes.Bold,
                                         FontSize = 15
@@ -288,7 +313,6 @@ namespace xamarinJKH.Main
                                         FontSize = 15
                                     });
                                 }
-
                             }
                             else
                             {
@@ -433,38 +457,43 @@ namespace xamarinJKH.Main
         {
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
-                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                Device.BeginInvokeOnMainThread(async () =>
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
+
             ItemsList<MeterInfo> info = await _server.GetThreeMeters();
-            if (info.Error == null && info.Data.Count>0)
+            if (info.Error == null)
             {
-                _meterInfo = info.Data;
-                _meterInfoAll = info.Data;
-                this.BindingContext = this;
-                if (_meterInfo != null && _meterInfo.Count>0)
+                if (info.Data.Count > 0)
                 {
-                    account = "Все";
-                    Accounts.Add("Все");
-                    foreach (var meterInfo in _meterInfo)
+                    _meterInfo = info.Data;
+                    _meterInfoAll = info.Data;
+                    this.BindingContext = this;
+                    if (_meterInfo != null && _meterInfo.Count > 0)
                     {
-                        Boolean k = false;
-                        foreach (var s in Accounts)
+                        account = "Все";
+                        Accounts.Add("Все");
+                        foreach (var meterInfo in _meterInfo)
                         {
-                            if (s == meterInfo.Ident)
+                            Boolean k = false;
+                            foreach (var s in Accounts)
                             {
-                                k = true;
+                                if (s == meterInfo.Ident)
+                                {
+                                    k = true;
+                                }
+                            }
+
+                            if (k == false)
+                            {
+                                Accounts.Add(meterInfo.Ident);
                             }
                         }
 
-                        if (k == false)
-                        {
-                            Accounts.Add(meterInfo.Ident);
-                        }
+                        Picker.ItemsSource = Accounts;
+                        Picker.SelectedIndex = 0;
                     }
-
-                    Picker.ItemsSource = Accounts;
-                    Picker.SelectedIndex = 0;
                 }
             }
             else
@@ -481,6 +510,7 @@ namespace xamarinJKH.Main
             {
                 return;
             }
+
             if (Settings.Person != null)
                 if (Settings.Person.Accounts != null)
                     if (Settings.Person.Accounts.Count > 0)
@@ -489,7 +519,8 @@ namespace xamarinJKH.Main
                             (Settings.Person.Accounts[0].MetersStartDay == 0 &&
                              Settings.Person.Accounts[0].MetersEndDay == 0))
                         {
-                            if (select.Values.Count >= 1 && int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
+                            if (select.Values.Count >= 1 &&
+                                int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
                             {
                                 var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
                                 var counterThisMonth2 = (select.Values.Count >= 2) ? select.Values[1].Value : 0;
@@ -499,7 +530,8 @@ namespace xamarinJKH.Main
                             else
                             {
                                 var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
-                                await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0, counterThisMonth));
+                                await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
+                                    counterThisMonth));
                             }
                         }
         }
@@ -510,7 +542,5 @@ namespace xamarinJKH.Main
             await RefreshCountersData();
             IsRefreshing = false;
         }
-
-
     }
 }
