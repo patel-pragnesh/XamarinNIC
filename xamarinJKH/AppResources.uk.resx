@@ -1281,7 +1281,7 @@
     <value> гр.</value>
   </data>
   <data name="TechDialogTitle" xml:space="preserve">
-    <value>Напишіть нам сюди</value>
+    <value>Після вибору месенджера, відправте наступний код першим же повідомленням для активації діалогу з техпідтримки</value>
   </data>
   <data name="DellCouneter" xml:space="preserve">
     <value>Видалити свідчення?</value>

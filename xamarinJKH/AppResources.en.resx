@@ -1297,7 +1297,7 @@ A bot will call you on your number PHONE and tell an access code</value>
     <value>g</value>
   </data>
   <data name="TechDialogTitle" xml:space="preserve">
-    <value>Write to us here</value>
+    <value>After choosing a messenger, send the following code with the first message to activate a dialogue with technical support</value>
   </data>
   <data name="DellCouneter" xml:space="preserve">
     <value>Delete readings?</value>
