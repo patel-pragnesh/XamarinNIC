@@ -123,21 +123,55 @@ namespace xamarinJKH.Main
                                 (Settings.Person.Accounts[0].MetersStartDay == 0 &&
                                  Settings.Person.Accounts[0].MetersEndDay == 0))
                             {
-                                if (select.Values.Count >= 1 && int.Parse(select.Values[0].Period.Split('.')[1]) ==
-                                    DateTime.Now.Month)
+                                if (select.Values!=null && select.Values.Count >= 1 )
                                 {
-                                    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
-                                    var counterThisMonth2 = (select.Values.Count >= 2) ? select.Values[1].Value : 0;
-                                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this,
-                                        counterThisMonth,
-                                        counterThisMonth2));
+                                    int monthCounter;
+                                    var parceMonthOk = int.TryParse(select.Values[0].Period.Split('.')[1], out monthCounter) ;
+                                    if(parceMonthOk)
+                                    {
+                                        if(monthCounter==DateTime.Now.Month)
+                                        {
+                                            var counterThisMonth = select.Values[0].Value;
+                                            var counterThisMonth2 = select.Values.Count >= 2 ? select.Values[1].Value : 0;
+                                            await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this,
+                                                counterThisMonth,
+                                                counterThisMonth2));
+                                        }
+                                        else
+                                        {
+                                            var counterThisMonth =  select.Values[0].Value;
+                                            await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
+                                                counterThisMonth));
+                                        }                                        
+                                    }
+                                    else
+                                    {
+                                        var counterThisMonth = select.Values[0].Value;
+                                        await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
+                                            counterThisMonth));
+                                    }
                                 }
                                 else
                                 {
-                                    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
+                                    //var counterThisMonth =  0;
                                     await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
-                                        counterThisMonth));
+                                        0));
                                 }
+                                //if (select.Values.Count >= 1 && int.Parse(select.Values[0].Period.Split('.')[1]) ==
+                                //    DateTime.Now.Month)
+                                //{
+                                //    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
+                                //    var counterThisMonth2 = (select.Values.Count >= 2) ? select.Values[1].Value : 0;
+                                //    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this,
+                                //        counterThisMonth,
+                                //        counterThisMonth2));
+                                //}
+                                //else
+                                //{
+                                //    var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
+                                //    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
+                                //        counterThisMonth));
+                                //}
                             }
             }
         }
