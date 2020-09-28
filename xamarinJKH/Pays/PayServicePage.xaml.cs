@@ -51,15 +51,51 @@ namespace xamarinJKH.Pays
 
             if (idRequset == null)
             {
-                GetPayLink(ident, sum, isInsurance);
+                Device.BeginInvokeOnMainThread(async () => { await GetPayLink(ident, sum, isInsurance); });
             }
             else
             {
-                GetPayLinkRequest(idRequset, sum);
+                Device.BeginInvokeOnMainThread(async () => { await GetPayLinkRequest(idRequset, sum); });
             }
         }
 
-        async void GetPayLink(string ident, decimal sum, bool isInsurance)
+        async Task GetPayLink(string ident, decimal sum, bool isInsurance)
+        {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
+            Configurations.LoadingConfig = new LoadingConfig
+            {
+                IndicatorColor = (Color) Application.Current.Resources["MainColor"],
+                OverlayColor = Color.Black,
+                Opacity = 0.8,
+                DefaultMessage = AppResources.Loading,
+            };
+            await Loading.Instance.StartAsync(async progress =>
+            {
+                PayService payLink = await server.GetPayLink(ident, sum, isInsurance);
+                if (payLink.payLink != null)
+                {
+                    webView.Source = payLink.payLink;
+                }
+                else
+                {
+                    Loading.Instance.Hide();
+                    await DisplayAlert(AppResources.ErrorTitle, payLink.Error, "OK");
+                    try
+                    {
+                        _ = await Navigation.PopAsync();
+                    }
+                    catch { }
+                }
+            });
+           
+        }
+
+        async Task GetPayLinkRequest(int? id, decimal sum)
         {
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
@@ -68,49 +104,31 @@ namespace xamarinJKH.Pays
                 return;
             }
 
-            await Settings.StartProgressBar();
-            PayService payLink = await server.GetPayLink(ident, sum, isInsurance);
-            if (payLink.payLink != null)
+            Configurations.LoadingConfig = new LoadingConfig
             {
-                webView.Source = payLink.payLink;
-            }
-            else
+                IndicatorColor = (Color) Application.Current.Resources["MainColor"],
+                OverlayColor = Color.Black,
+                Opacity = 0.8,
+                DefaultMessage = AppResources.Loading,
+            };
+            await Loading.Instance.StartAsync(async progress =>
             {
-                Loading.Instance.Hide();
-                await DisplayAlert(AppResources.ErrorTitle, payLink.Error, "OK");
-                try
+                PayService payLink = await server.GetPayLink(id, sum);
+                if (payLink.payLink != null)
                 {
-                    _ = await Navigation.PopAsync();
+                    webView.Source = payLink.payLink;
                 }
-                catch { }
-            }
-        }
-
-        async void GetPayLinkRequest(int? id, decimal sum)
-        {
-            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
-            {
-                Device.BeginInvokeOnMainThread(async () =>
-                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
-                return;
-            }
-
-            await Settings.StartProgressBar();
-            PayService payLink = await server.GetPayLink(id, sum);
-            if (payLink.payLink != null)
-            {
-                webView.Source = payLink.payLink;
-            }
-            else
-            {
-                Loading.Instance.Hide();
-                await DisplayAlert(AppResources.ErrorTitle, payLink.Error, "OK");
-                try
+                else
                 {
-                    _ = await Navigation.PopAsync();
+                    await DisplayAlert(AppResources.ErrorTitle, payLink.Error, "OK");
+                    try
+                    {
+                        _ = await Navigation.PopAsync();
+                    }
+                    catch { }
                 }
-                catch { }
-            }
+            });
+           
         }
 
         void SetText()
