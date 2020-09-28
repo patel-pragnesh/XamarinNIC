@@ -378,15 +378,24 @@ namespace xamarinJKH.Main
             {
                 if (Picker.SelectedIndex != -1 && Settings.Person.Accounts.Count != 0)
                 {
-                    var identLength = Settings.Person.Accounts[Picker.SelectedIndex].Ident.Length;
-                    if (identLength < 6)
+                    var account = Settings.Person.Accounts[Picker.SelectedIndex];
+                    if (account != null)
                     {
-                        Device.BeginInvokeOnMainThread(() =>
+                        if (!string.IsNullOrEmpty(account.Ident))
                         {
-                            Picker.WidthRequest = identLength * 9;
-                            // Picker.MinimumWidthRequest = identLength * 9;
-                        });
+                            var identLength = account.Ident.Length;
+                            if (identLength < 6)
+                            {
+                                Device.BeginInvokeOnMainThread(() =>
+                                {
+                                    Picker.WidthRequest = identLength * 9;
+                                    // Picker.MinimumWidthRequest = identLength * 9;
+                                });
+                            }
+                        }
+                        
                     }
+                    
                 }
             }
 

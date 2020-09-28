@@ -31,7 +31,7 @@ namespace xamarinJKH.Server
         //public const string SERVER_ADDR = "https://api.sm-center.ru/tsg_svyato-troitskii15"; // УК Свято троицк
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_uk_rks"; // УК РКС
         // public const string SERVER_ADDR = "https://api.sm-center.ru/profikomfort"; // Профи комфорт
-        //public const string SERVER_ADDR = "https://api.sm-center.ru/tafgai"; // Профи комфорт
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/tafgai"; // Тафгай
         //public const string SERVER_ADDR = "https://api.sm-center.ru/eco_lk"; // Авалон эко
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ci_lk"; // Центр инвестиций
         // public const string SERVER_ADDR = "https://api.sm-center.ru/ur_lk"; // Универсальные решения
@@ -48,7 +48,8 @@ namespace xamarinJKH.Server
          // public const string SERVER_ADDR = "https://api.sm-center.ru/mup_kc/"; // МУП КС г. Новочебоксарска
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_cdo/"; // ООО ЦДО г.Тверь
 
-        public const string SERVER_ADDR = "https://api.sm-center.ru/vestaesteit/"; // Веста Эстейт
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/vestaesteit/"; // Веста Эстейт
+       public const string SERVER_ADDR = "https://api.sm-center.ru/uk_divnomorskoe/"; // Дивноморское
         
 
 

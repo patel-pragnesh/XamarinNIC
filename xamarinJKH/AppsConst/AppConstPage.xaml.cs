@@ -90,6 +90,12 @@ namespace xamarinJKH.AppsConst
             await Task.Delay(TimeSpan.FromSeconds(1));
             TokenSource = new CancellationTokenSource();
             Token = TokenSource.Token;
+            RequestsUpdate requestsUpdate =
+                await _server.GetRequestsUpdates(Settings.UpdateKey, _requestInfo.ID.ToString());
+            if (requestsUpdate.Error == null)
+            {
+                Settings.UpdateKey = requestsUpdate.NewUpdateKey;
+            }
             var UpdateTask = new Task(async () =>
             {
                 try

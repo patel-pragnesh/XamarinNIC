@@ -54,6 +54,7 @@ namespace xamarinJKH.Main
                         CounterPage.BarTextColor = Color.Black;
                         AppPage.BarTextColor = Color.Black;
                         ShopNavPage.BarTextColor = Color.Black;
+                        ProfPage.BarTextColor = Color.Black;
                     }
                     break;
                 case OSAppTheme.Dark:
@@ -65,6 +66,7 @@ namespace xamarinJKH.Main
                         CounterPage.BarTextColor = Color.White;
                         AppPage.BarTextColor = Color.White;
                         ShopNavPage.BarTextColor = Color.White;
+                        ProfPage.BarTextColor = Color.White;
                     }
                     break;
                 case OSAppTheme.Unspecified:
@@ -75,6 +77,7 @@ namespace xamarinJKH.Main
                         CounterPage.BarTextColor = Color.Black;
                         AppPage.BarTextColor = Color.Black;
                         ShopNavPage.BarTextColor = Color.Black;
+                        ProfPage.BarTextColor = Color.Black;
                     }
                     break;
             }
