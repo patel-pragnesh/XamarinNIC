@@ -49,7 +49,7 @@ namespace xamarinJKH.Server
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_cdo/"; // ООО ЦДО г.Тверь
 
         //public const string SERVER_ADDR = "https://api.sm-center.ru/vestaesteit/"; // Веста Эстейт
-        public const string SERVER_ADDR = "https://api.sm-center.ru/uk_divnomorskoe/"; // Дивноморское
+       public const string SERVER_ADDR = "https://api.sm-center.ru/uk_divnomorskoe/"; // Дивноморское
         
 
 
