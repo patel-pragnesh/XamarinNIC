@@ -26,7 +26,7 @@ namespace xamarinJKH.ViewModels.Main
         public List<RequestInfo> AllRequests { get; set; }
         public Command LoadRequests { get; set; }
         public Command UpdateRequests { get; set; }
-        public Color hex { get; set; } = Color.FromHex(Settings.MobileSettings.color);
+        //public Color hex { get; set; } = (Color)Application.Current.Resources["MainColor"];
         bool _showClosed;
         public bool ShowClosed
         {

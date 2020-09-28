@@ -19,7 +19,7 @@ namespace xamarinJKH
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OSSRegisterPin : ContentPage
     {
-        Color hex = Color.FromHex(Settings.MobileSettings.color);
+        Color hex = (Color)Application.Current.Resources["MainColor"];
 
         public OSSRegisterPin()
         {
@@ -95,7 +95,7 @@ namespace xamarinJKH
                 EntryPin0.IsPassword = !EntryPin0.IsPassword;
                 if (EntryPin0.IsPassword)
                 {
-                    ImageClosePass0.Foreground = Color.FromHex(Settings.MobileSettings.color);
+                    ImageClosePass0.Foreground = (Color)Application.Current.Resources["MainColor"];
                 }
                 else
                 {
@@ -111,7 +111,7 @@ namespace xamarinJKH
                 EntryPin.IsPassword = !EntryPin.IsPassword;
                 if (EntryPin.IsPassword)
                 {
-                    ImageClosePass.Foreground = Color.FromHex(Settings.MobileSettings.color);
+                    ImageClosePass.Foreground = (Color)Application.Current.Resources["MainColor"];
                 }
                 else
                 {

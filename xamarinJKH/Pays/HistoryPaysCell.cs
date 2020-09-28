@@ -110,7 +110,7 @@ namespace xamarinJKH.Pays
                 formattedIdent.Spans.Add(new Span
                 {
                     Text = $"{sum2:0.00}".Replace(',','.'),
-                    TextColor = Color.FromHex(Settings.MobileSettings.color),
+                    TextColor = (Color)Application.Current.Resources["MainColor"],
                     FontSize = 15,
                     FontAttributes = FontAttributes.Bold
                 });

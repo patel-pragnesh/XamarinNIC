@@ -242,8 +242,8 @@ namespace xamarinJKH.Main
                 LabelPhone.IsVisible = false;
             }
 
-            // LabelTech.TextColor = Color.FromHex(Settings.MobileSettings.color);
-            // IconViewTech.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            // LabelTech.TextColor = (Color)Application.Current.Resources["MainColor"];
+            // IconViewTech.Foreground = (Color)Application.Current.Resources["MainColor"];
         }
 
         void SetColor()

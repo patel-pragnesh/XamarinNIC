@@ -77,7 +77,7 @@ namespace xamarinJKH.Monitor
                 catch { }
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
-            hex = Color.FromHex(Settings.MobileSettings.color);
+            hex = (Color)Application.Current.Resources["MainColor"];
             SetText();
             RequestInfos = requestInfos;
             additionalList.BackgroundColor = Color.Transparent;

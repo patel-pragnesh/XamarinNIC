@@ -19,7 +19,7 @@ namespace xamarinJKH.Questions
         public QuestionsCell()
         {
             MaterialFrame frame = new MaterialFrame();
-            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
+            frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
             frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
@@ -54,7 +54,7 @@ namespace xamarinJKH.Questions
             countAnsweredTitle.VerticalOptions = LayoutOptions.Center;
             countQuestTitle.TextColor = Color.Black;
 
-            countQuest.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            countQuest.TextColor = (Color)Application.Current.Resources["MainColor"];
             countQuest.HorizontalOptions = LayoutOptions.Start;
             countQuest.FontSize = 12;
             countQuest.FontAttributes = FontAttributes.Bold;
@@ -68,7 +68,7 @@ namespace xamarinJKH.Questions
             countAnsweredTitle.VerticalOptions = LayoutOptions.Center;
             countAnsweredTitle.FontSize = 12;
 
-            countAnswered.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            countAnswered.TextColor = (Color)Application.Current.Resources["MainColor"];
             countAnswered.HorizontalOptions = LayoutOptions.Start;
             countAnswered.FontAttributes = FontAttributes.Bold;
             countAnswered.FontSize = 12;
@@ -100,7 +100,7 @@ namespace xamarinJKH.Questions
             Frame frameBtn = new Frame();
             frameBtn.HorizontalOptions = LayoutOptions.FillAndExpand;
             frameBtn.VerticalOptions = LayoutOptions.Start;
-            frameBtn.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            frameBtn.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             frameBtn.Margin = new Thickness(0, 10, 0, 10);
             frameBtn.Padding = 0;
             frameBtn.CornerRadius = 10;

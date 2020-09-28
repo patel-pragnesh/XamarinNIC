@@ -114,7 +114,7 @@ namespace xamarinJKH
         IDictionary<Guid, Guid> frames = new Dictionary<Guid, Guid>();
         IDictionary<Guid, Guid> arrows = new Dictionary<Guid, Guid>();
 
-        Color colorFromMobileSettings = Color.FromHex(Settings.MobileSettings.color);
+        Color colorFromMobileSettings = (Color)Application.Current.Resources["MainColor"];
 
         Frame prevAddtionlExpanded=null;
 
@@ -191,7 +191,7 @@ namespace xamarinJKH
                     {
 
                         Frame f = new Frame();
-                        f.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
+                        f.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
                         f.MinimumHeightRequest = 50;
                         f.BackgroundColor = Color.White;
 

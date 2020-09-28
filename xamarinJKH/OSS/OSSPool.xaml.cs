@@ -22,7 +22,7 @@ namespace xamarinJKH
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OSSPool : ContentPage
     {
-        Color colorFromMobileSettings = Color.FromHex(Settings.MobileSettings.color);
+        Color colorFromMobileSettings = (Color)Application.Current.Resources["MainColor"];
 
         OSS _oss = null;
         private string fileLink = "";

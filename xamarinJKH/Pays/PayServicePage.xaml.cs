@@ -151,7 +151,7 @@ namespace xamarinJKH.Pays
             // Loading settings
             Configurations.LoadingConfig = new LoadingConfig
             {
-                IndicatorColor = Color.FromHex(Settings.MobileSettings.color),
+                IndicatorColor = (Color)Application.Current.Resources["MainColor"],
                 OverlayColor = Color.Black,
                 Opacity = 0.6,
                 DefaultMessage = "Оплата",

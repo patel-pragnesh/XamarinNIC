@@ -139,7 +139,7 @@ namespace xamarinJKH.AppsConst
                 BindingContext = new AddAppConstModel()
                 {
                     AllType = Settings.TypeApp,
-                    hex = Color.FromHex(Settings.MobileSettings.color),
+                    hex = (Color)Application.Current.Resources["MainColor"],
                     SelectedType = Settings.TypeApp[0],
                     Files = files
                 };
@@ -351,7 +351,7 @@ namespace xamarinJKH.AppsConst
             // Loading settings
             Configurations.LoadingConfig = new LoadingConfig
             {
-                IndicatorColor = Color.FromHex(Settings.MobileSettings.color),
+                IndicatorColor = (Color)Application.Current.Resources["MainColor"],
                 OverlayColor = Color.Black,
                 Opacity = 0.8,
                 DefaultMessage = AppResources.LoadingFile,
@@ -449,7 +449,7 @@ namespace xamarinJKH.AppsConst
                 BindingContext = new AddAppConstModel()
                 {
                     AllType = Settings.TypeApp,
-                    hex = Color.FromHex(Settings.MobileSettings.color),
+                    hex = (Color)Application.Current.Resources["MainColor"],
                     SelectedType = Settings.TypeApp[PikerTypeItem],
                     Files = files
                 };

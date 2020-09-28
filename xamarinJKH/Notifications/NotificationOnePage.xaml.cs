@@ -90,7 +90,7 @@ namespace xamarinJKH.Notifications
             LabelTitle.Text = _announcementInfo.Header;
             LabelDate.Text = _announcementInfo.Created;
             LabelText.Text = _announcementInfo.Text;
-            FrameBtnQuest.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            FrameBtnQuest.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             int announcementInfoAdditionalServiceId = _announcementInfo.AdditionalServiceId;
             if (announcementInfoAdditionalServiceId != -1)
             {

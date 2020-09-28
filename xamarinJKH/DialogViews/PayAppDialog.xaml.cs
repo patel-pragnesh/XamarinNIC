@@ -36,7 +36,7 @@ namespace xamarinJKH.DialogViews
             title = request.PaidServiceText;
             isBonusVisible = false;
             InitializeComponent();
-            Frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color),
+            Frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"],
                 Color.Transparent);
 
             var close = new TapGestureRecognizer();

@@ -146,7 +146,7 @@ namespace xamarinJKH.Counters
 
             Device.BeginInvokeOnMainThread(() =>
             {
-                CellColor = Color.FromHex(Settings.MobileSettings.color);
+                CellColor = (Color)Application.Current.Resources["MainColor"];
             });            
 
             BindingContext = this;
@@ -506,9 +506,9 @@ namespace xamarinJKH.Counters
                 LabelPhone.IsVisible = false;
             }
             NameLbl.Text = meter.CustomName != null && !meter.CustomName.Equals("") ? meter.CustomName : meter.Resource;
-            LabelseparatorFio.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            progress.Color = Color.FromHex(Settings.MobileSettings.color);
-            FrameBtnLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            LabelseparatorFio.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
+            progress.Color = (Color)Application.Current.Resources["MainColor"];
+            FrameBtnLogin.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             FormattedString formattedUniq = new FormattedString();
             formattedUniq.Spans.Add(new Span
             {

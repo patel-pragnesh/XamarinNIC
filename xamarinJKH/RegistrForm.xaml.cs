@@ -49,7 +49,7 @@ namespace xamarinJKH
             viewModel = new RegistrFormViewModel(this.Navigation);
             this.BindingContext = viewModel;
             UkName.Text = viewModel.Title;
-            hex = Color.FromHex(Settings.MobileSettings.color);
+            hex = (Color)Application.Current.Resources["MainColor"];
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -339,7 +339,7 @@ namespace xamarinJKH
         {
             if (!EntryCode.Text.Equals(""))
             {
-                FrameBtnNextTwo.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+                FrameBtnNextTwo.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
                 isNext = true;
             }
             else

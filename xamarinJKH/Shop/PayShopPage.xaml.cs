@@ -108,7 +108,7 @@ namespace xamarinJKH.Shop
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
 
-            hex = Color.FromHex(Settings.MobileSettings.color);
+            hex = (Color)Application.Current.Resources["MainColor"];
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);

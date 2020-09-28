@@ -17,7 +17,7 @@ namespace xamarinJKH
         public NotificationCell()
         {
             MaterialFrame frame = new MaterialFrame();
-            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
+            frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
             frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
@@ -39,7 +39,7 @@ namespace xamarinJKH
             more.Text =  $"{AppResources.Details} >";
             more.FontSize = 13;
             more.TextDecorations = TextDecorations.Underline;
-            more.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            more.TextColor = (Color)Application.Current.Resources["MainColor"];
             more.HorizontalTextAlignment = TextAlignment.End;
             more.VerticalOptions = LayoutOptions.Center;
             more.HorizontalOptions = LayoutOptions.EndAndExpand;

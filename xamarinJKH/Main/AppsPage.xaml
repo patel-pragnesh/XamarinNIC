@@ -177,7 +177,7 @@
                                         <svg:SvgCachedImage x:Name="IconAddApp"
                                     Source="resource://xamarinJKH.Resources.icon_add_app.svg"
                                                 HeightRequest="20"
-                                    ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                    ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                                                 WidthRequest="20"
                                                 VerticalOptions="Center" />
                                 <Label x:Name="BtnExit"
@@ -191,7 +191,7 @@
                         <Frame CornerRadius="10"
                                x:Name="FrameBtnAdd"
                                Padding="0"
-                               BackgroundColor="{Binding hex}"
+                               BackgroundColor="{x:DynamicResource MainColor}"
                                HorizontalOptions="FillAndExpand">
                             <StackLayout
                                 Orientation="Horizontal"

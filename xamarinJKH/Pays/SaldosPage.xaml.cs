@@ -31,7 +31,7 @@ namespace xamarinJKH.Pays
         private RestClientMP server = new RestClientMP();
         private bool isSortDate = true;
         private bool isSortLs = true;
-        private Color hex { get; set; }= Color.FromHex(Settings.MobileSettings.color);
+        private Color hex { get; set; }= (Color)Application.Current.Resources["MainColor"];
 
         public bool IsRefreshing
         {
@@ -262,7 +262,7 @@ namespace xamarinJKH.Pays
                 IconViewLogin.IsVisible = false;
                 LabelPhone.IsVisible = false;
             }
-            // IconViewSortIdent.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            // IconViewSortIdent.Foreground = (Color)Application.Current.Resources["MainColor"];
 
             IconViewSortDate.ReplaceStringMap =  new Dictionary<string, string>
             {

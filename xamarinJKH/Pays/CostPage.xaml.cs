@@ -107,7 +107,7 @@ namespace xamarinJKH.Pays
             BindingContext = new AccountingInfoModel()
             {
                 AllAcc = Accounts,
-                hex = Color.FromHex(Settings.MobileSettings.color)
+                hex = (Color)Application.Current.Resources["MainColor"]
             };
             SetText();
         }
@@ -125,13 +125,13 @@ namespace xamarinJKH.Pays
                 LabelPhone.IsVisible = false;
             }
             Picker.Title = account.Ident;
-            // IconViewUslugi.Foreground = Color.FromHex(Settings.MobileSettings.color);
-            Labelseparator.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            FrameBtnLogin.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            LabelSaldos.TextColor = Color.FromHex(Settings.MobileSettings.color);
-            LabelHistory.TextColor = Color.FromHex(Settings.MobileSettings.color);
-            FrameBtnHistory.BorderColor = Color.FromHex(Settings.MobileSettings.color);
-            FrameBtnSaldos.BorderColor = Color.FromHex(Settings.MobileSettings.color);
+            // IconViewUslugi.Foreground = (Color)Application.Current.Resources["MainColor"];
+            Labelseparator.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
+            FrameBtnLogin.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
+            LabelSaldos.TextColor = (Color)Application.Current.Resources["MainColor"];
+            LabelHistory.TextColor = (Color)Application.Current.Resources["MainColor"];
+            FrameBtnHistory.BorderColor = (Color)Application.Current.Resources["MainColor"];
+            FrameBtnSaldos.BorderColor = (Color)Application.Current.Resources["MainColor"];
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
@@ -170,7 +170,7 @@ namespace xamarinJKH.Pays
             {
                 Text = totalSum,
                 FontSize = 20,
-                TextColor = Color.FromHex(Settings.MobileSettings.color),
+                TextColor = (Color)Application.Current.Resources["MainColor"],
                 FontAttributes = FontAttributes.Bold
             });
             formatted.Spans.Add(new Span
@@ -267,7 +267,7 @@ namespace xamarinJKH.Pays
             {
                 Text = totalSum.ToString(),
                 FontSize = 20,
-                TextColor = Color.FromHex(Settings.MobileSettings.color),
+                TextColor = (Color)Application.Current.Resources["MainColor"],
                 FontAttributes = FontAttributes.Bold
             });
             formatted.Spans.Add(new Span

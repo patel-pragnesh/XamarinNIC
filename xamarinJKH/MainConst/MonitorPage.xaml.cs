@@ -42,7 +42,7 @@ namespace xamarinJKH.MainConst
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            hex = Color.FromHex(Settings.MobileSettings.color);
+            hex = (Color)Application.Current.Resources["MainColor"];
             fontSize = 13;
             fontSize2 = 20;
             fontSize3 = 13;
@@ -167,7 +167,7 @@ namespace xamarinJKH.MainConst
             foreach (var each in periodStatses)
             {
                 MaterialFrame container = new MaterialFrame();
-                container.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
+                container.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
                 container.Elevation = 20;
                 container.Margin = new Thickness(20, 0, 20, 10);
                 container.CornerRadius = 35;
@@ -180,7 +180,7 @@ namespace xamarinJKH.MainConst
                 container.Content = stackLayoutFrame;
 
                 MaterialFrame materialFrameTop = new MaterialFrame();
-                materialFrameTop.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
+                materialFrameTop.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
                 materialFrameTop.Elevation = 20;
                 materialFrameTop.CornerRadius = 35;
                 materialFrameTop.BackgroundColor = Color.White;

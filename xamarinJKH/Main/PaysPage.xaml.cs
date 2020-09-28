@@ -303,7 +303,7 @@ namespace xamarinJKH.Main
             // Loading settings
             Configurations.LoadingConfig = new LoadingConfig
             {
-                IndicatorColor = Color.FromHex(Settings.MobileSettings.color),
+                IndicatorColor = (Color)Application.Current.Resources["MainColor"],
                 OverlayColor = Color.Black,
                 Opacity = 0.8,
                 DefaultMessage = AppResources.DeletingIdent,
@@ -472,7 +472,7 @@ namespace xamarinJKH.Main
             Label sumPay = new Label();
 
             MaterialFrame frame = new MaterialFrame();
-            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color),
+            frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"],
                 Color.White);
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.Elevation = 20;
@@ -535,7 +535,7 @@ namespace xamarinJKH.Main
 
             Label close = new Label();
             close.Text = AppResources.Delete; // "Удалить";
-            close.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            close.TextColor = (Color)Application.Current.Resources["MainColor"];
             close.FontSize = 15;
             close.TextDecorations = TextDecorations.Underline;
             dell.Orientation = StackOrientation.Horizontal;
@@ -568,7 +568,7 @@ namespace xamarinJKH.Main
             sumPayDate.Margin = new Thickness(0, 0, 15, 0);
 
             sumPay.Text = "4593.01 руб";
-            sumPay.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            sumPay.TextColor = (Color)Application.Current.Resources["MainColor"];
             sumPay.FontSize = 25;
             sumPay.VerticalOptions = LayoutOptions.Center;
 
@@ -581,7 +581,7 @@ namespace xamarinJKH.Main
             frameBtn.HorizontalOptions = LayoutOptions.FillAndExpand;
             frameBtn.VerticalOptions = LayoutOptions.Start;
             frameBtn.Padding = 0;
-            frameBtn.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            frameBtn.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             frameBtn.CornerRadius = 10;
 
             StackLayout containerBtn = new StackLayout();
@@ -635,7 +635,7 @@ namespace xamarinJKH.Main
             });
 
             payPeriod.FormattedText = formatted;
-            payPeriod.TextColor = Color.FromHex(Settings.MobileSettings.color);
+            payPeriod.TextColor = (Color)Application.Current.Resources["MainColor"];
             payPeriod.FontSize = 12;
             payPeriod.HorizontalOptions = LayoutOptions.CenterAndExpand;
 
@@ -689,7 +689,7 @@ namespace xamarinJKH.Main
             formattedPay.Spans.Add(new Span
             {
                 Text = info.Sum.ToString(),
-                TextColor = Color.FromHex(Settings.MobileSettings.color),
+                TextColor = (Color)Application.Current.Resources["MainColor"],
                 FontAttributes = FontAttributes.Bold,
                 FontSize = fs + 5
             });

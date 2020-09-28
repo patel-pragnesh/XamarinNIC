@@ -163,8 +163,8 @@ namespace xamarinJKH.Questions
             }
             LabelTitle.Text = _pollInfo.Name;
 
-            FrameBtnNext.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            FrameBtnFinish.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            FrameBtnNext.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
+            FrameBtnFinish.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
@@ -222,13 +222,13 @@ namespace xamarinJKH.Questions
                     isCheched = jAnswer.IsUserAnswer;
                     if (jAnswer.IsUserAnswer)
                     {
-                        radioButton.TextColor = Color.FromHex(Settings.MobileSettings.color);
+                        radioButton.TextColor = (Color)Application.Current.Resources["MainColor"];
                     }
 
                     switch (Device.RuntimePlatform)
                     {
                         case Device.iOS:
-                            radioButton.BorderColor = Color.FromHex(Settings.MobileSettings.color);
+                            radioButton.BorderColor = (Color)Application.Current.Resources["MainColor"];
                             break;
                         case Device.Android:
                             radioButton.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
@@ -243,7 +243,7 @@ namespace xamarinJKH.Questions
                         if (radioButton.IsChecked)
                         {
                             pollAnswer.AnswerId = jAnswer.ID;
-                            radioButton.TextColor = Color.FromHex(Settings.MobileSettings.color);
+                            radioButton.TextColor = (Color)Application.Current.Resources["MainColor"];
                         }
                         else
                         {
@@ -276,7 +276,7 @@ namespace xamarinJKH.Questions
             double width = StackLayoutIndicator.WidthRequest / _pollInfo.Questions.Count;
             foreach (var each in _pollInfo.Questions)
             {
-                Color backgroundColor = Color.FromHex(Settings.MobileSettings.color);
+                Color backgroundColor = (Color)Application.Current.Resources["MainColor"];
                 if (i > 0)
                 {
                     backgroundColor = Color.Transparent;
@@ -374,13 +374,13 @@ namespace xamarinJKH.Questions
         {
             if (isNext)
             {
-                indicators[i].BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+                indicators[i].BackgroundColor = (Color)Application.Current.Resources["MainColor"];
                 indicators[i - 1].BackgroundColor = Color.Transparent;
             }
             else
             {
                 indicators[i + 1].BackgroundColor = Color.Transparent;
-                indicators[i].BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+                indicators[i].BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             }
         }
 

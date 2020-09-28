@@ -222,7 +222,7 @@ namespace xamarinJKH.Questions
                 LabelPhone.IsVisible = false;
             }
             SwitchQuest.ThumbColor = Color.Black;
-            SwitchQuest.OnColor = Color.FromHex(Settings.MobileSettings.color);
+            SwitchQuest.OnColor = (Color)Application.Current.Resources["MainColor"];
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);

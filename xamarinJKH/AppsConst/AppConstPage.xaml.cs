@@ -320,7 +320,7 @@ namespace xamarinJKH.AppsConst
                 await RefreshData();
             };
             StackLayoutClose.GestureRecognizers.Add(closeApp);
-            hex = Color.FromHex(Settings.MobileSettings.color);
+            hex = (Color)Application.Current.Resources["MainColor"];
 
             setText();
 

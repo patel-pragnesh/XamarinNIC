@@ -18,7 +18,7 @@ namespace xamarinJKH.Apps
         public AppCell()
         {
             MaterialFrame frame = new MaterialFrame();
-            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color),
+            frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"],
                 Color.White);
             frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -37,7 +37,7 @@ namespace xamarinJKH.Apps
 
             var arrow = new SvgCachedImage();
             arrow.Source = "resource://xamarinJKH.Resources.ic_arrow_forward.svg";
-            Color hex = Color.FromHex(Settings.MobileSettings.color);
+            Color hex = (Color)Application.Current.Resources["MainColor"];
             arrow.ReplaceStringMap = new System.Collections.Generic.Dictionary<string, string> { { "#000000", $"#{Settings.MobileSettings.color}" } };
             arrow.HeightRequest = 25;
             arrow.WidthRequest = 25;

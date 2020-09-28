@@ -285,7 +285,7 @@ namespace xamarinJKH.Apps
             }
             messages = new List<RequestMessage>();// System.Collections.ObjectModel.ObservableCollection<RequestMessage>();
 
-            hex = Color.FromHex(Settings.MobileSettings.color);
+            hex = (Color)Application.Current.Resources["MainColor"];
             getMessage2();
             this.BindingContext = this;
 

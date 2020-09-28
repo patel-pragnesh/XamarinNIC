@@ -86,10 +86,10 @@ namespace xamarinJKH.Pays
                 IconViewLogin.IsVisible = false;
                 LabelPhone.IsVisible = false;
             }
-            FrameBtnAdd.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            progress.Color = Color.FromHex(Settings.MobileSettings.color);
-            Labelseparator.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
-            IconViewFio.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            FrameBtnAdd.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
+            progress.Color = (Color)Application.Current.Resources["MainColor"];
+            Labelseparator.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
+            IconViewFio.Foreground = (Color)Application.Current.Resources["MainColor"];
             
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);

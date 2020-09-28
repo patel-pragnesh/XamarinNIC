@@ -58,7 +58,7 @@ namespace xamarinJKH.Main
         {
             meterInfo = mInfo;
 
-            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color),
+            frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"],
                 Color.White);
             frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -83,7 +83,7 @@ namespace xamarinJKH.Main
             // imgEdit.WidthRequest = 20;
             // imgEdit.HeightRequest = 20;
             // imgEdit.Source = "edit";
-            // imgEdit.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            // imgEdit.Foreground = (Color)Application.Current.Resources["MainColor"];
 
             Edit = new SvgCachedImage();
             Edit.WidthRequest = 25;
@@ -345,7 +345,7 @@ namespace xamarinJKH.Main
 
             frameBtn.HorizontalOptions = LayoutOptions.FillAndExpand;
             frameBtn.VerticalOptions = LayoutOptions.Start;
-            frameBtn.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            frameBtn.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             frameBtn.CornerRadius = 10;
             frameBtn.Margin = new Thickness(0, 10, 0, 0);
             frameBtn.Padding = 12;
@@ -435,7 +435,7 @@ namespace xamarinJKH.Main
                     {
                         Text = AppResources.ChangePenance,
                         FontAttributes = FontAttributes.Bold,
-                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                        TextColor = (Color)Application.Current.Resources["MainColor"],
                         VerticalTextAlignment = TextAlignment.Center,
                         HorizontalTextAlignment = TextAlignment.Center
                     };
@@ -469,7 +469,7 @@ namespace xamarinJKH.Main
                 editName.Tapped += async (s, e) =>
                 {
                     await PopupNavigation.Instance.PushAsync(
-                        new EditCounterNameDialog(Color.FromHex(Settings.MobileSettings.color), UniqueNum));
+                        new EditCounterNameDialog((Color)Application.Current.Resources["MainColor"], UniqueNum));
                 };
                 if (Edit.GestureRecognizers.Count > 0)
                 {
@@ -607,7 +607,7 @@ namespace xamarinJKH.Main
                             formattedDate.Spans.Add(new Span
                             {
                                 Text = $"{AppResources.CountersInfo1} ",
-                                TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                TextColor = (Color)Application.Current.Resources["MainColor"],
                                 FontAttributes = FontAttributes.None,
                                 FontSize = 12
                             });
@@ -622,14 +622,14 @@ namespace xamarinJKH.Main
                                         Text = $"{AppResources.From} " + Settings.Person.Accounts[0].MetersStartDay +
                                                $" {AppResources.To} " +
                                                Settings.Person.Accounts[0].MetersEndDay + " числа ",
-                                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                        TextColor = (Color)Application.Current.Resources["MainColor"],
                                         FontAttributes = FontAttributes.Bold,
                                         FontSize = 12
                                     });
                                     formattedDate.Spans.Add(new Span
                                     {
                                         Text = AppResources.CountersThisMonth,
-                                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                        TextColor = (Color)Application.Current.Resources["MainColor"],
                                         FontAttributes = FontAttributes.None,
                                         FontSize = 12
                                     });
@@ -639,7 +639,7 @@ namespace xamarinJKH.Main
                                     formattedDate.Spans.Add(new Span
                                     {
                                         Text = AppResources.CountersCurrentMonth,
-                                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                        TextColor = (Color)Application.Current.Resources["MainColor"],
                                         FontAttributes = FontAttributes.Bold,
                                         FontSize = 12
                                     });
@@ -650,7 +650,7 @@ namespace xamarinJKH.Main
                                 formattedDate.Spans.Add(new Span
                                 {
                                     Text = AppResources.CountersCurrentMonth,
-                                    TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                    TextColor = (Color)Application.Current.Resources["MainColor"],
                                     FontAttributes = FontAttributes.Bold,
                                     FontSize = 12
                                 });
@@ -781,7 +781,7 @@ namespace xamarinJKH.Main
         public MetersThreeCell()
         {
             MaterialFrame frame = new MaterialFrame();
-            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color),
+            frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"],
                 Color.White);
             frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -806,7 +806,7 @@ namespace xamarinJKH.Main
             imgEdit.WidthRequest = 20;
             imgEdit.HeightRequest = 20;
             imgEdit.Source = "edit";
-            imgEdit.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            imgEdit.Foreground = (Color)Application.Current.Resources["MainColor"];
 
             header.Children.Add(img);
             header.Children.Add(resource);
@@ -1103,7 +1103,7 @@ namespace xamarinJKH.Main
 
             frameBtn.HorizontalOptions = LayoutOptions.FillAndExpand;
             frameBtn.VerticalOptions = LayoutOptions.Start;
-            frameBtn.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            frameBtn.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             frameBtn.CornerRadius = 10;
             frameBtn.Margin = new Thickness(0, 10, 0, 0);
             frameBtn.Padding = 12;
@@ -1293,7 +1293,7 @@ namespace xamarinJKH.Main
                     {
                         Text = AppResources.ChangePenance,
                         FontAttributes = FontAttributes.Bold,
-                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                        TextColor = (Color)Application.Current.Resources["MainColor"],
                         VerticalTextAlignment = TextAlignment.Center,
                         HorizontalTextAlignment = TextAlignment.Center
                     };
@@ -1329,7 +1329,7 @@ namespace xamarinJKH.Main
                 editName.Tapped += async (s, e) =>
                 {
                     await PopupNavigation.Instance.PushAsync(
-                        new EditCounterNameDialog(Color.FromHex(Settings.MobileSettings.color), UniqueNum));
+                        new EditCounterNameDialog((Color)Application.Current.Resources["MainColor"], UniqueNum));
                 };
                 if (imgEdit.GestureRecognizers.Count > 0)
                 {
@@ -1467,7 +1467,7 @@ namespace xamarinJKH.Main
                             formattedDate.Spans.Add(new Span
                             {
                                 Text = $"{AppResources.CountersInfo1} ",
-                                TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                TextColor = (Color)Application.Current.Resources["MainColor"],
                                 FontAttributes = FontAttributes.None,
                                 FontSize = 12
                             });
@@ -1482,14 +1482,14 @@ namespace xamarinJKH.Main
                                         Text = $"{AppResources.From} " + Settings.Person.Accounts[0].MetersStartDay +
                                                $" {AppResources.To} " +
                                                Settings.Person.Accounts[0].MetersEndDay + " числа ",
-                                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                        TextColor = (Color)Application.Current.Resources["MainColor"],
                                         FontAttributes = FontAttributes.Bold,
                                         FontSize = 12
                                     });
                                     formattedDate.Spans.Add(new Span
                                     {
                                         Text = AppResources.CountersThisMonth,
-                                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                        TextColor = (Color)Application.Current.Resources["MainColor"],
                                         FontAttributes = FontAttributes.None,
                                         FontSize = 12
                                     });
@@ -1499,7 +1499,7 @@ namespace xamarinJKH.Main
                                     formattedDate.Spans.Add(new Span
                                     {
                                         Text = AppResources.CountersCurrentMonth,
-                                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                        TextColor = (Color)Application.Current.Resources["MainColor"],
                                         FontAttributes = FontAttributes.Bold,
                                         FontSize = 12
                                     });
@@ -1510,7 +1510,7 @@ namespace xamarinJKH.Main
                                 formattedDate.Spans.Add(new Span
                                 {
                                     Text = AppResources.CountersCurrentMonth,
-                                    TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                    TextColor = (Color)Application.Current.Resources["MainColor"],
                                     FontAttributes = FontAttributes.Bold,
                                     FontSize = 12
                                 });
@@ -1650,7 +1650,7 @@ namespace xamarinJKH.Main
         public MetersThreeCell()
         {
             MaterialFrame frame = new MaterialFrame();
-            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color),
+            frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"],
                 Color.White);
             frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -1675,7 +1675,7 @@ namespace xamarinJKH.Main
             imgEdit.WidthRequest = 20;
             imgEdit.HeightRequest = 20;
             imgEdit.Source = "edit";
-            imgEdit.Foreground = Color.FromHex(Settings.MobileSettings.color);
+            imgEdit.Foreground = (Color)Application.Current.Resources["MainColor"];
 
             header.Children.Add(img);
             header.Children.Add(resource);
@@ -1972,7 +1972,7 @@ namespace xamarinJKH.Main
 
             frameBtn.HorizontalOptions = LayoutOptions.FillAndExpand;
             frameBtn.VerticalOptions = LayoutOptions.Start;
-            frameBtn.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            frameBtn.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             frameBtn.CornerRadius = 10;
             frameBtn.Margin = new Thickness(0, 10, 0, 0);
             frameBtn.Padding = 12;
@@ -2166,7 +2166,7 @@ namespace xamarinJKH.Main
                     {
                         Text = AppResources.ChangePenance,
                         FontAttributes = FontAttributes.Bold,
-                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                        TextColor = (Color)Application.Current.Resources["MainColor"],
                         VerticalTextAlignment = TextAlignment.Center,
                         HorizontalTextAlignment = TextAlignment.Center
                     };
@@ -2202,7 +2202,7 @@ namespace xamarinJKH.Main
                 editName.Tapped += async (s, e) =>
                 {
                     await PopupNavigation.Instance.PushAsync(
-                        new EditCounterNameDialog(Color.FromHex(Settings.MobileSettings.color), UniqueNum));
+                        new EditCounterNameDialog((Color)Application.Current.Resources["MainColor"], UniqueNum));
                 };
                 if (imgEdit.GestureRecognizers.Count > 0)
                 {
@@ -2342,7 +2342,7 @@ namespace xamarinJKH.Main
                             formattedDate.Spans.Add(new Span
                             {
                                 Text = $"{AppResources.CountersInfo1} ",
-                                TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                TextColor = (Color)Application.Current.Resources["MainColor"],
                                 FontAttributes = FontAttributes.None,
                                 FontSize = 12
                             });
@@ -2357,14 +2357,14 @@ namespace xamarinJKH.Main
                                         Text = $"{AppResources.From} " + Settings.Person.Accounts[0].MetersStartDay +
                                                $" {AppResources.To} " +
                                                Settings.Person.Accounts[0].MetersEndDay + " числа ",
-                                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                        TextColor = (Color)Application.Current.Resources["MainColor"],
                                         FontAttributes = FontAttributes.Bold,
                                         FontSize = 12
                                     });
                                     formattedDate.Spans.Add(new Span
                                     {
                                         Text = AppResources.CountersThisMonth,
-                                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                        TextColor = (Color)Application.Current.Resources["MainColor"],
                                         FontAttributes = FontAttributes.None,
                                         FontSize = 12
                                     });
@@ -2374,7 +2374,7 @@ namespace xamarinJKH.Main
                                     formattedDate.Spans.Add(new Span
                                     {
                                         Text = AppResources.CountersCurrentMonth,
-                                        TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                        TextColor = (Color)Application.Current.Resources["MainColor"],
                                         FontAttributes = FontAttributes.Bold,
                                         FontSize = 12
                                     });
@@ -2385,7 +2385,7 @@ namespace xamarinJKH.Main
                                 formattedDate.Spans.Add(new Span
                                 {
                                     Text = AppResources.CountersCurrentMonth,
-                                    TextColor = Color.FromHex(Settings.MobileSettings.color),
+                                    TextColor = (Color)Application.Current.Resources["MainColor"],
                                     FontAttributes = FontAttributes.Bold,
                                     FontSize = 12
                                 });

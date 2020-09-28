@@ -12,7 +12,7 @@ namespace xamarinJKH.AppsConst
 
         public FileConstCell()
         {
-            var hex = Color.FromHex(Settings.MobileSettings.color);
+            var hex = (Color)Application.Current.Resources["MainColor"];
 
             Frame frame = new Frame();
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;

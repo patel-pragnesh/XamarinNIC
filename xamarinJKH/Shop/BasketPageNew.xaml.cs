@@ -31,7 +31,7 @@ namespace xamarinJKH.Shop
             }
 
             //BorderColor = "{AppThemeBinding Light={x:DynamicResource MainColor}, Dark=#e7e7e7}"
-            hex = Color.FromHex(Settings.MobileSettings.color);
+            hex = (Color)Application.Current.Resources["MainColor"];
             Color hexColor = (Color)Application.Current.Resources["MainColor"];
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.White);
 

@@ -78,7 +78,7 @@ namespace xamarinJKH
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
         }
 
-        Color colorFromMobileSettings = Color.FromHex(Settings.MobileSettings.color);
+        Color colorFromMobileSettings = (Color)Application.Current.Resources["MainColor"];
 
         void SetDecorations()
         {

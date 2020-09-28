@@ -217,7 +217,7 @@ namespace xamarinJKH.MainConst
 
         void SetColor()
         {
-            Color hexColor = Color.FromHex(Settings.MobileSettings.color);
+            Color hexColor = (Color)Application.Current.Resources["MainColor"];
             UkName.Text = Settings.MobileSettings.main_name;
             //IconViewSave.Foreground = Color.White;
             // IconViewNameUk.Foreground = hexColor;

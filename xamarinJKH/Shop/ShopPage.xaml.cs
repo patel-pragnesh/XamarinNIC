@@ -83,7 +83,7 @@ namespace xamarinJKH.Shop
                 catch { }
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
-            hex = Color.FromHex(Settings.MobileSettings.color);
+            hex = (Color)Application.Current.Resources["MainColor"];
             //var basketPage = new TapGestureRecognizer();
             //basketPage.Tapped += async (s, e) =>
             //{
@@ -217,8 +217,8 @@ namespace xamarinJKH.Shop
             if (needUnderLine)
             {
                 //cat.TextDecorations = TextDecorations.Underline;
-                //cat.TextColor = Color.FromHex(Settings.MobileSettings.color);
-                b.TextColor = colorFromMobileSettings;// Color.FromHex(Settings.MobileSettings.color);
+                //cat.TextColor = (Color)Application.Current.Resources["MainColor"];
+                b.TextColor = colorFromMobileSettings;// (Color)Application.Current.Resources["MainColor"];
                 prevCategoryTapped = c;
             }
             else
@@ -284,7 +284,7 @@ namespace xamarinJKH.Shop
         const string GOODS_IMAGE_URI = RestClientMP.SERVER_ADDR +"/public/GoodsImage/";
         const string SortByPrice = "Сортировать по цене";
         
-        Color colorFromMobileSettings = Color.FromHex(Settings.MobileSettings.color);
+        Color colorFromMobileSettings = (Color)Application.Current.Resources["MainColor"];
 
 
         async void setList(string i)
@@ -653,7 +653,7 @@ namespace xamarinJKH.Shop
 
         //            IconView iconViewPlus = new IconView();
         //            iconViewPlus.Source = "ic_plus";
-        //            iconViewPlus.Foreground = Color.FromHex(Settings.MobileSettings.color);
+        //            iconViewPlus.Foreground = (Color)Application.Current.Resources["MainColor"];
         //            iconViewPlus.HeightRequest = 15;
         //            iconViewPlus.WidthRequest = 15;
 
@@ -695,7 +695,7 @@ namespace xamarinJKH.Shop
 
         //            IconView iconViewMinus = new IconView();
         //            iconViewMinus.Source = "ic_minus";
-        //            iconViewMinus.Foreground = Color.FromHex(Settings.MobileSettings.color);
+        //            iconViewMinus.Foreground = (Color)Application.Current.Resources["MainColor"];
         //            iconViewMinus.HeightRequest = 15;
         //            iconViewMinus.WidthRequest = 15;
 
@@ -835,7 +835,7 @@ namespace xamarinJKH.Shop
 
                 IconView iconViewPlus = new IconView();
                 iconViewPlus.Source = "ic_plus";
-                iconViewPlus.Foreground = Color.FromHex(Settings.MobileSettings.color);
+                iconViewPlus.Foreground = (Color)Application.Current.Resources["MainColor"];
                 iconViewPlus.HeightRequest = 15;
                 iconViewPlus.WidthRequest = 15;
 
@@ -877,7 +877,7 @@ namespace xamarinJKH.Shop
 
                 IconView iconViewMinus = new IconView();
                 iconViewMinus.Source = "ic_minus";
-                iconViewMinus.Foreground = Color.FromHex(Settings.MobileSettings.color);
+                iconViewMinus.Foreground = (Color)Application.Current.Resources["MainColor"];
                 iconViewMinus.HeightRequest = 15;
                 iconViewMinus.WidthRequest = 15;
 

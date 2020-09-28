@@ -204,7 +204,7 @@ namespace xamarinJKH
         IDictionary<Guid, Guid> frames = new Dictionary<Guid, Guid>();
         IDictionary<Guid, Guid> arrows = new Dictionary<Guid, Guid>();
 
-        Color colorFromMobileSettings = Color.FromHex(Settings.MobileSettings.color);
+        Color colorFromMobileSettings = (Color)Application.Current.Resources["MainColor"];
 
         Frame prevAddtionlExpanded = null;
 
@@ -317,7 +317,7 @@ namespace xamarinJKH
             /******* общая информация ********/
             //видимая часть
             Frame CommonInfo = GetFrame();
-            CommonInfo.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
+            CommonInfo.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
             CommonInfo.GestureRecognizers.Add(ShowHideAction());
             StackLayout rootStackCommon = new StackLayout() { Orientation = StackOrientation.Vertical, VerticalOptions = LayoutOptions.FillAndExpand };
             StackLayout stackCommonInfo = new StackLayout() { Orientation = StackOrientation.Horizontal, HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -387,7 +387,7 @@ namespace xamarinJKH
             /******* Повестка собрания ********/
             //видимая часть
             Frame CommonTheme = GetFrame();
-            CommonTheme.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
+            CommonTheme.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
             CommonTheme.GestureRecognizers.Add(ShowHideAction());
             StackLayout rootStack = new StackLayout() { Orientation = StackOrientation.Vertical, VerticalOptions = LayoutOptions.FillAndExpand };
             StackLayout stack = new StackLayout() { Orientation = StackOrientation.Horizontal, HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -430,7 +430,7 @@ namespace xamarinJKH
             /******* Сведения о собственности ********/
             //видимая часть
             Frame frame = GetFrame();
-            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
+            frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
             frame.GestureRecognizers.Add(ShowHideAction());
             StackLayout rootStack = new StackLayout() { Orientation = StackOrientation.Vertical, VerticalOptions = LayoutOptions.FillAndExpand };
             StackLayout stack = new StackLayout() { Orientation = StackOrientation.Horizontal, HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -481,7 +481,7 @@ namespace xamarinJKH
             /******* Сведения об администраторе ********/
             //видимая часть
             Frame frame = GetFrame();
-            frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
+            frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
             frame.GestureRecognizers.Add(ShowHideAction());
             StackLayout rootStack = new StackLayout() { Orientation = StackOrientation.Vertical, VerticalOptions = LayoutOptions.FillAndExpand };
             StackLayout stack = new StackLayout() { Orientation = StackOrientation.Horizontal, HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -564,7 +564,7 @@ namespace xamarinJKH
             /******* Порядок приема решений ********/
             //видимая часть
             Frame CommonTheme = GetFrame();
-            CommonTheme.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
+            CommonTheme.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
             CommonTheme.GestureRecognizers.Add(ShowHideAction());
             StackLayout rootStack = new StackLayout() { Orientation = StackOrientation.Vertical, VerticalOptions = LayoutOptions.FillAndExpand };
             StackLayout stack = new StackLayout() { Orientation = StackOrientation.Horizontal, HorizontalOptions = LayoutOptions.FillAndExpand };

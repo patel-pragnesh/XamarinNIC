@@ -19,7 +19,7 @@ namespace xamarinJKH.Droid.CustomRenderers
         {
             var radioButton = (RadioButton)Control;
            
-            radioButton.ButtonTintList = ColorStateList.ValueOf(global::Android.Graphics.Color.ParseColor("#" + Settings.MobileSettings.color));
+            radioButton.ButtonTintList = ColorStateList.ValueOf(global::Android.Graphics.Color.ParseColor(((Color)Application.Current.Resources["MainColor"]).ToHex()));
         }
 
         

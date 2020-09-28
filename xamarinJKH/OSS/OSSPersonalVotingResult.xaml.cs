@@ -20,7 +20,7 @@ namespace xamarinJKH
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OSSPersonalVotingResult : ContentPage
     {
-        Color colorFromMobileSettings = Color.FromHex(Settings.MobileSettings.color);
+        Color colorFromMobileSettings = (Color)Application.Current.Resources["MainColor"];
         public bool forsvg { get; set; }
 
         public OSSPersonalVotingResult(OSS oSS, bool userFinishPool=false)

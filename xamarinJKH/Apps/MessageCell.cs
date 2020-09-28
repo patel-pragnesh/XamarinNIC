@@ -64,7 +64,7 @@ namespace xamarinJKH.Apps
     //        Frame frameTextA = new Frame();
     //        frameTextA.HorizontalOptions = LayoutOptions.End;
     //        frameTextA.VerticalOptions = LayoutOptions.StartAndExpand;
-    //        frameTextA.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+    //        frameTextA.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
     //        frameTextA.Margin = new Thickness(0, 0, 0, 10);
     //        frameTextA.Padding = new Thickness(15, 15, 15, 15);
     //        frameTextA.CornerRadius = 20;
@@ -280,7 +280,7 @@ namespace xamarinJKH.Apps
             Frame frameTextA = new Frame();
             frameTextA.HorizontalOptions = LayoutOptions.End;
             frameTextA.VerticalOptions = LayoutOptions.StartAndExpand;
-            frameTextA.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            frameTextA.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             frameTextA.Margin = new Thickness(0, 0, 0, 10);
             frameTextA.Padding = new Thickness(15, 15, 15, 15);
             frameTextA.CornerRadius = 20;
@@ -570,7 +570,7 @@ namespace xamarinJKH.Apps
     //        //Frame frameTextA = new Frame();
     //        //frameTextA.HorizontalOptions = LayoutOptions.End;
     //        //frameTextA.VerticalOptions = LayoutOptions.StartAndExpand;
-    //        //frameTextA.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+    //        //frameTextA.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
     //        //frameTextA.Margin = new Thickness(0, 0, 0, 10);
     //        //frameTextA.Padding = new Thickness(15, 15, 15, 15);
     //        //frameTextA.CornerRadius = 20;
@@ -1084,7 +1084,7 @@ namespace xamarinJKH.Apps
             Frame frameTextA = new Frame();
             frameTextA.HorizontalOptions = LayoutOptions.End;
             frameTextA.VerticalOptions = LayoutOptions.StartAndExpand;
-            frameTextA.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            frameTextA.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             frameTextA.Margin = new Thickness(0, 0, 0, 10);
             frameTextA.Padding = new Thickness(15, 15, 15, 15);
             frameTextA.CornerRadius = 20;

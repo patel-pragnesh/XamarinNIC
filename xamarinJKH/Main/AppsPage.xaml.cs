@@ -161,7 +161,8 @@ namespace xamarinJKH.Main
         public AppsPage()
         {
             InitializeComponent();
-            hex = Color.FromHex(Settings.MobileSettings.color);
+            //Settings.MobileSettings.color = null;
+            hex = Color.FromHex(!string.IsNullOrEmpty(Settings.MobileSettings.color) ? Settings.MobileSettings.color : "#FF0000");
             BindingContext = viewModel = new AppsPageViewModel();
             
             NavigationPage.SetHasNavigationBar(this, false);

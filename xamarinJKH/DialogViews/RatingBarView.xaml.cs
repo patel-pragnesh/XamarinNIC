@@ -31,7 +31,7 @@ namespace xamarinJKH.DialogViews
             {
                 case Device.iOS:
                     RatingBar.Margin = new Thickness(0, 0, 0, 0);
-                    RatingBar.FillColor = Color.FromHex(Settings.MobileSettings.color);
+                    RatingBar.FillColor = (Color)Application.Current.Resources["MainColor"];
                     RatingBar.HeightRequest = 35;
                     break;
                 case Device.Android:

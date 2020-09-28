@@ -26,7 +26,7 @@ namespace xamarinJKH.DialogViews
             InitializeComponent();
             
             IconViewPhone.IsVisible = Settings.Person.IsDispatcher;
-            Frame.SetAppThemeColor(Frame.BorderColorProperty, Color.FromHex(Settings.MobileSettings.color), Color.White);
+            Frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
             switch (Device.RuntimePlatform)
             {
                 case Device.Android:

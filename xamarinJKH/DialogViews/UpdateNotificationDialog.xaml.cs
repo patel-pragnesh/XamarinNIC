@@ -61,7 +61,7 @@ namespace xamarinJKH.DialogViews
             {
                 try
                 {
-                    return Color.FromHex(Settings.MobileSettings.color);
+                    return (Color)Application.Current.Resources["MainColor"];
                 }
                 catch
                 {

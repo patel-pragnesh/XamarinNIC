@@ -85,7 +85,7 @@ namespace xamarinJKH.Shop
             //    }
             //};
             //StackLayoutBasket.GestureRecognizers.Add(PayPageShop);
-            hex = Color.FromHex(Settings.MobileSettings.color);
+            hex = (Color)Application.Current.Resources["MainColor"];
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
@@ -123,7 +123,7 @@ namespace xamarinJKH.Shop
             MessagingCenter.Send<Object, Dictionary<string, Goods>>(this, "UpdateGoods", Goodset);
         }
 
-        Color colorFromMobileSettings = Color.FromHex(Settings.MobileSettings.color);
+        Color colorFromMobileSettings = (Color)Application.Current.Resources["MainColor"];
         const string GOODS_IMAGE_URI = "https://api.sm-center.ru/test_erc_udm/public/GoodsImage/";
 
 

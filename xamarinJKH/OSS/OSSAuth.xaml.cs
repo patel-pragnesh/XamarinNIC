@@ -23,7 +23,7 @@ namespace xamarinJKH
 
         readonly RestClientMP rc = new RestClientMP();
 
-        Color hex = Color.FromHex(Settings.MobileSettings.color);
+        Color hex = (Color)Application.Current.Resources["MainColor"];
         
         string forgotpinText = AppResources.OSSPincodeTroub;
 
@@ -92,7 +92,7 @@ namespace xamarinJKH
                 EntryPin.IsPassword = !EntryPin.IsPassword;                
                 if (EntryPin.IsPassword)
                 {
-                    ImageClosePass.Foreground = Color.FromHex(Settings.MobileSettings.color);
+                    ImageClosePass.Foreground = (Color)Application.Current.Resources["MainColor"];
                 }
                 else
                 {

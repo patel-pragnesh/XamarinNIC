@@ -141,7 +141,7 @@ namespace xamarinJKH.Additional
             byte[] imageByte = await _server.GetPhotoAdditional(additionalService.ID.ToString());
             Stream stream = new MemoryStream(imageByte);
             ImageAdd.Source = ImageSource.FromStream(() => { return stream; });
-            FrameBtnQuest.BackgroundColor = Color.FromHex(Settings.MobileSettings.color);
+            FrameBtnQuest.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             if (additionalService.CanBeOrdered)
             {
                 FrameBtnQuest.IsVisible = true;
