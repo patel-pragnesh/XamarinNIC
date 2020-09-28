@@ -126,20 +126,43 @@ namespace xamarinJKH.Pays
                 identDate.FormattedText = formattedIdent;
 
                 formattedIdent = new FormattedString();
-                double sum2 = Double.Parse(SumPay);
-                formattedIdent.Spans.Add(new Span
+
+                double sum2;
+                    var parseSumpayOk = Double.TryParse(SumPay, NumberStyles.Float, new CultureInfo("ru-RU"), out sum2);
+                if(parseSumpayOk)
                 {
-                    Text = $"{sum2:0.00}".Replace(',','.'),
-                    TextColor = Color.Black,
-                    FontAttributes = FontAttributes.Bold,
-                    FontSize = fs
-                });
-                formattedIdent.Spans.Add(new Span
+                    formattedIdent.Spans.Add(new Span
+                    {
+                        Text = $"{sum2:0.00}".Replace(',', '.'),
+                        TextColor = Color.Black,
+                        FontAttributes = FontAttributes.Bold,
+                        FontSize = fs
+                    });
+                    formattedIdent.Spans.Add(new Span
+                    {
+                        Text = $"\n{AppResources.Currency}",
+                        TextColor = Color.Gray,
+                        FontSize = fs - 2
+                    });
+
+                }
+                else
                 {
-                    Text = $"\n{AppResources.Currency}",
-                    TextColor = Color.Gray,
-                    FontSize = fs-2
-                });
+                    formattedIdent.Spans.Add(new Span
+                    {
+                        Text = $"{SumPay}".Replace(',', '.'),
+                        TextColor = Color.Black,
+                        FontAttributes = FontAttributes.Bold,
+                        FontSize = fs
+                    });
+                    formattedIdent.Spans.Add(new Span
+                    {
+                        Text = $"\n{AppResources.Currency}",
+                        TextColor = Color.Gray,
+                        FontSize = fs - 2
+                    });
+                }
+               
 
                 sum.FormattedText = formattedIdent;
                 if (!HasImage)
