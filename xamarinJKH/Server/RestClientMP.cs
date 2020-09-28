@@ -18,7 +18,7 @@ namespace xamarinJKH.Server
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        public const string SERVER_ADDR = "https://api.sm-center.ru/water2"; // Тихая гавань water/ water2 - тихая гавань - 2 
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/water2"; // Тихая гавань water/ water2 - тихая гавань - 2 
         // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
@@ -37,7 +37,7 @@ namespace xamarinJKH.Server
         // public const string SERVER_ADDR = "https://api.sm-center.ru/ur_lk"; // Универсальные решения
         // public const string SERVER_ADDR = "https://api.sm-center.ru/chg_lk/"; // Чистый город
 
-         //public const string SERVER_ADDR = "https://api.sm-center.ru/tsgopaliha/"; // Новая Опалиха
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/tsgopaliha/"; // Новая Опалиха
         //public const string SERVER_ADDR = "https://api.sm-center.ru/sklider/"; // Мобильный Мир
         //public const string SERVER_ADDR = "https://api.sm-center.ru/avalon_alfagkh/"; // Альфа ЖКХ
         //public const string SERVER_ADDR = "https://api.sm-center.ru/stolitsa/"; // Жилищник столица
@@ -45,13 +45,12 @@ namespace xamarinJKH.Server
         //public const string SERVER_ADDR = "https://api.sm-center.ru/grinvay/"; // Грин-Вэй Сочи
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ikon/"; // Айкон
 
-         // public const string SERVER_ADDR = "https://api.sm-center.ru/mup_kc/"; // МУП КС г. Новочебоксарска
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/mup_kc/"; // МУП КС г. Новочебоксарска
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_cdo/"; // ООО ЦДО г.Тверь
 
         //public const string SERVER_ADDR = "https://api.sm-center.ru/vestaesteit/"; // Веста Эстейт
-       //public const string SERVER_ADDR = "https://api.sm-center.ru/uk_divnomorskoe/"; // Дивноморское
-        
-
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/uk_divnomorskoe/"; // Дивноморское
+        public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_interkapstroy/"; // ИнтерКапСтрой
 
         public const string SEND_TEACH_MAIL = "Public/TechSupportAppeal"; // Создание обращения в тех поддержк
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутентификация сотрудника
