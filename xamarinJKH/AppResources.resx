@@ -1278,7 +1278,7 @@
     <value> гр.</value>
   </data>
   <data name="TechDialogTitle" xml:space="preserve">
-    <value>Для обращения в тех. поддержку сообщите код оператору </value>
+    <value>После выбора мессенджера, отправьте следующий код первым же сообщением для активации диалога с тех.поддержкой</value>
   </data>
   <data name="DellCouneter" xml:space="preserve">
     <value>Удалить показания?</value>
