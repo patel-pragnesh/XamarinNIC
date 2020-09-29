@@ -1331,4 +1331,13 @@
   <data name="AppsClosed" xml:space="preserve">
     <value>Заявки закрыты</value>
   </data>
+  <data name="AddLsString" xml:space="preserve">
+    <value> успешно подключён, для дальнейшей работы перезагрузите приложение</value>
+  </data>
+  <data name="EnterPin" xml:space="preserve">
+    <value>Введите пин - код с последней квитанции</value>
+  </data>
+  <data name="Confirm order1" xml:space="preserve">
+    <value />
+  </data>
 </root>

@@ -1334,4 +1334,10 @@
   <data name="AppsClosed" xml:space="preserve">
     <value>Заявки закриті</value>
   </data>
+  <data name="AddLsString" xml:space="preserve">
+    <value> успішно підключений, для подальшої роботи перезавантажте додаток</value>
+  </data>
+  <data name="EnterPin" xml:space="preserve">
+    <value>Введіть пін - код з останньої квитанції</value>
+  </data>
 </root>

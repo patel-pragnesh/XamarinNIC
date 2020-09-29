@@ -18,7 +18,7 @@ namespace xamarinJKH.Server
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        public const string SERVER_ADDR = "https://api.sm-center.ru/water2"; // Тихая гавань
+        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань
         // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
@@ -1339,7 +1339,7 @@ namespace xamarinJKH.Server
             return new MemoryStream(response.RawBytes);
         }
 
-        public async Task<AddAccountResult> AddIdent(string Ident, bool Confirm = false)
+        public async Task<AddAccountResult> AddIdent(string Ident, bool Confirm = false, string PinCode = null)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(ADD_IDENT_PROFILE, Method.POST);
@@ -1350,7 +1350,8 @@ namespace xamarinJKH.Server
             restRequest.AddBody(new
             {
                 Ident,
-                Confirm
+                Confirm,
+                PinCode
             });
             var response = await restClientMp.ExecuteTaskAsync<AddAccountResult>(restRequest);
             // Проверяем статус

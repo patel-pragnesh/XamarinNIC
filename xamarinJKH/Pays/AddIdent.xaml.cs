@@ -100,7 +100,15 @@ namespace xamarinJKH.Pays
                     bool answer = await DisplayAlert("", result.Address, AppResources.AddIdent, AppResources.Cancel);
                     if (answer)
                     {
-                        AcceptAddIdentAccount(ident, Settings.Person.Email);
+                        if (Settings.MobileSettings.useAccountPinCode)
+                        {
+                            await PopupNavigation.Instance.PushAsync(
+                                new EnterPinAddLs(ident, _paysPage, this));
+                        }
+                        else
+                        {
+                            AcceptAddIdentAccount(ident, Settings.Person.Email);
+                        }
                     }
                     else
                     {
@@ -148,7 +156,7 @@ namespace xamarinJKH.Pays
                 {
                     Console.WriteLine(result.Address);
                     Console.WriteLine("Отправлено");
-                    await DisplayAlert("", $"{AppResources.Acc} " + ident + " успешно подключён, для дальнейшей работы перезагрузите приложение", "ОК");
+                    await DisplayAlert("", $"{AppResources.Acc} " + ident + $"{AppResources.AddLsString}", "ОК");
                     FrameBtnAdd.IsVisible = true;
                     progress.IsVisible = false;
                    
