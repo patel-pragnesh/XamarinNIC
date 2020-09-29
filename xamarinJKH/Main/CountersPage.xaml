@@ -107,11 +107,11 @@
                     <StackLayout
                 VerticalOptions="StartAndExpand">
                 <Frame CornerRadius="40"
-                       Margin="20, 10, 20, -40"
+                       Margin="10, 10, 10, -40"
                        VerticalOptions="Start"
                        x:Name="FrameTop"
                        BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
-                       Padding="20,20,20,60">
+                       Padding="20,20,20,50">
                     <StackLayout Orientation="Vertical"
                                  HorizontalOptions="CenterAndExpand">
                         <StackLayout Orientation="Horizontal"
@@ -150,13 +150,13 @@
                         </StackLayout>
                         <Label x:Name="PeriodSendLbl"
                                Text="Возможность передавать показания доступна с 15 по 25 число текущего месяца!"
-                               Margin="0,10,0,10"
+                               Margin="0,0,0,0"
                                TextDecorations="Underline"
                                FontAttributes="Bold"
                                HorizontalOptions="CenterAndExpand"
                                HorizontalTextAlignment="Center"
                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                               FontSize="15" />
+                               FontSize="12" />
                     </StackLayout>
 
                 </Frame>

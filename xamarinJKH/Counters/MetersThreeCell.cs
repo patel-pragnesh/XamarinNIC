@@ -407,10 +407,7 @@ namespace xamarinJKH.Main
             try
             {
                 int currDay = DateTime.Now.Day;
-                if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
-                     Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
-                    (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                     Settings.Person.Accounts[0].MetersEndDay == 0))
+                if (CheckPeriod(currDay))
                 {
                     int indexOf = stack.Children.IndexOf(editLabel);
                     int index = stack.Children.IndexOf(labelЗPeriod);
@@ -445,6 +442,25 @@ namespace xamarinJKH.Main
             catch (Exception e)
             {
             }
+        }
+
+        private static bool CheckPeriod(int currDay)
+        {
+            if (Settings.Person.Accounts[0].MetersEndDay < Settings.Person.Accounts[0].MetersStartDay)
+            {
+                DateTime starDay = new DateTime(DateTime.Now.Year, DateTime.Now.Month, Settings.Person.Accounts[0].MetersStartDay); ;
+                DateTime endDay = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, Settings.Person.Accounts[0].MetersEndDay); 
+                DateTime now = DateTime.Now;
+
+                return (now >= starDay && now <= endDay) || (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                                                             Settings.Person.Accounts[0].MetersEndDay == 0);
+
+            }
+            
+            return (Settings.Person.Accounts[0].MetersStartDay <= currDay &&
+                    Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
+                   (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                    Settings.Person.Accounts[0].MetersEndDay == 0);
         }
 
         string GetFormat(int DecimalPoint)
@@ -680,11 +696,9 @@ namespace xamarinJKH.Main
             {
                 return;
             }
+            
             int currentDay = DateTime.Now.Day;
-            if ((Settings.Person.Accounts[0].MetersStartDay <= currentDay &&
-                 Settings.Person.Accounts[0].MetersEndDay >= currentDay) ||
-                (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                 Settings.Person.Accounts[0].MetersEndDay == 0))
+            if (CheckPeriod(currentDay))
             {
                 Label del = new Label();
                 del.TextColor = (Color) Application.Current.Resources["MainColor"];
