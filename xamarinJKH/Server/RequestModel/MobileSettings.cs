@@ -13,6 +13,8 @@ namespace xamarinJKH.Server.RequestModel
         public string startScreen { get; set; }
         public bool enableOSS { get; set; }    
         
+        public bool useAccountPinCode { get; set; }    
+        
         public bool chooseIdentByHouse { get; set; }    
         public bool useBonusSystem { get; set; }    
         public bool useDispatcherAuth { get; set; }

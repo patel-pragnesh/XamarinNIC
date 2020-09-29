@@ -1332,6 +1332,30 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="ValidateCodeCash" xml:space="preserve">
     <value>Pass the confirmation code to the courier</value>
   </data>
+  <data name="EventsCam" xml:space="preserve">
+    <value>Cameras</value>
+  </data>
+  <data name="AdditionalList" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
+  <data name="AdditionalMap" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="VoiceInput" xml:space="preserve">
+    <value>Voice Input!</value>
+  </data>
+  <data name="AppsPerformed" xml:space="preserve">
+    <value>Applications completed</value>
+  </data>
+  <data name="AppsClosed" xml:space="preserve">
+    <value>Applications closed</value>
+  </data>
+  <data name="AddLsString" xml:space="preserve">
+    <value> successfully connected, restart the application for further work</value>
+  </data>
+  <data name="EnterPin" xml:space="preserve">
+    <value>Enter pin - code from the last receipt</value>
+  </data>
   <data name="InsuranceText" xml:space="preserve">
     <value>Insurance 111 rubles.</value>
   </data>
@@ -1352,20 +1376,5 @@ A bot will call you on your number PHONE and tell an access code</value>
   </data>
   <data name="AutoPennance" xml:space="preserve">
     <value>Auto pennance</value>
-  </data>
-  <data name="AdditionalList" xml:space="preserve">
-    <value>Catalog</value>
-  </data>
-  <data name="AdditionalMap" xml:space="preserve">
-    <value>Map</value>
-  </data>
-  <data name="AppsPerformed" xml:space="preserve">
-    <value>Applications completed</value>
-  </data>
-  <data name="AppsClosed" xml:space="preserve">
-    <value>Applications closed</value>
-  </data>
-  <data name="EventsCam" xml:space="preserve">
-    <value>Cameras</value>
   </data>
 </root>

@@ -1316,6 +1316,24 @@
   <data name="ValidateCodeCash" xml:space="preserve">
     <value>Передайте код підтвердження кур'єру</value>
   </data>
+  <data name="EventsCam" xml:space="preserve">
+    <value>Камери</value>
+  </data>
+  <data name="AdditionalList" xml:space="preserve">
+    <value>Каталог</value>
+  </data>
+  <data name="AdditionalMap" xml:space="preserve">
+    <value>Карта</value>
+  </data>
+  <data name="VoiceInput" xml:space="preserve">
+    <value>Голосовий ввід!</value>
+  </data>
+  <data name="AppsPerformed" xml:space="preserve">
+    <value>Заявки виконані</value>
+  </data>
+  <data name="AppsClosed" xml:space="preserve">
+    <value>Заявки закриті</value>
+  </data>
   <data name="InsuranceText" xml:space="preserve">
     <value>Страхування 111 руб.</value>
   </data>
@@ -1337,19 +1355,10 @@
   <data name="AutoPennance" xml:space="preserve">
     <value>Aвто свідчення</value>
   </data>
-  <data name="AdditionalList" xml:space="preserve">
-    <value>Каталог</value>
+  <data name="AddLsString" xml:space="preserve">
+    <value> успішно підключений, для подальшої роботи перезавантажте додаток</value>
   </data>
-  <data name="AdditionalMap" xml:space="preserve">
-    <value>Карта</value>
-  </data>
-  <data name="AppsPerformed" xml:space="preserve">
-    <value>Заявки виконані</value>
-  </data>
-  <data name="AppsClosed" xml:space="preserve">
-    <value>Заявки закриті</value>
-  </data>
-  <data name="EventsCam" xml:space="preserve">
-    <value>Камери</value>
+  <data name="EnterPin" xml:space="preserve">
+    <value>Введіть пін - код з останньої квитанції</value>
   </data>
 </root>

@@ -1313,6 +1313,25 @@
   <data name="ValidateCodeCash" xml:space="preserve">
     <value>Передайте код подтверждения курьеру</value>
   </data>
+  <data name="EventsCam" xml:space="preserve">
+    <value>Камеры</value>
+  </data>
+  <data name="AdditionalList" xml:space="preserve">
+    <value>Каталог</value>
+  </data>
+  <data name="AdditionalMap" xml:space="preserve">
+    <value>Карта</value>
+  </data>
+  <data name="VoiceInput" xml:space="preserve">
+    <value>Голосовой ввод!</value>
+  </data>
+  <data name="AppsPerformed" xml:space="preserve">
+    <value>Заявки выполнены</value>
+  </data>
+  <data name="AppsClosed" xml:space="preserve">
+    <value>Заявки закрыты</value>
+  </data>
+
   <data name="InsuranceText" xml:space="preserve">
     <value>Страхование 111 руб.</value>
   </data>
@@ -1337,19 +1356,13 @@
   <data name="AutoPennance" xml:space="preserve">
     <value>Автоматическое снятие</value>
   </data>
-  <data name="AdditionalList" xml:space="preserve">
-    <value>Каталог</value>
+  <data name="AddLsString" xml:space="preserve">
+    <value> успешно подключён, для дальнейшей работы перезагрузите приложение</value>
   </data>
-  <data name="AdditionalMap" xml:space="preserve">
-    <value>Карта</value>
+  <data name="EnterPin" xml:space="preserve">
+    <value>Введите пин - код с последней квитанции</value>
   </data>
-  <data name="AppsPerformed" xml:space="preserve">
-    <value>Заявки выполнены</value>
-  </data>
-  <data name="AppsClosed" xml:space="preserve">
-    <value>Заявки закрыты</value>
-  </data>
-  <data name="EventsCam" xml:space="preserve">
-    <value>Камеры</value>
+  <data name="Confirm order1" xml:space="preserve">
+    <value />
   </data>
 </root>

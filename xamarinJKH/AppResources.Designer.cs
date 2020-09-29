@@ -142,6 +142,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  успешно подключён, для дальнейшей работы перезагрузите приложение.
+        /// </summary>
+        internal static string AddLsString {
+            get {
+                return ResourceManager.GetString("AddLsString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to При передаче показаний произошла ошибка.
         /// </summary>
         internal static string AddMetersError {
@@ -674,6 +683,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Confirm_order1 {
+            get {
+                return ResourceManager.GetString("Confirm order1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Подтверждение заказа.
         /// </summary>
         internal static string ConfirmingOrder {
@@ -958,6 +976,15 @@ namespace xamarinJKH {
         internal static string EnterName {
             get {
                 return ResourceManager.GetString("EnterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введите пин - код с последней квитанции.
+        /// </summary>
+        internal static string EnterPin {
+            get {
+                return ResourceManager.GetString("EnterPin", resourceCulture);
             }
         }
         
@@ -3707,6 +3734,15 @@ namespace xamarinJKH {
         internal static string ValidateCodeCash {
             get {
                 return ResourceManager.GetString("ValidateCodeCash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Голосовой ввод!.
+        /// </summary>
+        internal static string VoiceInput {
+            get {
+                return ResourceManager.GetString("VoiceInput", resourceCulture);
             }
         }
         
