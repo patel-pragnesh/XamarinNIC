@@ -50,7 +50,12 @@ namespace xamarinJKH.Server
 
         //public const string SERVER_ADDR = "https://api.sm-center.ru/vestaesteit/"; // Веста Эстейт
         //public const string SERVER_ADDR = "https://api.sm-center.ru/uk_divnomorskoe/"; // Дивноморское
-        public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_interkapstroy/"; // ИнтерКапСтрой
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_interkapstroy/"; // ИнтерКапСтрой
+
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/suhanovo_park/"; // Суханово Парк
+
+        public const string SERVER_ADDR = "https://api.sm-center.ru/stroim-bud/"; // Строим будущее
+
 
         public const string SEND_TEACH_MAIL = "Public/TechSupportAppeal"; // Создание обращения в тех поддержк
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутентификация сотрудника
