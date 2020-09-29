@@ -229,14 +229,21 @@ namespace xamarinJKH.Pays
 
 
             decimal totalSum = 0;
-            try
+            if (sumText.Equals("-"))
             {
-                totalSum = Decimal.Parse(sumText);
+                totalSum = 0;
             }
-            catch
+            else
             {
+                try
+                {
+                    totalSum = Decimal.Parse(sumText);
+                }
+                catch
+                {
 
-                totalSum = Decimal.Parse(sumText.Replace(',','.'));
+                    totalSum = Decimal.Parse(sumText.Replace(',', '.'));
+                }
             }
 
             // if (isComission)
