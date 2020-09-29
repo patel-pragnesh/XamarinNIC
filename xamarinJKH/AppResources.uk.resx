@@ -1334,4 +1334,7 @@
   <data name="Language" xml:space="preserve">
     <value>Мова</value>
   </data>
+  <data name="AutoPennance" xml:space="preserve">
+    <value>Aвто свідчення</value>
+  </data>
 </root>
