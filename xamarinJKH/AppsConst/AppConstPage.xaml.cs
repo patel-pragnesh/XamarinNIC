@@ -780,6 +780,7 @@ namespace xamarinJKH.AppsConst
 
                 //additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
                 var lastChild = baseForApp.Children.LastOrDefault();
+                if (lastChild != null)
                 await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
             }
             catch (Exception e)
