@@ -12,6 +12,7 @@ using xamarinJKH.Server;
 using xamarinJKH.Utils;
 using xamarinJKH.Server.RequestModel;
 using FFImageLoading.Svg.Forms;
+using Xamarin.Forms.Markup;
 
 namespace xamarinJKH.Main
 {
@@ -439,7 +440,23 @@ namespace xamarinJKH.Main
                         VerticalTextAlignment = TextAlignment.Center,
                         HorizontalTextAlignment = TextAlignment.Center
                     };
-                    stack.Children.Add(editLabel);
+
+                    if (meterInfo.AutoValueGettingOnly)
+                    {
+                        var auto_label = new Label
+                        {
+                            Text = AppResources.AutoPennance,
+                            FontAttributes = FontAttributes.Bold,
+                            TextColor = (Color)Application.Current.Resources["MainColor"],
+                            VerticalTextAlignment = TextAlignment.Center,
+                            HorizontalTextAlignment = TextAlignment.Center
+                        };
+                        stack.Children.Add(auto_label);
+                    }
+                    else
+                    {
+                        stack.Children.Add(editLabel);
+                    }
                 }
             }
             catch (Exception e)
