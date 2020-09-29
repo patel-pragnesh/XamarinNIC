@@ -12,6 +12,7 @@ using xamarinJKH.Server;
 using xamarinJKH.Utils;
 using xamarinJKH.Server.RequestModel;
 using FFImageLoading.Svg.Forms;
+using Xamarin.Forms.Markup;
 
 namespace xamarinJKH.Main
 {
@@ -395,7 +396,7 @@ namespace xamarinJKH.Main
             frame.Content = container;
 
             ext(mInfo.Values, mInfo.NumberOfDecimalPlaces, mInfo.ID, mInfo.IsDisabled, mInfo.Resource, mInfo.Address,
-             mInfo.CustomName, mInfo.UniqueNum, mInfo.Units, mInfo.LastCheckupDate, mInfo.RecheckInterval.ToString());
+             mInfo.CustomName, mInfo.FactoryNumber, mInfo.Units, mInfo.LastCheckupDate, mInfo.RecheckInterval.ToString());
 
            Children.Add(frame);
         }
@@ -436,7 +437,23 @@ namespace xamarinJKH.Main
                         VerticalTextAlignment = TextAlignment.Center,
                         HorizontalTextAlignment = TextAlignment.Center
                     };
-                    stack.Children.Add(editLabel);
+
+                    if (meterInfo.AutoValueGettingOnly)
+                    {
+                        var auto_label = new Label
+                        {
+                            Text = AppResources.AutoPennance,
+                            FontAttributes = FontAttributes.Bold,
+                            TextColor = (Color)Application.Current.Resources["MainColor"],
+                            VerticalTextAlignment = TextAlignment.Center,
+                            HorizontalTextAlignment = TextAlignment.Center
+                        };
+                        stack.Children.Add(auto_label);
+                    }
+                    else
+                    {
+                        stack.Children.Add(editLabel);
+                    }
                 }
             }
             catch (Exception e)
@@ -478,14 +495,14 @@ namespace xamarinJKH.Main
         }
 
         void ext(List<MeterValueInfo> Values, int DecimalPoint, int MeterID, bool IsDisabled, string Resource, string Address,
-            string CustomName, string UniqueNum, string Units, string CheckupDate, string RecheckInterval)
+            string CustomName, string FactoryNumber, string Units, string CheckupDate, string RecheckInterval)
         {   
             
                 var editName = new TapGestureRecognizer();
                 editName.Tapped += async (s, e) =>
                 {
                     await PopupNavigation.Instance.PushAsync(
-                        new EditCounterNameDialog((Color)Application.Current.Resources["MainColor"], UniqueNum));
+                        new EditCounterNameDialog((Color)Application.Current.Resources["MainColor"], FactoryNumber));
                 };
                 if (Edit.GestureRecognizers.Count > 0)
                 {
@@ -509,7 +526,7 @@ namespace xamarinJKH.Main
 
                 resource.FormattedText = formattedResource;
                 adress.Text = Address;
-                number.Text = UniqueNum;
+                number.Text = FactoryNumber;
                 checkup_date.Text = CheckupDate;
                 recheckup.Text = RecheckInterval + " лет";
                 GetFormat( DecimalPoint);

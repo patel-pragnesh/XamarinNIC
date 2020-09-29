@@ -36,6 +36,8 @@ namespace xamarinJKH.Server.RequestModel
 
         // ед измерения
         public string Units { get; set; }
+        public bool AutoValueGettingOnly { get; set; }
+        public string PeriodMessage { get; set; }
     }
 
     public class MeterValueInfo

@@ -110,7 +110,7 @@ namespace xamarinJKH.Main
             MeterInfo select = ((MetersThreeCell) sender).meterInfo; // as MeterInfo;
             if (select != null)
             {
-                if (select.IsDisabled)
+                if (select.IsDisabled || select.AutoValueGettingOnly)
                 {
                     return;
                 }
@@ -546,7 +546,7 @@ namespace xamarinJKH.Main
         {
             int currDay = DateTime.Now.Day;
             MeterInfo select = e.Item as MeterInfo;
-            if (select.IsDisabled)
+            if (select.IsDisabled || select.AutoValueGettingOnly)
             {
                 return;
             }

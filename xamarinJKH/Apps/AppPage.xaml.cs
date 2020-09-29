@@ -24,6 +24,7 @@ using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 using PermissionStatus = Plugin.Permissions.Abstractions.PermissionStatus;
 using xamarinJKH.DialogViews;
+using Rg.Plugins.Popup.Pages;
 
 namespace xamarinJKH.Apps
 {
@@ -275,6 +276,7 @@ namespace xamarinJKH.Apps
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
+                    new PopupPage();
                     IconViewMic.ReplaceStringMap = new Dictionary<string, string> { { "#000000", hex.ToHex() } };
                 });                
             });
