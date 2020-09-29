@@ -145,7 +145,7 @@ namespace xamarinJKH.Main
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
+            MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
             //new Task(SyncSetup).Start(); // This could be an await'd task if need be
         }
 
