@@ -33,7 +33,7 @@
                         <ColumnDefinition Width="50"/>
                     </Grid.ColumnDefinitions>
 
-                    <video:VideoPlayerExo Source="{Binding Link}"
+                    <video:VideoPlayerExo 
                                       Opacity="0"
                                       IsVisible="True"
                                       HeightRequest="{Binding PlayerHeight}"
