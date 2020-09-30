@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using AiForms.Dialogs;
+using AiForms.Dialogs.Abstractions;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
@@ -63,7 +65,10 @@ namespace xamarinJKH.MainConst
         
         public async Task RefreshData()
         {
+            SetDisableCheck();
+            CheckRequestInfos.Clear();
             getApps();
+            IsVisibleFunction();
             additionalList.ItemsSource = null;
             additionalList.ItemsSource = RequestInfos;
         }
@@ -112,6 +117,12 @@ namespace xamarinJKH.MainConst
             addClick.Tapped += async (s, e) => { startNewApp(FrameBtnAdd, null); };
             FrameBtnAdd.GestureRecognizers.Add(addClick);
             hex = (Color) Application.Current.Resources["MainColor"];
+            var performApps = new TapGestureRecognizer();
+            performApps.Tapped += async (s, e) => { await PerformsApps(); };
+            StackLayoutExecute.GestureRecognizers.Add(performApps);
+            var closeApps = new TapGestureRecognizer();
+            closeApps.Tapped += async (s, e) => { await CloseApps(); };
+            StackLayoutClose.GestureRecognizers.Add(closeApps);
             SetText();
             additionalList.BackgroundColor = Color.Transparent;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
@@ -128,6 +139,7 @@ namespace xamarinJKH.MainConst
                 RequestInfo requestInfo = getRequestInfo(args);
                 if (requestInfo != null)
                 {
+                    requestInfo.IsCheked = true;
                     CheckRequestInfos.Add(requestInfo);
                 }
 
@@ -138,12 +150,65 @@ namespace xamarinJKH.MainConst
                 RequestInfo requestInfo = getRequestInfo(args);
                 if (requestInfo != null)
                 {
+                    requestInfo.IsCheked = false;
                     CheckRequestInfos.Remove(requestInfo);
                 }
 
                 IsVisibleFunction();
             });
 
+        }
+        private async Task CloseApps()
+        {
+            // Loading settings
+            Configurations.LoadingConfig = new LoadingConfig
+            {
+                IndicatorColor = (Color) Application.Current.Resources["MainColor"],
+                OverlayColor = Color.Black,
+                Opacity = 0.8,
+                DefaultMessage = AppResources.Loading,
+            };
+
+            await Loading.Instance.StartAsync(async progress =>
+            {
+                CommonResult result = await _server.CloseList(CheckRequestInfos.Select(each => each.ID).ToList());
+                if (result.Error == null)
+                {
+                    await RefreshData();
+                    await DisplayAlert(AppResources.AlertSuccess, AppResources.AppsClosed, "OK");
+                }
+                else
+                {
+                    await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
+                }
+                
+            });
+        }
+
+        private async Task PerformsApps()
+        {
+            // Loading settings
+            Configurations.LoadingConfig = new LoadingConfig
+            {
+                IndicatorColor = (Color) Application.Current.Resources["MainColor"],
+                OverlayColor = Color.Black,
+                Opacity = 0.8,
+                DefaultMessage = AppResources.Loading,
+            };
+
+            await Loading.Instance.StartAsync(async progress =>
+            {
+                CommonResult result = await _server.PerformList(CheckRequestInfos.Select(each => each.ID).ToList());
+                if (result.Error == null)
+                {
+                    await RefreshData();
+                    await DisplayAlert(AppResources.AlertSuccess, AppResources.AppsPerformed, "OK");
+                }
+                else
+                {
+                    await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
+                }
+            });
         }
 
         private RequestInfo getRequestInfo(string number)
@@ -158,7 +223,13 @@ namespace xamarinJKH.MainConst
 
             return null;
         }
-
+        private void SetDisableCheck()
+        {
+            foreach (var each in RequestInfos)
+            {
+                each.IsCheked = false;
+            }
+        }
         private void IsVisibleFunction()
         {
             if (CheckRequestInfos.Count > 0)

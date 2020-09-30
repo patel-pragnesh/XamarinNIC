@@ -39,7 +39,7 @@
 
                         <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
                                              HeightRequest="25"
-                                             Margin="0,5"
+                                             Margin="0,0"
                                              ReplaceStringMap="{Binding ShopName,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
                                              HorizontalOptions="Center" />
 
@@ -47,7 +47,7 @@
                            Text="{Binding ShopName}"
                            FontAttributes="Bold"
                            Margin="10,0,0,0"
-                           FontSize="30"
+                           FontSize="22"
                            TextColor="{AppThemeBinding Light=Black, Dark=White}" />
 
                         <StackLayout.GestureRecognizers>

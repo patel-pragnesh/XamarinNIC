@@ -19,7 +19,7 @@ namespace xamarinJKH {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -304,6 +304,24 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Заявки закрыты.
+        /// </summary>
+        internal static string AppsClosed {
+            get {
+                return ResourceManager.GetString("AppsClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заявки выполнены.
+        /// </summary>
+        internal static string AppsPerformed {
+            get {
+                return ResourceManager.GetString("AppsPerformed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Выбора района.
         /// </summary>
         internal static string AreaChoose {
@@ -394,7 +412,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Авто показания.
+        ///   Looks up a localized string similar to Автоматическое снятие.
         /// </summary>
         internal static string AutoPennance {
             get {

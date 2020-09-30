@@ -576,12 +576,8 @@ namespace xamarinJKH.Main
         {
             if (Settings.Person.Accounts[0].MetersEndDay < Settings.Person.Accounts[0].MetersStartDay)
             {
-                DateTime starDay = new DateTime(DateTime.Now.Year, DateTime.Now.Month, Settings.Person.Accounts[0].MetersStartDay); ;
-                DateTime endDay = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, Settings.Person.Accounts[0].MetersEndDay); 
-                DateTime now = DateTime.Now;
-
-                return (now >= starDay && now <= endDay) || (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                                                             Settings.Person.Accounts[0].MetersEndDay == 0);
+                return MetersThreeCell.GetPeriodEnabled() || (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                                                              Settings.Person.Accounts[0].MetersEndDay == 0);
 
             }
             

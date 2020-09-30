@@ -144,6 +144,8 @@ namespace xamarinJKH.AppsConst
 
         public static readonly BindableProperty NumberProperty =
             BindableProperty.Create("Number", typeof(string), typeof(AppConstCell), "");
+        public static readonly BindableProperty CheckProperty =
+            BindableProperty.Create("Check", typeof(bool), typeof(AppConstCell), false);
 
         public static readonly BindableProperty StatusProperty =
             BindableProperty.Create("Status", typeof(string), typeof(AppConstCell), "");
@@ -155,17 +157,21 @@ namespace xamarinJKH.AppsConst
             BindableProperty.Create("TextApp", typeof(string), typeof(AppConstCell), "");
         
         public static readonly BindableProperty CheckCommandProperty =
-            BindableProperty.Create("CheckCommand", typeof(ICommand), typeof(AppConstCell), null);
+            BindableProperty.Create("CheckCommand", typeof(bool), typeof(AppConstCell), true);
         
         public string Number
         {
             get { return (string)GetValue(NumberProperty); }
             set { SetValue(NumberProperty, value); }
         } 
-        
-        public ICommand CheckCommand
+        public bool Check
         {
-            get { return (ICommand)GetValue(CheckCommandProperty); }
+            get { return (bool) GetValue(CheckProperty); }
+            set { SetValue(CheckProperty, value); }
+        }
+        public bool CheckCommand
+        {
+            get { return (bool) GetValue(CheckCommandProperty); }
             set { SetValue(CheckCommandProperty, value); }
         }
 
@@ -258,7 +264,9 @@ namespace xamarinJKH.AppsConst
                 {
                     ImageStatus.Source = "resource://xamarinJKH.Resources.ic_status_wait.svg";
                 }
-
+                checkBox.IsVisible = CheckCommand;
+                
+                checkBox.IsChecked = Check;
 
                 EventHandler<CheckedChangedEventArgs> checkBoxOnCheckedChanged = (sender, args) =>
                 {

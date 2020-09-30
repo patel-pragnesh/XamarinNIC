@@ -437,23 +437,8 @@ namespace xamarinJKH.Main
                         VerticalTextAlignment = TextAlignment.Center,
                         HorizontalTextAlignment = TextAlignment.Center
                     };
-
-                    if (meterInfo.AutoValueGettingOnly)
-                    {
-                        var auto_label = new Label
-                        {
-                            Text = AppResources.AutoPennance,
-                            FontAttributes = FontAttributes.Bold,
-                            TextColor = (Color)Application.Current.Resources["MainColor"],
-                            VerticalTextAlignment = TextAlignment.Center,
-                            HorizontalTextAlignment = TextAlignment.Center
-                        };
-                        stack.Children.Add(auto_label);
-                    }
-                    else
-                    {
-                        stack.Children.Add(editLabel);
-                    }
+                    stack.Children.Add(editLabel);
+                    
                 }
             }
             catch (Exception e)
@@ -465,12 +450,9 @@ namespace xamarinJKH.Main
         {
             if (Settings.Person.Accounts[0].MetersEndDay < Settings.Person.Accounts[0].MetersStartDay)
             {
-                DateTime starDay = new DateTime(DateTime.Now.Year, DateTime.Now.Month, Settings.Person.Accounts[0].MetersStartDay); ;
-                DateTime endDay = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, Settings.Person.Accounts[0].MetersEndDay); 
-                DateTime now = DateTime.Now;
-
-                return (now >= starDay && now <= endDay) || (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                                                             Settings.Person.Accounts[0].MetersEndDay == 0);
+                
+                return  GetPeriodEnabled() || (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                                                Settings.Person.Accounts[0].MetersEndDay == 0);
 
             }
             
@@ -480,6 +462,31 @@ namespace xamarinJKH.Main
                     Settings.Person.Accounts[0].MetersEndDay == 0);
         }
 
+        public static bool GetPeriodEnabled()
+        {
+            DateTime now = DateTime.Now;
+            bool flag = false;
+            for (int i = 1; i <= 12; i++)
+            {
+                var nowYear = DateTime.Now.Year;
+                DateTime starDay = new DateTime(nowYear, i, Settings.Person.Accounts[0].MetersStartDay); ;
+                int month = i+1;
+                // Проверяем переход на следующий год ( декабрь -> январь)
+                if (i == 12)
+                {
+                    month = 1;
+                    nowYear += 1;
+                }
+                DateTime endDay = new DateTime(nowYear, month, Settings.Person.Accounts[0].MetersEndDay);
+                if (now >= starDay && now <= endDay)
+                {
+                    return true;
+                }
+            }
+
+            return flag;
+        }
+        
         string GetFormat(int DecimalPoint)
         {
             var dec = DecimalPoint;
@@ -578,7 +585,7 @@ namespace xamarinJKH.Main
                         Console.WriteLine(e);
                     }
                     
-                }else if (Values.Count > 0 && int.Parse(Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
+                }else if (Values.Count > 0 && int.Parse(Values[0].Period.Split('.')[1]) == DateTime.Now.Month && !meterInfo.AutoValueGettingOnly)
                 {
                     SetEditButton(Values[0].Period);
                     SetDellValue(MeterID);
@@ -599,7 +606,7 @@ namespace xamarinJKH.Main
 
                     stack.Children.Add(frameBtn);
                     if (Values.Count > 0)
-                    {
+                     {
                         Label lines = new Label();
                         lines.HeightRequest = 1;
                         lines.BackgroundColor = Color.LightGray;
@@ -695,10 +702,7 @@ namespace xamarinJKH.Main
                             }
 
                             canCount.FormattedText = formattedDate;
-                            if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
-                                 Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
-                                (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                                 Settings.Person.Accounts[0].MetersEndDay == 0))
+                            if (CheckPeriod(currDay))
                             {
                                 frameBtn.IsVisible = true;
                                 canCount.IsVisible = false;
@@ -709,6 +713,20 @@ namespace xamarinJKH.Main
                                 canCount.IsVisible = true;
                             }
                         }
+                if (meterInfo.AutoValueGettingOnly)
+                {
+                    var stack = frame.Content as StackLayout;
+                    var auto_label = new Label
+                    {
+                        Text = AppResources.AutoPennance,
+                        FontAttributes = FontAttributes.Bold,
+                        TextColor = (Color)Application.Current.Resources["MainColor"],
+                        VerticalTextAlignment = TextAlignment.Center,
+                        HorizontalTextAlignment = TextAlignment.Center
+                    };
+                    stack.Children.Add(auto_label);
+                    canCount.IsVisible = false;
+                }
             
         }
 
