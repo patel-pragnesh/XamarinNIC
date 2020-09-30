@@ -37,17 +37,17 @@ using Java.Interop;
 [assembly: ExportRenderer(typeof(VideoPlayerExo), typeof(VideoPlayerRenderer))]
 namespace xamarinJKH.Droid.CustomRenderers
 {
-    public class VideoPlayerRenderer: ViewRenderer<VideoPlayerExo, SimpleExoPlayerView>, IAdaptiveMediaSourceEventListener
+    public class VideoPlayerRenderer : ViewRenderer<VideoPlayerExo, SimpleExoPlayerView>, IAdaptiveMediaSourceEventListener
     {
 
         Context Context;
-        public VideoPlayerRenderer(Context context) : base(context) 
-        { 
+        public VideoPlayerRenderer(Context context) : base(context)
+        {
             Context = context;
             MessagingCenter.Subscribe<object, bool>(this, "FullScreen", (sender, rotated) =>
             {
                 var activity = Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity;
-                
+
                 if (rotated)
                 {
                     activity.RequestedOrientation = Andr.PM.ScreenOrientation.Portrait;
@@ -71,11 +71,11 @@ namespace xamarinJKH.Droid.CustomRenderers
 
         IVideoListener listener;
 
-        
+
         protected override void OnElementChanged(ElementChangedEventArgs<VideoPlayerExo> e)
         {
             base.OnElementChanged(e);
-            
+
             if (_player != null)
             {
                 _player.Release();
@@ -87,14 +87,14 @@ namespace xamarinJKH.Droid.CustomRenderers
                 _view = new SimpleExoPlayerView(Context);
                 _view.Background = new GradientDrawable(GradientDrawable.Orientation.BottomTop, new int[] { Color.Transparent.ToAndroid(), Color.Transparent.ToAndroid() });
                 _view.ControllerAutoShow = false;
-                
+
                 _view.UseController = false;
                 _player.RenderedFirstFrame += _player_RenderedFirstFrame;
                 _player.VideoSizeChanged += _player_VideoSizeChanged;
-                
+
                 _view.Player = _player;
-                
-                url = e.NewElement.SourceUrl;
+
+                url = e.NewElement.Source;
                 SetNativeControl(_view);
             }
 
@@ -111,7 +111,7 @@ namespace xamarinJKH.Droid.CustomRenderers
             var activity = Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity;
             viewHeight = _view.Height;
             viewWidth = _view.Width;
-            
+
 
             //activity.RequestedOrientation = Andr.PM.ScreenOrientation.Landscape;
         }
@@ -136,7 +136,7 @@ namespace xamarinJKH.Droid.CustomRenderers
                 _player.Prepare(mediaSource);
                 var playing = _player.IsPlaying;
             }
-            
+
         }
 
         public void OnDownstreamFormatChanged(int p0, Format p1, int p2, Java.Lang.Object p3, long p4)
@@ -149,7 +149,7 @@ namespace xamarinJKH.Droid.CustomRenderers
 
         public void OnLoadCompleted(DataSpec p0, int p1, int p2, Format p3, int p4, Java.Lang.Object p5, long p6, long p7, long p8, long p9, long p10)
         {
-            
+
         }
 
         public void OnLoadError(DataSpec p0, int p1, int p2, Format p3, int p4, Java.Lang.Object p5, long p6, long p7, long p8, long p9, long p10, IOException p11, bool p12)
