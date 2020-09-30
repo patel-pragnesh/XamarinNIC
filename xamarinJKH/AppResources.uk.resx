@@ -1343,4 +1343,10 @@
   <data name="AdditionalMap" xml:space="preserve">
     <value>Карта</value>
   </data>
+  <data name="AppsPerformed" xml:space="preserve">
+    <value>Заявки виконані</value>
+  </data>
+  <data name="AppsClosed" xml:space="preserve">
+    <value>Заявки закриті</value>
+  </data>
 </root>

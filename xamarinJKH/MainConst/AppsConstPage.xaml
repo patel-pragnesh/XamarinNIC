@@ -132,6 +132,7 @@
                                         Number="{Binding RequestNumber}"
                                         Status="{Binding Status}"
                                         DateApp="{Binding Added}"
+                                        Check = "{Binding IsCheked}"
                                         TextApp="{Binding Name}" />
                                 </DataTemplate>
 
@@ -154,10 +155,12 @@
                                         x:Name="StackLayoutExecute"
                                         VerticalOptions="Center"
                                         HorizontalOptions="StartAndExpand">
-                                        <svg:SvgCachedImage Source="resources://xamarinJKH.Resources.ic_check_mark.svg"
-                                                            ReplaceStringMap="{Binding Requests, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000|#FFFFFF'}"
+                                        <svg:SvgCachedImage  Margin="0, 0, 0, 0"
+                                                             Source="resource://xamarinJKH.Resources.ic_check_mark.svg"
+                                                             HeightRequest="25"
+                                                             ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
                                                              WidthRequest="25"
-                                                             HeightRequest="25" />
+                                                             VerticalOptions="Center" />
                                         <Label Text="{x:Static xamarinJkh:AppResources.CompleteApp}"
                                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                                FontAttributes="Bold"
@@ -169,7 +172,7 @@
                                         x:Name="StackLayoutClose"
                                         HorizontalOptions="EndAndExpand">
                                         <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_close_app1.svg"
-                                                            ReplaceStringMap="{Binding Requests, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000|#FFFFFF'}"
+                                                            ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
                                                              HeightRequest="25"
                                                              WidthRequest="25" />
                                         <Label Text="{x:Static xamarinJkh:AppResources.CloseApp}"

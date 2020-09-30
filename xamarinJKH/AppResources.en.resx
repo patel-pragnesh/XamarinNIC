@@ -1359,4 +1359,10 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="AdditionalMap" xml:space="preserve">
     <value>Map</value>
   </data>
+  <data name="AppsPerformed" xml:space="preserve">
+    <value>Applications completed</value>
+  </data>
+  <data name="AppsClosed" xml:space="preserve">
+    <value>Applications closed</value>
+  </data>
 </root>
