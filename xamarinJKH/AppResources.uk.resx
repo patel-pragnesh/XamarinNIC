@@ -1349,4 +1349,7 @@
   <data name="AppsClosed" xml:space="preserve">
     <value>Заявки закриті</value>
   </data>
+  <data name="EventsCam" xml:space="preserve">
+    <value>Камери</value>
+  </data>
 </root>
