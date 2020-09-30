@@ -599,7 +599,7 @@ namespace xamarinJKH.Main
 
                     stack.Children.Add(frameBtn);
                     if (Values.Count > 0)
-                    {
+                     {
                         Label lines = new Label();
                         lines.HeightRequest = 1;
                         lines.BackgroundColor = Color.LightGray;
@@ -695,10 +695,7 @@ namespace xamarinJKH.Main
                             }
 
                             canCount.FormattedText = formattedDate;
-                            if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
-                                 Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
-                                (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                                 Settings.Person.Accounts[0].MetersEndDay == 0))
+                            if (CheckPeriod(currDay))
                             {
                                 frameBtn.IsVisible = true;
                                 canCount.IsVisible = false;
