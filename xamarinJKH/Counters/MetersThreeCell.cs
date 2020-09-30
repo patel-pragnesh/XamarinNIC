@@ -408,10 +408,7 @@ namespace xamarinJKH.Main
             try
             {
                 int currDay = DateTime.Now.Day;
-                if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
-                     Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
-                    (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                     Settings.Person.Accounts[0].MetersEndDay == 0))
+                if (CheckPeriod(currDay))
                 {
                     int indexOf = stack.Children.IndexOf(editLabel);
                     int index = stack.Children.IndexOf(labelЗPeriod);
@@ -440,23 +437,8 @@ namespace xamarinJKH.Main
                         VerticalTextAlignment = TextAlignment.Center,
                         HorizontalTextAlignment = TextAlignment.Center
                     };
-
-                    if (meterInfo.AutoValueGettingOnly)
-                    {
-                        var auto_label = new Label
-                        {
-                            Text = AppResources.AutoPennance,
-                            FontAttributes = FontAttributes.Bold,
-                            TextColor = (Color)Application.Current.Resources["MainColor"],
-                            VerticalTextAlignment = TextAlignment.Center,
-                            HorizontalTextAlignment = TextAlignment.Center
-                        };
-                        stack.Children.Add(auto_label);
-                    }
-                    else
-                    {
-                        stack.Children.Add(editLabel);
-                    }
+                    stack.Children.Add(editLabel);
+                    
                 }
             }
             catch (Exception e)
@@ -464,6 +446,47 @@ namespace xamarinJKH.Main
             }
         }
 
+        private static bool CheckPeriod(int currDay)
+        {
+            if (Settings.Person.Accounts[0].MetersEndDay < Settings.Person.Accounts[0].MetersStartDay)
+            {
+                
+                return  GetPeriodEnabled() || (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                                                Settings.Person.Accounts[0].MetersEndDay == 0);
+
+            }
+            
+            return (Settings.Person.Accounts[0].MetersStartDay <= currDay &&
+                    Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
+                   (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                    Settings.Person.Accounts[0].MetersEndDay == 0);
+        }
+
+        public static bool GetPeriodEnabled()
+        {
+            DateTime now = DateTime.Now;
+            bool flag = false;
+            for (int i = 1; i <= 12; i++)
+            {
+                var nowYear = DateTime.Now.Year;
+                DateTime starDay = new DateTime(nowYear, i, Settings.Person.Accounts[0].MetersStartDay); ;
+                int month = i+1;
+                // Проверяем переход на следующий год ( декабрь -> январь)
+                if (i == 12)
+                {
+                    month = 1;
+                    nowYear += 1;
+                }
+                DateTime endDay = new DateTime(nowYear, month, Settings.Person.Accounts[0].MetersEndDay);
+                if (now >= starDay && now <= endDay)
+                {
+                    return true;
+                }
+            }
+
+            return flag;
+        }
+        
         string GetFormat(int DecimalPoint)
         {
             var dec = DecimalPoint;
@@ -562,7 +585,7 @@ namespace xamarinJKH.Main
                         Console.WriteLine(e);
                     }
                     
-                }else if (Values.Count > 0 && int.Parse(Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
+                }else if (Values.Count > 0 && int.Parse(Values[0].Period.Split('.')[1]) == DateTime.Now.Month && !meterInfo.AutoValueGettingOnly)
                 {
                     SetEditButton(Values[0].Period);
                     SetDellValue(MeterID);
@@ -583,7 +606,7 @@ namespace xamarinJKH.Main
 
                     stack.Children.Add(frameBtn);
                     if (Values.Count > 0)
-                    {
+                     {
                         Label lines = new Label();
                         lines.HeightRequest = 1;
                         lines.BackgroundColor = Color.LightGray;
@@ -612,6 +635,11 @@ namespace xamarinJKH.Main
                     img.Source = ImageSource.FromFile("ic_cold_water");
                 }
 
+                string month = AppResources.CountersCurrentMonth;
+                if (Settings.Person.Accounts[0].MetersEndDay < Settings.Person.Accounts[0].MetersStartDay)
+                {
+                    month = AppResources.NextMonth;
+                }
                 int currDay = DateTime.Now.Day;
                 // currDay = 16;
                 frameBtn.IsVisible = true;
@@ -645,7 +673,7 @@ namespace xamarinJKH.Main
                                     });
                                     formattedDate.Spans.Add(new Span
                                     {
-                                        Text = AppResources.CountersThisMonth,
+                                        Text = month,
                                         TextColor = (Color)Application.Current.Resources["MainColor"],
                                         FontAttributes = FontAttributes.None,
                                         FontSize = 12
@@ -655,7 +683,7 @@ namespace xamarinJKH.Main
                                 {
                                     formattedDate.Spans.Add(new Span
                                     {
-                                        Text = AppResources.CountersCurrentMonth,
+                                        Text = month,
                                         TextColor = (Color)Application.Current.Resources["MainColor"],
                                         FontAttributes = FontAttributes.Bold,
                                         FontSize = 12
@@ -674,10 +702,7 @@ namespace xamarinJKH.Main
                             }
 
                             canCount.FormattedText = formattedDate;
-                            if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
-                                 Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
-                                (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                                 Settings.Person.Accounts[0].MetersEndDay == 0))
+                            if (CheckPeriod(currDay))
                             {
                                 frameBtn.IsVisible = true;
                                 canCount.IsVisible = false;
@@ -688,6 +713,20 @@ namespace xamarinJKH.Main
                                 canCount.IsVisible = true;
                             }
                         }
+                if (meterInfo.AutoValueGettingOnly)
+                {
+                    var stack = frame.Content as StackLayout;
+                    var auto_label = new Label
+                    {
+                        Text = AppResources.AutoPennance,
+                        FontAttributes = FontAttributes.Bold,
+                        TextColor = (Color)Application.Current.Resources["MainColor"],
+                        VerticalTextAlignment = TextAlignment.Center,
+                        HorizontalTextAlignment = TextAlignment.Center
+                    };
+                    stack.Children.Add(auto_label);
+                    canCount.IsVisible = false;
+                }
             
         }
 
@@ -697,11 +736,9 @@ namespace xamarinJKH.Main
             {
                 return;
             }
+            
             int currentDay = DateTime.Now.Day;
-            if ((Settings.Person.Accounts[0].MetersStartDay <= currentDay &&
-                 Settings.Person.Accounts[0].MetersEndDay >= currentDay) ||
-                (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                 Settings.Person.Accounts[0].MetersEndDay == 0))
+            if (CheckPeriod(currentDay))
             {
                 Label del = new Label();
                 del.TextColor = (Color) Application.Current.Resources["MainColor"];

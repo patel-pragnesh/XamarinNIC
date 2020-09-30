@@ -118,10 +118,7 @@ namespace xamarinJKH.Main
                 if (Settings.Person != null)
                     if (Settings.Person.Accounts != null)
                         if (Settings.Person.Accounts.Count > 0)
-                            if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
-                                 Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
-                                (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                                 Settings.Person.Accounts[0].MetersEndDay == 0))
+                            if (CheckPeriod(currDay))
                             {
                                 if (select.Values!=null && select.Values.Count >= 1 )
                                 {
@@ -270,7 +267,7 @@ namespace xamarinJKH.Main
                             Text = AppResources.CountersInfo1,
                             TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
                             FontAttributes = FontAttributes.None,
-                            FontSize = 15
+                            FontSize = 12
                         });
                         if (Settings.Person.Accounts[0].MetersStartDay != null &&
                             Settings.Person.Accounts[0].MetersEndDay != null)
@@ -292,7 +289,7 @@ namespace xamarinJKH.Main
                                                 ? Color.Black
                                                 : Color.White,
                                             FontAttributes = FontAttributes.Bold,
-                                            FontSize = 15
+                                            FontSize = 12
                                         });
                                         formattedResource.Spans.Add(new Span
                                         {
@@ -301,7 +298,7 @@ namespace xamarinJKH.Main
                                                 ? Color.Black
                                                 : Color.White,
                                             FontAttributes = FontAttributes.None,
-                                            FontSize = 15
+                                            FontSize = 12
                                         });
                                     }
                                     else
@@ -315,7 +312,7 @@ namespace xamarinJKH.Main
                                                 ? Color.Black
                                                 : Color.White,
                                             FontAttributes = FontAttributes.Bold,
-                                            FontSize = 15
+                                            FontSize = 12
                                         });
                                         formattedResource.Spans.Add(new Span
                                         {
@@ -324,7 +321,7 @@ namespace xamarinJKH.Main
                                                 ? Color.Black
                                                 : Color.White,
                                             FontAttributes = FontAttributes.None,
-                                            FontSize = 15
+                                            FontSize = 12
                                         });
                                     }
                                 }
@@ -337,14 +334,14 @@ namespace xamarinJKH.Main
                                                Settings.Person.Accounts[0].MetersEndDay + AppResources.DayOfMounth,
                                         TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
                                         FontAttributes = FontAttributes.Bold,
-                                        FontSize = 15
+                                        FontSize = 12
                                     });
                                     formattedResource.Spans.Add(new Span
                                     {
                                         Text = AppResources.CountersCurrentMonth,
                                         TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
                                         FontAttributes = FontAttributes.None,
-                                        FontSize = 15
+                                        FontSize = 12
                                     });
                                 }
                             }
@@ -355,7 +352,7 @@ namespace xamarinJKH.Main
                                     Text = AppResources.CountersThisMonth,
                                     TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
                                     FontAttributes = FontAttributes.Bold,
-                                    FontSize = 15
+                                    FontSize = 12
                                 });
                             }
                         }
@@ -557,10 +554,7 @@ namespace xamarinJKH.Main
             if (Settings.Person != null)
                 if (Settings.Person.Accounts != null)
                     if (Settings.Person.Accounts.Count > 0)
-                        if ((Settings.Person.Accounts[0].MetersStartDay <= currDay &&
-                             Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
-                            (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                             Settings.Person.Accounts[0].MetersEndDay == 0))
+                        if (CheckPeriod(currDay))
                         {
                             if (select.Values.Count >= 1 &&
                                 int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
@@ -578,7 +572,20 @@ namespace xamarinJKH.Main
                             }
                         }
         }
+        private static bool CheckPeriod(int currDay)
+        {
+            if (Settings.Person.Accounts[0].MetersEndDay < Settings.Person.Accounts[0].MetersStartDay)
+            {
+                return MetersThreeCell.GetPeriodEnabled() || (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                                                              Settings.Person.Accounts[0].MetersEndDay == 0);
 
+            }
+            
+            return (Settings.Person.Accounts[0].MetersStartDay <= currDay &&
+                    Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
+                   (Settings.Person.Accounts[0].MetersStartDay == 0 &&
+                    Settings.Person.Accounts[0].MetersEndDay == 0);
+        }
         private async void RefreshView_RefreshingAsync(object sender, EventArgs e)
         {
             IsRefreshing = true;

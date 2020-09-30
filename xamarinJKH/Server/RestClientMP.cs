@@ -18,7 +18,7 @@ namespace xamarinJKH.Server
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        //public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань water/ water2 - тихая гавань - 2 
+        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань water/ water2 - тихая гавань - 2 
         // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
@@ -55,7 +55,7 @@ namespace xamarinJKH.Server
         //public const string SERVER_ADDR = "https://api.sm-center.ru/suhanovo_park/"; // Суханово Парк
 
         //public const string SERVER_ADDR = "https://api.sm-center.ru/stroim-bud/"; // Строим будущее
-        public const string SERVER_ADDR = "https://api.sm-center.ru/tsg_novaya_zvezda/"; // Строим будущее
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/tsg_novaya_zvezda/"; // Строим будущее
         
 
 
@@ -101,6 +101,8 @@ namespace xamarinJKH.Server
         public const string GET_HOUSES_GROUP = "RequestsDispatcher/HouseGroups"; // Возвращает список районов
         public const string GET_HOUSES = "RequestsDispatcher/Houses"; // Возвращает список домов. 
         public const string GET_HOUSE_DATA = "RequestsDispatcher/HouseData"; // Возвращает список домов. 
+        public const string CLOSE_APP_LIST_DISP = "RequestsDispatcher/CloseList"; // Закрытие списка заявки. 
+        public const string PERFORM_APP_LIST_DISP = "RequestsDispatcher/PerformList"; // Закрытие списка заявки. 
 
         public const string
             GET_REQUESTS_STATS = "RequestsDispatcher/RequestStats"; // Возвращает статистику по заявкам.  
@@ -173,6 +175,7 @@ namespace xamarinJKH.Server
                 "RequestsDispatcher/SetPaidRequestStatusOnTheWay"; // Установка статуса платной заявки в 'курьер в пути'
 
         public const string UPDATE_RECEIPT = "RequestsDispatcher/UpdateRequestReceipts";
+        public const string CAMERAS_LIST = "Houses/WebCams";
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -2165,7 +2168,67 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+/// <summary>
+        /// Закрытие списка заявки.
+        /// </summary>
+        /// <param name="Requests">Список id заявок для закрытия</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> CloseList(List<int> Requests)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(CLOSE_APP_LIST_DISP, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                Requests
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
 
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        } 
+        
+        /// <summary>
+        /// Выполнение списка заявок.
+        /// </summary>
+        /// <param name="Requests">Список id заявок для выполнения</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> PerformList(List<int> Requests)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(PERFORM_APP_LIST_DISP, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                Requests
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
         /// <summary>
         /// Возвращает статистику по заявкам. 
         /// </summary>
@@ -2275,6 +2338,19 @@ namespace xamarinJKH.Server
                 data.ReceiptItems
             });
             var response = await client.ExecuteTaskAsync<CommonResult>(restRequest);
+            return response.Data;
+        }
+
+
+        public async Task<ItemsList<CameraModel>> GetCameras(int all = 0)
+        {
+            RestClient client = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(CAMERAS_LIST, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = await client.ExecuteTaskAsync<ItemsList<CameraModel>>(restRequest);
             return response.Data;
         }
     }

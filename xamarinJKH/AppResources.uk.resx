@@ -1337,4 +1337,19 @@
   <data name="AutoPennance" xml:space="preserve">
     <value>Aвто свідчення</value>
   </data>
+  <data name="AdditionalList" xml:space="preserve">
+    <value>Каталог</value>
+  </data>
+  <data name="AdditionalMap" xml:space="preserve">
+    <value>Карта</value>
+  </data>
+  <data name="AppsPerformed" xml:space="preserve">
+    <value>Заявки виконані</value>
+  </data>
+  <data name="AppsClosed" xml:space="preserve">
+    <value>Заявки закриті</value>
+  </data>
+  <data name="EventsCam" xml:space="preserve">
+    <value>Камери</value>
+  </data>
 </root>

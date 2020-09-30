@@ -79,7 +79,7 @@
                         <Label x:Name="BtnApp"
                                Text=""
                                HorizontalTextAlignment="Center"
-                               Margin="0, 0, 0, 0"
+                               Margin="2, 0, 2, 0"
                                FontSize="15"
                                TextColor="White"
                                FontAttributes="Bold"

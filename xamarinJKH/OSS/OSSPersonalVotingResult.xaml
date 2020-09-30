@@ -127,11 +127,11 @@
                             ReplaceStringMap="{Binding forsvg, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                             VerticalOptions="Center" />
                         <Label x:Name="titleLabel"
-                            Text="{x:Static xamarinJkh:AppResources.OSSPersonalHeader}"
-                            FontSize="18"
-                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                            FontAttributes="Bold"
-                            HorizontalOptions="Start" />
+                               Text="{x:Static xamarinJkh:AppResources.OSSPersonalHeader}"
+                               FontSize="18"
+                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Start" />
                     </StackLayout>
                     <StackLayout>
                         <StackLayout x:Name="ScrollViewContainer"
@@ -146,9 +146,12 @@
                                         <Label x:Name="lRezults" Margin="30,10" TextColor="Black">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="{x:Static xamarinJkh:AppResources.OSSPersonalYouVoted}" FontSize="14" FontAttributes="Bold" />
+                                                    <Span Text="{x:Static xamarinJkh:AppResources.OSSPersonalYouVoted}"
+                                                          FontSize="14" FontAttributes="Bold" />
                                                     <Span x:Name="spanAnswersCnt" FontSize="14" FontAttributes="Bold" />
-                                                    <Span Text="{x:Static xamarinJkh:AppResources.OSSPersonalYourAnswers}" FontSize="14" FontAttributes="Bold" />
+                                                    <Span
+                                                        Text="{x:Static xamarinJkh:AppResources.OSSPersonalYourAnswers}"
+                                                        FontSize="14" FontAttributes="Bold" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
@@ -180,7 +183,8 @@
                                                        Grid.Row="0"
                                                        Grid.Column="0" />
                                             </Grid>
-                                            <Label Text="{x:Static xamarinJkh:AppResources.OSSPersonalFor}" FontSize="16" TextColor="Black" VerticalOptions="Center" />
+                                            <Label Text="{x:Static xamarinJkh:AppResources.OSSPersonalFor}"
+                                                   FontSize="16" TextColor="Black" VerticalOptions="Center" />
                                         </StackLayout>
                                         <StackLayout Margin="20,5" Orientation="Horizontal">
                                             <Grid HorizontalOptions="Center" VerticalOptions="Center">
@@ -201,7 +205,8 @@
                                                        Grid.Row="0"
                                                        Grid.Column="0" />
                                             </Grid>
-                                            <Label Text="{x:Static xamarinJkh:AppResources.OSSPersonalAgainst}" FontSize="16" TextColor="Black"
+                                            <Label Text="{x:Static xamarinJkh:AppResources.OSSPersonalAgainst}"
+                                                   FontSize="16" TextColor="Black"
                                                    VerticalOptions="Center" />
                                         </StackLayout>
                                         <StackLayout Margin="20,5" Orientation="Horizontal">
@@ -223,14 +228,16 @@
                                                        Grid.Row="0"
                                                        Grid.Column="0" />
                                             </Grid>
-                                            <Label Text="{x:Static xamarinJkh:AppResources.OSSPersonalNeutral}" FontSize="16" TextColor="Black"
+                                            <Label Text="{x:Static xamarinJkh:AppResources.OSSPersonalNeutral}"
+                                                   FontSize="16" TextColor="Black"
                                                    VerticalOptions="Center" />
                                         </StackLayout>
                                         <BoxView x:Name="delimColored" HeightRequest="1" Margin="0,15" />
                                         <Label Margin="20,5">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="{x:Static xamarinJkh:AppResources.OSSPersonalArea}" TextColor="#545454"
+                                                    <Span Text="{x:Static xamarinJkh:AppResources.OSSPersonalArea}"
+                                                          TextColor="#545454"
                                                           FontSize="14" />
                                                     <Span x:Name="TotalArea" TextColor="Black" FontSize="14" />
                                                 </FormattedString>
@@ -239,13 +246,15 @@
                                         <Label Margin="20,5">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="{x:Static xamarinJkh:AppResources.OSSPersonalYourPart}" TextColor="#545454" FontSize="14" />
+                                                    <Span Text="{x:Static xamarinJkh:AppResources.OSSPersonalYourPart}"
+                                                          TextColor="#545454" FontSize="14" />
                                                     <Span x:Name="Area" TextColor="Black" FontSize="14" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
                                         <BoxView BackgroundColor="#545454" Margin="20,10" HeightRequest="1" />
-                                        <Label Text="{x:Static xamarinJkh:AppResources.OSSPersonalThankYou}" Margin="20,5" TextColor="Black"
+                                        <Label Text="{x:Static xamarinJkh:AppResources.OSSPersonalThankYou}"
+                                               Margin="20,5" TextColor="Black"
                                                FontAttributes="Bold" FontSize="16" />
                                         <Label Margin="20,10">
                                             <Label.FormattedText>
@@ -258,6 +267,26 @@
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
+                                        <StackLayout x:Name="ProtokolStackL" HorizontalOptions="FillAndExpand"
+                                                     Orientation="Vertical">
+                                            <xamarinJkh:IconView x:Name="pdf2" Source="ic_export_pdf"
+                                                                 HeightRequest="30"
+                                                                 WidthRequest="30"
+                                                                 HorizontalOptions="Center"
+                                                                 Foreground="{x:DynamicResource MainColor}"
+                                                                 Margin="0,5" />
+                                            <Label Text="Бланк собственного голосования.pdf" HorizontalOptions="Center"
+                                                   TextColor="Black" FontSize="14" Margin="0,0" />
+                                            <Label HorizontalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span x:Name="urlProtokol" 
+                                                              TextDecorations="Underline"
+                                                              Text="Скачать" FontSize="14" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
                                     </StackLayout>
                                 </ScrollView>
                             </Frame>
@@ -266,7 +295,8 @@
                         <yummy:PancakeView Padding="0"
                                            x:Name="PancakeBot"
                                            BorderThickness="1"
-                                           CornerRadius="50,50,0,0" BackgroundColor="{AppThemeBinding Light=White, Dark=#414141}"
+                                           CornerRadius="50,50,0,0"
+                                           BackgroundColor="{AppThemeBinding Light=White, Dark=#414141}"
                                            VerticalOptions="End">
                             <yummy:PancakeView.Shadow>
                                 <yummy:DropShadow Opacity="0.7" Color="Gray" />
@@ -284,7 +314,8 @@
                                                 VerticalOptions="FillAndExpand"
                                                 TextColor="White"
                                                 FontAttributes="Bold"
-                                                Text="{x:Static xamarinJkh:AppResources.OSSPersonalBackToList}" Clicked="Btn_Clicked" />
+                                                Text="{x:Static xamarinJkh:AppResources.OSSPersonalBackToList}"
+                                                Clicked="Btn_Clicked" />
                                     </Frame>
                                 </StackLayout>
                             </StackLayout>
@@ -293,7 +324,7 @@
                 </StackLayout>
             </Grid>
 
-         
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
