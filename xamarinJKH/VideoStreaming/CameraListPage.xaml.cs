@@ -20,7 +20,7 @@ namespace xamarinJKH.VideoStreaming
             InitializeComponent();
             BindingContext = viewModel = new CameraListViewModel();
 
-            MessagingCenter.Subscribe<HeaderViewStack>(this, "GoBack", sender =>
+            MessagingCenter.Subscribe<Object>(this, "GoBack", sender =>
             {
                 if (Application.Current.MainPage.Navigation.ModalStack.Count > 1)
                 {
