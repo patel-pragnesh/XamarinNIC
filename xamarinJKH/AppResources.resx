@@ -1343,4 +1343,7 @@
   <data name="AdditionalMap" xml:space="preserve">
     <value>Карта</value>
   </data>
+  <data name="EventsCam" xml:space="preserve">
+    <value>Камеры</value>
+  </data>
 </root>

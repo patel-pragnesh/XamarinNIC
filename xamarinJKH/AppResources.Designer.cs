@@ -1430,6 +1430,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Камеры.
+        /// </summary>
+        internal static string EventsCam {
+            get {
+                return ResourceManager.GetString("EventsCam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Выйти.
         /// </summary>
         internal static string Exit {
