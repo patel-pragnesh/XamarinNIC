@@ -160,6 +160,7 @@
     <Compile Include="CustomRenderers\ListViewHighlightEffect.cs" />
     <Compile Include="CustomRenderers\MaterialFrameRenderer.cs" />
     <Compile Include="CustomRenderers\RadioButtonEffect.cs" />
+    <Compile Include="CustomRenderers\VideoPlayerRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Resources\Resource.designer.cs" />

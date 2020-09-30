@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:local="clr-namespace:xamarinJKH"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              NavigationPage.HasNavigationBar="False"
              x:Class="xamarinJKH.VideoStreaming.CameraListPage">
@@ -59,8 +60,8 @@
                                                Text="Камера по адресу"/>
                                             <Label Text="{Binding Address}"/>
                                         </StackLayout>
-                                        <local:IconView Source="ic_camera"
-                                                        Foreground="{x:DynamicResource MainColor}"
+                                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_camera.svg"
+                                                            ReplaceStringMap="{Binding Address, Converter={x:StaticResource SvgColor}}"
                                                         HeightRequest="50"
                                                         WidthRequest="50"
                                                         Margin="0,15"/>

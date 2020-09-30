@@ -20,17 +20,17 @@ namespace xamarinJKH.VideoStreaming
             InitializeComponent();
             BindingContext = viewModel = new CameraListViewModel();
 
-            MessagingCenter.Subscribe<Object>(this, "GoBack", sender =>
+            MessagingCenter.Subscribe<HeaderViewStack>(this, "GoBack", async sender =>
             {
                 if (Application.Current.MainPage.Navigation.ModalStack.Count > 1)
                 {
 
-                    Navigation.PopModalAsync();
+                    await Navigation.PopModalAsync();
                 }
                 else
                 {
 
-                    Navigation.PopAsync();
+                    await Navigation.PopAsync();
                 }
             });
             viewModel.LoadCameras.Execute(null);

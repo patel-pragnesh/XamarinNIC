@@ -370,6 +370,49 @@
                                             VerticalOptions="Center" />
                                 </StackLayout>
                             </Frame>
+
+                            <Frame 
+                                   CornerRadius="30"
+                                   Margin="10, 10, 10, 10"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="Start"
+                                   BackgroundColor="White"
+                                   IsVisible="{Binding ShowCameras}"
+                                BorderColor="{AppThemeBinding Dark=White, Light={x:StaticResource MainColor}}"
+                                   Padding="0, 25, 0, 25">
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <svg:SvgCachedImage
+                                        Source="resource://xamarinJKH.Resources.ic_camera.svg"
+                                        HeightRequest="40"
+                                        ReplaceStringMap="{Binding ShowAnnouncements, Converter={x:StaticResource SvgColor}}"
+                                        WidthRequest="60"
+                                         Margin="5,0,0,0"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Text="{x:Static xamarinJkh:AppResources.EventsCam}"
+                                        FontSize="20"
+                                        TextColor="Black"
+                                        Margin="0, 0, 0, 0"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Center" />
+
+                                    <svg:SvgCachedImage
+                                            Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
+                                            HeightRequest="25"
+                                            ReplaceStringMap="{Binding ShowAnnouncements, Converter={x:StaticResource SvgColor}}"
+                                            WidthRequest="25"
+                                            Margin="0,0,15,0"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center" />
+
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Cameras"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Frame>
                         </StackLayout>
                     </ScrollView>
                 </StackLayout>

@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              xmlns:local="clr-namespace:xamarinJKH"
              xmlns:video="clr-namespace:xamarinJKH.VideoStreaming"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              NavigationPage.HasNavigationBar="False"
              x:Class="xamarinJKH.VideoStreaming.CameraPage">
     <ContentPage.Content>
@@ -33,21 +34,23 @@
                         <ColumnDefinition Width="50"/>
                     </Grid.ColumnDefinitions>
 
-                    <video:VideoPlayerExo 
-                                      Opacity="0"
-                                      IsVisible="True"
-                                      HeightRequest="{Binding PlayerHeight}"
-                                              Grid.RowSpan="2"
-                                              Grid.ColumnSpan="2"
-                                      HorizontalOptions="FillAndExpand"
-                                      x:Name="Video"/>
-                    <ImageButton Clicked="Button_Clicked"
-                                Source="ic_flip"
-                                 Aspect="AspectFit"
-                                 BackgroundColor="Transparent"
-                                          Margin="0,-50,10,0"
-                                Grid.Row="1"
-                                Grid.Column="1"/>
+                    <video:VideoPlayerExo Source="{Binding Link}"
+                                          Opacity="0"
+                                          IsVisible="True"
+                                          HeightRequest="{Binding PlayerHeight}"
+                                          Grid.RowSpan="2"
+                                          Grid.ColumnSpan="2"
+                                          HorizontalOptions="FillAndExpand"
+                                          x:Name="Video"/>
+                    <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_flip.svg"
+                                        Grid.Row="1"
+                                        Margin="0,0,0,30"
+                                        ReplaceStringMap="{Binding Link, Converter={x:StaticResource SvgColor},ConverterParameter='#FFFFFF'}"
+                                        Grid.Column="1">
+                        <svg:SvgCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Button_Clicked"/>
+                        </svg:SvgCachedImage.GestureRecognizers>   
+                    </svg:SvgCachedImage>
                 </Grid>
             </StackLayout>
             
