@@ -69,6 +69,7 @@ namespace xamarinJKH.Apps
             }
         }
 
+        public bool closeMessages { get; set; } = !Settings.MobileSettings.disableCommentingRequests;
         CancellationTokenSource TokenSource { get; set; }
         CancellationToken Token { get; set; }
         bool PermissionAsked;

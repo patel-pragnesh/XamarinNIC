@@ -191,6 +191,7 @@
             <Frame CornerRadius="30"
                    Margin="15, -30, 15, 5"
                    BackgroundColor="White"
+                   IsVisible="{Binding closeMessages}"
                    BorderColor="{Binding hex}"
                    Padding="15">
                 <StackLayout
