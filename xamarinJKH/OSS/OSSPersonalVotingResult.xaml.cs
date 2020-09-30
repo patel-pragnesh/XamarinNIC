@@ -26,7 +26,20 @@ namespace xamarinJKH
         public OSSPersonalVotingResult(OSS oSS, bool userFinishPool=false)
         {
             InitializeComponent();
-
+            if (oSS.Accounts.Count > 0)
+            {
+                OSSAccount oSsAccount = oSS.Accounts[0];
+                ProtokolStackL.IsVisible = oSsAccount.HasVoitingBlankFile;
+                urlProtokol.TextColor = colorFromMobileSettings;
+                urlProtokol.GestureRecognizers.Add(new TapGestureRecognizer
+                {
+                    Command = new Command(async () => await Launcher.OpenAsync(oSsAccount.VoitingBlankFileLink))
+                });
+            }
+            else
+            {
+                ProtokolStackL.IsVisible = false;
+            }
             forsvg = false;
             this.BindingContext = this;
 
