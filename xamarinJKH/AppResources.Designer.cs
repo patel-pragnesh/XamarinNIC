@@ -412,7 +412,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Авто показания.
+        ///   Looks up a localized string similar to Автоматическое снятие.
         /// </summary>
         internal static string AutoPennance {
             get {
