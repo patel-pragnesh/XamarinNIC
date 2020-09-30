@@ -173,6 +173,7 @@ namespace xamarinJKH.Server
                 "RequestsDispatcher/SetPaidRequestStatusOnTheWay"; // Установка статуса платной заявки в 'курьер в пути'
 
         public const string UPDATE_RECEIPT = "RequestsDispatcher/UpdateRequestReceipts";
+        public const string CAMERAS_LIST = "Houses/WebCams";
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -2275,6 +2276,19 @@ namespace xamarinJKH.Server
                 data.ReceiptItems
             });
             var response = await client.ExecuteTaskAsync<CommonResult>(restRequest);
+            return response.Data;
+        }
+
+
+        public async Task<ItemsList<CameraModel>> GetCameras(int all = 0)
+        {
+            RestClient client = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(CAMERAS_LIST, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = await client.ExecuteTaskAsync<ItemsList<CameraModel>>(restRequest);
             return response.Data;
         }
     }
