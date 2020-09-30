@@ -628,6 +628,11 @@ namespace xamarinJKH.Main
                     img.Source = ImageSource.FromFile("ic_cold_water");
                 }
 
+                string month = AppResources.CountersCurrentMonth;
+                if (Settings.Person.Accounts[0].MetersEndDay < Settings.Person.Accounts[0].MetersStartDay)
+                {
+                    month = AppResources.NextMonth;
+                }
                 int currDay = DateTime.Now.Day;
                 // currDay = 16;
                 frameBtn.IsVisible = true;
@@ -661,7 +666,7 @@ namespace xamarinJKH.Main
                                     });
                                     formattedDate.Spans.Add(new Span
                                     {
-                                        Text = AppResources.CountersThisMonth,
+                                        Text = month,
                                         TextColor = (Color)Application.Current.Resources["MainColor"],
                                         FontAttributes = FontAttributes.None,
                                         FontSize = 12
@@ -671,7 +676,7 @@ namespace xamarinJKH.Main
                                 {
                                     formattedDate.Spans.Add(new Span
                                     {
-                                        Text = AppResources.CountersCurrentMonth,
+                                        Text = month,
                                         TextColor = (Color)Application.Current.Resources["MainColor"],
                                         FontAttributes = FontAttributes.Bold,
                                         FontSize = 12
