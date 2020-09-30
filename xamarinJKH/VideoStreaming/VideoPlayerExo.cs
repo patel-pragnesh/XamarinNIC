@@ -9,13 +9,13 @@ namespace xamarinJKH.VideoStreaming
 {
     public class VideoPlayerExo : View
     {
-        public static BindableProperty SourceUrl = BindableProperty.Create("Source", typeof(string), typeof(string));
+        public static BindableProperty SourceProperty = BindableProperty.Create("SourceProperty", typeof(string), typeof(VideoPlayerExo));
         public string Source
         {
-            get => (string)GetValue(SourceUrl);
+            get => (string)GetValue(SourceProperty);
             set
             {
-                SetValue(SourceUrl, value);
+                SetValue(SourceProperty, value);
                 OnPropertyChanged("Source");
             }
         }
