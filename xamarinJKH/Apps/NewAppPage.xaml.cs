@@ -90,11 +90,7 @@ namespace xamarinJKH.Apps
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => {
-                try
-                {
-                    _ = await Navigation.PopAsync();
-                }
-                catch { }
+               ClosePage();
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
             var techSend = new TapGestureRecognizer();
@@ -195,7 +191,18 @@ namespace xamarinJKH.Apps
                 
             }
         }
-
+        async void ClosePage()
+        {
+            try
+            {
+                await Navigation.PopAsync();
+               
+            }
+            catch
+            {
+                await Navigation.PopModalAsync();
+            }
+        }
         private async void PickImage_Clicked(object sender, EventArgs args)
         {
             string[] fileTypes = null;
@@ -475,11 +482,7 @@ namespace xamarinJKH.Apps
                     {
                         sendFiles(result.ID.ToString());
                         await DisplayAlert(AppResources.AlertSuccess, AppResources.AppCreated, "OK");
-                        try
-                        {
-                            _ = await Navigation.PopAsync();
-                        }
-                        catch { }
+                       ClosePage();
                     }
                     else
                     {
