@@ -271,6 +271,7 @@
   <ItemGroup>
     <PackageReference Include="AiForms.Dialogs" Version="1.0.3" />
     <PackageReference Include="akavache" Version="6.10.20" />
+    <PackageReference Include="dotMorten.Xamarin.Forms.AutoSuggestBox" Version="1.1.1" />
     <PackageReference Include="Messier16.Forms.Controls" Version="2.2.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.3.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.3.0" />
@@ -302,6 +303,9 @@
     <EmbeddedResource Update="AppResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="AppsConst\AddressSearch.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Counters\CounterEntryCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -639,6 +643,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MainConst\" />
-    <Folder Include="AppsConst\" />
   </ItemGroup>
 </Project>
