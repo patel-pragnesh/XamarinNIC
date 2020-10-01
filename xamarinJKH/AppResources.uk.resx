@@ -1352,4 +1352,16 @@
   <data name="EventsCam" xml:space="preserve">
     <value>Камери</value>
   </data>
+  <data name="District" xml:space="preserve">
+    <value>Район</value>
+  </data>
+  <data name="Flat" xml:space="preserve">
+    <value>Квартира</value>
+  </data>
+  <data name="House" xml:space="preserve">
+    <value>Хата</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Вулиця</value>
+  </data>
 </root>

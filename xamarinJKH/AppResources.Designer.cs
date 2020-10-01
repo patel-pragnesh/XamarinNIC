@@ -19,7 +19,7 @@ namespace xamarinJKH {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -863,6 +863,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Район.
+        /// </summary>
+        internal static string District {
+            get {
+                return ResourceManager.GetString("District", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Скачать.
         /// </summary>
         internal static string Download {
@@ -1529,6 +1538,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Квартира.
+        /// </summary>
+        internal static string Flat {
+            get {
+                return ResourceManager.GetString("Flat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Выберите квартиру.
         /// </summary>
         internal static string FlatChoose {
@@ -1606,6 +1624,15 @@ namespace xamarinJKH {
         internal static string HomeChoose {
             get {
                 return ResourceManager.GetString("HomeChoose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дом.
+        /// </summary>
+        internal static string House {
+            get {
+                return ResourceManager.GetString("House", resourceCulture);
             }
         }
         
@@ -3410,6 +3437,15 @@ namespace xamarinJKH {
         internal static string Step1 {
             get {
                 return ResourceManager.GetString("Step1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Улица.
+        /// </summary>
+        internal static string Street {
+            get {
+                return ResourceManager.GetString("Street", resourceCulture);
             }
         }
         
