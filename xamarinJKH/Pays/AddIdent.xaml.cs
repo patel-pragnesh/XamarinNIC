@@ -67,6 +67,10 @@ namespace xamarinJKH.Pays
                 catch { }
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
+            MessagingCenter.Subscribe<Object>(this, "ClosePage", async (sender) =>
+            {
+                _ = await Navigation.PopAsync();
+            });
         }
         
         private async void AddButtonClick(object sender, EventArgs e)

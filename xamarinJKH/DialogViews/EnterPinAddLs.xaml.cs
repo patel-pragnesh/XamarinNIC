@@ -50,6 +50,7 @@ namespace xamarinJKH.DialogViews
                     await DisplayAlert("", $"{AppResources.Acc} " + Ident + $"{AppResources.AddLsString}", "ОК");
                     await paysPage.RefreshPaysData();
                     await PopupNavigation.Instance.PopAsync();
+                    MessagingCenter.Send<Object>(this, "ClosePage");
                 }
                 else
                 {
