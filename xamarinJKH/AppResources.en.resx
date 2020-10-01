@@ -1377,4 +1377,25 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="AutoPennance" xml:space="preserve">
     <value>Auto pennance</value>
   </data>
+  <data name="AdditionalList" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
+  <data name="AdditionalMap" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="AppsPerformed" xml:space="preserve">
+    <value>Applications completed</value>
+  </data>
+  <data name="AppsClosed" xml:space="preserve">
+    <value>Applications closed</value>
+  </data>
+  <data name="EventsCam" xml:space="preserve">
+    <value>Cameras</value>
+  </data>
+  <data name="VoiceRecEnd" xml:space="preserve">
+    <value>Recording message for recognition finished</value>
+  </data>
+  <data name="VoiceRecStart" xml:space="preserve">
+    <value>Recording message for recognition started</value>
+  </data>
 </root>

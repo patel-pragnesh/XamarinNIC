@@ -1361,4 +1361,10 @@
   <data name="EnterPin" xml:space="preserve">
     <value>Введіть пін - код з останньої квитанції</value>
   </data>
+  <data name="VoiceRecEnd" xml:space="preserve">
+    <value>Запис повідомлення для розпізнавання закінчено</value>
+  </data>
+  <data name="VoiceRecStart" xml:space="preserve">
+    <value>Розпочато запис повідомлення для розпізнавання</value>
+  </data>
 </root>
