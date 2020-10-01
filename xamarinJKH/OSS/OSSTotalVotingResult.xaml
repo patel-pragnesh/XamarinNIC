@@ -103,7 +103,7 @@
                                HorizontalOptions="Center" />
                         <Label x:Name="titleLabel"
                             Text="{x:Static xamarinJkh:AppResources.OSSTotal}"
-                            FontSize="18"
+                            FontSize="16"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
