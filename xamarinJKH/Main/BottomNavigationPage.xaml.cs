@@ -83,7 +83,6 @@ namespace xamarinJKH.Main
 
             
 
-            CheckAccounts();
             Application.Current.Resources["Saldo"] = true;
             visibleMenu();
             StartUpdateToken();
@@ -298,13 +297,7 @@ namespace xamarinJKH.Main
             }
         }
 
-        public async void CheckAccounts()
-        {
-            if (Settings.Person.Accounts.Count == 0)
-            {
-                await AiForms.Dialogs.Dialog.Instance.ShowAsync<xamarinJKH.DialogViews.AddAccountDialogView>();
-            }
-        }
+   
 
         protected override void OnCurrentPageChanged()
         {
