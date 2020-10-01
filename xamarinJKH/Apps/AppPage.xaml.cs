@@ -278,6 +278,7 @@ namespace xamarinJKH.Apps
                 {
                     //if (recStarted)
                     //{
+                       if(Device.RuntimePlatform==Device.iOS)
                         await ShowToast2(AppResources.VoiceRecEnd);
                     IconViewMic.IsEnabled = true;
                     IconViewMic.ReplaceStringMap = new Dictionary<string, string> { { "#000000", hex.ToHex() } };
@@ -396,8 +397,8 @@ namespace xamarinJKH.Apps
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    //recStarted = true;
-                    await ShowToast2(AppResources.VoiceRecStart);
+                    if (Device.RuntimePlatform == Device.iOS)
+                        await ShowToast2(AppResources.VoiceRecStart);
                     IconViewMic.IsEnabled = false;
                     IconViewMic.ReplaceStringMap = new Dictionary<string, string> { { "#000000", "#A2A2A2" } };
                 });                
