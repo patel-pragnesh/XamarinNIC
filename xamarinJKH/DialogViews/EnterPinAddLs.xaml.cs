@@ -51,6 +51,10 @@ namespace xamarinJKH.DialogViews
                     await paysPage.RefreshPaysData();
                     await PopupNavigation.Instance.PopAsync();
                 }
+                else
+                {
+                    await DisplayAlert("", result.Error, "ОК");
+                }
             }
         }
     }
