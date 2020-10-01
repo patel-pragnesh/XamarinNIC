@@ -1299,7 +1299,7 @@ namespace xamarinJKH.Server
             return new MemoryStream(response.RawBytes);
         }
 
-        public async Task<AddAccountResult> AddIdent(string Ident, bool Confirm = false)
+        public async Task<AddAccountResult> AddIdent(string Ident, bool Confirm = false, string PinCode = null)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(ADD_IDENT_PROFILE, Method.POST);
@@ -1310,7 +1310,8 @@ namespace xamarinJKH.Server
             restRequest.AddBody(new
             {
                 Ident,
-                Confirm
+                Confirm,
+                PinCode
             });
             var response = await restClientMp.ExecuteTaskAsync<AddAccountResult>(restRequest);
             // Проверяем статус
