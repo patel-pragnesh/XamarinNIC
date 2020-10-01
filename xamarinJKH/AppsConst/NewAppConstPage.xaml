@@ -7,8 +7,15 @@
              xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
              xmlns:apps="clr-namespace:xamarinJKH.AppsConst;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:converters="clr-namespace:xamarinJKH.Converters"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.AppsConst.NewAppConstPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseBoolConverter x:Key="Invert"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             
@@ -44,12 +51,12 @@
                                     <StackLayout
                                         Spacing="0"
                                         Orientation="Horizontal">
-                                        <xamarinJkh:IconView x:Name="IconViewLogin"
-                                                             Source="ic_phone"
+                                        <svg:SvgCachedImage x:Name="IconViewLogin"
+                                                             Source="resource://xamarinJKH.Resources.ic_phone.svg"
                                                              IsVisible="False"
-                                                             HeightRequest="15"
-                                                             Foreground="White"
-                                                             Margin="-10, 0,0,0"
+                                                             HeightRequest="25"
+                                                             ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}}"
+                                                             Margin="0, 0,10,0"
                                                              HorizontalOptions="Start"
                                                              VerticalOptions="Center" />
                                         <Label x:Name="LabelName"
@@ -80,11 +87,11 @@
                         HorizontalOptions="End"
                         Margin="0,0,15,0"
                         Orientation="Horizontal">
-                        <xamarinJkh:IconView x:Name="IconViewTech"
-                                             Source="ic_tech"
-                                             HeightRequest="20"
-                                             Foreground="White"
-                                             Margin="0, 0,0,0"
+                        <svg:SvgCachedImage x:Name="IconViewTech"
+                                             Source="resource://xamarinJKH.Resources.ic_tech.svg"
+                                             HeightRequest="25"
+                                             ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}}"
+                                             Margin="0, 0,10,0"
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />
                         <Label x:Name="LabelTech"
@@ -101,9 +108,9 @@
                         Orientation="Horizontal"
                         Margin="25, 0, 0, 0"
                         HorizontalOptions="Start">
-                        <xamarinJkh:IconView Source="ic_arrow_back"
-                               HeightRequest="15"
-                               Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
+                               HeightRequest="25"
+                               ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
                                HorizontalOptions="Center" />
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.NewAppCreate}"
@@ -114,19 +121,37 @@
                     </StackLayout>
 
                 <ScrollView VerticalOptions="Start">
-                <Frame CornerRadius="30"
+                        <Frame CornerRadius="30"
                        x:Name="FrameTop"
                        Margin="20, 10, 20, 15"
                        VerticalOptions="Start"
                        BackgroundColor="White"
                        Padding="0">
 
-                    <StackLayout
+                      <StackLayout
                         Margin="10, 10, 10, 10">
+                                <StackLayout Margin="5"
+                                      Spacing="0"
+                                      Orientation="Horizontal"
+                                      HorizontalOptions="FillAndExpand">
+                                    <Label Text="Создание по:"
+                                           FontAttributes="Bold"
+                                           TextColor="Black"
+                                           FontSize="17"/>
+
+                                    <StackLayout Spacing="0" x:Name="TypeStack">
+                                        <RadioButton Text="{x:Static xamarinJkh:AppResources.Ident}" ClassId="0" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed"/>
+                                        <RadioButton Text="{x:Static xamarinJkh:AppResources.District}" ClassId="1" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed"/>
+                                        <RadioButton Text="{x:Static xamarinJkh:AppResources.Street}" ClassId="2" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed"/>
+                                        <RadioButton Text="{x:Static xamarinJkh:AppResources.House}" ClassId="3" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed"/>
+                                        <RadioButton Text="{x:Static xamarinJkh:AppResources.Flat}" ClassId="4" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed"/>
+                                     </StackLayout>
+                                </StackLayout>
                         <StackLayout
                             Spacing="0"
                             Margin="5, 5, 5, 5"
                             HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding Ident}"
                             Orientation="Horizontal">
 
                             <Label
@@ -165,7 +190,40 @@
                                                  Foreground="{x:DynamicResource MainColor}"
                                                  VerticalOptions="Center" />
                         </StackLayout>
-                        <StackLayout
+                                <StackLayout
+                            Spacing="0"
+                            Margin="5, 5, 5, 5"
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding Ident, Converter={x:StaticResource Invert}}"
+                            Orientation="Horizontal">
+
+                                    <Label
+                                TextColor="Black"
+                                Text="Нажмите для поиска"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Start"
+                                FontAttributes="Bold"
+                                FontSize="17" />
+                                    <Label
+                                Text=""
+                                VerticalOptions="Center"
+                                TextColor="#A2A2A2"
+                                HorizontalTextAlignment="Center"
+                                HorizontalOptions="FillAndExpand"
+                                FontSize="17" />
+                                    <xamarinJkh:IconView 
+                                                 Source="ic_close"
+                                                 HeightRequest="15"
+                                                 IsVisible="False"
+                                                 Margin="0,0,5,0"
+                                                 WidthRequest="15"
+                                                 Foreground="{x:DynamicResource MainColor}"
+                                                 VerticalOptions="Center" />
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="AddressApp"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                                <StackLayout
                             Margin="5, 5, 5, 5"
                             Spacing="0"
                             HorizontalOptions="FillAndExpand"
