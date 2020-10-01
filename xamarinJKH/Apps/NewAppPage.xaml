@@ -6,6 +6,8 @@
              xmlns:pays="clr-namespace:xamarinJKH.Pays;assembly=xamarinJKH"
              xmlns:apps="clr-namespace:xamarinJKH.Apps;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Apps.NewAppPage">
     <ContentPage.Content>
@@ -99,9 +101,9 @@
                         Margin="25, 0, 0, 0"
                         HorizontalOptions="Start">
                         <xamarinJkh:IconView Source="ic_arrow_back"
-                               HeightRequest="15"
-                               Foreground="{AppThemeBinding Light=Black, Dark=White}"
-                               HorizontalOptions="Center" />
+                                             HeightRequest="15"
+                                             Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                             HorizontalOptions="Center" />
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.NewAppCreate}"
                             FontSize="18"
@@ -133,7 +135,8 @@
                                         FontSize="17" />
                                     <StackLayout Spacing="0">
                                         <StackLayout Orientation="Horizontal">
-                                            <xamarinJkh:BorderlessPicker x:Name="PickerLs" Title="{x:Static xamarinJkh:AppResources.Choose}"
+                                            <xamarinJkh:BorderlessPicker x:Name="PickerLs"
+                                                                         Title="{x:Static xamarinJkh:AppResources.Choose}"
                                                                          TitleColor="{Binding hex}"
                                                                          TextColor="{Binding hex}"
                                                                          VerticalOptions="End"
@@ -172,7 +175,8 @@
                                     <StackLayout Spacing="0">
                                         <StackLayout
                                             Orientation="Horizontal">
-                                            <xamarinJkh:BorderlessPicker x:Name="PickerType" Title="{x:Static xamarinJkh:AppResources.Choose}"
+                                            <xamarinJkh:BorderlessPicker x:Name="PickerType"
+                                                                         Title="{x:Static xamarinJkh:AppResources.Choose}"
                                                                          TitleColor="{Binding hex}"
                                                                          TextColor="{Binding hex}"
                                                                          VerticalOptions="End"
@@ -196,7 +200,78 @@
                                             HorizontalOptions="Fill" />
                                     </StackLayout>
                                 </StackLayout>
+                                <StackLayout x:Name="LayoutPassApp" 
+                                             Margin="10, 0, 10, 0">
+                                    <StackLayout
+                                        Spacing="0"
+                                        HorizontalOptions="FillAndExpand"
+                                        Orientation="Horizontal">
+
+                                        <Label
+                                            TextColor="Black"
+                                            Text="Категория пропуска:"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Start"
+                                            FontAttributes="Bold"
+                                            FontSize="12" />
+                                        <forms:AutoSuggestBox
+
+                                            x:Name="AutoSuggestBox"
+                                            
+                                            PlaceholderText="Начните вводить категорию" WidthRequest="200"
+                                            ItemsSource="{Binding AllKindPass}"
+                                            HorizontalOptions="FillAndExpand" 
+                                            TextChanged="AutoSuggestBox_TextChanged"
+                                            QuerySubmitted="AutoSuggestBox_QuerySubmitted"
+                                            SuggestionChosen="AutoSuggestBox_SuggestionChosen" />
+                                    </StackLayout>
+                                    <StackLayout x:Name="LayoutPeshehod">
+                                        <StackLayout Spacing="0"
+                                                     HorizontalOptions="FillAndExpand"
+                                                     Orientation="Horizontal">
+                                            <Label
+                                                TextColor="Black"
+                                                Text="ФИО:"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Start"
+                                                FontAttributes="Bold"
+                                                FontSize="12" />
+                                            <Entry x:Name="EntryFIO"
+                                                   FontSize="15"
+                                                   VerticalOptions="End"
+                                                   HorizontalTextAlignment="Center"
+                                                   Placeholder="Введите ФИО"
+                                                   TextColor="#A2A2A2"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   Keyboard="Chat" />
+                                        </StackLayout>
+                                        <StackLayout Spacing="0"
+                                                     HorizontalOptions="FillAndExpand"
+                                                     Orientation="Horizontal">
+                                            <Label
+                                                TextColor="Black"
+                                                Text="Паспорт:"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Start"
+                                                FontAttributes="Bold"
+                                                FontSize="12" />
+                                            <Entry x:Name="EntryPassport"
+                                                   FontSize="15"
+                                                   VerticalOptions="End"
+                                                   Placeholder="Серия номер"
+                                                   HorizontalTextAlignment="Center"
+                                                   TextColor="#A2A2A2"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   Keyboard="Numeric">
+                                                <Entry.Behaviors>
+                                                    <mask:MaskedBehavior Mask="XXXX XXXXXX" />
+                                                </Entry.Behaviors>
+                                            </Entry>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
                                 <Frame CornerRadius="15"
+                                       x:Name="FrameEntryMess"
                                        BackgroundColor="White"
                                        BorderColor="{Binding hex}"
                                        Margin="10, 10, 10, 0"
@@ -267,7 +342,7 @@
                                         <DataTemplate>
                                             <apps:FileCell
                                                 FileName="{Binding FileName}"
-                                                FileSize="{Binding DataArray}"/>
+                                                FileSize="{Binding DataArray}" />
                                         </DataTemplate>
 
                                     </ListView.ItemTemplate>

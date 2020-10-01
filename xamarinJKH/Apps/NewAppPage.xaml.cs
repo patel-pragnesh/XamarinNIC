@@ -28,6 +28,7 @@ using Xamarin.Forms.PancakeView;
 using xamarinJKH.DialogViews;
 using Xamarin.Essentials;
 using System.Text.RegularExpressions;
+using dotMorten.Xamarin.Forms;
 
 namespace xamarinJKH.Apps
 {
@@ -46,7 +47,7 @@ namespace xamarinJKH.Apps
         const string FILE = "file";
         public int PikerLsItem = 0;
         public int PikerTypeItem = 0;
-
+        private AddAppModel _appModel;
         public NewAppPage()
         {
             InitializeComponent();
@@ -117,18 +118,27 @@ namespace xamarinJKH.Apps
             var addFile = new TapGestureRecognizer();
             addFile.Tapped += async (s, e) => { AddFile(); };
             StackLayoutAddFile.GestureRecognizers.Add(addFile);
-
+            
             SetText();
             files = new List<FileData>();
-            BindingContext = new AddAppModel()
+#if DEBUG
+            Settings.TypeApp.Add(new NamedValue
+            {
+                ID = "12342",
+                Name = "Заявка на пропуск"
+            });
+#endif
+            _appModel = new AddAppModel()
             {
                 AllAcc = Settings.Person.Accounts,
                 AllType = Settings.TypeApp,
+                AllKindPass = new List<string>{"Пешеход", "Мотоцикл", "Легковой", "Газель", "Грузовой"},
                 hex = (Color)Application.Current.Resources["MainColor"],
                 SelectedAcc = Settings.Person.Accounts[0],
                 SelectedType = Settings.TypeApp[0],
                 Files = files
             };
+            BindingContext = _appModel;
             ListViewFiles.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
@@ -443,6 +453,8 @@ namespace xamarinJKH.Apps
         {
             public List<AccountInfo> AllAcc { get; set; }
             public List<NamedValue> AllType { get; set; }
+            public List<NamedValue> AllBrand { get; set; }
+            public List<string> AllKindPass { get; set; }
             public AccountInfo SelectedAcc { get; set; }
             public NamedValue SelectedType { get; set; }
 
@@ -539,8 +551,28 @@ namespace xamarinJKH.Apps
             }
         }
 
+        void SetPassApp()
+        {
+            FrameEntryMess.IsVisible = false;
+            LayoutPassApp.IsVisible = true;
+        }
+        
+        void SetDefaultApp()
+        {
+            FrameEntryMess.IsVisible = true;
+            LayoutPassApp.IsVisible = false;
+        }
+        
         private void pickerType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (_appModel.SelectedType.Name.Equals("Заявка на пропуск"))
+            {
+                SetPassApp();
+            }
+            else
+            {
+                SetDefaultApp();
+            }
             // try
             // {
             //     var identLength = Settings.TypeApp[PickerType.SelectedIndex].Name.Length;
@@ -553,6 +585,28 @@ namespace xamarinJKH.Apps
             // {
             //     // ignored
             // }
+        }
+
+        private void AutoSuggestBox_TextChanged(object sender, AutoSuggestBoxTextChangedEventArgs e)
+        {
+            // Only get results when it was a user typing, 
+            // otherwise assume the value got filled in by TextMemberPath 
+            // or the handler for SuggestionChosen.
+            if (e.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                IEnumerable<string> itemsSource =
+                    from i in _appModel.AllKindPass where i.ToLower().Contains(AutoSuggestBox.Text) select i;
+                List<string> source = new List<string>(itemsSource);
+                AutoSuggestBox.ItemsSource = source;
+            }
+        }
+
+        private void AutoSuggestBox_QuerySubmitted(object sender, AutoSuggestBoxQuerySubmittedEventArgs e)
+        {
+        }
+
+        private void AutoSuggestBox_SuggestionChosen(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
+        {
         }
     }
 }
