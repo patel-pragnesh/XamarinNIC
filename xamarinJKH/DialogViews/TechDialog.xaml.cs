@@ -31,7 +31,7 @@ namespace xamarinJKH.DialogViews
                 Settings.MobileSettings.main_name + AppResources.TechAdditionalText2;
             BtnApp.Text = AppResources.TechAdditionalText3 + Settings.MobileSettings.main_name;
             var appOpen = new TapGestureRecognizer();
-            StackLayoutApp.IsVisible = isVisibleApp;
+            StackLayoutApp.IsVisible = isVisibleApp && Settings.AppIsVisible;
             var close = new TapGestureRecognizer();
             close.Tapped += async (s, e) => { await PopupNavigation.Instance.PopAsync(); };
             IconViewClose.GestureRecognizers.Add(close);
