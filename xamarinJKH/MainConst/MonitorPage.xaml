@@ -11,19 +11,15 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.3*"/>
-                <RowDefinition Height="0.15*"/>
-                <RowDefinition Height="0.55*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Image x:Name="ImageFon"
-                       Grid.Row="0"
-                       Grid.RowSpan="3"
                        Source="{AppThemeBinding Light=ic_monitor_top_light, Dark=ic_monitor_top}"
                        VerticalOptions="Start"
 					   Margin="0,20,0,0"
                        Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
                        HorizontalOptions="FillAndExpand" />
-            <StackLayout>
+            <StackLayout VerticalOptions="FillAndExpand">
                 <pancakeView:PancakeView
                         Padding="0"
                         CornerRadius="0,0,25,25"
@@ -113,93 +109,112 @@
                             HorizontalOptions="Start" />
                 </StackLayout>
 
-
-
-            </StackLayout>
-            <StackLayout Grid.Row="1" Grid.RowSpan="2"
-                VerticalOptions="FillAndExpand">
-                <Frame CornerRadius="40"
+                <StackLayout 
+                    VerticalOptions="FillAndExpand">
+                    <Frame CornerRadius="40"
                        Margin="20, 10, 20, -70"
                        VerticalOptions="Start"
                        x:Name="Frame"
                        BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
                        Padding="20,20,20,80">
-                    <StackLayout Orientation="Horizontal">
-                        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <StackLayout HorizontalOptions="CenterAndExpand"
+                        <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <StackLayout HorizontalOptions="CenterAndExpand"
                                          Grid.Row="0"
                                          Grid.Column="0"
                                          Padding="0,0,0,10"
                                          x:Name="StackLayoutGroup"
                                          Orientation="Vertical"
-                                         VerticalOptions="Center"
+                                         VerticalOptions="CenterAndExpand"
+                                         Margin="0,0,0,10"
                                          Spacing="-2">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{x:Static xamarinJkh:AppResources.AreaChoose}"
+                                    <Grid VerticalOptions="FillAndExpand" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="0.1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{x:Static xamarinJkh:AppResources.AreaChoose}"
                                            x:Name="LabelGroup"
                                            FontSize="{Binding fontSize}"
-                                           MaxLines="3"
+                                           MaxLines="2"
+                                               VerticalOptions="FillAndExpand"
                                            FontAttributes="Bold"
                                            TextColor="{AppThemeBinding Light=Black, Dark=White}" />
-                                    <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
+                                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
                                                          HeightRequest="12"
                                                          WidthRequest="12"
                                                          Rotation="90"
                                                          Margin="0,5,0,0"
                                                          VerticalOptions="Center"
+                                                            Grid.Column="1"
                                                          ReplaceStringMap="{Binding fontSize, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}" />
-                                </StackLayout>
-                                <Label
+                                    </Grid>
+                                    <Label
                                     HeightRequest="1"
                                     BackgroundColor="{AppThemeBinding Light=Black, Dark=White}"
                                     HorizontalOptions="Fill" />
-                            </StackLayout>
-                            <StackLayout Spacing="-2"
+                                </StackLayout>
+                                <StackLayout Spacing="-2"
                                          Grid.Row="0"
                                          Grid.Column="1"
                                          x:Name="StackLayoutHouse"
+                                         Margin="0,0,0,10"
                                          Padding="0,0,0,10"
                                          HorizontalOptions="CenterAndExpand"
                                          VerticalOptions="Center">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{x:Static xamarinJkh:AppResources.HomeChoose}"
+                                    <Grid VerticalOptions="FillAndExpand" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="0.1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{x:Static xamarinJkh:AppResources.HomeChoose}"
                                            x:Name="LabelHouse"
                                            FontSize="{Binding fontSize}"
-                                           MaxLines="3"
+                                           MaxLines="2"
                                            FontAttributes="Bold"
+                                               VerticalOptions="FillAndExpand"
                                            TextColor="{AppThemeBinding Light=Black, Dark=White}" />
-                                    <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
+                                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
                                                          HeightRequest="12"
                                                          WidthRequest="12"
                                                          Rotation="90"
                                                          Margin="0,5,0,0"
                                                          VerticalOptions="Center"
+                                                            Grid.Column="1"
                                                          ReplaceStringMap="{Binding fontSize, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}" />
-                                </StackLayout>
-                                <Label
+                                    </Grid>
+                                    <Label
                                     HeightRequest="1"
                                     BackgroundColor="{AppThemeBinding Light=Black, Dark=White}"
                                     HorizontalOptions="Fill" />
-                            </StackLayout>
-                        </Grid>
+                                </StackLayout>
+                            </Grid>
 
-                    </StackLayout>
-                </Frame>
-                
-            </StackLayout>
-            <ScrollView VerticalOptions="FillAndExpand"
-                            Grid.Row="2"
+                        </StackLayout>
+                    </Frame>
+
+                </StackLayout>
+                <StackLayout>
+                    <ScrollView 
                             Orientation="Vertical">
-                <StackLayout Spacing="0">
-                    <StackLayout x:Name="LayoutContent" Spacing="0" />
-                    <customRenderers:MaterialFrame
+                        <StackLayout Spacing="0">
+                            <StackLayout x:Name="LayoutContent" Spacing="0" />
+                            <customRenderers:MaterialFrame
                             Elevation="20"
                             x:Name="MaterialFrameNotDoingContainer"
                             IsVisible="False"
@@ -207,23 +222,23 @@
                             CornerRadius="35"
                             BackgroundColor="White"
                             Padding="0,0,0,25">
-                        <StackLayout Spacing="0">
-                            <customRenderers:MaterialFrame
+                                <StackLayout Spacing="0">
+                                    <customRenderers:MaterialFrame
                                     Elevation="20"
                                     CornerRadius="35"
                                     x:Name="MaterialFrameNotDoing"
                                     BackgroundColor="White"
                                     Padding="0, 25, 0, 25">
-                                <StackLayout
+                                        <StackLayout
                                         Orientation="Horizontal">
-                                    <svg:SvgCachedImage
+                                            <svg:SvgCachedImage
                                             Source="resource://xamarinJKH.Resources.ic_dislike.svg"
                                             ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}}"
                                             HeightRequest="30"
                                             Margin="15, 0, 0, 0"
                                             HorizontalOptions="Start"
                                             VerticalOptions="Center" />
-                                    <Label
+                                            <Label
                                             x:Name="LabelNotDoingCount"
                                             Text="Невыполненные заявки: 440"
                                             FontSize="15"
@@ -232,7 +247,7 @@
                                             Margin="0, 0, 0, 0"
                                             HorizontalOptions="FillAndExpand"
                                             VerticalOptions="Center" />
-                                    <svg:SvgCachedImage
+                                            <svg:SvgCachedImage
                                             x:Name="IconViewArrow"
                                             Source="resource://xamarinJKH.Resources.ic_arrow_down_monitor.svg"
                                             HeightRequest="25"
@@ -241,14 +256,19 @@
                                             Margin="0,0,15,0"
                                             HorizontalOptions="End"
                                             VerticalOptions="Center" />
+                                        </StackLayout>
+                                    </customRenderers:MaterialFrame>
+                                    <StackLayout x:Name="LayoutGrid" Margin="20,15,20,0" />
                                 </StackLayout>
                             </customRenderers:MaterialFrame>
-                            <StackLayout x:Name="LayoutGrid" Margin="20,15,20,0" />
-                        </StackLayout>
-                    </customRenderers:MaterialFrame>
 
+                        </StackLayout>
+                    </ScrollView>
                 </StackLayout>
-            </ScrollView>
+                
+
+            </StackLayout>
+            
         </Grid>
     </ContentPage.Content>
 </ContentPage>
