@@ -51,7 +51,6 @@ namespace xamarinJKH.Apps
         public NewAppPage()
         {
             InitializeComponent();
-
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -133,6 +132,7 @@ namespace xamarinJKH.Apps
                 AllAcc = Settings.Person.Accounts,
                 AllType = Settings.TypeApp,
                 AllKindPass = new List<string>{"Пешеход", "Мотоцикл", "Легковой", "Газель", "Грузовой"},
+                AllBrand = new List<string>{"Opel", "BMW", "Mercedes", "Reno", "Lada"},
                 hex = (Color)Application.Current.Resources["MainColor"],
                 SelectedAcc = Settings.Person.Accounts[0],
                 SelectedType = Settings.TypeApp[0],
@@ -453,7 +453,7 @@ namespace xamarinJKH.Apps
         {
             public List<AccountInfo> AllAcc { get; set; }
             public List<NamedValue> AllType { get; set; }
-            public List<NamedValue> AllBrand { get; set; }
+            public List<string> AllBrand { get; set; }
             public List<string> AllKindPass { get; set; }
             public AccountInfo SelectedAcc { get; set; }
             public NamedValue SelectedType { get; set; }
@@ -529,8 +529,6 @@ namespace xamarinJKH.Apps
                 {
                     ListViewFiles.IsVisible = false;
                 }
-
-                setBinding();
             }
         }
 
@@ -607,6 +605,31 @@ namespace xamarinJKH.Apps
 
         private void AutoSuggestBox_SuggestionChosen(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
         {
+            var eSelectedItem = (string) e.SelectedItem;
+            if (eSelectedItem != null)
+            {
+                // User selected an item from the suggestion list, take an action on it here.
+                if (eSelectedItem.Equals("Пешеход"))
+                {
+                    LayoutPeshehod.IsVisible = true;
+                    LayoutAvto.IsVisible = false;
+                }
+                else
+                {
+                    LayoutPeshehod.IsVisible = false;
+                    LayoutAvto.IsVisible = true;
+                }
+            }
+            else
+            {
+                // User hit Enter from the search box. Use args.QueryText to determine what to do.
+            }
+        }
+        
+
+        private void EntryNumber_OnCompleted(object sender, EventArgs e)
+        {
+            EntryNumber.Text = EntryNumber.Text.ToUpper();
         }
     }
 }

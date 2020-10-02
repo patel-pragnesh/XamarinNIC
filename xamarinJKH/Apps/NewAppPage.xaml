@@ -200,32 +200,22 @@
                                             HorizontalOptions="Fill" />
                                     </StackLayout>
                                 </StackLayout>
-                                <StackLayout x:Name="LayoutPassApp" 
-                                             Margin="10, 0, 10, 0">
+                                <StackLayout x:Name="LayoutPassApp"
+                                             Margin="10, 5, 10, 0">
                                     <StackLayout
                                         Spacing="0"
                                         HorizontalOptions="FillAndExpand"
-                                        Orientation="Horizontal">
-
-                                        <Label
-                                            TextColor="Black"
-                                            Text="Категория пропуска:"
-                                            VerticalOptions="Center"
-                                            HorizontalOptions="Start"
-                                            FontAttributes="Bold"
-                                            FontSize="12" />
+                                        Orientation="Vertical">
                                         <forms:AutoSuggestBox
-
                                             x:Name="AutoSuggestBox"
-                                            
-                                            PlaceholderText="Начните вводить категорию" WidthRequest="200"
+                                            PlaceholderText="Выберите категорию пропуска" WidthRequest="200"
                                             ItemsSource="{Binding AllKindPass}"
-                                            HorizontalOptions="FillAndExpand" 
+                                            HorizontalOptions="FillAndExpand"
                                             TextChanged="AutoSuggestBox_TextChanged"
                                             QuerySubmitted="AutoSuggestBox_QuerySubmitted"
                                             SuggestionChosen="AutoSuggestBox_SuggestionChosen" />
                                     </StackLayout>
-                                    <StackLayout x:Name="LayoutPeshehod">
+                                    <StackLayout x:Name="LayoutPeshehod" IsVisible="False">
                                         <StackLayout Spacing="0"
                                                      HorizontalOptions="FillAndExpand"
                                                      Orientation="Horizontal">
@@ -269,46 +259,40 @@
                                             </Entry>
                                         </StackLayout>
                                     </StackLayout>
-                                    <StackLayout x:Name="LayoutAvto">
+                                    <StackLayout x:Name="LayoutAvto" IsVisible="False">
                                         <StackLayout Spacing="0"
                                                      HorizontalOptions="FillAndExpand"
-                                                     Orientation="Horizontal">
-                                            <Label
-                                                TextColor="Black"
-                                                Text="Марка авто:"
-                                                VerticalOptions="Center"
-                                                HorizontalOptions="Start"
-                                                FontAttributes="Bold"
-                                                FontSize="12" />
+                                                     Orientation="Vertical">
                                             <forms:AutoSuggestBox
                                                 x:Name="AutoSuggestBoxBrand"
-                                                PlaceholderText="Начните марку авто" WidthRequest="200"
-                                                ItemsSource="{Binding AllKindPass}"
-                                                HorizontalOptions="FillAndExpand" 
-                                               />
+                                                PlaceholderText="Введите марку ТС" WidthRequest="200"
+                                                ItemsSource="{Binding AllBrand}"
+                                                HorizontalOptions="FillAndExpand" />
                                         </StackLayout>
                                         <StackLayout Spacing="0"
                                                      HorizontalOptions="FillAndExpand"
-                                                     Orientation="Horizontal">
-                                            <Label
-                                                TextColor="Black"
-                                                Text="Гос.номер:"
-                                                VerticalOptions="Center"
-                                                HorizontalOptions="Start"
-                                                FontAttributes="Bold"
-                                                FontSize="12" />
-                                            <Entry x:Name="EntryNumber"
-                                                   FontSize="15"
-                                                   VerticalOptions="End"
-                                                   Placeholder="Введите госюномер"
-                                                   HorizontalTextAlignment="Center"
-                                                   TextColor="#A2A2A2"
-                                                   HorizontalOptions="FillAndExpand"
-                                                   Keyboard="Chat">
-                                                <Entry.Behaviors>
-                                                    <mask:MaskedBehavior Mask="XX XXX XXX" />
-                                                </Entry.Behaviors>
-                                            </Entry>
+                                                     Orientation="Vertical">
+                                            <pancakeView:PancakeView
+                                                BorderThickness="4"
+                                                BorderColor="Black"
+                                                Padding="0,10,0,10"
+                                                Margin="40,0,40,0"
+                                                CornerRadius="10" BackgroundColor="White" HasShadow="True">
+                                                <Entry x:Name="EntryNumber"
+                                                       FontSize="20"
+                                                       VerticalOptions="End"
+                                                       Placeholder="Введите гос.номер"
+                                                       HorizontalTextAlignment="Center"
+                                                       Completed="EntryNumber_OnCompleted"
+                                                       
+                                                       TextColor="Black"
+                                                       HorizontalOptions="Fill"
+                                                       Keyboard="Chat">
+                                                    <Entry.Behaviors>
+                                                        <mask:MaskedBehavior Mask="XX XXX XX XXX" />
+                                                    </Entry.Behaviors>
+                                                </Entry>
+                                            </pancakeView:PancakeView>
                                         </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
