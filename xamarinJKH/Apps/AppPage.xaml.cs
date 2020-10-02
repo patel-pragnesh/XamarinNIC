@@ -274,10 +274,17 @@ namespace xamarinJKH.Apps
 
             MessagingCenter.Subscribe<ISpeechToText>(this, "Final", (sender) =>
             {
-                Device.BeginInvokeOnMainThread(() =>
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    new PopupPage();
+                    //if (recStarted)
+                    //{
+                       if(Device.RuntimePlatform==Device.iOS)
+                        await ShowToast2(AppResources.VoiceRecEnd);
+                    IconViewMic.IsEnabled = true;
                     IconViewMic.ReplaceStringMap = new Dictionary<string, string> { { "#000000", hex.ToHex() } };
+                        //recStarted = false;
+                    //}
+                    
                 });                
             });
 
@@ -372,7 +379,7 @@ namespace xamarinJKH.Apps
             //additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
-
+        static bool recStarted = false;
         private async void RecordMic()
         {
             try
@@ -388,8 +395,11 @@ namespace xamarinJKH.Apps
 
             if (Device.RuntimePlatform == Device.iOS)
             {
-                Device.BeginInvokeOnMainThread(() =>
+                Device.BeginInvokeOnMainThread(async () =>
                 {
+                    if (Device.RuntimePlatform == Device.iOS)
+                        await ShowToast2(AppResources.VoiceRecStart);
+                    IconViewMic.IsEnabled = false;
                     IconViewMic.ReplaceStringMap = new Dictionary<string, string> { { "#000000", "#A2A2A2" } };
                 });                
             }
@@ -397,6 +407,13 @@ namespace xamarinJKH.Apps
             //var result = await CrossSpeechToText.StartVoiceInput(AppResources.VoiceInput);
             //EntryMess.Text +=  " " + result;
         }
+
+        public async Task ShowToast2(string title)
+        {
+            Toast.Instance.Show<ToastDialog>(new { Title = title, Duration = 2000 });
+            // Optionally, view model can be passed to the toast view instance.
+        }
+
 
         private void SpeechToTextFinalResultRecieved(string args)
         {

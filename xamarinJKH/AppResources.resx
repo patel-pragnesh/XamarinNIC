@@ -1365,4 +1365,10 @@
   <data name="Confirm order1" xml:space="preserve">
     <value />
   </data>
+  <data name="VoiceRecEnd" xml:space="preserve">
+    <value>Запись сообщения для распознавания закончена</value>
+  </data>
+  <data name="VoiceRecStart" xml:space="preserve">
+    <value>Начата запись сообщения для распознавания</value>
+  </data>
 </root>

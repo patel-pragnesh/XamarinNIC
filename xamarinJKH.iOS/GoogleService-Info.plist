@@ -3,21 +3,23 @@
 <plist version="1.0">
   <dict>
     <key>CLIENT_ID</key>
-    <string>286222649128-a3lhvq6k0psb8v3cckj052u244mnb1ec.apps.googleusercontent.com</string>
+    <string>781697834817-1a00bpnah9ct02h60l587jrfg39i7dir.apps.googleusercontent.com</string>
     <key>REVERSED_CLIENT_ID</key>
-    <string>com.googleusercontent.apps.286222649128-a3lhvq6k0psb8v3cckj052u244mnb1ec</string>
+    <string>com.googleusercontent.apps.781697834817-1a00bpnah9ct02h60l587jrfg39i7dir</string>
+    <key>ANDROID_CLIENT_ID</key>
+    <string>781697834817-86jujvujhqasqbg6ahekutjhgfcl7m2g.apps.googleusercontent.com</string>
     <key>API_KEY</key>
-    <string>AIzaSyAjyKMIWK2I6mVebLP98iZsP7TNu0Prdt0</string>
+    <string>AIzaSyCEwACc4w9_F8AY_eoGBTbABgkqHs2DmyU</string>
     <key>GCM_SENDER_ID</key>
-    <string>286222649128</string>
+    <string>781697834817</string>
     <key>PLIST_VERSION</key>
     <string>1</string>
     <key>BUNDLE_ID</key>
-    <string>rom.best.interkapstroy</string>
+    <string>rom.best.dom24</string>
     <key>PROJECT_ID</key>
-    <string>xamarin-62054</string>
+    <string>djservice-33702</string>
     <key>STORAGE_BUCKET</key>
-    <string>xamarin-62054.appspot.com</string>
+    <string>djservice-33702.appspot.com</string>
     <key>IS_ADS_ENABLED</key>
     <false></false>
     <key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +31,8 @@
     <key>IS_SIGNIN_ENABLED</key>
     <true></true>
     <key>GOOGLE_APP_ID</key>
-    <string>1:286222649128:ios:5a1cae3207946c5510321d</string>
+    <string>1:781697834817:ios:c7f680f860bb1baed2cbc0</string>
     <key>DATABASE_URL</key>
-    <string>https://xamarin-62054.firebaseio.com</string>
+    <string>https://djservice-33702.firebaseio.com</string>
   </dict>
 </plist>

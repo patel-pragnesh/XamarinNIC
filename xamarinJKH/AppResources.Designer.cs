@@ -19,7 +19,7 @@ namespace xamarinJKH {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -3743,6 +3743,24 @@ namespace xamarinJKH {
         internal static string VoiceInput {
             get {
                 return ResourceManager.GetString("VoiceInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Запись сообщения для распознавания закончена.
+        /// </summary>
+        internal static string VoiceRecEnd {
+            get {
+                return ResourceManager.GetString("VoiceRecEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Начата запись сообщения для распознавания.
+        /// </summary>
+        internal static string VoiceRecStart {
+            get {
+                return ResourceManager.GetString("VoiceRecStart", resourceCulture);
             }
         }
         
