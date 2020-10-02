@@ -286,7 +286,7 @@ namespace xamarinJKH.MainConst
                 FormattedString formatted = new FormattedString();
                 formatted.Spans.Add(new Span
                 {
-                    Text = $"{AppResources.RequestsReceived}: ",
+                    Text = $"{AppResources.RequestsReceived} ",
                     TextColor = Color.Black
                 });
                 formatted.Spans.Add(new Span
