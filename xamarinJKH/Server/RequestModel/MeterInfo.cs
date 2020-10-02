@@ -38,6 +38,8 @@ namespace xamarinJKH.Server.RequestModel
         public string Units { get; set; }
         public bool AutoValueGettingOnly { get; set; }
         public string PeriodMessage { get; set; }
+        //тариф? 
+        public string TariffNumber { get; set; }
     }
 
     public class MeterValueInfo

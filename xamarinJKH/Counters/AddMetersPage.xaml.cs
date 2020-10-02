@@ -420,6 +420,10 @@ namespace xamarinJKH.Counters
             });
         }
 
+        string value1 = "";
+        string value2 = "";
+        string value3 = "";
+
         private async void ButtonClick(object sender, EventArgs e)
         {
             try {
@@ -445,8 +449,167 @@ namespace xamarinJKH.Counters
                     count += d6.Text;// != "0" ? d6.Text : "";
                     count += d7.Text;// != "0" ? d7.Text : "";
                     count += d8.Text;// != "0" ? d8.Text : "";
+
+                    decimal prevPenencies;
+
+                    switch (tarif)
+                    {
+                        case 1:
+                            value1 = count;
+                            SaveInfoAccount();
+                            break;
+                        case 2:
+                            if (meter.TariffNumber.ToLowerInvariant() == "трехтарифный" || meter.TariffNumber == "3")
+                            {
+                                tarif = 3;
+                                BtnSave.Text = AppResources.NextTarif;// "Следующий тариф";
+
+                            }
+                            else
+                            {
+                                tarif = 0;//идем в default
+                                BtnSave.Text = AppResources.PassPenance;// "Передать показания"
+                                IconViewSave.IsVisible = true;
+                                IconArrowForward.IsVisible = false;
+                            }
+                            value1 = count;
+                            meterReadingName.Text = AppResources.Tarif2Meters;// "Показания по второму тарифу";                 
+
+                            d1.Text = "";
+                            d2.Text = "";
+                            d3.Text = "";
+                            d4.Text = "";
+                            d5.Text = ""; 
+                            d6.Text = "";
+                            d7.Text = "";
+                            d8.Text = "";
+
+                            
+                            if (meter.Values != null && meter.Values.Count >= 1)
+                            {                                
+                                int monthCounter;
+                                var parceMonthOk = int.TryParse(meter.Values[0].Period.Split('.')[1], out monthCounter);
+                                if (parceMonthOk)
+                                {
+                                    if (monthCounter == DateTime.Now.Month)
+                                    {
+                                        if (meter.Values.Count >= 2)
+                                        {
+                                            if (meter.Values[1].ValueT2 != null)
+                                                prevPenencies = Convert.ToDecimal(meter.Values[1].ValueT2);
+                                            else
+                                                prevPenencies = 0;
+                                        }
+                                        else
+                                        {
+                                            prevPenencies = 0;
+                                        }                                                                                    
+                                    }
+                                    else
+                                    {
+                                        if (meter.Values[0].ValueT2 != null)
+                                            prevPenencies = Convert.ToDecimal(meter.Values[0].ValueT2);
+                                        else
+                                            prevPenencies = 0;                                                                             
+                                    }
+                                }
+                                else
+                                {
+                                    if (meter.Values[0].ValueT2 != null)
+                                        prevPenencies = Convert.ToDecimal(meter.Values[0].ValueT2);
+                                    else
+                                        prevPenencies = 0;
+                                }
+                            }
+                            else
+                            {
+                                 prevPenencies =  0;                                
+                            }
+
+                            SetPrevious(prevPenencies);
+
+                            break;
+                        case 3:
+
+                            tarif = 0;//идем в default
+                            BtnSave.Text = AppResources.PassPenance;// "Передать показания"
+                            IconViewSave.IsVisible = true;
+                            IconArrowForward.IsVisible = false;
+
+                            value2 = count;
+                            meterReadingName.Text = AppResources.Tarif3Meters;// "Показания по второму тарифу";                 
+
+                            d1.Text = "";
+                            d2.Text = "";
+                            d3.Text = "";
+                            d4.Text = "";
+                            d5.Text = "";
+                            d6.Text = "";
+                            d7.Text = "";
+                            d8.Text = "";
+
+                            if (meter.Values != null && meter.Values.Count >= 1)
+                            {
+                                int monthCounter;
+                                var parceMonthOk = int.TryParse(meter.Values[0].Period.Split('.')[1], out monthCounter);
+                                if (parceMonthOk)
+                                {
+                                    if (monthCounter == DateTime.Now.Month)
+                                    {
+                                        if (meter.Values.Count >= 2)
+                                        {
+                                            if (meter.Values[1].ValueT3 != null)
+                                                prevPenencies = Convert.ToDecimal(meter.Values[1].ValueT3);
+                                            else
+                                                prevPenencies = 0;
+                                        }
+                                        else
+                                        {
+                                            prevPenencies = 0;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (meter.Values[0].ValueT3 != null)
+                                            prevPenencies = Convert.ToDecimal(meter.Values[0].ValueT3);
+                                        else
+                                            prevPenencies = 0;
+                                    }
+                                }
+                                else
+                                {
+                                    if (meter.Values[0].ValueT3 != null)
+                                        prevPenencies = Convert.ToDecimal(meter.Values[0].ValueT3);
+                                    else
+                                        prevPenencies = 0;
+                                }
+                            }
+                            else
+                            {
+                                prevPenencies = 0;
+                            }
+
+                            SetPrevious(prevPenencies);
+
+
+                            break;
+                        default:
+                            if (value2 != "")
+                                value3 = count;
+                            else
+                                value2 = count;
+                            SaveInfoAccount();
+                            break;
+                    }
+
                     
-                    SaveInfoAccount(count);
+                    
+                    {
+                       
+
+                    }
+
+
                 }
                 else
                 {
@@ -459,6 +622,9 @@ namespace xamarinJKH.Counters
             }
             
         }
+
+        int tarif = 1;
+
 
         void SetTextAndColor()
         {
@@ -494,6 +660,18 @@ namespace xamarinJKH.Counters
                 && !meter.Resource.ToLower().Contains("м3"))
                 meter.Resource += ", м3";
 
+            //для двухтарифного/трехтарифного счетчика
+            if (meter.TariffNumber.ToLowerInvariant() == "двухтарифный" || meter.TariffNumber == "2" 
+                || meter.TariffNumber.ToLowerInvariant() == "трехтарифный" || meter.TariffNumber == "3")
+            {
+                tarif = 2;
+                meterReadingName.Text = AppResources.Tarif1Meters;// "Показания по первому тарифу";                 
+                meterReadingName.FontSize = 16;
+                FrameBtnLogin.Margin = new Thickness(0, 0, 0, 10);
+                BtnSave.Text = AppResources.NextTarif;// "Следующий тариф";
+                IconArrowForward.IsVisible = true;
+                IconViewSave.IsVisible = false;
+            }
 
             UkName.Text = Settings.MobileSettings.main_name;
             if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
@@ -575,7 +753,7 @@ namespace xamarinJKH.Counters
             FrameMeterReading.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
         }
 
-        public async void SaveInfoAccount(string count)
+        public async void SaveInfoAccount()
         {
             bool rate = Preferences.Get("rate", true);
 
@@ -584,13 +762,18 @@ namespace xamarinJKH.Counters
                 Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
-            if (!string.IsNullOrEmpty(count))
+            if (!string.IsNullOrEmpty(value1))
             {
-                double d = Double.Parse(count.Replace('.',','));
+                var d1 = Double.Parse(value1.Replace('.',',')).ToString(CultureInfo.InvariantCulture);
+
+                var d2 = value2 != "" ? Double.Parse(value2.Replace('.', ',')).ToString(CultureInfo.InvariantCulture) : "";
+                var d3 = value3 != "" ? Double.Parse(value3.Replace('.', ',')).ToString(CultureInfo.InvariantCulture) : "";
+
                 progress.IsVisible = true;
                 FrameBtnLogin.IsVisible = false;
                 progress.IsVisible = true;
-                CommonResult result = await _server.SaveMeterValue(meter.ID.ToString(), d.ToString(CultureInfo.InvariantCulture), "", "");
+                CommonResult result = await _server.SaveMeterValue(meter.ID.ToString(), d1, 
+                   d2, d3);
                 if (result.Error == null)
                 {
                     Console.WriteLine(result.ToString());

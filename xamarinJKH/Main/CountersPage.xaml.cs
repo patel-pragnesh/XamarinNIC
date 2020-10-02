@@ -183,7 +183,6 @@ namespace xamarinJKH.Main
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
-                    //BackgroundColor = Color.White;                    
                     break;
                 default:
                     break;
@@ -574,6 +573,9 @@ namespace xamarinJKH.Main
         }
         private static bool CheckPeriod(int currDay)
         {
+//#if DEBUG
+//            return true;
+//#endif
             if (Settings.Person.Accounts[0].MetersEndDay < Settings.Person.Accounts[0].MetersStartDay)
             {
                 return MetersThreeCell.GetPeriodEnabled() || (Settings.Person.Accounts[0].MetersStartDay == 0 &&
