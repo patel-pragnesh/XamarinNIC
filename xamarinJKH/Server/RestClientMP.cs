@@ -490,7 +490,7 @@ namespace xamarinJKH.Server
         }
 
         public async Task<IDResult> newAppConst(string ident, string typeID, string Text,
-            string AutoLockDisptacherId = "", int DistrictId = 0, int HouseId = 0, int PremiseId = 0, string HouseStreet = "")
+            string AutoLockDisptacherId = "", int? DistrictId = null, int? HouseId = null, int? PremiseId = null, string HouseStreet = null)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(NEW_APP_CONST, Method.POST);
@@ -498,6 +498,7 @@ namespace xamarinJKH.Server
             restRequest.AddHeader("client", Device.RuntimePlatform);
             restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
+            DistrictId = 99;
             restRequest.AddBody(new
             {
                 ident,

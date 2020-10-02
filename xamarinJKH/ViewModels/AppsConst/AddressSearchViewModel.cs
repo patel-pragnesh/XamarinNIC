@@ -12,9 +12,9 @@ namespace xamarinJKH.ViewModels.AppsConst
         public List<NamedValue> Streets { get; set; }
         public List<NamedValue> Quarts { get; set; }
         public List<HouseProfile> Houses { get; set; }
-        public int DistrictID;
-        public int HouseID;
-        public int PremiseID;
+        public int? DistrictID;
+        public int? HouseID;
+        public int? PremiseID;
         public string Street;
         public Command LoadDistricts { get; set; }
         public Command LoadHouses { get; set; }

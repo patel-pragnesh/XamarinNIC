@@ -48,10 +48,10 @@ namespace xamarinJKH.AppsConst
 
         public int CreateType { get; set; }
 
-        int District;
+        int? District;
         string Street;
-        int House;
-        int Flat;
+        int? House;
+        int? Flat;
 
         public NewAppConstPage(AppsConstPage appsPage)
         {
@@ -543,7 +543,7 @@ namespace xamarinJKH.AppsConst
                 try
                 {
                     string typeId = Settings.TypeApp[PickerType.SelectedIndex].ID;
-                    IDResult result = await _server.newAppConst(ident, typeId, text, "", this.District, this.House, this.Flat, this.Street);
+                    IDResult result = await _server.newAppConst(null, typeId, text, "", this.District, this.House, this.Flat, this.Street);
 
 
                     if (result.Error == null)

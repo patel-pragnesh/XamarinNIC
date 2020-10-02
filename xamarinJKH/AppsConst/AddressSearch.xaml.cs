@@ -113,7 +113,7 @@ namespace xamarinJKH.AppsConst
 
         async void Confirm(object sender, EventArgs args)
         {
-            MessagingCenter.Send<Object, Tuple<int, int, int, string>>(this, "SetTypes", new Tuple<int, int, int, string>(viewModel.DistrictID, viewModel.HouseID, viewModel.PremiseID, viewModel.Street));
+            MessagingCenter.Send<Object, Tuple<int?, int?, int?, string>>(this, "SetTypes", new Tuple<int?, int?, int?, string>(viewModel.DistrictID, viewModel.HouseID, viewModel.PremiseID, viewModel.Street));
             await Navigation.PopAsync();
         }
     }
