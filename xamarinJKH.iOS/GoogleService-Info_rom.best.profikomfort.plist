@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1075563506975-96armnqrb6g7458i80ovv3jt4ir9qehh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1075563506975-96armnqrb6g7458i80ovv3jt4ir9qehh</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA9z_zGeXzFMWiYZ-Sw4nDE3ezwHr9LMfE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1075563506975</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>rom.best.profikomfort</string>
+	<key>PROJECT_ID</key>
+	<string>testproject-59796</string>
+	<key>STORAGE_BUCKET</key>
+	<string>testproject-59796.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1075563506975:ios:e6e6123c56861716e4d42a</string>
+	<key>DATABASE_URL</key>
+	<string>https://testproject-59796.firebaseio.com</string>
+</dict>
+</plist>
