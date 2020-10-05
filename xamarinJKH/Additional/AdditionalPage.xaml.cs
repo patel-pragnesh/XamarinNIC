@@ -356,9 +356,9 @@ namespace xamarinJKH.Additional
      
 
 
-        private async void OnItemTapped(object sender, ItemTappedEventArgs e)
+        private async void OnItemTapped(object sender, SelectionChangedEventArgs e)
         {
-            AdditionalService select = e.Item as AdditionalService;
+            AdditionalService select = e.CurrentSelection[0] as AdditionalService;
             if (select.ShopID == null)
             {
                 await Navigation.PushAsync(new AdditionalOnePage(select));
