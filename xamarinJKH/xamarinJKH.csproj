@@ -364,6 +364,9 @@
       <SubType>Designer</SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="News\NewFile.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Notifications\NotificationsPage.xaml">
       <SubType>Designer</SubType>
       <Generator></Generator>
