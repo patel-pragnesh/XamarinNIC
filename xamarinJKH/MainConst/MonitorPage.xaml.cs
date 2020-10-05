@@ -286,7 +286,7 @@ namespace xamarinJKH.MainConst
                 FormattedString formatted = new FormattedString();
                 formatted.Spans.Add(new Span
                 {
-                    Text = $"{AppResources.RequestsReceived}: ",
+                    Text = $"{AppResources.RequestsReceived} ",
                     TextColor = Color.Black
                 });
                 formatted.Spans.Add(new Span
@@ -683,8 +683,10 @@ namespace xamarinJKH.MainConst
 
         void colapseAll(string name)
         {
+            if (_visibleModels != null)
             foreach (var each in _visibleModels)
             {
+                if (!string.IsNullOrEmpty(each.Key) && each.Value != null)
                 if (!each.Key.Equals(name) && each.Value._grid.IsVisible)
                 {
                     each.Value._grid.IsVisible = false;

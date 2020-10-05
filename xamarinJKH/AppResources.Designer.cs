@@ -2042,6 +2042,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Следующий тариф.
+        /// </summary>
+        internal static string NextTarif {
+            get {
+                return ResourceManager.GetString("NextTarif", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Нет.
         /// </summary>
         internal static string No {
@@ -3500,6 +3509,33 @@ namespace xamarinJKH {
         internal static string Support {
             get {
                 return ResourceManager.GetString("Support", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Показания по первому тарифу.
+        /// </summary>
+        internal static string Tarif1Meters {
+            get {
+                return ResourceManager.GetString("Tarif1Meters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Показания по второму тарифу.
+        /// </summary>
+        internal static string Tarif2Meters {
+            get {
+                return ResourceManager.GetString("Tarif2Meters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Показания по третьему тарифу.
+        /// </summary>
+        internal static string Tarif3Meters {
+            get {
+                return ResourceManager.GetString("Tarif3Meters", resourceCulture);
             }
         }
         

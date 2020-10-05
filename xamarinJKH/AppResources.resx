@@ -1331,7 +1331,6 @@
   <data name="AppsClosed" xml:space="preserve">
     <value>Заявки закрыты</value>
   </data>
-
   <data name="InsuranceText" xml:space="preserve">
     <value>Страхование 111 руб.</value>
   </data>
@@ -1370,5 +1369,17 @@
   </data>
   <data name="VoiceRecStart" xml:space="preserve">
     <value>Начата запись сообщения для распознавания</value>
+  </data>
+  <data name="Tarif1Meters" xml:space="preserve">
+    <value>Показания по первому тарифу</value>
+  </data>
+  <data name="Tarif2Meters" xml:space="preserve">
+    <value>Показания по второму тарифу</value>
+  </data>
+  <data name="Tarif3Meters" xml:space="preserve">
+    <value>Показания по третьему тарифу</value>
+  </data>
+  <data name="NextTarif" xml:space="preserve">
+    <value>Следующий тариф</value>
   </data>
 </root>

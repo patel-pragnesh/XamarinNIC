@@ -1367,4 +1367,16 @@
   <data name="VoiceRecStart" xml:space="preserve">
     <value>Розпочато запис повідомлення для розпізнавання</value>
   </data>
+  <data name="Tarif1Meters" xml:space="preserve">
+    <value>Показання по першому тарифу</value>
+  </data>
+  <data name="Tarif2Meters" xml:space="preserve">
+    <value>Показання по другому тарифу</value>
+  </data>
+  <data name="Tarif3Meters" xml:space="preserve">
+    <value>Показання по третьому тарифу</value>
+  </data>
+  <data name="NextTarif" xml:space="preserve">
+    <value>Наступний тариф</value>
+  </data>
 </root>

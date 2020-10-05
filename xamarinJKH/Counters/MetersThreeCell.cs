@@ -448,6 +448,9 @@ namespace xamarinJKH.Main
 
         private static bool CheckPeriod(int currDay)
         {
+//#if DEBUG
+//            return true;
+//#endif
             if (Settings.Person.Accounts[0].MetersEndDay < Settings.Person.Accounts[0].MetersStartDay)
             {
                 

@@ -67,37 +67,49 @@ namespace xamarinJKH.Main
                 return;
             }
 
-            ItemsList<MeterInfo> info = await _server.GetThreeMeters();
-            _meterInfoAll = info.Data;
-            if (account == "Все")
+            try
             {
-                _meterInfo = _meterInfoAll;
-            }
-            else
-            {
-                List<MeterInfo> meters = new List<MeterInfo>();
-                foreach (var meterInfo in _meterInfoAll)
+                ItemsList<MeterInfo> info = await _server.GetThreeMeters();
+                if (info.Error == null)
                 {
-                    if (meterInfo.Ident == account)
+                    _meterInfoAll = info.Data;
+                    if (account == "Все")
                     {
-                        meters.Add(meterInfo);
+                        _meterInfo = _meterInfoAll;
+                    }
+                    else
+                    {
+                        List<MeterInfo> meters = new List<MeterInfo>();
+                        foreach (var meterInfo in _meterInfoAll)
+                        {
+                            if (meterInfo.Ident == account)
+                            {
+                                meters.Add(meterInfo);
+                            }
+                        }
+
+                        _meterInfo = meters;
+                    }
+
+                    baseForCounters.Children.Clear();
+
+                    foreach (var mi in _meterInfo)
+                    {
+                        var mtc = new MetersThreeCell(mi);
+                        TapGestureRecognizer tap = new TapGestureRecognizer();
+                        tap.Tapped += Tap_Tapped;
+                        mtc.GestureRecognizers.Add(tap);
+
+                        baseForCounters.Children.Add(mtc);
                     }
                 }
-
-                _meterInfo = meters;
             }
-
-            baseForCounters.Children.Clear();
-
-            foreach (var mi in _meterInfo)
+            catch
             {
-                var mtc = new MetersThreeCell(mi);
-                TapGestureRecognizer tap = new TapGestureRecognizer();
-                tap.Tapped += Tap_Tapped;
-                mtc.GestureRecognizers.Add(tap);
 
-                baseForCounters.Children.Add(mtc);
             }
+            
+            
 
             //countersList.ItemsSource = null;
             //countersList.ItemsSource = _meterInfo;
@@ -183,7 +195,6 @@ namespace xamarinJKH.Main
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
-                    //BackgroundColor = Color.White;                    
                     break;
                 default:
                     break;
@@ -574,6 +585,9 @@ namespace xamarinJKH.Main
         }
         private static bool CheckPeriod(int currDay)
         {
+//#if DEBUG
+//            return true;
+//#endif
             if (Settings.Person.Accounts[0].MetersEndDay < Settings.Person.Accounts[0].MetersStartDay)
             {
                 return MetersThreeCell.GetPeriodEnabled() || (Settings.Person.Accounts[0].MetersStartDay == 0 &&
