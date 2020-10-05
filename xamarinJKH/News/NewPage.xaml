@@ -105,40 +105,43 @@
                     HorizontalOptions="Start" />
             </StackLayout>
 
-            <ScrollView Orientation="Vertical"
-                        Margin="0, 0, 0, 0">
+            <!--<ScrollView Orientation="Vertical"
+                        Margin="0, 0, 0, 0">-->
                 <StackLayout
-                    VerticalOptions="StartAndExpand">
-                    <StackLayout
+                    BackgroundColor="White"
                         Spacing="0"
-                        Margin="20">
-                        <Label x:Name="LabelTitle"
+                    Margin="0">
+                    <Label x:Name="LabelTitle"
                                FontAttributes="Bold"
                                FontSize="20"
+                           Margin="20,0"
                                HorizontalOptions="StartAndExpand"
                                TextColor="Black"
                                Text="Заголовок" />
+                    <StackLayout Orientation="Horizontal">
                         <Label x:Name="LabelDate"
-                               HorizontalOptions="Start"
+                               HorizontalOptions="StartAndExpand"
                                TextColor="Black"
+                           Margin="20,0"
                                FontSize="15"
                                Text="23.05.2020" />
-                        <Label x:Name="LabelText"
-                               HorizontalOptions="Start"
-                               TextType="Html"
-                               Margin="0, 20, 0, 0"
-                               FontSize="15"
-                               TextColor="Black"
-                               Text="Большой текст">
+                        <Label Text="{x:Static xamarinJkh:AppResources.NewAppFiles}"
+                               TextColor="{x:StaticResource MainColor}"
+                               TextDecorations="Underline"
+                               x:Name="Files"
+                               HorizontalOptions="FillAndExpand">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OpenFile"/>
+                            </Label.GestureRecognizers>
                         </Label>
                     </StackLayout>
-                    <Image x:Name="ImageAdd"
-                           IsVisible="False"
-                           HeightRequest="200"
-                           Aspect="Fill"
-                           Source="ic_background_event" />
-                </StackLayout>
-            </ScrollView>
+
+                <WebView x:Name="MainText"
+                         VerticalOptions="StartAndExpand"
+                         HeightRequest="400"
+                                 Margin="20,0"/>
+            </StackLayout>
+                <!--</ScrollView>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

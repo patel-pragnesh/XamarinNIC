@@ -18,6 +18,7 @@ using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
+using xamarinJKH.Converters;
 
 namespace xamarinJKH.News
 {
@@ -77,6 +78,7 @@ namespace xamarinJKH.News
             BindingContext = this;
         }
 
+        bool navigated;
         async void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
@@ -92,7 +94,17 @@ namespace xamarinJKH.News
             LabelTitle.Text = newsInfo.Header;
             LabelDate.Text = newsInfo.Created;
             newsInfoFull = await _server.GetNewsFull(newsInfo.ID.ToString());
-            LabelText.Text = newsInfoFull.Text;
+            //LabelText.Text = newsInfoFull.Text;
+            //LabelText.FormattedText = (FormattedString)(new HtmlTextConverter()).Convert(newsInfoFull.Text, null);
+            MainText.Source = new HtmlWebViewSource { Html = newsInfoFull.Text };
+            MainText.Navigated += (s, e) =>
+            {
+                if (!navigated)
+                {
+                    (s as WebView).Source = new UrlWebViewSource() { Url = e.Url };
+                    navigated = true;
+                }
+            };
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.Black);
@@ -104,12 +116,22 @@ namespace xamarinJKH.News
                 Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
+
+            Files.IsVisible = newsInfoFull.HasImage;
+            
             if (newsInfoFull.HasImage)
             {
                 MemoryStream stream = await _server.GetNewsImage(newsInfoFull.ID.ToString());
-                ImageAdd.Source = ImageSource.FromStream(() => { return stream; });
-                ImageAdd.IsVisible = true;
+                //ImageAdd.Source = ImageSource.FromStream(() => { return stream; });
+                //ImageAdd.IsVisible = true;
+                
             }
+        }
+
+        public async void OpenFile(object sender, EventArgs args)
+        {
+            var link = RestClientMP.SERVER_ADDR + "/News/Image/" + newsInfoFull.ID.ToString();
+            await AiForms.Dialogs.Dialog.Instance.ShowAsync(new NewFile(link));
         }
     }
 }
