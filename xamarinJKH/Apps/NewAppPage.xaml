@@ -215,41 +215,33 @@
                                             QuerySubmitted="AutoSuggestBox_QuerySubmitted"
                                             SuggestionChosen="AutoSuggestBox_SuggestionChosen" />
                                     </StackLayout>
-                                    <StackLayout x:Name="LayoutPeshehod" IsVisible="False">
+                                    <StackLayout x:Name="LayoutPeshehod" IsVisible="False" Spacing="10">
                                         <StackLayout Spacing="0"
                                                      HorizontalOptions="FillAndExpand"
-                                                     Orientation="Horizontal">
-                                            <Label
-                                                TextColor="Black"
-                                                Text="ФИО:"
-                                                VerticalOptions="Center"
-                                                HorizontalOptions="Start"
-                                                FontAttributes="Bold"
-                                                FontSize="12" />
+                                                     Orientation="Vertical">
                                             <Entry x:Name="EntryFIO"
                                                    FontSize="15"
                                                    VerticalOptions="End"
                                                    HorizontalTextAlignment="Center"
                                                    Placeholder="Введите ФИО"
                                                    TextColor="#A2A2A2"
+                                                   ClearButtonVisibility="WhileEditing"
                                                    HorizontalOptions="FillAndExpand"
                                                    Keyboard="Chat" />
+                                            <Label HeightRequest="1"
+                                                   BackgroundColor="Black"
+                                                   Margin="5,0,5,0"
+                                                   HorizontalOptions="FillAndExpand" />
                                         </StackLayout>
                                         <StackLayout Spacing="0"
                                                      HorizontalOptions="FillAndExpand"
-                                                     Orientation="Horizontal">
-                                            <Label
-                                                TextColor="Black"
-                                                Text="Паспорт:"
-                                                VerticalOptions="Center"
-                                                HorizontalOptions="Start"
-                                                FontAttributes="Bold"
-                                                FontSize="12" />
+                                                     Orientation="Vertical">
                                             <Entry x:Name="EntryPassport"
                                                    FontSize="15"
                                                    VerticalOptions="End"
-                                                   Placeholder="Серия номер"
+                                                   Placeholder="Введите серию и номер паспорта"
                                                    HorizontalTextAlignment="Center"
+                                                   ClearButtonVisibility="WhileEditing"
                                                    TextColor="#A2A2A2"
                                                    HorizontalOptions="FillAndExpand"
                                                    Keyboard="Numeric">
@@ -257,6 +249,10 @@
                                                     <mask:MaskedBehavior Mask="XXXX XXXXXX" />
                                                 </Entry.Behaviors>
                                             </Entry>
+                                            <Label HeightRequest="1"
+                                                   BackgroundColor="Black"
+                                                   Margin="5,0,5,0"
+                                                   HorizontalOptions="FillAndExpand" />
                                         </StackLayout>
                                     </StackLayout>
                                     <StackLayout x:Name="LayoutAvto" IsVisible="False">
@@ -279,19 +275,15 @@
                                                 Margin="40,0,40,0"
                                                 CornerRadius="10" BackgroundColor="White" HasShadow="True">
                                                 <Entry x:Name="EntryNumber"
-                                                       FontSize="20"
+                                                       FontSize="23"
                                                        VerticalOptions="End"
+                                                       FontAttributes="Bold"
                                                        Placeholder="Введите гос.номер"
                                                        HorizontalTextAlignment="Center"
-                                                       Completed="EntryNumber_OnCompleted"
-                                                       
+                                                       TextChanged="EntryNumber_OnTextChanged"
                                                        TextColor="Black"
                                                        HorizontalOptions="Fill"
-                                                       Keyboard="Chat">
-                                                    <Entry.Behaviors>
-                                                        <mask:MaskedBehavior Mask="XX XXX XX XXX" />
-                                                    </Entry.Behaviors>
-                                                </Entry>
+                                                       Keyboard="Chat" />
                                             </pancakeView:PancakeView>
                                         </StackLayout>
                                     </StackLayout>

@@ -467,6 +467,7 @@ namespace xamarinJKH.Apps
             string text = EntryMess.Text;
             FrameBtnAdd.IsVisible = false;
             progress.IsVisible = true;
+          
             if (!text.Equals(""))
             {
                 try
@@ -627,9 +628,54 @@ namespace xamarinJKH.Apps
         }
         
 
-        private void EntryNumber_OnCompleted(object sender, EventArgs e)
+       
+
+        private async void EntryNumber_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            EntryNumber.Text = EntryNumber.Text.ToUpper();
+            string entryNumberText = EntryNumber.Text;
+            EntryNumber.Text = entryNumberText.ToUpper();
+            Regex regexNumberAvto = new Regex(@"^[А-Я]{1}[0-9]{3}[А-Я]{2}[0-9]{2,3}$");
+            Regex regexNumberAvto2 = new Regex(@"[А-Я]{2}[0-9]{3}[0-9]{2,3}$");
+            string result = entryNumberText;
+            if (regexNumberAvto.IsMatch(entryNumberText) )
+            {
+                result = entryNumberText.Insert(1, " ").Insert(5, " ").Insert(8, " ");
+                EntryNumber.Text = result;
+                EntryNumber.MaxLength = 12;
+
+            }else if(regexNumberAvto2.IsMatch(entryNumberText))
+            {
+                result = entryNumberText.Insert(2, " ").Insert(6, " ");
+                EntryNumber.Text = result;
+                EntryNumber.MaxLength = 10;
+            }
+        }
+        
+
+        private async void EntryNumber_OnFocusChangeRequested(object sender, FocusRequestArgs e)
+        {
+            if (!e.Focus)
+            {
+               
+            }
+        }
+
+        private async void EntryNumber_OnFocused(object sender, FocusEventArgs e)
+        {
+            if (!e.IsFocused)
+            {
+                Regex regexNumberAvto = new Regex(@"^[А-Я]{1}[0-9]{3}[А-Я]{2}[0-9]{2,3}$");
+                Regex regexNumberAvto2 = new Regex(@"^[А-Я]{1}[0-9]{3}[А-Я]{2}[0-9]{2,3}$");
+
+                if (regexNumberAvto.IsMatch(EntryNumber.Text) || regexNumberAvto2.IsMatch(EntryNumber.Text))
+                {
+                    await DisplayAlert(AppResources.ErrorTitle, "Подходит", "OK");
+                }
+                else
+                {
+                    await DisplayAlert(AppResources.ErrorTitle, "не Подходит", "OK");
+                }
+            }
         }
     }
 }
