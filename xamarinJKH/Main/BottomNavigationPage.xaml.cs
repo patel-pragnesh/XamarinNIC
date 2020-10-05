@@ -19,8 +19,9 @@ namespace xamarinJKH.Main
     public partial class BottomNavigationPage : TabbedPage
     {
         private RestClientMP server = new RestClientMP();
-        
+
         public Command ChangeTheme { get; set; }
+
         public BottomNavigationPage()
         {
             InitializeComponent();
@@ -55,6 +56,7 @@ namespace xamarinJKH.Main
                         ShopNavPage.BarTextColor = Color.Black;
                         ProfPage.BarTextColor = Color.Black;
                     }
+
                     break;
                 case OSAppTheme.Dark:
                     UnselectedTabColor = Color.Gray;
@@ -67,6 +69,7 @@ namespace xamarinJKH.Main
                         ShopNavPage.BarTextColor = Color.White;
                         ProfPage.BarTextColor = Color.White;
                     }
+
                     break;
                 case OSAppTheme.Unspecified:
                     if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
@@ -78,13 +81,13 @@ namespace xamarinJKH.Main
                         ShopNavPage.BarTextColor = Color.Black;
                         ProfPage.BarTextColor = Color.Black;
                     }
+
                     break;
             }
 
-            
 
             Application.Current.Resources["Saldo"] = true;
-            visibleMenu();
+            VisibleMenu();
             StartUpdateToken();
             if (Device.RuntimePlatform == Device.Android)
                 RegisterNewDevice();
@@ -119,7 +122,8 @@ namespace xamarinJKH.Main
                 Color unselect = hex.AddLuminosity(0.3);
                 switch (currentTheme)
                 {
-                    case OSAppTheme.Light: UnselectedTabColor = unselect;
+                    case OSAppTheme.Light:
+                        UnselectedTabColor = unselect;
                         if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
                         {
                             EventsNavPage.BarTextColor = Color.Black;
@@ -128,8 +132,10 @@ namespace xamarinJKH.Main
                             AppPage.BarTextColor = Color.Black;
                             ShopNavPage.BarTextColor = Color.Black;
                         }
+
                         break;
-                    case OSAppTheme.Dark: UnselectedTabColor = Color.Gray;
+                    case OSAppTheme.Dark:
+                        UnselectedTabColor = Color.Gray;
                         if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
                         {
                             EventsNavPage.BarTextColor = Color.White;
@@ -138,6 +144,7 @@ namespace xamarinJKH.Main
                             AppPage.BarTextColor = Color.White;
                             ShopNavPage.BarTextColor = Color.White;
                         }
+
                         break;
                     case OSAppTheme.Unspecified:
                         if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
@@ -225,79 +232,89 @@ namespace xamarinJKH.Main
                         Settings.Person = loginResult;
                     }
                 }
-
             });
             return true;
         }
 
-        void visibleMenu()
+        void VisibleMenu()
         {
-            // if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
-            // {
-            Children.Remove(ShopNavPage);
-            // }
-            // else
-            // {
-                Children.Remove(ShopNavPage2);
-            // }
-            foreach (var each in Settings.MobileSettings.menu)
+            try
             {
-                if (each.name_app.Equals("Заявки"))
+                // if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
+                // {
+                Children.Remove(ShopNavPage);
+                // }
+                // else
+                // {
+                Children.Remove(ShopNavPage2);
+                // }
+                foreach (var each in Settings.MobileSettings.menu)
                 {
-                    if (each.visible == 0)
+                    if (each.name_app.Equals("Заявки"))
                     {
-                        Children.Remove(AppPage);
-                        Settings.AppIsVisible = false;
-
+                        if (each.visible == 0)
+                        {
+                            Children.Remove(AppPage);
+                            Settings.AppIsVisible = false;
+                        }
                     }
-                }else if (each.name_app.Equals("Показания счетчиков") || each.name_app.Equals("Показания приборов") )
-                {
-                    if (each.visible == 0)
+                    else if (each.name_app.Equals("Показания счетчиков") || each.name_app.Equals("Показания приборов"))
                     {
-                        Children.Remove(CounterPage);
+                        if (each.visible == 0)
+                        {
+                            Children.Remove(CounterPage);
+                        }
                     }
-                }else if (each.name_app.Equals("Оплата ЖКУ"))
-                {
-                    if (each.visible == 0)
+                    else if (each.name_app.Equals("Оплата ЖКУ"))
                     {
-                        Children.Remove(PayPage);
+                        if (each.visible == 0)
+                        {
+                            Children.Remove(PayPage);
+                        }
                     }
-                }else if (each.name_app.Equals("Уведомления"))
-                {
-                    if (each.visible == 0)
+                    else if (each.name_app.Equals("Уведомления"))
                     {
-                        Settings.NotifVisible = false;
+                        if (each.visible == 0)
+                        {
+                            Settings.NotifVisible = false;
+                        }
                     }
-                }else if (each.name_app.Equals("Опросы"))
-                {
-                    if (each.visible == 0)
+                    else if (each.name_app.Equals("Опросы"))
                     {
-                        Settings.QuestVisible = false;
+                        if (each.visible == 0)
+                        {
+                            Settings.QuestVisible = false;
+                        }
                     }
-                }else if (each.name_app.Equals("Квитанции"))
-                {
-                    if (each.visible == 0)
+                    else if (each.name_app.Equals("Квитанции"))
                     {
-                        Application.Current.Resources["Saldo"] = false;
+                        if (each.visible == 0)
+                        {
+                            Application.Current.Resources["Saldo"] = false;
+                        }
                     }
-                }else if (each.name_app.Equals("Дополнительные услуги"))
-                {
-                    if (each.visible == 0)
+                    else if (each.name_app.Equals("Дополнительные услуги"))
                     {
-                        // if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
-                        // {
-                        //     Children.Remove(ShopNavPage2);
-                        // }
-                        // else
-                        // {
-                        //     Children.Remove(ShopNavPage);
-                        // }
+                        if (each.visible == 0)
+                        {
+                            // if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
+                            // {
+                            //     Children.Remove(ShopNavPage2);
+                            // }
+                            // else
+                            // {
+                            //     Children.Remove(ShopNavPage);
+                            // }
+                        }
                     }
                 }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
-   
 
         protected override void OnCurrentPageChanged()
         {
