@@ -14,6 +14,9 @@
              x:Class="xamarinJKH.Apps.AppPage">
     <ContentPage.Content>
         <Grid x:Name="ScrollViewContainer" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
             <Image x:Name="ImageFon"
                    
                    Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top_in}"
