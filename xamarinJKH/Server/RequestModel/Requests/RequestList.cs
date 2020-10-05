@@ -21,6 +21,8 @@ namespace xamarinJKH.Server.RequestModel
         public int StatusID { get; set; }
         public bool IsClosed { get; set; }
         public bool IsCheked { get; set; } = false;
+        
+        public string Address { get; set; }
         public bool IsPerformed { get; set; }
         public string PaidRequestStatus { get; set; } //- статус заказа
         public string PaidRequestCompleteCode { get; set; }//  - код подтверждения(подтягивается только для жителя)
