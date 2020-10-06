@@ -27,6 +27,16 @@ namespace xamarinJKH.MainConst
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AppsConstPage : ContentPage
     {
+        bool empty;
+        public bool Empty
+        {
+            get => empty;
+            set
+            {
+                empty = value;
+                OnPropertyChanged("Empty");
+            }
+        }
         public ObservableCollection<RequestInfo> RequestInfos { get; set; }
         public ObservableCollection<RequestInfo> RequestInfosAlive { get; set; }
         public ObservableCollection<RequestInfo> RequestInfosClose { get; set; }
@@ -71,6 +81,7 @@ namespace xamarinJKH.MainConst
             IsVisibleFunction();
             additionalList.ItemsSource = null;
             additionalList.ItemsSource = RequestInfos;
+            Empty = RequestInfos.Count == 0;
         }
 
         public AppsConstPage()
@@ -355,6 +366,7 @@ namespace xamarinJKH.MainConst
                 additionalList.ItemsSource = null;
                 additionalList.ItemsSource = RequestInfos;
             }
+            Empty = RequestInfos.Count == 0;
         }
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
@@ -380,6 +392,15 @@ namespace xamarinJKH.MainConst
             }
             additionalList.ItemsSource = null;
             additionalList.ItemsSource = RequestInfos;
+            try
+            {
+
+                Empty = RequestInfos.Count == 0;
+            }
+            catch
+            {
+                Empty = RequestInfos == null;
+            }
         }
     }
 }

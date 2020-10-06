@@ -110,7 +110,8 @@
                             HorizontalOptions="Start" />
                     </StackLayout>
                     <StackLayout VerticalOptions="FillAndExpand">
-                        <ListView x:Name="additionalList"
+                        <Grid>
+                            <ListView x:Name="additionalList"
                                   HasUnevenRows="True"
                                   Margin="10, 10, 10, 0"
                                   SeparatorVisibility="None"
@@ -122,22 +123,28 @@
                                   ItemTapped="OnItemTapped"
                                   CachingStrategy="RecycleElement"
                                   ItemsSource="{Binding RequestInfos}">
-                            <ListView.Header>
+                                <ListView.Header>
 
-                            </ListView.Header>
-                            <ListView.ItemTemplate>
+                                </ListView.Header>
+                                <ListView.ItemTemplate>
 
-                                <DataTemplate>
-                                    <apps:AppConstCell
+                                    <DataTemplate>
+                                        <apps:AppConstCell
                                         Number="{Binding RequestNumber}"
                                         Status="{Binding Status}"
                                         DateApp="{Binding Added}"
                                         Check = "{Binding IsCheked}"
                                         TextApp="{Binding Name}" />
-                                </DataTemplate>
+                                    </DataTemplate>
 
-                            </ListView.ItemTemplate>
-                        </ListView>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <Label Text="Нет заявок"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center"
+                                   IsVisible="{Binding Empty}"/>
+                        </Grid>
+                        
                         <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0"
                                                  BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
                                                  Padding="0,10,0,2"

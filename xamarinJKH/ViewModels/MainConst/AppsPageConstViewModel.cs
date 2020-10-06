@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using xamarinJKH.Utils;
 using System.Linq;
 
-namespace xamarinJKH.ViewModels.Main
+namespace xamarinJKH.ViewModels.MainConst
 {
-    public class AppsPageViewModel : BaseViewModel
+    public class AppsPageConstViewModel : BaseViewModel
     {
         ObservableCollection<RequestInfo> _requests;
         public ObservableCollection<RequestInfo> Requests
@@ -59,18 +59,7 @@ namespace xamarinJKH.ViewModels.Main
                 OnPropertyChanged("ShowClosed");
             }
         }
-
-        bool empty;
-        public bool Empty
-        {
-            get => empty;
-            set
-            {
-                empty = value;
-                OnPropertyChanged("Empty");
-            }
-        }
-        public AppsPageViewModel()
+        public AppsPageConstViewModel()
         {
             Requests = new ObservableCollection<RequestInfo>();
             LoadRequests = new Command(async () =>
@@ -89,11 +78,7 @@ namespace xamarinJKH.ViewModels.Main
                     if (response.Requests != null)
                     {
                         AllRequests.AddRange(response.Requests);
-                        if (Requests == null)
-                        {
-                            Empty = Requests.Count == 0;
-                            Requests = new ObservableCollection<RequestInfo>();
-                        }
+                        if (Requests == null) Requests = new ObservableCollection<RequestInfo>();
                         Requests.Clear();
                         foreach (var App in AllRequests.Where(x => x.IsClosed == ShowClosed))
                         {
@@ -111,7 +96,6 @@ namespace xamarinJKH.ViewModels.Main
             {
                 if (AllRequests != null)
                 {
-                    Empty = Requests.Count == 0;
                     var ids = AllRequests.Select(x => x.ID);
                     var newRequests = response.Requests.Where(x => !ids.Contains(x.ID)).ToList();
                     foreach (var newApp in newRequests)
