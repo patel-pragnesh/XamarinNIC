@@ -140,7 +140,9 @@
                                             FontAttributes="Bold"
                                             FontSize="17" />
                                         <StackLayout Spacing="0">
-                                            <StackLayout Orientation="Horizontal">
+                                            <StackLayout 
+                                                x:Name="StackLayoutLs"
+                                                Orientation="Horizontal">
                                                 <xamarinJkh:BorderlessPicker x:Name="Picker" Title="Выбор"
                                                                              TitleColor="{Binding hex}"
                                                                              TextColor="{Binding hex}"

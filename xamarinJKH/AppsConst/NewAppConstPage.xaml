@@ -208,6 +208,7 @@
                                 FontSize="17" />
                             <StackLayout Spacing="0">
                                 <StackLayout
+                                    x:Name="StackLayoutType"
                                     Orientation="Horizontal">
                                     <xamarinJkh:BorderlessPicker x:Name="PickerType" Title="Выбор"
                                                                  TitleColor="{Binding hex}"

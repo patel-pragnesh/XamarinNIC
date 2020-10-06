@@ -216,6 +216,14 @@ namespace xamarinJKH.Main
                 }
             };
             LabelPhone.GestureRecognizers.Add(call);
+            var pickLs = new TapGestureRecognizer();
+            pickLs.Tapped += async (s, e) => {  
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Picker.Focus();
+                });
+            };
+            StackLayoutLs.GestureRecognizers.Add(pickLs);
             SetTextAndColor();
             getInfo();
             SetTitle();

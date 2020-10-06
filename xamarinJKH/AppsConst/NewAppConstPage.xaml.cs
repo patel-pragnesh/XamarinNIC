@@ -97,6 +97,14 @@ namespace xamarinJKH.AppsConst
                 catch { }
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
+            var pickType = new TapGestureRecognizer();
+            pickType.Tapped += async (s, e) => {  
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    PickerType.Focus();
+                });
+            };
+            StackLayoutType.GestureRecognizers.Add(pickType);
             var addFile = new TapGestureRecognizer();
             addFile.Tapped += async (s, e) => { AddFile(); };
             StackLayoutAddFile.GestureRecognizers.Add(addFile);

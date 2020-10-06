@@ -33,7 +33,15 @@ namespace xamarinJKH.DialogViews
             var close = new TapGestureRecognizer();
             close.Tapped += async (s, e) => { await PopupNavigation.Instance.PopAsync(); };
             IconViewClose.GestureRecognizers.Add(close);
+            var pickerOpen = new TapGestureRecognizer();
+            pickerOpen.Tapped += async (s, e) => {  Device.BeginInvokeOnMainThread(() =>
+            {
+                PickerDisp.Focus();                 
+            }); };
+            Layout.GestureRecognizers.Add(pickerOpen);
+            PickerDisp.Focus();
         }
+        
 
         async void getDispatcherList()
         {

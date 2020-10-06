@@ -96,6 +96,21 @@ namespace xamarinJKH.Apps
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await PopupNavigation.Instance.PushAsync(new TechDialog());};
             LabelTech.GestureRecognizers.Add(techSend);
+            var pickLs = new TapGestureRecognizer();
+            pickLs.Tapped += async (s, e) => {  Device.BeginInvokeOnMainThread(() =>
+                {
+                    PickerLs.Focus();                 
+                });
+            };
+            StackLayoutLs.GestureRecognizers.Add(pickLs); 
+            var pickType = new TapGestureRecognizer();
+            pickType.Tapped += async (s, e) => {  
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    PickerType.Focus();
+                });
+            };
+            StackLayoutType.GestureRecognizers.Add(pickType);
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
             {
