@@ -459,7 +459,7 @@ namespace xamarinJKH.Counters
                             SaveInfoAccount();
                             break;
                         case 2:
-                            if (meter.TariffNumber.ToLowerInvariant() == "трехтарифный" || meter.TariffNumber == "3")
+                            if (meter.TariffNumberInt == 3)
                             {
                                 tarif = 3;
                                 BtnSave.Text = AppResources.NextTarif;// "Следующий тариф";
@@ -661,8 +661,7 @@ namespace xamarinJKH.Counters
                 meter.Resource += ", м3";
 
             //для двухтарифного/трехтарифного счетчика
-            if (meter.TariffNumber.ToLowerInvariant() == "двухтарифный" || meter.TariffNumber == "2" 
-                || meter.TariffNumber.ToLowerInvariant() == "трехтарифный" || meter.TariffNumber == "3")
+            if (meter.TariffNumberInt>1)
             {
                 tarif = 2;
                 meterReadingName.Text = AppResources.Tarif1Meters;// "Показания по первому тарифу";                 
