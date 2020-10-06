@@ -691,7 +691,12 @@ namespace xamarinJKH.MainConst
                 {
                     each.Value._grid.IsVisible = false;
                     each.Value._materialFrame.Padding = 0;
-                    each.Value.IconView.Source = "ic_arrow_down_monitor";
+                            try
+                            {
+
+                                each.Value.IconView.Source = "ic_arrow_down_monitor";
+                            }
+                            catch { }
                 }
             }
         }
@@ -709,6 +714,7 @@ namespace xamarinJKH.MainConst
                 string[] param = null;
                 setListGroups(groups, ref param);
                 var action = await DisplayActionSheet(AppResources.AreaChoose, AppResources.Cancel, null, param);
+                area = action;
                 if (action != null && !action.Equals(AppResources.Cancel))
                 {
                     LayoutContent.Children.Clear();
@@ -724,6 +730,7 @@ namespace xamarinJKH.MainConst
             }
         }
 
+        string area;
         async Task getHouse()
         {
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
@@ -731,7 +738,7 @@ namespace xamarinJKH.MainConst
                 Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
-            ItemsList<HouseProfile> groups = await _server.GetHouse();
+            ItemsList<HouseProfile> groups = await _server.GetHouse(area);
             if (groups.Error == null)
             {
                 string[] param = null;
