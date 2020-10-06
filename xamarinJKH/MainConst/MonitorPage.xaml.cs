@@ -683,17 +683,21 @@ namespace xamarinJKH.MainConst
 
         void colapseAll(string name)
         {
-            if (_visibleModels != null)
-            foreach (var each in _visibleModels)
+            try
             {
-                if (!string.IsNullOrEmpty(each.Key) && each.Value != null)
-                if (!each.Key.Equals(name) && each.Value._grid.IsVisible)
-                {
-                    each.Value._grid.IsVisible = false;
-                    each.Value._materialFrame.Padding = 0;
-                    each.Value.IconView.Source = "ic_arrow_down_monitor";
-                }
+                if (_visibleModels != null)
+                    foreach (var each in _visibleModels.Where(each => !string.IsNullOrEmpty(each.Key) && each.Value != null).Where(each => !each.Key.Equals(name) && each.Value._grid.IsVisible))
+                    {
+                        each.Value._grid.IsVisible = false;
+                        each.Value._materialFrame.Padding = 0;
+                        each.Value.IconView.Source = "ic_arrow_down_monitor";
+                    }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+           
         }
 
         async Task getHouseGroups()
