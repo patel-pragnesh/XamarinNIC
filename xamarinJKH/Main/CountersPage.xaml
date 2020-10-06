@@ -125,7 +125,9 @@
                                 TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                 FontSize="15" />
                             <StackLayout Spacing="0">
-                                <StackLayout Orientation="Horizontal">
+                                <StackLayout 
+                                    x:Name="StackLayoutLs"
+                                    Orientation="Horizontal">
                                     <xamarinJkh:BorderlessPicker
                                         x:Name="Picker" Title="{x:Static xamarinJkh:AppResources.Choose}"
                                         TitleColor="{AppThemeBinding Light=Black, Dark=White}"

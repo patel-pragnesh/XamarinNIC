@@ -132,7 +132,7 @@
                                         FontAttributes="Bold"
                                         FontSize="17" />
                                     <StackLayout Spacing="0">
-                                        <StackLayout Orientation="Horizontal">
+                                        <StackLayout Orientation="Horizontal" x:Name="StackLayoutLs">
                                             <xamarinJkh:BorderlessPicker x:Name="PickerLs" Title="{x:Static xamarinJkh:AppResources.Choose}"
                                                                          TitleColor="{Binding hex}"
                                                                          TextColor="{Binding hex}"
@@ -171,7 +171,7 @@
                                         FontSize="17" />
                                     <StackLayout Spacing="0">
                                         <StackLayout
-                                            Orientation="Horizontal">
+                                            Orientation="Horizontal" x:Name="StackLayoutType">
                                             <xamarinJkh:BorderlessPicker x:Name="PickerType" Title="{x:Static xamarinJkh:AppResources.Choose}"
                                                                          TitleColor="{Binding hex}"
                                                                          TextColor="{Binding hex}"

@@ -244,18 +244,18 @@
                                             FontSize="15"
                                             TextColor="Black"
                                             FontAttributes="Bold"
-                                            Margin="0, 0, 0, 0"
+                                            Margin="15, 0, 0, 0"
                                             HorizontalOptions="FillAndExpand"
                                             VerticalOptions="Center" />
-                                            <svg:SvgCachedImage
-                                            x:Name="IconViewArrow"
-                                            Source="resource://xamarinJKH.Resources.ic_arrow_down_monitor.svg"
-                                            HeightRequest="25"
-                                            WidthRequest="25"
-                                            ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}}"
-                                            Margin="0,0,15,0"
-                                            HorizontalOptions="End"
-                                            VerticalOptions="Center" />
+                                            <xamarinJkh:IconView
+                                                x:Name="IconViewArrow"
+                                                Source="ic_arrow_down_monitor"
+                                                HeightRequest="25"
+                                                WidthRequest="25"
+                                                Foreground="{Binding hex}"
+                                                Margin="0,0,15,0"
+                                                HorizontalOptions="End"
+                                                VerticalOptions="Center" />
                                         </StackLayout>
                                     </customRenderers:MaterialFrame>
                                     <StackLayout x:Name="LayoutGrid" Margin="20,15,20,0" />

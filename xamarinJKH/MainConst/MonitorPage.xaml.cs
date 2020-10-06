@@ -683,22 +683,21 @@ namespace xamarinJKH.MainConst
 
         void colapseAll(string name)
         {
-            if (_visibleModels != null)
-            foreach (var each in _visibleModels)
+            try
             {
-                if (!string.IsNullOrEmpty(each.Key) && each.Value != null)
-                if (!each.Key.Equals(name) && each.Value._grid.IsVisible)
-                {
-                    each.Value._grid.IsVisible = false;
-                    each.Value._materialFrame.Padding = 0;
-                            try
-                            {
-
-                                each.Value.IconView.Source = "ic_arrow_down_monitor";
-                            }
-                            catch { }
-                }
+                if (_visibleModels != null)
+                    foreach (var each in _visibleModels.Where(each => !string.IsNullOrEmpty(each.Key) && each.Value != null).Where(each => !each.Key.Equals(name) && each.Value._grid.IsVisible))
+                    {
+                        each.Value._grid.IsVisible = false;
+                        each.Value._materialFrame.Padding = 0;
+                        each.Value.IconView.Source = "ic_arrow_down_monitor";
+                    }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+           
         }
 
         async Task getHouseGroups()
@@ -714,7 +713,6 @@ namespace xamarinJKH.MainConst
                 string[] param = null;
                 setListGroups(groups, ref param);
                 var action = await DisplayActionSheet(AppResources.AreaChoose, AppResources.Cancel, null, param);
-                area = action;
                 if (action != null && !action.Equals(AppResources.Cancel))
                 {
                     LayoutContent.Children.Clear();
@@ -730,7 +728,6 @@ namespace xamarinJKH.MainConst
             }
         }
 
-        string area;
         async Task getHouse()
         {
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
@@ -738,7 +735,7 @@ namespace xamarinJKH.MainConst
                 Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
-            ItemsList<HouseProfile> groups = await _server.GetHouse(area);
+            ItemsList<HouseProfile> groups = await _server.GetHouse();
             if (groups.Error == null)
             {
                 string[] param = null;

@@ -36,6 +36,14 @@ namespace xamarinJKH.Pays
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await PopupNavigation.Instance.PushAsync(new TechDialog()); };
             LabelTech.GestureRecognizers.Add(techSend);
+            var pickLs = new TapGestureRecognizer();
+            pickLs.Tapped += async (s, e) => {  
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Picker.Focus();
+                });
+            };
+            StackLayoutLs.GestureRecognizers.Add(pickLs);
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
             {

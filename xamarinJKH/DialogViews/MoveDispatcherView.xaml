@@ -60,6 +60,7 @@
                 <StackLayout
                     Margin="0,10,0,10"
                     HorizontalOptions="FillAndExpand"
+                    x:Name="Layout"
                     Orientation="Horizontal">
                     <xamarinJkh:IconView x:Name="IconViewLogin"
                                          Source="ic_fio_reg"
