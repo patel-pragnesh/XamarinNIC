@@ -620,6 +620,7 @@ namespace xamarinJKH.Main
                 checkup_date.Text = CheckupDate;
                 recheckup.Text = RecheckInterval + " лет";
                 GetFormat( DecimalPoint);
+
             if (Values.Count == 1)
             {
                 counterDate1.Text = Values[0].Period;
@@ -629,17 +630,17 @@ namespace xamarinJKH.Main
                 if (Values[0].ValueT2 != null)
                     count1t2.Text =
                         String.Format(GetFormat(DecimalPoint), Values[0].ValueT2);
-#if DEBUG
                 else
-                    count1t2.Text = "100500.111";
-#endif
+                {
+                    count1t2.IsVisible = false;
+                }
                 if (Values[0].ValueT3 != null)
                     count1t3.Text =
                         String.Format(GetFormat(DecimalPoint), Values[0].ValueT3);
-#if DEBUG
                 else
-                    count1t3.Text = "100500.111";
-#endif
+                {
+                    count1t3.IsVisible = false;
+                }
 
                 count2Stack.IsVisible = count3Stack.IsVisible = false;
             }
@@ -652,17 +653,17 @@ namespace xamarinJKH.Main
                 if (Values[0].ValueT2 != null)
                     count1t2.Text =
                         String.Format(GetFormat(DecimalPoint), Values[0].ValueT2);
-#if DEBUG
                 else
-                    count1t2.Text = "100500.111";
-#endif
+                {
+                    count1t2.IsVisible = false;
+                }
                 if (Values[0].ValueT3 != null)
                     count1t3.Text =
                         String.Format(GetFormat(DecimalPoint), Values[0].ValueT3);
-#if DEBUG
                 else
-                    count1t3.Text = "100500.111";
-#endif
+                {
+                    count1t3.IsVisible = false;
+                }
 
                 counterDate2.Text = Values[1].Period;
                 count2.Text =
@@ -671,17 +672,17 @@ namespace xamarinJKH.Main
                 if (Values[1].ValueT2 != null)
                     count2t2.Text =
                         String.Format(GetFormat(DecimalPoint), Values[1].ValueT2);
-#if DEBUG
                 else
-                    count2t2.Text = "200500.111";
-#endif
+                {
+                    count2t2.IsVisible = false;
+                }
                 if (Values[1].ValueT3 != null)
                     count2t3.Text =
                         String.Format(GetFormat(DecimalPoint), Values[1].ValueT3);
-#if DEBUG
                 else
-                    count2t3.Text = "200500.111";
-#endif
+                {
+                    count2t3.IsVisible = false;
+                }
 
                 count3Stack.IsVisible = false;
             }
@@ -689,21 +690,21 @@ namespace xamarinJKH.Main
             {
                 counterDate1.Text = Values[0].Period;
                 count1.Text =
-                    String.Format(GetFormat(DecimalPoint), Values[0].Value); //.ToString(CultureInfo.InvariantCulture);
+                    String.Format(GetFormat(DecimalPoint), Values[0].Value);
                 if (Values[0].ValueT2 != null)
                     count1t2.Text =
                         String.Format(GetFormat(DecimalPoint), Values[0].ValueT2);
-#if DEBUG
                 else
-                    count1t2.Text = "100500.111";
-#endif
+                {
+                    count1t2.IsVisible = false;
+                }
                 if (Values[0].ValueT3 != null)
                     count1t3.Text =
                         String.Format(GetFormat(DecimalPoint), Values[0].ValueT3);
-#if DEBUG
                 else
-                    count1t2.Text = "100500.111";
-#endif
+                {
+                    count1t3.IsVisible = false;
+                }
 
                 counterDate2.Text = Values[1].Period;
                 count2.Text =
@@ -711,9 +712,17 @@ namespace xamarinJKH.Main
                 if (Values[1].ValueT2 != null)
                     count2t2.Text =
                         String.Format(GetFormat(DecimalPoint), Values[1].ValueT2);
+                else
+                {
+                    count2t2.IsVisible = false;
+                }
                 if (Values[1].ValueT3 != null)
                     count2t3.Text =
                         String.Format(GetFormat(DecimalPoint), Values[1].ValueT3);
+                else
+                {
+                    count2t3.IsVisible = false;
+                }
 
                 counterDate3.Text = Values[2].Period;
                 count3.Text =
@@ -722,9 +731,17 @@ namespace xamarinJKH.Main
                 if (Values[2].ValueT2 != null)
                     count3t2.Text =
                         String.Format(GetFormat(DecimalPoint), Values[2].ValueT2);
+                else
+                {
+                    count3t2.IsVisible = false;
+                }
                 if (Values[2].ValueT3 != null)
                     count3t3.Text =
                         String.Format(GetFormat(DecimalPoint), Values[2].ValueT3);
+                else
+                {
+                    count3t3.IsVisible = false;
+                }
             }
             else if (Values.Count == 0)
             {

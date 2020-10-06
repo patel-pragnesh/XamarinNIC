@@ -146,7 +146,7 @@
                        Margin="0, 10, 0, 0"
                        x:Name="FrameBack"
                        HorizontalOptions="StartAndExpand"
-                       Padding="40,12,40,12">
+                       Padding="35,12" >
                     <!-- <Button x:Name="BtnBackQ" -->
                     <!--         Text="{x:Static xamarinJkh:AppResources.Back}" -->
                     <!--         TextColor="White" -->
@@ -156,7 +156,7 @@
                     <StackLayout
                         Orientation="Horizontal"
                         Spacing="0"
-                        HorizontalOptions="Center">
+                        HorizontalOptions="FillAndExpand">
                         <forms:SvgCachedImage
                             Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
                             HeightRequest="15"
@@ -180,7 +180,7 @@
                        Margin="0, 10, 0, 0"
                        IsVisible="False"
                        x:Name="FrameBtnNext"
-                       Padding="40,12,40,12">
+                       Padding="35,12">
                     <!-- <Button x:Name="BtnNextQ" -->
                     <!--         Text="Вперед" -->
                     <!--         TextColor="White" -->
@@ -190,7 +190,7 @@
                     <StackLayout
                         Orientation="Horizontal"
                         Spacing="0"
-                        HorizontalOptions="Center">
+                        HorizontalOptions="FillAndExpand">
                         <Label
                             x:Name="LabelNext"
                             Text="Далее "
@@ -214,7 +214,8 @@
                        IsVisible="False"
                        HorizontalOptions="EndAndExpand"
                        x:Name="FrameBtnFinish"
-                       Padding="30,12,30,12">
+                       Padding="18,12"
+                       >
                     <!-- <Button x:Name="BtnFinishQ" -->
                     <!--         Text="Завершить" -->
                     <!--         TextColor="White" -->
@@ -224,7 +225,7 @@
                     <StackLayout
                         Orientation="Horizontal"
                         Spacing="0"
-                        HorizontalOptions="Center">
+                        HorizontalOptions="FillAndExpand">
                        
                         <forms:SvgCachedImage
                             Source="resource://xamarinJKH.Resources.ic_check_mark.svg"
