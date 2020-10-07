@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -14,13 +15,16 @@ namespace xamarinJKH.DialogViews
     public partial class BonusHistoryDialogView : AiForms.Dialogs.Abstractions.DialogView
     {
         BonusHistoryViewModel viewModel { get; set; }
-        public BonusHistoryDialogView()
+        public BonusHistoryDialogView(string ident)
         {
             InitializeComponent();
             BindingContext = viewModel = new BonusHistoryViewModel();
-            viewModel.LoadHistory.Execute(null);
+            viewModel.LoadHistory.Execute(ident);
         }
 
-        
+        void Close(object sender, EventArgs args)
+        {
+            this.DialogNotifier.Cancel();
+        }
     }
 }

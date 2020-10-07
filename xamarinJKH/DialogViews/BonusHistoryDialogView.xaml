@@ -4,21 +4,90 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+               Padding="50"
+               Margin="100"
              xmlns:ai="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
+               xmlns:models="clr-namespace:xamarinJKH.Server.RequestModel"
+               xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="xamarinJKH.DialogViews.BonusHistoryDialogView">
-    <Frame CornerRadius="20">
-        <CollectionView ItemsSource="{Binding History}"
-                        SelectionMode="None">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+    <Frame CornerRadius="20"
+           VerticalOptions="Center"
+           HeightRequest="300"
+           Margin="0,40">
+        <StackLayout VerticalOptions="Center">
+            <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_close.svg"
+                                IsVisible="True"
+                                HorizontalOptions="End"
+                                HeightRequest="15">
+                <svg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Close"/>
+                </svg:SvgCachedImage.GestureRecognizers>
+            </svg:SvgCachedImage>
+            <CollectionView SelectionMode="None"
+                            ItemsSource="{Binding History}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <Label Text="Отсутствутет история списания бонусов"
+                       VerticalTextAlignment="Center"
+                       Padding="40"
+                       HorizontalTextAlignment="Center"/>
+                </CollectionView.EmptyView>
+                <!--<CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type models:BonusCashFlow}">
+                        <models:BonusCashFlow Amount="10"
+                                          Description="ОписаниеописаниеОписаниеописаниеОписаниеописаниеОписаниеописаниеОписаниеописаниеОписаниеописаниеОписаниеописаниеОписаниеописаниеОписаниеописаниеОписаниеописаниеОписаниеописаниеОписаниеописаниеОписаниеописаниеОписаниеописание"
+                                          Moment="12.09.2020 14:56"/>
+                        <models:BonusCashFlow Amount="100"
+                                          Description="Описаниеописание"
+                                          Moment="12.09.2020 14:56"/>
+                    </x:Array>
+                </CollectionView.ItemsSource>-->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Spacing="0">
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span Text="Дата: "
+                                              FontAttributes="Bold"/>
+                                            <Span Text="{Binding Moment}"/>
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span Text="Количество: "
+                                              FontAttributes="Bold"/>
+                                            <Span Text="{Binding Amount}"/>
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span Text="Описание: "
+                                              FontAttributes="Bold"/>
+                                            <Span Text="{Binding Description}"/>
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label BackgroundColor="#494949"
+                               HeightRequest="1"
+                               Margin="0,20"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+        
     </Frame>
 </ai:DialogView>
