@@ -1395,4 +1395,28 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="NextTarif" xml:space="preserve">
     <value>Next tariff</value>
   </data>
+  <data name="EnterTarifMeters" xml:space="preserve">
+    <value>Entering tariff readings</value>
+  </data>
+  <data name="tarif1" xml:space="preserve">
+    <value>Tariff 1</value>
+  </data>
+  <data name="tarif2" xml:space="preserve">
+    <value>Tariff 2</value>
+  </data>
+  <data name="tarif3" xml:space="preserve">
+    <value>Tariff 3</value>
+  </data>
+  <data name="EditMetersTarif" xml:space="preserve">
+    <value>Change readings for tariff</value>
+  </data>
+  <data name="EditMetersTarif1" xml:space="preserve">
+    <value>Change readings for tariff 1</value>
+  </data>
+  <data name="EditMetersTarif2" xml:space="preserve">
+    <value>Change readings for tariff 2</value>
+  </data>
+  <data name="EditMetersTarif3" xml:space="preserve">
+    <value>Change readings for tariff 3</value>
+  </data>
 </root>

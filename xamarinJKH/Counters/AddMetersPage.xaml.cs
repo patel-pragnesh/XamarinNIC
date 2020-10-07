@@ -33,6 +33,8 @@ namespace xamarinJKH.Counters
         private List<MeterInfo> meters = new List<MeterInfo>();
         private CountersPage _countersPage;
 
+        private decimal _counterThisMonth = 0;
+
         public Color CellColor { get; set; } 
         public decimal PrevCounter { get; set; }
         decimal PrevValue;
@@ -43,7 +45,7 @@ namespace xamarinJKH.Counters
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             _countersPage = countersPage;
-
+            _counterThisMonth = counterThisMonth;
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -73,15 +75,6 @@ namespace xamarinJKH.Counters
                     CheckupLbl.Margin = new Thickness(0, -5, 0, -5);
                     RecheckLbl.Margin = new Thickness(0, -5, 0, -5);
 
-                    //BackgroundColor = Color.White;
-                    // ImageFon.Margin = new Thickness(0, 0, 0, 0);
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
-                    // if (Application.Current.MainPage.Height > 800)
-                    // {
-                    //     ScrollViewContainer.Margin = new Thickness(0, 0, 0, -180);
-                    //     BackStackLayout.Margin = new Thickness(-5, 35, 0, 0);
-                    // }
                     break;
                 case Device.Android:
                     // ScrollViewContainer.Margin = new Thickness(0, 0, 0, -162);
@@ -473,16 +466,34 @@ namespace xamarinJKH.Counters
                                 IconArrowForward.IsVisible = false;
                             }
                             value1 = count;
-                            meterReadingName.Text = AppResources.Tarif2Meters;// "Показания по второму тарифу";                 
 
-                            d1.Text = "";
-                            d2.Text = "";
-                            d3.Text = "";
-                            d4.Text = "";
-                            d5.Text = ""; 
-                            d6.Text = "";
-                            d7.Text = "";
-                            d8.Text = "";
+                            if (_counterThisMonth == 0)
+                            {
+                                meterReadingName.Text = string.IsNullOrWhiteSpace(meter.Tariff2Name) ? AppResources.Tarif2Meters : AppResources.EnterTarifMeters + " \"" + meter.Tariff2Name + "\""; //AppResources.Tarif2Meters;// "Показания по второму тарифу";                 
+                                d1.Text = "";
+                                d2.Text = "";
+                                d3.Text = "";
+                                d4.Text = "";
+                                d5.Text = "";
+                                d6.Text = "";
+                                d7.Text = "";
+                                d8.Text = "";
+                            }
+                            else
+                            {
+                                meterReadingName.Text = string.IsNullOrWhiteSpace(meter.Tariff2Name) ? AppResources.EditMetersTarif2 : AppResources.EditMetersTarif + " \"" + meter.Tariff2Name + "\""; // "изменить показания по второму тарифу";
+                                if(meter.Values[0].ValueT2!=null)
+                                SetCurrent(Convert.ToDecimal(meter.Values[0].ValueT2));
+                            }
+
+                            //d1.Text = "";
+                            //d2.Text = "";
+                            //d3.Text = "";
+                            //d4.Text = "";
+                            //d5.Text = ""; 
+                            //d6.Text = "";
+                            //d7.Text = "";
+                            //d8.Text = "";
 
                             
                             if (meter.Values != null && meter.Values.Count >= 1)
@@ -537,16 +548,34 @@ namespace xamarinJKH.Counters
                             IconArrowForward.IsVisible = false;
 
                             value2 = count;
-                            meterReadingName.Text = AppResources.Tarif3Meters;// "Показания по второму тарифу";                 
 
-                            d1.Text = "";
-                            d2.Text = "";
-                            d3.Text = "";
-                            d4.Text = "";
-                            d5.Text = "";
-                            d6.Text = "";
-                            d7.Text = "";
-                            d8.Text = "";
+                            if (_counterThisMonth == 0)
+                            {
+                                meterReadingName.Text = string.IsNullOrWhiteSpace(meter.Tariff3Name) ? AppResources.Tarif3Meters : AppResources.EnterTarifMeters + " \"" + meter.Tariff3Name + "\""; //AppResources.Tarif3Meters;// "Показания по 3му тарифу";                 
+                                d1.Text = "";
+                                d2.Text = "";
+                                d3.Text = "";
+                                d4.Text = "";
+                                d5.Text = "";
+                                d6.Text = "";
+                                d7.Text = "";
+                                d8.Text = "";
+                            }
+                            else
+                            {
+                                meterReadingName.Text = string.IsNullOrWhiteSpace(meter.Tariff3Name) ? AppResources.EditMetersTarif3 : AppResources.EditMetersTarif + " \"" + meter.Tariff3Name + "\""; //"Изменить показания по 3му тарифу";                 
+                                if (meter.Values[0].ValueT3 != null)
+                                    SetCurrent(Convert.ToDecimal(meter.Values[0].ValueT3));
+                            }
+
+                            //d1.Text = "";
+                            //d2.Text = "";
+                            //d3.Text = "";
+                            //d4.Text = "";
+                            //d5.Text = "";
+                            //d6.Text = "";
+                            //d7.Text = "";
+                            //d8.Text = "";
 
                             if (meter.Values != null && meter.Values.Count >= 1)
                             {
@@ -664,7 +693,10 @@ namespace xamarinJKH.Counters
             if (meter.TariffNumberInt>1)
             {
                 tarif = 2;
-                meterReadingName.Text = AppResources.Tarif1Meters;// "Показания по первому тарифу";                 
+                if (_counterThisMonth == 0)
+                    meterReadingName.Text = string.IsNullOrWhiteSpace(meter.Tariff1Name) ? AppResources.Tarif1Meters : AppResources.EnterTarifMeters + " \"" + meter.Tariff1Name + "\""; //AppResources.Tarif1Meters;// "Показания по первому тарифу";                 
+                else
+                    meterReadingName.Text = string.IsNullOrWhiteSpace(meter.Tariff1Name) ? AppResources.EditMetersTarif1 : AppResources.EditMetersTarif + " \"" + meter.Tariff1Name + "\""; //AppResources.Tarif1Meters;// "Показания по первому тарифу";                 
                 meterReadingName.FontSize = 16;
                 FrameBtnLogin.Margin = new Thickness(0, 0, 0, 10);
                 BtnSave.Text = AppResources.NextTarif;// "Следующий тариф";
@@ -763,10 +795,10 @@ namespace xamarinJKH.Counters
             }
             if (!string.IsNullOrEmpty(value1))
             {
-                var d1 = Double.Parse(value1.Replace('.',',')).ToString(CultureInfo.InvariantCulture);
+                var d1 = Double.Parse(value1.Replace(',', '.'), CultureInfo.InvariantCulture).ToString(CultureInfo.InvariantCulture);
 
-                var d2 = value2 != "" ? Double.Parse(value2.Replace('.', ',')).ToString(CultureInfo.InvariantCulture) : "";
-                var d3 = value3 != "" ? Double.Parse(value3.Replace('.', ',')).ToString(CultureInfo.InvariantCulture) : "";
+                var d2 = value2 != "" ? Double.Parse(value2.Replace(',', '.')).ToString(CultureInfo.InvariantCulture) : "";
+                var d3 = value3 != "" ? Double.Parse(value3.Replace(',', '.')).ToString(CultureInfo.InvariantCulture) : "";
 
                 progress.IsVisible = true;
                 FrameBtnLogin.IsVisible = false;
