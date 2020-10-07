@@ -283,7 +283,7 @@ namespace xamarinJKH.MainConst
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
+            SetReaded();
             // new Task(SyncSetup).Start(); // This could be an await'd task if need be
         }
 
@@ -326,7 +326,8 @@ namespace xamarinJKH.MainConst
             _requestList = await _server.GetRequestsListConst();
             if (_requestList.Error == null)
             {
-                setCloses(_requestList.Requests);
+                // setReaded(_requestList.Requests);
+                SetReaded();
                 Settings.UpdateKey = _requestList.UpdateKey;
             }
             else
@@ -335,13 +336,13 @@ namespace xamarinJKH.MainConst
             }
         }
 
-        void setCloses(List<RequestInfo> infos)
+        void setReaded(List<RequestInfo> infos)
         {
             RequestInfosAlive = new ObservableCollection<RequestInfo>();
             RequestInfosClose = new ObservableCollection<RequestInfo>();
             foreach (var each in infos)
             {
-                if (each.IsClosed)
+                if (each.IsReaded)
                 {
                     RequestInfosClose.Add(each);
                 }
@@ -382,19 +383,29 @@ namespace xamarinJKH.MainConst
 
         private async void change(object sender, PropertyChangedEventArgs e)
         {
+            SetReaded();
+        }
+
+        private void SetReaded()
+        {
+            if (_requestList == null)
+            {
+                return;
+            }
             if (SwitchApp.IsToggled)
             {
-                RequestInfos = RequestInfosClose;
+                RequestInfos = new ObservableCollection<RequestInfo>(from i in _requestList.Requests where i.IsReaded select i);
             }
             else
             {
-                RequestInfos = RequestInfosAlive;
+                RequestInfos =
+                    new ObservableCollection<RequestInfo>(from i in _requestList.Requests where !i.IsReaded select i);
             }
+            BindingContext = this;
             additionalList.ItemsSource = null;
             additionalList.ItemsSource = RequestInfos;
             try
             {
-
                 Empty = RequestInfos.Count == 0;
             }
             catch

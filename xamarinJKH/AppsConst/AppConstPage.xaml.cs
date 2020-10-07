@@ -139,6 +139,21 @@ namespace xamarinJKH.AppsConst
             UpdateTask.Start();
         }
 
+        async void SetReadedApp()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                if (!_requestInfo.IsReaded)
+                {
+                    CommonResult commonResult = await _server.SetReadedFlag(_requestInfo.ID);
+                    if (commonResult.Error == null)
+                    {
+                        _requestInfo.IsReaded = true;
+                    }
+                }
+            });
+        }
+        
         protected override void OnDisappearing()
         {
             try
@@ -270,7 +285,7 @@ namespace xamarinJKH.AppsConst
                 default:
                     break;
             }
-
+            SetReadedApp();
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) =>

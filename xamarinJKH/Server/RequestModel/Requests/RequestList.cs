@@ -27,6 +27,8 @@ namespace xamarinJKH.Server.RequestModel
         public bool IsPaidByUser { get; set; }
         public bool IsPaid { get; set; }
         public int ShopId { get; set; }
+        // Флаг "Прочитана сотрудником"
+        public bool IsReaded { get; set; }
     }
 
     public class RequestContent : RequestInfo
