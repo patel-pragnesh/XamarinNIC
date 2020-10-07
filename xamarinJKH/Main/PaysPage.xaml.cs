@@ -463,7 +463,7 @@ namespace xamarinJKH.Main
 
         async void ShowBonusHistory(object sender, EventArgs e)
         {
-            await AiForms.Dialogs.Dialog.Instance.ShowAsync(new BonusHistoryDialogView());
+            await AiForms.Dialogs.Dialog.Instance.ShowAsync(new BonusHistoryDialogView("123"));
         }
 
         MaterialFrame AddAccountToList(AccountAccountingInfo info, List<AccountAccountingInfo> _accountingInfo)
@@ -525,11 +525,34 @@ namespace xamarinJKH.Main
                 FontSize = 12
             });
             bonus.FormattedText = formattedBonus;
+            bonus.HorizontalOptions = LayoutOptions.Start;
+
+            StackLayout BonusStack = new StackLayout { 
+                Orientation = StackOrientation.Horizontal, 
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.FillAndExpand
+            };
+            BonusStack.Children.Add(bonus);
+            Label history = new Label { 
+                TextColor = (Color)Application.Current.Resources["MainColor"], 
+                Text = "Показать списания", 
+                HorizontalOptions = LayoutOptions.End, 
+                HorizontalTextAlignment = TextAlignment.End,
+                VerticalTextAlignment = TextAlignment.Center,
+                FontAttributes = FontAttributes.Bold,
+                FontSize = 12
+            };
+            history.GestureRecognizers.Add(new TapGestureRecognizer
+            {
+                Command = OpenHistoryCommand,
+                CommandParameter = info.Ident
+            });
+            BonusStack.Children.Add(history);
 
             identAdress.Children.Add(ident);
             identAdress.Children.Add(adress);
             if (Settings.MobileSettings.useBonusSystem)
-                identAdress.Children.Add(bonus);
+                identAdress.Children.Add(BonusStack);
 
             SvgCachedImage x = new SvgCachedImage();
             x.Source = "resource://xamarinJKH.Resources.ic_close.svg";
@@ -706,6 +729,17 @@ namespace xamarinJKH.Main
             sumPay.FormattedText = formattedPay;
 
             return frame;
+        }
+
+        Command OpenHistoryCommand
+        {
+            get
+            {
+                return new Command(async (ident) =>
+                {
+                    await AiForms.Dialogs.Dialog.Instance.ShowAsync(new BonusHistoryDialogView(ident as string));
+                });
+            }
         }
     }
 }

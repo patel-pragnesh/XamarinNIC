@@ -124,6 +124,7 @@
                                 FontSize="15" />
 
                                 <Label Text="История спиания"
+                                       IsVisible="False"
                                        TextColor="{x:DynamicResource MainColor}"
                                        FontSize="15"
                                        HorizontalOptions="CenterAndExpand"
