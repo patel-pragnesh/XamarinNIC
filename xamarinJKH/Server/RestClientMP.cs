@@ -175,7 +175,7 @@ namespace xamarinJKH.Server
 
         public const string UPDATE_RECEIPT = "RequestsDispatcher/UpdateRequestReceipts";
         public const string CAMERAS_LIST = "Houses/WebCams";
-
+        public const string BONUS_HISTORY = "Accounting/GetAccountBonusBalanceHistory";
         /// <summary>
         /// Аунтификация сотрудника
         /// </summary>
@@ -2381,6 +2381,18 @@ namespace xamarinJKH.Server
             restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = await client.ExecuteTaskAsync<ItemsList<CameraModel>>(restRequest);
+            return response.Data;
+        }
+
+        public async Task<ItemsList<BonusCashFlow>> GetBonusHistory()
+        {
+            RestClient client = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(BONUS_HISTORY, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = await client.ExecuteTaskAsync<ItemsList<BonusCashFlow>>(restRequest);
             return response.Data;
         }
     }
