@@ -11,5 +11,22 @@ namespace xamarinJKH.ViewModels.DialogViewModels
     {
         public ObservableCollection<BonusCashFlow> History { get; set; }
         public Command LoadHistory { get; set; }
+
+        public BonusHistoryViewModel()
+        {
+            History = new ObservableCollection<BonusCashFlow>();
+            LoadHistory = new Command(async () =>
+            {
+                var response = await Server.GetBonusHistory();
+                if (response.Error == null)
+                {
+                    if (response.Data != null)
+                    foreach (var instance in response.Data)
+                    {
+                        Device.BeginInvokeOnMainThread(() => History.Add(instance));
+                    }
+                }
+            });
+        }
     }
 }
