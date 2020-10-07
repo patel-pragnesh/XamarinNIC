@@ -2384,7 +2384,7 @@ namespace xamarinJKH.Server
             return response.Data;
         }
 
-        public async Task<ItemsList<BonusCashFlow>> GetBonusHistory()
+        public async Task<ItemsList<BonusCashFlow>> GetBonusHistory(string id = "0001")
         {
             RestClient client = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(BONUS_HISTORY, Method.GET);
@@ -2392,6 +2392,9 @@ namespace xamarinJKH.Server
             restRequest.AddHeader("client", Device.RuntimePlatform);
             restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new {
+                id 
+            });
             var response = await client.ExecuteTaskAsync<ItemsList<BonusCashFlow>>(restRequest);
             return response.Data;
         }
