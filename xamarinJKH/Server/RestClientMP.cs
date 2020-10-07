@@ -103,6 +103,7 @@ namespace xamarinJKH.Server
         public const string GET_HOUSE_DATA = "RequestsDispatcher/HouseData"; // Возвращает список домов. 
         public const string CLOSE_APP_LIST_DISP = "RequestsDispatcher/CloseList"; // Закрытие списка заявки. 
         public const string PERFORM_APP_LIST_DISP = "RequestsDispatcher/PerformList"; // Закрытие списка заявки. 
+        
 
         public const string
             GET_REQUESTS_STATS = "RequestsDispatcher/RequestStats"; // Возвращает статистику по заявкам.  
@@ -119,7 +120,7 @@ namespace xamarinJKH.Server
         public const string CLOSE_APP = "Requests/Close "; // Закрытие заявки
         public const string PAY_CASH_VALIDATE_CODE = "Requests/SendPaidRequestCompleteCodeCash"; // Отправка пин-кода в SMS по платной заявке после онлайн оплаты
         public const string PAY_CARD_VALIDATE_CODE = "Requests/SendPaidRequestCompleteCodeCash"; // Отправка пин-кода в SMS по платной заявке после оплаты наличными
-
+        public const string GET_CAR_BRAND = "Requests/VehicleMarks"; // Возвращает список марок автомобилей 
         public const string UPDATE_PROFILE_CONST = "Dispatcher/UpdateProfile"; // Обновить данные диспетчера
         public const string UPDATE_PROFILE = "User/UpdateProfile"; // Обновить данные профиля
         public const string ADD_IDENT_PROFILE = "User/AddAccountByIdent"; // Привязать ЛС к профилю
@@ -474,6 +475,39 @@ namespace xamarinJKH.Server
                 ident,
                 typeID,
                 Text,
+            });
+            var response = await restClientMp.ExecuteTaskAsync<IDResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new IDResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        public async Task<IDResult> newAppPass(string ident, string typeID, string Text,
+            int PassCategoryId, string? PassFIO, string? PassPassportData,
+            string? PassVehicleMark, string? PassVehicleNumber )
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(NEW_APP, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                ident,
+                typeID,
+                Text,
+                PassCategoryId,
+                PassFIO,
+                PassPassportData,
+                PassVehicleMark,
+                PassVehicleNumber
             });
             var response = await restClientMp.ExecuteTaskAsync<IDResult>(restRequest);
             // Проверяем статус
@@ -2161,6 +2195,27 @@ namespace xamarinJKH.Server
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 return new ItemsList<R731PremiseWithAccounts>()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        
+        public async Task<ItemsList<string>> VehicleMarks()
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_CAR_BRAND, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = await restClientMp.ExecuteTaskAsync<ItemsList<string>>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new ItemsList<string>()
                 {
                     Error = $"Ошибка {response.StatusDescription}"
                 };

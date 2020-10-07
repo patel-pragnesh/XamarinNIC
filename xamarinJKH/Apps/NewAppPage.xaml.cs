@@ -48,6 +48,8 @@ namespace xamarinJKH.Apps
         public int PikerLsItem = 0;
         public int PikerTypeItem = 0;
         private AddAppModel _appModel;
+        private bool isPassAPP = false;
+        PassApp _passApp = new PassApp();
         public NewAppPage()
         {
             InitializeComponent();
@@ -120,19 +122,13 @@ namespace xamarinJKH.Apps
             
             SetText();
             files = new List<FileData>();
-#if DEBUG
-            Settings.TypeApp.Add(new NamedValue
-            {
-                ID = "12342",
-                Name = "Заявка на пропуск"
-            });
-#endif
             _appModel = new AddAppModel()
             {
                 AllAcc = Settings.Person.Accounts,
                 AllType = Settings.TypeApp,
-                AllKindPass = new List<string>{"Пешеход", "Мотоцикл", "Легковой", "Газель", "Грузовой"},
-                AllBrand = new List<string>{"Opel", "BMW", "Mercedes", "Reno", "Lada"},
+                AllKindPass = new List<string>{AppResources.PassMan, AppResources.PassMotorcycle,
+                    AppResources.PassCar, AppResources.PassGazele, AppResources.PassCargo},
+                AllBrand = Settings.BrandCar,
                 hex = (Color)Application.Current.Resources["MainColor"],
                 SelectedAcc = Settings.Person.Accounts[0],
                 SelectedType = Settings.TypeApp[0],
@@ -468,7 +464,7 @@ namespace xamarinJKH.Apps
             FrameBtnAdd.IsVisible = false;
             progress.IsVisible = true;
           
-            if (!text.Equals(""))
+            if (GetEnabledAdd(text))
             {
                 try
                 {
@@ -479,11 +475,22 @@ namespace xamarinJKH.Apps
                     }
                     string ident = Settings.Person.Accounts[PickerLs.SelectedIndex].Ident;
                     string typeId = Settings.TypeApp[PickerType.SelectedIndex].ID;
-                    IDResult result = await _server.newApp(ident, typeId, text);
+                    IDResult result = new IDResult();
+                    if (isPassAPP)
+                    {
+                        result = await _server.newAppPass(ident, typeId, text,_passApp.idType, _passApp.Fio,
+                            _passApp.SeriaNumber, _passApp.CarBrand, _passApp.CarNumber);
+
+                    }
+                    else
+                    {
+                        result = await _server.newApp(ident, typeId, text);
+
+                    }
                     var update = await _server.GetRequestsUpdates(Settings.UpdateKey, result.ID.ToString());
                     Settings.UpdateKey = update.NewUpdateKey;
-
-
+                    
+                    
                     if (result.Error == null)
                     {
                         sendFiles(result.ID.ToString());
@@ -507,15 +514,107 @@ namespace xamarinJKH.Apps
                     // ignored
                 }
             }
-            else
-            {
-                await DisplayAlert(AppResources.ErrorTitle, AppResources.AppErrorFill, "OK");
-            }
 
             FrameBtnAdd.IsVisible = true;
             progress.IsVisible = false;
         }
 
+        bool GetEnabledAdd(string text)
+        {
+            if (isPassAPP)
+            {
+
+                if (_passApp.idType != 0)
+                {
+                    
+                    if (_passApp.idType == 1)
+                    {
+                        _passApp.Fio = EntryFIO.Text;
+                        _passApp.SeriaNumber = EntryPassport.Text;
+                        _passApp.CarBrand = null;
+                        _passApp.CarNumber = null;
+                        if (string.IsNullOrWhiteSpace(_passApp.Fio))
+                        {
+                            DisplayAlert(AppResources.ErrorTitle, AppResources.EnterFIO, "OK");
+                            return false;
+                        }
+
+                        if (string.IsNullOrWhiteSpace(_passApp.SeriaNumber))
+                        {
+                            DisplayAlert(AppResources.ErrorTitle, AppResources.EnterSeriaAndNumber, "OK");
+                            return false;
+                        }
+
+                        if (_passApp.SeriaNumber.Length != 11)
+                        {
+                            DisplayAlert(AppResources.ErrorTitle,
+                                AppResources.EnterSeriaAndNumber + " " + AppResources.MaskNumberPassport + ":\n" +
+                                "1234 567890", "OK");
+                            return false;
+                        }
+
+                        return true;
+
+                    }
+                    else
+                    {
+                        _passApp.Fio = null;
+                        _passApp.SeriaNumber = null;
+                        _passApp.CarNumber = EntryNumber.Text;
+                        if (string.IsNullOrWhiteSpace(_passApp.CarBrand))
+                        {
+                            DisplayAlert(AppResources.ErrorTitle, AppResources.EnterCarBrand, "OK");
+                            return false;
+                        }
+
+                        if (string.IsNullOrWhiteSpace(_passApp.CarNumber))
+                        {
+                            DisplayAlert(AppResources.ErrorTitle, AppResources.EnterStateNumber, "OK");
+                            return false;
+                        }
+                        else
+                        {
+                            if (!CheckBoxInNumber.IsChecked)
+                            {
+                                Regex regexNumberAvto = new Regex(@"^[А-Я]{1}[0-9]{3}[А-Я]{2}[0-9]{2,3}$");
+                                Regex regexNumberAvto2 = new Regex(@"[А-Я]{2}[0-9]{3}[0-9]{2,3}$");
+
+                                if (regexNumberAvto.IsMatch(_passApp.CarNumber.Replace(" ","")) ||
+                                    regexNumberAvto2.IsMatch(_passApp.CarNumber.Replace(" ","")))
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    DisplayAlert(AppResources.ErrorTitle,
+                                        AppResources.EnterStateNumber + " " + AppResources.MaskNumberCar + ":\n" +
+                                        "А 234 АА 12, А 234 АА 123, АА 234 22, АА 234 123", "OK");
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    DisplayAlert(AppResources.ErrorTitle, AppResources.EnterTypePass, "OK");
+                }
+                
+                return false;
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(text))
+                {
+                    DisplayAlert(AppResources.ErrorTitle, AppResources.AppErrorFill, "OK");
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+        
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             FileData select = e.Item as FileData;
@@ -564,26 +663,18 @@ namespace xamarinJKH.Apps
         
         private void pickerType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_appModel.SelectedType.Name.Equals("Заявка на пропуск"))
+            if (_appModel.SelectedType.Name.Contains("пропуск"))
             {
                 SetPassApp();
+                EntryMess.Text = AppResources.NamePassApp;
+                isPassAPP = true;
             }
             else
             {
                 SetDefaultApp();
+                EntryMess.Text = "";
+                isPassAPP = false;
             }
-            // try
-            // {
-            //     var identLength = Settings.TypeApp[PickerType.SelectedIndex].Name.Length;
-            //     if (identLength < 6)
-            //     {
-            //         PickerType.WidthRequest = identLength * 10;
-            //     }
-            // }
-            // catch (Exception ex)
-            // {
-            //     // ignored
-            // }
         }
 
         private void AutoSuggestBox_TextChanged(object sender, AutoSuggestBoxTextChangedEventArgs e)
@@ -609,11 +700,13 @@ namespace xamarinJKH.Apps
             var eSelectedItem = (string) e.SelectedItem;
             if (eSelectedItem != null)
             {
+                _passApp.idType = _appModel.AllKindPass.IndexOf(eSelectedItem) + 1;
                 // User selected an item from the suggestion list, take an action on it here.
-                if (eSelectedItem.Equals("Пешеход"))
+                if (eSelectedItem.Equals(AppResources.PassMan))
                 {
                     LayoutPeshehod.IsVisible = true;
                     LayoutAvto.IsVisible = false;
+                    
                 }
                 else
                 {
@@ -624,6 +717,7 @@ namespace xamarinJKH.Apps
             else
             {
                 // User hit Enter from the search box. Use args.QueryText to determine what to do.
+                _passApp.idType = 0;
             }
         }
         
@@ -637,17 +731,21 @@ namespace xamarinJKH.Apps
             Regex regexNumberAvto = new Regex(@"^[А-Я]{1}[0-9]{3}[А-Я]{2}[0-9]{2,3}$");
             Regex regexNumberAvto2 = new Regex(@"[А-Я]{2}[0-9]{3}[0-9]{2,3}$");
             string result = entryNumberText;
-            if (regexNumberAvto.IsMatch(entryNumberText) )
+            if (!CheckBoxInNumber.IsChecked)
             {
-                result = entryNumberText.Insert(1, " ").Insert(5, " ").Insert(8, " ");
-                EntryNumber.Text = result;
-                EntryNumber.MaxLength = 12;
+                if (regexNumberAvto.IsMatch(entryNumberText))
+                {
+                    result = entryNumberText.Insert(1, " ").Insert(5, " ").Insert(8, " ");
+                    EntryNumber.Text = result;
+                    EntryNumber.MaxLength = 12;
 
-            }else if(regexNumberAvto2.IsMatch(entryNumberText))
-            {
-                result = entryNumberText.Insert(2, " ").Insert(6, " ");
-                EntryNumber.Text = result;
-                EntryNumber.MaxLength = 10;
+                }
+                else if (regexNumberAvto2.IsMatch(entryNumberText))
+                {
+                    result = entryNumberText.Insert(2, " ").Insert(6, " ");
+                    EntryNumber.Text = result;
+                    EntryNumber.MaxLength = 10;
+                }
             }
         }
         
@@ -660,21 +758,38 @@ namespace xamarinJKH.Apps
             }
         }
 
-        private async void EntryNumber_OnFocused(object sender, FocusEventArgs e)
-        {
-            if (!e.IsFocused)
-            {
-                Regex regexNumberAvto = new Regex(@"^[А-Я]{1}[0-9]{3}[А-Я]{2}[0-9]{2,3}$");
-                Regex regexNumberAvto2 = new Regex(@"^[А-Я]{1}[0-9]{3}[А-Я]{2}[0-9]{2,3}$");
+       
 
-                if (regexNumberAvto.IsMatch(EntryNumber.Text) || regexNumberAvto2.IsMatch(EntryNumber.Text))
-                {
-                    await DisplayAlert(AppResources.ErrorTitle, "Подходит", "OK");
-                }
-                else
-                {
-                    await DisplayAlert(AppResources.ErrorTitle, "не Подходит", "OK");
-                }
+        private void AutoSuggestBoxBrand_OnTextChanged(object sender, AutoSuggestBoxTextChangedEventArgs e)
+        {
+            if (e.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                IEnumerable<string> itemsSource =
+                    from i in _appModel.AllBrand where i.ToLower().Contains(AutoSuggestBoxBrand.Text) select i;
+                List<string> source = new List<string>(itemsSource);
+                AutoSuggestBoxBrand.ItemsSource = source;
+            }
+        }
+
+        class PassApp
+        {
+            public int idType { get; set; } = 0;
+            public string CarBrand { get; set;}
+            public string CarNumber { get; set;}
+            public string Fio { get; set; }
+            public string SeriaNumber { get; set; }
+        }
+
+        private void AutoSuggestBoxBrand_OnSuggestionChosen(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
+        {
+            var eSelectedItem = (string) e.SelectedItem;
+            if (eSelectedItem != null)
+            {
+                _passApp.CarBrand = eSelectedItem;
+            }
+            else
+            {
+                _passApp.CarBrand = "";
             }
         }
     }

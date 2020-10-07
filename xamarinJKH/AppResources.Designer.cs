@@ -899,6 +899,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введите марку ТС.
+        /// </summary>
+        internal static string EnterCarBrand {
+            get {
+                return ResourceManager.GetString("EnterCarBrand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Введите проверочный код.
         /// </summary>
         internal static string EnterCode {
@@ -944,6 +953,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введите ФИО.
+        /// </summary>
+        internal static string EnterFIO {
+            get {
+                return ResourceManager.GetString("EnterFIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Добавьте Ваш лицевой счет.
         /// </summary>
         internal static string EnterIdent {
@@ -958,6 +976,33 @@ namespace xamarinJKH {
         internal static string EnterName {
             get {
                 return ResourceManager.GetString("EnterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введите серию и номер паспорта.
+        /// </summary>
+        internal static string EnterSeriaAndNumber {
+            get {
+                return ResourceManager.GetString("EnterSeriaAndNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введите гос.номер.
+        /// </summary>
+        internal static string EnterStateNumber {
+            get {
+                return ResourceManager.GetString("EnterStateNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выберите категорию пропуска.
+        /// </summary>
+        internal static string EnterTypePass {
+            get {
+                return ResourceManager.GetString("EnterTypePass", resourceCulture);
             }
         }
         
@@ -1538,6 +1583,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Иностранный номер.
+        /// </summary>
+        internal static string ForeignNumber {
+            get {
+                return ResourceManager.GetString("ForeignNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Забыли пароль?.
         /// </summary>
         internal static string ForgotPass {
@@ -1781,6 +1835,24 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to в соответствии с масками.
+        /// </summary>
+        internal static string MaskNumberCar {
+            get {
+                return ResourceManager.GetString("MaskNumberCar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to в соответствии с маской.
+        /// </summary>
+        internal static string MaskNumberPassport {
+            get {
+                return ResourceManager.GetString("MaskNumberPassport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Вес:.
         /// </summary>
         internal static string Mass {
@@ -1912,6 +1984,15 @@ namespace xamarinJKH {
         internal static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заявка на пропуск.
+        /// </summary>
+        internal static string NamePassApp {
+            get {
+                return ResourceManager.GetString("NamePassApp", resourceCulture);
             }
         }
         
@@ -2756,11 +2837,56 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Легковой.
+        /// </summary>
+        internal static string PassCar {
+            get {
+                return ResourceManager.GetString("PassCar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Грузовой.
+        /// </summary>
+        internal static string PassCargo {
+            get {
+                return ResourceManager.GetString("PassCargo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Завершенные.
         /// </summary>
         internal static string Passed {
             get {
                 return ResourceManager.GetString("Passed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Газель.
+        /// </summary>
+        internal static string PassGazele {
+            get {
+                return ResourceManager.GetString("PassGazele", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пешеход.
+        /// </summary>
+        internal static string PassMan {
+            get {
+                return ResourceManager.GetString("PassMan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Мотоцикл.
+        /// </summary>
+        internal static string PassMotorcycle {
+            get {
+                return ResourceManager.GetString("PassMotorcycle", resourceCulture);
             }
         }
         

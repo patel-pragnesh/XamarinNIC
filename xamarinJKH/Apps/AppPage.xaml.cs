@@ -859,11 +859,19 @@ namespace xamarinJKH.Apps
                 request.Phone = "+" + request.Phone;
             }
 
+            bool IsPass = request.PassInfo != null;
+            bool isMan = false;
+            if (IsPass)
+            {
+                isMan = request.PassInfo.CategoryId == 1;
+            }
             var ret = await Dialog.Instance.ShowAsync<InfoAppDialog>(new
             {
                 _Request = request,
                 HexColor = this.hex,
-                SourceApp = Source
+                SourceApp = Source,
+                isPass = IsPass,
+                isManType = isMan
             });
         }
 

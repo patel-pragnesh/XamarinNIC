@@ -208,7 +208,8 @@
                                         Orientation="Vertical">
                                         <forms:AutoSuggestBox
                                             x:Name="AutoSuggestBox"
-                                            PlaceholderText="Выберите категорию пропуска" WidthRequest="200"
+                                            PlaceholderText="{x:Static xamarinJkh:AppResources.EnterTypePass}"
+                                            WidthRequest="200"
                                             ItemsSource="{Binding AllKindPass}"
                                             HorizontalOptions="FillAndExpand"
                                             TextChanged="AutoSuggestBox_TextChanged"
@@ -217,30 +218,33 @@
                                     </StackLayout>
                                     <StackLayout x:Name="LayoutPeshehod" IsVisible="False" Spacing="10">
                                         <StackLayout Spacing="0"
+                                                     Margin="3,0,5,0"
                                                      HorizontalOptions="FillAndExpand"
                                                      Orientation="Vertical">
                                             <Entry x:Name="EntryFIO"
                                                    FontSize="15"
                                                    VerticalOptions="End"
-                                                   HorizontalTextAlignment="Center"
-                                                   Placeholder="Введите ФИО"
+                                                   Text=""
+                                                   HorizontalTextAlignment="Start"
+                                                   Placeholder="{x:Static xamarinJkh:AppResources.EnterFIO}"
                                                    TextColor="#A2A2A2"
                                                    ClearButtonVisibility="WhileEditing"
                                                    HorizontalOptions="FillAndExpand"
                                                    Keyboard="Chat" />
                                             <Label HeightRequest="1"
                                                    BackgroundColor="Black"
-                                                   Margin="5,0,5,0"
                                                    HorizontalOptions="FillAndExpand" />
                                         </StackLayout>
                                         <StackLayout Spacing="0"
                                                      HorizontalOptions="FillAndExpand"
+                                                     Margin="3,0,5,0"
                                                      Orientation="Vertical">
                                             <Entry x:Name="EntryPassport"
                                                    FontSize="15"
                                                    VerticalOptions="End"
-                                                   Placeholder="Введите серию и номер паспорта"
-                                                   HorizontalTextAlignment="Center"
+                                                   Text=""
+                                                   Placeholder="{x:Static xamarinJkh:AppResources.EnterSeriaAndNumber}"
+                                                   HorizontalTextAlignment="Start"
                                                    ClearButtonVisibility="WhileEditing"
                                                    TextColor="#A2A2A2"
                                                    HorizontalOptions="FillAndExpand"
@@ -251,7 +255,6 @@
                                             </Entry>
                                             <Label HeightRequest="1"
                                                    BackgroundColor="Black"
-                                                   Margin="5,0,5,0"
                                                    HorizontalOptions="FillAndExpand" />
                                         </StackLayout>
                                     </StackLayout>
@@ -261,13 +264,31 @@
                                                      Orientation="Vertical">
                                             <forms:AutoSuggestBox
                                                 x:Name="AutoSuggestBoxBrand"
-                                                PlaceholderText="Введите марку ТС" WidthRequest="200"
+                                                TextChanged = "AutoSuggestBoxBrand_OnTextChanged"
+                                                SuggestionChosen = "AutoSuggestBoxBrand_OnSuggestionChosen"
+                                                PlaceholderText="{x:Static xamarinJkh:AppResources.EnterCarBrand}"
+                                                WidthRequest="200"
                                                 ItemsSource="{Binding AllBrand}"
                                                 HorizontalOptions="FillAndExpand" />
                                         </StackLayout>
                                         <StackLayout Spacing="0"
                                                      HorizontalOptions="FillAndExpand"
                                                      Orientation="Vertical">
+                                            <StackLayout Spacing="0"
+                                                         HorizontalOptions="StartAndExpand"
+                                                         Orientation="Horizontal">
+                                                <CheckBox
+                                                    HorizontalOptions="Start"
+                                                    x:Name="CheckBoxInNumber"
+                                                    VerticalOptions="Center"
+                                                    Color="{x:DynamicResource MainColor}" />
+                                                <Label
+                                                    TextColor="Black"
+                                                    Text="{x:Static xamarinJkh:AppResources.ForeignNumber}"
+                                                    VerticalOptions="Center"
+                                                    HorizontalTextAlignment="Start"
+                                                    HorizontalOptions="Start" />
+                                            </StackLayout>
                                             <pancakeView:PancakeView
                                                 BorderThickness="4"
                                                 BorderColor="Black"
@@ -278,7 +299,7 @@
                                                        FontSize="23"
                                                        VerticalOptions="End"
                                                        FontAttributes="Bold"
-                                                       Placeholder="Введите гос.номер"
+                                                       Placeholder="{x:Static xamarinJkh:AppResources.EnterStateNumber}"
                                                        HorizontalTextAlignment="Center"
                                                        TextChanged="EntryNumber_OnTextChanged"
                                                        TextColor="Black"
@@ -288,6 +309,7 @@
                                         </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
+
                                 <Frame CornerRadius="15"
                                        x:Name="FrameEntryMess"
                                        BackgroundColor="White"
