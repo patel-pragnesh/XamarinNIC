@@ -463,7 +463,7 @@ namespace xamarinJKH.Main
 
         async void ShowBonusHistory(object sender, EventArgs e)
         {
-
+            await AiForms.Dialogs.Dialog.Instance.ShowAsync(new BonusHistoryDialogView());
         }
 
         MaterialFrame AddAccountToList(AccountAccountingInfo info, List<AccountAccountingInfo> _accountingInfo)
