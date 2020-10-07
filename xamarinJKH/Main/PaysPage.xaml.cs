@@ -461,6 +461,10 @@ namespace xamarinJKH.Main
             });
         }
 
+        async void ShowBonusHistory(object sender, EventArgs e)
+        {
+
+        }
 
         MaterialFrame AddAccountToList(AccountAccountingInfo info, List<AccountAccountingInfo> _accountingInfo)
         {

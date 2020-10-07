@@ -113,7 +113,8 @@
                                VerticalOptions="Start"
                                BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                Padding="20,20,20,60">
-                            <Label
+                            <StackLayout>
+                                <Label
                                 Text="{x:Static xamarinJkh:AppResources.AddIdent}"
                                 TextDecorations="Underline"
                                 FontAttributes="Bold"
@@ -121,6 +122,19 @@
                                 HorizontalOptions="CenterAndExpand"
                                 TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                 FontSize="15" />
+
+                                <Label Text="История спиания"
+                                       TextColor="{x:DynamicResource MainColor}"
+                                       FontSize="15"
+                                       HorizontalOptions="CenterAndExpand"
+                                       HorizontalTextAlignment="Center"
+                                       FontAttributes="Bold">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ShowBonusHistory"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                            
                         </Frame>
                         <RefreshView x:Name="paysRefreshView" Margin="10, 0, 10, 0" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" VerticalOptions="FillAndExpand">
                             <ScrollView x:Name="scrollForPays" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
