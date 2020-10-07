@@ -484,6 +484,8 @@ namespace xamarinJKH.Counters
                                 meterReadingName.Text = string.IsNullOrWhiteSpace(meter.Tariff2Name) ? AppResources.EditMetersTarif2 : AppResources.EditMetersTarif + " \"" + meter.Tariff2Name + "\""; // "изменить показания по второму тарифу";
                                 if(meter.Values[0].ValueT2!=null)
                                 SetCurrent(Convert.ToDecimal(meter.Values[0].ValueT2));
+                                d1.Unfocus();
+                                d1.Focus();
                             }
 
                             //d1.Text = "";
@@ -566,6 +568,8 @@ namespace xamarinJKH.Counters
                                 meterReadingName.Text = string.IsNullOrWhiteSpace(meter.Tariff3Name) ? AppResources.EditMetersTarif3 : AppResources.EditMetersTarif + " \"" + meter.Tariff3Name + "\""; //"Изменить показания по 3му тарифу";                 
                                 if (meter.Values[0].ValueT3 != null)
                                     SetCurrent(Convert.ToDecimal(meter.Values[0].ValueT3));
+                                d1.Unfocus();
+                                d1.Focus();
                             }
 
                             //d1.Text = "";
@@ -620,7 +624,6 @@ namespace xamarinJKH.Counters
 
                             SetPrevious(prevPenencies);
 
-
                             break;
                         default:
                             if (value2 != "")
@@ -630,15 +633,6 @@ namespace xamarinJKH.Counters
                             SaveInfoAccount();
                             break;
                     }
-
-                    
-                    
-                    {
-                       
-
-                    }
-
-
                 }
                 else
                 {

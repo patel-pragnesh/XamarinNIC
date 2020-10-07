@@ -284,10 +284,11 @@ namespace xamarinJKH.Main
             tarif1.HorizontalTextAlignment = TextAlignment.Center;
 
             if (mInfo.TariffNumberInt > 1)
-                if (!string.IsNullOrWhiteSpace(mInfo.Tariff1Name))
+            {                
                     tarif1.Text = string.IsNullOrWhiteSpace(mInfo.Tariff1Name) ? AppResources.tarif1 : mInfo.Tariff1Name;
-                else
-                    tarif1.IsVisible = false;
+            }
+            else
+                tarif1.IsVisible = false;
 
             //tarif1t2.FontSize = 13;
             //tarif1t2.TextColor = Color.FromHex("#A2A2A2"); //Color.Red;
