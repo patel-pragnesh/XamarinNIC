@@ -45,6 +45,13 @@ namespace xamarinJKH.Questions
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     //BackgroundColor = Color.White;
+
+                    if(Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width<700)
+                    {
+                        FrameBack.Padding = new Thickness(15, 12);
+                        FrameBtnFinish.Padding = new Thickness(10, 12);
+                    }
+
                     break;
                 default:
                     break;

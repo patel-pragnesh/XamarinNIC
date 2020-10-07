@@ -53,8 +53,9 @@ namespace xamarinJKH.Server
         //public const string SERVER_ADDR = "https://api.sm-center.ru/vestsnab_xml/"; // ВестСнаб
         //public const string SERVER_ADDR = "https://api.sm-center.ru/tsg_saburova/"; // Сабурово
         //public const string SERVER_ADDR = "https://api.sm-center.ru/tsg_krasnoarmeiskii12/"; // ТСЖ Красноармейская 12
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_lider_ulan_ude"; // КТК Galaxy
 
-        
+
 
         public const string SEND_TEACH_MAIL = "Public/TechSupportAppeal"; // Создание обращения в тех поддержк
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутентификация сотрудника
@@ -100,6 +101,7 @@ namespace xamarinJKH.Server
         public const string GET_HOUSE_DATA = "RequestsDispatcher/HouseData"; // Возвращает список домов. 
         public const string CLOSE_APP_LIST_DISP = "RequestsDispatcher/CloseList"; // Закрытие списка заявки. 
         public const string PERFORM_APP_LIST_DISP = "RequestsDispatcher/PerformList"; // Закрытие списка заявки. 
+        public const string SET_READED_APP = "RequestsDispatcher/SetReadedFlag"; // Метод, который устанавливает что заявка прочитана сотрудником
 
         public const string
             GET_REQUESTS_STATS = "RequestsDispatcher/RequestStats"; // Возвращает статистику по заявкам.  
@@ -858,6 +860,36 @@ namespace xamarinJKH.Server
                 text,
                 requestId,
                 IsHidden
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        /// <summary>
+        /// Метод, который устанавливает что заявка прочитана сотрудником
+        /// </summary>
+        /// <param name="RequestId"> ID заявки</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> SetReadedFlag (int RequestId)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(SET_READED_APP, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                RequestId
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
 
