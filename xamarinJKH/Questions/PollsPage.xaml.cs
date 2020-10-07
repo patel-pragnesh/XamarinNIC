@@ -354,7 +354,8 @@ namespace xamarinJKH.Questions
 
         void setQuestVisible()
         {
-            Container.Children.Add(_contentQuest[quest]);
+            if (_contentQuest.Count <= quest + 1 && quest > -1)
+                Container.Children.Add(_contentQuest[quest]);
         }
 
         private void ButtonClickBack(object sender, EventArgs e)
