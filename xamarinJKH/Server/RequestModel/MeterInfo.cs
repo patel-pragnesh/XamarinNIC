@@ -42,6 +42,12 @@ namespace xamarinJKH.Server.RequestModel
         public string TariffNumber { get; set; }
         //тарифов число, числом
         public int TariffNumberInt { get; set; }
+    // Название тарифа 1
+    public string Tariff1Name { get; set; }
+    // Название тарифа 2
+    public string Tariff2Name { get; set; }
+    // Название тарифа 3
+    public string Tariff3Name { get; set; }
     }
 
     public class MeterValueInfo

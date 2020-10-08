@@ -174,7 +174,7 @@ namespace xamarinJKH.Pays
 
         public static string FirstLetterToUpper(string str)
         {
-            if (str.Length > 0)
+            if (!string.IsNullOrWhiteSpace(str) && str.Length > 0)
             {
                 return Char.ToUpper(str[0]) + str.Substring(1);
             }

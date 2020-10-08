@@ -899,6 +899,42 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Изменить показания по тарифу.
+        /// </summary>
+        internal static string EditMetersTarif {
+            get {
+                return ResourceManager.GetString("EditMetersTarif", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изменить показания по тарифу 1.
+        /// </summary>
+        internal static string EditMetersTarif1 {
+            get {
+                return ResourceManager.GetString("EditMetersTarif1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изменить показания по тарифу 2.
+        /// </summary>
+        internal static string EditMetersTarif2 {
+            get {
+                return ResourceManager.GetString("EditMetersTarif2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изменить показания по тарифу 3.
+        /// </summary>
+        internal static string EditMetersTarif3 {
+            get {
+                return ResourceManager.GetString("EditMetersTarif3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Адрес электронной почты.
         /// </summary>
         internal static string EmailAdress {
@@ -985,6 +1021,15 @@ namespace xamarinJKH {
         internal static string EnterPin {
             get {
                 return ResourceManager.GetString("EnterPin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ввод показаний тарифа.
+        /// </summary>
+        internal static string EnterTarifMeters {
+            get {
+                return ResourceManager.GetString("EnterTarifMeters", resourceCulture);
             }
         }
         
@@ -3513,6 +3558,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Тариф 1.
+        /// </summary>
+        internal static string tarif1 {
+            get {
+                return ResourceManager.GetString("tarif1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Показания по первому тарифу.
         /// </summary>
         internal static string Tarif1Meters {
@@ -3522,11 +3576,29 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Тариф 2.
+        /// </summary>
+        internal static string tarif2 {
+            get {
+                return ResourceManager.GetString("tarif2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Показания по второму тарифу.
         /// </summary>
         internal static string Tarif2Meters {
             get {
                 return ResourceManager.GetString("Tarif2Meters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Тариф 3.
+        /// </summary>
+        internal static string tarif3 {
+            get {
+                return ResourceManager.GetString("tarif3", resourceCulture);
             }
         }
         

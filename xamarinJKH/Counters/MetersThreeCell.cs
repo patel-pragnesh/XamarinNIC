@@ -27,18 +27,32 @@ namespace xamarinJKH.Main
         private Label recheckup = new Label();
         private Label tarif1 = new Label();
         private StackLayout tarif1Stack = new StackLayout();
+        //private Label tarif1t2 = new Label();
+        //private Label tarif1t3 = new Label();
+
+        private StackLayout count1t2Stack = new StackLayout() { IsVisible = false };
+        private StackLayout count1t3Stack = new StackLayout() { IsVisible = false };
         private Label counterDate1 = new Label();
         private Label count1 = new Label();
         private Label count1t2 = new Label();
         private Label count1t3 = new Label();
         private Label tarif2 = new Label();
         private StackLayout tarif2Stack = new StackLayout();
+        //private Label tarif2t2 = new Label();
+        //private Label tarif2t3 = new Label();
+        private StackLayout count2t2Stack = new StackLayout() { IsVisible = false };
+        private StackLayout count2t3Stack = new StackLayout() { IsVisible = false };
         private Label counterDate2 = new Label();
         private Label count2 = new Label();
         private Label count2t2 = new Label();
         private Label count2t3 = new Label();
-        private Label tarif3 = new Label();
+        //private Label tarif3 = new Label();
         private StackLayout tarif3Stack = new StackLayout();
+        //private Label tarif3t2 = new Label();
+        //private Label tarif3t3 = new Label();
+
+        private StackLayout count3t2Stack = new StackLayout() { IsVisible = false };
+        private StackLayout count3t3Stack = new StackLayout() { IsVisible = false };
         private Label counterDate3 = new Label();
         private Label count3 = new Label();
         private Label count3t2 = new Label();
@@ -265,10 +279,37 @@ namespace xamarinJKH.Main
             separator.Margin = new Thickness(0, 5, 0, 5);
             container.Children.Add(separator);
 
-            tarif1.FontSize = 15;
-            tarif1.TextColor = Color.Red;
+            tarif1.FontSize = 13;
+            tarif1.TextColor = Color.FromHex("#A2A2A2"); //Color.Red;
             tarif1.HorizontalTextAlignment = TextAlignment.Center;
 
+            if (mInfo.TariffNumberInt > 1)
+            {                
+                    tarif1.Text = string.IsNullOrWhiteSpace(mInfo.Tariff1Name) ? AppResources.tarif1 : mInfo.Tariff1Name;
+            }
+            else
+                tarif1.IsVisible = false;
+
+            //tarif1t2.FontSize = 13;
+            //tarif1t2.TextColor = Color.FromHex("#A2A2A2"); //Color.Red;
+            //tarif1t2.HorizontalTextAlignment = TextAlignment.Center;
+
+            //tarif1t3.FontSize = 13;
+            //tarif1t3.TextColor = Color.FromHex("#A2A2A2"); //Color.Red;
+            //tarif1t3.HorizontalTextAlignment = TextAlignment.Center;
+
+
+            //tarif2.FontSize = 13;
+            //tarif2.TextColor = Color.FromHex("#A2A2A2");
+            //tarif2.HorizontalTextAlignment = TextAlignment.Center;
+
+            //tarif2.Text = string.IsNullOrWhiteSpace(mInfo.Tariff2Name) ? AppResources.tarif2 : mInfo.Tariff2Name;
+
+            //tarif3.FontSize = 13;
+            //tarif3.TextColor = Color.FromHex("#A2A2A2");
+            //tarif3.HorizontalTextAlignment = TextAlignment.Center;
+
+            //tarif3.Text = string.IsNullOrWhiteSpace(mInfo.Tariff3Name) ? AppResources.tarif3 : mInfo.Tariff3Name;
 
             count1Stack.Orientation = StackOrientation.Horizontal;
             count1Stack.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -293,9 +334,10 @@ namespace xamarinJKH.Main
             count1t2.VerticalOptions = LayoutOptions.Start;
             count1t2.MaxLines = 1;
 
-//#if DEBUG
-//            count1t2.Text = "100500.111";
-//#endif                      
+      
+            //#if DEBUG
+            //            count1t2.Text = "100500.111";
+            //#endif                      
 
             count1t3.FontSize = 15;
             count1t3.TextColor = Color.Black;
@@ -303,9 +345,11 @@ namespace xamarinJKH.Main
             count1t3.HorizontalOptions = LayoutOptions.End;
             count1t3.VerticalOptions = LayoutOptions.Start;
             count1t3.MaxLines = 1;
-//#if DEBUG
-//            count1t3.Text = "100502.213";
-//#endif
+
+            
+            //#if DEBUG
+            //            count1t3.Text = "100502.213";
+            //#endif
 
             BoxView lines = new BoxView();
             lines.HeightRequest = 1;
@@ -316,12 +360,32 @@ namespace xamarinJKH.Main
 
             count1Stack.Children.Add(counterDate1);
             count1Stack.Children.Add(lines);
+            count1Stack.Children.Add(tarif1);
             count1Stack.Children.Add(count1);           
 
             container.Children.Add(count1Stack);
 
-            container.Children.Add(count1t2);
-            container.Children.Add(count1t3);
+            count1t2Stack.Orientation = StackOrientation.Horizontal;
+            count1t2Stack.HorizontalOptions = LayoutOptions.End;
+
+            var t21 = new Label() { FontSize = 13 , TextColor = Color.FromHex("#A2A2A2") , HorizontalTextAlignment = TextAlignment.Center };
+            t21.Text = string.IsNullOrWhiteSpace(mInfo.Tariff2Name) ? AppResources.tarif2 : mInfo.Tariff2Name;
+
+            count1t2Stack.Children.Add(t21);
+            count1t2Stack.Children.Add(count1t2);
+                        
+            container.Children.Add(count1t2Stack);
+
+            count1t3Stack.Orientation = StackOrientation.Horizontal;
+            count1t3Stack.HorizontalOptions = LayoutOptions.End;
+
+            var t31 = new Label() { FontSize = 13, TextColor = Color.FromHex("#A2A2A2"), HorizontalTextAlignment = TextAlignment.Center };
+            t31.Text = string.IsNullOrWhiteSpace(mInfo.Tariff2Name) ? AppResources.tarif2 : mInfo.Tariff2Name;
+
+            count1t3Stack.Children.Add(t31);
+            count1t3Stack.Children.Add(count1t3);
+
+            container.Children.Add(count1t3Stack);
 
             count2Stack.Orientation = StackOrientation.Horizontal;
             count2Stack.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -368,11 +432,51 @@ namespace xamarinJKH.Main
 
             count2Stack.Children.Add(counterDate2);
             count2Stack.Children.Add(lines2);
+
+            //count2Stack.Children.Add(tarif1);
+            Label t1 = new Label() { FontSize = 13, TextColor = Color.FromHex("#A2A2A2"), HorizontalTextAlignment = TextAlignment.Center};
+            if (mInfo.TariffNumberInt > 1)
+                if (!string.IsNullOrWhiteSpace(mInfo.Tariff1Name))
+                    t1.Text = string.IsNullOrWhiteSpace(mInfo.Tariff1Name) ? AppResources.tarif1 : mInfo.Tariff1Name;
+                else
+                    t1.IsVisible = false;
+            
+            count2Stack.Children.Add(t1 );
+            //tarif1.FontSize = 13;
+            //tarif1.TextColor = Color.FromHex("#A2A2A2"); //Color.Red;
+            //tarif1.HorizontalTextAlignment = TextAlignment.Center;
+
+            //if (mInfo.TariffNumberInt > 1)
+            //    if (!string.IsNullOrWhiteSpace(mInfo.Tariff1Name))
+            //        tarif1.Text = string.IsNullOrWhiteSpace(mInfo.Tariff1Name) ? AppResources.tarif1 : mInfo.Tariff1Name;
+            //    else
+            //        tarif1.IsVisible = false;
+
             count2Stack.Children.Add(count2);
             container.Children.Add(count2Stack);
 
-            container.Children.Add(count2t2);
-            container.Children.Add(count2t3);
+            count2t2Stack.Orientation = StackOrientation.Horizontal;
+            count2t2Stack.HorizontalOptions = LayoutOptions.End;
+
+            var t22 = new Label() { FontSize = 13, TextColor = Color.FromHex("#A2A2A2"), HorizontalTextAlignment = TextAlignment.Center };
+            t22.Text = string.IsNullOrWhiteSpace(mInfo.Tariff2Name) ? AppResources.tarif2 : mInfo.Tariff2Name;
+
+            count2t2Stack.Children.Add(t22);
+            count2t2Stack.Children.Add(count2t2);
+
+            container.Children.Add(count2t2Stack);
+
+            count2t3Stack.Orientation = StackOrientation.Horizontal;
+            count2t3Stack.HorizontalOptions = LayoutOptions.End;
+
+            var t32 = new Label() { FontSize = 13, TextColor = Color.FromHex("#A2A2A2"), HorizontalTextAlignment = TextAlignment.Center };
+            t32.Text = string.IsNullOrWhiteSpace(mInfo.Tariff3Name) ? AppResources.tarif3 : mInfo.Tariff3Name;
+
+            count2t3Stack.Children.Add(t32);
+            count2t3Stack.Children.Add(count2t3);
+
+            container.Children.Add(count2t3Stack);
+           
 
             count3Stack.Orientation = StackOrientation.Horizontal;
             count3Stack.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -418,11 +522,45 @@ namespace xamarinJKH.Main
 
             count3Stack.Children.Add(counterDate3);
             count3Stack.Children.Add(lines3);
+
+            Label t2 = new Label() { FontSize = 13, TextColor = Color.FromHex("#A2A2A2"), HorizontalTextAlignment = TextAlignment.Center };
+            if (mInfo.TariffNumberInt > 1)
+                if (!string.IsNullOrWhiteSpace(mInfo.Tariff1Name))
+                    t2.Text = string.IsNullOrWhiteSpace(mInfo.Tariff1Name) ? AppResources.tarif1 : mInfo.Tariff1Name;
+                else
+                    t2.IsVisible = false;
+
+            count3Stack.Children.Add(t2);
+
+            //count3Stack.Children.Add(tarif1);
             count3Stack.Children.Add(count3);
             container.Children.Add(count3Stack);
 
-            container.Children.Add(count3t2);
-            container.Children.Add(count3t3);
+            count3t2Stack.Orientation = StackOrientation.Horizontal;
+            count3t2Stack.HorizontalOptions = LayoutOptions.End;
+
+            var t23 = new Label() { FontSize = 13, TextColor = Color.FromHex("#A2A2A2"), HorizontalTextAlignment = TextAlignment.Center };
+            t23.Text = string.IsNullOrWhiteSpace(mInfo.Tariff2Name) ? AppResources.tarif2 : mInfo.Tariff2Name;
+
+            
+            count3t2Stack.Children.Add(t23);
+            count3t2Stack.Children.Add(count3t2);
+
+            container.Children.Add(count3t2Stack);
+
+            count3t3Stack.Orientation = StackOrientation.Horizontal;
+            count3t3Stack.HorizontalOptions = LayoutOptions.End;
+
+            var t33 = new Label() { FontSize = 13, TextColor = Color.FromHex("#A2A2A2"), HorizontalTextAlignment = TextAlignment.Center };
+            t33.Text = string.IsNullOrWhiteSpace(mInfo.Tariff3Name) ? AppResources.tarif3 : mInfo.Tariff3Name;
+
+            count3t3Stack.Children.Add(t33);
+            count3t3Stack.Children.Add(count3t3);
+
+            container.Children.Add(count3t3Stack);
+
+            //container.Children.Add(count3t2);
+            //container.Children.Add(count3t3);
 
             frameBtn.HorizontalOptions = LayoutOptions.FillAndExpand;
             frameBtn.VerticalOptions = LayoutOptions.Start;
@@ -476,7 +614,7 @@ namespace xamarinJKH.Main
             frame.Content = container;
 
             ext(mInfo.Values, mInfo.NumberOfDecimalPlaces, mInfo.ID, mInfo.IsDisabled, mInfo.Resource, mInfo.Address,
-             mInfo.CustomName, mInfo.FactoryNumber, mInfo.Units, mInfo.LastCheckupDate, mInfo.RecheckInterval.ToString());
+             mInfo.CustomName, mInfo.FactoryNumber, mInfo.Units, mInfo.LastCheckupDate, mInfo.RecheckInterval.ToString(),mInfo.Tariff1Name, mInfo.Tariff2Name, mInfo.Tariff3Name);
 
            Children.Add(frame);
         }
@@ -585,7 +723,7 @@ namespace xamarinJKH.Main
         }
 
         void ext(List<MeterValueInfo> Values, int DecimalPoint, int MeterID, bool IsDisabled, string Resource, string Address,
-            string CustomName, string FactoryNumber, string Units, string CheckupDate, string RecheckInterval)
+            string CustomName, string FactoryNumber, string Units, string CheckupDate, string RecheckInterval, string Tariff1Name, string Tariff2Name, string Tariff3Name)
         {   
             
                 var editName = new TapGestureRecognizer();
@@ -626,20 +764,24 @@ namespace xamarinJKH.Main
                 counterDate1.Text = Values[0].Period;
                 count1.Text =
                     String.Format(GetFormat(DecimalPoint), Values[0].Value);
-
+                                
                 if (Values[0].ValueT2 != null)
-                    count1t2.Text =
-                        String.Format(GetFormat(DecimalPoint), Values[0].ValueT2);
-                else
                 {
-                    count1t2.IsVisible = false;
+                    count1t2.Text = String.Format(GetFormat(DecimalPoint), Values[0].ValueT2); count1t2Stack.IsVisible = true;
                 }
-                if (Values[0].ValueT3 != null)
-                    count1t3.Text =
-                        String.Format(GetFormat(DecimalPoint), Values[0].ValueT3);
                 else
                 {
-                    count1t3.IsVisible = false;
+                    
+                }
+
+                if (Values[0].ValueT3 != null)
+                {
+                    count1t3.Text = String.Format(GetFormat(DecimalPoint), Values[0].ValueT3);
+                    count1t3Stack.IsVisible = true;
+                }
+                else
+                {
+                    count1t3Stack.IsVisible = false;                    
                 }
 
                 count2Stack.IsVisible = count3Stack.IsVisible = false;
@@ -651,18 +793,23 @@ namespace xamarinJKH.Main
                     String.Format(GetFormat(DecimalPoint), Values[0].Value); //.ToString(CultureInfo.InvariantCulture);
 
                 if (Values[0].ValueT2 != null)
-                    count1t2.Text =
-                        String.Format(GetFormat(DecimalPoint), Values[0].ValueT2);
-                else
                 {
-                    count1t2.IsVisible = false;
+                    count1t2.Text = String.Format(GetFormat(DecimalPoint), Values[0].ValueT2);
+                    count1t2Stack.IsVisible = true;
                 }
-                if (Values[0].ValueT3 != null)
-                    count1t3.Text =
-                        String.Format(GetFormat(DecimalPoint), Values[0].ValueT3);
                 else
                 {
-                    count1t3.IsVisible = false;
+                    count1t2Stack.IsVisible = false;
+                }
+
+                if (Values[0].ValueT3 != null)
+                {
+                    count1t3.Text = String.Format(GetFormat(DecimalPoint), Values[0].ValueT3);
+                    count1t3Stack.IsVisible = true;
+                }
+                else
+                {
+                    count1t3Stack.IsVisible = false;
                 }
 
                 counterDate2.Text = Values[1].Period;
@@ -670,18 +817,22 @@ namespace xamarinJKH.Main
                     String.Format(GetFormat(DecimalPoint), Values[1].Value); //.ToString(CultureInfo.InvariantCulture);
 
                 if (Values[1].ValueT2 != null)
-                    count2t2.Text =
-                        String.Format(GetFormat(DecimalPoint), Values[1].ValueT2);
-                else
                 {
-                    count2t2.IsVisible = false;
+                    count2t2.Text = String.Format(GetFormat(DecimalPoint), Values[1].ValueT2);
+                    count2t2Stack.IsVisible = true;
                 }
-                if (Values[1].ValueT3 != null)
-                    count2t3.Text =
-                        String.Format(GetFormat(DecimalPoint), Values[1].ValueT3);
                 else
                 {
-                    count2t3.IsVisible = false;
+                    count2t2Stack.IsVisible = false;
+                }
+
+                if (Values[1].ValueT3 != null)
+                { count2t3.Text = String.Format(GetFormat(DecimalPoint), Values[1].ValueT3);
+                    count2t3Stack.IsVisible = true;
+                }
+                else
+                {
+                    count2t3Stack.IsVisible = false;
                 }
 
                 count3Stack.IsVisible = false;
@@ -691,37 +842,50 @@ namespace xamarinJKH.Main
                 counterDate1.Text = Values[0].Period;
                 count1.Text =
                     String.Format(GetFormat(DecimalPoint), Values[0].Value);
+
                 if (Values[0].ValueT2 != null)
-                    count1t2.Text =
-                        String.Format(GetFormat(DecimalPoint), Values[0].ValueT2);
-                else
                 {
-                    count1t2.IsVisible = false;
+                    count1t2.Text = String.Format(GetFormat(DecimalPoint), Values[0].ValueT2);
+                    count1t2Stack.IsVisible = true;
                 }
-                if (Values[0].ValueT3 != null)
-                    count1t3.Text =
-                        String.Format(GetFormat(DecimalPoint), Values[0].ValueT3);
                 else
                 {
-                    count1t3.IsVisible = false;
+                    count1t2Stack.IsVisible = false;
+                }
+
+                if (Values[0].ValueT3 != null)
+                {
+                    count1t3.Text = String.Format(GetFormat(DecimalPoint), Values[0].ValueT3);
+                    count1t3Stack.IsVisible = true;
+                }
+                else
+                {
+                    count1t3Stack.IsVisible = false;
                 }
 
                 counterDate2.Text = Values[1].Period;
                 count2.Text =
                     String.Format(GetFormat(DecimalPoint), Values[1].Value); //.ToString(CultureInfo.InvariantCulture);
+
                 if (Values[1].ValueT2 != null)
-                    count2t2.Text =
-                        String.Format(GetFormat(DecimalPoint), Values[1].ValueT2);
+                {
+                    count2t2.Text = String.Format(GetFormat(DecimalPoint), Values[1].ValueT2);
+                    count2t2Stack.IsVisible = true;
+                }
                 else
                 {
-                    count2t2.IsVisible = false;
+                    count2t2Stack.IsVisible = false;
                 }
                 if (Values[1].ValueT3 != null)
-                    count2t3.Text =
-                        String.Format(GetFormat(DecimalPoint), Values[1].ValueT3);
+                {
+                    count2t3.Text = String.Format(GetFormat(DecimalPoint), Values[1].ValueT3);
+                    count2t3Stack.IsVisible = true;
+                }
                 else
                 {
-                    count2t3.IsVisible = false;
+                    count2t3Stack.IsVisible = false;
+
+                    //count2t3.IsVisible = false;
                 }
 
                 counterDate3.Text = Values[2].Period;
@@ -729,23 +893,29 @@ namespace xamarinJKH.Main
                     String.Format(GetFormat(DecimalPoint), Values[2].Value); //.ToString(CultureInfo.InvariantCulture);
 
                 if (Values[2].ValueT2 != null)
-                    count3t2.Text =
-                        String.Format(GetFormat(DecimalPoint), Values[2].ValueT2);
-                else
                 {
-                    count3t2.IsVisible = false;
+                    count3t2.Text = String.Format(GetFormat(DecimalPoint), Values[2].ValueT2);
+                    count3t2Stack.IsVisible = true;
                 }
-                if (Values[2].ValueT3 != null)
-                    count3t3.Text =
-                        String.Format(GetFormat(DecimalPoint), Values[2].ValueT3);
                 else
                 {
-                    count3t3.IsVisible = false;
+                    count3t2Stack.IsVisible = false;
+                }
+
+                if (Values[2].ValueT3 != null)
+                {
+                    count3t3.Text = String.Format(GetFormat(DecimalPoint), Values[2].ValueT3);
+                    count3t3Stack.IsVisible = true;
+                }
+                else
+                {
+                    count3t3Stack.IsVisible = false;
                 }
             }
             else if (Values.Count == 0)
             {
                 count1Stack.IsVisible = count2Stack.IsVisible = count3Stack.IsVisible = false;
+                //count1t2Stack.IsVisible = count1t3Stack.IsVisible = count2t2Stack.IsVisible = count2t3Stack.IsVisible = count3t2Stack.IsVisible = count3t3Stack.IsVisible = false; 
             }
 
                 if (IsDisabled)

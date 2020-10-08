@@ -29,7 +29,7 @@ namespace xamarinJKH.Pays
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
         private RestClientMP server = new RestClientMP();
-        private bool isSortDate = true;
+        private bool isSortDate = false;
         private bool isSortLs = true;
         private Color hex { get; set; }= (Color)Application.Current.Resources["MainColor"];
 
@@ -130,6 +130,7 @@ namespace xamarinJKH.Pays
             SetText();
             this.BindingContext = this;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+            SortDate();
         }
 
         void SortDate()
@@ -139,7 +140,7 @@ namespace xamarinJKH.Pays
             List<BillInfo> listBottom = new List<BillInfo>();
             foreach (var each in BillInfos)
             {
-                if (each.Period.Split().Length > 1)
+                if (!string.IsNullOrWhiteSpace(each.Period) && each.Period.Split().Length > 1)
                 {
                     listTop.Add(each);
                 }

@@ -300,6 +300,7 @@ namespace xamarinJKH.Additional
             IsBusy = true;
             Groups.Clear();
             Additional.Clear();
+            Device.BeginInvokeOnMainThread(() => 
             Task.Run(() =>
             {
                 if (Settings.EventBlockData.AdditionalServices != null)
@@ -348,7 +349,8 @@ namespace xamarinJKH.Additional
                 }
 
                 IsBusy = false;
-            });
+            })
+            );
 
             //AiForms.Dialogs.Loading.Instance.Hide();
         }
