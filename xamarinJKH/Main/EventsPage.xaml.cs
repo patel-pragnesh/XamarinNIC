@@ -315,7 +315,7 @@ namespace xamarinJKH.Main
         bool _showCameras;
         public bool ShowCameras
         {
-            get => false;// Settings.MobileSettings.menu.Find(x => x.name_app == "Web-камеры") != null && Device.RuntimePlatform == "Android";
+            get => Settings.MobileSettings.menu.Find(x => x.name_app == "Web-камеры") != null && Device.RuntimePlatform == "Android";
         }
         public Command LoadData { get; set; }
         public EventsPageViewModel()
