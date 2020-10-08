@@ -75,8 +75,8 @@ namespace xamarinJKH
                 LabelPhone.IsVisible = false;
             }
             //IconViewLogin.Foreground = hex;
-            IconViewPass.Foreground = hex;
-            ImageClosePass.Foreground = hex;
+            //IconViewPass.Foreground = hex;
+            //ImageClosePass.Foreground = hex;
             FrameBtnLogin.BackgroundColor = hex;
             LabelseparatorPass.BackgroundColor = hex;            
             RegistLabel.TextColor = hex;
@@ -92,11 +92,11 @@ namespace xamarinJKH
                 EntryPin.IsPassword = !EntryPin.IsPassword;                
                 if (EntryPin.IsPassword)
                 {
-                    ImageClosePass.Foreground = (Color)Application.Current.Resources["MainColor"];
+                    //ImageClosePass.Foreground = (Color)Application.Current.Resources["MainColor"];
                 }
                 else
                 {
-                    ImageClosePass.Foreground = Color.DarkSlateGray;
+                    //ImageClosePass.Foreground = Color.DarkSlateGray;
                 }
 
             };
