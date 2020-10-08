@@ -43,7 +43,13 @@ namespace xamarinJKH.Main
             //        break;
             //}
 
-            switch (currentTheme)
+            if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
+            {
+                ProfPage.IsVisible = false;
+            }
+
+
+                switch (currentTheme)
             {
                 case OSAppTheme.Light:
                     UnselectedTabColor = unselect;
@@ -91,19 +97,6 @@ namespace xamarinJKH.Main
             StartUpdateToken();
             if (Device.RuntimePlatform == Device.Android)
                 RegisterNewDevice();
-
-            //if (Device.RuntimePlatform == Device.iOS)
-            //{
-            //    var pages = Children.GetEnumerator();
-            //    pages.MoveNext(); // First page
-            //    pages.MoveNext(); // Second page
-            //    pages.MoveNext(); // Second page
-            //    pages.MoveNext(); // Second page
-            //    pages.MoveNext(); // 5 page
-            //    CurrentPage = pages.Current;
-            //    //MessagingCenter.Send<Object>(this, "LoadGoods");
-            //    //this.CurrentPage = this.Children[4]; 
-            //}
 
             MessagingCenter.Subscribe<Object, int>(this, "SwitchToApps", (sender, index) =>
             {
@@ -240,14 +233,25 @@ namespace xamarinJKH.Main
         {
             try
             {
-                // if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
-                // {
-                Children.Remove(ShopNavPage);
-                // }
-                // else
-                // {
-                Children.Remove(ShopNavPage2);
-                // }
+                if (AppInfo.PackageName != "rom.best.UkComfort" && AppInfo.PackageName != "sys_rom.ru.comfort_uk_app")
+                {
+                    // if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
+                    // {
+                    //Children.Remove(ShopNavPage);
+                    // }
+                    // else
+                    // {
+                    Children.Remove(ShopNavPage2);
+                    // }
+                }
+                else
+                {
+                    Children.Remove(ShopNavPage);
+                    Children.Remove(ProfPage);
+                }
+                       
+                
+
                 foreach (var each in Settings.MobileSettings.menu)
                 {
                     if (each.name_app.Equals("Заявки"))
@@ -323,12 +327,15 @@ namespace xamarinJKH.Main
             if (i == 0)
                 MessagingCenter.Send<Object>(this, "UpdateEvents");
 
-            if (CurrentPage is AppsPage || CurrentPage is xamarinJKH.MainConst.AppsConstPage ||
-                CurrentPage.Title == AppResources.App_NavBar)
-                MessagingCenter.Send<Object>(this, "AutoUpdate");
+            if (CurrentPage != null)
+            {
+                if (CurrentPage is AppsPage || CurrentPage is xamarinJKH.MainConst.AppsConstPage ||
+                    CurrentPage.Title == AppResources.App_NavBar)
+                    MessagingCenter.Send<Object>(this, "AutoUpdate");
 
-            if (CurrentPage.Title == AppResources.Shop_NavBar)
-                MessagingCenter.Send<Object>(this, "LoadGoods");
+                if (CurrentPage.Title == AppResources.Shop_NavBar)
+                    MessagingCenter.Send<Object>(this, "LoadGoods");
+            }                
         }
 
 
