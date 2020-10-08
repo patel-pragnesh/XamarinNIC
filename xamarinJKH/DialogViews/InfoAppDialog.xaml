@@ -221,8 +221,8 @@
                     <pancakeView:PancakeView
                         BorderThickness="4"
                         BorderColor="Black"
-                        Padding="0,10,0,10"
-                        Margin="40,0,40,0"
+                        Padding="10,10,10,10"
+                        Margin="30,0,30,0"
                         CornerRadius="10" BackgroundColor="White" HasShadow="True">
                         <Label x:Name="EntryNumber"
                                FontSize="23"
