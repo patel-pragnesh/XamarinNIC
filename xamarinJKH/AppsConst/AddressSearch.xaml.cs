@@ -99,10 +99,20 @@ namespace xamarinJKH.AppsConst
         private void Entry_TextChanged(object sender, TextChangedEventArgs e)
         {
             var flat = (sender as Entry).Text;
-            (sender as Entry).Text = flat.Remove(',').Remove('.');
-            if (!string.IsNullOrEmpty(flat.Remove(',').Remove('.')))
+            try
             {
-                viewModel.PremiseID = Convert.ToInt32(flat);
+                (sender as Entry).Text = flat.Remove(',').Remove('.');
+
+            }
+            catch { }
+            if (!string.IsNullOrEmpty(flat))
+            {
+                try
+                {
+                    viewModel.PremiseID = Convert.ToInt32(flat);
+
+                }
+                catch { }
             }
         }
 
