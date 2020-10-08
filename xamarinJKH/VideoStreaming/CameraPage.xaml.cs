@@ -61,6 +61,7 @@ namespace xamarinJKH.VideoStreaming
                 var width = Video.Width;
                 PlayerHeight = Convert.ToDouble(width * args);
             });
+            FullScreen.IsVisible = true;
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
@@ -74,7 +75,8 @@ namespace xamarinJKH.VideoStreaming
                 //HeightRequest = App.ScreenWidth;
                 Video.Margin = new Thickness(3, -15, 0, 0);
                 Video.BackgroundColor = Color.Black;
-                (VideoContainer.Parent as StackLayout).BackgroundColor = Color.Black; 
+                (VideoContainer.Parent as StackLayout).BackgroundColor = Color.Black;
+                FullScreen.IsVisible = false;
 
             }
             else
@@ -83,6 +85,7 @@ namespace xamarinJKH.VideoStreaming
                 (VideoContainer.Parent as StackLayout).BackgroundColor = Color.Transparent;
                 Video.Margin = new Thickness(0);
                 Video.ScaleTo(1);
+                FullScreen.IsVisible = true;
             }
         }
 
@@ -96,6 +99,7 @@ namespace xamarinJKH.VideoStreaming
                 Video.Margin = new Thickness(0);
                 Video.ScaleTo(1);
                 rotated = !rotated;
+                FullScreen.IsVisible = true;
                 return true;
             }
             return base.OnBackButtonPressed();

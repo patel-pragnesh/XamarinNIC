@@ -7,10 +7,16 @@
              xmlns:local="clr-namespace:xamarinJKH"
              xmlns:video="clr-namespace:xamarinJKH.VideoStreaming"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:converters="clr-namespace:xamarinJKH.Converters"
              NavigationPage.HasNavigationBar="False"
              x:Class="xamarinJKH.VideoStreaming.CameraPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseBoolConverter x:Key="Invert"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid>
+        <Grid HeightRequest="{Binding Path=Height, Source={x:Reference Video}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.2*"/>
                 <RowDefinition Height="0.2*"/>
@@ -43,6 +49,7 @@
                                           HorizontalOptions="FillAndExpand"
                                           x:Name="Video"/>
                     <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_flip.svg"
+                                        IsVisible="False"
                                         Grid.Row="1"
                                         Margin="0,0,0,30"
                                         ReplaceStringMap="{Binding Link, Converter={x:StaticResource SvgColor},ConverterParameter='#FFFFFF'}"
@@ -52,6 +59,14 @@
                         </svg:SvgCachedImage.GestureRecognizers>   
                     </svg:SvgCachedImage>
                 </Grid>
+                <Button CornerRadius="20"
+                        x:Name="FullScreen"
+                        BackgroundColor="{x:StaticResource MainColor}"
+                        Margin="20"
+                        VerticalOptions="End"
+                        TextColor="White"
+                        Text="Полноэкранный режим"
+                        Clicked="Button_Clicked"/>
             </StackLayout>
             
 
