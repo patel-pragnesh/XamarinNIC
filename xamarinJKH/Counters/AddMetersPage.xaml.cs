@@ -791,8 +791,8 @@ namespace xamarinJKH.Counters
             {
                 var d1 = Double.Parse(value1.Replace(',', '.'), CultureInfo.InvariantCulture).ToString(CultureInfo.InvariantCulture);
 
-                var d2 = value2 != "" ? Double.Parse(value2.Replace(',', '.')).ToString(CultureInfo.InvariantCulture) : "";
-                var d3 = value3 != "" ? Double.Parse(value3.Replace(',', '.')).ToString(CultureInfo.InvariantCulture) : "";
+                var d2 = value2 != "" ? Double.Parse(value2.Replace(',', '.'), CultureInfo.InvariantCulture).ToString(CultureInfo.InvariantCulture) : "";
+                var d3 = value3 != "" ? Double.Parse(value3.Replace(',', '.'), CultureInfo.InvariantCulture).ToString(CultureInfo.InvariantCulture) : "";
 
                 progress.IsVisible = true;
                 FrameBtnLogin.IsVisible = false;
