@@ -17,12 +17,14 @@ using xamarinJKH.InterfacesIntegration;
 using Java.IO;
 using Android.Print;
 using System.IO;
+using Plugin.CurrentActivity;
 
 [assembly:Dependency(typeof(CustomPrintManager))]
 namespace xamarinJKH.Droid.CustomReader
 {
     public class CustomPrintManager : IPrintManager
     {
+        Context context => CrossCurrentActivity.Current.Activity.ApplicationContext;
         public void SendFileToPrint(byte[] content)
         {
             //Android print code goes here
@@ -40,7 +42,14 @@ namespace xamarinJKH.Droid.CustomReader
             PrintManager printManager = (PrintManager)Forms.Context.GetSystemService(Context.PrintService);
             PrintDocumentAdapter pda = new PrintAdapter(filePath);
             //Print with null PrintAttributes
-            printManager.Print(fileName, pda, null);
+            try
+            {
+                printManager.Print(fileName, pda, null);
+            }
+            catch
+            {
+                Toast.MakeText(context, "Error loading PDF", ToastLength.Short);
+            }
         }
     }
 }

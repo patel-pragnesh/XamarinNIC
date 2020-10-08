@@ -1382,4 +1382,28 @@
   <data name="NextTarif" xml:space="preserve">
     <value>Следующий тариф</value>
   </data>
+  <data name="EnterTarifMeters" xml:space="preserve">
+    <value>Ввод показаний тарифа</value>
+  </data>
+  <data name="tarif1" xml:space="preserve">
+    <value>Тариф 1</value>
+  </data>
+  <data name="tarif2" xml:space="preserve">
+    <value>Тариф 2</value>
+  </data>
+  <data name="tarif3" xml:space="preserve">
+    <value>Тариф 3</value>
+  </data>
+  <data name="EditMetersTarif" xml:space="preserve">
+    <value>Изменить показания по тарифу</value>
+  </data>
+  <data name="EditMetersTarif1" xml:space="preserve">
+    <value>Изменить показания по тарифу 1</value>
+  </data>
+  <data name="EditMetersTarif2" xml:space="preserve">
+    <value>Изменить показания по тарифу 2</value>
+  </data>
+  <data name="EditMetersTarif3" xml:space="preserve">
+    <value>Изменить показания по тарифу 3</value>
+  </data>
 </root>

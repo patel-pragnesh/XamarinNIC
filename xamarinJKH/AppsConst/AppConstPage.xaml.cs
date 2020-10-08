@@ -136,7 +136,11 @@ namespace xamarinJKH.AppsConst
                 }
 
             }, Token);
-            UpdateTask.Start();
+            try
+            {
+                UpdateTask.Start();
+            }
+            catch { }
         }
 
         async void SetReadedApp()

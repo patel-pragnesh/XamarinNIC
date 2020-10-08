@@ -18,7 +18,7 @@ namespace xamarinJKH.Server
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань water/ water2 - тихая гавань - 2 
+        //public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань water/ water2 - тихая гавань - 2 
         // public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
@@ -26,7 +26,7 @@ namespace xamarinJKH.Server
         // public const string SERVER_ADDR = "https://api.sm-center.ru/vodokanal_narof"; // Водоканал
         //public const string SERVER_ADDR = "https://api.sm-center.ru/uk_egokomfort"; // Эгокомфорт
         // public const string SERVER_ADDR = "https://api.sm-center.ru/tsg_sivtsev_vrazhek14"; // ТСЖ Сивцев Вражек 14
-        // public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_zip"; // ЗИП
+         public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_zip"; // ЗИП
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ukom"; // УК Огни Москвы
         //public const string SERVER_ADDR = "https://api.sm-center.ru/tsg_svyato-troitskii15"; // УК Свято троицк
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_uk_rks"; // УК РКС
@@ -2384,7 +2384,7 @@ namespace xamarinJKH.Server
             return response.Data;
         }
 
-        public async Task<ItemsList<BonusCashFlow>> GetBonusHistory()
+        public async Task<ItemsList<BonusCashFlow>> GetBonusHistory(string id = "0001")
         {
             RestClient client = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(BONUS_HISTORY, Method.GET);
@@ -2392,6 +2392,9 @@ namespace xamarinJKH.Server
             restRequest.AddHeader("client", Device.RuntimePlatform);
             restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new {
+                id 
+            });
             var response = await client.ExecuteTaskAsync<ItemsList<BonusCashFlow>>(restRequest);
             return response.Data;
         }
