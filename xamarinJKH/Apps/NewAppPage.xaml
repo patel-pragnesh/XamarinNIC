@@ -246,6 +246,7 @@
                                                    Placeholder="{x:Static xamarinJkh:AppResources.EnterSeriaAndNumber}"
                                                    HorizontalTextAlignment="Start"
                                                    ClearButtonVisibility="WhileEditing"
+                                                   TextChanged="EntryPassport_OnTextChanged"
                                                    TextColor="#A2A2A2"
                                                    HorizontalOptions="FillAndExpand"
                                                    Keyboard="Numeric">

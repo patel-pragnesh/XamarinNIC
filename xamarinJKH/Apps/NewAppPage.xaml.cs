@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -36,7 +37,7 @@ namespace xamarinJKH.Apps
     public partial class NewAppPage : ContentPage
     {
         private RestClientMP _server = new RestClientMP();
-        public List<FileData> files { get; set; }
+        public ObservableCollection<FileData> files { get; set; }
         public List<byte[]> Byteses = new List<byte[]>();
         private AppsPage _appsPage;
         string TAKE_PHOTO = AppResources.AttachmentTakePhoto;
@@ -121,7 +122,7 @@ namespace xamarinJKH.Apps
             StackLayoutAddFile.GestureRecognizers.Add(addFile);
             
             SetText();
-            files = new List<FileData>();
+            files = new ObservableCollection<FileData>();
             _appModel = new AddAppModel()
             {
                 AllAcc = Settings.Person.Accounts,
@@ -250,7 +251,9 @@ namespace xamarinJKH.Apps
                     ListViewFiles.IsVisible = true;
                     if (ListViewFiles.HeightRequest < 120)
                         ListViewFiles.HeightRequest += 30;
-                    setBinding();
+                    // setBinding();
+                    _appModel.Files = files;
+                    ListViewFiles.ItemsSource = _appModel.Files;
                     // if (pickedFile.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase)
                     //     || pickedFile.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
                     // {
@@ -295,7 +298,9 @@ namespace xamarinJKH.Apps
             ListViewFiles.IsVisible = true;
             if (ListViewFiles.HeightRequest < 120)
                 ListViewFiles.HeightRequest += 30;
-            setBinding();
+            // setBinding();
+            _appModel.Files = files;
+            ListViewFiles.ItemsSource = _appModel.Files;
         }
         
         async Task GetGalaryFile()
@@ -318,9 +323,11 @@ namespace xamarinJKH.Apps
             ListViewFiles.IsVisible = true;
             if (ListViewFiles.HeightRequest < 120)
                 ListViewFiles.HeightRequest += 30;
-            setBinding();
-            PickerLs.SelectedIndex = PikerLsItem;
-            PickerType.SelectedIndex = PikerTypeItem;
+            // setBinding();
+            _appModel.Files = files;
+            ListViewFiles.ItemsSource = _appModel.Files;
+            // PickerLs.SelectedIndex = PikerLsItem;
+            // PickerType.SelectedIndex = PikerTypeItem;
         }
         
         public async Task startLoadFile(string metod)
@@ -454,7 +461,7 @@ namespace xamarinJKH.Apps
             public AccountInfo SelectedAcc { get; set; }
             public NamedValue SelectedType { get; set; }
 
-            public List<FileData> Files { get; set; }
+            public ObservableCollection<FileData> Files { get; set; }
             public Color hex { get; set; }
         }
 
@@ -624,6 +631,8 @@ namespace xamarinJKH.Apps
                 int indexOf = files.IndexOf(@select);
                 Byteses.RemoveAt(indexOf);
                 files.RemoveAt(indexOf);
+                _appModel.Files = files;
+                ListViewFiles.ItemsSource = _appModel.Files;
                 ListViewFiles.HeightRequest -= 30;
                 if (files.Count == 0)
                 {
@@ -792,5 +801,15 @@ namespace xamarinJKH.Apps
                 _passApp.CarBrand = "";
             }
         }
+
+        private void EntryPassport_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(async () => { 
+            if (EntryPassport.Text.Contains(","))
+            {
+                EntryPassport.Text = EntryPassport.Text.Replace(",", "");
+            }
+            });
+    }
     }
 }
