@@ -237,7 +237,7 @@ namespace xamarinJKH.Main
                 {
                     // if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
                     // {
-                    //Children.Remove(ShopNavPage);
+                    Children.Remove(ShopNavPage);
                     // }
                     // else
                     // {
