@@ -28,5 +28,10 @@ namespace xamarinJKH.News
             Image = img;
             BindingContext = this;
         }
+
+        void Close(object sender, EventArgs args)
+        {
+            DialogNotifier.Cancel();
+        }
     }
 }
