@@ -302,7 +302,7 @@
                                         Orientation="Horizontal">
                                         <svg:SvgCachedImage
                                             x:Name="IconViewOss"
-                                            Source="resource://xamarinJKH.Resources.ic_questions2.svg"
+                                            Source="resource://xamarinJKH.Resources.oss_event.svg"
                                             ReplaceStringMap="{Binding ShowAnnouncements, Converter={x:StaticResource SvgColor}}"
                                             HeightRequest="40"
                                             Margin="15,0,30,0"
