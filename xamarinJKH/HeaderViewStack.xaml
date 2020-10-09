@@ -38,7 +38,7 @@
                     <svg:SvgCachedImage x:Name="IconViewTech"
                                              Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                              HeightRequest="20"
-                                             ReplaceStringMap="{Binding Title, Converter={x:StaticResource SvgColor}}"
+                                             ReplaceStringMap="{Binding Title, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
                                              Margin="5, 10,0,0"
                                              HorizontalOptions="Start"
                                              VerticalOptions="Center" />

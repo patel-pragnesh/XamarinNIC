@@ -14,6 +14,7 @@ namespace xamarinJKH.AppsConst
         private SvgCachedImage ImageStatus = new SvgCachedImage();
         private Label LabelStatus = new Label();
         private Label LabelText = new Label();
+        private Label LabelAddressApp = new Label();
         private CheckBox checkBox;
         public AppConstCell()
         {
@@ -78,7 +79,14 @@ namespace xamarinJKH.AppsConst
             LabelText.FontSize = 15;
             LabelText.HorizontalTextAlignment = TextAlignment.Start;
             LabelText.VerticalOptions = LayoutOptions.Start;
-            LabelText.MaxLines = 1;
+            LabelText.MaxLines = 1; 
+            
+            LabelAddressApp.TextColor = Color.Black;
+            LabelAddressApp.HorizontalOptions = LayoutOptions.Start;
+            LabelAddressApp.FontSize = 10;
+            LabelAddressApp.HorizontalTextAlignment = TextAlignment.Start;
+            LabelAddressApp.VerticalOptions = LayoutOptions.Start;
+            // LabelAddressApp.MaxLines = 1;
 
             Grid grid = new Grid
             {
@@ -112,6 +120,7 @@ namespace xamarinJKH.AppsConst
             stackLayoutText.Children.Add(LabelText);
             //containerData.Children.Add(grid);
             containerData.Children.Add(stackLayoutStatus);
+            containerData.Children.Add(LabelAddressApp);
             containerData.Children.Add(stackLayoutText);
 
 
@@ -155,6 +164,8 @@ namespace xamarinJKH.AppsConst
 
         public static readonly BindableProperty TextAppProperty =
             BindableProperty.Create("TextApp", typeof(string), typeof(AppConstCell), "");
+        public static readonly BindableProperty AddressAppProperty =
+            BindableProperty.Create("AddressApp", typeof(string), typeof(AppConstCell), "");
         
         public static readonly BindableProperty CheckCommandProperty =
             BindableProperty.Create("CheckCommand", typeof(bool), typeof(AppConstCell), true);
@@ -191,6 +202,11 @@ namespace xamarinJKH.AppsConst
         {
             get { return (string)GetValue(TextAppProperty); }
             set { SetValue(TextAppProperty, value); }
+        } 
+        public string AddressApp
+        {
+            get { return (string)GetValue(AddressAppProperty); }
+            set { SetValue(AddressAppProperty, value); }
         }
 
 
@@ -251,7 +267,7 @@ namespace xamarinJKH.AppsConst
                 // LabelText.Text = "• " + TextApp;
 
                 LabelText.Text = TextApp;
-
+                LabelAddressApp.Text = AddressApp;
                 if (Status.ToString().Contains("выполнена") || Status.ToString().Contains("закрыл"))
                 {
                     ImageStatus.Source = "resource://xamarinJKH.Resources.ic_status_done.svg";

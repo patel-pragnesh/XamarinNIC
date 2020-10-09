@@ -22,6 +22,7 @@ using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.News;
 using xamarinJKH.Questions;
 using xamarinJKH.Server;
+using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Shop;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
@@ -319,8 +320,14 @@ namespace xamarinJKH.Main
         bool _showCameras;
         public bool ShowCameras
         {
-            get => Settings.MobileSettings.menu.Find(x => x.name_app == "Web-камеры") != null && Device.RuntimePlatform == "Android";
+            get
+            {
+                MobileMenu mobileMenu = Settings.MobileSettings.menu.Find(x => x.name_app == "Web-камеры");
+                return mobileMenu != null && mobileMenu.visible != 0 &&
+                       Device.RuntimePlatform == "Android";
+            }
         }
+
         public Command LoadData { get; set; }
         public EventsPageViewModel()
         {

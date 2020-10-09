@@ -53,6 +53,7 @@ namespace xamarinJKH.VideoStreaming
             MessagingCenter.Subscribe<object>(this, "StopLoadingPlayer", sender =>
             {
                 IsLoading = false;
+                FullScreen.IsVisible = true;
                 Video.Opacity = 1;
             });
 
@@ -61,7 +62,7 @@ namespace xamarinJKH.VideoStreaming
                 var width = Video.Width;
                 PlayerHeight = Convert.ToDouble(width * args);
             });
-            FullScreen.IsVisible = true;
+            // FullScreen.IsVisible = true;
         }
 
         private async void Button_Clicked(object sender, EventArgs e)

@@ -31,6 +31,8 @@ namespace xamarinJKH.Pays
         private RestClientMP server = new RestClientMP();
         private bool isSortDate = false;
         private bool isSortLs = true;
+        public List<AccountAccountingInfo> Accounts { get; set; }
+        public AccountAccountingInfo SelectedAcc { get; set; }
         private Color hex { get; set; }= (Color)Application.Current.Resources["MainColor"];
 
         public bool IsRefreshing
@@ -82,7 +84,7 @@ namespace xamarinJKH.Pays
         {
             SetBills(infos);
             InitializeComponent();
-
+            Accounts = infos;
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -184,7 +186,14 @@ namespace xamarinJKH.Pays
             BillInfos.AddRange(listTop);
             BillInfos.AddRange(listBottom);
             additionalList.ItemsSource = null;
-            additionalList.ItemsSource = BillInfos;
+            if (SelectedAcc != null)
+            {
+                additionalList.ItemsSource =  from i in BillInfos where i.Ident.Equals(SelectedAcc.Ident) select i;
+            }
+            else
+            {
+                additionalList.ItemsSource = BillInfos;
+            }
         }
 
         private void SortLs()
@@ -322,6 +331,12 @@ namespace xamarinJKH.Pays
                     await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
                 }
             }
+        }
+
+        private void picker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            additionalList.ItemsSource = null;
+            additionalList.ItemsSource = from i in BillInfos where i.Ident.Equals(SelectedAcc.Ident) select i;
         }
     }
 }

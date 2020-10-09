@@ -16,6 +16,7 @@ namespace xamarinJKH.Server.RequestModel
         public bool useAccountPinCode { get; set; }    
         
         public bool chooseIdentByHouse { get; set; }    
+        public bool disableCommentingRequests { get; set; }    
         public bool useBonusSystem { get; set; }    
         public bool useDispatcherAuth { get; set; }
 

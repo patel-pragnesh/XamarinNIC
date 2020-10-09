@@ -12,12 +12,12 @@
              x:Class="xamarinJKH.Pays.SaldosPage">
     <ContentPage.Content>
         <StackLayout>
-            
+
             <Grid>
                 <Image x:Name="ImageFon"
                        Source="{AppThemeBinding Light=ic_pays_top_light, Dark=ic_history_pay_top}"
                        VerticalOptions="Start"
-					   Margin="0,20,0,0"
+                       Margin="0,20,0,0"
                        Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout>
@@ -27,7 +27,7 @@
                         BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
                         HorizontalOptions="Fill"
                         BorderThickness="1"
-						MinimumHeightRequest="102"
+                        MinimumHeightRequest="102"
                         VerticalOptions="Start"
                         x:Name="Pancake"
                         IsClippedToBounds="True">
@@ -99,7 +99,7 @@
                                Margin="-10, 0, 0, 0"
                                VerticalOptions="Center" />
                     </StackLayout>
-                  
+
                     <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
@@ -119,93 +119,145 @@
                             HorizontalOptions="Start" />
                     </StackLayout>
                     <customRenderers:MaterialFrame Elevation="20" CornerRadius="30"
-                                           Margin="20, 10, 20, 15"
-                                           x:Name="FrameSaldo"
-                                           BackgroundColor="White"
-                                           Padding="15">
-                <StackLayout VerticalOptions="FillAndExpand"
-                             Spacing="15">
-                    <StackLayout Orientation="Horizontal">
-                        <Label x:Name="kvitLabel2"
-                            Text="{x:Static xamarinJkh:AppResources.Bills}"
-                            TextColor="Black"
-                            FontAttributes="Bold"
-                            HorizontalOptions="FillAndExpand"
-                            FontSize="20" />
-                        <StackLayout
-                            x:Name="StackLayoutSortDate"
-                            Orientation="Horizontal"
-                            HorizontalOptions="End">
-                            <forms:SvgCachedImage x:Name="IconViewSortDate"
-                                                  Source="resource://xamarinJKH.Resources.up_arrow.svg"
-                                                  HeightRequest="15"
-                                                  Rotation="180"
-                                                  Margin="0,0,0,0"
-                                                  HorizontalOptions="Start"
-                                                  ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}}"
-                                                  VerticalOptions="Center" />
-                            <Label
-                                x:Name="LabelDate"
-                                Text="{x:Static xamarinJkh:AppResources.SortByData} "
-                                FontSize="15"
-                                VerticalOptions="Center"
-                                TextColor="Red"
-                                TextDecorations="Underline"
-                                HorizontalOptions="Start" />
+                                                   Margin="20, 10, 20, 15"
+                                                   x:Name="FrameSaldo"
+                                                   BackgroundColor="White"
+                                                   Padding="15">
+                        <StackLayout VerticalOptions="FillAndExpand"
+                                     Spacing="5">
+                            <!-- <StackLayout Orientation="Horizontal"> -->
+                            <Grid Padding="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label x:Name="kvitLabel2"
+                                       Text="{x:Static xamarinJkh:AppResources.Bills}"
+                                       Grid.Column="0"
+                                       Grid.Row="0"
+                                       TextColor="Black"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="StartAndExpand"
+                                       FontSize="20" />
+                                <StackLayout
+                                    HorizontalOptions="StartAndExpand"
+                                    Grid.Column="1"
+                                    Grid.Row="0"
+                                    Orientation="Horizontal">
+
+                                    <Label
+                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                        Text="{x:Static xamarinJkh:AppResources.Ident}"
+                                        VerticalOptions="Center"
+                                        FontAttributes="Bold"
+                                        FontSize="17" />
+                                    <StackLayout Spacing="0">
+                                        <StackLayout Orientation="Horizontal">
+                                            <xamarinJkh:BorderlessPicker x:Name="Picker"
+                                                                         Title="{x:Static xamarinJkh:AppResources.TakeIdent}"
+                                                                         TitleColor="{x:DynamicResource MainColor}"
+                                                                         TextColor="{x:DynamicResource MainColor}"
+                                                                         VerticalOptions="Start"
+                                                                         HorizontalOptions="Fill"
+                                                                         SelectedIndexChanged="picker_SelectedIndexChanged"
+                                                                         ItemsSource="{Binding Accounts}"
+                                                                         ItemDisplayBinding="{Binding Ident}"
+                                                                         SelectedItem="{Binding SelectedAcc}" />
+                                            <forms:SvgCachedImage
+                                                Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
+                                                HeightRequest="12"
+                                                Rotation="90"
+                                                Margin="0,5,0,0"
+                                                HorizontalOptions="Start"
+                                                ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}}"
+                                                VerticalOptions="Center" />
+                                        </StackLayout>
+                                        <Label
+                                            HeightRequest="1"
+                                            BackgroundColor="{x:DynamicResource MainColor}"
+                                            HorizontalOptions="Fill" />
+                                    </StackLayout>
+                                </StackLayout>
+
+                            </Grid>
+                            <StackLayout
+                                x:Name="StackLayoutSortDate"
+                                Orientation="Horizontal"
+                                HorizontalOptions="Start">
+                                <forms:SvgCachedImage x:Name="IconViewSortDate"
+                                                      Source="resource://xamarinJKH.Resources.up_arrow.svg"
+                                                      HeightRequest="15"
+                                                      Rotation="180"
+                                                      Margin="0,0,0,0"
+                                                      HorizontalOptions="Start"
+                                                      ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}}"
+                                                      VerticalOptions="Center" />
+                                <Label
+                                    x:Name="LabelDate"
+                                    Text="{x:Static xamarinJkh:AppResources.SortByData} "
+                                    FontSize="15"
+                                    VerticalOptions="Center"
+                                    TextColor="Red"
+                                    TextDecorations="Underline"
+                                    HorizontalOptions="Start" />
+                            </StackLayout>
+                            <StackLayout
+                                x:Name="StackLayoutSortIdent"
+                                Orientation="Horizontal"
+                                IsVisible="False"
+                                HorizontalOptions="End">
+                                <forms:SvgCachedImage x:Name="IconViewSortIdent"
+                                                      Source="resource://xamarinJKH.Resources.up_arrow.svg"
+                                                      HeightRequest="15"
+                                                      Margin="0,0,0,0"
+                                                      HorizontalOptions="Start"
+                                                      ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#8B8B8B'}"
+                                                      VerticalOptions="Center" />
+                                <Label
+                                    x:Name="LabelLs"
+                                    Text="{x:Static xamarinJkh:AppResources.SortByAcc}"
+                                    FontSize="15"
+                                    TextDecorations="Underline"
+                                    VerticalOptions="Center"
+                                    TextColor="Gray"
+                                    HorizontalOptions="Start" />
+                            </StackLayout>
+                            <!-- </StackLayout> -->
+                            <ListView x:Name="additionalList"
+                                      HasUnevenRows="True"
+                                      SeparatorVisibility="None"
+                                      VerticalScrollBarVisibility="Never"
+                                      IsPullToRefreshEnabled="True"
+                                      RefreshCommand="{Binding RefreshCommand}"
+                                      IsRefreshing="{Binding IsRefreshing}"
+                                      SelectionMode="None"
+                                      ItemTapped="OnItemTapped"
+                                      ItemsSource="{Binding BillInfos}">
+                                <ListView.Header>
+
+                                </ListView.Header>
+                                <ListView.ItemTemplate>
+
+                                    <DataTemplate>
+                                        <pays:SaldosCell
+                                            Ident="{Binding Ident}"
+                                            HasImage="{Binding HasFile}"
+                                            DateIdent="{Binding Period}"
+                                            SumPay="{Binding Total}" />
+                                    </DataTemplate>
+
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </StackLayout>
-                        <StackLayout
-                            x:Name="StackLayoutSortIdent"
-                            Orientation="Horizontal"
-                            HorizontalOptions="End">
-                            <forms:SvgCachedImage x:Name="IconViewSortIdent"
-                                                  Source="resource://xamarinJKH.Resources.up_arrow.svg"
-                                                  HeightRequest="15"
-                                                  Margin="0,0,0,0"
-                                                  HorizontalOptions="Start"
-                                                  ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#8B8B8B'}"
-                                                  VerticalOptions="Center" />
-                            <Label
-                                x:Name="LabelLs"
-                                Text="{x:Static xamarinJkh:AppResources.SortByAcc}"
-                                FontSize="15"
-                                TextDecorations="Underline"
-                                VerticalOptions="Center"
-                                TextColor="Gray"
-                                HorizontalOptions="Start" />
-                        </StackLayout>
-                    </StackLayout>
-                    <ListView x:Name="additionalList"
-                              HasUnevenRows="True"
-                              SeparatorVisibility="None"
-                              VerticalScrollBarVisibility="Never"
-                              IsPullToRefreshEnabled="True"
-                              RefreshCommand="{Binding RefreshCommand}"
-                              IsRefreshing="{Binding IsRefreshing}"
-                              SelectionMode="None"
-                              ItemTapped="OnItemTapped"
-                              ItemsSource="{Binding BillInfos}">
-                        <ListView.Header>
 
-                        </ListView.Header>
-                        <ListView.ItemTemplate>
-
-                            <DataTemplate>
-                                <pays:SaldosCell
-                                    Ident="{Binding Ident}"
-                                    HasImage="{Binding HasFile}"
-                                    DateIdent="{Binding Period}"
-                                    SumPay="{Binding Total}" />
-                            </DataTemplate>
-
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
-
-            </customRenderers:MaterialFrame>
+                    </customRenderers:MaterialFrame>
                 </StackLayout>
             </Grid>
-            
-            
+
+
         </StackLayout>
 
     </ContentPage.Content>

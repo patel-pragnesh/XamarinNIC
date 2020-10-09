@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,8 @@ namespace xamarinJKH.DialogViews
         public string SourceApp { get; set; }
         public RequestInfo _Request { get; set; }
         public Command Call { get; set; }
+        public bool isPass { get; set; } = false;
+        public bool isManType { get; set; } = false;
      
         public InfoAppDialog()
         {

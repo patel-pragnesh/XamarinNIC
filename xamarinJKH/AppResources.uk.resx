@@ -1403,4 +1403,49 @@
   <data name="EditMetersTarif3" xml:space="preserve">
     <value>Змінити показання за тарифом 3</value>
   </data>
+  <data name="NamePassApp" xml:space="preserve">
+    <value>Заявка на пропуск</value>
+  </data>
+  <data name="PassMan" xml:space="preserve">
+    <value>Пішохід</value>
+  </data>
+  <data name="PassMotorcycle" xml:space="preserve">
+    <value>Мотоцикл</value>
+  </data>
+  <data name="PassCar" xml:space="preserve">
+    <value>Легковий</value>
+  </data>
+  <data name="PassGazele" xml:space="preserve">
+    <value>Газель</value>
+  </data>
+  <data name="PassGargo" xml:space="preserve">
+    <value>Вантажний</value>
+  </data>
+  <data name="EnterFIO" xml:space="preserve">
+    <value>Введите ФИО</value>
+  </data>
+  <data name="EnterTypePass" xml:space="preserve">
+    <value>Виберіть категорію пропуску</value>
+  </data>
+  <data name="EnterSeriaAndNumber" xml:space="preserve">
+    <value>Введіть серию і номер паспорта</value>
+  </data>
+  <data name="EnterCarBrand" xml:space="preserve">
+    <value>Введіть марку ТЗ</value>
+  </data>
+  <data name="EnterStateNumber" xml:space="preserve">
+    <value>Введіть гос.номер</value>
+  </data>
+  <data name="ForeignNumber" xml:space="preserve">
+    <value>іноземний номер</value>
+  </data>
+  <data name="MaskNumberCar" xml:space="preserve">
+    <value>відповідно до масками</value>
+  </data>
+  <data name="MaskNumberPassport" xml:space="preserve">
+    <value>відповідно до маскам</value>
+  </data>
+  <data name="TakeIdent" xml:space="preserve">
+    <value>вибір ЛЗ</value>
+  </data>
 </root>

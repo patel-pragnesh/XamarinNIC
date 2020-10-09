@@ -65,6 +65,7 @@
                         Margin="20"
                         VerticalOptions="End"
                         TextColor="White"
+                        IsVisible="False"
                         Text="Полноэкранный режим"
                         Clicked="Button_Clicked"/>
             </StackLayout>
