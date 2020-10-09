@@ -468,6 +468,7 @@ namespace xamarinJKH.Main
 
         MaterialFrame AddAccountToList(AccountAccountingInfo info, List<AccountAccountingInfo> _accountingInfo)
         {
+            var accounts = Settings.Person.Accounts;
             Label ident = new Label();
             Label adress = new Label();
             Label bonus = new Label();
@@ -545,7 +546,7 @@ namespace xamarinJKH.Main
             history.GestureRecognizers.Add(new TapGestureRecognizer
             {
                 Command = OpenHistoryCommand,
-                CommandParameter = info.Ident
+                CommandParameter = accounts.Find(x => x.Ident == info.Ident)?.ID
             });
             BonusStack.Children.Add(history);
 
@@ -737,7 +738,7 @@ namespace xamarinJKH.Main
             {
                 return new Command(async (ident) =>
                 {
-                    await AiForms.Dialogs.Dialog.Instance.ShowAsync(new BonusHistoryDialogView(ident as string));
+                    await AiForms.Dialogs.Dialog.Instance.ShowAsync(new BonusHistoryDialogView(ident.ToString()));
                 });
             }
         }
