@@ -1461,4 +1461,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="MaskNumberPassport" xml:space="preserve">
     <value>according to the mask</value>
   </data>
+  <data name="TakeIdent" xml:space="preserve">
+    <value>Choosing ident</value>
+  </data>
 </root>

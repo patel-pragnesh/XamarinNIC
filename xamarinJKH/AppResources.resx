@@ -1448,4 +1448,7 @@
   <data name="MaskNumberPassport" xml:space="preserve">
     <value>в соответствии с маской</value>
   </data>
+  <data name="TakeIdent" xml:space="preserve">
+    <value>Выбор ЛС</value>
+  </data>
 </root>
