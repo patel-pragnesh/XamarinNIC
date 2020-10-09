@@ -95,10 +95,18 @@ namespace xamarinJKH.Questions
             LabelPhone.GestureRecognizers.Add(call);
             SetText();
             setQuest();
-            setQuestVisible();
-            ChechQuestions();
-            setVisibleButton();
-            setIndicator();
+            if (_contentQuest.Count > 0)
+            {
+                setQuestVisible();
+                ChechQuestions();
+                setVisibleButton();
+                setIndicator();
+            }
+            else
+            {
+                FrameBack.IsVisible = false;
+            }
+
             if (_isComplite)
             {
                 Container.IsEnabled = false;
@@ -354,7 +362,7 @@ namespace xamarinJKH.Questions
 
         void setQuestVisible()
         {
-            if (_contentQuest.Count <= quest + 1 && quest > -1)
+            if (_contentQuest.Count != 0 && quest > -1)
                 Container.Children.Add(_contentQuest[quest]);
         }
 
