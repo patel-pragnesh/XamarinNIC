@@ -36,18 +36,24 @@ namespace xamarinJKH.Server
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ci_lk"; // Центр инвестиций
         // public const string SERVER_ADDR = "https://api.sm-center.ru/ur_lk"; // Универсальные решения
         // public const string SERVER_ADDR = "https://api.sm-center.ru/chg_lk/"; // Чистый город
+
         //public const string SERVER_ADDR = "https://api.sm-center.ru/tsgopaliha/"; // Новая Опалиха
         //public const string SERVER_ADDR = "https://api.sm-center.ru/sklider/"; // Мобильный Мир
         //public const string SERVER_ADDR = "https://api.sm-center.ru/avalon_alfagkh/"; // Альфа ЖКХ
         //public const string SERVER_ADDR = "https://api.sm-center.ru/stolitsa/"; // Жилищник столица
+
         //public const string SERVER_ADDR = "https://api.sm-center.ru/grinvay/"; // Грин-Вэй Сочи
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ikon/"; // Айкон
+
         // public const string SERVER_ADDR = "https://api.sm-center.ru/mup_kc/"; // МУП КС г. Новочебоксарска
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_cdo/"; // ООО ЦДО г.Тверь
+
         //public const string SERVER_ADDR = "https://api.sm-center.ru/vestaesteit/"; // Веста Эстейт
         //public const string SERVER_ADDR = "https://api.sm-center.ru/uk_divnomorskoe/"; // Дивноморское
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_interkapstroy/"; // ИнтерКапСтрой
+
         //public const string SERVER_ADDR = "https://api.sm-center.ru/suhanovo_park/"; // Суханово Парк
+
         //public const string SERVER_ADDR = "https://api.sm-center.ru/stroim-bud/"; // Строим будущее
         // public const string SERVER_ADDR = "https://api.sm-center.ru/tsg_novaya_zvezda/"; // Новая Звезда
         //public const string SERVER_ADDR = "https://api.sm-center.ru/vestsnab_xml/"; // ВестСнаб
@@ -102,6 +108,7 @@ namespace xamarinJKH.Server
         public const string CLOSE_APP_LIST_DISP = "RequestsDispatcher/CloseList"; // Закрытие списка заявки. 
         public const string PERFORM_APP_LIST_DISP = "RequestsDispatcher/PerformList"; // Закрытие списка заявки. 
         public const string SET_READED_APP = "RequestsDispatcher/SetReadedFlag"; // Метод, который устанавливает что заявка прочитана сотрудником
+        
 
         public const string
             GET_REQUESTS_STATS = "RequestsDispatcher/RequestStats"; // Возвращает статистику по заявкам.  
@@ -118,7 +125,7 @@ namespace xamarinJKH.Server
         public const string CLOSE_APP = "Requests/Close "; // Закрытие заявки
         public const string PAY_CASH_VALIDATE_CODE = "Requests/SendPaidRequestCompleteCodeCash"; // Отправка пин-кода в SMS по платной заявке после онлайн оплаты
         public const string PAY_CARD_VALIDATE_CODE = "Requests/SendPaidRequestCompleteCodeCash"; // Отправка пин-кода в SMS по платной заявке после оплаты наличными
-
+        public const string GET_CAR_BRAND = "Requests/VehicleMarks"; // Возвращает список марок автомобилей 
         public const string UPDATE_PROFILE_CONST = "Dispatcher/UpdateProfile"; // Обновить данные диспетчера
         public const string UPDATE_PROFILE = "User/UpdateProfile"; // Обновить данные профиля
         public const string ADD_IDENT_PROFILE = "User/AddAccountByIdent"; // Привязать ЛС к профилю
@@ -175,7 +182,7 @@ namespace xamarinJKH.Server
 
         public const string UPDATE_RECEIPT = "RequestsDispatcher/UpdateRequestReceipts";
         public const string CAMERAS_LIST = "Houses/WebCams";
-        public const string BONUS_HISTORY = "Accounting/GetAccountBonusBalanceHistory";
+
         /// <summary>
         /// Аунтификация сотрудника
         /// </summary>
@@ -473,6 +480,39 @@ namespace xamarinJKH.Server
                 ident,
                 typeID,
                 Text,
+            });
+            var response = await restClientMp.ExecuteTaskAsync<IDResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new IDResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        public async Task<IDResult> newAppPass(string ident, string typeID, string Text,
+            int PassCategoryId, string? PassFIO, string? PassPassportData,
+            string? PassVehicleMark, string? PassVehicleNumber )
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(NEW_APP, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                ident,
+                typeID,
+                Text,
+                PassCategoryId,
+                PassFIO,
+                PassPassportData,
+                PassVehicleMark,
+                PassVehicleNumber
             });
             var response = await restClientMp.ExecuteTaskAsync<IDResult>(restRequest);
             // Проверяем статус
@@ -860,36 +900,6 @@ namespace xamarinJKH.Server
                 text,
                 requestId,
                 IsHidden
-            });
-            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
-
-            // Проверяем статус
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                return new CommonResult()
-                {
-                    Error = $"Ошибка {response.StatusDescription}"
-                };
-            }
-
-            return response.Data;
-        }
-        /// <summary>
-        /// Метод, который устанавливает что заявка прочитана сотрудником
-        /// </summary>
-        /// <param name="RequestId"> ID заявки</param>
-        /// <returns>CommonResult</returns>
-        public async Task<CommonResult> SetReadedFlag (int RequestId)
-        {
-            RestClient restClientMp = new RestClient(SERVER_ADDR);
-            RestRequest restRequest = new RestRequest(SET_READED_APP, Method.POST);
-            restRequest.RequestFormat = DataFormat.Json;
-            restRequest.AddHeader("client", Device.RuntimePlatform);
-            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
-            restRequest.AddHeader("acx", Settings.Person.acx);
-            restRequest.AddBody(new
-            {
-                RequestId
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
 
@@ -1328,7 +1338,7 @@ namespace xamarinJKH.Server
             return new MemoryStream(response.RawBytes);
         }
 
-        public async Task<AddAccountResult> AddIdent(string Ident, bool Confirm = false, string PinCode = null)
+        public async Task<AddAccountResult> AddIdent(string Ident, bool Confirm = false)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(ADD_IDENT_PROFILE, Method.POST);
@@ -1339,8 +1349,7 @@ namespace xamarinJKH.Server
             restRequest.AddBody(new
             {
                 Ident,
-                Confirm,
-                PinCode
+                Confirm
             });
             var response = await restClientMp.ExecuteTaskAsync<AddAccountResult>(restRequest);
             // Проверяем статус
@@ -2198,6 +2207,27 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
+        
+        public async Task<ItemsList<string>> VehicleMarks()
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_CAR_BRAND, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = await restClientMp.ExecuteTaskAsync<ItemsList<string>>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new ItemsList<string>()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
 /// <summary>
         /// Закрытие списка заявки.
         /// </summary>
@@ -2381,21 +2411,6 @@ namespace xamarinJKH.Server
             restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = await client.ExecuteTaskAsync<ItemsList<CameraModel>>(restRequest);
-            return response.Data;
-        }
-
-        public async Task<ItemsList<BonusCashFlow>> GetBonusHistory(string id = "0001")
-        {
-            RestClient client = new RestClient(SERVER_ADDR);
-            RestRequest restRequest = new RestRequest(BONUS_HISTORY, Method.GET);
-            restRequest.RequestFormat = DataFormat.Json;
-            restRequest.AddHeader("client", Device.RuntimePlatform);
-            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
-            restRequest.AddHeader("acx", Settings.Person.acx);
-            restRequest.AddBody(new {
-                id 
-            });
-            var response = await client.ExecuteTaskAsync<ItemsList<BonusCashFlow>>(restRequest);
             return response.Data;
         }
     }

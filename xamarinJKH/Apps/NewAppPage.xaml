@@ -6,6 +6,8 @@
              xmlns:pays="clr-namespace:xamarinJKH.Pays;assembly=xamarinJKH"
              xmlns:apps="clr-namespace:xamarinJKH.Apps;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Apps.NewAppPage">
     <ContentPage.Content>
@@ -99,9 +101,9 @@
                         Margin="25, 0, 0, 0"
                         HorizontalOptions="Start">
                         <xamarinJkh:IconView Source="ic_arrow_back"
-                               HeightRequest="15"
-                               Foreground="{AppThemeBinding Light=Black, Dark=White}"
-                               HorizontalOptions="Center" />
+                                             HeightRequest="15"
+                                             Foreground="{AppThemeBinding Light=Black, Dark=White}"
+                                             HorizontalOptions="Center" />
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.NewAppCreate}"
                             FontSize="18"
@@ -196,7 +198,119 @@
                                             HorizontalOptions="Fill" />
                                     </StackLayout>
                                 </StackLayout>
+                                <StackLayout x:Name="LayoutPassApp"
+                                             Margin="10, 5, 10, 0">
+                                    <StackLayout
+                                        Spacing="0"
+                                        HorizontalOptions="FillAndExpand"
+                                        Orientation="Vertical">
+                                        <forms:AutoSuggestBox
+                                            x:Name="AutoSuggestBox"
+                                            PlaceholderText="{x:Static xamarinJkh:AppResources.EnterTypePass}"
+                                            WidthRequest="200"
+                                            ItemsSource="{Binding AllKindPass}"
+                                            HorizontalOptions="FillAndExpand"
+                                            TextChanged="AutoSuggestBox_TextChanged"
+                                            QuerySubmitted="AutoSuggestBox_QuerySubmitted"
+                                            SuggestionChosen="AutoSuggestBox_SuggestionChosen" />
+                                    </StackLayout>
+                                    <StackLayout x:Name="LayoutPeshehod" IsVisible="False" Spacing="10">
+                                        <StackLayout Spacing="0"
+                                                     Margin="3,0,5,0"
+                                                     HorizontalOptions="FillAndExpand"
+                                                     Orientation="Vertical">
+                                            <Entry x:Name="EntryFIO"
+                                                   FontSize="15"
+                                                   VerticalOptions="End"
+                                                   Text=""
+                                                   HorizontalTextAlignment="Start"
+                                                   Placeholder="{x:Static xamarinJkh:AppResources.EnterFIO}"
+                                                   TextColor="#A2A2A2"
+                                                   ClearButtonVisibility="WhileEditing"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   Keyboard="Chat" />
+                                            <Label HeightRequest="1"
+                                                   BackgroundColor="Black"
+                                                   HorizontalOptions="FillAndExpand" />
+                                        </StackLayout>
+                                        <StackLayout Spacing="0"
+                                                     HorizontalOptions="FillAndExpand"
+                                                     Margin="3,0,5,0"
+                                                     Orientation="Vertical">
+                                            <Entry x:Name="EntryPassport"
+                                                   FontSize="15"
+                                                   VerticalOptions="End"
+                                                   Text=""
+                                                   Placeholder="{x:Static xamarinJkh:AppResources.EnterSeriaAndNumber}"
+                                                   HorizontalTextAlignment="Start"
+                                                   ClearButtonVisibility="WhileEditing"
+                                                   TextChanged="EntryPassport_OnTextChanged"
+                                                   TextColor="#A2A2A2"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   Keyboard="Numeric">
+                                                <Entry.Behaviors>
+                                                    <mask:MaskedBehavior Mask="XXXX XXXXXX" />
+                                                </Entry.Behaviors>
+                                            </Entry>
+                                            <Label HeightRequest="1"
+                                                   BackgroundColor="Black"
+                                                   HorizontalOptions="FillAndExpand" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout x:Name="LayoutAvto" IsVisible="False">
+                                        <StackLayout Spacing="0"
+                                                     HorizontalOptions="FillAndExpand"
+                                                     Orientation="Vertical">
+                                            <forms:AutoSuggestBox
+                                                x:Name="AutoSuggestBoxBrand"
+                                                TextChanged = "AutoSuggestBoxBrand_OnTextChanged"
+                                                SuggestionChosen = "AutoSuggestBoxBrand_OnSuggestionChosen"
+                                                PlaceholderText="{x:Static xamarinJkh:AppResources.EnterCarBrand}"
+                                                WidthRequest="200"
+                                                ItemsSource="{Binding AllBrand}"
+                                                HorizontalOptions="FillAndExpand" />
+                                        </StackLayout>
+                                        <StackLayout Spacing="0"
+                                                     HorizontalOptions="FillAndExpand"
+                                                     Orientation="Vertical">
+                                            <StackLayout Spacing="0"
+                                                         HorizontalOptions="StartAndExpand"
+                                                         Orientation="Horizontal">
+                                                <CheckBox
+                                                    HorizontalOptions="Start"
+                                                    x:Name="CheckBoxInNumber"
+                                                    VerticalOptions="Center"
+                                                    Color="{x:DynamicResource MainColor}" />
+                                                <Label
+                                                    TextColor="Black"
+                                                    Text="{x:Static xamarinJkh:AppResources.ForeignNumber}"
+                                                    VerticalOptions="Center"
+                                                    HorizontalTextAlignment="Start"
+                                                    HorizontalOptions="Start" />
+                                            </StackLayout>
+                                            <pancakeView:PancakeView
+                                                BorderThickness="4"
+                                                BorderColor="Black"
+                                                Padding="0,10,0,10"
+                                                Margin="40,0,40,0"
+                                                CornerRadius="10" BackgroundColor="White" HasShadow="True">
+                                                <Entry x:Name="EntryNumber"
+                                                       FontSize="23"
+                                                       VerticalOptions="End"
+                                                       FontAttributes="Bold"
+                                                       Placeholder="{x:Static xamarinJkh:AppResources.EnterStateNumber}"
+                                                       HorizontalTextAlignment="Center"
+                                                       TextChanged="EntryNumber_OnTextChanged"
+                                                       TextColor="Black"
+                                                       HorizontalOptions="Fill"
+                                                       Keyboard="Chat" />
+                                            </pancakeView:PancakeView>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+
                                 <Frame CornerRadius="15"
+                                       x:Name="FrameEntryMess"
                                        BackgroundColor="White"
                                        BorderColor="{Binding hex}"
                                        Margin="10, 10, 10, 0"
@@ -267,7 +381,7 @@
                                         <DataTemplate>
                                             <apps:FileCell
                                                 FileName="{Binding FileName}"
-                                                FileSize="{Binding DataArray}"/>
+                                                FileSize="{Binding DataArray}" />
                                         </DataTemplate>
 
                                     </ListView.ItemTemplate>

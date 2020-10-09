@@ -1406,4 +1406,46 @@
   <data name="EditMetersTarif3" xml:space="preserve">
     <value>Изменить показания по тарифу 3</value>
   </data>
+  <data name="NamePassApp" xml:space="preserve">
+    <value>Заявка на пропуск</value>
+  </data>
+  <data name="PassMan" xml:space="preserve">
+    <value>Пешеход</value>
+  </data>
+  <data name="PassMotorcycle" xml:space="preserve">
+    <value>Мотоцикл</value>
+  </data>
+  <data name="PassCar" xml:space="preserve">
+    <value>Легковой</value>
+  </data>
+  <data name="PassGazele" xml:space="preserve">
+    <value>Газель</value>
+  </data>
+  <data name="PassCargo" xml:space="preserve">
+    <value>Грузовой</value>
+  </data>
+  <data name="EnterFIO" xml:space="preserve">
+    <value>Введите ФИО</value>
+  </data>
+  <data name="EnterTypePass" xml:space="preserve">
+    <value>Выберите категорию пропуска</value>
+  </data>
+  <data name="EnterSeriaAndNumber" xml:space="preserve">
+    <value>Введите серию и номер паспорта</value>
+  </data>
+  <data name="EnterCarBrand" xml:space="preserve">
+    <value>Введите марку ТС</value>
+  </data>
+  <data name="EnterStateNumber" xml:space="preserve">
+    <value>Введите гос.номер</value>
+  </data>
+  <data name="ForeignNumber" xml:space="preserve">
+    <value>Иностранный номер</value>
+  </data>
+  <data name="MaskNumberCar" xml:space="preserve">
+    <value>в соответствии с масками</value>
+  </data>
+  <data name="MaskNumberPassport" xml:space="preserve">
+    <value>в соответствии с маской</value>
+  </data>
 </root>

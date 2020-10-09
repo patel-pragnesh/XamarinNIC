@@ -953,6 +953,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введите марку ТС.
+        /// </summary>
+        internal static string EnterCarBrand {
+            get {
+                return ResourceManager.GetString("EnterCarBrand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Введите проверочный код.
         /// </summary>
         internal static string EnterCode {
@@ -998,6 +1007,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введите ФИО.
+        /// </summary>
+        internal static string EnterFIO {
+            get {
+                return ResourceManager.GetString("EnterFIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Добавьте Ваш лицевой счет.
         /// </summary>
         internal static string EnterIdent {
@@ -1012,6 +1030,33 @@ namespace xamarinJKH {
         internal static string EnterName {
             get {
                 return ResourceManager.GetString("EnterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введите серию и номер паспорта.
+        /// </summary>
+        internal static string EnterSeriaAndNumber {
+            get {
+                return ResourceManager.GetString("EnterSeriaAndNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введите гос.номер.
+        /// </summary>
+        internal static string EnterStateNumber {
+            get {
+                return ResourceManager.GetString("EnterStateNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выберите категорию пропуска.
+        /// </summary>
+        internal static string EnterTypePass {
+            get {
+                return ResourceManager.GetString("EnterTypePass", resourceCulture);
             }
         }
         

@@ -69,6 +69,7 @@ namespace xamarinJKH.Apps
             }
         }
 
+        public bool closeMessages { get; set; } = !Settings.MobileSettings.disableCommentingRequests;
         CancellationTokenSource TokenSource { get; set; }
         CancellationToken Token { get; set; }
         bool PermissionAsked;
@@ -274,17 +275,10 @@ namespace xamarinJKH.Apps
 
             MessagingCenter.Subscribe<ISpeechToText>(this, "Final", (sender) =>
             {
-                Device.BeginInvokeOnMainThread(async () =>
+                Device.BeginInvokeOnMainThread(() =>
                 {
-                    //if (recStarted)
-                    //{
-                       if(Device.RuntimePlatform==Device.iOS)
-                        await ShowToast2(AppResources.VoiceRecEnd);
-                    IconViewMic.IsEnabled = true;
+                    new PopupPage();
                     IconViewMic.ReplaceStringMap = new Dictionary<string, string> { { "#000000", hex.ToHex() } };
-                        //recStarted = false;
-                    //}
-                    
                 });                
             });
 
@@ -379,7 +373,7 @@ namespace xamarinJKH.Apps
             //additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
-        static bool recStarted = false;
+
         private async void RecordMic()
         {
             try
@@ -395,11 +389,8 @@ namespace xamarinJKH.Apps
 
             if (Device.RuntimePlatform == Device.iOS)
             {
-                Device.BeginInvokeOnMainThread(async () =>
+                Device.BeginInvokeOnMainThread(() =>
                 {
-                    if (Device.RuntimePlatform == Device.iOS)
-                        await ShowToast2(AppResources.VoiceRecStart);
-                    IconViewMic.IsEnabled = false;
                     IconViewMic.ReplaceStringMap = new Dictionary<string, string> { { "#000000", "#A2A2A2" } };
                 });                
             }
@@ -407,13 +398,6 @@ namespace xamarinJKH.Apps
             //var result = await CrossSpeechToText.StartVoiceInput(AppResources.VoiceInput);
             //EntryMess.Text +=  " " + result;
         }
-
-        public async Task ShowToast2(string title)
-        {
-            Toast.Instance.Show<ToastDialog>(new { Title = title, Duration = 2000 });
-            // Optionally, view model can be passed to the toast view instance.
-        }
-
 
         private void SpeechToTextFinalResultRecieved(string args)
         {
@@ -875,11 +859,19 @@ namespace xamarinJKH.Apps
                 request.Phone = "+" + request.Phone;
             }
 
+            bool IsPass = request.PassInfo != null;
+            bool isMan = false;
+            if (IsPass)
+            {
+                isMan = request.PassInfo.CategoryId == 1;
+            }
             var ret = await Dialog.Instance.ShowAsync<InfoAppDialog>(new
             {
                 _Request = request,
                 HexColor = this.hex,
-                SourceApp = Source
+                SourceApp = Source,
+                isPass = IsPass,
+                isManType = isMan
             });
         }
 

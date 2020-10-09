@@ -15,6 +15,7 @@ namespace xamarinJKH.Utils
         public static MobileSettings MobileSettings = new MobileSettings();
         public static LoginResult Person = new LoginResult();
         public static List<NamedValue> TypeApp = new List<NamedValue>();
+        public static List<string> BrandCar= new List<string>();
         public static HashSet<Page> AppPAge = new HashSet<Page>();
         public static string UpdateKey = "";
         public static string DateUniq = "";

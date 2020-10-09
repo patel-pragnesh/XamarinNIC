@@ -28,7 +28,7 @@ namespace xamarinJKH.Main
             NavigationPage.SetHasNavigationBar(this, false);
             Color hex = (Color) Application.Current.Resources["MainColor"];
             SelectedTabColor = hex;
-
+            GetBrand();
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
             //только темная тема в ios
             //if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
@@ -207,6 +207,21 @@ namespace xamarinJKH.Main
             }
         }
 
+        private void GetBrand()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                ItemsList<string> vehicleMarks = await server.VehicleMarks();
+                if (vehicleMarks.Error == null)
+                {
+                    Settings.BrandCar = vehicleMarks.Data;
+                }
+                else
+                {
+                    Settings.BrandCar = new List<string>();
+                }
+            });
+        }
         private bool OnTimerTick()
         {
             Device.BeginInvokeOnMainThread(async () =>

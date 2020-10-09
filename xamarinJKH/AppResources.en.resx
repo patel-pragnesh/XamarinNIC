@@ -1419,4 +1419,46 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="EditMetersTarif3" xml:space="preserve">
     <value>Change readings for tariff 3</value>
   </data>
+  <data name="NamePassApp" xml:space="preserve">
+    <value>Application for a pass</value>
+  </data>
+  <data name="PassMan" xml:space="preserve">
+    <value>A pedestrian</value>
+  </data>
+  <data name="PassMotorcycle" xml:space="preserve">
+    <value>Motorcycle</value>
+  </data>
+  <data name="PassCar" xml:space="preserve">
+    <value>Passenger car</value>
+  </data>
+  <data name="PassGazele" xml:space="preserve">
+    <value>Gazelle</value>
+  </data>
+  <data name="PassGargo" xml:space="preserve">
+    <value>Cargo</value>
+  </data>
+  <data name="EnterFIO" xml:space="preserve">
+    <value>Enter your full name</value>
+  </data>
+  <data name="EnterTypePass" xml:space="preserve">
+    <value>Select a pass category</value>
+  </data>
+  <data name="EnterSeriaAndNumber" xml:space="preserve">
+    <value>Enter the series and passport number</value>
+  </data>
+  <data name="EnterCarBrand" xml:space="preserve">
+    <value>Enter vehicle brand</value>
+  </data>
+  <data name="EnterStateNumber" xml:space="preserve">
+    <value>Enter state number</value>
+  </data>
+  <data name="ForeignNumber" xml:space="preserve">
+    <value>Foreign number</value>
+  </data>
+  <data name="MaskNumberCar" xml:space="preserve">
+    <value>according to the masks</value>
+  </data>
+  <data name="MaskNumberPassport" xml:space="preserve">
+    <value>according to the mask</value>
+  </data>
 </root>

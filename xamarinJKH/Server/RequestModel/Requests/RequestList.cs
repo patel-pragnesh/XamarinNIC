@@ -21,6 +21,8 @@ namespace xamarinJKH.Server.RequestModel
         public int StatusID { get; set; }
         public bool IsClosed { get; set; }
         public bool IsCheked { get; set; } = false;
+        
+        public string Address { get; set; }
         public bool IsPerformed { get; set; }
         public string PaidRequestStatus { get; set; } //- статус заказа
         public string PaidRequestCompleteCode { get; set; }//  - код подтверждения(подтягивается только для жителя)
@@ -43,7 +45,8 @@ namespace xamarinJKH.Server.RequestModel
         public decimal PaidSumm { get; set; }
         public string PaidServiceText { get; set; }
         public string Error { get; set; }
-
+        // информация о пропуске
+        public RequestPass PassInfo { get; set; }
         public RequestContent Copy()
         {
             return (RequestContent)this.MemberwiseClone();
