@@ -175,7 +175,7 @@ namespace xamarinJKH.Server
 
         public const string
             SEND_CODE = "RequestsDispatcher/CheckPaidRequestCompleteCode"; //Проверка кода подтверждения заказа
-
+        public const string BONUS_HISTORY = "Accounting/GetAccountBonusBalanceHistory";
         public const string
             TRANSIT_ORDER =
                 "RequestsDispatcher/SetPaidRequestStatusOnTheWay"; // Установка статуса платной заявки в 'курьер в пути'
@@ -1338,7 +1338,7 @@ namespace xamarinJKH.Server
             return new MemoryStream(response.RawBytes);
         }
 
-        public async Task<AddAccountResult> AddIdent(string Ident, bool Confirm = false)
+        public async Task<AddAccountResult> AddIdent(string Ident, bool Confirm = false, string PinCode = null)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(ADD_IDENT_PROFILE, Method.POST);
@@ -1349,7 +1349,8 @@ namespace xamarinJKH.Server
             restRequest.AddBody(new
             {
                 Ident,
-                Confirm
+                Confirm,
+                PinCode
             });
             var response = await restClientMp.ExecuteTaskAsync<AddAccountResult>(restRequest);
             // Проверяем статус
@@ -2411,6 +2412,52 @@ namespace xamarinJKH.Server
             restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
             var response = await client.ExecuteTaskAsync<ItemsList<CameraModel>>(restRequest);
+            return response.Data;
+        }
+        
+        public async Task<ItemsList<BonusCashFlow>> GetBonusHistory(string id = "0001")
+        {
+            RestClient client = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(BONUS_HISTORY, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new {
+                id 
+            });
+            var response = await client.ExecuteTaskAsync<ItemsList<BonusCashFlow>>(restRequest);
+            return response.Data;
+        }
+        
+        /// <summary>
+        /// Метод, который устанавливает что заявка прочитана сотрудником
+        /// </summary>
+        /// <param name="RequestId"> ID заявки</param>
+        /// <returns>CommonResult</returns>
+        public async Task<CommonResult> SetReadedFlag (int RequestId)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(SET_READED_APP, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                RequestId
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
             return response.Data;
         }
     }
