@@ -61,6 +61,7 @@ namespace xamarinJKH.Main
                         AppPage.BarTextColor = Color.Black;
                         ShopNavPage.BarTextColor = Color.Black;
                         ProfPage.BarTextColor = Color.Black;
+                        ShopNavPage2.BarTextColor = Color.Black;
                     }
 
                     break;
@@ -74,6 +75,7 @@ namespace xamarinJKH.Main
                         AppPage.BarTextColor = Color.White;
                         ShopNavPage.BarTextColor = Color.White;
                         ProfPage.BarTextColor = Color.White;
+                        ShopNavPage2.BarTextColor = Color.White;
                     }
 
                     break;
@@ -86,6 +88,7 @@ namespace xamarinJKH.Main
                         AppPage.BarTextColor = Color.Black;
                         ShopNavPage.BarTextColor = Color.Black;
                         ProfPage.BarTextColor = Color.Black;
+                        ShopNavPage2.BarTextColor = Color.Black;
                     }
 
                     break;
@@ -124,6 +127,7 @@ namespace xamarinJKH.Main
                             CounterPage.BarTextColor = Color.Black;
                             AppPage.BarTextColor = Color.Black;
                             ShopNavPage.BarTextColor = Color.Black;
+                            ProfPage.BarTextColor = Color.Black;
                             ShopNavPage2.BarTextColor = Color.Black;
                         }
 
@@ -137,6 +141,7 @@ namespace xamarinJKH.Main
                             CounterPage.BarTextColor = Color.White;
                             AppPage.BarTextColor = Color.White;
                             ShopNavPage.BarTextColor = Color.White;
+                            ProfPage.BarTextColor = Color.White;
                             ShopNavPage2.BarTextColor = Color.White;
                         }
 
@@ -149,6 +154,7 @@ namespace xamarinJKH.Main
                             CounterPage.BarTextColor = Color.Black;
                             AppPage.BarTextColor = Color.Black;
                             ShopNavPage.BarTextColor = Color.Black;
+                            ProfPage.BarTextColor = Color.Black;
                             ShopNavPage2.BarTextColor = Color.Black;
                         }
 
