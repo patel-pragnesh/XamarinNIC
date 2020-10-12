@@ -24,7 +24,11 @@ namespace xamarinJKH.DialogViews
         private RestClientMP server = new RestClientMP();
         public TechDialog(bool isVisibleApp = true)
         {
-            Device.BeginInvokeOnMainThread(async () => await SendTechTask());
+            var stack = Rg.Plugins.Popup.Services.PopupNavigation.PopupStack;
+            if (stack.Count == 0)
+                Device.BeginInvokeOnMainThread(async () => await SendTechTask());
+            else
+                Device.BeginInvokeOnMainThread(async () => await Rg.Plugins.Popup.Services.PopupNavigation.PopAsync());
             InitializeComponent();
             LabelInfo.Text =
                 AppResources.TechAdditionalText1 +
@@ -69,6 +73,7 @@ namespace xamarinJKH.DialogViews
             ImageViber.GestureRecognizers.Add(item: openUrlVider);
         }
 
+        bool launched;
         private async Task SendTechTask()
         {
             // Loading settings
@@ -83,7 +88,8 @@ namespace xamarinJKH.DialogViews
             await Loading.Instance.StartAsync(async progress =>
             {
                 // some heavy process.
-                await sendTech();
+                if (!launched)
+                    await sendTech();
             });
         }
         private async Task LoadUrl(string url, string package)
@@ -137,6 +143,7 @@ namespace xamarinJKH.DialogViews
             }
 
             number = "-1";
+            launched = true;
         }
             
         string GetAdres()
