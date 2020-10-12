@@ -21,6 +21,7 @@ using xamarinJKH.DialogViews;
 using xamarinJKH.ViewModels.Main;
 using Xamarin.Essentials;
 using System.Text.RegularExpressions;
+using System.Runtime.CompilerServices;
 
 namespace xamarinJKH.Main
 {
@@ -289,7 +290,11 @@ namespace xamarinJKH.Main
             var request = RequestInfos.Find(x => x.ID == int.Parse(app_id));
             if (request != null)
             {
-                Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(new AppPage(request)));
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    if (Navigation.NavigationStack.FirstOrDefault(x => x is AppPage) == null)
+                        await Navigation.PushAsync(new AppPage(request));
+                });
             }
         }
 
@@ -424,7 +429,8 @@ namespace xamarinJKH.Main
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             RequestInfo select = e.Item as RequestInfo;
-            await Navigation.PushAsync(new AppPage(select));
+            if (Navigation.NavigationStack.FirstOrDefault(x => x is AppPage) == null)
+                await Navigation.PushAsync(new AppPage(select));
         }
 
         private async void startNewApp(object sender, EventArgs e)
@@ -433,7 +439,8 @@ namespace xamarinJKH.Main
             {
                 if (Settings.TypeApp.Count > 0)
                 {
-                    await Navigation.PushAsync(new NewAppPage());
+                    if (Navigation.NavigationStack.FirstOrDefault(x => x is NewAppPage) == null)
+                        await Navigation.PushAsync(new NewAppPage());
                 }
                 else
                 {
