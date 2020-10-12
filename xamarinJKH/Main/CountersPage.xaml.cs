@@ -461,33 +461,41 @@ namespace xamarinJKH.Main
 
         void SetIdents()
         {
-            Picker.SetAppThemeColor(Xamarin.Forms.Picker.TextColorProperty, Color.Black, Color.White);
-            Picker.SetAppThemeColor(Xamarin.Forms.Picker.TitleColorProperty, Color.Black, Color.White);
-            Picker.Title = account;
-            _meterInfo = null;
-            if (account == "Все")
+            try
             {
-                _meterInfo = _meterInfoAll;
-            }
-            else
-            {
-                List<MeterInfo> meters = new List<MeterInfo>();
-                foreach (var meterInfo in _meterInfoAll)
+
+                Picker.SetAppThemeColor(Xamarin.Forms.Picker.TextColorProperty, Color.Black, Color.White);
+                Picker.SetAppThemeColor(Xamarin.Forms.Picker.TitleColorProperty, Color.Black, Color.White);
+                Picker.Title = account;
+                _meterInfo = null;
+                if (account == "Все")
                 {
-                    if (meterInfo.Ident == account)
+                    _meterInfo = _meterInfoAll;
+                }
+                else
+                {
+                    List<MeterInfo> meters = new List<MeterInfo>();
+                    foreach (var meterInfo in _meterInfoAll)
                     {
-                        meters.Add(meterInfo);
+                        if (meterInfo.Ident == account)
+                        {
+                            meters.Add(meterInfo);
+                        }
                     }
+
+                    _meterInfo = meters;
                 }
 
-                _meterInfo = meters;
+                baseForCounters.Children.Clear();
+
+                foreach (var mi in _meterInfo)
+                {
+                    baseForCounters.Children.Add(new MetersThreeCell(mi));
+                }
             }
-
-            baseForCounters.Children.Clear();
-
-            foreach (var mi in _meterInfo)
+            catch (Exception e)
             {
-                baseForCounters.Children.Add(new MetersThreeCell(mi));
+                Console.WriteLine(e);
             }
 
             //countersList.ItemsSource = null;
