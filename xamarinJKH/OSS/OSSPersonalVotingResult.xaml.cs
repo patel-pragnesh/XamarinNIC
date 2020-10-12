@@ -200,7 +200,8 @@ namespace xamarinJKH
         private async void Btn_Clicked(object sender, EventArgs e)
         {            
             if (listNeedUpdate)
-                await Navigation.PushAsync(new OSSMain());
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is OSSMain) == null)
+                    await Navigation.PushAsync(new OSSMain());
             else
                 PopUntilDestination(typeof(OSSMain));
         }

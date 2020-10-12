@@ -230,11 +230,13 @@ namespace xamarinJKH.Additional
                 var select = args;
                 if (select.ShopID == null)
                 {
-                    await Navigation.PushAsync(new AdditionalOnePage(select));
+                    if (Navigation.NavigationStack.FirstOrDefault(x => x is AdditionalOnePage) == null)
+                        await Navigation.PushAsync(new AdditionalOnePage(select));
                 }
                 else
                 {
-                    await Navigation.PushAsync(new ShopPageNew(select));
+                    if (Navigation.NavigationStack.FirstOrDefault(x => x is ShopPageNew) == null)
+                        await Navigation.PushAsync(new ShopPageNew(select));
                 }
             });
 
@@ -363,11 +365,13 @@ namespace xamarinJKH.Additional
             AdditionalService select = e.Item as AdditionalService;
             if (select.ShopID == null)
             {
-                await Navigation.PushAsync(new AdditionalOnePage(select));
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is AdditionalOnePage) == null)
+                    await Navigation.PushAsync(new AdditionalOnePage(select));
             }
             else
-            { 
-                await Navigation.PushAsync(new ShopPageNew(select));
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is ShopPageNew) == null)
+                    await Navigation.PushAsync(new ShopPageNew(select));
             }
         }
 

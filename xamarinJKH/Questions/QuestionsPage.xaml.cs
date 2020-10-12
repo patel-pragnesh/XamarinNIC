@@ -235,7 +235,8 @@ namespace xamarinJKH.Questions
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             PollInfo select = e.Item as PollInfo;
-            await Navigation.PushAsync(new PollsPage(select, SwitchQuest.IsToggled));
+            if (Navigation.NavigationStack.FirstOrDefault(x => x is PollsPage) == null)
+                await Navigation.PushAsync(new PollsPage(select, SwitchQuest.IsToggled));
         }
 
         private void chage(object sender, PropertyChangedEventArgs e)

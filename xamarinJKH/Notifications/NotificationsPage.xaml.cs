@@ -144,7 +144,9 @@ namespace xamarinJKH
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             AnnouncementInfo select = e.Item as AnnouncementInfo;
-            await Navigation.PushAsync(new NotificationOnePage(select));
+
+            if (Navigation.NavigationStack.FirstOrDefault(x => x is NotificationOnePage) == null)
+                await Navigation.PushAsync(new NotificationOnePage(select));
         }
     }
 }

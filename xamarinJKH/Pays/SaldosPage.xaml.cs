@@ -295,7 +295,8 @@ namespace xamarinJKH.Pays
             if (select != null)
             {
                 select.Period = select.Period.ToUpper();
-                await Navigation.PushAsync(new PayPdf(new PayPdfViewModel(select)));
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is PayPdf) == null)
+                    await Navigation.PushAsync(new PayPdf(new PayPdfViewModel(select)));
             }
 
             return;

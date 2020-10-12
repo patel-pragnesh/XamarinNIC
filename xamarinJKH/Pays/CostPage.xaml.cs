@@ -108,10 +108,10 @@ namespace xamarinJKH.Pays
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
             var openSaldos = new TapGestureRecognizer();
-            openSaldos.Tapped += async (s, e) => { await Navigation.PushAsync(new SaldosPage(Accounts)); };
+            openSaldos.Tapped += async (s, e) => { if (Navigation.NavigationStack.FirstOrDefault(x => x is SaldosPage) == null) await Navigation.PushAsync(new SaldosPage(Accounts)); };
             FrameBtnSaldos.GestureRecognizers.Add(openSaldos);
             var openHistory = new TapGestureRecognizer();
-            openHistory.Tapped += async (s, e) => { await Navigation.PushAsync(new HistoryPayedPage(Accounts)); };
+            openHistory.Tapped += async (s, e) => { if (Navigation.NavigationStack.FirstOrDefault(x => x is HistoryPayedPage) == null) await Navigation.PushAsync(new HistoryPayedPage(Accounts)); };
             FrameBtnHistory.GestureRecognizers.Add(openHistory);
             BindingContext = new AccountingInfoModel()
             {
@@ -298,12 +298,14 @@ namespace xamarinJKH.Pays
 
         private async void openSaldo(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SaldosPage(Accounts));
+            if (Navigation.NavigationStack.FirstOrDefault(x => x is SaldosPage) == null)
+                await Navigation.PushAsync(new SaldosPage(Accounts));
         }
 
         private async void OpenHistory(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new HistoryPayedPage(Accounts));
+            if (Navigation.NavigationStack.FirstOrDefault(x => x is HistoryPayedPage) == null)
+                await Navigation.PushAsync(new HistoryPayedPage(Accounts));
         }
 
         private async void Pay(object sender, EventArgs e)
@@ -321,7 +323,8 @@ namespace xamarinJKH.Pays
                 decimal sum = Decimal.Parse(sumText);
                 if (sum > 0)
                 {
-                    await Navigation.PushAsync(new PayServicePage(account.Ident, sum, null, SwitchInsurance.IsToggled && SwitchInsurance.IsVisible));
+                    if (Navigation.NavigationStack.FirstOrDefault(x => x is PayServicePage) == null)
+                        await Navigation.PushAsync(new PayServicePage(account.Ident, sum, null, SwitchInsurance.IsToggled && SwitchInsurance.IsVisible));
                 }
                 else
                 {

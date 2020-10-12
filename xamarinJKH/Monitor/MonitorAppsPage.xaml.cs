@@ -134,8 +134,8 @@ namespace xamarinJKH.Monitor
                 IsClosed = !select.IsActive,
                 IsPerformed = true
             };
-            
-            await Navigation.PushAsync(new AppConstPage(requestInfo, false));
+            if (Navigation.NavigationStack.FirstOrDefault(x => x is AppConstPage) == null)
+                await Navigation.PushAsync(new AppConstPage(requestInfo, false));
 
         }
         

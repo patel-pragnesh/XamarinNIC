@@ -305,7 +305,8 @@ namespace xamarinJKH
                 if (resultComplite.Error == null)
                 {
                     await DisplayAlert(AppResources.AlertSuccess, AppResources.SuccessOSSPollPass, "OK");
-                    await Navigation.PushAsync(new OSSPersonalVotingResult(_oss, true));
+                    if (Navigation.NavigationStack.FirstOrDefault(x => x is OSSPersonalVotingResult) == null)
+                        await Navigation.PushAsync(new OSSPersonalVotingResult(_oss, true));
                     Navigation.RemovePage(this);
 
                 }

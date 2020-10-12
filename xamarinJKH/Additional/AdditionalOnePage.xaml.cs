@@ -182,8 +182,8 @@ namespace xamarinJKH.Additional
 
                     await DisplayAlert(AppResources.AlertSuccess, AppResources.OrderSuccess, "OK");
                     RequestInfo requestInfo = new RequestInfo();
-                    requestInfo.ID = result.ID;
-                    await Navigation.PushAsync(new AppPage(requestInfo, true));
+                    requestInfo.ID = result.ID; if (Navigation.NavigationStack.FirstOrDefault(x => x is AppPage) == null)
+                        await Navigation.PushAsync(new AppPage(requestInfo, true));
                 }
                 else
                 {

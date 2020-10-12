@@ -142,8 +142,9 @@ namespace xamarinJKH.News
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            NewsInfo select = e.Item as NewsInfo;
-            await Navigation.PushAsync(new NewPage(select));
+            NewsInfo select = e.Item as NewsInfo; 
+            if (Navigation.NavigationStack.FirstOrDefault(x => x is NewPage) == null)
+                await Navigation.PushAsync(new NewPage(select));
         }
     }
 }

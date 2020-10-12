@@ -241,7 +241,7 @@ namespace xamarinJKH.Main
                     {
 
                     }
-                    Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(new AppPage(request)));
+                    Device.BeginInvokeOnMainThread(async () => { if (Navigation.NavigationStack.FirstOrDefault(x => x is AppPage) == null) await Navigation.PushAsync(new AppPage(request)); });
                 }
             });
             viewModel.LoadRequests.Execute(null);
