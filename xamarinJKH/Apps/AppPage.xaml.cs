@@ -125,7 +125,11 @@ namespace xamarinJKH.Apps
                 }
 
             }, Token);
-            UpdateTask.Start();
+            try
+            {
+                UpdateTask.Start();
+            }
+            catch { }
             await Task.Delay(TimeSpan.FromSeconds(1));
             if (Device.RuntimePlatform == "Android")
             {

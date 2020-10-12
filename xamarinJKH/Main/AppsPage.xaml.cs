@@ -120,7 +120,11 @@ namespace xamarinJKH.Main
                 }
                 return;
             }, this.CancellationToken);
-            UpdateTask.Start();
+            try
+            {
+                UpdateTask.Start();
+            }
+            catch { }
         }
 
         static bool inUpdateNow = false;

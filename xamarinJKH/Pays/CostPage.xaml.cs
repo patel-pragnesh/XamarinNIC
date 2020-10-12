@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -233,7 +234,7 @@ namespace xamarinJKH.Pays
         {
             FormattedString formatted = new FormattedString();
             //
-            string sumText = string.IsNullOrEmpty(EntrySum.Text) ? "0" : EntrySum.Text.Replace('.',',');
+            string sumText = string.IsNullOrEmpty(EntrySum.Text) ? "0" : EntrySum.Text;//.Replace('.',',');
 
 
             decimal totalSum = 0;
@@ -243,15 +244,16 @@ namespace xamarinJKH.Pays
             }
             else
             {
-                try
-                {
-                    totalSum = Decimal.Parse(sumText);
-                }
-                catch
-                {
-
-                    totalSum = Decimal.Parse(sumText.Replace(',', '.'));
-                }
+                //try
+                //{
+                    
+                    totalSum = decimal.Parse(sumText.Replace(',', '.'), CultureInfo.InvariantCulture);
+                //}
+                //catch
+                //{
+                //    totalSum = decimal.Parse(sumText.Replace(',', '.'), CultureInfo.InvariantCulture);
+                   
+                //}
             }
 
             // if (isComission)
