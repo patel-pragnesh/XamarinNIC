@@ -158,11 +158,12 @@ namespace xamarinJKH.Main
             goAddIdent.Tapped += async (s, e) =>
             {
                 /*await Dialog.Instance.ShowAsync<AddAccountDialogView>();*/
-                await Navigation.PushAsync(new AddIdent(this));
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is AddIdent) == null)
+                    await Navigation.PushAsync(new AddIdent(this));
             };
             FrameAddIdent.GestureRecognizers.Add(goAddIdent);
             var openSaldos = new TapGestureRecognizer();
-            openSaldos.Tapped += async (s, e) => { await Navigation.PushAsync(new SaldosPage(_accountingInfo)); };
+            openSaldos.Tapped += async (s, e) => { if (Navigation.NavigationStack.FirstOrDefault(x => x is SaldosPage) == null) await Navigation.PushAsync(new SaldosPage(_accountingInfo)); };
             FrameBtnSaldos.GestureRecognizers.Add(openSaldos);
             //additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
             MessagingCenter.Subscribe<Object>(this, "UpdateIdent", (sender) => SyncSetup());
@@ -267,7 +268,8 @@ namespace xamarinJKH.Main
         {
             if (_accountingInfo != null && _accountingInfo.Count > 0)
             {
-                await Navigation.PushAsync(new SaldosPage(_accountingInfo));
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is SaldosPage) == null)
+                    await Navigation.PushAsync(new SaldosPage(_accountingInfo));
             }
             else
             {
@@ -279,7 +281,8 @@ namespace xamarinJKH.Main
         {
             if (_accountingInfo != null && _accountingInfo.Count > 0)
             {
-                await Navigation.PushAsync(new HistoryPayedPage(_accountingInfo));
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is HistoryPayedPage) == null)
+                    await Navigation.PushAsync(new HistoryPayedPage(_accountingInfo));
             }
             else
             {
@@ -672,7 +675,7 @@ namespace xamarinJKH.Main
             frame.Content = container;
 
             var openPayRec = new TapGestureRecognizer();
-            openPayRec.Tapped += async (s, e) => { await Navigation.PushAsync(new CostPage(info, _accountingInfo)); };
+            openPayRec.Tapped += async (s, e) => { if (Navigation.NavigationStack.FirstOrDefault(x => x is CostPage) == null) await Navigation.PushAsync(new CostPage(info, _accountingInfo)); };
             frameBtn.GestureRecognizers.Add(openPayRec);
 
 

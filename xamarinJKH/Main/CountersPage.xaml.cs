@@ -142,28 +142,32 @@ namespace xamarinJKH.Main
                                         {
                                             var counterThisMonth = select.Values[0].Value;
                                             var counterThisMonth2 = select.Values.Count >= 2 ? select.Values[1].Value : 0;
-                                            await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this,
+                                            if (Navigation.NavigationStack.FirstOrDefault(x => x is AddMetersPage) == null)
+                                                await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this,
                                                 counterThisMonth,
                                                 counterThisMonth2));
                                         }
                                         else
                                         {
                                             var counterThisMonth =  select.Values[0].Value;
-                                            await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
+                                            if (Navigation.NavigationStack.FirstOrDefault(x => x is AddMetersPage) == null)
+                                                await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
                                                 counterThisMonth));
                                         }                                        
                                     }
                                     else
                                     {
                                         var counterThisMonth = select.Values[0].Value;
-                                        await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
+                                        if (Navigation.NavigationStack.FirstOrDefault(x => x is AddMetersPage) == null)
+                                            await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
                                             counterThisMonth));
                                     }
                                 }
                                 else
                                 {
                                     //var counterThisMonth =  0;
-                                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
+                                    if (Navigation.NavigationStack.FirstOrDefault(x => x is AddMetersPage) == null)
+                                        await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
                                         0));
                                 }
                                 //if (select.Values.Count >= 1 && int.Parse(select.Values[0].Period.Split('.')[1]) ==
@@ -588,13 +592,15 @@ namespace xamarinJKH.Main
                             {
                                 var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
                                 var counterThisMonth2 = (select.Values.Count >= 2) ? select.Values[1].Value : 0;
-                                await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, counterThisMonth,
+                                if (Navigation.NavigationStack.FirstOrDefault(x => x is AddMetersPage) == null)
+                                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, counterThisMonth,
                                     counterThisMonth2));
                             }
                             else
                             {
                                 var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
-                                await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
+                                if (Navigation.NavigationStack.FirstOrDefault(x => x is AddMetersPage) == null)
+                                    await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
                                     counterThisMonth));
                             }
                         }

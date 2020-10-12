@@ -370,7 +370,8 @@ namespace xamarinJKH.MainConst
                 {
                     if (each.UnperformedRequestsList.Count > 0)
                     {
-                        await Navigation.PushAsync(new MonitorAppsPage(each.UnperformedRequestsList));
+                        if (Navigation.NavigationStack.FirstOrDefault(x => x is MonitorAppsPage) == null)
+                            await Navigation.PushAsync(new MonitorAppsPage(each.UnperformedRequestsList));
                     }
                 };
 
@@ -473,7 +474,9 @@ namespace xamarinJKH.MainConst
                 forwardAppsUnper.Tapped += async (s, e) =>
                 {
                     if (each.OverdueRequestsList.Count > 0)
-                        await Navigation.PushAsync(new MonitorAppsPage(each.OverdueRequestsList));
+
+                        if (Navigation.NavigationStack.FirstOrDefault(x => x is MonitorAppsPage) == null)
+                            await Navigation.PushAsync(new MonitorAppsPage(each.OverdueRequestsList));
                 };
 
                 stackLayoutUnperformedCount.GestureRecognizers.Add(forwardAppsUnper);
@@ -559,7 +562,8 @@ namespace xamarinJKH.MainConst
                     {
                         if (requests.Count > 0)
                         {
-                            await Navigation.PushAsync(new MonitorAppsPage(requests));
+                            if (Navigation.NavigationStack.FirstOrDefault(x => x is MonitorAppsPage) == null)
+                                await Navigation.PushAsync(new MonitorAppsPage(requests));
                         }
                     };
 
@@ -884,7 +888,8 @@ namespace xamarinJKH.MainConst
                 {
                     if (requests.Count > 0)
                     {
-                        await Navigation.PushAsync(new MonitorAppsPage(requests));
+                        if (Navigation.NavigationStack.FirstOrDefault(x => x is MonitorAppsPage) == null)
+                            await Navigation.PushAsync(new MonitorAppsPage(requests));
                     }
                 };
 

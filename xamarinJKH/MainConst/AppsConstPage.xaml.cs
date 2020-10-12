@@ -373,12 +373,14 @@ namespace xamarinJKH.MainConst
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             RequestInfo select = e.Item as RequestInfo;
-            await Navigation.PushAsync(new AppConstPage(select));
+            if (Navigation.NavigationStack.FirstOrDefault(x => x is AppConstPage) == null)
+                await Navigation.PushAsync(new AppConstPage(select));
         }
 
         private async void startNewApp(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewAppConstPage(this));
+            if (Navigation.NavigationStack.FirstOrDefault(x => x is NewAppConstPage) == null)
+                await Navigation.PushAsync(new NewAppConstPage(this));
         }
 
         private async void change(object sender, PropertyChangedEventArgs e)

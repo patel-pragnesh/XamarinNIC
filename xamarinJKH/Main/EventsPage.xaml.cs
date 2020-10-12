@@ -66,8 +66,8 @@ namespace xamarinJKH.Main
             var profile = new TapGestureRecognizer();
             profile.Tapped += async (s, e) =>
             {
-               
-                await Navigation.PushAsync(new ProfilePage());
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfilePage) == null)
+                    await Navigation.PushAsync(new ProfilePage());
             };
 
             if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
@@ -189,35 +189,35 @@ namespace xamarinJKH.Main
         private void StartNews()
         {
             var startNews = new TapGestureRecognizer();
-            startNews.Tapped += async (s, e) => { await Navigation.PushAsync(new NewsPage()); };
+            startNews.Tapped += async (s, e) => { if (Navigation.NavigationStack.FirstOrDefault(x => x is NewsPage) == null) await Navigation.PushAsync(new NewsPage()); };
             FrameNews.GestureRecognizers.Add(startNews);
         }
 
         private void StartQuestions()
         {
             var startQuest = new TapGestureRecognizer();
-            startQuest.Tapped += async (s, e) => { await Navigation.PushAsync(new QuestionsPage()); };
+            startQuest.Tapped += async (s, e) => { if (Navigation.NavigationStack.FirstOrDefault(x => x is QuestionsPage) == null)  await Navigation.PushAsync(new QuestionsPage()); };
             FrameQuestions.GestureRecognizers.Add(startQuest);
         }
 
         private async void StartOffers()
         {
             var startAdditional = new TapGestureRecognizer();
-            startAdditional.Tapped += async (s, e) => { await Navigation.PushAsync(new AdditionalPage()); };
+            startAdditional.Tapped += async (s, e) => { if (Navigation.NavigationStack.FirstOrDefault(x => x is AdditionalPage) == null) await Navigation.PushAsync(new AdditionalPage()); };
             FrameOffers.GestureRecognizers.Add(startAdditional);
         }
 
         private void StartNotification()
         {
             var startNotif = new TapGestureRecognizer();
-            startNotif.Tapped += async (s, e) => { await Navigation.PushAsync(new NotificationsPage()); };
+            startNotif.Tapped += async (s, e) => { if (Navigation.NavigationStack.FirstOrDefault(x => x is NotificationsPage) == null)  await Navigation.PushAsync(new NotificationsPage()); };
             FrameNotification.GestureRecognizers.Add(startNotif);
         }
 
         private void StartOSS()
         {
             var startOSSTGR = new TapGestureRecognizer();
-            startOSSTGR.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSMain()); };
+            startOSSTGR.Tapped += async (s, e) => { if (Navigation.NavigationStack.FirstOrDefault(x => x is OSSMain) == null) await Navigation.PushAsync(new OSSMain()); };
             // startOSSTGR.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSAuth()); };
             FrameOSS.GestureRecognizers.Add(startOSSTGR);
             if (!Settings.MobileSettings.enableOSS || !Settings.Person.accessOSS)
@@ -270,7 +270,8 @@ namespace xamarinJKH.Main
 
         private async void Cameras(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CameraListPage());
+            if (Navigation.NavigationStack.FirstOrDefault(x => x is CameraListPage) == null)
+                await Navigation.PushAsync(new CameraListPage());
         }
     }
 
