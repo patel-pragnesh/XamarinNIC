@@ -45,15 +45,22 @@ namespace xamarinJKH.DialogViews
 
         async void getDispatcherList()
         {
-            ItemsList<NamedValue> result = await server.GetDispatcherList();
-            dispList = result.Data;
-            BindingContext = null;
-            BindingContext = new DispListModel()
+            try
             {
-                AllDisp = dispList,
-                hex = HexColor,
-                SelectedDisp = dispList[0]
-            };
+                ItemsList<NamedValue> result = await server.GetDispatcherList();
+                dispList = result.Data;
+                BindingContext = null;
+                BindingContext = new DispListModel()
+                {
+                    AllDisp = dispList,
+                    hex = HexColor,
+                    SelectedDisp = dispList[0]
+                };
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         private async void CloseApp(object sender, EventArgs e)

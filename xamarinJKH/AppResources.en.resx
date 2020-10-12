@@ -1464,4 +1464,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="TakeIdent" xml:space="preserve">
     <value>Choosing ident</value>
   </data>
+  <data name="CorrectEmail" xml:space="preserve">
+    <value>Enter a valid Email.</value>
+  </data>
 </root>

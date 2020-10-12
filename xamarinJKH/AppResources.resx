@@ -1451,4 +1451,7 @@
   <data name="TakeIdent" xml:space="preserve">
     <value>Выбор ЛС</value>
   </data>
+  <data name="CorrectEmail" xml:space="preserve">
+    <value>Введите корректный Email.</value>
+  </data>
 </root>

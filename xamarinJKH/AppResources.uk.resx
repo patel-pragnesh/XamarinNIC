@@ -1448,4 +1448,7 @@
   <data name="TakeIdent" xml:space="preserve">
     <value>вибір ЛЗ</value>
   </data>
+  <data name="CorrectEmail" xml:space="preserve">
+    <value>Введіть коректний Email.</value>
+  </data>
 </root>

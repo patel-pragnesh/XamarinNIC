@@ -719,6 +719,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введите корректный Email..
+        /// </summary>
+        internal static string CorrectEmail {
+            get {
+                return ResourceManager.GetString("CorrectEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Счетчик выбыл.
         /// </summary>
         internal static string CounterLeave {
