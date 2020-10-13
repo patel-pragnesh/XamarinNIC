@@ -1451,4 +1451,7 @@
   <data name="CorrectEmail" xml:space="preserve">
     <value>Введіть коректний Email.</value>
   </data>
+  <data name="ShowHistory" xml:space="preserve">
+    <value>Показати списання</value>
+  </data>
 </root>

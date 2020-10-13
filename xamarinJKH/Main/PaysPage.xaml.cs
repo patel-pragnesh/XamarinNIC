@@ -539,7 +539,7 @@ namespace xamarinJKH.Main
             BonusStack.Children.Add(bonus);
             Label history = new Label { 
                 TextColor = (Color)Application.Current.Resources["MainColor"], 
-                Text = "Показать списания", 
+                Text = AppResources.ShowHistory, 
                 HorizontalOptions = LayoutOptions.End, 
                 HorizontalTextAlignment = TextAlignment.End,
                 VerticalTextAlignment = TextAlignment.Center,
