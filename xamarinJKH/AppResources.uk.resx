@@ -1454,4 +1454,7 @@
   <data name="DatePick" xml:space="preserve">
     <value>Введіть дату народження</value>
   </data>
+  <data name="ShowHistory" xml:space="preserve">
+    <value>Показати списання</value>
+  </data>
 </root>
