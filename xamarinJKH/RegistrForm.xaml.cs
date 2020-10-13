@@ -30,7 +30,7 @@ namespace xamarinJKH
         private RestClientMP _server = new RestClientMP();
         public string LoginAuth { get; set; }
         public string passAuth { get; set; }
-
+        private bool isDate = false;
         private int step = 0;
 
         bool TimerStart = false;
@@ -199,7 +199,7 @@ namespace xamarinJKH
                 .Replace(")", "")
                 .Replace("-", "");
             string fio = EntryFio.Text;
-            string date = "";// DatePicker.Date.ToString("dd.MM.yyyy");
+            string date =  DatePicker.Date.ToString("dd.MM.yyyy");
 
             if (phone.Equals(""))
             {
@@ -215,6 +215,10 @@ namespace xamarinJKH
             else if (!SwitchConsent.IsToggled)
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ProcessUserData, "OK");
+            }
+            else if (!isDate)
+            {
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.DatePick, "OK");
             }
             else
             {
@@ -475,6 +479,7 @@ namespace xamarinJKH
 
         private void datePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
+            isDate = true;
         }
     }
 }
