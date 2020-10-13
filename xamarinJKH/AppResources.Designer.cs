@@ -818,6 +818,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введите дату рождения.
+        /// </summary>
+        internal static string DatePick {
+            get {
+                return ResourceManager.GetString("DatePick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  числа .
         /// </summary>
         internal static string DayOfMounth {
