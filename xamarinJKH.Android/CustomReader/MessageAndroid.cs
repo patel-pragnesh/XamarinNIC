@@ -11,12 +11,20 @@ namespace xamarinJKH.Android
        
         public void LongAlert(string message)
         {
-            Toast.MakeText(Application.Context, message, ToastLength.Long).Show();
+            try
+            {
+                Toast.MakeText(Application.Context, message, ToastLength.Long).Show();
+            }
+            catch { }
         }
 
         public void ShortAlert(string message)
         {
-            Toast.MakeText(Application.Context, message, ToastLength.Short).Show();
+            try
+            {
+                Toast.MakeText(Application.Context, message, ToastLength.Short).Show();
+            }
+            catch { }
         }
     }
 }
