@@ -616,6 +616,10 @@ namespace xamarinJKH.Apps
                                         "А 234 АА 12, А 234 АА 123, АА 234 22, АА 234 123", "OK");
                                 }
                             }
+                            else
+                            {
+                                return true;
+                            }
                         }
                     }
                 }
