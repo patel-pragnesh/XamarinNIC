@@ -120,6 +120,7 @@ namespace xamarinJKH.Main
         private async void ButtonClick(object sender, EventArgs e)
         {
             Regex regex = new Regex(@"^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$");
+            if (!string.IsNullOrEmpty(EntryEmail.Text))
             if (regex.IsMatch(EntryEmail.Text))
             {
                 SaveInfoAccount(EntryFio.Text, EntryEmail.Text);
