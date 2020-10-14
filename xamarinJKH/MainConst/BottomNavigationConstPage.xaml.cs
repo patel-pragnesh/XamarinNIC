@@ -148,7 +148,7 @@ namespace xamarinJKH.MainConst
         async void RegisterNewDevice()
         {
             App.token = DependencyService.Get<xamarinJKH.InterfacesIntegration.IFirebaseTokenObtainer>().GetToken();
-            var response = await (new RestClientMP()).RegisterDevice();
+            var response = await (new RestClientMP()).RegisterDevice(true);
         }
     }
 }
