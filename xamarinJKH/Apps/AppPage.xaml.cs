@@ -856,27 +856,40 @@ namespace xamarinJKH.Apps
 
         private async void ShowInfo()
         {
-            string Status = request.Status;
-            string Source = Settings.GetStatusIcon(request.StatusID);
-            if (!string.IsNullOrWhiteSpace(request.Phone) && (request.Phone.Contains("+") == false && request.Phone.Substring(0, 2) == "79"))
+            if (request != null)
             {
-                request.Phone = "+" + request.Phone;
-            }
+                string Status = request.Status;
+                if (!string.IsNullOrEmpty(Status))
+                {
+                    string Source = Settings.GetStatusIcon(request.StatusID);
+                    if (!string.IsNullOrWhiteSpace(request.Phone) && (request.Phone.Contains("+") == false && request.Phone.Substring(0, 2) == "79"))
+                    {
+                        request.Phone = "+" + request.Phone;
+                    }
 
-            bool IsPass = request.PassInfo != null;
-            bool isMan = false;
-            if (IsPass)
-            {
-                isMan = request.PassInfo.CategoryId == 1;
+                    bool IsPass = request.PassInfo != null;
+                    bool isMan = false;
+                    if (IsPass)
+                    {
+                        isMan = request.PassInfo.CategoryId == 1;
+                    }
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(Source))
+                        await Dialog.Instance.ShowAsync<InfoAppDialog>(new
+                        {
+                            _Request = request,
+                            HexColor = this.hex,
+                            SourceApp = Source,
+                            isPass = IsPass,
+                            isManType = isMan
+                        });
+                    }
+                    catch { }
+                }
             }
-            var ret = await Dialog.Instance.ShowAsync<InfoAppDialog>(new
-            {
-                _Request = request,
-                HexColor = this.hex,
-                SourceApp = Source,
-                isPass = IsPass,
-                isManType = isMan
-            });
+            
+            
         }
 
         public async Task ShowRating()
