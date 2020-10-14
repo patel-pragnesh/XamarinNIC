@@ -47,16 +47,19 @@ namespace xamarinJKH.Droid.CustomRenderers
             MessagingCenter.Subscribe<object, bool>(this, "FullScreen", (sender, rotated) =>
             {
                 var activity = Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity;
+                if (activity != null)
+                {
+                    if (rotated)
+                    {
+                        activity.RequestedOrientation = Andr.PM.ScreenOrientation.Portrait;
+                    }
+                    else
+                    {
+                        activity.RequestedOrientation = Andr.PM.ScreenOrientation.Landscape;
+                        activity.SetActionBar(null);
+                        //activity.SetContentView(_view);
+                    }
 
-                if (rotated)
-                {
-                    activity.RequestedOrientation = Andr.PM.ScreenOrientation.Portrait;
-                }
-                else
-                {
-                    activity.RequestedOrientation = Andr.PM.ScreenOrientation.Landscape;
-                    activity.SetActionBar(null);
-                    //activity.SetContentView(_view);
                 }
             });
         }
