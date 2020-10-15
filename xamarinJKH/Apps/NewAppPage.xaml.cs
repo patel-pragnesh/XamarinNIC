@@ -564,19 +564,19 @@ namespace xamarinJKH.Apps
                             return false;
                         }
 
-                        if (string.IsNullOrWhiteSpace(_passApp.SeriaNumber))
-                        {
-                            DisplayAlert(AppResources.ErrorTitle, AppResources.EnterSeriaAndNumber, "OK");
-                            return false;
-                        }
-
-                        if (_passApp.SeriaNumber.Length != 11)
-                        {
-                            DisplayAlert(AppResources.ErrorTitle,
-                                AppResources.EnterSeriaAndNumber + " " + AppResources.MaskNumberPassport + ":\n" +
-                                "1234 567890", "OK");
-                            return false;
-                        }
+                        // if (string.IsNullOrWhiteSpace(_passApp.SeriaNumber))
+                        // {
+                        //     DisplayAlert(AppResources.ErrorTitle, AppResources.EnterSeriaAndNumber, "OK");
+                        //     return false;
+                        // }
+                        //
+                        // if (_passApp.SeriaNumber.Length != 11)
+                        // {
+                        //     DisplayAlert(AppResources.ErrorTitle,
+                        //         AppResources.EnterSeriaAndNumber + " " + AppResources.MaskNumberPassport + ":\n" +
+                        //         "1234 567890", "OK");
+                        //     return false;
+                        // }
 
                         return true;
 

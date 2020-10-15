@@ -187,6 +187,7 @@
                     <Label
                         FontSize="23"
                         VerticalOptions="End"
+                        IsVisible="False"
                         FontAttributes="Bold"
                         HorizontalTextAlignment="Start"
                         TextColor="Black"

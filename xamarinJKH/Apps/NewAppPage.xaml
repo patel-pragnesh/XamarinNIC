@@ -239,6 +239,7 @@
                                                      Orientation="Vertical">
                                             <Entry x:Name="EntryPassport"
                                                    FontSize="15"
+                                                   IsVisible="False"
                                                    VerticalOptions="End"
                                                    Text=""
                                                    Placeholder="{x:Static xamarinJkh:AppResources.EnterSeriaAndNumber}"
@@ -248,11 +249,9 @@
                                                    TextColor="#A2A2A2"
                                                    HorizontalOptions="FillAndExpand"
                                                    Keyboard="Numeric">
-                                                <Entry.Behaviors>
-                                                    <mask:MaskedBehavior Mask="XXXX XXXXXX" />
-                                                </Entry.Behaviors>
                                             </Entry>
                                             <Label HeightRequest="1"
+                                                   IsVisible="False"
                                                    BackgroundColor="Black"
                                                    HorizontalOptions="FillAndExpand" />
                                         </StackLayout>
