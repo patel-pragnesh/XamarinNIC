@@ -49,12 +49,12 @@
                                           Grid.ColumnSpan="2"
                                           HorizontalOptions="FillAndExpand"
                                           x:Name="Video"/>
-                    <mm:VideoView VerticalOptions="FillAndExpand"
+                    <!--<mm:VideoView VerticalOptions="FillAndExpand"
                   HorizontalOptions="FillAndExpand"
                   BackgroundColor="Black"
                   x:Name="mmVideoView"                                  
                                   
-                  />
+                  />-->
                     <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_flip.svg"
                                         IsVisible="False"
                                         Grid.Row="1"
