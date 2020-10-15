@@ -323,9 +323,18 @@ namespace xamarinJKH.Main
         {
             get
             {
-                MobileMenu mobileMenu = Settings.MobileSettings.menu.Find(x => x.name_app == "Web-камеры");
-                return mobileMenu != null && mobileMenu.visible != 0 &&
-                       Device.RuntimePlatform == "Android";
+                try
+                {
+                    MobileMenu mobileMenu = Settings.MobileSettings.menu.Find(x => x.name_app == "Web-камеры");
+                    return mobileMenu != null && mobileMenu.visible != 0 &&
+                           Device.RuntimePlatform == "Android";
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return true;
+                }
+                
             }
         }
 
