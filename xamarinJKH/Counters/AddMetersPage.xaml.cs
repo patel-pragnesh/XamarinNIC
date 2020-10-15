@@ -40,6 +40,7 @@ namespace xamarinJKH.Counters
         decimal PrevValue;
         bool SetPrev;
         int DecimalPoint { get; set; }
+        int IntegerPoint { get; set; }
         public AddMetersPage(MeterInfo meter, List<MeterInfo> meters, CountersPage countersPage, decimal counterThisMonth = 0, decimal counterPrevMonth = 0)
         {            
             InitializeComponent();
@@ -91,6 +92,8 @@ namespace xamarinJKH.Counters
             this.meter = meter;
             this.meters = meters;
             var backClick = new TapGestureRecognizer();
+            IntegerPoint = meter.NumberOfIntegerPart;
+            d41_.IsVisible = IntegerPoint == 6;
             backClick.Tapped += async (s, e) => {
                 try
                 {
@@ -272,7 +275,7 @@ namespace xamarinJKH.Counters
         private void SetCurrent(decimal counterThisMonth)
         {
             var d = GetNumbers(counterThisMonth);
-
+            if (IntegerPoint == 5)
             Device.BeginInvokeOnMainThread(() =>
             {
                 d8.Text = d[0];
@@ -284,6 +287,20 @@ namespace xamarinJKH.Counters
                 d2.Text = d[6];
                 d1.Text = d[7];                
             });
+
+            if (IntegerPoint == 6)
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    d8.Text = d[0];
+                    d7.Text = d[1];
+                    d6.Text = d[2];
+                    d41.Text = d[3];
+                    d5.Text = d[4];
+                    d4.Text = d[5];
+                    d3.Text = d[6];
+                    d2.Text = d[7];
+                    d1.Text = d[8];
+                });
         }
 
         private void D2_OnBackspace(object sender, EventArgs e)
@@ -370,7 +387,7 @@ namespace xamarinJKH.Counters
             try
             {
                 var counter8 = Convert.ToInt64(counter * 1000);
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < (IntegerPoint == 5 ? 8 : 9); i++)
                 {
                     var d = counter8 % 10;
                     retList.Add(d.ToString());
@@ -962,7 +979,10 @@ namespace xamarinJKH.Counters
                 d6.Unfocus();
                 if (DecimalPoint >= 1)
                 {
-                    d6.Focus();
+                    if (IntegerPoint == 5)
+                        d6.Focus();
+                    if (IntegerPoint == 6)
+                        d41.Focus();
                 }
             });
         }
@@ -1027,6 +1047,29 @@ namespace xamarinJKH.Counters
                     entryNew.Focus();
                     return;
                 }
+            });
+        }
+
+        private void d41_Completed(object sender, EventArgs e)
+        {
+            var entryNew = sender as CounterEntryNew;
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (string.IsNullOrWhiteSpace(entryNew.Text))
+                {
+                    return;
+                }
+
+                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+                {
+                    entryNew.Text = "";
+                    entryNew.Focus();
+                    return;
+                }
+
+                d6.Unfocus();
+                if (DecimalPoint >= 1)
+                    d6.Focus();
             });
         }
     }
