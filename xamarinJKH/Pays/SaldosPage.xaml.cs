@@ -129,6 +129,14 @@ namespace xamarinJKH.Pays
             var sortLs = new TapGestureRecognizer();
             sortLs.Tapped += async (s, e) => { SortLs(); };
             StackLayoutSortIdent.GestureRecognizers.Add(sortLs);
+            var pickLs = new TapGestureRecognizer();
+            pickLs.Tapped += async (s, e) => {  
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Picker.Focus();
+                });
+            };
+            StackLayoutLs.GestureRecognizers.Add(pickLs);
             SetText();
             this.BindingContext = this;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));

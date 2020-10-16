@@ -13,12 +13,8 @@
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Apps.AppPage">
     <ContentPage.Content>
-        <Grid x:Name="ScrollViewContainer" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <Grid x:Name="ScrollViewContainer" VerticalOptions="FillAndExpand" >
             <Image x:Name="ImageFon"
-                   
                    Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top_in}"
                    VerticalOptions="Start"
                    Margin="0,0,0,0"
@@ -26,26 +22,6 @@
                    HorizontalOptions="FillAndExpand" />
         <StackLayout x:Name="mainStack"
             Margin="0,20,0,0">
-            <!-- <RelativeLayout -->
-            <!--     x:Name="ScrollViewContainer" -->
-            <!--     Margin="0,0,0,-170" -->
-            <!--     VerticalOptions="Start" -->
-            <!--     HorizontalOptions="FillAndExpand"> -->
-            <!--     <Image x:Name="ImageTop" Margin="0, -26, 0 ,0" -->
-            <!--            Aspect="AspectFill" -->
-            <!--            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, -->
-            <!--                  Property=Width, -->
-            <!--                  Factor=0, -->
-            <!--                  Constant=0}" -->
-            <!--            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, -->
-            <!--                  Property=Height, -->
-            <!--                  Factor=0, -->
-            <!--                  Constant=0}" -->
-            <!--            Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top_in}" -->
-            <!--            VerticalOptions="Fill" -->
-            <!--            HorizontalOptions="FillAndExpand" /> -->
-            <!-- </RelativeLayout> -->
-            
             <StackLayout HorizontalOptions="Fill"
                          Orientation="Horizontal">
                 <StackLayout
