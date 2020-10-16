@@ -133,7 +133,7 @@
                                            CornerRadius="30"
                                            Margin="15, 0, 15, -30"
                                            BackgroundColor="White"
-                                           Padding="5,0,5,0" VerticalOptions="FillAndExpand">
+                                           Padding="5,0,5,70" VerticalOptions="FillAndExpand">
                 <RefreshView x:Name="messageRefreshView" Command="{Binding RefreshCommand}"
                              IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" VerticalOptions="FillAndExpand">
                     <ScrollView x:Name="scrollFroAppMessages" VerticalScrollBarVisibility="Never"
