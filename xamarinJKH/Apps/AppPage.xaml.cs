@@ -316,7 +316,7 @@ namespace xamarinJKH.Apps
                     double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
-                        ScrollViewContainer.Margin = new Thickness(0, 0, 0, -150);
+                        //ScrollViewContainer.Margin = new Thickness(0, 0, 0, -150);
                     }
 
                     break;
