@@ -45,6 +45,10 @@ namespace xamarinJKH.Server.RequestModel
         public string Error { get; set; }
         public string appLinkIOS { get; set; }
         public string appLinkAndroid { get; set; }
+        public bool districtsExists { get; set; }
+        public bool housesExists { get; set; }
+        public bool streetsExists { get; set; }
+        public bool premisesExists { get; set; }
     }
 
     public class MobileMenu

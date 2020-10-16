@@ -53,6 +53,11 @@ namespace xamarinJKH.AppsConst
         int? House;
         int? Flat;
 
+        public bool ShowArea { get => Settings.MobileSettings.districtsExists; }
+        public bool ShowStreets { get => Settings.MobileSettings.streetsExists; }
+        public bool ShowHouses { get => Settings.MobileSettings.housesExists; }
+        public bool ShowPremises { get => Settings.MobileSettings.premisesExists; }
+
         public NewAppConstPage(AppsConstPage appsPage)
         {
             _appsPage = appsPage;
