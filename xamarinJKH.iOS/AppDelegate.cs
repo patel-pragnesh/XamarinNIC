@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using MediaManager;
 //using KeyboardOverlap.Forms.Plugin.iOSUnified;
 using Plugin.FirebasePushNotification;
 using UIKit;
@@ -39,6 +40,9 @@ namespace xamarinJKH.iOS
             Messier16.Forms.iOS.Controls.Messier16Controls.InitAll();
             Rg.Plugins.Popup.Popup.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+
+            CrossMediaManager.Current.Init();
+            
             //SimpleImageButton.SimpleImageButton.Initializator.Initializator.Init();
             LoadApplication(new App());
             UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;

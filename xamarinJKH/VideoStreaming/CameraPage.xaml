@@ -8,6 +8,7 @@
              xmlns:video="clr-namespace:xamarinJKH.VideoStreaming"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:converters="clr-namespace:xamarinJKH.Converters"
+            xmlns:mm="clr-namespace:MediaManager.Forms;assembly=MediaManager.Forms"
              NavigationPage.HasNavigationBar="False"
              x:Class="xamarinJKH.VideoStreaming.CameraPage">
     <ContentPage.Resources>
@@ -48,6 +49,12 @@
                                           Grid.ColumnSpan="2"
                                           HorizontalOptions="FillAndExpand"
                                           x:Name="Video"/>
+                    <!--<mm:VideoView VerticalOptions="FillAndExpand"
+                  HorizontalOptions="FillAndExpand"
+                  BackgroundColor="Black"
+                  x:Name="mmVideoView"                                  
+                                  
+                  />-->
                     <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_flip.svg"
                                         IsVisible="False"
                                         Grid.Row="1"

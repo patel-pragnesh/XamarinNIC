@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MediaManager;
+using MediaManager.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,6 +49,12 @@ namespace xamarinJKH.VideoStreaming
         {
             InitializeComponent();
             BindingContext = this;
+
+            //var item =  CrossMediaManager.Current.Extractor.CreateMediaItem(link);
+            
+            //mmVideoView.Source = link;
+            //mmVideoView.AutoPlay = true;
+
             IsLoading = true;
             Link = link;
             PlayerHeight = 100;

@@ -109,7 +109,28 @@ namespace xamarinJKH.DialogViews
                 }
                 else
                 {
-                    await Launcher.OpenAsync(url);
+                    if (DependencyService.Get<IOpenApp>().IsOpenApp(package))
+                    {
+                        await Launcher.OpenAsync(url);
+                    }
+                    else
+                    {
+                        var uri = $"https://itunes.apple.com/us/app/";
+
+                        if (package.Contains("what"))
+                            uri += "whatsapp-messenger/id310633997";
+
+                        if (package.Contains("teleg"))
+                            uri += "telegram-messenger/id686449807";
+
+                        if (package.Contains("viber"))
+                            uri += "viber-messenger-chats-calls/id382617920";
+
+                        //await Launcher.OpenAsync(url);
+                        await Launcher.OpenAsync(uri);
+
+                    }
+
                 }
                 // await PopupNavigation.Instance.PopAsync();
             }

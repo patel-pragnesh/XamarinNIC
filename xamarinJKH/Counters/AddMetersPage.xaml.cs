@@ -40,6 +40,7 @@ namespace xamarinJKH.Counters
         decimal PrevValue;
         bool SetPrev;
         int DecimalPoint { get; set; }
+        int IntegerPoint { get; set; }
         public AddMetersPage(MeterInfo meter, List<MeterInfo> meters, CountersPage countersPage, decimal counterThisMonth = 0, decimal counterPrevMonth = 0)
         {            
             InitializeComponent();
@@ -91,6 +92,8 @@ namespace xamarinJKH.Counters
             this.meter = meter;
             this.meters = meters;
             var backClick = new TapGestureRecognizer();
+            IntegerPoint = meter.NumberOfIntegerPart;
+            d41_.IsVisible = IntegerPoint == 6;
             backClick.Tapped += async (s, e) => {
                 try
                 {
@@ -154,6 +157,7 @@ namespace xamarinJKH.Counters
             d7.OnBackspace += D7_OnBackspace;
             d8.OnBackspace += D8_OnBackspace;
 
+            d41.OnBackspace += D41_OnBackspace;
 
 
             d1.Focused += Entry_Focused;
@@ -164,6 +168,7 @@ namespace xamarinJKH.Counters
             d6.Focused += Entry_Focused;
             d7.Focused += Entry_Focused;
             d8.Focused += Entry_Focused;
+            d41.Focused += Entry_Focused;
 
 
             //d1.Unfocused += Entry_Unfocused;
@@ -272,7 +277,7 @@ namespace xamarinJKH.Counters
         private void SetCurrent(decimal counterThisMonth)
         {
             var d = GetNumbers(counterThisMonth);
-
+            if (IntegerPoint == 5)
             Device.BeginInvokeOnMainThread(() =>
             {
                 d8.Text = d[0];
@@ -284,6 +289,20 @@ namespace xamarinJKH.Counters
                 d2.Text = d[6];
                 d1.Text = d[7];                
             });
+
+            if (IntegerPoint == 6)
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    d8.Text = d[0];
+                    d7.Text = d[1];
+                    d6.Text = d[2];
+                    d41.Text = d[3];
+                    d5.Text = d[4];
+                    d4.Text = d[5];
+                    d3.Text = d[6];
+                    d2.Text = d[7];
+                    d1.Text = d[8];
+                });
         }
 
         private void D2_OnBackspace(object sender, EventArgs e)
@@ -334,11 +353,18 @@ namespace xamarinJKH.Counters
         {
             if (string.IsNullOrWhiteSpace(d6.Text))
             {
+                if (IntegerPoint == 5)
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     d5.Text = "";
                     d5.Focus();
                 });
+                if (IntegerPoint == 6)
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        d41.Text = "";
+                        d41.Focus();
+                    });
             }
         }
         private void D7_OnBackspace(object sender, EventArgs e)
@@ -364,13 +390,25 @@ namespace xamarinJKH.Counters
             }
         }
 
+        private void D41_OnBackspace(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(d41.Text))
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    d5.Text = "";
+                    d5.Focus();
+                });
+            }
+        }
+
         List<string> GetNumbers(decimal counter)
         {
             var retList = new List<string>();
             try
             {
                 var counter8 = Convert.ToInt64(counter * 1000);
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < (IntegerPoint == 5 ? 8 : 9); i++)
                 {
                     var d = counter8 % 10;
                     retList.Add(d.ToString());
@@ -429,15 +467,18 @@ namespace xamarinJKH.Counters
                 var p6 = -1;
                 var p7 = -1;
                 var p8 = -1;
+                var p41 = -1;
 
                 if (int.TryParse(d1.Text,out p1) && int.TryParse(d2.Text, out p2) && int.TryParse(d3.Text, out p3) 
                     && int.TryParse(d4.Text, out p4) && int.TryParse(d5.Text, out p5) && int.TryParse(d6.Text == null ? "0" : d6.Text, out p6)
-                    && int.TryParse(d7.Text == null ? "0" : d7.Text, out p7) && int.TryParse(d8.Text == null ? "0" : d8.Text, out p8))
+                    && int.TryParse(d7.Text == null ? "0" : d7.Text, out p7) && int.TryParse(d8.Text == null ? "0" : d8.Text, out p8)
+                    && (int.TryParse(d41.Text == null ? "0" : d41.Text, out p41) && IntegerPoint == 6 || d41.Text == null && IntegerPoint == 5))
                 {
                     count += d1.Text;// != "0" ? d1.Text : "";
                     count += d2.Text;// != "0" ? d2.Text : "";
                     count += d3.Text;// != "0" ? d3.Text : "";
                     count += d4.Text;// != "0" ? d4.Text : "";
+                    count += IntegerPoint == 6 ? d41.Text : "";
                     count += d5.Text+ ",";
                     count += d6.Text;// != "0" ? d6.Text : "";
                     count += d7.Text;// != "0" ? d7.Text : "";
@@ -962,7 +1003,10 @@ namespace xamarinJKH.Counters
                 d6.Unfocus();
                 if (DecimalPoint >= 1)
                 {
-                    d6.Focus();
+                    if (IntegerPoint == 5)
+                        d6.Focus();
+                    if (IntegerPoint == 6)
+                        d41.Focus();
                 }
             });
         }
@@ -1027,6 +1071,29 @@ namespace xamarinJKH.Counters
                     entryNew.Focus();
                     return;
                 }
+            });
+        }
+
+        private void d41_Completed(object sender, EventArgs e)
+        {
+            var entryNew = sender as CounterEntryNew;
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (string.IsNullOrWhiteSpace(entryNew.Text))
+                {
+                    return;
+                }
+
+                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+                {
+                    entryNew.Text = "";
+                    entryNew.Focus();
+                    return;
+                }
+
+                d6.Unfocus();
+                if (DecimalPoint >= 1)
+                    d6.Focus();
             });
         }
     }
