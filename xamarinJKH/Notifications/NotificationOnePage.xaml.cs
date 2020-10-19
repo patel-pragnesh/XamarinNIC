@@ -96,16 +96,19 @@ namespace xamarinJKH.Notifications
             {
                 _additional = Settings.GetAdditionalService(announcementInfoAdditionalServiceId);
                 byte[] imageByte = await _server.GetPhotoAdditional(announcementInfoAdditionalServiceId.ToString());
-                Stream stream = new MemoryStream(imageByte);
-                ImageAdd.Source = ImageSource.FromStream(() => { return stream; });
-                ImageAdd.IsVisible = true;
-
-                var openAdditional = new TapGestureRecognizer();
-                openAdditional.Tapped += async (s, e) =>
+                if (imageByte != null)
                 {
-                    await Navigation.PushAsync(new AdditionalOnePage(_additional));
-                };
-                ImageAdd.GestureRecognizers.Add(openAdditional);
+                    Stream stream = new MemoryStream(imageByte);
+                    ImageAdd.Source = ImageSource.FromStream(() => { return stream; });
+                    ImageAdd.IsVisible = true;
+
+                    var openAdditional = new TapGestureRecognizer();
+                    openAdditional.Tapped += async (s, e) =>
+                    {
+                        await Navigation.PushAsync(new AdditionalOnePage(_additional));
+                    };
+                    ImageAdd.GestureRecognizers.Add(openAdditional);
+                }
             }
 
             if (_announcementInfo.QuestionGroupID != -1)
