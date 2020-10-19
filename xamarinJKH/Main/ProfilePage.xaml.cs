@@ -121,13 +121,15 @@ namespace xamarinJKH.Main
         {
             Regex regex = new Regex(@"^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$");
             if (!string.IsNullOrEmpty(EntryEmail.Text))
-            if (regex.IsMatch(EntryEmail.Text))
             {
-                SaveInfoAccount(EntryFio.Text, EntryEmail.Text);
+                if (regex.IsMatch(EntryEmail.Text))
+                {
+                    SaveInfoAccount(EntryFio.Text, EntryEmail.Text);
+                }
             }
             else
             {
-                await DisplayAlert(null, AppResources.CorrectEmail, "OK");
+                 await DisplayAlert(null, AppResources.CorrectEmail, "OK");
             }
         }
         
