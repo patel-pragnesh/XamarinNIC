@@ -116,6 +116,42 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:218509099028:android:b903008c6dab322edf2701",
+        "android_client_info": {
+          "package_name": "sys_rom.ru.avalon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.mobileMIR"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:218509099028:android:5dbdce59bd2c754e",
         "android_client_info": {
           "package_name": "sys_rom.ru.cristal_app"
