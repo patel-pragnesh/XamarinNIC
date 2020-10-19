@@ -386,8 +386,14 @@ namespace xamarinJKH
 
         private async void RegCodeRequest(object sender, EventArgs e)
         {
+            (sender as Button).IsEnabled = false;
             await RequestCodeTask();
+            (sender as Button).IsEnabled = true;
         }
+
+
+        
+        bool pressed;
 
         private async Task RequestCodeTask()
         {
@@ -398,8 +404,10 @@ namespace xamarinJKH
                 Opacity = 0.8,
                 DefaultMessage = AppResources.Loading,
             };
+            if (!pressed)
             try
             {
+                pressed = true;
                 await Loading.Instance.StartAsync(async progress =>
                 {
                     CommonResult result = await _server.RequestAccessCode(Person.Phone);
@@ -421,6 +429,7 @@ namespace xamarinJKH
 
                         // FrameBtnReg.IsVisible = true;
                         // progress.IsVisible = false;
+                        
                         Loading.Instance.Hide();
                     }
                     else
@@ -437,6 +446,7 @@ namespace xamarinJKH
                             DependencyService.Get<IMessage>().ShortAlert(result.Error);
                         }
                     }
+                    pressed = false;
                 });
             }
             catch { }
