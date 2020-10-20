@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>286222649128-k0ogkrdb8qfbn4k8osltopbc2npjl3ia.apps.googleusercontent.com</string>
+	<string>218509099028-khfsqq68q47dsc5p8ktvl85q2ratuf7i.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.286222649128-k0ogkrdb8qfbn4k8osltopbc2npjl3ia</string>
+	<string>com.googleusercontent.apps.218509099028-khfsqq68q47dsc5p8ktvl85q2ratuf7i</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>218509099028-bsqhtqvk6l875p5koqsv1t3sqqddmpj1.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAjyKMIWK2I6mVebLP98iZsP7TNu0Prdt0</string>
+	<string>AIzaSyC08hSw7ALG6wHdKsE7o_f5r25-8oN0IpE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>286222649128</string>
+	<string>218509099028</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>rom.best.profikomfort</string>
+	<string>rom.best.UyutService</string>
 	<key>PROJECT_ID</key>
-	<string>xamarin-62054</string>
+	<string>newjkh-73c37</string>
 	<key>STORAGE_BUCKET</key>
-	<string>xamarin-62054.appspot.com</string>
+	<string>newjkh-73c37.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:286222649128:ios:f8e52c6c45ac2bbb10321d</string>
+	<string>1:218509099028:ios:3c111f1efeb5a19a</string>
 	<key>DATABASE_URL</key>
-	<string>https://xamarin-62054.firebaseio.com</string>
+	<string>https://newjkh-73c37.firebaseio.com</string>
 </dict>
 </plist>
