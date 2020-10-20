@@ -12,7 +12,18 @@
             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
             xmlns:ff="clr-namespace:FFImageLoading.Forms.Args;assembly=FFImageLoading.Forms"     
             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+            xmlns:badge="clr-namespace:Plugin.Badge.Abstractions;assembly=Plugin.Badge.Abstractions"
+            xmlns:converters="clr-namespace:xamarinJKH.Converters"
             x:Class="xamarinJKH.Main.BottomNavigationPage">
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <converters:BadgeBackgroundColorConverter x:Key="BadgeColor"/>
+            <Style TargetType="badge:Badge">
+                <Setter Property="badge:TabBadge.BadgeColor" Value="Red"/>
+                <Setter Property="badge:TabBadge.BadgeTextColor" Value="White"/>
+            </Style>
+        </ResourceDictionary>
+    </TabbedPage.Resources>
     <NavigationPage x:Name="EventsNavPage" HasNavigationBar="False" Title="{x:Static resources:AppResources.Events_NavBar}" IconImageSource="ic_events" BarBackgroundColor="Black" BarTextColor="White" >
         <x:Arguments>
             <local:EventsPage  Title="{x:Static resources:AppResources.Events_NavBar}" IconImageSource="ic_events" />
@@ -33,7 +44,9 @@
             <local:CountersPage Title="{x:Static resources:AppResources.Meters_NavBar}" IconImageSource="ic_counters" />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage x:Name="AppPage"  Title="{x:Static resources:AppResources.App_NavBar}" IconImageSource="ic_apps" BarBackgroundColor="Black" BarTextColor="White">
+    <NavigationPage x:Name="AppPage"  Title="{x:Static resources:AppResources.App_NavBar}" IconImageSource="ic_apps" BarBackgroundColor="Black" BarTextColor="White"
+                    badge:TabBadge.BadgeText="{Binding RequestsAmount}"
+                    badge:TabBadge.BadgeColor="Red">
         <x:Arguments>
             <local:AppsPage Title="{x:Static resources:AppResources.App_NavBar}" IconImageSource="ic_apps" />
         </x:Arguments>

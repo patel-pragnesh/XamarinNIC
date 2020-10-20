@@ -21,11 +21,22 @@ namespace xamarinJKH.Main
         private RestClientMP server = new RestClientMP();
 
         public Command ChangeTheme { get; set; }
+        int? request_amount;
+        public int? RequestsAmount
+        {
+            get => request_amount;
+            set
+            {
+                request_amount = value;
+                OnPropertyChanged("RequestsAmount");
+            }
+        }
 
         public BottomNavigationPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            BindingContext = this;
             Color hex = (Color) Application.Current.Resources["MainColor"];
             SelectedTabColor = hex;
             GetBrand();
@@ -165,6 +176,15 @@ namespace xamarinJKH.Main
             Loadtab();
 
             MessagingCenter.Subscribe<Object>(this, "ChangeTheme", (sender) => ChangeTheme.Execute(null));
+
+            MessagingCenter.Subscribe<Object, int>(this, "SetRequestsAmount", (sender, args) =>
+            {
+                if (args > 0)
+                    RequestsAmount = args;
+                else
+                    RequestsAmount = null;
+                
+            });
         }
 
         void StartUpdateToken()
