@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -75,6 +76,7 @@ namespace xamarinJKH
         public NotificationsPage()
         {
             InitializeComponent();
+            Analytics.TrackEvent("Список уведомлений");
             NavigationPage.SetHasNavigationBar(this, false);
 
             switch (Device.RuntimePlatform)

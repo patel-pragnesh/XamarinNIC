@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
+using Microsoft.AppCenter.Analytics;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
@@ -87,6 +88,7 @@ namespace xamarinJKH.MainConst
         public AppsConstPage()
         {
             InitializeComponent();
+            Analytics.TrackEvent("Заявки сотрудника " + Settings.Person.Login);
             NavigationPage.SetHasNavigationBar(this, false);
             this.BindingContext = this;
 

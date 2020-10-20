@@ -10,6 +10,7 @@ using Xamarin.Essentials;
 using xamarinJKH.CustomRenderers;
 using System.Net.Http;
 using AiForms.Dialogs;
+using Microsoft.AppCenter.Analytics;
 using Xamarin.Forms.PancakeView;
 
 namespace xamarinJKH.Pays
@@ -21,6 +22,8 @@ namespace xamarinJKH.Pays
         public PayPdf(PayPdfViewModel vm)
         {
             InitializeComponent();
+            Analytics.TrackEvent("Просмотр ПДФ по квитанции №" + vm.Bill.ID);
+
             BindingContext = viewModel = vm;
             viewModel.LoadPdf.Execute(null);
             View pdfview;

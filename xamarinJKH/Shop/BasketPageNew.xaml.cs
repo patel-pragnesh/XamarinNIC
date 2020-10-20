@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.AppCenter.Analytics;
 using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
@@ -23,6 +23,7 @@ namespace xamarinJKH.Shop
         public BasketPageNew(ShopViewModel vm)
         {
             InitializeComponent();
+            Analytics.TrackEvent("Корзина магазина");
 
             if (Device.RuntimePlatform == Device.iOS)
             {

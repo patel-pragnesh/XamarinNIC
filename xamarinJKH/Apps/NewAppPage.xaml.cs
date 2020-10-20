@@ -30,6 +30,7 @@ using xamarinJKH.DialogViews;
 using Xamarin.Essentials;
 using System.Text.RegularExpressions;
 using dotMorten.Xamarin.Forms;
+using Microsoft.AppCenter.Analytics;
 
 namespace xamarinJKH.Apps
 {
@@ -54,6 +55,8 @@ namespace xamarinJKH.Apps
         public NewAppPage()
         {
             InitializeComponent();
+            Analytics.TrackEvent("Создание заявки");
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:

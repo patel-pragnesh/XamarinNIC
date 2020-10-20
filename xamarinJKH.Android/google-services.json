@@ -1,49 +1,301 @@
 {
   "project_info": {
-    "project_number": "486573125776",
-    "firebase_url": "https://myprojects-e5656.firebaseio.com",
-    "project_id": "myprojects-e5656",
-    "storage_bucket": "myprojects-e5656.appspot.com"
+    "project_number": "218509099028",
+    "firebase_url": "https://newjkh-73c37.firebaseio.com",
+    "project_id": "newjkh-73c37",
+    "storage_bucket": "newjkh-73c37.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:ec04d7db91bc0922",
+        "mobilesdk_app_id": "1:218509099028:android:2e88c4e861125a23",
         "android_client_info": {
-          "package_name": "com.metinvest.nfc_marks"
+          "package_name": "ru.kolesnikov.smssendler"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-tttd4u905qgiifjcjpj7f7ovar5nec5e.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.mobileMIR"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218509099028:android:feefc5c8d6d7d31cdf2701",
+        "android_client_info": {
+          "package_name": "sys_rom.ric_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.mobileMIR"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218509099028:android:105a720b79383f23",
+        "android_client_info": {
+          "package_name": "sys_rom.ru.ads_68_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.mobileMIR"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218509099028:android:b903008c6dab322edf2701",
+        "android_client_info": {
+          "package_name": "sys_rom.ru.avalon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.mobileMIR"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218509099028:android:5dbdce59bd2c754e",
+        "android_client_info": {
+          "package_name": "sys_rom.ru.cristal_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.mobileMIR"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218509099028:android:53c9b8a133a311bd",
+        "android_client_info": {
+          "package_name": "sys_rom.ru.dj_service_vl_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.mobileMIR"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218509099028:android:2270b8eb65ce7c53df2701",
+        "android_client_info": {
+          "package_name": "sys_rom.ru.easy_life_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rom.best.mobileMIR"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218509099028:android:85a765cc75570142",
+        "android_client_info": {
+          "package_name": "sys_rom.ru.electrosbit_saratov_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218509099028-bsqhtqvk6l875p5koqsv1t3sqqddmpj1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.metinvest.nfc_marks",
+            "package_name": "sys_rom.ru.electrosbit_saratov_app",
             "certificate_hash": "276b9decdbcd3def8d004fde47bcbecd46077b84"
           }
         },
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -52,34 +304,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:a5c28aebe336d9560fe815",
+        "mobilesdk_app_id": "1:218509099028:android:f55c9231345c8355df2701",
         "android_client_info": {
-          "package_name": "sys_rom.alternativa"
+          "package_name": "sys_rom.ru.energoprogress_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -88,34 +340,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:1a39a708437d44450fe815",
+        "mobilesdk_app_id": "1:218509099028:android:0f59631a36e4e1b0",
         "android_client_info": {
-          "package_name": "sys_rom.cb14"
+          "package_name": "sys_rom.ru.fregat_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -124,34 +376,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:be082e91efe816db0fe815",
+        "mobilesdk_app_id": "1:218509099028:android:cc703cc0c5b8c659",
         "android_client_info": {
-          "package_name": "sys_rom.centr_inv"
+          "package_name": "sys_rom.ru.jkh_pavlovsk_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -160,34 +412,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:e38efcbdf3df33da0fe815",
+        "mobilesdk_app_id": "1:218509099028:android:86e54719313392b0df2701",
         "android_client_info": {
-          "package_name": "sys_rom.clear_city"
+          "package_name": "sys_rom.ru.mobilni_mir"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -196,34 +448,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:fa8122724e47ce5a0fe815",
+        "mobilesdk_app_id": "1:218509099028:android:dad41da6abc35b9ddf2701",
         "android_client_info": {
-          "package_name": "sys_rom.doka"
+          "package_name": "sys_rom.ru.monolit_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -232,34 +484,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:087b899711d4e3ed0fe815",
+        "mobilesdk_app_id": "1:218509099028:android:2da21b1d54b26cf6",
         "android_client_info": {
-          "package_name": "sys_rom.ego"
+          "package_name": "sys_rom.ru.mup_irkc_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -268,34 +520,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:cf69a8bcf2e3200f0fe815",
+        "mobilesdk_app_id": "1:218509099028:android:e187393377f8ce9bdf2701",
         "android_client_info": {
-          "package_name": "sys_rom.greenway"
+          "package_name": "sys_rom.ru.mup_vodokonal_sergposad"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -304,34 +556,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:dccc84a101b6e8490fe815",
+        "mobilesdk_app_id": "1:218509099028:android:e6bf64752c32c95b",
         "android_client_info": {
-          "package_name": "sys_rom.gumse"
+          "package_name": "sys_rom.ru.naryan_mar_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -340,34 +592,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:c9771a8cfa80892f0fe815",
+        "mobilesdk_app_id": "1:218509099028:android:b631c516172e5b55",
         "android_client_info": {
-          "package_name": "sys_rom.kapital"
+          "package_name": "sys_rom.ru.new_opaliha_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -376,34 +628,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:df2e79bc994568960fe815",
+        "mobilesdk_app_id": "1:218509099028:android:fddd5636c9b87135",
         "android_client_info": {
-          "package_name": "sys_rom.mainstream"
+          "package_name": "sys_rom.ru.parus_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -412,34 +664,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:0fd080a81291f3d30fe815",
+        "mobilesdk_app_id": "1:218509099028:android:2a15dea7ce0eec1a",
         "android_client_info": {
-          "package_name": "sys_rom.occ"
+          "package_name": "sys_rom.ru.pritom_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -448,34 +700,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:9e7b24515736613c0fe815",
+        "mobilesdk_app_id": "1:218509099028:android:35f5e9b6e4ae177ddf2701",
         "android_client_info": {
-          "package_name": "sys_rom.ru.alfa"
+          "package_name": "sys_rom.ru.rkc_samara_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -484,34 +736,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:e0f794b30eb8a7500fe815",
+        "mobilesdk_app_id": "1:218509099028:android:3cd9b0537792ed5d",
         "android_client_info": {
-          "package_name": "sys_rom.ru.clean_and_right"
+          "package_name": "sys_rom.ru.rodnikmup_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -520,34 +772,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:3a710ee67882debb0fe815",
+        "mobilesdk_app_id": "1:218509099028:android:d0672249efeb0679",
         "android_client_info": {
-          "package_name": "sys_rom.ru.ego_comfort"
+          "package_name": "sys_rom.ru.servicecom_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -556,34 +808,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:f123cb1fd6d8a0c00fe815",
+        "mobilesdk_app_id": "1:218509099028:android:939b09e27ccf5cea",
         "android_client_info": {
-          "package_name": "sys_rom.ru.ion"
+          "package_name": "sys_rom.ru.sib_aliance_uk_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -592,34 +844,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:c41fd914102e9d4c0fe815",
+        "mobilesdk_app_id": "1:218509099028:android:cbda909eb5091bf2",
         "android_client_info": {
-          "package_name": "sys_rom.ru.kapitalinvest"
+          "package_name": "sys_rom.ru.spartak_uk_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -628,34 +880,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:a2163482f0d06d760fe815",
+        "mobilesdk_app_id": "1:218509099028:android:bcf152bd5bf6d8e0",
         "android_client_info": {
-          "package_name": "sys_rom.ru.new_mounting"
+          "package_name": "sys_rom.ru.stroimbud_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -664,34 +916,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:18c46305113f52a70fe815",
+        "mobilesdk_app_id": "1:218509099028:android:0c7005bf669fe03d",
         "android_client_info": {
-          "package_name": "sys_rom.ru.optium"
+          "package_name": "sys_rom.ru.teplovodoresources_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -700,34 +952,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:1313a96bf20c79250fe815",
+        "mobilesdk_app_id": "1:218509099028:android:1041c82e76c211c5",
         "android_client_info": {
-          "package_name": "sys_rom.ru.quiet_harbor"
+          "package_name": "sys_rom.ru.tsj_archangel_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -736,34 +988,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:77833a731e35036d0fe815",
+        "mobilesdk_app_id": "1:218509099028:android:cc4b52b0f951a8e8",
         "android_client_info": {
-          "package_name": "sys_rom.ru.ramen_lefor"
+          "package_name": "sys_rom.ru.tsj_kosm11_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -772,34 +1024,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:b98e1365d38dd4c10fe815",
+        "mobilesdk_app_id": "1:218509099028:android:1fc1d048090195dd",
         "android_client_info": {
-          "package_name": "sys_rom.ru.rkc_samara_ap"
+          "package_name": "sys_rom.ru.tsn_dnestr_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -808,34 +1060,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:98adee13201182200fe815",
+        "mobilesdk_app_id": "1:218509099028:android:56d322ed0229fef3",
         "android_client_info": {
-          "package_name": "sys_rom.ru.rosvodokanal"
+          "package_name": "sys_rom.ru.tsn_rible40_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -844,34 +1096,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:3489a5f5c21e1e7b0fe815",
+        "mobilesdk_app_id": "1:218509099028:android:e48131608677821a",
         "android_client_info": {
-          "package_name": "sys_rom.ru.severnoe"
+          "package_name": "sys_rom.ru.uk_garmonia_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -880,34 +1132,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:3ce104d771e42f790fe815",
+        "mobilesdk_app_id": "1:218509099028:android:5055f8af3bf83aae",
         "android_client_info": {
-          "package_name": "sys_rom.ru.sibir"
+          "package_name": "sys_rom.ru.uk_paritet_khab_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -916,34 +1168,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:d0369a9e40b8a69b0fe815",
+        "mobilesdk_app_id": "1:218509099028:android:467801f32ff10c95",
         "android_client_info": {
-          "package_name": "sys_rom.ru.suhanovo"
+          "package_name": "sys_rom.ru.uk_perspectiva_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -952,34 +1204,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:eabe2c223e67f1590fe815",
+        "mobilesdk_app_id": "1:218509099028:android:1d9757bf220efaaddf2701",
         "android_client_info": {
-          "package_name": "sys_rom.ru.uk_maximum"
+          "package_name": "sys_rom.ru.uk_upravdom_che_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]
@@ -988,250 +1240,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:3b1b58ce9781d6870fe815",
+        "mobilesdk_app_id": "1:218509099028:android:7e2c3e97339765ca",
         "android_client_info": {
-          "package_name": "sys_rom.ru.uk_zip"
+          "package_name": "sys_rom.ru.uyut_service_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+          "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
+          "current_key": "AIzaSyB-oUauRlFdTx-N1U31BCYSQcfIgT1b2Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
+              "client_id": "218509099028-df9cvedj7v1k4otq1s1sn02d68886p9h.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
+              "client_id": "218509099028-bau5a4d12olsm8io5dnhnvctc1h7t1ov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:a58ca754339f823c0fe815",
-        "android_client_info": {
-          "package_name": "sys_rom.ru.ukom"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:5ff6297ea54fd8440fe815",
-        "android_client_info": {
-          "package_name": "sys_rom.ru.vest_snab"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:667995230e44db880fe815",
-        "android_client_info": {
-          "package_name": "sys_rom.ru.vodokanal2"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:dd46d9a9ebea136a0fe815",
-        "android_client_info": {
-          "package_name": "sys_rom.ru.zhilupravkom"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:9b63b92fd0b1ad8a0fe815",
-        "android_client_info": {
-          "package_name": "sys_rom.un_resh"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:486573125776:android:373fbc743ddb44210fe815",
-        "android_client_info": {
-          "package_name": "sys_rom.valley"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBIu-zUC_OzFPcbiec45qLt1O2rAM9Xk8Y"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "486573125776-lg8cce55lh899bpen07ij4rl2dcf8t83.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "486573125776-u9ftg6op2j24t5bvht2553a8p297in5p.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "rom.best.ogniMoskvi"
+                "bundle_id": "rom.best.mobileMIR"
               }
             }
           ]

@@ -18,6 +18,7 @@ using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 using System.Globalization;
 using System.Threading;
+using Microsoft.AppCenter.Analytics;
 
 namespace xamarinJKH.MainConst
 {
@@ -31,6 +32,8 @@ namespace xamarinJKH.MainConst
         public ProfileConstPage()
         {
             InitializeComponent();
+            Analytics.TrackEvent("Профиль сотрудника");
+
             isSave = Preferences.Get("isPass", false);
             NavigationPage.SetHasNavigationBar(this, false);
             var exitClick = new TapGestureRecognizer();

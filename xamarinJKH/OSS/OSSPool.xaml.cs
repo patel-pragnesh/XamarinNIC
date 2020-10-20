@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -37,7 +38,7 @@ namespace xamarinJKH
         public OSSPool(OSS oSS)
         {
             InitializeComponent();
-
+            Analytics.TrackEvent("Вопросы ОСС");
             NavigationPage.SetHasNavigationBar(this, false);
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await PopupNavigation.Instance.PushAsync(new TechDialog()); };

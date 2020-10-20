@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Analytics;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -26,6 +27,7 @@ namespace xamarinJKH.DialogViews
             this.paysPage = paysPage;
             AddIdent = addIdent;
             InitializeComponent();
+            Analytics.TrackEvent("Диалог для ввода пин-кода для добавления лс");
             var close = new TapGestureRecognizer();
             close.Tapped += async (s, e) => { await PopupNavigation.Instance.PopAsync(); };
             IconViewClose.GestureRecognizers.Add(close);

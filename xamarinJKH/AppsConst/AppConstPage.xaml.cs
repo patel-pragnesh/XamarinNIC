@@ -28,6 +28,7 @@ using PermissionStatus = Plugin.Permissions.Abstractions.PermissionStatus;
 using System.Threading.Tasks.Sources;
 using System.Threading.Tasks;
 using System.Threading;
+using Microsoft.AppCenter.Analytics;
 
 namespace xamarinJKH.AppsConst
 {
@@ -269,6 +270,8 @@ namespace xamarinJKH.AppsConst
             _requestInfo = requestInfo;
             this.isNotRead = isNotRead;
             InitializeComponent();
+            Analytics.TrackEvent("Заявка сотрудника №"+ requestInfo.RequestNumber);
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:

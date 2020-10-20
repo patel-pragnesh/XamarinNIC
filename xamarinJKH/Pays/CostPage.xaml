@@ -189,6 +189,7 @@
                                             <Label
                                                 Text="Услуги ЖКУ"
                                                 FontSize="15"
+                                                IsVisible="False"
                                                 TextColor="Black"
                                                 Margin="-10, 0, 0, 0"
                                                 VerticalOptions="Center" />
@@ -215,6 +216,7 @@
                                             Orientation="Horizontal">
                                             <Label
                                                 HeightRequest="2"
+                                                IsVisible="False"
                                                 BackgroundColor="#DEDEDE"
                                                 WidthRequest="150" />
                                             <Label

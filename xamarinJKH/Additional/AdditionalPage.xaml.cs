@@ -24,6 +24,7 @@ using Rg.Plugins.Popup.Services;
 using xamarinJKH.DialogViews;
 using Xamarin.Essentials;
 using System.Text.RegularExpressions;
+using Microsoft.AppCenter.Analytics;
 
 namespace xamarinJKH.Additional
 {
@@ -161,6 +162,7 @@ namespace xamarinJKH.Additional
         public AdditionalPage()
         {
             InitializeComponent();
+            Analytics.TrackEvent("Доп услуги");
             NavigationPage.SetHasNavigationBar(this, false);
             Map.BindingContext = new MapPageViewModel();
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.AppCenter.Analytics;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -35,6 +36,7 @@ namespace xamarinJKH.Monitor
         public MonitorAppsPage(List<Requests> requestInfos)
         {
             InitializeComponent();
+            Analytics.TrackEvent("Заявки мониторинга");
             NavigationPage.SetHasNavigationBar(this, false);
             switch (Device.RuntimePlatform)
             {

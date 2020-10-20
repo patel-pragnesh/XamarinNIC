@@ -30,6 +30,7 @@ using Rg.Plugins.Popup.Services;
 using xamarinJKH.CustomRenderers;
 using System.Globalization;
 using System.Threading;
+using Microsoft.AppCenter.Analytics;
 using xamarinJKH.InterfacesIntegration;
 
 namespace xamarinJKH
@@ -375,6 +376,7 @@ namespace xamarinJKH
         
         public async void Login(string loginAuth, string pass)
         {
+            Analytics.TrackEvent("Авторизация пользователя");
             progress.IsVisible = true;
             FrameBtnLogin.IsVisible = false;
 
@@ -432,6 +434,7 @@ namespace xamarinJKH
 
         public async void LoginDispatcher(string loginAuth, string pass)
         {
+            Analytics.TrackEvent("Авторизация сотрудника");
             progress.IsVisible = true;
             FrameBtnLogin.IsVisible = false;
 

@@ -9,6 +9,7 @@ using System.Xml.Xsl;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
 using FFImageLoading.Svg.Forms;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -76,7 +77,7 @@ namespace xamarinJKH.Main
             InitializeComponent();
             //BindingContext = viewModel = new PaysPageViewModel(this.baseForPays, _accountingInfo);
 
-
+            Analytics.TrackEvent("Оплата");
             //PaysPageViewModel(this.baseForPays, _accountingInfo);
             Settings.mainPage = this;
             NavigationPage.SetHasNavigationBar(this, false);

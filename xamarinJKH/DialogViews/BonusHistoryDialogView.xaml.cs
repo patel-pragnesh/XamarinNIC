@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Microsoft.AppCenter.Analytics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.ViewModels.DialogViewModels;
@@ -18,6 +18,8 @@ namespace xamarinJKH.DialogViews
         public BonusHistoryDialogView(string ident)
         {
             InitializeComponent();
+            Analytics.TrackEvent("Диалог истории бонусов");
+
             BindingContext = viewModel = new BonusHistoryViewModel();
             viewModel.LoadHistory.Execute(ident);
         }

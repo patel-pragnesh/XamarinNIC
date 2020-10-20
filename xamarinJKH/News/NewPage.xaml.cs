@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -35,6 +36,7 @@ namespace xamarinJKH.News
         {
             this.newsInfo = newsInfo;
             InitializeComponent();
+            Analytics.TrackEvent("Новость");
 
             switch (Device.RuntimePlatform)
             {

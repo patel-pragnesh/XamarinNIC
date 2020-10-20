@@ -22,8 +22,9 @@ using xamarinJKH.ViewModels.Main;
 using Xamarin.Essentials;
 using System.Text.RegularExpressions;
 using System.Runtime.CompilerServices;
+ using Microsoft.AppCenter.Analytics;
 
-namespace xamarinJKH.Main
+ namespace xamarinJKH.Main
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AppsPage : ContentPage
@@ -166,6 +167,7 @@ namespace xamarinJKH.Main
         public AppsPage()
         {
             InitializeComponent();
+            Analytics.TrackEvent("Заявки жителя");
             //Settings.MobileSettings.color = null;
             hex = Color.FromHex(!string.IsNullOrEmpty(Settings.MobileSettings.color) ? Settings.MobileSettings.color : "#FF0000");
             BindingContext = viewModel = new AppsPageViewModel();

@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using Xamarin.Forms.Internals;
 using System.Diagnostics.Tracing;
 using AiForms.Dialogs;
+using Microsoft.AppCenter.Analytics;
 using xamarinJKH.Server.RequestModel;
 
 namespace xamarinJKH.DialogViews
@@ -24,6 +25,7 @@ namespace xamarinJKH.DialogViews
         public AppConstDialogWindow(List<RequestsReceiptItem> items, int id, int shop)
         {
             InitializeComponent();
+            Analytics.TrackEvent("Добавление товара к заказу сотрудником");
             Shop = shop;
             BindingContext = viewModel = new AppRecieptConstViewModel(items, id, this.DialogNotifier);
             

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
+using Microsoft.AppCenter.Analytics;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -41,6 +42,7 @@ namespace xamarinJKH.MainConst
         public MonitorPage()
         {
             InitializeComponent();
+            Analytics.TrackEvent("Мониторинг");
             NavigationPage.SetHasNavigationBar(this, false);
             hex = (Color)Application.Current.Resources["MainColor"];
             fontSize = 13;

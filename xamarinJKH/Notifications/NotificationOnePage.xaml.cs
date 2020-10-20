@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -37,6 +38,7 @@ namespace xamarinJKH.Notifications
             
             _announcementInfo = announcementInfo;
             InitializeComponent();
+            Analytics.TrackEvent("Уведомление " + announcementInfo.ID);
             CollectionViewFiles.ItemsLayout = new GridItemsLayout(2, ItemsLayoutOrientation.Vertical);
             switch (Device.RuntimePlatform)
             {

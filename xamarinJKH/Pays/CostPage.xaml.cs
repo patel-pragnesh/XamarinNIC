@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -34,6 +35,7 @@ namespace xamarinJKH.Pays
             this.account = account;
             Accounts = accounts;
             InitializeComponent();
+            Analytics.TrackEvent("Оплата по ЛС " + account.Ident);
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await PopupNavigation.Instance.PushAsync(new TechDialog()); };
             LabelTech.GestureRecognizers.Add(techSend);
@@ -216,8 +218,9 @@ namespace xamarinJKH.Pays
             // {
             //     Picker.WidthRequest = identLength * 9;
             // }
-
             account = Accounts[Picker.SelectedIndex];
+            Analytics.TrackEvent("Смена лс в оплате на "  + account.Ident);
+
             SetPays();
         }
 

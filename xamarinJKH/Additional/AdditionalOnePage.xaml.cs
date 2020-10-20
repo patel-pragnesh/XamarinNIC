@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FFImageLoading.Svg.Forms;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -46,7 +47,6 @@ namespace xamarinJKH.Additional
         {
             this.additionalService = additionalService;
             InitializeComponent();
-            
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -113,6 +113,7 @@ namespace xamarinJKH.Additional
             if (additionalService.Name != null && !additionalService.Name.Equals(""))
             {
                 LabelTitle.Text = additionalService.Name;
+                Analytics.TrackEvent("Доп услуга " + additionalService.Name);
             }
             else
             {

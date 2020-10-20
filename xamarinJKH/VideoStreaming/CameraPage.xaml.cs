@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.AppCenter.Analytics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -48,6 +48,7 @@ namespace xamarinJKH.VideoStreaming
         public CameraPage(string link)
         {
             InitializeComponent();
+            Analytics.TrackEvent("Камера " + link);
             BindingContext = this;
 
             //var item =  CrossMediaManager.Current.Extractor.CreateMediaItem(link);

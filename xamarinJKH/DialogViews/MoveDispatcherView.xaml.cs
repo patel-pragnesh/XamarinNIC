@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
+using Microsoft.AppCenter.Analytics;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -28,6 +29,8 @@ namespace xamarinJKH.DialogViews
             HexColor = hexColor;
             _Request = request;
             InitializeComponent();
+            Analytics.TrackEvent("Диалог смены сотрудника");
+
             IsConst = isConst;
             getDispatcherList();
             var close = new TapGestureRecognizer();

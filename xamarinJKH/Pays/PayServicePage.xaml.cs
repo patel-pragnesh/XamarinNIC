@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
+using Microsoft.AppCenter.Analytics;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -27,6 +28,7 @@ namespace xamarinJKH.Pays
         {
             this.idRequset = idRequset;
             InitializeComponent();
+            Analytics.TrackEvent("Шлюз оплаты по лс" + ident);
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => {

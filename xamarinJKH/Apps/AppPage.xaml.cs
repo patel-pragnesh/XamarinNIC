@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.AppCenter.Analytics;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -258,6 +259,7 @@ namespace xamarinJKH.Apps
             }
             _requestInfo = requestInfo;
             InitializeComponent();
+            Analytics.TrackEvent("Заявка жителя №" + requestInfo.RequestNumber);
 
             try
             {

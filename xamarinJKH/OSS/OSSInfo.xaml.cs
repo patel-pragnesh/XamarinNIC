@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Services;
@@ -50,6 +51,7 @@ namespace xamarinJKH
         public OSSInfo(OSS sObj)
         {
             InitializeComponent();
+            Analytics.TrackEvent("ОСС Инфо");
             forsvg = false;
             BindingContext = this;
 

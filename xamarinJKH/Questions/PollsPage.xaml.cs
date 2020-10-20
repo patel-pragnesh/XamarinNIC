@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -38,7 +39,7 @@ namespace xamarinJKH.Questions
             _pollInfo = pollInfo;
             _isComplite = isComplite;
             InitializeComponent();
-
+            Analytics.TrackEvent("Вопросы по опросу " + pollInfo.ID);
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:

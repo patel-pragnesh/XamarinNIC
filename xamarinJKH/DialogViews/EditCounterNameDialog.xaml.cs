@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
+using Microsoft.AppCenter.Analytics;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -25,6 +26,8 @@ namespace xamarinJKH.DialogViews
             hex = hexColor;
             UniqueNum = uniqName;
             InitializeComponent();
+            Analytics.TrackEvent("Диалог смены названия прибора");
+
             var close = new TapGestureRecognizer();
             close.Tapped += async (s, e) => { await PopupNavigation.Instance.PopAsync(); };
             IconViewClose.GestureRecognizers.Add(close);
