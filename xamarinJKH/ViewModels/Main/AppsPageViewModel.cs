@@ -88,6 +88,7 @@ namespace xamarinJKH.ViewModels.Main
                         Settings.UpdateKey = response.UpdateKey;
                     if (response.Requests != null)
                     {
+                        MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => x.IsClosed == false).Count());
                         AllRequests.AddRange(response.Requests);
                         if (Requests == null)
                         {
@@ -109,6 +110,7 @@ namespace xamarinJKH.ViewModels.Main
             var response = await Server.GetRequestsList();
             if (response.Error == null)
             {
+                MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => x.IsClosed == false).Count());
                 if (AllRequests != null)
                 {
                     Empty = Requests.Count == 0;
