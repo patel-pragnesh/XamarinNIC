@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
+using Microsoft.AppCenter.Analytics;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -30,6 +31,7 @@ namespace xamarinJKH.DialogViews
             else
                 Device.BeginInvokeOnMainThread(async () => await Rg.Plugins.Popup.Services.PopupNavigation.PopAsync());
             InitializeComponent();
+            Analytics.TrackEvent("Диалог тех.поддержки");
             LabelInfo.Text =
                 AppResources.TechAdditionalText1 +
                 Settings.MobileSettings.main_name + AppResources.TechAdditionalText2;

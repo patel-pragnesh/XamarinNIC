@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.AppCenter.Analytics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,6 +25,8 @@ namespace xamarinJKH.News
         public NewFile(string img)
         {
             InitializeComponent();
+            Analytics.TrackEvent("Файл новостей");
+
             Image = img;
             BindingContext = this;
         }

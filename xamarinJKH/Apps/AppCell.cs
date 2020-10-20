@@ -1,6 +1,7 @@
 ﻿using FFImageLoading.Svg.Forms;
 using System;
 using System.Collections.Generic;
+using Microsoft.AppCenter.Analytics;
 using Xamarin.Forms;
 using xamarinJKH.CustomRenderers;
 using xamarinJKH.Utils;
@@ -169,6 +170,8 @@ namespace xamarinJKH.Apps
 
             if (BindingContext != null)
             {
+                Analytics.TrackEvent("Формирование списка заявок у жителя");
+
                 FormattedString formatted = new FormattedString();
                 formatted.Spans.Add(new Span
                 {

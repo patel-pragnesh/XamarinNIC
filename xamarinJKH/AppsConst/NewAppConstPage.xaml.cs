@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
+using Microsoft.AppCenter.Analytics;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
 using Plugin.Media;
@@ -49,7 +50,7 @@ namespace xamarinJKH.AppsConst
         {
             _appsPage = appsPage;
             InitializeComponent();
-
+            Analytics.TrackEvent("Создание заявки сотрудником");
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:

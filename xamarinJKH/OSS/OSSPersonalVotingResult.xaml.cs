@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -26,6 +27,7 @@ namespace xamarinJKH
         public OSSPersonalVotingResult(OSS oSS, bool userFinishPool=false)
         {
             InitializeComponent();
+            Analytics.TrackEvent("Персональные результаты голосования ОСС");
             if (oSS.Accounts.Count > 0)
             {
                 OSSAccount oSsAccount = oSS.Accounts[0];

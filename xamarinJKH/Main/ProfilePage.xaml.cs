@@ -20,6 +20,7 @@ using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 using System.Threading;
 using System.Globalization;
+using Microsoft.AppCenter.Analytics;
 
 namespace xamarinJKH.Main
 {
@@ -39,7 +40,7 @@ namespace xamarinJKH.Main
         public ProfilePage()
         {
             InitializeComponent();
-
+            Analytics.TrackEvent("Профиль жителя");
             if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
                 ImageBack.IsVisible = true;
 

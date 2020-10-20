@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Analytics;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -36,6 +37,7 @@ namespace xamarinJKH.DialogViews
             title = request.PaidServiceText;
             isBonusVisible = false;
             InitializeComponent();
+            Analytics.TrackEvent("Диалог выбора оплаты по заявке");
             Frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"],
                 Color.Transparent);
 

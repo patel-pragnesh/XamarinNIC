@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
+using Microsoft.AppCenter.Analytics;
 using Rg.Plugins.Popup.Services;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
@@ -45,6 +46,7 @@ namespace xamarinJKH
 
         public RegistrForm(MainPage mainPage)
         {
+            Analytics.TrackEvent("Регистрация");
             InitializeComponent(); 
             viewModel = new RegistrFormViewModel(this.Navigation);
             this.BindingContext = viewModel;
@@ -322,6 +324,7 @@ namespace xamarinJKH
 
         private async void SecondStep()
         {
+            Analytics.TrackEvent("Второй шаг регистрации");
             var entryCodeText = EntryCode.Text;
             CheckResult result = await _server.RequestChechCode(Person.Phone, entryCodeText);
             if (result.IsCorrect)
@@ -460,6 +463,7 @@ namespace xamarinJKH
 
         private async void FinalRegg()
         {
+            Analytics.TrackEvent("Финальный шаг регистрации");
             string pass = EntryPassNew.Text;
             string passConfirm = EntryPassCommit.Text;
             if (pass.Equals(""))

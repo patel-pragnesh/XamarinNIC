@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Plugin.FirebaseCrashlytics;
 using Plugin.Messaging;
@@ -40,6 +41,8 @@ namespace xamarinJKH.Main
         public EventsPage()
         {
             InitializeComponent();
+            Analytics.TrackEvent("События");
+            Analytics.TrackEvent(Newtonsoft.Json.JsonConvert.SerializeObject(Settings.Person.Accounts));
             BindingContext = viewModel = new EventsPageViewModel();
             NavigationPage.SetHasNavigationBar(this, false);
             switch (Device.RuntimePlatform)
@@ -56,7 +59,7 @@ namespace xamarinJKH.Main
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) =>
             {
-                if (Settings.MobileSettings.сheckCrashSystem)
+                // if (Settings.MobileSettings.сheckCrashSystem)
                     Crashes.GenerateTestCrash();
                
                 await PopupNavigation.Instance.PushAsync(new TechDialog());

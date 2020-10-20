@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.AppCenter.Analytics;
 using Plugin.FirebaseCrashlytics;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
@@ -82,7 +83,7 @@ namespace xamarinJKH.Pays
         {
             this.Accounts = accounts;
             InitializeComponent();
-
+            Analytics.TrackEvent("История платежей");
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -200,7 +201,10 @@ namespace xamarinJKH.Pays
             //     Picker.WidthRequest = identLength * 9;
             // }
             additionalList.ItemsSource = null;
-            additionalList.ItemsSource = setPays(Accounts[Picker.SelectedIndex]);
+            AccountAccountingInfo account = Accounts[Picker.SelectedIndex];
+            additionalList.ItemsSource = setPays(account);
+            Analytics.TrackEvent("Смена лс на " + account.Ident);
+
         }
 
         private void OnItemTapped(object sender, ItemTappedEventArgs e)

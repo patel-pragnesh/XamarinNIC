@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -26,6 +27,7 @@ namespace xamarinJKH
         public OSSMain()
         {
             InitializeComponent();
+            Analytics.TrackEvent("Главная ОСС");
             forsvg = false;
             this.BindingContext = this;
             var techSend = new TapGestureRecognizer();

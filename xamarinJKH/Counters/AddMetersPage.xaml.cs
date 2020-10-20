@@ -15,6 +15,7 @@ using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 using Xamarin.Forms.Internals;
 using System.Security.Cryptography;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms.Markup;
@@ -44,6 +45,7 @@ namespace xamarinJKH.Counters
         public AddMetersPage(MeterInfo meter, List<MeterInfo> meters, CountersPage countersPage, decimal counterThisMonth = 0, decimal counterPrevMonth = 0)
         {            
             InitializeComponent();
+            Analytics.TrackEvent("Передача показаний по счетчику №" + meter.UniqueNum);
             NavigationPage.SetHasNavigationBar(this, false);
             _countersPage = countersPage;
             _counterThisMonth = counterThisMonth;

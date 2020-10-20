@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AiForms.Dialogs.Abstractions;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Messaging;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -27,7 +28,7 @@ namespace xamarinJKH.DialogViews
         public InfoAppDialog()
         {
             InitializeComponent();
-            
+            Analytics.TrackEvent("Инфо о заявке ");
             IconViewPhone.IsVisible = Settings.Person.IsDispatcher;
             Frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
             switch (Device.RuntimePlatform)

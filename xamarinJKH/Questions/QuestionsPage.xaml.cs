@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -96,6 +97,7 @@ namespace xamarinJKH.Questions
         public QuestionsPage()
         {
             InitializeComponent();
+            Analytics.TrackEvent("Список опросов");
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {    await PopupNavigation.Instance.PushAsync(new TechDialog()); };
             LabelTech.GestureRecognizers.Add(techSend);

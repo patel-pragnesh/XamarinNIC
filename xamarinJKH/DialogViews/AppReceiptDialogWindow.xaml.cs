@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 
 using xamarinJKH.ViewModels.DialogViewModels;
 using AiForms.Dialogs.Abstractions;
+using Microsoft.AppCenter.Analytics;
 
 namespace xamarinJKH.DialogViews
 {
@@ -18,6 +19,7 @@ namespace xamarinJKH.DialogViews
         public AppReceiptDialogWindow(AppRecieptViewModel vm)
         {
             InitializeComponent();
+            Analytics.TrackEvent("Чек по заказу");
 
             BindingContext = vm;
         }

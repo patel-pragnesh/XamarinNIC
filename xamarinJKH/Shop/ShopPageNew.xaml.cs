@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.AppCenter.Analytics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.DialogViews;
@@ -20,6 +20,7 @@ namespace xamarinJKH.Shop
         public ShopPageNew(xamarinJKH.Server.RequestModel.AdditionalService select)
         {
             InitializeComponent();
+            Analytics.TrackEvent("Магазин " + select.Name);
 
             if(Device.RuntimePlatform==Device.iOS)
             {

@@ -9,6 +9,7 @@ using xamarinJKH.Utils;
 using xamarinJKH.Server;
 using System.Runtime.CompilerServices;
 using Akavache;
+using Microsoft.AppCenter.Analytics;
 using Xamarin.Essentials;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Additional;
@@ -24,6 +25,7 @@ namespace xamarinJKH.Main
 
         public BottomNavigationPage()
         {
+            Analytics.TrackEvent("Форма нижнего меню");
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             Color hex = (Color) Application.Current.Resources["MainColor"];

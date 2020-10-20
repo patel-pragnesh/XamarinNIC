@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AiForms.Dialogs;
+using Microsoft.AppCenter.Analytics;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -84,6 +85,7 @@ namespace xamarinJKH.Pays
         {
             SetBills(infos);
             InitializeComponent();
+            Analytics.TrackEvent("Квитанции");
             Accounts = infos;
             switch (Device.RuntimePlatform)
             {

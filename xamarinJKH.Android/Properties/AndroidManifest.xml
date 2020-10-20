@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="4" android:versionName="3.5" 
-		  package="sys_rom.ru.ego_comfort" android:installLocation="preferExternal">
+		  package="sys_rom.ru.easy_life_app" android:installLocation="preferExternal">
 	<uses-sdk android:minSdkVersion="18" android:targetSdkVersion="29" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Analytics;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -57,6 +58,7 @@ namespace xamarinJKH.Shop
             SelectedAcc = Settings.Person.Accounts[0];
             isBonusVisible = Settings.MobileSettings.useBonusSystem;
             InitializeComponent();
+            Analytics.TrackEvent("Подтверждение заказа");
             var openUrl = new TapGestureRecognizer();
             openUrl.Tapped += async (s, e) =>
             {
