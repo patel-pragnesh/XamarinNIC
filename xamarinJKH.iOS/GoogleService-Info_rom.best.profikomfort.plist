@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1075563506975-96armnqrb6g7458i80ovv3jt4ir9qehh.apps.googleusercontent.com</string>
+	<string>286222649128-k0ogkrdb8qfbn4k8osltopbc2npjl3ia.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1075563506975-96armnqrb6g7458i80ovv3jt4ir9qehh</string>
+	<string>com.googleusercontent.apps.286222649128-k0ogkrdb8qfbn4k8osltopbc2npjl3ia</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA9z_zGeXzFMWiYZ-Sw4nDE3ezwHr9LMfE</string>
+	<string>AIzaSyAjyKMIWK2I6mVebLP98iZsP7TNu0Prdt0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1075563506975</string>
+	<string>286222649128</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>rom.best.profikomfort</string>
 	<key>PROJECT_ID</key>
-	<string>testproject-59796</string>
+	<string>xamarin-62054</string>
 	<key>STORAGE_BUCKET</key>
-	<string>testproject-59796.appspot.com</string>
+	<string>xamarin-62054.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1075563506975:ios:e6e6123c56861716e4d42a</string>
+	<string>1:286222649128:ios:f8e52c6c45ac2bbb10321d</string>
 	<key>DATABASE_URL</key>
-	<string>https://testproject-59796.firebaseio.com</string>
+	<string>https://xamarin-62054.firebaseio.com</string>
 </dict>
 </plist>
