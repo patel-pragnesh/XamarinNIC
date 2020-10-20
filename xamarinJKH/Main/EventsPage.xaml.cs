@@ -59,7 +59,7 @@ namespace xamarinJKH.Main
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) =>
             {
-                // if (Settings.MobileSettings.сheckCrashSystem)
+                if (Settings.MobileSettings.сheckCrashSystem)
                     Crashes.GenerateTestCrash();
                
                 await PopupNavigation.Instance.PushAsync(new TechDialog());
