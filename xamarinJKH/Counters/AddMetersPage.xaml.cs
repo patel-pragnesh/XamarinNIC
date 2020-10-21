@@ -96,6 +96,11 @@ namespace xamarinJKH.Counters
             var backClick = new TapGestureRecognizer();
             IntegerPoint = meter.NumberOfIntegerPart;
             d41_.IsVisible = IntegerPoint == 6;
+            if (IntegerPoint == 6)
+            {
+                var view = d41_.Parent as StackLayout;
+                view.Margins<StackLayout>(-10, 0, -10, 0);
+            }
             backClick.Tapped += async (s, e) => {
                 try
                 {
