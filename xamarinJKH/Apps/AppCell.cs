@@ -108,11 +108,45 @@ namespace xamarinJKH.Apps
             containerData.Children.Add(LabelDate);
             containerData.Children.Add(stackLayoutStatus);
 
+            Frame readindicator = new Frame
+            {
+                BackgroundColor = Color.Red,
+                CornerRadius = 5
+            };
+
+            Grid containerMain = new Grid();
+            containerMain.Padding = 0;
+            containerMain.ColumnDefinitions = new ColumnDefinitionCollection
+            {
+                new ColumnDefinition{ Width = GridLength.Star },
+                new ColumnDefinition{ Width = new GridLength(5) }
+            };
+
+            containerMain.RowDefinitions = new RowDefinitionCollection
+            {
+                new RowDefinition { Height = new GridLength(5)},
+                new RowDefinition { Height = GridLength.Star }
+            };
 
             container.Children.Add(containerData);
             container.Children.Add(arrow);
 
-            frame.Content = container;
+            containerMain.Children.Add(container);
+            Grid.SetRowSpan(container, 2);
+            Grid.SetColumnSpan(container, 2);
+
+            if (Read)
+            {
+                Frame readIndicator = new Frame
+                {
+                    CornerRadius = 5,
+                    BackgroundColor = Color.Red
+                };
+                containerMain.Children.Add(readIndicator, 1, 0);
+                
+            }
+
+            frame.Content = containerMain;
 
 
             View = frame;
@@ -133,6 +167,9 @@ namespace xamarinJKH.Apps
 
         public static readonly BindableProperty StatusIDProperty =
             BindableProperty.Create("StatusID", typeof(int), typeof(AppCell), 0);
+
+        public static readonly BindableProperty ReadProperty =
+            BindableProperty.Create("Read", typeof(bool), typeof(AppCell));
 
         public string Number
         {
@@ -163,7 +200,11 @@ namespace xamarinJKH.Apps
             set { SetValue(TextAppProperty, value); }
         }
 
-
+        public bool Read
+        {
+            get { return (bool)GetValue(ReadProperty); }
+            set { SetValue(ReadProperty, value); }
+        }
         protected override async void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
