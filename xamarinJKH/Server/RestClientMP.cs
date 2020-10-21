@@ -180,8 +180,13 @@ namespace xamarinJKH.Server
             TRANSIT_ORDER =
                 "RequestsDispatcher/SetPaidRequestStatusOnTheWay"; // Установка статуса платной заявки в 'курьер в пути'
 
-        public const string UPDATE_RECEIPT = "RequestsDispatcher/UpdateRequestReceipts";
-        public const string CAMERAS_LIST = "Houses/WebCams";
+        public const string UPDATE_RECEIPT = "RequestsDispatcher/UpdateRequestReceipts"; //Обновление элементов чека в магазине
+        public const string CAMERAS_LIST = "Houses/WebCams"; // Список веб-камер
+
+
+        public const string READ_REQUEST = "Requests/SetReadedFlag"; // Установка флага прочтения заявки
+        public const string READ_NOTIFICATION = "Announcements/SetReadedFlag"; //Установка флага прочтения объявления
+        public const string READ_POLL = "Polls/SetReadedFlag";//Установка флага прочтения опроса
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -2433,10 +2438,10 @@ namespace xamarinJKH.Server
         /// </summary>
         /// <param name="RequestId"> ID заявки</param>
         /// <returns>CommonResult</returns>
-        public async Task<CommonResult> SetReadedFlag (int RequestId)
+        public async Task<CommonResult> SetReadedFlag (int RequestId, bool isDispatcher = true)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
-            RestRequest restRequest = new RestRequest(SET_READED_APP, Method.POST);
+            RestRequest restRequest = new RestRequest(isDispatcher ? SET_READED_APP : READ_REQUEST, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
             restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
@@ -2445,6 +2450,61 @@ namespace xamarinJKH.Server
             {
                 RequestId
             });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
+
+        public async Task<CommonResult> SetNotificationReadFlag(int ID)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(READ_NOTIFICATION, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+               ID
+            });
+
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
+        public async Task<CommonResult> SetPollReadFlag(int ID)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(READ_POLL, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                ID
+            });
+
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
 
             // Проверяем статус
