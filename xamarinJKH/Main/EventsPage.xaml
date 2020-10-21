@@ -8,7 +8,13 @@
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:resouces="clr-namespace:xamarinJKH"
+             xmlns:converters="clr-namespace:xamarinJKH.Converters"
              x:Class="xamarinJKH.Main.EventsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:NumberIsGreaterThanZeroConverter x:Key="Greater"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <Grid>
@@ -131,12 +137,20 @@
                                                            BackgroundColor="White"
                                                            Padding="0"
                                                            Margin="10,0,10,10">
-                                <StackLayout Orientation="Horizontal">
-                                    <StackLayout
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.7*"/>
+                                        <ColumnDefinition Width="0.3*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout Orientation="Horizontal"
+                                            Grid.ColumnSpan="2">
+                                        <StackLayout
                                         Padding="0, 25, 0, 25"
                                         HorizontalOptions="FillAndExpand"
                                         Orientation="Horizontal">
-                                        <svg:SvgCachedImage
+                                            <svg:SvgCachedImage
                                             x:Name="IconViewNotification"
                                             Source="resource://xamarinJKH.Resources.ic_notification.svg"
                                             HeightRequest="40"
@@ -144,7 +158,7 @@
                                             Margin="15,0,30,0"
                                             HorizontalOptions="Start"
                                             VerticalOptions="Center" />
-                                        <Label
+                                            <Label
                                             Text="{x:Static xamarinJkh:AppResources.Notifications}"
                                             FontSize="20"
                                             TextColor="Black"
@@ -152,7 +166,7 @@
                                             Margin="-20, 0, 0, 0"
                                             HorizontalOptions="FillAndExpand"
                                             VerticalOptions="Center" />
-                                        <svg:SvgCachedImage
+                                            <svg:SvgCachedImage
                                             x:Name="IconViewForvardNotification"
                                             Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
                                             HeightRequest="25"
@@ -161,8 +175,39 @@
                                             Margin="0,0,15,0"
                                             HorizontalOptions="End"
                                             VerticalOptions="Center" />
+                                        </StackLayout>
                                     </StackLayout>
-                                </StackLayout>
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Frame Grid.Column="1"
+                                               Grid.Row="1"
+                                               BackgroundColor="Red"
+                                               Padding="0"
+                                               HasShadow="False"
+                                               IsVisible="{Binding AnnounsmentsCount, Converter={x:StaticResource Greater}}"
+                                               CornerRadius="15">
+                                            <Label Text="{Binding AnnounsmentsCount}"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   VerticalOptions="FillAndExpand"
+                                                   TextColor="White"
+                                                   FontAttributes="Bold"
+                                                   FontSize="16"
+                                                   HorizontalTextAlignment="Center"
+                                                   VerticalTextAlignment="Center"/>
+                                        </Frame>
+                                    </Grid>
+                                </Grid>
+                                
                             </customRenderers:MaterialFrame>
                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameNews"
                                                            IsVisible="{Binding ShowNews}"
@@ -205,6 +250,7 @@
                                     </StackLayout>
                                 </StackLayout>
                             </customRenderers:MaterialFrame>
+                            
                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameQuestions"
                                                            IsVisible="{Binding ShowPolls}"
                                                            CornerRadius="30"
@@ -213,12 +259,18 @@
                                                            VerticalOptions="Start"
                                                            Padding="0"
                                                            BackgroundColor="White">
-                                <StackLayout Orientation="Horizontal">
-                                    <StackLayout
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.7*"/>
+                                        <ColumnDefinition Width="0.3*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout Orientation="Horizontal" Grid.ColumnSpan="2">
+                                        <StackLayout
                                         Padding="0, 25, 0, 25"
                                         HorizontalOptions="FillAndExpand"
                                         Orientation="Horizontal">
-                                        <svg:SvgCachedImage
+                                            <svg:SvgCachedImage
                                             x:Name="IconViewQuestions"
                                             Source="resource://xamarinJKH.Resources.ic_questions2.svg"
                                             HeightRequest="40"
@@ -226,7 +278,7 @@
                                             Margin="15,0,30,0"
                                             HorizontalOptions="Start"
                                             VerticalOptions="Center" />
-                                        <Label
+                                            <Label
                                             Text="{x:Static resouces:AppResources.Quiz}"
                                             FontSize="20"
                                             TextColor="Black"
@@ -234,7 +286,7 @@
                                             Margin="-20, 0, 0, 0"
                                             HorizontalOptions="FillAndExpand"
                                             VerticalOptions="Center" />
-                                        <svg:SvgCachedImage
+                                            <svg:SvgCachedImage
                                             x:Name="IconViewForvardNewsнг"
                                             Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
                                             HeightRequest="25"
@@ -243,8 +295,39 @@
                                             Margin="0,0,15,0"
                                             HorizontalOptions="End"
                                             VerticalOptions="Center" />
+                                        </StackLayout>
                                     </StackLayout>
-                                </StackLayout>
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Frame Grid.Column="1"
+                                               Grid.Row="1"
+                                               BackgroundColor="Red"
+                                               Padding="0"
+                                               HasShadow="False"
+                                               IsVisible="{Binding PollsCount, Converter={x:StaticResource Greater}}"
+                                               CornerRadius="15">
+                                            <Label Text="{Binding PollsCount}"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   VerticalOptions="FillAndExpand"
+                                                   TextColor="White"
+                                                   FontAttributes="Bold"
+                                                   FontSize="16"
+                                                   HorizontalTextAlignment="Center"
+                                                   VerticalTextAlignment="Center"/>
+                                        </Frame>
+                                    </Grid>
+                                </Grid>
+                                
                             </customRenderers:MaterialFrame>
                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOffers"
                                                            IsVisible="{Binding ShowAdditionalServices}"
