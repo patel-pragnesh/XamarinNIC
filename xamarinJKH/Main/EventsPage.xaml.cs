@@ -125,6 +125,7 @@ namespace xamarinJKH.Main
                     return;
                 }
 
+
             }); 
             MessagingCenter.Subscribe<Object>(this, "StartTech", async (sender) =>
             {
@@ -342,6 +343,29 @@ namespace xamarinJKH.Main
         }
 
         public Command LoadData { get; set; }
+        public Command CountNew { get; set; }
+
+        int announcementsCount;
+        public int AnnounsmentsCount
+        {
+            get => announcementsCount;
+            set
+            {
+                announcementsCount = value;
+                OnPropertyChanged(nameof(AnnounsmentsCount));
+            }
+        }
+
+        int pollsCount;
+        public int PollsCount
+        {
+            get => pollsCount;
+            set
+            {
+                pollsCount = value;
+                OnPropertyChanged(nameof(PollsCount));
+            }
+        }
         public EventsPageViewModel()
         {
             LoadData = new Command(async () =>
@@ -362,6 +386,12 @@ namespace xamarinJKH.Main
                         ShowAnnouncements = data.Announcements.Count != 0 && Settings.NotifVisible;
                 }
                 ShowAdditionalServices = false;
+                CountNew.Execute(null);
+            });
+            CountNew = new Command(() =>
+            {
+                AnnounsmentsCount = Settings.EventBlockData.Announcements.Where(x => !x.IsReaded).Count();
+                PollsCount = Settings.EventBlockData.Polls.Where(x => !x.IsReaded).Count();
             });
         }
     }
