@@ -376,6 +376,15 @@ namespace xamarinJKH.Apps
             };
             StackLayoutPlay.GestureRecognizers.Add(pay);
             setText();
+            if (!requestInfo.IsReadedByClient)
+            {
+                Task.Run(async () =>
+                {
+                    var res = await _server.SetReadedFlag(requestInfo.ID, false);
+                    MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", -1);
+                    requestInfo.IsReadedByClient = true;
+                });
+            }
             //additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
