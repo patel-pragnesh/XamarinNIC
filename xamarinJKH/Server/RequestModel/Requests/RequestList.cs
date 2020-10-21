@@ -31,6 +31,7 @@ namespace xamarinJKH.Server.RequestModel
         public int ShopId { get; set; }
         // Флаг "Прочитана сотрудником"
         public bool IsReaded { get; set; }
+        public bool IsReadedByClient { get; set; }
     }
 
     public class RequestContent : RequestInfo
