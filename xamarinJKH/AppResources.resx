@@ -1455,7 +1455,7 @@
     <value>Введите корректный Email.</value>
   </data>
   <data name="DatePick" xml:space="preserve">
-    <value>Введите дату рождения</value>
+    <value>Введите дату рождения в формате ДД.ММ.ГГГГ</value>
   </data>
   <data name="ShowHistory" xml:space="preserve">
     <value>Показать списания</value>

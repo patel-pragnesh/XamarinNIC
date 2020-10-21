@@ -1468,7 +1468,7 @@ A bot will call you on your number PHONE and tell an access code</value>
     <value>Enter a valid Email.</value>
   </data>
   <data name="DatePick" xml:space="preserve">
-    <value>Enter your date of birth</value>
+    <value>Enter your date of birth in the format DD.MM.YYYY</value>
   </data>
   <data name="ShowHistory" xml:space="preserve">
     <value>Show history</value>

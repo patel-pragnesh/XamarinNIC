@@ -209,10 +209,25 @@
                                         Margin="15,0,0,0"
                                         Format="dd.MM.yyyy"
                                         FontSize="15"
+                                        IsVisible="False"
                                         HorizontalOptions="Center"
                                         Date="6.01.2000"
                                         TextColor="#A2A2A2"
                                         DateSelected="datePicker_DateSelected" />
+                                        <Entry x:Name="DateEntry"
+                                               FontSize="15"
+                                               Margin="15,0,0,0"
+                                               TextColor="#A2A2A2"
+                                               Text=""
+                                               Keyboard="Numeric"
+                                               TextChanged="DateEntry_OnTextChanged"
+                                               BackgroundColor="Transparent"
+                                               HorizontalTextAlignment="Center"
+                                               HorizontalOptions="FillAndExpand" >
+                                            <Entry.Behaviors>
+                                                <mask:MaskedBehavior Mask="XX.XX.XXXX" />
+                                            </Entry.Behaviors>
+                                            </Entry>
                                         
                                         <!-- <Entry x:Name="EntryDate" -->
                                         <!--        FontSize="15" -->

@@ -17,7 +17,6 @@ using Xamarin.Forms.PlatformConfiguration;
 using xamarinJKH.CustomRenderers;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
-
 using xamarinJKH.ViewModels;
 using Xamarin.Forms.PancakeView;
 using xamarinJKH.DialogViews;
@@ -47,11 +46,11 @@ namespace xamarinJKH
         public RegistrForm(MainPage mainPage)
         {
             Analytics.TrackEvent("Регистрация");
-            InitializeComponent(); 
+            InitializeComponent();
             viewModel = new RegistrFormViewModel(this.Navigation);
             this.BindingContext = viewModel;
             UkName.Text = viewModel.Title;
-            hex = (Color)Application.Current.Resources["MainColor"];
+            hex = (Color) Application.Current.Resources["MainColor"];
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -65,8 +64,8 @@ namespace xamarinJKH
                     //DOB.IsVisible = false;
                     //DOBSeparator.IsVisible = false;
 
-                    if(Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width<700)
-                    {                        
+                    if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
+                    {
                         DOBLabel.FontSize = 12;
                         LabelTimer.FontSize = 10;
                         lblConfirmPass.FontSize = 10;
@@ -81,12 +80,14 @@ namespace xamarinJKH
                     {
                         BackStackLayout.Margin = new Thickness(10, -150, 0, 0);
                     }
+
                     break;
                 default:
                     break;
             }
+
             NavigationPage.SetHasNavigationBar(this, false);
-        
+
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += BackClick;
             BackStackLayout.GestureRecognizers.Add(backClick);
@@ -101,13 +102,10 @@ namespace xamarinJKH
                 if (isNext)
                     SecondStep();
             };
-            FrameBtnNextTwo.GestureRecognizers.Add(nextReg2); 
-            
+            FrameBtnNextTwo.GestureRecognizers.Add(nextReg2);
+
             var finalReg = new TapGestureRecognizer();
-            finalReg.Tapped += async (s, e) =>
-            {
-                FinalRegg();
-            };
+            finalReg.Tapped += async (s, e) => { FinalRegg(); };
             FrameBtnRegFinal.GestureRecognizers.Add(finalReg);
 
             _mainPage = mainPage;
@@ -122,7 +120,7 @@ namespace xamarinJKH
                     ImageClosePass.ReplaceStringMap = new Dictionary<string, string>
                     {
                         {"#000000", $"#{Settings.MobileSettings.color}"}
-                    }; 
+                    };
                 }
                 else
                 {
@@ -130,11 +128,9 @@ namespace xamarinJKH
                     LayoutConfirmLines.IsVisible = false;
                     ImageClosePass.ReplaceStringMap = new Dictionary<string, string>
                     {
-                        { "#000000", Color.DarkSlateGray.ToHex()}
-                    }; 
-                    
+                        {"#000000", Color.DarkSlateGray.ToHex()}
+                    };
                 }
-                
             };
             ImageClosePass.GestureRecognizers.Add(passwordVisible);
             switch (Device.RuntimePlatform)
@@ -145,12 +141,14 @@ namespace xamarinJKH
                         EntryPassNew.FontSize = 12;
                         EntryPassCommit.FontSize = 12;
                     }
+
                     break;
                 case Device.Android:
                     break;
                 default:
                     break;
             }
+
             BootomFrame.SetAppThemeColor(Frame.BorderColorProperty, hex, Color.LightGray);
 
             RegistrationFrameStep1.SetAppThemeColor(PancakeView.BorderColorProperty, hex, Color.White);
@@ -163,12 +161,12 @@ namespace xamarinJKH
             BindingContext = this;
         }
 
-     
 
         private void NextReg(object sender, EventArgs e)
         {
             FirstStepReg();
-        } 
+        }
+
         private async void Tech(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(new TechDialog(false));
@@ -191,9 +189,10 @@ namespace xamarinJKH
             LabelSteps.Text = $"{AppResources.Step} 2";
             step = 1;
         }
-        
+
         private async void FirstStepReg()
         {
+            Analytics.TrackEvent("Певый шаг регистрации");
             string phone = EntryPhone.Text
                 .Replace("+", "")
                 .Replace(" ", "")
@@ -201,12 +200,27 @@ namespace xamarinJKH
                 .Replace(")", "")
                 .Replace("-", "");
             string fio = EntryFio.Text;
-            string date =  DatePicker.Date.ToString("dd.MM.yyyy");
+            string date = DatePicker.Date.ToString("dd.MM.yyyy");
 
+            try
+            {
+                date = DateEntry.Text;
+                DateTime dateTime =  DateTime.ParseExact(date, "dd.MM.yyyy",
+                    System.Globalization.CultureInfo.InvariantCulture);
+                isDate = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                isDate = false;
+            }
+            
+            
             if (phone.Equals(""))
             {
                 await DisplayAlert(AppResources.ErrorTitle, $"{AppResources.ErrorFill} {AppResources.Phone}", "OK");
-            }else if (phone.Length < 11)
+            }
+            else if (phone.Length < 11)
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorTechNumberFormat, "OK");
             }
@@ -257,7 +271,7 @@ namespace xamarinJKH
                     TimerTime = Settings.TimerTime;
                     LabelTimer.Text = "ЗАПРОСИТЬ ПОВТОРНЫЙ ЗВОНОК МОЖНО БУДЕТ ЧЕРЕЗ: " + TimerTime + " секунд";
                     FrameBtnReg.IsVisible = false;
-                    FrameTimer.IsVisible = true;                    
+                    FrameTimer.IsVisible = true;
                     Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
                 }
             }
@@ -275,6 +289,7 @@ namespace xamarinJKH
                         Settings.TimerTime = TimerTime;
                         Device.StartTimer(TimeSpan.FromSeconds(1), Settings.OnTimerTick);
                     }
+
                     _ = await Navigation.PopModalAsync();
                     break;
                 case 1:
@@ -284,12 +299,10 @@ namespace xamarinJKH
                     returnTwoStep();
                     break;
             }
-            
         }
-        
+
         protected override bool OnBackButtonPressed()
         {
-         
             switch (step)
             {
                 case 0:
@@ -300,6 +313,7 @@ namespace xamarinJKH
                         Settings.TimerTime = TimerTime;
                         Device.StartTimer(TimeSpan.FromSeconds(1), Settings.OnTimerTick);
                     }
+
                     return base.OnBackButtonPressed();
                     break;
                 case 1:
@@ -313,9 +327,8 @@ namespace xamarinJKH
                 default:
                     return true;
             }
-            
         }
-        
+
 
         private async void NextTwoReg(object sender, EventArgs e)
         {
@@ -346,7 +359,7 @@ namespace xamarinJKH
         {
             if (!EntryCode.Text.Equals(""))
             {
-                FrameBtnNextTwo.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
+                FrameBtnNextTwo.BackgroundColor = (Color) Application.Current.Resources["MainColor"];
                 isNext = true;
             }
             else
@@ -362,8 +375,9 @@ namespace xamarinJKH
             {
                 if (LabelTimer != null)
                 {
-                    LabelTimer.Text = AppResources.AskForCodeAgain.Replace("TimerTime",TimerTime.ToString());
-                }                
+                    LabelTimer.Text = AppResources.AskForCodeAgain.Replace("TimerTime", TimerTime.ToString());
+                }
+
                 TimerTime -= 1;
                 if (TimerTime < 0)
                 {
@@ -373,17 +387,19 @@ namespace xamarinJKH
                     {
                         FrameTimer.IsVisible = false;
                         FrameBtnReg.IsVisible = true;
-                    }                                        
+                    }
                 }
             }
+
             if (TimerStart == false)
             {
                 if (FrameTimer != null)
                 {
                     FrameTimer.IsVisible = false;
                     FrameBtnReg.IsVisible = true;
-                }                
+                }
             }
+
             return TimerStart;
         }
 
@@ -395,7 +411,6 @@ namespace xamarinJKH
         }
 
 
-        
         bool pressed;
 
         private async Task RequestCodeTask()
@@ -408,52 +423,54 @@ namespace xamarinJKH
                 DefaultMessage = AppResources.Loading,
             };
             if (!pressed)
-            try
-            {
-                pressed = true;
-                await Loading.Instance.StartAsync(async progress =>
+                try
                 {
-                    CommonResult result = await _server.RequestAccessCode(Person.Phone);
-                    if (result.Error == null)
+                    pressed = true;
+                    await Loading.Instance.StartAsync(async progress =>
                     {
-                        Console.WriteLine("Отправлено");
-                        TimerStart = true;
-                        FrameBtnReg.IsVisible = false;
-                        FrameTimer.IsVisible = true;
-                        Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
-                        if (Device.RuntimePlatform == Device.iOS)
+                        CommonResult result = await _server.RequestAccessCode(Person.Phone);
+                        if (result.Error == null)
                         {
-                            await DisplayAlert("", AppResources.AlertCodeSent, "OK");
+                            Console.WriteLine("Отправлено");
+                            TimerStart = true;
+                            FrameBtnReg.IsVisible = false;
+                            FrameTimer.IsVisible = true;
+                            Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
+                            if (Device.RuntimePlatform == Device.iOS)
+                            {
+                                await DisplayAlert("", AppResources.AlertCodeSent, "OK");
+                            }
+                            else
+                            {
+                                DependencyService.Get<IMessage>().ShortAlert(AppResources.AlertCodeSent);
+                            }
+
+                            // FrameBtnReg.IsVisible = true;
+                            // progress.IsVisible = false;
+
+                            Loading.Instance.Hide();
                         }
                         else
                         {
-                            DependencyService.Get<IMessage>().ShortAlert(AppResources.AlertCodeSent);
+                            // FrameBtnReg.IsVisible = true;
+                            // progress.IsVisible = false;
+                            Loading.Instance.Hide();
+                            if (Device.RuntimePlatform == Device.iOS)
+                            {
+                                await DisplayAlert("", result.Error, "OK");
+                            }
+                            else
+                            {
+                                DependencyService.Get<IMessage>().ShortAlert(result.Error);
+                            }
                         }
 
-                        // FrameBtnReg.IsVisible = true;
-                        // progress.IsVisible = false;
-                        
-                        Loading.Instance.Hide();
-                    }
-                    else
-                    {
-                        // FrameBtnReg.IsVisible = true;
-                        // progress.IsVisible = false;
-                        Loading.Instance.Hide();
-                        if (Device.RuntimePlatform == Device.iOS)
-                        {
-                            await DisplayAlert("", result.Error, "OK");
-                        }
-                        else
-                        {
-                            DependencyService.Get<IMessage>().ShortAlert(result.Error);
-                        }
-                    }
-                    pressed = false;
-                });
-            }
-            catch { }
-            
+                        pressed = false;
+                    });
+                }
+                catch
+                {
+                }
         }
 
         private async void ButtonReg(object sender, EventArgs e)
@@ -499,6 +516,14 @@ namespace xamarinJKH
         private void datePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
             isDate = true;
+        }
+
+        private void DateEntry_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (DateEntry.Text.Contains(","))
+            {
+                Device.BeginInvokeOnMainThread(async () => { DateEntry.Text = DateEntry.Text.Replace(",", ""); });
+            }
         }
     }
 }
