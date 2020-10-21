@@ -22,8 +22,8 @@ namespace xamarinJKH.Main
         private RestClientMP server = new RestClientMP();
 
         public Command ChangeTheme { get; set; }
-        int? request_amount;
-        public int? RequestsAmount
+        int request_amount;
+        public int RequestsAmount
         {
             get => request_amount;
             set
@@ -181,11 +181,10 @@ namespace xamarinJKH.Main
 
             MessagingCenter.Subscribe<Object, int>(this, "SetRequestsAmount", (sender, args) =>
             {
-                if (args > 0)
-                    RequestsAmount = args;
+                if (args == -1)
+                    RequestsAmount -= 1;
                 else
-                    RequestsAmount = null;
-                
+                    RequestsAmount = args;
             });
         }
 
