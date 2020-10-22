@@ -392,6 +392,7 @@ namespace xamarinJKH.Main
             {
                 AnnounsmentsCount = Settings.EventBlockData.Announcements.Where(x => !x.IsReaded).Count();
                 PollsCount = Settings.EventBlockData.Polls.Where(x => !x.IsReaded).Count();
+                MessagingCenter.Send<Object, int>(this, "SetEventsAmount", AnnounsmentsCount + PollsCount);
             });
         }
     }

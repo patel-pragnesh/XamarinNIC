@@ -33,6 +33,17 @@ namespace xamarinJKH.Main
             }
         }
 
+        int events_amount;
+        public int EventsAmount
+        {
+            get => events_amount;
+            set
+            {
+                events_amount = value;
+                OnPropertyChanged(nameof(EventsAmount));
+            }
+        }
+
         public BottomNavigationPage()
         {
             Analytics.TrackEvent("Форма нижнего меню");
@@ -185,6 +196,14 @@ namespace xamarinJKH.Main
                     RequestsAmount -= 1;
                 else
                     RequestsAmount = args;
+            });
+
+            MessagingCenter.Subscribe<Object, int>(this, "SetEventsAmount", (sender, args) =>
+            {
+                if (args == -1)
+                    EventsAmount -= 1;
+                else
+                    EventsAmount = args;
             });
         }
 

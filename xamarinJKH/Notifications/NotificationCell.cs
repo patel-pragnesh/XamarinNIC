@@ -13,6 +13,7 @@ namespace xamarinJKH
         private Label more = new Label();
         private Label date = new Label();
         private Label text = new Label();
+        Frame ReadIndicator;
 
         public NotificationCell()
         {
@@ -60,7 +61,34 @@ namespace xamarinJKH
             text.FontSize = 15;
             text.TextType = TextType.Html;
             container.Children.Add(text);
-            frame.Content = container;
+            Grid containerMain = new Grid();
+            containerMain.Padding = 0;
+            containerMain.ColumnDefinitions = new ColumnDefinitionCollection
+            {
+                new ColumnDefinition{ Width = GridLength.Star },
+                new ColumnDefinition{ Width = new GridLength(5) }
+            };
+
+            containerMain.RowDefinitions = new RowDefinitionCollection
+            {
+                new RowDefinition { Height = new GridLength(5)},
+                new RowDefinition { Height = GridLength.Star }
+            };
+
+            containerMain.Children.Add(container);
+            Grid.SetRowSpan(container, 2);
+            Grid.SetColumnSpan(container, 2);
+
+
+            ReadIndicator = new Frame
+            {
+                CornerRadius = 5,
+                BackgroundColor = Color.Red,
+                IsVisible = false
+            };
+            ReadIndicator.SetBinding(View.IsVisibleProperty, "Read", BindingMode.TwoWay);
+            containerMain.Children.Add(ReadIndicator, 1, 0);
+            frame.Content = containerMain;
             View = frame;
             View.BackgroundColor = Color.White;
         }
@@ -76,6 +104,10 @@ namespace xamarinJKH
 
         public static readonly BindableProperty IdProperty =
             BindableProperty.Create("ID", typeof(string), typeof(NotificationCell), "");
+
+
+        public static readonly BindableProperty ReadProperty =
+            BindableProperty.Create("Read", typeof(bool), typeof(NotificationCell));
 
         public string TextNotif
         {
@@ -101,6 +133,12 @@ namespace xamarinJKH
             set { SetValue(IdProperty, value); }
         }
 
+
+        public bool Read
+        {
+            get { return (bool)GetValue(ReadProperty); }
+            set { SetValue(ReadProperty, value); }
+        }
         protected override async void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
@@ -110,6 +148,7 @@ namespace xamarinJKH
                 text.Text = TextNotif;
                 date.Text = DateNotif;
                 title.Text = TitleNotif;
+                ReadIndicator.IsVisible = !Read;
             }
         }
     }

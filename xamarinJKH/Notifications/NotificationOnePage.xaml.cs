@@ -75,9 +75,11 @@ namespace xamarinJKH.Notifications
             SetText();
             Files = announcementInfo.Files;
             BindingContext = this;
+            if (!announcementInfo.IsReaded)
             Task.Run(async () =>
             {
                 var result = await _server.SetNotificationReadFlag(announcementInfo.ID);
+                MessagingCenter.Send<Object, int>(this, "SetEventsAmount", -1);
             });
         }
 

@@ -114,10 +114,11 @@ namespace xamarinJKH.Questions
             }
 
             BindingContext = this;
-
+            if (!pollInfo.IsReaded)
             Task.Run(async () =>
             {
                 var result = await server.SetPollReadFlag(pollInfo.ID);
+                MessagingCenter.Send<Object, int>(this, "SetEventsAmount", -1);
             });
         }
 
