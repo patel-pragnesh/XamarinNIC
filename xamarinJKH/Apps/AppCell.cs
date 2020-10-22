@@ -135,6 +135,8 @@ namespace xamarinJKH.Apps
             Grid.SetRowSpan(container, 2);
             Grid.SetColumnSpan(container, 2);
 
+#if DEBUG
+            
             if (Read)
             {
                 Frame readIndicator = new Frame
@@ -145,6 +147,7 @@ namespace xamarinJKH.Apps
                 containerMain.Children.Add(readIndicator, 1, 0);
                 
             }
+#endif
 
             frame.Content = containerMain;
 

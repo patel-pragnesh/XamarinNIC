@@ -188,13 +188,13 @@
                                             <ColumnDefinition Width="30"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-
+                                        <!-- {Binding AnnounsmentsCount, Converter={x:StaticResource Greater}} -->
                                         <Frame Grid.Column="1"
                                                Grid.Row="1"
                                                BackgroundColor="Red"
                                                Padding="0"
                                                HasShadow="False"
-                                               IsVisible="{Binding AnnounsmentsCount, Converter={x:StaticResource Greater}}"
+                                               IsVisible="False"  
                                                CornerRadius="15">
                                             <Label Text="{Binding AnnounsmentsCount}"
                                                    HorizontalOptions="FillAndExpand"
@@ -308,13 +308,13 @@
                                             <ColumnDefinition Width="30"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-
+                                        <!-- {Binding PollsCount, Converter={x:StaticResource Greater}} -->
                                         <Frame Grid.Column="1"
                                                Grid.Row="1"
                                                BackgroundColor="Red"
                                                Padding="0"
                                                HasShadow="False"
-                                               IsVisible="{Binding PollsCount, Converter={x:StaticResource Greater}}"
+                                               IsVisible="False"
                                                CornerRadius="15">
                                             <Label Text="{Binding PollsCount}"
                                                    HorizontalOptions="FillAndExpand"

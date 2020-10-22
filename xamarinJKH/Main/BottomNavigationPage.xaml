@@ -45,7 +45,6 @@
         </x:Arguments>
     </NavigationPage>
     <NavigationPage x:Name="AppPage"  Title="{x:Static resources:AppResources.App_NavBar}" IconImageSource="ic_apps" BarBackgroundColor="Black" BarTextColor="White"
-                    badge:TabBadge.BadgeText="{Binding RequestsAmount}"
                     badge:TabBadge.BadgeColor="Red">
         <x:Arguments>
             <local:AppsPage Title="{x:Static resources:AppResources.App_NavBar}" IconImageSource="ic_apps" />
