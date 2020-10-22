@@ -80,13 +80,21 @@ namespace xamarinJKH.Counters
 
                     break;
                 case Device.Android:
-                    // ScrollViewContainer.Margin = new Thickness(0, 0, 0, -162);
-                    // double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
-                    // if (Math.Abs(or - 0.5) < 0.02)
-                    // {
-                    //     ScrollViewContainer.Margin = new Thickness(0, 0, 0, -110);
-                    //     BackStackLayout.Margin = new Thickness(-5, 15, 0, 0);
-                    // }
+                    if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width <= 720)
+                    {
+                        CounterLayout.Margin = new Thickness(5, 0);
+                        meterRootStack.Margin = new Thickness(5);
+
+                        NameLbl.FontSize = 15;
+                        UniqNumLbl.FontSize = 13;
+                        CheckupLbl.FontSize = 13;
+                        RecheckLbl.FontSize = 13;
+                    }
+
+                    UniqNumLbl.Margin = new Thickness(0, 5, 0, -5);
+                    CheckupLbl.Margin = new Thickness(0, -5, 0, -5);
+                    RecheckLbl.Margin = new Thickness(0, -5, 0, -5);
+
                     break;
                 default:
                     break;
@@ -96,10 +104,26 @@ namespace xamarinJKH.Counters
             var backClick = new TapGestureRecognizer();
             IntegerPoint = meter.NumberOfIntegerPart;
             d41_.IsVisible = IntegerPoint == 6;
-            if (IntegerPoint == 6)
+            var screen = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width;
+            if (IntegerPoint == 6 || (screen <= 720 && Device.RuntimePlatform == "Android"))
             {
                 var view = d41_.Parent as StackLayout;
                 view.Margins<StackLayout>(-10, 0, -10, 0);
+                if (Device.RuntimePlatform == "Android")
+                {
+                    CounterLayout.Spacing = -5;
+                    FrameMeterReading.IsClippedToBounds = true;
+                    if (screen <= 720)
+                    {
+                        (view.Parent as StackLayout).Margin = new Thickness(0);
+                    }
+                    if (screen == 480)
+                    {
+                        CounterDigitsContainer.Spacing = 3;
+                        CounterDigitsContainer.Padding = new Thickness(10, 0);
+                    }
+                }
+                
             }
             backClick.Tapped += async (s, e) => {
                 try
