@@ -12,9 +12,15 @@ namespace xamarinJKH.ViewModels.VideoStreamingViewModels
     {
         public ObservableCollection<CameraModel> Cameras { get; set; }
         public Command LoadCameras { get; set; }
+        public Command GoBack { get; set; }
+        
+        public string DarkImage { get; set; }
+        public string LightImage { get; set; }
         public CameraListViewModel()
         {
             Cameras = new ObservableCollection<CameraModel>();
+            DarkImage = "ic_background_event";
+            LightImage = "ic_background_event_light";
             LoadCameras = new Command(() =>
             {
                 Task.Run(async () =>

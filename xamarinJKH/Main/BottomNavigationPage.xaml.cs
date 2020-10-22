@@ -23,7 +23,7 @@ namespace xamarinJKH.Main
 
         public Command ChangeTheme { get; set; }
         int? request_amount;
-        public int? RequestsAmount
+        public int? RequestsAmount 
         {
             get => request_amount;
             set

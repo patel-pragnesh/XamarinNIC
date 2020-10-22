@@ -7,13 +7,14 @@
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:converters="clr-namespace:xamarinJKH.Converters"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="xamarinJKH.HeaderViewMain">
     <ContentView.Resources>
     </ContentView.Resources>
     <ContentView.Content>
         <Grid VerticalOptions="FillAndExpand">
             <Image x:Name="ImageFon"
-                       Source="{Binding Picture}"
+                   Source="{Binding Picture}"
                        Margin="0,20,0,0"
                        VerticalOptions="Start"
                        Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
@@ -79,6 +80,7 @@
                 </pancakeView:PancakeView>
                 <StackLayout
                         HorizontalOptions="End"
+                        x:Name="LayoutTech"
                         Margin="0,0,15,0"
                         Orientation="Horizontal">
                     <xamarinJkh:IconView x:Name="IconViewTech"
@@ -95,18 +97,22 @@
                                TextColor="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=White}"
                                Margin="-10, 0, 0, 0"
                                VerticalOptions="Center" />
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Tech"/>
-                    </StackLayout.GestureRecognizers>
                 </StackLayout>
                 <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
                         Margin="25, 0, 0, 0"
+                        Spacing="0"
                         HorizontalOptions="Start">
+                    <forms:SvgCachedImage
+                        Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
+                        HeightRequest="25"
+                        HorizontalOptions="Start"
+                        ReplaceStringMap="{Binding Title, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                        VerticalOptions="Center" />
                     <Label
                             Text="{Binding Title}"
-                            FontSize="23"
+                            FontSize="18"
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />

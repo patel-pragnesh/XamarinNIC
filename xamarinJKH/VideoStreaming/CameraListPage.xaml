@@ -27,7 +27,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <local:HeaderViewStack Title="{x:Static local:AppResources.EventsCam}"
+            <local:HeaderViewStack x:Name="HeaderViewStack"
+                                   Title="{x:Static local:AppResources.EventsCam}"
                                     Grid.RowSpan="3"/>
             <StackLayout Grid.Row="1"
                          Grid.RowSpan="2"

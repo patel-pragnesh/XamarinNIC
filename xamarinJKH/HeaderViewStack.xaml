@@ -9,9 +9,10 @@
              x:Class="xamarinJKH.HeaderViewStack">
   <ContentView.Content>
       <Grid>
-            <Image Source="{AppThemeBinding Light=ic_background_event_light, Dark=ic_background_event}"
+            <Image 
                        Margin="0,0,0,0"
                        VerticalOptions="Start"
+                       x:Name="ImageTop"
                        Aspect="AspectFill"
                        HorizontalOptions="FillAndExpand" />
             <StackLayout Margin="0,10,0,0" VerticalOptions="FillAndExpand">

@@ -63,7 +63,7 @@ namespace xamarinJKH
             Settings.EventBlockData = await server.GetEventBlockData();
             if (Settings.EventBlockData.Error == null)
             {
-                Notifications = Settings.EventBlockData.Announcements;
+                Notifications = Settings.EventBlockData.Announcements.Take(3).ToList();
                 NotificationList.ItemsSource = null;
                 NotificationList.ItemsSource = Notifications;
             }
@@ -117,7 +117,7 @@ namespace xamarinJKH
             };
             LabelPhone.GestureRecognizers.Add(call);
             SetText();
-            Notifications = Settings.EventBlockData.Announcements;
+            Notifications = Settings.EventBlockData.Announcements.Take(3).ToList();
             this.BindingContext = this;
             NotificationList.BackgroundColor = Color.Transparent;
             NotificationList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
@@ -149,6 +149,11 @@ namespace xamarinJKH
 
             if (Navigation.NavigationStack.FirstOrDefault(x => x is NotificationOnePage) == null)
                 await Navigation.PushAsync(new NotificationOnePage(select));
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NotificationAllPage());
         }
     }
 }

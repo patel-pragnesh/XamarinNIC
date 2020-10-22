@@ -15,25 +15,28 @@ namespace xamarinJKH.VideoStreaming
     public partial class CameraListPage : ContentPage
     {
         CameraListViewModel viewModel;
+
         public CameraListPage()
         {
-            InitializeComponent();
-            Analytics.TrackEvent("Список камер");
-            BindingContext = viewModel = new CameraListViewModel();
-
-            MessagingCenter.Subscribe<HeaderViewStack>(this, "GoBack", async sender =>
+            viewModel = new CameraListViewModel();
+            viewModel.GoBack = new Command(async () =>
             {
                 if (Application.Current.MainPage.Navigation.ModalStack.Count > 1)
                 {
-
                     await Navigation.PopModalAsync();
                 }
                 else
                 {
-
                     await Navigation.PopAsync();
                 }
             });
+            InitializeComponent();
+            Analytics.TrackEvent("Список камер");
+           
+            BindingContext = viewModel;
+            HeaderViewStack.BackClick = viewModel.GoBack;
+            HeaderViewStack.DarkImage = viewModel.DarkImage;
+            HeaderViewStack.LightImage = viewModel.LightImage;
             viewModel.LoadCameras.Execute(null);
         }
 
@@ -48,7 +51,6 @@ namespace xamarinJKH.VideoStreaming
             }
             catch
             {
-
             }
         }
     }

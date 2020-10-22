@@ -143,7 +143,34 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </StackLayout>
-
+                    <StackLayout Spacing="0">
+                        <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0"
+                                                 BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
+                                                 Padding="0,17,0,5"
+                                                 BorderThickness="1"
+                                                 BorderColor="{AppThemeBinding Dark=White, Light={x:StaticResource MainColor}}"
+                                                 Margin="0"
+                                                 VerticalOptions="FillAndExpand">
+                            <StackLayout
+                                HorizontalOptions="FillAndExpand"
+                                Margin="0, 0, 0, 10"
+                                >
+                                
+                                <Button CornerRadius="10"
+                                        x:Name="FullScreen"
+                                        BackgroundColor="{x:StaticResource MainColor}"
+                                        Margin="30,0,30,0"
+                                        VerticalOptions="End"
+                                        FontSize="15"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="FillAndExpand"
+                                        TextColor="White"
+                                        Text="Смотреть все"
+                                        Clicked="Button_Clicked"/>
+                                
+                            </StackLayout>
+                        </pancakeView:PancakeView>
+                    </StackLayout>
                 </StackLayout>
             </Grid>
 
