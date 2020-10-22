@@ -56,10 +56,10 @@ namespace xamarinJKH.Main
             //        break;
             //}
 
-            if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
-            {
-                ProfPage.IsVisible = false;
-            }
+            // if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
+            // {
+            //     ProfPage.IsVisible = false;
+            // }
 
 
                 switch (currentTheme)
@@ -279,8 +279,8 @@ namespace xamarinJKH.Main
         {
             try
             {
-                if (AppInfo.PackageName != "rom.best.UkComfort" && AppInfo.PackageName != "sys_rom.ru.comfort_uk_app")
-                {
+                // if (AppInfo.PackageName != "rom.best.UkComfort" && AppInfo.PackageName != "sys_rom.ru.comfort_uk_app")
+                // {
                     // if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
                     // {
                     Children.Remove(ShopNavPage);
@@ -289,12 +289,12 @@ namespace xamarinJKH.Main
                     // {
                     Children.Remove(ShopNavPage2);
                     // }
-                }
-                else
-                {
-                    Children.Remove(ShopNavPage);
-                    Children.Remove(ProfPage);
-                }
+                // }
+                // else
+                // {
+                //     Children.Remove(ShopNavPage);
+                //     Children.Remove(ProfPage);
+                // }
                        
                 
 
@@ -347,14 +347,14 @@ namespace xamarinJKH.Main
                     {
                         if (each.visible == 0)
                         {
-                            // if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
-                            // {
-                            //     Children.Remove(ShopNavPage2);
-                            // }
-                            // else
-                            // {
-                            //     Children.Remove(ShopNavPage);
-                            // }
+                            if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
+                            {
+                                Children.Remove(ShopNavPage2);
+                            }
+                            else
+                            {
+                                Children.Remove(ShopNavPage);
+                            }
                         }
                     }
                 }

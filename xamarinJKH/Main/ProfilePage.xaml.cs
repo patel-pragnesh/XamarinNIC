@@ -41,8 +41,8 @@ namespace xamarinJKH.Main
         {
             InitializeComponent();
             Analytics.TrackEvent("Профиль жителя");
-            if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
-                ImageBack.IsVisible = true;
+            // if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
+            //     ImageBack.IsVisible = true;
 
             GoodsIsVisible = Settings.GoodsIsVisible;
             isSave = Preferences.Get("isPass", false);

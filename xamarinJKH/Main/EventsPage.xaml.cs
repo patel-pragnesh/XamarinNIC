@@ -73,8 +73,8 @@ namespace xamarinJKH.Main
                     await Navigation.PushAsync(new ProfilePage());
             };
 
-            if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
-                IconViewProfile.IsVisible = true;
+            // if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
+            //     IconViewProfile.IsVisible = true;
 
             IconViewProfile.GestureRecognizers.Add(profile);
 
