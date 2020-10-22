@@ -15,6 +15,7 @@ namespace xamarinJKH.Apps
         SvgCachedImage ImageStatus = new SvgCachedImage();
         private Label LabelStatus = new Label();
         private Label LabelText = new Label();
+        Frame ReadIndicator;
 
         public AppCell()
         {
@@ -135,22 +136,16 @@ namespace xamarinJKH.Apps
             Grid.SetRowSpan(container, 2);
             Grid.SetColumnSpan(container, 2);
 
-#if DEBUG
-            
-            if (Read)
+
+            ReadIndicator = new Frame
             {
-                Frame readIndicator = new Frame
-                {
-                    CornerRadius = 5,
-                    BackgroundColor = Color.Red
-                };
-                containerMain.Children.Add(readIndicator, 1, 0);
-                
-            }
-#endif
-
+                CornerRadius = 5,
+                BackgroundColor = Color.Red,
+                IsVisible = false
+            };
+            ReadIndicator.SetBinding(View.IsVisibleProperty, "Read", BindingMode.TwoWay);
+                containerMain.Children.Add(ReadIndicator, 1, 0);
             frame.Content = containerMain;
-
 
             View = frame;
         }
@@ -240,6 +235,7 @@ namespace xamarinJKH.Apps
                     {"#000000",  $"#{Settings.MobileSettings.color}"}
                 };
                 ImageStatus.Source = "resource://xamarinJKH.Resources."+Settings.GetStatusIcon(StatusID)+".svg";
+                ReadIndicator.IsVisible = !Read;
                 
             }
         }
