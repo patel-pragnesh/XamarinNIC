@@ -284,7 +284,7 @@ namespace xamarinJKH.Counters
         private void SetCurrent(decimal counterThisMonth)
         {
             var d = GetNumbers(counterThisMonth);
-            if (IntegerPoint == 5)
+            if (IntegerPoint == 5 || IntegerPoint ==0)
             Device.BeginInvokeOnMainThread(() =>
             {
                 d8.Text = d[0];
@@ -360,7 +360,7 @@ namespace xamarinJKH.Counters
         {
             if (string.IsNullOrWhiteSpace(d6.Text))
             {
-                if (IntegerPoint == 5)
+                if (IntegerPoint == 5|| IntegerPoint ==0)
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     d5.Text = "";
@@ -415,7 +415,7 @@ namespace xamarinJKH.Counters
             try
             {
                 var counter8 = Convert.ToInt64(counter * 1000);
-                for (int i = 0; i < (IntegerPoint == 5 ? 8 : 9); i++)
+                for (int i = 0; i < ((IntegerPoint == 5 || IntegerPoint ==0) ? 8 : 9); i++)
                 {
                     var d = counter8 % 10;
                     retList.Add(d.ToString());
@@ -477,9 +477,12 @@ namespace xamarinJKH.Counters
                 var p41 = -1;
 
                 if (int.TryParse(d1.Text,out p1) && int.TryParse(d2.Text, out p2) && int.TryParse(d3.Text, out p3) 
-                    && int.TryParse(d4.Text, out p4) && int.TryParse(d5.Text, out p5) && int.TryParse(d6.Text == null ? "0" : d6.Text, out p6)
-                    && int.TryParse(d7.Text == null ? "0" : d7.Text, out p7) && int.TryParse(d8.Text == null ? "0" : d8.Text, out p8)
-                    && (int.TryParse(d41.Text == null ? "0" : d41.Text, out p41) && IntegerPoint == 6 || d41.Text == null && IntegerPoint == 5))
+                    && int.TryParse(d4.Text, out p4) && int.TryParse(d5.Text, out p5)
+                    && int.TryParse(string.IsNullOrWhiteSpace(d6.Text) ? "0" : d6.Text, out p6)
+                    && int.TryParse(string.IsNullOrWhiteSpace(d7.Text) ? "0" : d7.Text, out p7)
+                    && int.TryParse(string.IsNullOrWhiteSpace(d8.Text) ? "0" : d8.Text, out p8)
+                    && (int.TryParse(d41.Text == null ? "0" : d41.Text, out p41) 
+                        && IntegerPoint == 6 || d41.Text == null && (IntegerPoint == 5 || IntegerPoint ==0)))
                 {
                     count += d1.Text;// != "0" ? d1.Text : "";
                     count += d2.Text;// != "0" ? d2.Text : "";
@@ -1010,7 +1013,7 @@ namespace xamarinJKH.Counters
                 d6.Unfocus();
                 if (DecimalPoint >= 1)
                 {
-                    if (IntegerPoint == 5)
+                    if (IntegerPoint == 5 || IntegerPoint ==0)
                         d6.Focus();
                     if (IntegerPoint == 6)
                         d41.Focus();
