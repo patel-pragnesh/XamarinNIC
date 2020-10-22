@@ -130,6 +130,7 @@
                                 Status="{Binding Status}"
                                 DateApp="{Binding Added}"
                                 StatusID="{Binding StatusID}"
+                                Read="{Binding IsReadedByClient}"
                                 TextApp="{Binding Name}" />
                                     </DataTemplate>
 

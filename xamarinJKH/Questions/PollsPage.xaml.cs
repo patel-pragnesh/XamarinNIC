@@ -114,6 +114,11 @@ namespace xamarinJKH.Questions
             }
 
             BindingContext = this;
+
+            Task.Run(async () =>
+            {
+                var result = await server.SetPollReadFlag(pollInfo.ID);
+            });
         }
 
         private async void FinishClick()
