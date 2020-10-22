@@ -182,10 +182,20 @@ namespace xamarinJKH
                                     Settings.EventBlockData = await server.GetEventBlockData();
                                     foreach (var each in Settings.EventBlockData.Announcements)
                                     {
-                                        if (p.Data["title"].Equals(each.Header) & p.Data["body"].Equals(each.Text))
+                                        if (p.Data.ContainsKey("aps.alert.title") && p.Data.ContainsKey("aps.alert.body"))
                                         {
-                                            await MainPage.Navigation.PushModalAsync(new NotificationOnePage(each));
+                                            if (p.Data["aps.alert.title"].Equals(each.Header) & p.Data["aps.alert.body"].Equals(each.Text))
+                                            {
+                                                await MainPage.Navigation.PushModalAsync(new NotificationOnePage(each));
+                                            }
                                         }
+                                        if (p.Data.ContainsKey("title") && p.Data.ContainsKey("body"))
+                                        {
+                                            if (p.Data["title"].Equals(each.Header) & p.Data["body"].Equals(each.Text))
+                                            {
+                                                await MainPage.Navigation.PushModalAsync(new NotificationOnePage(each));
+                                            }
+                                        }                                        
                                     }
                                 }
                             }
