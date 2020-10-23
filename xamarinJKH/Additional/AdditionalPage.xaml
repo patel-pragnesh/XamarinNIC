@@ -8,6 +8,7 @@
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:converters="clr-namespace:xamarinJKH.Converters"
              x:Class="xamarinJKH.Additional.AdditionalPage">
     <ContentPage.Resources>
@@ -250,6 +251,7 @@
                                            IsVisible="{Binding IsBusy}"/>
                             <Grid>
                                 <ListView x:Name="additionalList"
+                                          IsVisible="False"
                                   HasUnevenRows="True"
                                   SeparatorVisibility="None"
                                   VerticalScrollBarVisibility="Never"
@@ -257,7 +259,6 @@
                                   RefreshCommand="{Binding RefreshCommand}"
                                   IsRefreshing="{Binding IsRefreshing}"
                                   SelectionMode="None"
-                                  ItemTapped="OnItemTapped"
                                   CachingStrategy="RecycleElement"
                                   ItemsSource="{Binding Additional}">
                                     <ListView.ItemTemplate>
@@ -273,6 +274,40 @@
 
                                     </ListView.ItemTemplate>
                                 </ListView>
+                                <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                                             Command="{Binding RefreshCommand}">
+                                    <CollectionView ItemsSource="{Binding Additional}"
+                                                    
+                                                    SelectionMode="Single"
+                                                    SelectionChanged="OnItemTapped">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout Orientation="Vertical" 
+                                                             Span="3"/>
+                                        </CollectionView.ItemsLayout>
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout Padding="15">
+                                                    <StackLayout BackgroundColor="Transparent">
+                                                        <pancakeView:PancakeView CornerRadius="20"
+                                                                             x:Name="Pic"
+                                                                             HeightRequest="{Binding Path=Width, Source={x:Reference Pic}}"
+                                                                             IsClippedToBounds="False">
+                                                            <ff:CachedImage Source="{Binding LogoLink}"
+                                                                        Aspect="AspectFill"/>
+                                                        </pancakeView:PancakeView>
+                                                        <Label Text="{Binding Name}"
+                                                               TextColor="Black"
+                                                               VerticalTextAlignment="Center"
+                                                               HorizontalOptions="Center"
+                                                               HorizontalTextAlignment="Center"/>
+                                                    </StackLayout>
+                                                    
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </RefreshView>
+
 
                             </Grid>
 
