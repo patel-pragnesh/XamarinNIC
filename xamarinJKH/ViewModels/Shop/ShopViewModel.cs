@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -116,6 +118,7 @@ namespace xamarinJKH.ViewModels.Shop
         public string ColumnAdditionWidth {get;set;}
         public ShopViewModel(AdditionalService service, INavigation navigation)
         {
+            
             this.Navigation = navigation;
             if (Device.RuntimePlatform == Device.iOS)
             {
@@ -135,49 +138,60 @@ namespace xamarinJKH.ViewModels.Shop
             var categories = new List<string>();
             TotalPrice = 0;
             TotalWeight = 0;
+
             LoadGoods = new Command(() =>
             {
-                Task.Run(async () =>
+                try
                 {
-                    var goods = await Server.GetShopGoods(service.ShopID);
-                    if (goods.Error == null)
+                    Task.Run(async () =>
                     {
-                        AllGoods = new List<Goods>();
-                        AllGoods.AddRange(goods.Data.Where(x => x.Categories != null || x.Categories.Count > 0));
-
-                        foreach (var good in goods.Data.Where(x => x.Categories != null || x.Categories.Count > 0))
+                        var goods = await Server.GetShopGoods(service.ShopID);
+                        if (goods.Error == null)
                         {
-                            foreach (var category in good.Categories)
+                            AllGoods = new List<Goods>();
+                            AllGoods.AddRange(goods.Data.Where(x => x.Categories != null || x.Categories.Count > 0));
+
+                            foreach (var good in goods.Data.Where(x => x.Categories != null || x.Categories.Count > 0))
                             {
-                                if (!categories.Contains(category.Trim()))
+                                foreach (var category in good.Categories)
                                 {
-                                    categories.Add(category);
+                                    if (!categories.Contains(category.Trim()))
+                                    {
+                                        categories.Add(category);
+                                    }
+                                }
+                            }
+                            Analytics.TrackEvent("начало добавления списка товаров категории 0");
+
+                            foreach (var good in AllGoods)
+                            {
+                                if (good.Categories.Contains(categories[0]))
+                                {
+                                    Device.BeginInvokeOnMainThread(() => Goods.Add(good));
                                 }
                             }
                         }
-
-                        foreach (var good in AllGoods)
+                    }).ContinueWith((result) =>
+                    {
+                        Categories.Clear();
+                        foreach (var category in categories)
                         {
-                            if (good.Categories.Contains(categories[0]))
-                            {
-                                Device.BeginInvokeOnMainThread(() => Goods.Add(good));
-                            }
+                            Device.BeginInvokeOnMainThread(() => Categories.Add(category));
                         }
-                    }
-                }).ContinueWith((result) =>
+                        //Пока костыль, чтобы места было больше для скролла, т.к. пока категорий мало
+                        for (int i = 0; i < 20; i++)
+                        {
+                            Device.BeginInvokeOnMainThread(() => Categories.Add(" "));
+                        }
+                        Analytics.TrackEvent("назначение нулевого элемента категории выбранным");
+                        Device.BeginInvokeOnMainThread(() => SelectedCategory = Categories[0]);
+                    });
+                }
+                catch(Exception exc)
                 {
-                    Categories.Clear();
-                    foreach (var category in categories)
-                    {
-                        Device.BeginInvokeOnMainThread(() => Categories.Add(category));
-                    }
-                    //Пока костыль, чтобы места было больше для скролла, т.к. пока категорий мало
-                    for (int i = 0; i < 20; i++)
-                    {
-                        Device.BeginInvokeOnMainThread(() => Categories.Add(" "));
-                    }
-                    Device.BeginInvokeOnMainThread(() => SelectedCategory = Categories[0]);
-                });
+                    Crashes.TrackError( exc);
+                }
+                
             });
             Increase = new Command<Goods>(item =>
             {

@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.ViewModels.Shop;
+using Microsoft.AppCenter.Crashes;
 
 namespace xamarinJKH.Shop
 {
@@ -48,25 +49,35 @@ namespace xamarinJKH.Shop
 
         private void CollectionView_Scrolled(object sender, ItemsViewScrolledEventArgs e)
         {
-            var index = e.FirstVisibleItemIndex;
-            var delta = e.HorizontalDelta;
-            if (index >= 0)
+            try
             {
-                if (index + 1 <= viewModel.Categories.Count - 1 && e.HorizontalOffset < 160)
+                var index = e.FirstVisibleItemIndex;
+                var delta = e.HorizontalDelta;
+                if (index >= 0)
                 {
-                    viewModel.SelectedCategory = viewModel.Categories[index];
+                    Analytics.TrackEvent($"index={index}, viewModel.Categories.Count={viewModel.Categories.Count}, e.HorizontalOffset={e.HorizontalOffset}  ");
+                    if (index + 1 <= viewModel.Categories.Count - 1 && e.HorizontalOffset < 160)
+                    {
+                        viewModel.SelectedCategory = viewModel.Categories[index];
+                    }
+                    else
+                    {
+                        viewModel.SelectedCategory = viewModel.Categories[e.LastVisibleItemIndex];
+                    }
                 }
-                else
-                {
-                    viewModel.SelectedCategory = viewModel.Categories[e.LastVisibleItemIndex];
+                if (viewModel.SelectedCategory == " ")
+                {                    
+                    var id = viewModel.Categories.ToList().IndexOf(" ");
+                    Analytics.TrackEvent($"Выбрана ' '(пустая) категория, id={id}");
+                    if (id > 0)
+                        (sender as CollectionView).ScrollTo(id - 1);// viewModel.Categories[id - 1];
                 }
             }
-            if (viewModel.SelectedCategory == " ")
+            catch(Exception ex)
             {
-                var id = viewModel.Categories.ToList().IndexOf(" ");
-                if (id > 0)
-                    (sender as CollectionView).ScrollTo(id - 1);// viewModel.Categories[id - 1];
+                Crashes.TrackError(ex);
             }
+            
         }
     }
 }
