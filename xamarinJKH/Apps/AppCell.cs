@@ -148,6 +148,14 @@ namespace xamarinJKH.Apps
             frame.Content = containerMain;
 
             View = frame;
+
+            MessagingCenter.Subscribe<Object, int>(this, "SetAppRead", (sender, args) =>
+            {
+                if (this.ID == args)
+                {
+                    ReadIndicator.IsVisible = false;
+                }
+            });
         }
 
 
@@ -168,6 +176,9 @@ namespace xamarinJKH.Apps
 
         public static readonly BindableProperty ReadProperty =
             BindableProperty.Create("Read", typeof(bool), typeof(AppCell));
+
+        public static readonly BindableProperty IDProperty =
+            BindableProperty.Create("ID", typeof(int), typeof(AppCell));
 
         public string Number
         {
@@ -202,6 +213,12 @@ namespace xamarinJKH.Apps
         {
             get { return (bool)GetValue(ReadProperty); }
             set { SetValue(ReadProperty, value); }
+        }
+
+        public int ID
+        {
+            get { return (int)GetValue(IDProperty); }
+            set { SetValue(IDProperty, value); }
         }
         protected override async void OnBindingContextChanged()
         {

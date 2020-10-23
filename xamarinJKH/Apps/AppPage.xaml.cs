@@ -382,6 +382,7 @@ namespace xamarinJKH.Apps
                 {
                     var res = await _server.SetReadedFlag(requestInfo.ID, false);
                     MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", -1);
+                    MessagingCenter.Send<Object, int>(this, "SetAppRead", requestInfo.ID);
                     requestInfo.IsReadedByClient = true;
                 });
             }
