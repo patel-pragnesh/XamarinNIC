@@ -1700,6 +1700,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to до.
+        /// </summary>
+        internal static string FromTo {
+            get {
+                return ResourceManager.GetString("FromTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Получить код.
         /// </summary>
         internal static string GetCode {
@@ -3873,6 +3882,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to По дате.
+        /// </summary>
+        internal static string ToDate {
+            get {
+                return ResourceManager.GetString("ToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Сегодня.
         /// </summary>
         internal static string TodayPeriod {
@@ -4040,6 +4058,15 @@ namespace xamarinJKH {
         internal static string WeekPeriod {
             get {
                 return ResourceManager.GetString("WeekPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C.
+        /// </summary>
+        internal static string With {
+            get {
+                return ResourceManager.GetString("With", resourceCulture);
             }
         }
         

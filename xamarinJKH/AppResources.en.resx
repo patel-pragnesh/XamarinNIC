@@ -1473,4 +1473,13 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="ShowHistory" xml:space="preserve">
     <value>Show history</value>
   </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>By date</value>
+  </data>
+  <data name="With" xml:space="preserve">
+    <value>FROM</value>
+  </data>
+  <data name="FromTo" xml:space="preserve">
+    <value>to</value>
+  </data>
 </root>

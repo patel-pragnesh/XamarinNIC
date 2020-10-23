@@ -1457,4 +1457,13 @@
   <data name="ShowHistory" xml:space="preserve">
     <value>Показати списання</value>
   </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>По даті</value>
+  </data>
+  <data name="With" xml:space="preserve">
+    <value>З</value>
+  </data>
+  <data name="FromTo" xml:space="preserve">
+    <value>до</value>
+  </data>
 </root>
