@@ -191,13 +191,21 @@ namespace xamarinJKH
             
         }
 
-        protected async override void OnAppearing()
+
+        protected override bool OnBackButtonPressed()
         {
-            base.OnAppearing();
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                Analytics.TrackEvent("Выход из приложения");
+                System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+            }
+
+            return base.OnBackButtonPressed();
         }
 
         async void CheckForUpdate()
         {
+            Analytics.TrackEvent("Проверка обновлений");
             var version = Xamarin.Essentials.AppInfo.VersionString;
             var settings = await server.MobileAppSettings(version, "1");
 
@@ -209,6 +217,7 @@ namespace xamarinJKH
 
         private async void getSettings()
         {
+            Analytics.TrackEvent("Запрос настроек");
             Version.Text = "ver " + Xamarin.Essentials.AppInfo.VersionString;
 
 
@@ -322,6 +331,7 @@ namespace xamarinJKH
 
         private async void ChoiceAuth(object sender, EventArgs e)
         {
+            Analytics.TrackEvent("Переход к входу сотрудника");
             if (Settings.ConstAuth)
             {
                 Settings.ConstAuth = false;
@@ -354,6 +364,7 @@ namespace xamarinJKH
 
         private async void TechSend(object sender, EventArgs e)
         {
+            
             await PopupNavigation.Instance.PushAsync(new TechDialog(false));
         }
 
