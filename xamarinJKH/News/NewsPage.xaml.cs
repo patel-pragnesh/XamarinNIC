@@ -147,5 +147,10 @@ namespace xamarinJKH.News
             if (Navigation.NavigationStack.FirstOrDefault(x => x is NewPage) == null)
                 await Navigation.PushAsync(new NewPage(select));
         }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NewsAllPage());
+        }
     }
 }

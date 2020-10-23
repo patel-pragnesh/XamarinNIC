@@ -214,6 +214,24 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Все новости.
+        /// </summary>
+        internal static string AllNews {
+            get {
+                return ResourceManager.GetString("AllNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Все уведомления.
+        /// </summary>
+        internal static string AllNotification {
+            get {
+                return ResourceManager.GetString("AllNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  кол-во: .
         /// </summary>
         internal static string Amount {

@@ -1469,4 +1469,10 @@
   <data name="FromTo" xml:space="preserve">
     <value>до</value>
   </data>
+  <data name="AllNews" xml:space="preserve">
+    <value>Все новости</value>
+  </data>
+  <data name="AllNotification" xml:space="preserve">
+    <value>Все уведомления</value>
+  </data>
 </root>
