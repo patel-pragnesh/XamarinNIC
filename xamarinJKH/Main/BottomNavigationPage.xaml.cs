@@ -58,7 +58,7 @@ namespace xamarinJKH.Main
 
             // if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
             // {
-            //     ProfPage.IsVisible = false;
+            ProfPage.IsVisible = false;
             // }
 
 
@@ -286,13 +286,13 @@ namespace xamarinJKH.Main
                     // }
                     // else
                     // {
-                    Children.Remove(ShopNavPage2);
+                    // Children.Remove(ShopNavPage2);
                     // }
                 // }
                 // else
                 // {
                 //     Children.Remove(ShopNavPage);
-                //     Children.Remove(ProfPage);
+                Children.Remove(ProfPage);
                 // }
                        
                 
