@@ -105,9 +105,10 @@ namespace xamarinJKH.DialogViews
                         await ShowToast(result.Error);
                     }
                 }
-                else if (!text.Equals("") && !IsConst)
+                else if (!IsConst)
                 {
-                    CommonResult result = await server.CloseApp(_Request.ID.ToString(), text, RatingBar.Rating.ToString());
+                    string mark = RatingBar.Rating == 0 ? null : RatingBar.Rating.ToString();
+                    CommonResult result = await server.CloseApp(_Request.ID.ToString(), text, mark);
                     if (result.Error == null)
                     {
                         await ShowToast(AppResources.AppClosed);
