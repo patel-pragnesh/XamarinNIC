@@ -221,6 +221,7 @@ namespace xamarinJKH.Counters
             StackLayout cds8 = (StackLayout)CounterDigitsContainer.FindByName("cds8"); ;
 
             DecimalPoint = meter.NumberOfDecimalPlaces;
+            Analytics.TrackEvent("Установка кол-ва знаков после запятой " + DecimalPoint);
             switch (DecimalPoint)
             {
                 case 0: Divider.IsVisible = false;
@@ -339,6 +340,8 @@ namespace xamarinJKH.Counters
 
         private void SetCurrent(decimal counterThisMonth)
         {
+            Analytics.TrackEvent("Установка предыдущих показаний" + counterThisMonth );
+
             var d = GetNumbers(counterThisMonth);
             if (IntegerPoint == 5 || IntegerPoint ==0)
             Device.BeginInvokeOnMainThread(() =>
@@ -520,6 +523,8 @@ namespace xamarinJKH.Counters
 
         private async void ButtonClick(object sender, EventArgs e)
         {
+            Analytics.TrackEvent("Попытка отправки показаний");
+
             try {
                 string count ="";
                 var p1 = -1;
@@ -893,6 +898,7 @@ namespace xamarinJKH.Counters
 
         public async void SaveInfoAccount()
         {
+            Analytics.TrackEvent("Передача показаний на сервер");
             bool rate = Preferences.Get("rate", true);
 
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
@@ -914,6 +920,8 @@ namespace xamarinJKH.Counters
                    d2, d3);
                 if (result.Error == null)
                 {
+                    Analytics.TrackEvent("Показания Т1:" + d1 + " Т2:" + d2 + " Т3:" + d3 + " переданы");
+                    
                     Console.WriteLine(result.ToString());
                     Console.WriteLine("Отправлено");
                     await DisplayAlert("", AppResources.AddMetersSuccess, "OK");
