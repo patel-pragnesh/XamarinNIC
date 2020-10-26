@@ -39,7 +39,7 @@ namespace xamarinJKH.Main
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             BindingContext = this;
-            Color hex = (Color) Application.Current.Resources["MainColor"];
+            Color hex = (Color)Application.Current.Resources["MainColor"];
             SelectedTabColor = hex;
             GetBrand();
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
@@ -62,7 +62,7 @@ namespace xamarinJKH.Main
             // }
 
 
-                switch (currentTheme)
+            switch (currentTheme)
             {
                 case OSAppTheme.Light:
                     UnselectedTabColor = unselect;
@@ -204,34 +204,45 @@ namespace xamarinJKH.Main
 
         async void Loadtab()
         {
-            switch (Settings.MobileSettings.startScreen.Trim())
+            Analytics.TrackEvent("Установка данных для вкладок");
+            if (Settings.MobileSettings == null)
             {
-                case "Оплата":
-                {
-                    SetTab(AppResources.Pays);
-                    break;
-                }
-                case "События":
-                {
-                    SetTab(AppResources.Events_NavBar);
-                    break;
-                }
-                case "Показания":
-                {
-                    SetTab(AppResources.Meters_NavBar);
-                    break;
-                }
-                case "Наши услуги":
-                {
-                    SetTab(AppResources.Shop_NavBar);
-                    await Task.Delay(TimeSpan.FromMilliseconds(700));
-                    MessagingCenter.Send<Object>(this, "LoadGoods");
-                    break;
-                }
-                default:
-                    SetTab(AppResources.Events_NavBar);
-                    break;
+                Analytics.TrackEvent("Ожидание подгрузки данных");
             }
+            while (Settings.MobileSettings == null)
+            {
+                await Task.Delay(TimeSpan.FromMilliseconds(50));
+            }
+            if (Settings.MobileSettings != null)
+                if (!string.IsNullOrEmpty(Settings.MobileSettings.startScreen))
+                    switch (Settings.MobileSettings.startScreen.Trim())
+                    {
+                        case "Оплата":
+                            {
+                                SetTab(AppResources.Pays);
+                                break;
+                            }
+                        case "События":
+                            {
+                                SetTab(AppResources.Events_NavBar);
+                                break;
+                            }
+                        case "Показания":
+                            {
+                                SetTab(AppResources.Meters_NavBar);
+                                break;
+                            }
+                        case "Наши услуги":
+                            {
+                                SetTab(AppResources.Shop_NavBar);
+                                await Task.Delay(TimeSpan.FromMilliseconds(700));
+                                MessagingCenter.Send<Object>(this, "LoadGoods");
+                                break;
+                            }
+                        default:
+                            SetTab(AppResources.Events_NavBar);
+                            break;
+                    }
         }
 
         private void GetBrand()
@@ -280,22 +291,22 @@ namespace xamarinJKH.Main
             {
                 // if (AppInfo.PackageName != "rom.best.UkComfort" && AppInfo.PackageName != "sys_rom.ru.comfort_uk_app")
                 // {
-                    // if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
-                    // {
-                    Children.Remove(ShopNavPage);
-                    // }
-                    // else
-                    // {
-                    Children.Remove(ShopNavPage2);
-                    // }
+                // if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
+                // {
+                Children.Remove(ShopNavPage);
+                // }
+                // else
+                // {
+                Children.Remove(ShopNavPage2);
+                // }
                 // }
                 // else
                 // {
                 //     Children.Remove(ShopNavPage);
                 //     Children.Remove(ProfPage);
                 // }
-                       
-                
+
+
 
                 foreach (var each in Settings.MobileSettings.menu)
                 {
@@ -380,7 +391,7 @@ namespace xamarinJKH.Main
 
                 if (CurrentPage.Title == AppResources.Shop_NavBar)
                     MessagingCenter.Send<Object>(this, "LoadGoods");
-            }                
+            }
         }
 
 
