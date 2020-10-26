@@ -340,8 +340,22 @@ namespace xamarinJKH.AppsConst
             closeApp.Tapped += async (s, e) =>
             {
                 // await ShowRating();
-                await PopupNavigation.Instance.PushAsync(new RatingBarContentView(hex, _requestInfo, true));
-                await RefreshData();
+                // await PopupNavigation.Instance
+                CommonResult result = await _server.CloseAppConst(requestInfo.ID.ToString());
+                if (result.Error == null)
+                {
+                    var result2 = await DisplayAlert("", AppResources.RatingBarClose, "OK", AppResources.Cancel);
+                    if (result2)
+                    {
+                        MessagingCenter.Send<Object>(this, "CloseAPP");
+                        await ShowToast(AppResources.AppClosed);
+                        await RefreshData();
+                    }
+                }
+                else
+                {
+                    await ShowToast(result.Error);
+                }
             };
             StackLayoutClose.GestureRecognizers.Add(closeApp);
             hex = (Color)Application.Current.Resources["MainColor"];
