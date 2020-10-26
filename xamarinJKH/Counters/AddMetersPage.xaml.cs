@@ -33,7 +33,7 @@ namespace xamarinJKH.Counters
         private MeterInfo meter = new MeterInfo();
         private List<MeterInfo> meters = new List<MeterInfo>();
         private CountersPage _countersPage;
-
+        private List<CounterEntryNew> CounterEntryNews = new List<CounterEntryNew>();
         private decimal _counterThisMonth = 0;
 
         public Color CellColor { get; set; } 
@@ -45,6 +45,11 @@ namespace xamarinJKH.Counters
         public AddMetersPage(MeterInfo meter, List<MeterInfo> meters, CountersPage countersPage, decimal counterThisMonth = 0, decimal counterPrevMonth = 0)
         {            
             InitializeComponent();
+            CounterEntryNews = new List<CounterEntryNew>
+            {
+                d1,d2,d3,d4,d41,d5,d6,d7,d8
+            };
+            GetFocusCells();
             Analytics.TrackEvent("Передача показаний по счетчику №" + meter.UniqueNum);
             NavigationPage.SetHasNavigationBar(this, false);
             _countersPage = countersPage;
@@ -274,7 +279,34 @@ namespace xamarinJKH.Counters
         //}
 
         //Thickness frameCounterMargin = new Thickness();
+        void GetFocusCells()
+        {
+            Device.StartTimer(TimeSpan.FromMilliseconds(10), OnTimerTick);
+        }
 
+        private bool OnTimerTick()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                bool flag = false;
+                foreach (var each in CounterEntryNews)
+                {
+                    flag = each.IsFocused;
+                }
+
+                if (!flag)
+                {
+                    foreach (var each in CounterEntryNews)
+                    {
+                        if (string.IsNullOrWhiteSpace(each.Text))
+                        {
+                            each.Text = "0";
+                        }
+                    }
+                }
+            });
+            return true;
+        }
 
         private void Entry_Focused(object sender, FocusEventArgs e)
         {
@@ -500,20 +532,26 @@ namespace xamarinJKH.Counters
                 var p8 = -1;
                 var p41 = -1;
 
-                if (int.TryParse(d1.Text,out p1) && int.TryParse(d2.Text, out p2) && int.TryParse(d3.Text, out p3) 
-                    && int.TryParse(d4.Text, out p4) && int.TryParse(d5.Text, out p5)
-                    && int.TryParse(string.IsNullOrWhiteSpace(d6.Text) ? "0" : d6.Text, out p6)
-                    && int.TryParse(string.IsNullOrWhiteSpace(d7.Text) ? "0" : d7.Text, out p7)
-                    && int.TryParse(string.IsNullOrWhiteSpace(d8.Text) ? "0" : d8.Text, out p8)
-                    && (int.TryParse(d41.Text == null ? "0" : d41.Text, out p41) 
-                        && IntegerPoint == 6 || d41.Text == null && (IntegerPoint == 5 || IntegerPoint ==0)))
+                bool tryParse1 = int.TryParse(d1.Text,out p1);
+                bool tryParse2 = int.TryParse(d2.Text, out p2);
+                bool tryParse3 = int.TryParse(d3.Text, out p3);
+                bool tryParse4 = int.TryParse(d4.Text, out p4);
+                bool tryParse5 = int.TryParse(d5.Text, out p5);
+                bool tryParse6 = int.TryParse(string.IsNullOrWhiteSpace(d6.Text) ? "0" : d6.Text, out p6);
+                bool tryParse7 = int.TryParse(string.IsNullOrWhiteSpace(d7.Text) ? "0" : d7.Text, out p7);
+                bool tryParse8 = int.TryParse(string.IsNullOrWhiteSpace(d8.Text) ? "0" : d8.Text, out p8);
+                bool tryParse9 = int.TryParse(d41.Text == null ? "0" : d41.Text, out p41);
+                bool All = tryParse1 && tryParse2 && tryParse3 && tryParse4 && tryParse5 && tryParse6 && tryParse7 && tryParse8 && tryParse9; // Проверка на вводимые символы
+
+                bool isNotNull = (p1>0 || p2 >0 || p3 > 0 || p4 > 0 || p5 >0 || p6 >0 || p7 >0 || p8 > 0 || p41 >0); // Проверка что бы все клетки не были бы нулями
+                if (All && isNotNull) //  && IntegerPoint == 6 || d41.Text == null && (IntegerPoint == 5 || IntegerPoint ==0)
                 {
                     count += d1.Text;// != "0" ? d1.Text : "";
                     count += d2.Text;// != "0" ? d2.Text : "";
                     count += d3.Text;// != "0" ? d3.Text : "";
                     count += d4.Text;// != "0" ? d4.Text : "";
-                    count += IntegerPoint == 6 ? d41.Text : "";
-                    count += d5.Text+ ",";
+                    count += d5.Text;
+                    count += IntegerPoint == 6 ? d41.Text + "," : ",";
                     count += d6.Text;// != "0" ? d6.Text : "";
                     count += d7.Text;// != "0" ? d7.Text : "";
                     count += d8.Text;// != "0" ? d8.Text : "";
