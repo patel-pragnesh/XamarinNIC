@@ -742,7 +742,8 @@ namespace xamarinJKH.Main
             {
                 return new Command(async (ident) =>
                 {
-                    await AiForms.Dialogs.Dialog.Instance.ShowAsync(new BonusHistoryDialogView(ident.ToString()));
+                    if (ident != null)
+                        await AiForms.Dialogs.Dialog.Instance.ShowAsync(new BonusHistoryDialogView(ident.ToString()));
                 });
             }
         }
