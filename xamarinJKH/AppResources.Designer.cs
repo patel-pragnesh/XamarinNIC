@@ -169,7 +169,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Не все введенные символы являются цифрами. Пожалуйста, проверьте правильность введенных показаний.
+        ///   Looks up a localized string similar to Пожалуйста, проверьте правильность введенных показаний.
         /// </summary>
         internal static string AddMetersNotNumber {
             get {

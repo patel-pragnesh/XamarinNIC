@@ -944,7 +944,7 @@
     <value>Введите показания</value>
   </data>
   <data name="AddMetersNotNumber" xml:space="preserve">
-    <value>Не все введенные символы являются цифрами. Пожалуйста, проверьте правильность введенных показаний</value>
+    <value>Пожалуйста, проверьте правильность введенных показаний</value>
   </data>
   <data name="AddMetersSuccess" xml:space="preserve">
     <value>Показания успешно переданы</value>

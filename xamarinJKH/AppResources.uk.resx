@@ -142,7 +142,7 @@
     <value>Введіть свідчення</value>
   </data>
   <data name="AddMetersNotNumber" xml:space="preserve">
-    <value>Не всі введені символи є цифрами. Будь ласка, перевірте правильність введених показань</value>
+    <value>Будь ласка, перевірте правильність введених показань</value>
   </data>
   <data name="AddMetersSuccess" xml:space="preserve">
     <value>Показання успішно передані</value>

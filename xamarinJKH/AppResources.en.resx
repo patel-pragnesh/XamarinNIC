@@ -952,7 +952,7 @@ A bot will call you on your number PHONE and tell an access code</value>
     <value>Enter indications</value>
   </data>
   <data name="AddMetersNotNumber" xml:space="preserve">
-    <value>Not all symbols are numbers. Please, check your input</value>
+    <value>Please, check your input</value>
   </data>
   <data name="AddMetersSuccess" xml:space="preserve">
     <value>Data is passed successfully</value>
