@@ -29,7 +29,7 @@ using Xamarin.Forms.PancakeView;
 using xamarinJKH.DialogViews;
 using Xamarin.Essentials;
 using System.Text.RegularExpressions;
-using dotMorten.Xamarin.Forms;
+//using dotMorten.Xamarin.Forms;
 using Microsoft.AppCenter.Analytics;
 
 namespace xamarinJKH.Apps
@@ -137,7 +137,22 @@ namespace xamarinJKH.Apps
             
             SetText();
             files = new ObservableCollection<FileData>();
+
+#if DEBUG
             _appModel = new AddAppModel()
+            {
+                AllAcc = Settings.Person.Accounts,
+                AllType = Settings.TypeApp,
+                AllKindPass = new List<string> { AppResources.PassMan, AppResources.PassMotorcycle,
+                    AppResources.PassCar, AppResources.PassGazele, AppResources.PassCargo },
+                AllBrand = new List<string>() {"Suzuki", "Kavasaki", "Lada", "Opel", "Volkswagen", "Запорожец" }, /*Settings.BrandCar,*/
+                hex = (Color)Application.Current.Resources["MainColor"],
+                SelectedAcc = Settings.Person.Accounts[0],
+                SelectedType = Settings.TypeApp[0],
+                Files = files
+            };
+#else
+_appModel = new AddAppModel()
             {
                 AllAcc = Settings.Person.Accounts,
                 AllType = Settings.TypeApp,
@@ -149,15 +164,123 @@ namespace xamarinJKH.Apps
                 SelectedType = Settings.TypeApp[0],
                 Files = files
             };
+#endif
+
+
             BindingContext = _appModel;
             ListViewFiles.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+
+            var passTypeEntryTGR = new TapGestureRecognizer();
+            passTypeEntryTGR.Tapped += async (s, e) =>
+            {
+                if (!PassTypesList.IsVisible)
+                {
+                    PassTypesList.IsVisible = true;
+                }
+            };
+            PassType.GestureRecognizers.Add(call);
+            
+        }
+
+        private void SearchBar_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            PassTypesList.IsVisible = true;
+            PassTypesList.BeginRefresh();
+
+            try
+            {
+                var dataEmpty = _appModel.AllKindPass.Where(i => i.ToLower().Contains(e.NewTextValue.ToLower()));
+                
+                SetVisibleLayout(e.NewTextValue);
+
+                if (string.IsNullOrWhiteSpace(e.NewTextValue))
+                {
+                    //PassTypesList.IsVisible = false;
+                    PassTypesList.ItemsSource = _appModel.AllKindPass;
+                }
+                else if (dataEmpty.Max().Length == 0)
+                    PassTypesList.IsVisible = false;
+                else
+                    PassTypesList.ItemsSource = _appModel.AllKindPass.Where(i => i.ToLower().Contains(e.NewTextValue.ToLower()));
+            }
+            catch (Exception ex)
+            {
+                PassTypesList.IsVisible = false;
+            }
+            PassTypesList.EndRefresh();
+
+        }
+
+        private void TSBrand_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            TSBrandList.IsVisible = true;
+            TSBrandList.BeginRefresh();
+
+            try
+            {
+                var dataEmpty = _appModel.AllBrand.Where(i => i.ToLower().Contains(e.NewTextValue.ToLower()));
+                
+                if (string.IsNullOrWhiteSpace(e.NewTextValue))
+                {
+                    //TSBrandList.IsVisible = false;
+                    TSBrandList.ItemsSource = _appModel.AllBrand;
+                }
+                else if (dataEmpty.Max().Length == 0)
+                    TSBrandList.IsVisible = false;
+                else
+                    TSBrandList.ItemsSource = _appModel.AllBrand.Where(i => i.ToLower().Contains(e.NewTextValue.ToLower()));
+            }
+            catch (Exception ex)
+            {
+                TSBrandList.IsVisible = false;
+            }
+            TSBrandList.EndRefresh();
+        }
+
+        void SetVisibleLayout(string listsd)
+        {
+            if (listsd != null)
+            {
+                if (!_appModel.AllKindPass.Exists(i => i.ToLower() == listsd.ToLower()))
+                {
+                    LayoutPeshehod.IsVisible = false;
+                    LayoutAvto.IsVisible = false;
+                    return;
+                }
+                    _passApp.idType = _appModel.AllKindPass.IndexOf(listsd) + 1;
+                // User selected an item from the suggestion list, take an action on it here.
+                if (listsd.Equals(AppResources.PassMan))
+                {
+                    LayoutPeshehod.IsVisible = true;
+                    LayoutAvto.IsVisible = false;
+
+                }
+                else
+                {
+                    LayoutPeshehod.IsVisible = false;
+                    LayoutAvto.IsVisible = true;
+                }
+            }
+            else
+            {
+                // User hit Enter from the search box. Use args.QueryText to determine what to do.
+                _passApp.idType = 0;
+            }
+        }
+
+        private void ListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
+        {
+            String listsd = e.Item as string;
+            PassType.Text = listsd;
+            PassTypesList.IsVisible = false;
+            ((ListView)sender).SelectedItem = null;            
+            SetVisibleLayout(listsd);
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            await Task.Delay(TimeSpan.FromSeconds(1));
-           
+            await Task.Delay(TimeSpan.FromSeconds(1));           
         }
 
         private async void AddFile()
@@ -711,49 +834,49 @@ namespace xamarinJKH.Apps
             }
         }
 
-        private void AutoSuggestBox_TextChanged(object sender, AutoSuggestBoxTextChangedEventArgs e)
-        {
-            // Only get results when it was a user typing, 
-            // otherwise assume the value got filled in by TextMemberPath 
-            // or the handler for SuggestionChosen.
-            if (e.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
-            {
-                IEnumerable<string> itemsSource =
-                    from i in _appModel.AllKindPass where i.ToLower().Contains(AutoSuggestBox.Text) select i;
-                List<string> source = new List<string>(itemsSource);
-                AutoSuggestBox.ItemsSource = source;
-            }
-        }
+        //private void AutoSuggestBox_TextChanged(object sender, AutoSuggestBoxTextChangedEventArgs e)
+        //{
+        //    // Only get results when it was a user typing, 
+        //    // otherwise assume the value got filled in by TextMemberPath 
+        //    // or the handler for SuggestionChosen.
+        //    if (e.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+        //    {
+        //        IEnumerable<string> itemsSource =
+        //            from i in _appModel.AllKindPass where i.ToLower().Contains(AutoSuggestBox.Text) select i;
+        //        List<string> source = new List<string>(itemsSource);
+        //        AutoSuggestBox.ItemsSource = source;
+        //    }
+        //}
 
-        private void AutoSuggestBox_QuerySubmitted(object sender, AutoSuggestBoxQuerySubmittedEventArgs e)
-        {
-        }
+        //private void AutoSuggestBox_QuerySubmitted(object sender, AutoSuggestBoxQuerySubmittedEventArgs e)
+        //{
+        //}
 
-        private void AutoSuggestBox_SuggestionChosen(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
-        {
-            var eSelectedItem = (string) e.SelectedItem;
-            if (eSelectedItem != null)
-            {
-                _passApp.idType = _appModel.AllKindPass.IndexOf(eSelectedItem) + 1;
-                // User selected an item from the suggestion list, take an action on it here.
-                if (eSelectedItem.Equals(AppResources.PassMan))
-                {
-                    LayoutPeshehod.IsVisible = true;
-                    LayoutAvto.IsVisible = false;
+        //private void AutoSuggestBox_SuggestionChosen(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
+        //{
+        //    var eSelectedItem = (string) e.SelectedItem;
+        //    if (eSelectedItem != null)
+        //    {
+        //        _passApp.idType = _appModel.AllKindPass.IndexOf(eSelectedItem) + 1;
+        //        // User selected an item from the suggestion list, take an action on it here.
+        //        if (eSelectedItem.Equals(AppResources.PassMan))
+        //        {
+        //            LayoutPeshehod.IsVisible = true;
+        //            LayoutAvto.IsVisible = false;
                     
-                }
-                else
-                {
-                    LayoutPeshehod.IsVisible = false;
-                    LayoutAvto.IsVisible = true;
-                }
-            }
-            else
-            {
-                // User hit Enter from the search box. Use args.QueryText to determine what to do.
-                _passApp.idType = 0;
-            }
-        }
+        //        }
+        //        else
+        //        {
+        //            LayoutPeshehod.IsVisible = false;
+        //            LayoutAvto.IsVisible = true;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        // User hit Enter from the search box. Use args.QueryText to determine what to do.
+        //        _passApp.idType = 0;
+        //    }
+        //}
         
 
        
@@ -794,16 +917,16 @@ namespace xamarinJKH.Apps
 
        
 
-        private void AutoSuggestBoxBrand_OnTextChanged(object sender, AutoSuggestBoxTextChangedEventArgs e)
-        {
-            if (e.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
-            {
-                IEnumerable<string> itemsSource =
-                    from i in _appModel.AllBrand where i.ToLower().Contains(AutoSuggestBoxBrand.Text) select i;
-                List<string> source = new List<string>(itemsSource);
-                AutoSuggestBoxBrand.ItemsSource = source;
-            }
-        }
+        //private void AutoSuggestBoxBrand_OnTextChanged(object sender, AutoSuggestBoxTextChangedEventArgs e)
+        //{
+        //    if (e.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+        //    {
+        //        IEnumerable<string> itemsSource =
+        //            from i in _appModel.AllBrand where i.ToLower().Contains(AutoSuggestBoxBrand.Text) select i;
+        //        List<string> source = new List<string>(itemsSource);
+        //        AutoSuggestBoxBrand.ItemsSource = source;
+        //    }
+        //}
 
         class PassApp
         {
@@ -814,17 +937,26 @@ namespace xamarinJKH.Apps
             public string SeriaNumber { get; set; }
         }
 
-        private void AutoSuggestBoxBrand_OnSuggestionChosen(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
+        //private void AutoSuggestBoxBrand_OnSuggestionChosen(object sender, AutoSuggestBoxSuggestionChosenEventArgs e)
+        //{
+        //    var eSelectedItem = (string) e.SelectedItem;
+        //    if (eSelectedItem != null)
+        //    {
+        //        _passApp.CarBrand = eSelectedItem;
+        //    }
+        //    else
+        //    {
+        //        _passApp.CarBrand = "";
+        //    }
+        //}
+
+        private void TSBrandList_OnItemTapped(Object sender, ItemTappedEventArgs e)
         {
-            var eSelectedItem = (string) e.SelectedItem;
-            if (eSelectedItem != null)
-            {
-                _passApp.CarBrand = eSelectedItem;
-            }
-            else
-            {
-                _passApp.CarBrand = "";
-            }
+            String listsd = e.Item as string;
+            TSBrand.Text = listsd;
+            TSBrandList.IsVisible = false;
+            ((ListView)sender).SelectedItem = null;
+            _passApp.CarBrand = listsd;
         }
 
         private void EntryPassport_OnTextChanged(object sender, TextChangedEventArgs e)
@@ -836,5 +968,25 @@ namespace xamarinJKH.Apps
             }
             });
     }
+
+        private void PassType_Unfocused(object sender, FocusEventArgs e)
+        {
+            PassTypesList.IsVisible = false;
+        }
+
+        private void PassType_Focused(object sender, FocusEventArgs e)
+        {
+            PassTypesList.IsVisible = true;
+        }
+                
+        private void TSBrand_Unfocused(object sender, FocusEventArgs e)
+        {
+            TSBrandList.IsVisible = false;
+        }
+
+        private void TSBrand_Focused(object sender, FocusEventArgs e)
+        {
+            TSBrandList.IsVisible = true;
+        }
     }
 }

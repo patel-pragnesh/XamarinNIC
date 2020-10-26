@@ -6,7 +6,7 @@
              xmlns:pays="clr-namespace:xamarinJKH.Pays;assembly=xamarinJKH"
              xmlns:apps="clr-namespace:xamarinJKH.Apps;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:forms="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Apps.NewAppPage">
@@ -204,7 +204,7 @@
                                         Spacing="0"
                                         HorizontalOptions="FillAndExpand"
                                         Orientation="Vertical">
-                                        <forms:AutoSuggestBox
+                                        <!--<forms:AutoSuggestBox
                                             x:Name="AutoSuggestBox"
                                             PlaceholderText="{x:Static xamarinJkh:AppResources.EnterTypePass}"
                                             WidthRequest="200"
@@ -212,8 +212,33 @@
                                             HorizontalOptions="FillAndExpand"
                                             TextChanged="AutoSuggestBox_TextChanged"
                                             QuerySubmitted="AutoSuggestBox_QuerySubmitted"
-                                            SuggestionChosen="AutoSuggestBox_SuggestionChosen" />
+                                            SuggestionChosen="AutoSuggestBox_SuggestionChosen" />-->
+
+                                        <Entry x:Name="PassType"  TextChanged="SearchBar_OnTextChanged" BackgroundColor="Transparent" Unfocused="PassType_Unfocused" Focused="PassType_Focused"
+                                           TextColor="Gray" FontSize="Medium" PlaceholderColor="LightGray"  Placeholder="{x:Static xamarinJkh:AppResources.EnterTypePass}"
+                                           />
+                                        <!--AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None"-->
+                                        <ListView x:Name="PassTypesList" 
+                                              IsVisible="false" CachingStrategy="RecycleElement" 
+                                              ios:ListView.SeparatorStyle="FullWidth"
+                                              BackgroundColor="White" ItemTapped="ListView_OnItemTapped"   
+                                              ItemsSource="{Binding AllKindPass}"
+                                              HeightRequest="200">
+                                            <!--AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None"-->
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ViewCell>
+                                                        <!--<StackLayout BackgroundColor="White">-->
+                                                        <Label Text="{Binding .}" FontSize="16" TextColor="#FF464859" VerticalTextAlignment="Center"/>
+                                                        <!--</StackLayout>-->
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+
                                     </StackLayout>
+
+
                                     <StackLayout x:Name="LayoutPeshehod" IsVisible="False" Spacing="10">
                                         <StackLayout Spacing="0"
                                                      Margin="3,0,5,0"
@@ -260,14 +285,39 @@
                                         <StackLayout Spacing="0"
                                                      HorizontalOptions="FillAndExpand"
                                                      Orientation="Vertical">
-                                            <forms:AutoSuggestBox
+                                            <!--<forms:AutoSuggestBox
                                                 x:Name="AutoSuggestBoxBrand"
                                                 TextChanged = "AutoSuggestBoxBrand_OnTextChanged"
                                                 SuggestionChosen = "AutoSuggestBoxBrand_OnSuggestionChosen"
                                                 PlaceholderText="{x:Static xamarinJkh:AppResources.EnterCarBrand}"
                                                 WidthRequest="200"
                                                 ItemsSource="{Binding AllBrand}"
-                                                HorizontalOptions="FillAndExpand" />
+                                                HorizontalOptions="FillAndExpand" />-->
+                                            <Entry x:Name="TSBrand" TextChanged="TSBrand_OnTextChanged" BackgroundColor="Transparent" Unfocused="TSBrand_Unfocused" Focused="TSBrand_Focused"
+                                           TextColor="Gray" FontSize="Large" PlaceholderColor="LightGray"  Placeholder="{x:Static xamarinJkh:AppResources.EnterCarBrand}"
+                                           />
+                                            <!--AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None"-->
+                                            <ListView x:Name="TSBrandList" 
+                                              ios:ListView.SeparatorStyle="FullWidth"
+                                              IsVisible="false" CachingStrategy="RecycleElement" 
+                                              BackgroundColor="White" ItemTapped="TSBrandList_OnItemTapped"   
+                                              ItemsSource="{Binding AllBrand}"
+                                              HeightRequest="200"
+                                              >
+                                                
+                                                <!--AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None"-->
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <ViewCell>
+                                                            <!--<Frame>
+                                                                <StackLayout BackgroundColor="White">-->
+                                                            <Label Text="{Binding .}" FontSize="16" TextColor="#FF464859" VerticalTextAlignment="Center"/>
+                                                            <!--</StackLayout>
+                                                            </Frame>-->
+                                                        </ViewCell>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
                                         </StackLayout>
                                         <StackLayout Spacing="0"
                                                      HorizontalOptions="FillAndExpand"
