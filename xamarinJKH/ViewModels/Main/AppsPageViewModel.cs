@@ -110,21 +110,25 @@ namespace xamarinJKH.ViewModels.Main
             var response = await Server.GetRequestsList();
             if (response.Error == null)
             {
-                MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => x.IsReadedByClient).Count());
-                if (AllRequests != null)
+                if (response.Requests != null)
                 {
-                    Empty = Requests.Count == 0;
-                    var ids = AllRequests.Select(x => x.ID);
-                    var newRequests = response.Requests.Where(x => !ids.Contains(x.ID)).ToList();
-                    foreach (var newApp in newRequests)
+                    MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => x.IsReadedByClient).Count());
+                    if (AllRequests != null)
                     {
-                        Device.BeginInvokeOnMainThread(() =>
+                        Empty = Requests.Count == 0;
+                        var ids = AllRequests.Select(x => x.ID);
+                        var newRequests = response.Requests.Where(x => !ids.Contains(x.ID)).ToList();
+                        foreach (var newApp in newRequests)
                         {
-                            AllRequests.Insert(0, newApp);
-                            Requests.Insert(0, newApp);
-                        });
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                AllRequests.Insert(0, newApp);
+                                Requests.Insert(0, newApp);
+                            });
+                        }
                     }
                 }
+                
 
             }
         }

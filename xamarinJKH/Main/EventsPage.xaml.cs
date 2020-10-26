@@ -390,8 +390,10 @@ namespace xamarinJKH.Main
             });
             CountNew = new Command(() =>
             {
-                AnnounsmentsCount = Settings.EventBlockData.Announcements.Where(x => !x.IsReaded).Count();
-                PollsCount = Settings.EventBlockData.Polls.Where(x => !x.IsReaded).Count();
+                if (Settings.EventBlockData.Announcements != null)
+                    AnnounsmentsCount = Settings.EventBlockData.Announcements.Where(x => !x.IsReaded).Count();
+                if (Settings.EventBlockData.Polls != null)
+                    PollsCount = Settings.EventBlockData.Polls.Where(x => !x.IsReaded).Count();
             });
         }
     }
