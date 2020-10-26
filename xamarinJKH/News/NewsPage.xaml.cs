@@ -51,6 +51,13 @@ namespace xamarinJKH.News
                 });
             }
         }
+        async void GetNews()
+        {
+            AllNews = await server.AllNews();
+
+        }
+
+        public List<NewsInfo> AllNews { get; set; }
 
         private async Task RefreshData()
         {
@@ -74,6 +81,7 @@ namespace xamarinJKH.News
         public NewsPage()
         {
             InitializeComponent();
+            GetNews();
             Analytics.TrackEvent("Список новостей");
             switch (Device.RuntimePlatform)
             {
@@ -150,7 +158,7 @@ namespace xamarinJKH.News
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewsAllPage());
+            await Navigation.PushAsync(new NewsAllPage(AllNews));
         }
     }
 }

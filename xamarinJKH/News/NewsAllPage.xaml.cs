@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 
@@ -16,10 +17,13 @@ namespace xamarinJKH.News
     public partial class NewsAllPage : ContentPage
     {
         public ObservableCollection<NewsInfo> News { get; set; }
-        public NewsAllPage()
+        public List<NewsInfo> AllNews { get; set; }
+        RestClientMP server = new RestClientMP();
+        public NewsAllPage(List<NewsInfo> AllNews)
         {
             NavigationPage.SetHasNavigationBar(this, false);
-            News = new ObservableCollection<NewsInfo>(Settings.EventBlockData.News);
+            this.AllNews = AllNews;
+            News = new ObservableCollection<NewsInfo>(this.AllNews);
             InitializeComponent();
             HeaderViewMain.BackClick = new Command(async () =>
             {
@@ -53,6 +57,13 @@ namespace xamarinJKH.News
             BindingContext = this;
         }
 
+        async void GetNews()
+        {
+            AllNews = await server.AllNews();
+            News = new ObservableCollection<NewsInfo>(AllNews);
+
+        }
+        
         private void DatePicker_OnDateSelected(object sender, DateChangedEventArgs e)
         {
             SetDate();
@@ -84,7 +95,7 @@ namespace xamarinJKH.News
             DateTime one = DatePicker.Date;
             DateTime two = DatePicker2.Date;
             News.Clear();
-            foreach (var each in Settings.EventBlockData.News)
+            foreach (var each in AllNews)
             {
                 DateTime timeNotif = new DateTime();
                 try

@@ -74,6 +74,7 @@ namespace xamarinJKH.Server
 
         public const string GET_MOBILE_SETTINGS = "Config/MobileAppSettings"; // Регистрация по телефону
         public const string GET_EVENT_BLOCK_DATA = "Common/EventBlockData"; // Блок события
+        public const string GET_ALL_NEWS = "Common/AllNews"; // Блок события
 
         public const string GET_PHOTO_ADDITIONAL = "AdditionalServices/logo"; // Картинка доп услуги
         public const string GET_ACCOUNTING_INFO = "Accounting/Info"; // инфомация о начислениях
@@ -428,6 +429,27 @@ namespace xamarinJKH.Server
                 return new EventBlockData()
                 {
                     Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        public async Task<List<NewsInfo>> AllNews()
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_ALL_NEWS, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+
+            var response = await restClientMp.ExecuteTaskAsync<List<NewsInfo>>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new List<NewsInfo>()
+                {
+                    // Error = $"Ошибка {response.StatusDescription}"
                 };
             }
 
