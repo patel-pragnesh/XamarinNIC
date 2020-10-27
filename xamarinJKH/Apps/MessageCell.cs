@@ -1,5 +1,6 @@
 ﻿using AiForms.Dialogs;
 using FFImageLoading.Svg.Forms;
+using Microsoft.AppCenter.Analytics;
 using System;
 using System.IO;
 using Xamarin.Essentials;
@@ -816,6 +817,7 @@ namespace xamarinJKH.Apps
                 .Replace("\"", "");
                     if (await DependencyService.Get<IFileWorker>().ExistsAsync(fileName))
                     {
+                        Analytics.TrackEvent($"открытие файла {fileName}");
                         await Launcher.OpenAsync(new OpenFileRequest
                         {
                             File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
@@ -827,8 +829,13 @@ namespace xamarinJKH.Apps
                         byte[] memoryStream = await _server.GetFileAPP(message.FileID.ToString());
                         if (memoryStream != null)
                         {
+                            Analytics.TrackEvent($"сохранение файла {fileName}");
+
                             await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
                             Loading.Instance.Hide();
+
+                            Analytics.TrackEvent($"открытие файла {fileName}");
+
                             await Launcher.OpenAsync(new OpenFileRequest
                             {
                                 File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))

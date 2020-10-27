@@ -88,6 +88,7 @@ namespace xamarinJKH.ViewModels.Main
                         Settings.UpdateKey = response.UpdateKey;
                     if (response.Requests != null)
                     {
+                        //var sr = response.Requests.Select(_ => _.ToString()).ToList();
                         MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => x.IsReadedByClient).Count());
                         AllRequests.AddRange(response.Requests);
                         if (Requests == null)
