@@ -295,23 +295,7 @@ namespace xamarinJKH.AppsConst
             SetReadedApp();
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) =>
-            {
-                if (close)
-                {
-                    await Navigation.PopToRootAsync();
-                }
-                else
-                {
-                    Settings.isSelf = null;
-                    Settings.DateUniq = "";
-                    try
-                    {
-                        _ = await Navigation.PopAsync();
-                    }
-                    catch { }
-                }
-            };
+            backClick.Tapped += async (s, e) => { await ClosePage(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
             var sendMess = new TapGestureRecognizer();
             sendMess.Tapped += async (s, e) => { sendMessage(); };
@@ -341,13 +325,13 @@ namespace xamarinJKH.AppsConst
             {
                 // await ShowRating();
                 // await PopupNavigation.Instance
-                CommonResult result = await _server.CloseAppConst(requestInfo.ID.ToString());
+                CommonResult result = await _server.CloseAppConst(_requestInfo.ID.ToString());
                 if (result.Error == null)
                 {
                     var result2 = await DisplayAlert("", AppResources.RatingBarClose, "OK", AppResources.Cancel);
                     if (result2)
                     {
-                        MessagingCenter.Send<Object>(this, "CloseAPP");
+                        await ClosePage();
                         await ShowToast(AppResources.AppClosed);
                         await RefreshData();
                     }
@@ -388,6 +372,26 @@ namespace xamarinJKH.AppsConst
                 }
             });
            // additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+        }
+
+        private async Task ClosePage()
+        {
+            if (close)
+            {
+                await Navigation.PopToRootAsync();
+            }
+            else
+            {
+                Settings.isSelf = null;
+                Settings.DateUniq = "";
+                try
+                {
+                    _ = await Navigation.PopAsync();
+                }
+                catch
+                {
+                }
+            }
         }
 
         protected async void SendCode(object sender, EventArgs args)
@@ -798,6 +802,7 @@ namespace xamarinJKH.AppsConst
             var request = await _server.PerformAppConst(_requestInfo.ID.ToString());
             if (request.Error == null)
             {
+                await ClosePage();
                 await ShowToast(AppResources.AppCompleted);
                 await RefreshData();
             }

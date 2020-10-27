@@ -18,7 +18,7 @@ namespace xamarinJKH.Server
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        //public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань water/ water2 - тихая гавань - 2 
+        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань water/ water2 - тихая гавань - 2 
         //public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
@@ -40,7 +40,7 @@ namespace xamarinJKH.Server
         //public const string SERVER_ADDR = "https://api.sm-center.ru/tsgopaliha/"; // Новая Опалиха
         //public const string SERVER_ADDR = "https://api.sm-center.ru/sklider/"; // Мобильный Мир
         //public const string SERVER_ADDR = "https://api.sm-center.ru/avalon_alfagkh/"; // Альфа ЖКХ
-        public const string SERVER_ADDR = "https://api.sm-center.ru/stolitsa/"; // Жилищник столица
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/stolitsa/"; // Жилищник столица
 
         //public const string SERVER_ADDR = "https://api.sm-center.ru/grinvay/"; // Грин-Вэй Сочи
         //public const string SERVER_ADDR = "https://api.sm-center.ru/ikon/"; // Айкон
