@@ -1219,7 +1219,7 @@ A bot will call you on your number PHONE and tell an access code</value>
     <value>Help us get better.</value>
   </data>
   <data name="RatingBarText2" xml:space="preserve">
-    <value>   работу службы поддержки:</value>
+    <value> work of support:</value>
   </data>
   <data name="UpdateDialogKeepWorking" xml:space="preserve">
     <value>Continue working in current version</value>
