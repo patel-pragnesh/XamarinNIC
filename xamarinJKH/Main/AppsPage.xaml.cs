@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -22,9 +22,9 @@ using xamarinJKH.ViewModels.Main;
 using Xamarin.Essentials;
 using System.Text.RegularExpressions;
 using System.Runtime.CompilerServices;
- using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Analytics;
 
- namespace xamarinJKH.Main
+namespace xamarinJKH.Main
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AppsPage : ContentPage
@@ -37,6 +37,7 @@ using System.Runtime.CompilerServices;
         private bool _isRefreshing = false;
         public Color hex { get; set; }
         public AppsPageViewModel viewModel { get; set; }
+
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -61,7 +62,6 @@ using System.Runtime.CompilerServices;
                     }
                     catch
                     {
-
                     }
 
                     //await RefreshData();
@@ -71,6 +71,7 @@ using System.Runtime.CompilerServices;
                 });
             }
         }
+
         Task UpdateTask;
 
         public async Task ShowMessage(string message,
@@ -99,13 +100,13 @@ using System.Runtime.CompilerServices;
                 {
                     if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
                     {
-                        Device.BeginInvokeOnMainThread(async () => 
+                        Device.BeginInvokeOnMainThread(async () =>
                         {
                             if (showNoInetWindow)
                             {
                                 showNoInetWindow = false;
 
-                                   await ShowMessage(AppResources.ErrorNoInternet, AppResources.ErrorTitle, "OK", () =>
+                                await ShowMessage(AppResources.ErrorNoInternet, AppResources.ErrorTitle, "OK", () =>
                                 {
                                     showNoInetWindow = true;
                                     //await ShowMessage("OK was pressed", "Message", "OK", null);
@@ -115,24 +116,27 @@ using System.Runtime.CompilerServices;
 
                             await Task.Delay(TimeSpan.FromSeconds(5));
                         });
-
                     }
+
                     await viewModel.UpdateTask();
                     await Task.Delay(TimeSpan.FromSeconds(5));
                 }
+
                 return;
             }, this.CancellationToken);
             try
             {
                 UpdateTask.Start();
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         static bool inUpdateNow = false;
+
         public async Task RefreshData()
         {
-
             try
             {
                 if (inUpdateNow)
@@ -157,8 +161,6 @@ using System.Runtime.CompilerServices;
             {
                 inUpdateNow = false;
             }
-
-
         }
 
         public CancellationTokenSource CancellationTokenSource { get; set; }
@@ -169,14 +171,13 @@ using System.Runtime.CompilerServices;
             InitializeComponent();
             Analytics.TrackEvent("Заявки жителя");
             //Settings.MobileSettings.color = null;
-            hex = Color.FromHex(!string.IsNullOrEmpty(Settings.MobileSettings.color) ? Settings.MobileSettings.color : "#FF0000");
+            hex = Color.FromHex(!string.IsNullOrEmpty(Settings.MobileSettings.color)
+                ? Settings.MobileSettings.color
+                : "#FF0000");
             BindingContext = viewModel = new AppsPageViewModel();
-            
+
             NavigationPage.SetHasNavigationBar(this, false);
-            MessagingCenter.Subscribe<Object>(this, "AutoUpdate", (sender) =>
-            {
-                StartAutoUpdate();
-            });
+            MessagingCenter.Subscribe<Object>(this, "AutoUpdate", (sender) => { StartAutoUpdate(); });
 
 
             switch (Device.RuntimePlatform)
@@ -200,7 +201,7 @@ using System.Runtime.CompilerServices;
                     break;
             }
 
-           
+
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); };
             LabelTech.GestureRecognizers.Add(techSend);
@@ -212,7 +213,8 @@ using System.Runtime.CompilerServices;
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
                     if (phoneDialer.CanMakePhoneCall && !string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-                        phoneDialer.MakePhoneCall(System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
+                        phoneDialer.MakePhoneCall(
+                            System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
                 }
             };
             LabelPhone.GestureRecognizers.Add(call);
@@ -241,9 +243,13 @@ using System.Runtime.CompilerServices;
                     }
                     catch
                     {
-
                     }
-                    Device.BeginInvokeOnMainThread(async () => { if (Navigation.NavigationStack.FirstOrDefault(x => x is AppPage) == null) await Navigation.PushAsync(new AppPage(request)); });
+
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        if (Navigation.NavigationStack.FirstOrDefault(x => x is AppPage) == null)
+                            await Navigation.PushAsync(new AppPage(request));
+                    });
                 }
             });
             viewModel.LoadRequests.Execute(null);
@@ -251,15 +257,14 @@ using System.Runtime.CompilerServices;
             //            PropertyChanged = "change"
 
             SwitchApp.Toggled += SwitchApp_Toggled;
-            MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) => 
+            MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) =>
             {
-
                 OSAppTheme currentTheme = Application.Current.RequestedTheme;
                 var colors = new Dictionary<string, string>();
                 var arrowcolor = new Dictionary<string, string>();
                 if (currentTheme == OSAppTheme.Light || currentTheme == OSAppTheme.Unspecified)
                 {
-                    colors.Add("#000000", ((Color)Application.Current.Resources["MainColor"]).ToHex());
+                    colors.Add("#000000", ((Color) Application.Current.Resources["MainColor"]).ToHex());
                     arrowcolor.Add("#000000", "#494949");
                 }
                 else
@@ -267,6 +272,7 @@ using System.Runtime.CompilerServices;
                     colors.Add("#000000", "#FFFFFF");
                     arrowcolor.Add("#000000", "#FFFFFF");
                 }
+
                 IconViewLogin.ReplaceStringMap = colors;
                 IconViewTech.ReplaceStringMap = colors;
             });
@@ -282,12 +288,12 @@ using System.Runtime.CompilerServices;
             {
                 RequestInfos = RequestInfosAlive;
             }
+
             additionalList.ItemsSource = null;
             additionalList.ItemsSource = RequestInfos;
-            
         }
 
-        public AppsPage(string app_id) : base ()
+        public AppsPage(string app_id) : base()
         {
             var request = RequestInfos.Find(x => x.ID == int.Parse(app_id));
             if (request != null)
@@ -305,14 +311,11 @@ using System.Runtime.CompilerServices;
             base.OnDisappearing();
             try
             {
-
                 CancellationTokenSource.Cancel();
                 CancellationTokenSource.Dispose();
-                
             }
             catch
             {
-
             }
         }
 
@@ -331,6 +334,7 @@ using System.Runtime.CompilerServices;
                 await Task.Delay(TimeSpan.FromSeconds(5));
                 await RefreshData();
             }
+
             //});
         }
 
@@ -346,13 +350,20 @@ using System.Runtime.CompilerServices;
                 IconViewLogin.IsVisible = false;
                 LabelPhone.IsVisible = false;
             }
+
             SwitchApp.OnColor = hex;
             //IconAddApp.Foreground = Color.White;
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);if (Device.RuntimePlatform == Device.iOS){ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            {
+                if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo")
+                {
+                    PancakeViewIcon.Padding = new Thickness(0);
+                }
+            }
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
         }
@@ -361,19 +372,21 @@ using System.Runtime.CompilerServices;
         {
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
-                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                Device.BeginInvokeOnMainThread(async () =>
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
+
             _requestList = await _server.GetRequestsList();
             if (_requestList.Error == null)
             {
-                if(Settings.UpdateKey != _requestList.UpdateKey)
+                if (Settings.UpdateKey != _requestList.UpdateKey)
                 {
                     RequestInfos = null;
                     setCloses(_requestList.Requests);
                     Settings.UpdateKey = _requestList.UpdateKey;
-                    this.BindingContext = this;                    
-                }                
+                    this.BindingContext = this;
+                }
             }
             else
             {
@@ -437,26 +450,33 @@ using System.Runtime.CompilerServices;
 
         private async void startNewApp(object sender, EventArgs e)
         {
-            if (Settings.Person.Accounts.Count > 0)
+            try
             {
-                if (Settings.TypeApp.Count > 0)
+                if (Settings.Person.Accounts.Count > 0)
                 {
-                    if (Navigation.NavigationStack.FirstOrDefault(x => x is NewAppPage) == null)
-                        await Navigation.PushAsync(new NewAppPage());
+                    if (Settings.TypeApp.Count > 0)
+                    {
+                        if (Navigation.NavigationStack.FirstOrDefault(x => x is NewAppPage) == null)
+                            await Navigation.PushAsync(new NewAppPage());
+                    }
+                    else
+                    {
+                        await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppsNoTypes, "OK");
+                    }
                 }
                 else
                 {
-                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppsNoTypes, "OK");
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppsNoIdent, "OK");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppsNoIdent, "OK");
+                Analytics.TrackEvent(ex.Message);
             }
         }
 
         private void change(object sender, PropertyChangedEventArgs e)
-        {            
+        {
             if (SwitchApp.IsToggled)
             {
                 RequestInfos = RequestInfosClose;
@@ -465,6 +485,7 @@ using System.Runtime.CompilerServices;
             {
                 RequestInfos = RequestInfosAlive;
             }
+
             additionalList.ItemsSource = null;
             additionalList.ItemsSource = RequestInfos;
         }
