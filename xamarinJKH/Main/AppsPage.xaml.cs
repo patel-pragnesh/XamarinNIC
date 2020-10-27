@@ -441,8 +441,15 @@ using System.Runtime.CompilerServices;
             {
                 if (Settings.TypeApp.Count > 0)
                 {
-                    if (Navigation.NavigationStack.FirstOrDefault(x => x is NewAppPage) == null)
-                        await Navigation.PushAsync(new NewAppPage());
+                    try
+                    {
+                        if (Navigation.NavigationStack.FirstOrDefault(x => x is NewAppPage) == null)
+                            await Navigation.PushAsync(new NewAppPage());
+                    }
+                    catch (Exception ex)
+                    {
+                        Analytics.TrackEvent(ex.Message);
+                    }
                 }
                 else
                 {
