@@ -250,7 +250,7 @@ namespace xamarinJKH.Main
             Device.BeginInvokeOnMainThread(async () =>
             {
                 ItemsList<string> vehicleMarks = await server.VehicleMarks();
-                if (vehicleMarks.Error == null)
+                if (vehicleMarks.Error == null || vehicleMarks.Data == null)
                 {
                     Settings.BrandCar = vehicleMarks.Data;
                 }

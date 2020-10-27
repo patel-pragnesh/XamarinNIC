@@ -60,7 +60,12 @@ namespace xamarinJKH.Main
             techSend.Tapped += async (s, e) =>
             {
                 if (Settings.MobileSettings.сheckCrashSystem)
-                    Crashes.GenerateTestCrash();
+                {
+                    Analytics.TrackEvent("Тестовый краш");
+                    int a = 0;
+                    int b = 10 / a;
+                }
+                    
                
                 await PopupNavigation.Instance.PushAsync(new TechDialog());
             };
