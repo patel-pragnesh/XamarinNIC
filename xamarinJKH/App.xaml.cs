@@ -338,7 +338,7 @@ namespace xamarinJKH
             
 
 
-            AppCenter.Start("ios=39dce15b-0d85-46a2-bf90-a28af9fb8795;", typeof(Analytics), typeof(Crashes));
+            AppCenter.Start("android=4384b8c4-8639-411c-b011-9d9e8408acde;ios=4a45a15f-a591-4860-b748-a856636cf982;", typeof(Analytics), typeof(Crashes));
             AppCenter.LogLevel = LogLevel.Verbose;
             
         
