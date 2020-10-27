@@ -223,7 +223,7 @@
                                               ios:ListView.SeparatorStyle="FullWidth"
                                               BackgroundColor="White" ItemTapped="ListView_OnItemTapped"   
                                               ItemsSource="{Binding AllKindPass}"
-                                              HeightRequest="200">
+                                              HeightRequest="{OnPlatform Android=100, iOS=200}">
                                             <!--AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None"-->
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>

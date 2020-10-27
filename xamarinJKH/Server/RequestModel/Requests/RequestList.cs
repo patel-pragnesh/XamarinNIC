@@ -32,6 +32,11 @@ namespace xamarinJKH.Server.RequestModel
         // Флаг "Прочитана сотрудником"
         public bool IsReaded { get; set; }
         public bool IsReadedByClient { get; set; }
+
+        //public override string ToString()
+        //{
+        //    return $"Id={ID} isClosed={IsClosed} RequestNumber={RequestNumber}";
+        //}
     }
 
     public class RequestContent : RequestInfo
