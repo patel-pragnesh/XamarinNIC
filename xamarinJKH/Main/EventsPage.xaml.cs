@@ -397,8 +397,13 @@ namespace xamarinJKH.Main
             {
                 if (Settings.EventBlockData.Announcements != null)
                     AnnounsmentsCount = Settings.EventBlockData.Announcements.Where(x => !x.IsReaded).Count();
+                else
+                    Analytics.TrackEvent($"Announcements is null");
+
                 if (Settings.EventBlockData.Polls != null)
                     PollsCount = Settings.EventBlockData.Polls.Where(x => !x.IsReaded).Count();
+                else
+                    Analytics.TrackEvent($"Polls is null");
             });
         }
     }
