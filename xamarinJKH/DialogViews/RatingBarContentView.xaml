@@ -83,7 +83,6 @@
                                                Text=""
                                                WidthRequest="100"
                                                IsSpellCheckEnabled="True"
-                                               AutoSize="TextChanges"
                                                Placeholder="{x:Static xamarinJkh:AppResources.RatingBarComment}"
                                                TextColor="#A2A2A2"
                                                HorizontalOptions="FillAndExpand" Focused="BordlessEditor_Focused" Unfocused="BordlessEditor_Unfocused"/>
