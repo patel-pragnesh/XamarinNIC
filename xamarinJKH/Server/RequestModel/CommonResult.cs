@@ -9,5 +9,7 @@
     {
         public string Address { get; set; } 	// Заполняется в режиме Confirm=true 
                                                 //если ЛС может быть добавлен
+        public string acx { get; set; } 	//  токен доступа
+
     }
 }

@@ -114,7 +114,21 @@
                        Padding="20,20,20,50">
                     <StackLayout Orientation="Vertical"
                                  HorizontalOptions="CenterAndExpand">
+                        <StackLayout
+                            x:Name="StackLayoutAddIdent"
+                            IsVisible="False"
+                            >
+                            <Label
+                                Text="{x:Static xamarinJkh:AppResources.AddIdent}"
+                                TextDecorations="Underline"
+                                FontAttributes="Bold"
+                                Margin="0,0,0,15"
+                                HorizontalOptions="CenterAndExpand"
+                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                FontSize="15" />
+                        </StackLayout>
                         <StackLayout Orientation="Horizontal"
+                                     x:Name="StackLayoutPicker"
                                      HorizontalOptions="CenterAndExpand">
                             <Label
                                 Text="{x:Static xamarinJkh:AppResources.Ident}"

@@ -17,6 +17,7 @@ using xamarinJKH.CustomRenderers;
 using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Main;
+using xamarinJKH.Pays;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
@@ -104,6 +105,8 @@ namespace xamarinJKH.Main
                         baseForCounters.Children.Add(mtc);
                     }
                 }
+                OSAppTheme currentTheme = Application.Current.RequestedTheme;
+                SetHeader(currentTheme);
             }
             catch
             {
@@ -238,7 +241,14 @@ namespace xamarinJKH.Main
             baseForCounters.BackgroundColor = Color.Transparent;
             //if (Device.RuntimePlatform != Device.iOS)
             //    countersList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
-
+            var goAddIdent = new TapGestureRecognizer();
+            goAddIdent.Tapped += async (s, e) =>
+            {
+                /*await Dialog.Instance.ShowAsync<AddAccountDialogView>();*/
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is AddIdent) == null)
+                    await Navigation.PushAsync(new AddIdent((PaysPage)Settings.mainPage));
+            };
+            StackLayoutAddIdent.GestureRecognizers.Add(goAddIdent);
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
@@ -277,9 +287,15 @@ namespace xamarinJKH.Main
             IconViewTech.ReplaceStringMap = colors;
             Arrow.ReplaceStringMap = arrowcolor;
 
-            var day = DateTime.Now.Day;
+            
             //if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
             //    currentTheme = OSAppTheme.Dark;
+            SetHeader(currentTheme);
+        }
+
+        private void SetHeader(OSAppTheme currentTheme)
+        {
+            var day = DateTime.Now.Day;
             if (Settings.Person != null)
                 if (Settings.Person.Accounts != null)
                     if (Settings.Person.Accounts.Count > 0)
@@ -391,10 +407,14 @@ namespace xamarinJKH.Main
                         }
 
                         PeriodSendLbl.FormattedText = formattedResource;
+                        StackLayoutPicker.IsVisible = true;
+                        StackLayoutAddIdent.IsVisible = false;
                     }
                     else
                     {
                         PeriodSendLbl.Text = AppResources.NoAccounts;
+                        StackLayoutPicker.IsVisible = false;
+                        StackLayoutAddIdent.IsVisible = true;
                     }
         }
 

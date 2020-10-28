@@ -180,7 +180,31 @@ namespace xamarinJKH.Pays
                     await DisplayAlert("", $"{AppResources.Acc} " + ident + $"{AppResources.AddLsString}", "ОК");
                     FrameBtnAdd.IsVisible = true;
                     progress.IsVisible = false;
+                    if (!string.IsNullOrWhiteSpace(result.acx))
+                    {
+                        Settings.Person.acx = result.acx;
+                        Device.BeginInvokeOnMainThread(async () =>
+                        {
+                            string login = Preferences.Get("login", "");
+                            string pass = Preferences.Get("pass", "");
+                            if (!pass.Equals("") && !login.Equals(""))
+                            {
+                                if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                        await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                                    return;
+                                }
 
+                                LoginResult loginResult = await _server.Login(login, pass);
+                                if (loginResult.Error == null)
+                                {
+                                    Settings.Person = loginResult;
+                                }
+                                MessagingCenter.Send<Object>(this, "UpdateCounters");
+                            }
+                        });
+                    }
                     try
                     {
                         _ = await Navigation.PopAsync();
