@@ -1356,7 +1356,7 @@
     <value>Aвто свідчення</value>
   </data>
   <data name="AddLsString" xml:space="preserve">
-    <value> успішно підключений, для подальшої роботи перезавантажте додаток</value>
+    <value> успішно підключений</value>
   </data>
   <data name="EnterPin" xml:space="preserve">
     <value>Введіть пін - код з останньої квитанції</value>

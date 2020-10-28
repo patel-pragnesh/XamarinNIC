@@ -1351,7 +1351,7 @@ A bot will call you on your number PHONE and tell an access code</value>
     <value>Applications closed</value>
   </data>
   <data name="AddLsString" xml:space="preserve">
-    <value> successfully connected, restart the application for further work</value>
+    <value> successfully connected</value>
   </data>
   <data name="EnterPin" xml:space="preserve">
     <value>Enter pin - code from the last receipt</value>
