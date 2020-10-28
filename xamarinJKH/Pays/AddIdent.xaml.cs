@@ -182,7 +182,7 @@ namespace xamarinJKH.Pays
                     progress.IsVisible = false;
                     if (!string.IsNullOrWhiteSpace(result.acx))
                     {
-                        Settings.Person.acx = result.acx;
+                       
                         Device.BeginInvokeOnMainThread(async () =>
                         {
                             string login = Preferences.Get("login", "");
@@ -201,6 +201,7 @@ namespace xamarinJKH.Pays
                                 {
                                     Settings.Person = loginResult;
                                 }
+                                Settings.Person.acx = result.acx;
                                 MessagingCenter.Send<Object>(this, "UpdateCounters");
                             }
                         });

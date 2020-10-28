@@ -74,6 +74,10 @@ namespace xamarinJKH.Main
                 ItemsList<MeterInfo> info = await _server.GetThreeMeters();
                 if (info.Error == null)
                 {
+                    if (string.IsNullOrWhiteSpace(account))
+                    {
+                        account = "Все";
+                    }
                     _meterInfoAll = info.Data;
                     if (account == "Все")
                     {
