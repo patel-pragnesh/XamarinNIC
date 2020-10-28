@@ -13,6 +13,7 @@ using Microsoft.AppCenter.Analytics;
 using Xamarin.Essentials;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Additional;
+using xamarinJKH.Apps;
 
 namespace xamarinJKH.Main
 {

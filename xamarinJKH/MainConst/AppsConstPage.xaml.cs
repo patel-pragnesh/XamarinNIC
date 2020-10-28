@@ -407,7 +407,7 @@ namespace xamarinJKH.MainConst
             }
             BindingContext = this;
             additionalList.ItemsSource = null;
-            additionalList.ItemsSource = RequestInfos;
+            additionalList.ItemsSource = RequestInfos.OrderBy(o=>o.ID).Reverse();
             try
             {
                 Empty = RequestInfos.Count == 0;
