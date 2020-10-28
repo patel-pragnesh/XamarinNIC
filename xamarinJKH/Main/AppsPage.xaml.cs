@@ -276,6 +276,23 @@ namespace xamarinJKH.Main
                 IconViewLogin.ReplaceStringMap = colors;
                 IconViewTech.ReplaceStringMap = colors;
             });
+
+            MessagingCenter.Subscribe<Object, int>(this, "OpenApp", async (sender, index) =>
+            {
+                while (viewModel.AllRequests == null)
+                {
+                    await Task.Delay(TimeSpan.FromMilliseconds(50));
+                }
+                var request = viewModel.AllRequests.Where(x => x.ID == index).ToList();
+                if (request != null)
+                {
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        if (Navigation.NavigationStack.FirstOrDefault(x => x is AppPage) == null)
+                            await Navigation.PushAsync(new AppPage(request[0],false, request[0].IsPaid));
+                    });
+                }
+            });
         }
 
         private void SwitchApp_Toggled(object sender, ToggledEventArgs e)
