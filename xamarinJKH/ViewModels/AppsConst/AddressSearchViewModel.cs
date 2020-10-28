@@ -44,6 +44,11 @@ namespace xamarinJKH.ViewModels.AppsConst
                 }
             });
 
+
+            MessagingCenter.Subscribe<Object, int?>(this, "SetDistrict", (sender, args) => DistrictID = args);
+            MessagingCenter.Subscribe<Object, int?>(this, "SetHouse", (sender, args) => HouseID = args);
+            MessagingCenter.Subscribe<Object, int?>(this, "SetPremise", (sender, args) => PremiseID = args);
+
         }
     }
 }

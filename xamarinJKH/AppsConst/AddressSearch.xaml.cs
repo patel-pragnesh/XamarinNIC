@@ -8,6 +8,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.ViewModels.AppsConst;
 using dotMorten.Xamarin.Forms;
+using Rg.Plugins.Popup.Services;
+using xamarinJKH.DialogViews;
 
 namespace xamarinJKH.AppsConst
 {
@@ -35,6 +37,7 @@ namespace xamarinJKH.AppsConst
                     FlatStack.IsVisible = false;
                     break;
             }
+
         }
 
         protected override void OnAppearing()
@@ -125,6 +128,11 @@ namespace xamarinJKH.AppsConst
         {
             MessagingCenter.Send<Object, Tuple<int?, int?, int?, string>>(this, "SetTypes", new Tuple<int?, int?, int?, string>(viewModel.DistrictID, viewModel.HouseID, viewModel.PremiseID, viewModel.Street));
             await Navigation.PopAsync();
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await PopupNavigation.PushAsync(new SearchDialogView((int)SearchType.DISTRICT));
         }
     }
 }
