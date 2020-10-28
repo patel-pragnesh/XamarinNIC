@@ -146,6 +146,7 @@ namespace xamarinJKH
                                 }
                                 else
                                 {
+                                    if (!isCons)
                                     MessagingCenter.Send<Object, int>(this, "SwitchToApps",
                                         int.Parse(p.Data["id_request"].ToString()));
                                 }
@@ -218,6 +219,26 @@ namespace xamarinJKH
                                 }
                             }
                         });
+                    }
+
+                    if (o.ToLower().Equals("comment"))
+                    {
+                        var tabbedpage = App.Current.MainPage.Navigation.ModalStack.ToList()[0];
+                        if (tabbedpage is xamarinJKH.Main.BottomNavigationPage)
+                        {
+                            var stack = (tabbedpage as Xamarin.Forms.TabbedPage).Children[3].Navigation
+                                .NavigationStack;
+                            if (stack.Count == 2)
+                            {
+                                var app_page = stack.ToList()[0];
+                            }
+                            else
+                            {
+                                if (!isCons)
+                                    MessagingCenter.Send<Object, int>(this, "SwitchToApps",
+                                    int.Parse(p.Data["id_request"].ToString()));
+                            }
+                        }
                     }
                 }
             };
