@@ -1356,7 +1356,7 @@
     <value>Автоматическое снятие</value>
   </data>
   <data name="AddLsString" xml:space="preserve">
-    <value> успешно подключён, для дальнейшей работы перезагрузите приложение</value>
+    <value> успешно подключён</value>
   </data>
   <data name="EnterPin" xml:space="preserve">
     <value>Введите пин - код с последней квитанции</value>

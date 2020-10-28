@@ -142,7 +142,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  успешно подключён, для дальнейшей работы перезагрузите приложение.
+        ///   Looks up a localized string similar to  успешно подключён.
         /// </summary>
         internal static string AddLsString {
             get {
