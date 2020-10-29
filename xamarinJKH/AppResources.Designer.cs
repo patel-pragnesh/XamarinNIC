@@ -115,6 +115,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Добавьте комментарий .
+        /// </summary>
+        internal static string AddCommentToMove {
+            get {
+                return ResourceManager.GetString("AddCommentToMove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to + Подключить лицевой счет.
         /// </summary>
         internal static string AddIdent {

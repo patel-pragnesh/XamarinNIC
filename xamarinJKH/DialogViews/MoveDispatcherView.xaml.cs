@@ -103,6 +103,10 @@ namespace xamarinJKH.DialogViews
                 CommonResult result = await server.ChangeDispatcherConst(_Request.ID.ToString(), dispId);
                 if (result.Error == null)
                 {
+                    if (!string.IsNullOrWhiteSpace(BordlessEditor.Text))
+                    {
+                       result = await server.AddMessageConst(BordlessEditor.Text, _Request.ID.ToString(), true);
+                    }
                     await ShowToast(AppResources.MoveDispatcherSuccess);
                     await PopupNavigation.Instance.PopAsync();
                 }
@@ -127,6 +131,23 @@ namespace xamarinJKH.DialogViews
             // {
             //     // ignored
             // }
+        }
+        Thickness frameMargin = new Thickness();
+        private void BordlessEditor_Focused(object sender, FocusEventArgs e)
+        {
+            if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
+            {
+                frameMargin = Frame.Margin;
+                Device.BeginInvokeOnMainThread(()=> { Frame.Margin = new Thickness(15, 0, 15, 15); });
+            }
+        }
+        
+        private void BordlessEditor_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
+            {
+                Device.BeginInvokeOnMainThread(() => { Frame.Margin = frameMargin; }) ;
+            }
         }
     }
 }

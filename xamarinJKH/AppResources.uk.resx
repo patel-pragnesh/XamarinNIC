@@ -1457,4 +1457,7 @@
   <data name="ShowHistory" xml:space="preserve">
     <value>Показати списання</value>
   </data>
+  <data name="AddCommentToMove" xml:space="preserve">
+    <value>Додайте комментарий</value>
+  </data>
 </root>
