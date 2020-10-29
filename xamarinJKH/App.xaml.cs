@@ -149,6 +149,28 @@ namespace xamarinJKH
                                     if (!isCons)
                                     MessagingCenter.Send<Object, int>(this, "SwitchToApps",
                                         int.Parse(p.Data["id_request"].ToString()));
+                                    else
+                                        MessagingCenter.Send<Object, int>(this, "SwitchToAppsConst",
+                                            int.Parse(p.Data["id_request"].ToString()));
+                                }
+                            }
+
+                            if (tabbedpage is xamarinJKH.MainConst.BottomNavigationConstPage)
+                            {
+                                var stack = (tabbedpage as Xamarin.Forms.TabbedPage).Children[0].Navigation
+                                    .NavigationStack;
+                                if (stack.Count == 2)
+                                {
+                                    var app_page = stack.ToList()[0];
+                                }
+                                else
+                                {
+                                    if (!isCons)
+                                        MessagingCenter.Send<Object, int>(this, "SwitchToApps",
+                                            int.Parse(p.Data["id_request"].ToString()));
+                                    else
+                                        MessagingCenter.Send<Object, int>(this, "SwitchToAppsConst",
+                                            int.Parse(p.Data["id_request"].ToString()));
                                 }
                             }
                         }
@@ -237,6 +259,28 @@ namespace xamarinJKH
                                 if (!isCons)
                                     MessagingCenter.Send<Object, int>(this, "SwitchToApps",
                                     int.Parse(p.Data["id_request"].ToString()));
+                                else
+                                    MessagingCenter.Send<Object, int>(this, "SwitchToAppsConst",
+                                        int.Parse(p.Data["id_request"].ToString()));
+                            }
+                        }
+
+                        if (tabbedpage is xamarinJKH.MainConst.BottomNavigationConstPage)
+                        {
+                            var stack = (tabbedpage as Xamarin.Forms.TabbedPage).Children[0].Navigation
+                                .NavigationStack;
+                            if (stack.Count == 2)
+                            {
+                                var app_page = stack.ToList()[0];
+                            }
+                            else
+                            {
+                                if (!isCons)
+                                    MessagingCenter.Send<Object, int>(this, "SwitchToApps",
+                                        int.Parse(p.Data["id_request"].ToString()));
+                                else
+                                    MessagingCenter.Send<Object, int>(this, "SwitchToAppsConst",
+                                        int.Parse(p.Data["id_request"].ToString()));
                             }
                         }
                     }
