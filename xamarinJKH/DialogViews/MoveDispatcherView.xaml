@@ -102,6 +102,21 @@
 
                 </StackLayout>
             </StackLayout>
+            <Frame CornerRadius="15" x:Name="commentFrame"
+                   BackgroundColor="Transparent"
+                   BorderColor="{x:DynamicResource MainColor}"
+                   Margin="0, 25, 0, 0"
+                   Padding="10,10,10,10">
+                <xamarinJkh:BordlessEditor x:Name="BordlessEditor"
+                                           FontSize="18"
+                                           VerticalOptions="FillAndExpand"
+                                           Text=""
+                                           WidthRequest="100"
+                                           IsSpellCheckEnabled="True"
+                                           Placeholder="{x:Static xamarinJkh:AppResources.AddCommentToMove}"
+                                           TextColor="#A2A2A2"
+                                           HorizontalOptions="FillAndExpand" Focused="BordlessEditor_Focused" Unfocused="BordlessEditor_Unfocused"/>
+            </Frame>
             <Frame CornerRadius="15"
                    BackgroundColor="{x:DynamicResource MainColor}"
                    Margin="0, 10, 0, 20"

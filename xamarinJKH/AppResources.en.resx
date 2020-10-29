@@ -1473,4 +1473,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="ShowHistory" xml:space="preserve">
     <value>Show history</value>
   </data>
+  <data name="AddCommentToMove" xml:space="preserve">
+    <value>Add a comment</value>
+  </data>
 </root>
