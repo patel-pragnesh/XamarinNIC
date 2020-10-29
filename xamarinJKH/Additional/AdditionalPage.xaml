@@ -173,7 +173,7 @@
                         Margin="10, 10, 10, 0"
                         VerticalOptions="FillAndExpand">
                             <Frame CornerRadius="40"
-                               Margin="10,0,-50,-70"
+                               Margin="10,0,-50,-90"
                                x:Name="FrameKind"
                                BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                Padding="20, 20, 80, 70">
@@ -286,10 +286,11 @@
                                         </CollectionView.ItemsLayout>
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <StackLayout Padding="15">
-                                                    <StackLayout BackgroundColor="Transparent">
+                                                <StackLayout Padding="10">
+                                                    <StackLayout Spacing="-10" BackgroundColor="Transparent">
                                                         <pancakeView:PancakeView CornerRadius="20"
                                                                              x:Name="Pic"
+                                                                             Scale="0.6"
                                                                              HeightRequest="{Binding Path=Width, Source={x:Reference Pic}}"
                                                                              IsClippedToBounds="False">
                                                             <ff:CachedImage Source="{Binding LogoLink}"
@@ -299,6 +300,7 @@
                                                                TextColor="Black"
                                                                VerticalTextAlignment="Center"
                                                                HorizontalOptions="Center"
+                                                               FontSize="12"
                                                                HorizontalTextAlignment="Center"/>
                                                     </StackLayout>
                                                     
