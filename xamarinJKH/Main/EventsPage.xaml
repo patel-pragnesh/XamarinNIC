@@ -194,7 +194,7 @@
                                                BackgroundColor="Red"
                                                Padding="0"
                                                HasShadow="False"
-                                               IsVisible="{Binding AnnounsmentsCount, Converter={x:StaticResource Greater}}"  
+                                               IsVisible="False"  
                                                CornerRadius="15">
                                             <Label Text="{Binding AnnounsmentsCount}"
                                                    HorizontalOptions="FillAndExpand"
@@ -314,7 +314,7 @@
                                                BackgroundColor="Red"
                                                Padding="0"
                                                HasShadow="False"
-                                               IsVisible="{Binding PollsCount, Converter={x:StaticResource Greater}}"
+                                               IsVisible="False"
                                                CornerRadius="15">
                                             <Label Text="{Binding PollsCount}"
                                                    HorizontalOptions="FillAndExpand"
