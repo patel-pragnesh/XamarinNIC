@@ -170,6 +170,28 @@ namespace xamarinJKH.MainConst
                 IsVisibleFunction();
             });
 
+            MessagingCenter.Subscribe<Object, int>(this, "OpenAppConst", async (sender, args) =>
+            {
+                while (RequestInfos == null)
+                {
+                    await Task.Delay(TimeSpan.FromMilliseconds(50));
+                }
+                try
+                {
+                    var request = RequestInfos.First(x => x.ID == args);
+                    if (request != null)
+                    {
+                        if (Navigation.NavigationStack.FirstOrDefault(x => x is AppConstPage) == null)
+                            await Navigation.PushAsync(new AppConstPage(request));
+                    }
+                }
+                catch
+                {
+
+                }
+                
+            });
+
         }
         private async Task CloseApps()
         {

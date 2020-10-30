@@ -105,6 +105,12 @@ namespace xamarinJKH.MainConst
             MessagingCenter.Subscribe<Object>(this, "ChangeThemeConst", (sender) => ChangeTheme.Execute(null));
             if (Device.RuntimePlatform == "Android")
                 RegisterNewDevice();
+
+            MessagingCenter.Subscribe<Object, int>(this, "SwitchToAppsConst", (sender, args) =>
+            {
+                this.CurrentPage = this.Children[0];
+                MessagingCenter.Send<Object, int>(this, "OpenAppConst", args);
+            });
             
 
         }
