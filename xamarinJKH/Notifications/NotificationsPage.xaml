@@ -137,7 +137,8 @@
                                     <xamarinJkh:NotificationCell
                                         TextNotif="{Binding Text}"
                                         DateNotif="{Binding Created}"
-                                        TitleNotif="{Binding Header}" />
+                                        TitleNotif="{Binding Header}" 
+                                        Read="{Binding IsReaded}"/>
                                 </DataTemplate>
 
                             </ListView.ItemTemplate>

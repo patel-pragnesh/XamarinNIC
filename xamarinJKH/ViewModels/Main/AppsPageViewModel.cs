@@ -88,8 +88,7 @@ namespace xamarinJKH.ViewModels.Main
                         Settings.UpdateKey = response.UpdateKey;
                     if (response.Requests != null)
                     {
-                        //var sr = response.Requests.Select(_ => _.ToString()).ToList();
-                        MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => x.IsReadedByClient).Count());
+                        MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => !x.IsReadedByClient).Count());
                         AllRequests.AddRange(response.Requests);
                         if (Requests == null)
                         {
@@ -111,25 +110,21 @@ namespace xamarinJKH.ViewModels.Main
             var response = await Server.GetRequestsList();
             if (response.Error == null)
             {
-                if (response.Requests != null)
+                MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => !x.IsReadedByClient).Count());
+                if (AllRequests != null)
                 {
-                    MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => x.IsReadedByClient).Count());
-                    if (AllRequests != null)
+                    Empty = Requests.Count == 0;
+                    var ids = AllRequests.Select(x => x.ID);
+                    var newRequests = response.Requests.Where(x => !ids.Contains(x.ID)).ToList();
+                    foreach (var newApp in newRequests)
                     {
-                        Empty = Requests.Count == 0;
-                        var ids = AllRequests.Select(x => x.ID);
-                        var newRequests = response.Requests.Where(x => !ids.Contains(x.ID)).ToList();
-                        foreach (var newApp in newRequests)
+                        Device.BeginInvokeOnMainThread(() =>
                         {
-                            Device.BeginInvokeOnMainThread(() =>
-                            {
-                                AllRequests.Insert(0, newApp);
-                                Requests.Insert(0, newApp);
-                            });
-                        }
+                            AllRequests.Insert(0, newApp);
+                            Requests.Insert(0, newApp);
+                        });
                     }
                 }
-                
 
             }
         }

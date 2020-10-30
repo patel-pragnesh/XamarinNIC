@@ -60,12 +60,7 @@ namespace xamarinJKH.Main
             techSend.Tapped += async (s, e) =>
             {
                 if (Settings.MobileSettings.сheckCrashSystem)
-                {
-                    Analytics.TrackEvent("Тестовый краш");
-                    int a = 0;
-                    int b = 10 / a;
-                }
-                    
+                    Crashes.GenerateTestCrash();
                
                 await PopupNavigation.Instance.PushAsync(new TechDialog());
             };
@@ -267,7 +262,7 @@ namespace xamarinJKH.Main
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);{ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);if (Device.RuntimePlatform == Device.iOS){ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
 
             FrameNews.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
@@ -395,15 +390,9 @@ namespace xamarinJKH.Main
             });
             CountNew = new Command(() =>
             {
-                if (Settings.EventBlockData.Announcements != null)
-                    AnnounsmentsCount = Settings.EventBlockData.Announcements.Where(x => !x.IsReaded).Count();
-                else
-                    Analytics.TrackEvent($"Announcements is null");
-
-                if (Settings.EventBlockData.Polls != null)
-                    PollsCount = Settings.EventBlockData.Polls.Where(x => !x.IsReaded).Count();
-                else
-                    Analytics.TrackEvent($"Polls is null");
+                AnnounsmentsCount = Settings.EventBlockData.Announcements.Where(x => !x.IsReaded).Count();
+                PollsCount = Settings.EventBlockData.Polls.Where(x => !x.IsReaded).Count();
+                MessagingCenter.Send<Object, int>(this, "SetEventsAmount", AnnounsmentsCount + PollsCount);
             });
         }
     }

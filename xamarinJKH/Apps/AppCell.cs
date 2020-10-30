@@ -15,6 +15,7 @@ namespace xamarinJKH.Apps
         SvgCachedImage ImageStatus = new SvgCachedImage();
         private Label LabelStatus = new Label();
         private Label LabelText = new Label();
+        Frame ReadIndicator;
 
         public AppCell()
         {
@@ -135,24 +136,26 @@ namespace xamarinJKH.Apps
             Grid.SetRowSpan(container, 2);
             Grid.SetColumnSpan(container, 2);
 
-#if DEBUG
-            
-            if (Read)
-            {
-                Frame readIndicator = new Frame
-                {
-                    CornerRadius = 5,
-                    BackgroundColor = Color.Red
-                };
-                containerMain.Children.Add(readIndicator, 1, 0);
-                
-            }
-#endif
 
+            ReadIndicator = new Frame
+            {
+                CornerRadius = 5,
+                BackgroundColor = Color.Red,
+                IsVisible = false
+            };
+            ReadIndicator.SetBinding(View.IsVisibleProperty, "Read", BindingMode.TwoWay);
+                containerMain.Children.Add(ReadIndicator, 1, 0);
             frame.Content = containerMain;
 
-
             View = frame;
+
+            MessagingCenter.Subscribe<Object, int>(this, "SetAppRead", (sender, args) =>
+            {
+                if (this.ID == args)
+                {
+                    ReadIndicator.IsVisible = false;
+                }
+            });
         }
 
 
@@ -173,6 +176,9 @@ namespace xamarinJKH.Apps
 
         public static readonly BindableProperty ReadProperty =
             BindableProperty.Create("Read", typeof(bool), typeof(AppCell));
+
+        public static readonly BindableProperty IDProperty =
+            BindableProperty.Create("ID", typeof(int), typeof(AppCell));
 
         public string Number
         {
@@ -208,6 +214,12 @@ namespace xamarinJKH.Apps
             get { return (bool)GetValue(ReadProperty); }
             set { SetValue(ReadProperty, value); }
         }
+
+        public int ID
+        {
+            get { return (int)GetValue(IDProperty); }
+            set { SetValue(IDProperty, value); }
+        }
         protected override async void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
@@ -240,6 +252,7 @@ namespace xamarinJKH.Apps
                     {"#000000",  $"#{Settings.MobileSettings.color}"}
                 };
                 ImageStatus.Source = "resource://xamarinJKH.Resources."+Settings.GetStatusIcon(StatusID)+".svg";
+                ReadIndicator.IsVisible = !Read;
                 
             }
         }
