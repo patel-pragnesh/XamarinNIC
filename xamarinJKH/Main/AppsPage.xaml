@@ -147,8 +147,21 @@
                                          BorderThickness="1"
                                          Margin="0"
                                          VerticalOptions="FillAndExpand">
-                    <StackLayout
+                    <StackLayout>
+                        <StackLayout x:Name="StackLayoutIdent"
+                                     IsVisible="False">
+                                <Label
+                                Text="{x:Static xamarinJkh:AppResources.AddIdent}"
+                                TextDecorations="Underline"
+                                FontAttributes="Bold"
+                                Margin="0,0,0,15"
+                                HorizontalOptions="CenterAndExpand"
+                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                FontSize="15" />
+                        </StackLayout>
+                        <StackLayout
                         HorizontalOptions="Center"
+                        x:Name="StackLayoutNewApp"
                         Margin="20, 10, 20, 15"
                         Spacing="20"
                         Orientation="Horizontal">
@@ -223,6 +236,7 @@
                                         BackgroundColor="Transparent" />
                             </StackLayout>
                         </Frame>
+                    </StackLayout>
                     </StackLayout>
                 </pancakeView:PancakeView>
             </StackLayout>

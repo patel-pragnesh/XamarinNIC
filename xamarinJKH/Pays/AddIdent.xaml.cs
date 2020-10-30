@@ -203,6 +203,7 @@ namespace xamarinJKH.Pays
                                 }
                                 Settings.Person.acx = result.acx;
                                 MessagingCenter.Send<Object>(this, "UpdateCounters");
+                                MessagingCenter.Send<Object>(this, "AutoUpdate");
                             }
                         });
                     }
@@ -211,7 +212,8 @@ namespace xamarinJKH.Pays
                         _ = await Navigation.PopAsync();
                     }
                     catch { }
-                    _paysPage.RefreshPaysData();
+
+                    if (_paysPage != null) await _paysPage.RefreshPaysData();
                 }
                 else
                 {
