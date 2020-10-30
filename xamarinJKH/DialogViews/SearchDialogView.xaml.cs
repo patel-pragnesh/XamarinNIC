@@ -44,7 +44,7 @@ namespace xamarinJKH.DialogViews
             {
                 if (Type == (int)SearchType.DISTRICT)
                 {
-                    MessagingCenter.Send<Object, int?>(this, "SetDistrict",)
+                    MessagingCenter.Send<Object, int?>(this, "SetDistrict", Convert.ToInt32(item.ID));
                 }
             }
         }
