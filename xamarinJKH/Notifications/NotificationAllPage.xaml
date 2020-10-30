@@ -33,6 +33,7 @@
                          Padding="20,0,20,0">
                 <pancakeView:PancakeView CornerRadius="40,40,40,40"
                                          VerticalOptions="Start"
+                                         IsVisible="False"
                                          BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                          Padding="20,10,20,80"
                                          Margin="0,0,0,-70"

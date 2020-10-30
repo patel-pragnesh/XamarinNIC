@@ -33,6 +33,7 @@
                          Padding="20,0,20,0">
                 <pancakeView:PancakeView CornerRadius="40,40,40,40"
                                          VerticalOptions="Start"
+                                         IsVisible="False"
                                          BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                          Padding="20,10,20,80"
                                          Margin="0,0,0,-70"
@@ -131,7 +132,7 @@
                 <CollectionView ItemsSource="{Binding News}"
                                 Margin="0,10,0,0"
                                 SelectionMode="Single"
-                                x:Name="CollectionView"
+                                x:Name="CollectionView"   
                                 SelectionChanged="NotifSelect"
                                 >
                     <CollectionView.ItemsLayout>
