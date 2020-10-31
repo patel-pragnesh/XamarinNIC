@@ -188,7 +188,7 @@ namespace xamarinJKH
                 default:
                     break;
             }
-            
+            var t = Application.Current.UserAppTheme;
         }
 
         protected async override void OnAppearing()

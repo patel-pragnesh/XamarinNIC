@@ -315,13 +315,25 @@ namespace xamarinJKH.Main
         private void RadioButtonAuto_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             //только темная тема в ios 
-            //if (Xamarin.Essentials.DeviceInfo.Platform != DevicePlatform.iOS)
+            //if (Xamarin.Essentials.DeviceInfo.Platform != DevicePlatform.iOS)            
             //{
-                Application.Current.UserAppTheme = OSAppTheme.Unspecified;
-                MessagingCenter.Send<Object>(this, "ChangeTheme");
-                MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
+            switch (Settings.MobileSettings.appTheme)
+            {
+                case "":
+                    Application.Current.UserAppTheme = OSAppTheme.Unspecified;
+                    //MessagingCenter.Send<Object>(this, "ChangeTheme");
+                    //MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
+                    //Preferences.Set("Theme", 0); 
+                    break;
+                case "light": Application.Current.UserAppTheme = OSAppTheme.Light; break;
+                case "dark": Application.Current.UserAppTheme = OSAppTheme.Dark; break;
+            }
+
+            //Application.Current.UserAppTheme = OSAppTheme.Unspecified;
+            MessagingCenter.Send<Object>(this, "ChangeTheme");
+            MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
                 Preferences.Set("Theme", 0);
-                SetTheme();
+            SetTheme();
                 //}                
 
 

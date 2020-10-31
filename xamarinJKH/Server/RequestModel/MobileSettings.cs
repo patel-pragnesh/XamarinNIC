@@ -48,6 +48,8 @@ namespace xamarinJKH.Server.RequestModel
         public string Error { get; set; }
         public string appLinkIOS { get; set; }
         public string appLinkAndroid { get; set; }
+
+        public string appTheme { get; set; }
     }
 
     public class MobileMenu
