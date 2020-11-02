@@ -143,7 +143,8 @@
                                         CountAnsw="0"
                                         IsComplete="{Binding IsComplite}"
                                         DateQuest="25.05.2020"
-                                        TitleQuest="{Binding Name}" />
+                                        TitleQuest="{Binding Name}" 
+                                        Read="{Binding IsReaded}"/>
                                 </DataTemplate>
 
                             </ListView.ItemTemplate>

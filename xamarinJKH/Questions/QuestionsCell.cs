@@ -15,6 +15,7 @@ namespace xamarinJKH.Questions
         private Label countAnsweredTitle = new Label();
         private Label countAnswered = new Label();
         Label btn = new Label();
+        Frame ReadIndicator;
 
         public QuestionsCell()
         {
@@ -143,8 +144,34 @@ namespace xamarinJKH.Questions
             frameBtn.Content = containerBtn;
 
             container.Children.Add(frameBtn);
+            Grid containerMain = new Grid();
+            containerMain.Padding = 0;
+            containerMain.ColumnDefinitions = new ColumnDefinitionCollection
+            {
+                new ColumnDefinition{ Width = GridLength.Star },
+                new ColumnDefinition{ Width = new GridLength(5) }
+            };
 
-            frame.Content = container;
+            containerMain.RowDefinitions = new RowDefinitionCollection
+            {
+                new RowDefinition { Height = new GridLength(5)},
+                new RowDefinition { Height = GridLength.Star }
+            };
+
+            containerMain.Children.Add(container);
+            Grid.SetRowSpan(container, 2);
+            Grid.SetColumnSpan(container, 2);
+
+            ReadIndicator = new Frame
+            {
+                CornerRadius = 5,
+                BackgroundColor = Color.Red,
+                IsVisible = false
+            };
+            ReadIndicator.SetBinding(View.IsVisibleProperty, "Read", BindingMode.TwoWay);
+            containerMain.Children.Add(ReadIndicator, 1, 0);
+
+            frame.Content = containerMain;
 
             View = frame;
         }
@@ -163,6 +190,9 @@ namespace xamarinJKH.Questions
 
         public static readonly BindableProperty IsCompleteProperty =
             BindableProperty.Create(" IsComplete", typeof(bool), typeof(QuestionsCell), false);
+
+        public static readonly BindableProperty ReadProperty =
+            BindableProperty.Create("Read", typeof(bool), typeof(QuestionsCell), false);
 
         public string CountQuest
         {
@@ -194,6 +224,12 @@ namespace xamarinJKH.Questions
             set { SetValue(TitleQuestProperty, value); }
         }
 
+        public bool Read
+        {
+            get { return (bool)GetValue(ReadProperty); }
+            set { SetValue(ReadProperty, value); }
+        }
+
         protected override async void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
@@ -209,6 +245,7 @@ namespace xamarinJKH.Questions
                 date.Text = DateQuest;
                 title.Text = TitleQuest;
                 countQuest.Text = CountQuest;
+                ReadIndicator.IsVisible = !Read;
             }
         }
     }
