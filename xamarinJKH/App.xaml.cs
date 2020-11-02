@@ -35,27 +35,21 @@ namespace xamarinJKH
         public static bool isConnected { get; set; } = true;
         private RestClientMP server = new RestClientMP();
 
-        
-        private async 
-        
-        Task
-getSettingsAsync()
+
+        private async Task getSettingsAsync()
         {
             try
             {
-                var s = await server.MobileAppSettings("4.02", "0");
+                var vers = Xamarin.Essentials.AppInfo.VersionString;
+                var s = await server.MobileAppSettings(vers, "0");
 
                 if (Settings.MobileSettings.Error == null)
                     Settings.MobileSettings = s;
-
-                //return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Crashes.TrackError(ex);
-               // return false;
+                Crashes.TrackError(ex);                
             }
-           
         }
             public App()
         {
