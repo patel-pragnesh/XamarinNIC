@@ -38,6 +38,7 @@ namespace xamarinJKH.Main
     public partial class EventsPage : ContentPage
     {
         EventsPageViewModel viewModel { get; set; }
+
         public EventsPage()
         {
             InitializeComponent();
@@ -65,12 +66,12 @@ namespace xamarinJKH.Main
                     int a = 0;
                     int b = 10 / a;
                 }
-                    
-               
+
+
                 await PopupNavigation.Instance.PushAsync(new TechDialog());
             };
-            LabelTech.GestureRecognizers.Add(techSend); 
-            
+            LabelTech.GestureRecognizers.Add(techSend);
+
             var profile = new TapGestureRecognizer();
             profile.Tapped += async (s, e) =>
             {
@@ -95,18 +96,15 @@ namespace xamarinJKH.Main
 #endif
                     try
                     {
-
                         if (phoneDialer.CanMakePhoneCall && !string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-                            phoneDialer.MakePhoneCall(System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
+                            phoneDialer.MakePhoneCall(
+                                System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]",
+                                    ""));
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
-
                     }
-                    
                 }
-
-
             };
             LabelPhone.GestureRecognizers.Add(call);
             SetText();
@@ -126,25 +124,21 @@ namespace xamarinJKH.Main
 
                 if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
                 {
-                    Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                    Device.BeginInvokeOnMainThread(async () =>
+                        await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                     return;
                 }
-
-
-            }); 
-            MessagingCenter.Subscribe<Object>(this, "StartTech", async (sender) =>
-            {
-                await PopupNavigation.Instance.PushAsync(new TechDialog());
             });
+            MessagingCenter.Subscribe<Object>(this, "StartTech",
+                async (sender) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); });
             MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) =>
             {
-
                 OSAppTheme currentTheme = Application.Current.RequestedTheme;
                 var colors = new Dictionary<string, string>();
                 var arrowcolor = new Dictionary<string, string>();
                 if (currentTheme == OSAppTheme.Light || currentTheme == OSAppTheme.Unspecified)
                 {
-                    colors.Add("#000000", ((Color)Application.Current.Resources["MainColor"]).ToHex());
+                    colors.Add("#000000", ((Color) Application.Current.Resources["MainColor"]).ToHex());
                     arrowcolor.Add("#000000", "#494949");
                 }
                 else
@@ -152,6 +146,7 @@ namespace xamarinJKH.Main
                     colors.Add("#000000", "#FFFFFF");
                     arrowcolor.Add("#000000", "#FFFFFF");
                 }
+
                 IconViewLogin.ReplaceStringMap = colors;
                 IconViewTech.ReplaceStringMap = colors;
             });
@@ -198,35 +193,55 @@ namespace xamarinJKH.Main
         private void StartNews()
         {
             var startNews = new TapGestureRecognizer();
-            startNews.Tapped += async (s, e) => { if (Navigation.NavigationStack.FirstOrDefault(x => x is NewsPage) == null) await Navigation.PushAsync(new NewsPage()); };
+            startNews.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is NewsPage) == null)
+                    await Navigation.PushAsync(new NewsPage());
+            };
             FrameNews.GestureRecognizers.Add(startNews);
         }
 
         private void StartQuestions()
         {
             var startQuest = new TapGestureRecognizer();
-            startQuest.Tapped += async (s, e) => { if (Navigation.NavigationStack.FirstOrDefault(x => x is QuestionsPage) == null)  await Navigation.PushAsync(new QuestionsPage()); };
+            startQuest.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is QuestionsPage) == null)
+                    await Navigation.PushAsync(new QuestionsPage());
+            };
             FrameQuestions.GestureRecognizers.Add(startQuest);
         }
 
         private async void StartOffers()
         {
             var startAdditional = new TapGestureRecognizer();
-            startAdditional.Tapped += async (s, e) => { if (Navigation.NavigationStack.FirstOrDefault(x => x is AdditionalPage) == null) await Navigation.PushAsync(new AdditionalPage()); };
+            startAdditional.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is AdditionalPage) == null)
+                    await Navigation.PushAsync(new AdditionalPage());
+            };
             FrameOffers.GestureRecognizers.Add(startAdditional);
         }
 
         private void StartNotification()
         {
             var startNotif = new TapGestureRecognizer();
-            startNotif.Tapped += async (s, e) => { if (Navigation.NavigationStack.FirstOrDefault(x => x is NotificationsPage) == null)  await Navigation.PushAsync(new NotificationsPage()); };
+            startNotif.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is NotificationsPage) == null)
+                    await Navigation.PushAsync(new NotificationsPage());
+            };
             FrameNotification.GestureRecognizers.Add(startNotif);
         }
 
         private void StartOSS()
         {
             var startOSSTGR = new TapGestureRecognizer();
-            startOSSTGR.Tapped += async (s, e) => { if (Navigation.NavigationStack.FirstOrDefault(x => x is OSSMain) == null) await Navigation.PushAsync(new OSSMain()); };
+            startOSSTGR.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is OSSMain) == null)
+                    await Navigation.PushAsync(new OSSMain());
+            };
             // startOSSTGR.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSAuth()); };
             FrameOSS.GestureRecognizers.Add(startOSSTGR);
             if (!Settings.MobileSettings.enableOSS || !Settings.Person.accessOSS)
@@ -267,7 +282,13 @@ namespace xamarinJKH.Main
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);{ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            {
+                if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo")
+                {
+                    PancakeViewIcon.Padding = new Thickness(0);
+                }
+            }
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
 
             FrameNews.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
@@ -287,6 +308,7 @@ namespace xamarinJKH.Main
     public class EventsPageViewModel : xamarinJKH.ViewModels.BaseViewModel
     {
         bool _showNews;
+
         public bool ShowNews
         {
             get => _showNews;
@@ -298,6 +320,7 @@ namespace xamarinJKH.Main
         }
 
         bool _showPolls;
+
         public bool ShowPolls
         {
             get => _showPolls;
@@ -307,7 +330,9 @@ namespace xamarinJKH.Main
                 OnPropertyChanged("ShowPolls");
             }
         }
+
         bool _showAnnouncements;
+
         public bool ShowAnnouncements
         {
             get => _showAnnouncements;
@@ -317,7 +342,9 @@ namespace xamarinJKH.Main
                 OnPropertyChanged("ShowAnnouncements");
             }
         }
+
         bool _showAddService;
+
         public bool ShowAdditionalServices
         {
             get => _showAddService;
@@ -327,7 +354,9 @@ namespace xamarinJKH.Main
                 OnPropertyChanged("ShowAdditionalServices");
             }
         }
+
         bool _showCameras;
+
         public bool ShowCameras
         {
             get
@@ -343,7 +372,6 @@ namespace xamarinJKH.Main
                     Console.WriteLine(e);
                     return true;
                 }
-                
             }
         }
 
@@ -351,6 +379,7 @@ namespace xamarinJKH.Main
         public Command CountNew { get; set; }
 
         int announcementsCount;
+
         public int AnnounsmentsCount
         {
             get => announcementsCount;
@@ -362,6 +391,7 @@ namespace xamarinJKH.Main
         }
 
         int pollsCount;
+
         public int PollsCount
         {
             get => pollsCount;
@@ -371,6 +401,7 @@ namespace xamarinJKH.Main
                 OnPropertyChanged(nameof(PollsCount));
             }
         }
+
         public EventsPageViewModel()
         {
             LoadData = new Command(async () =>
@@ -382,7 +413,7 @@ namespace xamarinJKH.Main
                 if (data != null)
                 {
                     if (data.News != null)
-                        ShowNews =  data.News.Count != 0;
+                        ShowNews = data.News.Count != 0;
                     if (data.Polls != null)
                         ShowPolls = data.Polls.Count != 0 && Settings.QuestVisible;
                     if (data.AdditionalServices != null)
@@ -390,20 +421,37 @@ namespace xamarinJKH.Main
                     if (data.Announcements != null)
                         ShowAnnouncements = data.Announcements.Count != 0 && Settings.NotifVisible;
                 }
+
                 ShowAdditionalServices = false;
                 CountNew.Execute(null);
             });
             CountNew = new Command(() =>
             {
-                if (Settings.EventBlockData.Announcements != null)
-                    AnnounsmentsCount = Settings.EventBlockData.Announcements.Where(x => !x.IsReaded).Count();
-                else
-                    Analytics.TrackEvent($"Announcements is null");
+                try
+                {
+                    if (Settings.EventBlockData.Announcements != null)
+                        AnnounsmentsCount = Settings.EventBlockData.Announcements.Where(x => !x.IsReaded).Count();
+                    else
+                        Analytics.TrackEvent($"Announcements is null");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    AnnounsmentsCount = 0;
+                }
 
-                if (Settings.EventBlockData.Polls != null)
-                    PollsCount = Settings.EventBlockData.Polls.Where(x => !x.IsReaded).Count();
-                else
-                    Analytics.TrackEvent($"Polls is null");
+                try
+                {
+                    if (Settings.EventBlockData.Polls != null)
+                        PollsCount = Settings.EventBlockData.Polls.Where(x => !x.IsReaded).Count();
+                    else
+                        Analytics.TrackEvent($"Polls is null");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    PollsCount = 0;
+                }
             });
         }
     }
