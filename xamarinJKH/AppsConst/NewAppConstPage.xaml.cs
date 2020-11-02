@@ -512,7 +512,7 @@ namespace xamarinJKH.AppsConst
             {
                 Ident = true;
                 CreateTypes = new ObservableCollection<NamedValue>();
-                CreateTypes.Add(new NamedValue { Name = "Лицевому счету", ID = "1" });
+                CreateTypes.Add(new NamedValue { Name = "Лицевому счету", ID = 1 });
                 CreateTypes.Add(new NamedValue { Name = "Району" });
                 CreateTypes.Add(new NamedValue { Name = "Улице" });
                 CreateTypes.Add(new NamedValue { Name = "Дому" });
@@ -547,7 +547,7 @@ namespace xamarinJKH.AppsConst
             {
                 try
                 {
-                    string typeId = Settings.TypeApp[PickerType.SelectedIndex].ID;
+                    string typeId = Convert.ToInt32(Settings.TypeApp[PickerType.SelectedIndex].ID).ToString();
                     IDResult result = await _server.newAppConst(null, typeId, text, "", this.District, this.House, this.Flat, this.Street);
 
 
@@ -590,7 +590,7 @@ namespace xamarinJKH.AppsConst
             {
                 try
                 {
-                    string typeId = Settings.TypeApp[PickerType.SelectedIndex].ID;
+                    string typeId = Convert.ToInt32(Settings.TypeApp[PickerType.SelectedIndex].ID).ToString();
                     IDResult result = await _server.newAppConst(ident, typeId, text);
 
 

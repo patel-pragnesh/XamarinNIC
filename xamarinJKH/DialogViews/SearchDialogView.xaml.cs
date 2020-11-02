@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.ViewModels;
+using Rg.Plugins.Popup.Services;
 
 namespace xamarinJKH.DialogViews
 {
@@ -18,11 +19,11 @@ namespace xamarinJKH.DialogViews
     {
         int Type;
         SearchDialogViewModel viewModel { get; set; }
-        public SearchDialogView(int type)
+        public SearchDialogView(int type, int? id = null)
         {
             InitializeComponent();
             Type = type;
-            BindingContext = viewModel = new SearchDialogViewModel(type);
+            BindingContext = viewModel = new SearchDialogViewModel(type, id);
         }
 
         protected override void OnAppearing()
@@ -37,16 +38,28 @@ namespace xamarinJKH.DialogViews
             viewModel.Filter.Execute(text);
         }
 
-        private void ItemSelected(object sender, SelectionChangedEventArgs e)
+        private async void ItemSelected(object sender, SelectionChangedEventArgs e)
         {
             var item = e.CurrentSelection[0] as NamedValue;
             if (item != null)
             {
                 if (Type == (int)SearchType.DISTRICT)
                 {
-                    MessagingCenter.Send<Object, int?>(this, "SetDistrict", Convert.ToInt32(item.ID));
+                    MessagingCenter.Send<Object, NamedValue>(this, "SetDistrict", item);
+                }
+
+                if (Type == (int)SearchType.STREET)
+                {
+                    MessagingCenter.Send<Object, NamedValue>(this, "SetHouse", item);
+                }
+
+                if (Type == (int)SearchType.FLAT)
+                {
+                    MessagingCenter.Send<Object, NamedValue>(this, "SetPremise", item);
                 }
             }
+
+            await PopupNavigation.PopAllAsync();
         }
     }
 
@@ -58,7 +71,7 @@ namespace xamarinJKH.DialogViews
         public Command Filter { get; set; }
          
         public int Type { get; set; }
-        public SearchDialogViewModel(int type)
+        public SearchDialogViewModel(int type, int? id = null)
         {
             Type = type;
             Items = new ObservableCollection<NamedValue>();
@@ -72,6 +85,34 @@ namespace xamarinJKH.DialogViews
                     if (Type == (int)SearchType.DISTRICT)
                     {
                         result = await Server.GetHouseGroups();
+                    }
+
+                    if (Type == (int)SearchType.STREET || Type == (int)SearchType.HOUSE)
+                    {
+                        var houses = await Server.GetHouse();
+                        result.Data = new List<NamedValue>();
+                        result.Error = houses.Error;
+                        foreach (var house in houses.Data)
+                        {
+                            var val = new NamedValue();
+                            val.ID = house.ID;
+                            val.Name = house.Address;
+                            result.Data.Add(val);
+                        }
+                    }
+
+                    if (Type == (int)SearchType.FLAT)
+                    {
+                        var premises = await Server.GetHouseData(id.ToString());
+                        result.Error = premises.Error;
+                        result.Data = new List<NamedValue>();
+                        foreach (var premise in premises.Data)
+                        {
+                            var flat = new NamedValue();
+                            flat.ID = premise.ID;
+                            flat.Name = premise.Number;
+                            result.Data.Add(flat);
+                        }
                     }
 
                     IsBusy = false;

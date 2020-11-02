@@ -16,7 +16,7 @@
                        HeightRequest="2"/>
                 <CollectionView ItemsSource="{Binding Items}"
                             SelectionMode="Single"
-                            SelectionChangedCommand="{Binding Select}">
+                            SelectionChanged="ItemSelected">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical"/>
                     </CollectionView.ItemsLayout>

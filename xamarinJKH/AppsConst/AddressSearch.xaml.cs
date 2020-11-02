@@ -26,17 +26,16 @@ namespace xamarinJKH.AppsConst
             switch (type)
             {
                 case 1: StreetStack.IsVisible = false;
-                    HouseStack.IsVisible = false;
+                    //HouseStack.IsVisible = false;
                     FlatStack.IsVisible = false;
                     break;
                 case 2:
-                    HouseStack.IsVisible = false;
-                    FlatStack.IsVisible = false;
-                    break;
-                case 3:
+                    //HouseStack.IsVisible = false;
                     FlatStack.IsVisible = false;
                     break;
             }
+
+
 
         }
 
@@ -130,9 +129,24 @@ namespace xamarinJKH.AppsConst
             await Navigation.PopAsync();
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        private async void ChooseDistrict(object sender, EventArgs e)
         {
             await PopupNavigation.PushAsync(new SearchDialogView((int)SearchType.DISTRICT));
+
+        }
+        private async void ChooseStreet(object sender, EventArgs e)
+        {
+            await PopupNavigation.PushAsync(new SearchDialogView((int)SearchType.STREET));
+        }
+
+        private async void ChooseHouse(object sender, EventArgs e)
+        {
+            await PopupNavigation.PushAsync(new SearchDialogView((int)SearchType.HOUSE));
+        }
+
+        private async void ChoosePremise(object sender, EventArgs e)
+        {
+            await PopupNavigation.PushAsync(new SearchDialogView((int)SearchType.FLAT, viewModel.HouseID));
         }
     }
 }

@@ -15,9 +15,52 @@ namespace xamarinJKH.ViewModels.AppsConst
         public int? DistrictID;
         public int? HouseID;
         public int? PremiseID;
-        public string Street;
         public Command LoadDistricts { get; set; }
         public Command LoadHouses { get; set; }
+
+        string district;
+        public string District
+        {
+            get => district;
+            set
+            {
+                district = value;
+                OnPropertyChanged(nameof(District));
+            }
+        }
+
+        string street;
+        public string Street
+        {
+            get => street;
+            set
+            {
+                street = value;
+                OnPropertyChanged(nameof(Street));
+            }
+        }
+
+        string house;
+        public string House
+        {
+            get => house;
+            set
+            {
+                house = value;
+                OnPropertyChanged(nameof(House));
+            }
+        }
+
+        string flat;
+        public string Flat
+        {
+            get => flat;
+            set
+            {
+                flat = value;
+                OnPropertyChanged(nameof(Flat));
+            }
+        }
         public AddressSearchViewModel()
         {
             Districts = new List<NamedValue>();
@@ -45,9 +88,21 @@ namespace xamarinJKH.ViewModels.AppsConst
             });
 
 
-            MessagingCenter.Subscribe<Object, int?>(this, "SetDistrict", (sender, args) => DistrictID = args);
-            MessagingCenter.Subscribe<Object, int?>(this, "SetHouse", (sender, args) => HouseID = args);
-            MessagingCenter.Subscribe<Object, int?>(this, "SetPremise", (sender, args) => PremiseID = args);
+            MessagingCenter.Subscribe<Object, NamedValue>(this, "SetDistrict", (sender, args) =>
+            {
+                DistrictID = args.ID;
+                District = args.Name;
+            });
+            MessagingCenter.Subscribe<Object, NamedValue>(this, "SetHouse", (sender, args) =>
+            {
+                HouseID = args.ID;
+                House = args.Name;
+            });
+            MessagingCenter.Subscribe<Object, NamedValue>(this, "SetPremise", (sender, args) =>
+            {
+                PremiseID = args.ID;
+                Flat = args.Name;
+            });
 
         }
     }

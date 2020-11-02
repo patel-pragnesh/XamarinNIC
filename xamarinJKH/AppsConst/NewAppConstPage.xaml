@@ -143,7 +143,7 @@
                                         <RadioButton Text="{x:Static xamarinJkh:AppResources.Ident}" ClassId="0" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed"/>
                                         <RadioButton Text="{x:Static xamarinJkh:AppResources.District}" ClassId="1" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed" IsVisible="{Binding ShowArea}"/>
                                         <RadioButton Text="{x:Static xamarinJkh:AppResources.Street}" ClassId="2" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed" IsVisible="{Binding ShowStreets}"/>
-                                        <RadioButton Text="{x:Static xamarinJkh:AppResources.House}" ClassId="3" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed" IsVisible="{Binding ShowHouses}"/>
+                                        <!--<RadioButton Text="{x:Static xamarinJkh:AppResources.House}" ClassId="3" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed" IsVisible="{Binding ShowHouses}"/>-->
                                         <RadioButton Text="{x:Static xamarinJkh:AppResources.Flat}" ClassId="4" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed" IsVisible="{Binding ShowPremises}"/>
                                      </StackLayout>
                                 </StackLayout>

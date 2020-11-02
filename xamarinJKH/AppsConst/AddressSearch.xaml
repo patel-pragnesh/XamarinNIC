@@ -22,8 +22,8 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Button Clicked="Button_Clicked"></Button>
             <pancakeView:PancakeView CornerRadius="0,0,30,30"
+                                     IsVisible="False"
                                      Margin="0,-2,0,0"
                                      BackgroundColor="{AppThemeBinding Dark=#494949, Light=White}"
                                      BorderColor="{AppThemeBinding Dark=#494949, Light={x:StaticResource MainColor}}" BorderThickness="2">
@@ -90,35 +90,54 @@
                     <TapGestureRecognizer Tapped="GoBack"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
-            <StackLayout Padding="20">
+            <StackLayout Padding="20" Spacing="30">
                 <StackLayout x:Name="DistictStack">
                     <Label Text="{x:Static xamarinJkh:AppResources.District}" Style="{x:StaticResource ListLabel}"/>
-                    <suggest:AutoSuggestBox PlaceholderText="{x:Static xamarinJkh:AppResources.District}"
-                                    SuggestionChosen="District_SuggestionChosen"
-                                    TextChanged="District_TextChanged"/>
+                    <Label Text="{Binding District}"
+                           x:Name="DistrictText"/>
+                    <Label BackgroundColor="{x:StaticResource MainColor}"
+                           HeightRequest="2"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ChooseDistrict"/>
+                    </StackLayout.GestureRecognizers>
                 </StackLayout>
                 <StackLayout x:Name="StreetStack">
                     <Label Text="{x:Static xamarinJkh:AppResources.Street}" Style="{x:StaticResource ListLabel}"/>
-                    <Entry Placeholder="{x:Static xamarinJkh:AppResources.Street}"
-                                           Margin="5"
-                                           Unfocused="BordlessEditor_Unfocused"
-                                           FontSize="14"
-                                           TextChanged="BordlessEditor_TextChanged"/>
+                    <Label Text="{Binding House}"
+                           x:Name="StreetText"/>
+                    <Label BackgroundColor="{x:StaticResource MainColor}"
+                           HeightRequest="2"/>
+
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ChooseStreet"/>
+                    </StackLayout.GestureRecognizers>
                 </StackLayout>
-                <StackLayout x:Name="HouseStack">
+                <!--<StackLayout x:Name="HouseStack">
 
                     <Label Text="{x:Static xamarinJkh:AppResources.House}" Style="{x:StaticResource ListLabel}"/>
-                    <suggest:AutoSuggestBox PlaceholderText="{x:Static xamarinJkh:AppResources.House}"
-                                        SuggestionChosen="House_SuggestionChosen"
-                                        TextChanged="House_TextChanged"/>
-                </StackLayout>
+                    <Label Text="{Binding House}"
+                                            x:Name="HouseText"/>
+                    <Label BackgroundColor="{x:StaticResource MainColor}"
+                           HeightRequest="2"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ChooseHouse"/>
+                    </StackLayout.GestureRecognizers>
+                    
+                </StackLayout>-->
                 <StackLayout x:Name="FlatStack">
                     <Label Text="{x:Static xamarinJkh:AppResources.Flat}" Style="{x:StaticResource ListLabel}"/>
-                    <Entry Placeholder="{x:Static xamarinJkh:AppResources.Flat}"
-                           Margin="5"
-                           FontSize="14"
-                           TextChanged="Entry_TextChanged"
-                           Keyboard="Numeric"/>
+                    <Label Text="{Binding Flat}"
+                           x:Name="FlatText"/>
+
+                    <Label BackgroundColor="{x:StaticResource MainColor}"
+                           HeightRequest="2"/>
+
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ChoosePremise"/>
+                    </StackLayout.GestureRecognizers>
                 </StackLayout>
                 <Button BackgroundColor="{x:StaticResource MainColor}"
                         Text="{x:Static xamarinJkh:AppResources.Confirm}"

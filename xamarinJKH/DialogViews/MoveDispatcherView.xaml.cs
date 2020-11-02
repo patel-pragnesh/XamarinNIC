@@ -81,7 +81,7 @@ namespace xamarinJKH.DialogViews
 
             await Loading.Instance.StartAsync(async progress =>
             {
-                string dispId = dispList[PickerDisp.SelectedIndex].ID;
+                string dispId = dispList[PickerDisp.SelectedIndex].ID.ToString();
                 CommonResult result = await server.ChangeDispatcherConst(_Request.ID.ToString(), dispId);
                 if (result.Error == null)
                 {
