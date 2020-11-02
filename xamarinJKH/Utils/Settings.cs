@@ -110,12 +110,12 @@ namespace xamarinJKH.Utils
             await Loading.Instance.StartAsync(async progress =>
             {
                 // some heavy process.
-                for (var i = 0; i < 100; i++)
-                {
-                    await Task.Delay(70);
-                    // can send progress to the dialog with the IProgress.
-                    // progress.Report((i + 1) * 0.01d);
-                }
+                // for (var i = 0; i < 100; i++)
+                // {
+                //     await Task.Delay(70);
+                //     // can send progress to the dialog with the IProgress.
+                //     // progress.Report((i + 1) * 0.01d);
+                // }
             });
         }
 

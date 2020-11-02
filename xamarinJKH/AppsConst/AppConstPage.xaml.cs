@@ -352,7 +352,11 @@ namespace xamarinJKH.AppsConst
             MessagingCenter.Subscribe<Object>(this, "RefreshApp", async (sender) => await RefreshData());
             MessagingCenter.Subscribe<Object>(this, "RefreshAppList", async (sender) =>
                 request = await _server.GetRequestsDetailListConst(_requestInfo.ID.ToString()));
-            
+            MessagingCenter.Subscribe<Object, string>(this, "OpenFileConst", async (sender, args) =>
+            {
+                string[] arg = args.Split(",");
+                getFile(arg[0], arg[1]);
+            });
             MessagingCenter.Subscribe<Object>(this, "CloseAPP", callback: async (sender) =>
             {
                 MessagingCenter.Send<Object>(this, "UpdateAppCons");
@@ -374,6 +378,40 @@ namespace xamarinJKH.AppsConst
            // additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
+        async void getFile(string id, string fileName)
+        {
+            var UpdateTask = new Task(async () => { await GetFile(id, fileName); });
+            UpdateTask.Start();
+
+        }
+        public async Task GetFile(string id, string fileName)
+        {
+            // Loading settings
+            Configurations.LoadingConfig = new LoadingConfig
+            {
+                IndicatorColor =(Color)Application.Current.Resources["MainColor"] ,
+                OverlayColor = Color.Black,
+                Opacity = 0.8,
+                DefaultMessage = AppResources.Loading,
+            };
+
+            await Loading.Instance.StartAsync(async progress =>
+            {
+                byte[] memoryStream = await _server.GetFileAPPConst(id);
+                if (memoryStream != null)
+                {
+                    await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
+                    await Launcher.OpenAsync(new OpenFileRequest
+                    {
+                        File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+                    });
+                }
+                else
+                {
+                    await DisplayAlert("Ошибка", "Не удалось скачать файл", "OK");
+                }
+            });
+        }
         private async Task ClosePage()
         {
             if (close)
