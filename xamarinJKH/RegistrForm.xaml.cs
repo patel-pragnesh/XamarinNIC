@@ -39,6 +39,7 @@ namespace xamarinJKH
         private MainPage _mainPage;
 
         public Color hex { get; set; }
+        public Color hexWhite { get; set; }
 
         private bool isNext = false;
         RegistrFormViewModel viewModel { get; set; }
@@ -51,6 +52,7 @@ namespace xamarinJKH
             this.BindingContext = viewModel;
             UkName.Text = viewModel.Title;
             hex = (Color) Application.Current.Resources["MainColor"];
+            hexWhite = hex.AddLuminosity(0.3);
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -95,6 +97,12 @@ namespace xamarinJKH
             var nextReg = new TapGestureRecognizer();
             nextReg.Tapped += async (s, e) => { FirstStepReg(); };
             FrameBtnLogin.GestureRecognizers.Add(nextReg);
+            var sendCheckCode = new TapGestureRecognizer();
+            sendCheckCode.Tapped += async (s, e) => { SendCheckCode(false); };
+            ToSms.GestureRecognizers.Add(sendCheckCode); 
+            var sendCheckCodeWhatsApp = new TapGestureRecognizer();
+            sendCheckCodeWhatsApp.Tapped += async (s, e) => { SendCheckCode(true); };
+            ToSmsWhatsApp.GestureRecognizers.Add(sendCheckCodeWhatsApp);
 
             var nextReg2 = new TapGestureRecognizer();
             nextReg2.Tapped += async (s, e) =>
@@ -159,6 +167,69 @@ namespace xamarinJKH
             //RegistrationFrameStep2.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.White);
             //RegistrationFrameStep3.SetAppThemeColor(MaterialFrame.BorderColorProperty, hex, Color.White);
             BindingContext = this;
+        }
+
+        private async void SendCheckCode(bool isWhatsApp)
+        {
+            isSmsOrCall = true;
+             Configurations.LoadingConfig = new LoadingConfig
+            {
+                IndicatorColor = (Color) Application.Current.Resources["MainColor"],
+                OverlayColor = Color.Black,
+                Opacity = 0.8,
+                DefaultMessage = AppResources.Loading,
+            };
+            if (!pressed)
+                try
+                {
+                    pressed = true;
+                    await Loading.Instance.StartAsync(async progress =>
+                    {
+                        CommonResult result = await _server.SendCheckCode(Person.Phone, isWhatsApp);
+                        if (result.Error == null)
+                        {
+                            Console.WriteLine("Отправлено");
+                            TimerStart = true;
+                            FrameBtnReg.IsVisible = false;
+                            FrameTimer.IsVisible = true;
+                            Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
+                            setDisabledSms(true);
+                           
+                            if (Device.RuntimePlatform == Device.iOS)
+                            {
+                                await DisplayAlert("", AppResources.AlertCodeSent, "OK");
+                            }
+                            else
+                            {
+                                DependencyService.Get<IMessage>().ShortAlert(AppResources.AlertCodeSent);
+                            }
+
+                            // FrameBtnReg.IsVisible = true;
+                            // progress.IsVisible = false;
+
+                            Loading.Instance.Hide();
+                        }
+                        else
+                        {
+                            // FrameBtnReg.IsVisible = true;
+                            // progress.IsVisible = false;
+                            Loading.Instance.Hide();
+                            if (Device.RuntimePlatform == Device.iOS)
+                            {
+                                await DisplayAlert("", result.Error, "OK");
+                            }
+                            else
+                            {
+                                DependencyService.Get<IMessage>().ShortAlert(result.Error);
+                            }
+                        }
+
+                        pressed = false;
+                    });
+                }
+                catch
+                {
+                }
         }
 
 
@@ -269,8 +340,9 @@ namespace xamarinJKH
                     Settings.TimerStart = false;
                     TimerStart = true;
                     TimerTime = Settings.TimerTime;
-                    LabelTimer.Text = "ЗАПРОСИТЬ ПОВТОРНЫЙ ЗВОНОК МОЖНО БУДЕТ ЧЕРЕЗ: " + TimerTime + " секунд";
+                    LabelTimer.Text = AppResources.AskForCodeAgain.Replace("TimerTime", TimerTime.ToString());
                     FrameBtnReg.IsVisible = false;
+                    StackLayoutSms.IsVisible = false;
                     FrameTimer.IsVisible = true;
                     Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
                 }
@@ -355,27 +427,82 @@ namespace xamarinJKH
             }
         }
 
+        void setDisabledSms(bool isEnabled)
+        {
+            StackLayoutSms.IsEnabled = !isEnabled;
+            if (isEnabled)
+            {
+                ToSmsWhatsApp.BorderColor = hexWhite;
+                LabelWhatsApp.TextColor = hexWhite;
+                ImageWhatsApp.ReplaceStringMap  = new Dictionary<string, string>
+                {
+                    { "#000000", hexWhite.ToHex()}
+                }; 
+                
+                ToSms.BorderColor = hexWhite;
+                LabelSms.TextColor = hexWhite;
+                ImageSms.ReplaceStringMap  = new Dictionary<string, string>
+                {
+                    { "#000000", hexWhite.ToHex()}
+                };
+            }
+            else
+            {
+                ToSmsWhatsApp.BorderColor = hex;
+                LabelWhatsApp.TextColor = hex;
+                ImageWhatsApp.ReplaceStringMap  = new Dictionary<string, string>
+                {
+                    { "#000000", hex.ToHex()}
+                }; 
+                
+                ToSms.BorderColor = hex;
+                LabelSms.TextColor = hex;
+                ImageSms.ReplaceStringMap  = new Dictionary<string, string>
+                {
+                    { "#000000", hex.ToHex()}
+                };
+            }
+        }
+        
+        private bool isSms = false;
         private void EntryCode_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             if (!EntryCode.Text.Equals(""))
             {
                 FrameBtnNextTwo.BackgroundColor = (Color) Application.Current.Resources["MainColor"];
                 isNext = true;
+                if (isSms)
+                {
+                    FrameBtnNextTwo.IsVisible = true;
+                    StackLayoutSms.IsVisible = false;
+                }
             }
             else
             {
-                FrameBtnNextTwo.BackgroundColor = Color.FromHex("#CFCFCF");
+                FrameBtnNextTwo.BackgroundColor = hexWhite;
                 isNext = false;
+                if (isSms)
+                {
+                    FrameBtnNextTwo.IsVisible = false;
+                    StackLayoutSms.IsVisible = true;
+                }
             }
         }
 
+        private bool isSmsOrCall = false;
         private bool OnTimerTick()
         {
+            string smsOrCall = AppResources.AskForCodeAgain;
+            if (isSmsOrCall)
+            {
+                smsOrCall = AppResources.AskForCodeSmsAgain;
+            }
+            
             if (TimerStart)
             {
                 if (LabelTimer != null)
                 {
-                    LabelTimer.Text = AppResources.AskForCodeAgain.Replace("TimerTime", TimerTime.ToString());
+                    LabelTimer.Text = smsOrCall.Replace("TimerTime", TimerTime.ToString());
                 }
 
                 TimerTime -= 1;
@@ -387,6 +514,13 @@ namespace xamarinJKH
                     {
                         FrameTimer.IsVisible = false;
                         FrameBtnReg.IsVisible = true;
+                        StackLayoutSms.IsVisible = true;
+                        setDisabledSms(false);
+                        if (EntryCode.Text.Equals(""))
+                        {
+                            FrameBtnNextTwo.IsVisible = false;
+                        }
+                        isSms = true;
                     }
                 }
             }
@@ -415,6 +549,7 @@ namespace xamarinJKH
 
         private async Task RequestCodeTask()
         {
+            isSmsOrCall = false;
             Configurations.LoadingConfig = new LoadingConfig
             {
                 IndicatorColor = (Color) Application.Current.Resources["MainColor"],

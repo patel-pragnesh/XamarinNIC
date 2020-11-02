@@ -358,11 +358,20 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ЗАПРОСИТЬ ПОВТОРНЫЙ ЗВОНОК МОЖНО БУДЕТ ЧЕРЕЗ: TimerTime секунд.
+        ///   Looks up a localized string similar to Ожидание звонка... TimerTime сек.
         /// </summary>
         internal static string AskForCodeAgain {
             get {
                 return ResourceManager.GetString("AskForCodeAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ожидание смс... TimerTime сек.
+        /// </summary>
+        internal static string AskForCodeSmsAgain {
+            get {
+                return ResourceManager.GetString("AskForCodeSmsAgain", resourceCulture);
             }
         }
         
@@ -646,7 +655,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Чтобы получить код доступа нажмите «Запросить звонок с кодом». 
+        ///   Looks up a localized string similar to Нажмите «Запросить звонок с кодом». 
         ///Вам позвонит робот на номер PHONE и сообщит код.
         /// </summary>
         internal static string CodeInfo {
@@ -1813,6 +1822,15 @@ namespace xamarinJKH {
         internal static string InsuranceText {
             get {
                 return ResourceManager.GetString("InsuranceText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to В WhatsApp.
+        /// </summary>
+        internal static string InWhatsApp {
+            get {
+                return ResourceManager.GetString("InWhatsApp", resourceCulture);
             }
         }
         
@@ -3855,6 +3873,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Не поступает звонок?  Получите текстовое сообщение:.
+        /// </summary>
+        internal static string TextSms {
+            get {
+                return ResourceManager.GetString("TextSms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Тема.
         /// </summary>
         internal static string Theme {
@@ -3905,6 +3932,15 @@ namespace xamarinJKH {
         internal static string ToGetSignatureText {
             get {
                 return ResourceManager.GetString("ToGetSignatureText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to По смс.
+        /// </summary>
+        internal static string ToSmS {
+            get {
+                return ResourceManager.GetString("ToSmS", resourceCulture);
             }
         }
         

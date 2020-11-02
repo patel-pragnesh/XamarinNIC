@@ -154,7 +154,7 @@
     <value>Request a call with a code</value>
   </data>
   <data name="AskForCodeAgain" xml:space="preserve">
-    <value>YOU CAN REQUEST A CALL AGAIN IN TimerTime SECONDS</value>
+    <value>Call waiting... TimerTime sec</value>
     <comment>YOU CAN REQUEST A CALL AGAIN IN TimerTime SECONDS</comment>
   </data>
   <data name="AttachmentChooseFile" xml:space="preserve">
@@ -215,7 +215,7 @@
     <value>Close</value>
   </data>
   <data name="CodeInfo" xml:space="preserve">
-    <value>To receive an access code, click "Request a call with a code". 
+    <value>Click "Request a call with a code". 
 A bot will call you on your number PHONE and tell an access code</value>
     <comment>To receive an access code, click "Ask for a call with a code". A bot will call you on your number PHONE and tell an access code</comment>
   </data>
@@ -1475,5 +1475,17 @@ A bot will call you on your number PHONE and tell an access code</value>
   </data>
   <data name="AddCommentToMove" xml:space="preserve">
     <value>Add a comment</value>
+  </data>
+  <data name="ToSmS" xml:space="preserve">
+    <value>By sms</value>
+  </data>
+  <data name="InWhatsApp" xml:space="preserve">
+    <value>In WhatsApp</value>
+  </data>
+  <data name="TextSms" xml:space="preserve">
+    <value>Don't get a call? Receive a text message:</value>
+  </data>
+  <data name="AskForCodeSmsAgain" xml:space="preserve">
+    <value>Sms waiting... TimerTime sec</value>
   </data>
 </root>

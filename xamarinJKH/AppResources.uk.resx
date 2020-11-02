@@ -187,7 +187,7 @@
     <value>Запросити дзвінок з кодом</value>
   </data>
   <data name="AskForCodeAgain" xml:space="preserve">
-    <value>Запит Повторний ДЗВІНОК МОЖНА БУДЕ ЧЕРЕЗ: TimerTime секунд</value>
+    <value>Очікування дзвінка... TimerTime сек</value>
   </data>
   <data name="AttachmentChooseFile" xml:space="preserve">
     <value>Вибрати файл</value>
@@ -262,7 +262,7 @@
     <value>Код перевірки</value>
   </data>
   <data name="CodeInfo" xml:space="preserve">
-    <value>Щоб отримати код доступу натисніть «Запросити дзвінок з кодом».
+    <value>Натисніть «Запросити дзвінок з кодом».
 Вам подзвонить робот на номер PHONE і повідомить код</value>
   </data>
   <data name="Commision" xml:space="preserve">
@@ -1459,5 +1459,17 @@
   </data>
   <data name="AddCommentToMove" xml:space="preserve">
     <value>Додайте комментарий</value>
+  </data>
+  <data name="ToSmS" xml:space="preserve">
+    <value>По смс</value>
+  </data>
+  <data name="InWhatsApp" xml:space="preserve">
+    <value>У WhatsApp</value>
+  </data>
+  <data name="TextSms" xml:space="preserve">
+    <value>Чи не надходить дзвінок? Отримайте текстове повідомлення:</value>
+  </data>
+  <data name="AskForCodeSmsAgain" xml:space="preserve">
+    <value>Очікування смс... TimerTime сек</value>
   </data>
 </root>

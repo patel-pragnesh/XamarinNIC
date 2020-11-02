@@ -65,6 +65,8 @@
     <None Remove="Resources\oss_event.svg" />
     <None Remove="Resources\ic_shop_plus.svg" />
     <None Remove="Resources\ic_star.svg" />
+    <None Remove="Resources\ic_sms.svg" />
+    <None Remove="Resources\ic_whatsapp.svg" />
     <None Remove="Resources\ic_status_done.svg" />
     <None Remove="Resources\ic_status_new.svg" />
     <None Remove="Resources\ic_status_wait.svg" />
@@ -235,6 +237,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ic_star.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource> 
+    <EmbeddedResource Include="Resources\ic_sms.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource> 
+    <EmbeddedResource Include="Resources\ic_whatsapp.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ic_status_done.svg">
