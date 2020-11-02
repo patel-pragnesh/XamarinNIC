@@ -236,7 +236,7 @@ namespace xamarinJKH.Main
                 Application.Current.Properties.Add("Culture", string.Empty);
             }
 
-            int theme = Preferences.Get("Theme", 1);
+            int theme = Preferences.Get("Theme", 0);
             var culture = CultureInfo.InstalledUICulture;
 
             switch (Application.Current.Properties["Culture"])

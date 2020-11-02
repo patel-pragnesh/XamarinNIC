@@ -367,7 +367,7 @@ namespace xamarinJKH
         {
             Registrations.Start("XamarinJKH");
                                     
-            int theme = Preferences.Get("Theme", 1);
+            int theme = Preferences.Get("Theme", 0);
 
             //только темная тема в ios
             //if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
@@ -376,7 +376,14 @@ namespace xamarinJKH
             switch (theme)
                 {
                     case 0:
-                        Current.UserAppTheme = OSAppTheme.Unspecified;
+                    switch (Settings.MobileSettings.appTheme)
+                    {
+                        case "": Current.UserAppTheme = OSAppTheme.Unspecified;  break;
+                        case "light": Current.UserAppTheme = OSAppTheme.Light; break;
+                        case "dark": Current.UserAppTheme = OSAppTheme.Dark; break;
+                    }
+                    break;
+                    
                         break;
                     case 1:
                         Current.UserAppTheme = OSAppTheme.Dark;
