@@ -1,6 +1,8 @@
 ﻿using AiForms.Dialogs;
 using System;
 using System.IO;
+using System.Threading.Tasks;
+using AiForms.Dialogs.Abstractions;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using xamarinJKH.InterfacesIntegration;
@@ -213,7 +215,7 @@ namespace xamarinJKH.AppsConst
         Frame frame = new Frame();
 
         private RestClientMP _server = new RestClientMP();
-
+       
 
         public MessageCellService(RequestMessage message, Page p, string DateUniq, out string newDate, string prevAuthor)
         {
@@ -286,21 +288,7 @@ namespace xamarinJKH.AppsConst
                     }
                     else
                     {
-                        await Settings.StartProgressBar("Загрузка", 0.8);
-                        byte[] memoryStream = await _server.GetFileAPP(message.FileID.ToString());
-                        if (memoryStream != null)
-                        {
-                            await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
-                            Loading.Instance.Hide();
-                            await Launcher.OpenAsync(new OpenFileRequest
-                            {
-                                File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
-                            });
-                        }
-                        else
-                        {
-                            await p.DisplayAlert("Ошибка", "Не удалось скачать файл", "OK");
-                        }
+                        MessagingCenter.Send<Object, string>(this, "OpenFileConst", message.FileID.ToString() + "," + fileName);
                     }
                     //// await ShowRating();
                     //await PopupNavigation.Instance.PushAsync(new RatingBarContentView(hex, _requestInfo, false));
@@ -397,8 +385,7 @@ namespace xamarinJKH.AppsConst
 
 
     }
-
-
+    
     //public class MessageConstCell : ViewCell
     //{
     //    RestClientMP server = new RestClientMP();

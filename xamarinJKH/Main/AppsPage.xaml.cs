@@ -23,6 +23,7 @@ using Xamarin.Essentials;
 using System.Text.RegularExpressions;
 using System.Runtime.CompilerServices;
 using Microsoft.AppCenter.Analytics;
+using xamarinJKH.Pays;
 
 namespace xamarinJKH.Main
 {
@@ -91,6 +92,7 @@ namespace xamarinJKH.Main
 
         void StartAutoUpdate()
         {
+            CheckAkk();
             CancellationTokenSource = new CancellationTokenSource();
             this.CancellationToken = CancellationTokenSource.Token;
             UpdateTask = null;
@@ -130,6 +132,20 @@ namespace xamarinJKH.Main
             }
             catch
             {
+            }
+        }
+
+        private void CheckAkk()
+        {
+            if (Settings.Person.Accounts.Count > 0)
+            {
+                StackLayoutNewApp.IsVisible = true;
+                StackLayoutIdent.IsVisible = false;
+            }
+            else
+            {
+                StackLayoutNewApp.IsVisible = false;
+                StackLayoutIdent.IsVisible = true;
             }
         }
 
@@ -178,7 +194,14 @@ namespace xamarinJKH.Main
 
             NavigationPage.SetHasNavigationBar(this, false);
             MessagingCenter.Subscribe<Object>(this, "AutoUpdate", (sender) => { StartAutoUpdate(); });
-
+            var goAddIdent = new TapGestureRecognizer();
+            goAddIdent.Tapped += async (s, e) =>
+            {
+                /*await Dialog.Instance.ShowAsync<AddAccountDialogView>();*/
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is AddIdent) == null)
+                    await Navigation.PushAsync(new AddIdent((PaysPage) Settings.mainPage));
+            };
+            StackLayoutIdent.GestureRecognizers.Add(goAddIdent);
 
             switch (Device.RuntimePlatform)
             {
@@ -339,6 +362,8 @@ namespace xamarinJKH.Main
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            CheckAkk();
+            
         }
 
         async void SyncSetup()

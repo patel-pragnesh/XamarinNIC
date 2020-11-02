@@ -224,14 +224,6 @@ namespace xamarinJKH
             Settings.MobileSettings = await server.MobileAppSettings("4.02", "0");
             if (Settings.MobileSettings.Error == null)
             {
-                if (Device.RuntimePlatform == Device.Android)
-                    CheckForUpdate();
-
-                // if (RestClientMP.SERVER_ADDR.Contains("dgservicnew"))
-                // {
-                //     Settings.MobileSettings.main_name = "ООО \"ДОМЖИЛСЕРВИС\"";
-                // }
-                
                 
                 UkName.Text = Settings.MobileSettings.main_name;
                 var color = !string.IsNullOrEmpty(Settings.MobileSettings.color) ? $"#{Settings.MobileSettings.color}" :"#FF0000";
