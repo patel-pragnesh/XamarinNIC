@@ -1846,7 +1846,7 @@ namespace xamarinJKH.Server
         /// </summary>
         /// <param name="Phone">телефон пользователя</param>
         /// <returns>CommonResult</returns>
-        public async Task<CommonResult> SendCheckCode(string Phone, bool isWhatsApp = false)
+        public async Task<CommonResult> SendCheckCode(string Phone, bool isWhatsApp = false, bool DontCheck = true)
         {
             string url = SEND_CHECK_CODE;
             if (isWhatsApp)
@@ -1858,7 +1858,8 @@ namespace xamarinJKH.Server
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddBody(new
             {
-                Phone
+                Phone,
+                DontCheck
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус
