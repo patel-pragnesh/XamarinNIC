@@ -42,7 +42,7 @@ namespace xamarinJKH.Main
             InitializeComponent();
             Analytics.TrackEvent("Профиль жителя");
             // if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
-            //     ImageBack.IsVisible = true;
+            ImageBack.IsVisible = true;
 
             GoodsIsVisible = Settings.GoodsIsVisible;
             isSave = Preferences.Get("isPass", false);
@@ -236,7 +236,7 @@ namespace xamarinJKH.Main
                 Application.Current.Properties.Add("Culture", string.Empty);
             }
 
-            int theme = Preferences.Get("Theme", 1);
+            int theme = Preferences.Get("Theme", 0);
             var culture = CultureInfo.InstalledUICulture;
 
             switch (Application.Current.Properties["Culture"])
@@ -315,13 +315,25 @@ namespace xamarinJKH.Main
         private void RadioButtonAuto_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             //только темная тема в ios 
-            //if (Xamarin.Essentials.DeviceInfo.Platform != DevicePlatform.iOS)
+            //if (Xamarin.Essentials.DeviceInfo.Platform != DevicePlatform.iOS)            
             //{
-                Application.Current.UserAppTheme = OSAppTheme.Unspecified;
-                MessagingCenter.Send<Object>(this, "ChangeTheme");
-                MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
+            switch (Settings.MobileSettings.appTheme)
+            {
+                case "":
+                    Application.Current.UserAppTheme = OSAppTheme.Unspecified;
+                    //MessagingCenter.Send<Object>(this, "ChangeTheme");
+                    //MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
+                    //Preferences.Set("Theme", 0); 
+                    break;
+                case "light": Application.Current.UserAppTheme = OSAppTheme.Light; break;
+                case "dark": Application.Current.UserAppTheme = OSAppTheme.Dark; break;
+            }
+
+            //Application.Current.UserAppTheme = OSAppTheme.Unspecified;
+            MessagingCenter.Send<Object>(this, "ChangeTheme");
+            MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
                 Preferences.Set("Theme", 0);
-                SetTheme();
+            SetTheme();
                 //}                
 
 

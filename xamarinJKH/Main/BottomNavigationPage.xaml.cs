@@ -70,7 +70,7 @@ namespace xamarinJKH.Main
 
             // if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
             // {
-            //     ProfPage.IsVisible = false;
+            ProfPage.IsVisible = false;
             // }
 
 
@@ -107,13 +107,36 @@ namespace xamarinJKH.Main
                 case OSAppTheme.Unspecified:
                     if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
                     {
-                        EventsNavPage.BarTextColor = Color.Black;
-                        PayPage.BarTextColor = Color.Black;
-                        CounterPage.BarTextColor = Color.Black;
-                        AppPage.BarTextColor = Color.Black;
-                        ShopNavPage.BarTextColor = Color.Black;
-                        ProfPage.BarTextColor = Color.Black;
-                        ShopNavPage2.BarTextColor = Color.Black;
+                        switch (Settings.MobileSettings.appTheme)
+                        {
+                            case "":
+                            case "light":
+                                EventsNavPage.BarTextColor = Color.Black;
+                                PayPage.BarTextColor = Color.Black;
+                                CounterPage.BarTextColor = Color.Black;
+                                AppPage.BarTextColor = Color.Black;
+                                ShopNavPage.BarTextColor = Color.Black;
+                                ProfPage.BarTextColor = Color.Black;
+                                ShopNavPage2.BarTextColor = Color.Black;
+                                break;
+                            case "dark":
+                                EventsNavPage.BarTextColor = Color.White;
+                                PayPage.BarTextColor = Color.White;
+                                CounterPage.BarTextColor = Color.White;
+                                AppPage.BarTextColor = Color.White;
+                                ShopNavPage.BarTextColor = Color.White;
+                                ProfPage.BarTextColor = Color.White;
+                                ShopNavPage2.BarTextColor = Color.White;
+                                break;
+                        }
+                        
+                        //EventsNavPage.BarTextColor = Color.Black;
+                        //PayPage.BarTextColor = Color.Black;
+                        //CounterPage.BarTextColor = Color.Black;
+                        //AppPage.BarTextColor = Color.Black;
+                        //ShopNavPage.BarTextColor = Color.Black;
+                        //ProfPage.BarTextColor = Color.Black;
+                        //ShopNavPage2.BarTextColor = Color.Black;
                     }
 
                     break;

@@ -20,6 +20,7 @@ using xamarinJKH.Apps;
 using xamarinJKH.Main;
 using xamarinJKH.Notifications;
 using Device = Xamarin.Forms.Device;
+using System.Threading.Tasks;
 
 namespace xamarinJKH
 {
@@ -34,7 +35,23 @@ namespace xamarinJKH
         public static bool isConnected { get; set; } = true;
         private RestClientMP server = new RestClientMP();
 
-        public App()
+
+        private async Task getSettingsAsync()
+        {
+            try
+            {
+                var vers = Xamarin.Essentials.AppInfo.VersionString;
+                var s = await server.MobileAppSettings(vers, "0");
+
+                if (Settings.MobileSettings.Error == null)
+                    Settings.MobileSettings = s;
+            }
+            catch (Exception ex)
+            {
+                Crashes.TrackError(ex);                
+            }
+        }
+            public App()
         {
             InitializeComponent();
             Crashes.SendingErrorReport += SendingErrorReportHandler;
@@ -42,28 +59,61 @@ namespace xamarinJKH
             Crashes.FailedToSendErrorReport += FailedToSendErrorReportHandler;
             Crashes.GetErrorAttachments += GetErrorAttachmentHandler;
             //только темная тема в ios
-            if (Device.RuntimePlatform == Device.iOS && Application.Current.UserAppTheme == OSAppTheme.Unspecified)
-                Application.Current.UserAppTheme = OSAppTheme.Light;
+            //if (Device.RuntimePlatform == Device.iOS && Application.Current.UserAppTheme == OSAppTheme.Unspecified)
+            //    Application.Current.UserAppTheme = OSAppTheme.Light;
+
+            var task = Task.Run(async () => await getSettingsAsync());
+            task.Wait();
+
+           // var f = getSettingsAsync();
+            
+            if (/*Device.RuntimePlatform == Device.iOS &&*/ Application.Current.UserAppTheme == OSAppTheme.Unspecified)
+            {
+               switch (Settings.MobileSettings.appTheme)
+                {
+                    case "": Application.Current.UserAppTheme = OSAppTheme.Light; break;
+                    case "light": Application.Current.UserAppTheme = OSAppTheme.Light; break;
+                    case "dark": Application.Current.UserAppTheme = OSAppTheme.Dark; break;
+                }
+                
+            } 
+
 
             DependencyService.Register<RestClientMP>();
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
 
-                    Color color;
+                    Color color= Color.White; 
 
-                    int theme = Preferences.Get("Theme", 1);
+                    int theme = Preferences.Get("Theme", 0);
 
+                    switch (theme)
+                    {
+                        case 1: color = Color.White; break;
+                        case 2: color = Color.Black; break;
+                        case 0:
+                            switch (Settings.MobileSettings.appTheme)
+                            {
+                                case "": color = Color.Black; break;
+                                case "light": color = Color.Black; break;
+                                case "dark": color = Color.White; break;
+                            }
+                            break;                        
+                    }
 
-                    if (theme!=1)
-                        color = Color.Black;
-                    else
-                        color = Color.White;
+                    //if (theme!=1)
+                    //    color = Color.Black;
+                    //else
+                    //    color = Color.White;
 
                     //var color = Application.Current.UserAppTheme == OSAppTheme.Light /*|| Application.Current.UserAppTheme == OSAppTheme.Unspecified*/ ? Color.Black : Color.White;
+
+                    var c2 = Settings.MobileSettings.appTheme == "light" ? Color.Black : Color.White;
+
                     var nav = new Xamarin.Forms.NavigationPage(new MainPage())
                     {
-                        BarBackgroundColor = Color.Black,
+                        BarBackgroundColor = c2,
                         BarTextColor = color
                     };
 
@@ -416,7 +466,7 @@ namespace xamarinJKH
         {
             Registrations.Start("XamarinJKH");
                                     
-            int theme = Preferences.Get("Theme", 1);
+            int theme = Preferences.Get("Theme", 0);
 
             //только темная тема в ios
             //if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
@@ -425,7 +475,14 @@ namespace xamarinJKH
             switch (theme)
                 {
                     case 0:
-                        Current.UserAppTheme = OSAppTheme.Unspecified;
+                    switch (Settings.MobileSettings.appTheme)
+                    {
+                        case "": Current.UserAppTheme = OSAppTheme.Unspecified;  break;
+                        case "light": Current.UserAppTheme = OSAppTheme.Light; break;
+                        case "dark": Current.UserAppTheme = OSAppTheme.Dark; break;
+                    }
+                    break;
+                    
                         break;
                     case 1:
                         Current.UserAppTheme = OSAppTheme.Dark;
