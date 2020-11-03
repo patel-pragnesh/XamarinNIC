@@ -182,6 +182,7 @@ namespace xamarinJKH
             };
             CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
             {
+                Analytics.TrackEvent("открыт пуш");
                 System.Diagnostics.Debug.WriteLine("Opened");
                 if (p.Data.ContainsKey("type_push") || p.Data.ContainsKey("gcm.notification.type_push"))
                 {
@@ -190,6 +191,8 @@ namespace xamarinJKH
                         o = p.Data["type_push"].ToString();
                     else
                         o = p.Data["gcm.notification.type_push"].ToString();
+
+                    Analytics.TrackEvent($"тип пуша{o}");
 
                     if (o.ToLower().Equals("announcement"))
                     {
@@ -245,44 +248,57 @@ namespace xamarinJKH
 
                     if (o.ToLower().Equals("comment"))
                     {
-                        var tabbedpage = App.Current.MainPage.Navigation.ModalStack.ToList()[0];
-                        if (tabbedpage is xamarinJKH.Main.BottomNavigationPage)
+                        Analytics.TrackEvent($"App.Current.MainPage.Navigation.ModalStack.Count={App.Current.MainPage.Navigation.ModalStack.Count}");
+                        if (App.Current.MainPage.Navigation.ModalStack.Count>0)
                         {
-                            var stack = (tabbedpage as Xamarin.Forms.TabbedPage).Children[3].Navigation
-                                .NavigationStack;
-                            if (stack.Count == 2)
+                            var tabbedpage = App.Current.MainPage.Navigation.ModalStack.ToList()[0];                            
+                            if (tabbedpage is xamarinJKH.Main.BottomNavigationPage)
                             {
-                                var app_page = stack.ToList()[0];
-                            }
-                            else
-                            {
-                                if (!isCons)
-                                    MessagingCenter.Send<Object, int>(this, "SwitchToApps",
-                                    int.Parse(p.Data["id_request"].ToString()));
-                                else
-                                    MessagingCenter.Send<Object, int>(this, "SwitchToAppsConst",
-                                        int.Parse(p.Data["id_request"].ToString()));
-                            }
-                        }
+                                var tp = (tabbedpage as Xamarin.Forms.TabbedPage);
+                                Analytics.TrackEvent($"BottomNavigationPage Children count = {tp.Children.Count}");
 
-                        if (tabbedpage is xamarinJKH.MainConst.BottomNavigationConstPage)
-                        {
-                            var stack = (tabbedpage as Xamarin.Forms.TabbedPage).Children[0].Navigation
-                                .NavigationStack;
-                            if (stack.Count == 2)
-                            {
-                                var app_page = stack.ToList()[0];
-                            }
-                            else
-                            {
-                                if (!isCons)
-                                    MessagingCenter.Send<Object, int>(this, "SwitchToApps",
-                                        int.Parse(p.Data["id_request"].ToString()));
+                                if (tp.Children.Count >= 4)
+                                {
+                                    var stack = tp.Children[3].Navigation.NavigationStack;
+                                    if (stack.Count == 2)
+                                    {
+                                        var app_page = stack.ToList()[0];
+                                    }
+                                    else
+                                    {
+                                        pExec(p);                                                                          
+                                    }
+                                }
                                 else
-                                    MessagingCenter.Send<Object, int>(this, "SwitchToAppsConst",
-                                        int.Parse(p.Data["id_request"].ToString()));
+                                {
+                                    pExec(p);
+                                }
+                            }
+
+                            if (tabbedpage is xamarinJKH.MainConst.BottomNavigationConstPage)
+                            {
+                                var tp = (tabbedpage as Xamarin.Forms.TabbedPage);
+                                Analytics.TrackEvent($"BottomNavigationConstPage Children count = {tp.Children.Count}");
+                                if (tp.Children.Count >= 1)
+                                {
+                                    var stack = tp.Children[0].Navigation.NavigationStack;
+                                    if (stack.Count == 2)
+                                    {
+                                            var app_page = stack.ToList()[0];
+                                    }
+                                    else
+                                    {
+                                        pExec(p);
+                                    }
+                                }
+                                else
+                                {
+                                    pExec(p);
+                                }
+
                             }
                         }
+                       
                     }
                 }
             };
@@ -299,6 +315,24 @@ namespace xamarinJKH
                     }
                 }
             };
+        }
+
+        void pExec(FirebasePushNotificationResponseEventArgs p)
+        {
+            if (p.Data.ContainsKey("id_request"))
+            {
+                var id = int.Parse(p.Data["id_request"].ToString());
+                Analytics.TrackEvent("ключ id_request=" + id);
+                Analytics.TrackEvent("isCons=" + isCons);
+                if (!isCons)
+                    MessagingCenter.Send<Object, int>(this, "SwitchToApps", id);
+                else
+                    MessagingCenter.Send<Object, int>(this, "SwitchToAppsConst", id);
+            }
+            else
+            {
+                Analytics.TrackEvent("ключ id_request не найден");
+            }
         }
 
         private IEnumerable<ErrorAttachmentLog> GetErrorAttachmentHandler(ErrorReport report)
