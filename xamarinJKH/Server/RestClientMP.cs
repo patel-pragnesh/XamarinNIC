@@ -17,8 +17,8 @@ namespace xamarinJKH.Server
     public class RestClientMP
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
-        //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань water/ water2 - тихая гавань - 2 
+        public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань water/ water2 - тихая гавань - 2 
         //public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
@@ -70,6 +70,7 @@ namespace xamarinJKH.Server
         public const string REQUEST_CHECK_CODE = "auth/CheckAccessCode"; // Подтверждение кода подтверждения
         public const string REGISTR_BY_PHONE = "auth/RegisterByPhone"; // Регистрация по телефону
         public const string SEND_CHECK_CODE = "auth/SendCheckCode"; // Запрос проверочного кода
+        public const string SEND_CHECK_CODE_WHATSAPP = "auth/SendCheckCodeWhatsApp"; // Запрос проверочного кода whatsapp
         public const string VALIDATE_CHECK_CODE = "auth/ValidateCheckCode "; // Проверка кода из смс
 
         public const string GET_MOBILE_SETTINGS = "Config/MobileAppSettings"; // Регистрация по телефону
@@ -1845,10 +1846,15 @@ namespace xamarinJKH.Server
         /// </summary>
         /// <param name="Phone">телефон пользователя</param>
         /// <returns>CommonResult</returns>
-        public async Task<CommonResult> SendCheckCode(string Phone)
+        public async Task<CommonResult> SendCheckCode(string Phone, bool isWhatsApp = false)
         {
+            string url = SEND_CHECK_CODE;
+            if (isWhatsApp)
+            {
+                url = SEND_CHECK_CODE_WHATSAPP;
+            }
             RestClient restClientMp = new RestClient(SERVER_ADDR);
-            RestRequest restRequest = new RestRequest(SEND_CHECK_CODE, Method.POST);
+            RestRequest restRequest = new RestRequest(url, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddBody(new
             {
@@ -1856,7 +1862,7 @@ namespace xamarinJKH.Server
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус
-            if (response.StatusCode != HttpStatusCode.OK)
+             if (response.StatusCode != HttpStatusCode.OK)
             {
                 return new CommonResult()
                 {
