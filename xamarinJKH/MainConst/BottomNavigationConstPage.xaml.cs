@@ -9,6 +9,12 @@ using Xamarin.Forms.Xaml;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
+using Xamarin.Essentials;
+using Plugin.Permissions.Abstractions;
+using Plugin.Permissions;
+using Rg.Plugins.Popup.Services;
+using xamarinJKH.DialogViews;
+using System.Threading;
 
 namespace xamarinJKH.MainConst
 {
@@ -155,6 +161,51 @@ namespace xamarinJKH.MainConst
         {
             App.token = DependencyService.Get<xamarinJKH.InterfacesIntegration.IFirebaseTokenObtainer>().GetToken();
             var response = await (new RestClientMP()).RegisterDevice(true);
+        }
+
+        public CancellationToken Token { get; set; }
+        public CancellationTokenSource TokenSource { get; set; }
+        Task GeoLocationTask { get; set; }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            return;
+            TokenSource = new CancellationTokenSource();
+            Token = TokenSource.Token;
+            var location_perm = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.LocationWhenInUse);
+            if (location_perm != PermissionStatus.Granted)
+            {
+                await PopupNavigation.PushAsync(new LocationNotification());
+            }
+            else
+            {
+                if (GeoLocationTask == null)
+                {
+                    GeoLocationTask = new Task(async () =>
+                    {
+                        while (!Token.IsCancellationRequested)
+                        {
+                            try
+                            {
+                                var location = await Geolocation.GetLocationAsync(new GeolocationRequest
+                                {
+                                    DesiredAccuracy = GeolocationAccuracy.Medium,
+                                    Timeout = TimeSpan.FromSeconds(10)
+                                });
+                                if (location != null)
+                                {
+                                    //Отправление на сервер
+                                }
+                            }
+                            catch { }
+                            await Task.Delay(TimeSpan.FromMinutes(5));
+                        }
+                    }, Token);
+                    GeoLocationTask.Start();
+                }
+                
+            }
         }
     }
 }
