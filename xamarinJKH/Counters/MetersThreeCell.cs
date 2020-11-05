@@ -614,7 +614,7 @@ namespace xamarinJKH.Main
             frame.Content = container;
 
             ext(mInfo.Values, mInfo.NumberOfDecimalPlaces, mInfo.ID, mInfo.IsDisabled, mInfo.Resource, mInfo.Address,
-             mInfo.CustomName, mInfo.FactoryNumber, mInfo.Units, mInfo.LastCheckupDate, mInfo.RecheckInterval.ToString(),mInfo.Tariff1Name, mInfo.Tariff2Name, mInfo.Tariff3Name);
+             mInfo.CustomName, mInfo.FactoryNumber, mInfo.UniqueNum, mInfo.Units, mInfo.LastCheckupDate, mInfo.RecheckInterval.ToString(),mInfo.Tariff1Name, mInfo.Tariff2Name, mInfo.Tariff3Name);
 
            Children.Add(frame);
         }
@@ -723,14 +723,14 @@ namespace xamarinJKH.Main
         }
 
         void ext(List<MeterValueInfo> Values, int DecimalPoint, int MeterID, bool IsDisabled, string Resource, string Address,
-            string CustomName, string FactoryNumber, string Units, string CheckupDate, string RecheckInterval, string Tariff1Name, string Tariff2Name, string Tariff3Name)
+            string CustomName, string FactoryNumber, string UniqueNum, string Units, string CheckupDate, string RecheckInterval, string Tariff1Name, string Tariff2Name, string Tariff3Name)
         {   
             
                 var editName = new TapGestureRecognizer();
                 editName.Tapped += async (s, e) =>
                 {
                     await PopupNavigation.Instance.PushAsync(
-                        new EditCounterNameDialog((Color)Application.Current.Resources["MainColor"], FactoryNumber));
+                        new EditCounterNameDialog((Color)Application.Current.Resources["MainColor"], UniqueNum));
                 };
                 if (Edit.GestureRecognizers.Count > 0)
                 {
