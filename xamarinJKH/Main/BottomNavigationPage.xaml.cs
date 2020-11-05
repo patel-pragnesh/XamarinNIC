@@ -70,7 +70,7 @@ namespace xamarinJKH.Main
 
             // if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
             // {
-            ProfPage.IsVisible = false;
+            // ProfPage.IsVisible = false;
             // }
 
 
