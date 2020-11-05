@@ -170,9 +170,9 @@ namespace xamarinJKH.MainConst
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            return;
             TokenSource = new CancellationTokenSource();
             Token = TokenSource.Token;
+            var Server = new RestClientMP();
             var location_perm = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.LocationWhenInUse);
             if (location_perm != PermissionStatus.Granted)
             {
@@ -195,7 +195,7 @@ namespace xamarinJKH.MainConst
                                 });
                                 if (location != null)
                                 {
-                                    //Отправление на сервер
+                                    var result = await Server.SendGeolocation(location.Latitude, location.Longitude);
                                 }
                             }
                             catch { }
