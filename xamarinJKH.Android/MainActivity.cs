@@ -45,7 +45,6 @@ namespace xamarinJKH.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
             await CrossMedia.Current.Initialize();
-            SimpleImageButton.SimpleImageButton.Initializator.Initializator.Init();
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera);
             ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadExternalStorage);

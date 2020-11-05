@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
 using Rg.Plugins.Popup.Services;
-using SimpleImageButton.SimpleImageButton.Models;
 using Xamarin.Forms;
 using xamarinJKH.CustomRenderers;
 using xamarinJKH.DialogViews;
