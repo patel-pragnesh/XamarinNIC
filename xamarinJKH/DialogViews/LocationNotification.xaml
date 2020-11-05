@@ -6,8 +6,11 @@
              mc:Ignorable="d"
              xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:local="clr-namespace:xamarinJKH"
+             Padding="50"
              x:Class="xamarinJKH.DialogViews.LocationNotification">
-    <Frame CornerRadius="30">
+    <Frame CornerRadius="30"
+           VerticalOptions="Center"
+           HorizontalOptions="Center">
         <StackLayout>
             <Label Text="Для продолжения работы, дайте разрешение на доступ к геолокации"
                    FontSize="14"
@@ -15,6 +18,7 @@
             <Button CornerRadius="30"
                     BackgroundColor="{x:StaticResource MainColor}"
                     Text="{x:Static local:AppResources.Confirm}"
+                    TextColor="White"
                     Clicked="AskPermission"/>
         </StackLayout>
     </Frame>
