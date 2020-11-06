@@ -173,7 +173,7 @@
                         Margin="10, 10, 10, 0"
                         VerticalOptions="FillAndExpand">
                             <Frame CornerRadius="40"
-                               Margin="10,0,-50,-90"
+                               Margin="10,0,-50,-80"
                                x:Name="FrameKind"
                                BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                Padding="20, 20, 80, 70">
@@ -277,7 +277,7 @@
                                 <RefreshView IsRefreshing="{Binding IsRefreshing}"
                                              Command="{Binding RefreshCommand}">
                                     <CollectionView ItemsSource="{Binding Additional}"
-                                                    
+                                                    x:Name="CollectionViewAdd"
                                                     SelectionMode="Single"
                                                     SelectionChanged="OnItemTapped">
                                         <CollectionView.ItemsLayout>

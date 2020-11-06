@@ -340,13 +340,13 @@ namespace xamarinJKH.Main
                 // }
                 // else
                 // {
-                Children.Remove(ShopNavPage2);
+                // Children.Remove(ShopNavPage2);
                 // }
                 // }
                 // else
                 // {
                 //     Children.Remove(ShopNavPage);
-                //     Children.Remove(ProfPage);
+                Children.Remove(ProfPage);
                 // }
 
 
