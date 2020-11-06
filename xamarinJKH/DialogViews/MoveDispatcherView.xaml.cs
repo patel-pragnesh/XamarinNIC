@@ -108,6 +108,7 @@ namespace xamarinJKH.DialogViews
                        result = await server.AddMessageConst(BordlessEditor.Text, _Request.ID.ToString(), true);
                     }
                     await ShowToast(AppResources.MoveDispatcherSuccess);
+                    MessagingCenter.Send<Object>(this, "UpdateAppCons");
                     await PopupNavigation.Instance.PopAsync();
                 }
                 else

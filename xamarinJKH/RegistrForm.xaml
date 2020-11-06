@@ -224,6 +224,7 @@
                                                TextColor="#A2A2A2"
                                                Text=""
                                                Keyboard="Numeric"
+                                               Placeholder="{x:Static xamarinJkh:AppResources.DatePlaceHolder}"
                                                TextChanged="DateEntry_OnTextChanged"
                                                BackgroundColor="Transparent"
                                                HorizontalTextAlignment="Center"
@@ -615,7 +616,7 @@
                                            FontSize="18"
                                            VerticalOptions="End"
                                            IsPassword="True"
-                                           Text="123"
+                                           Text=""
                                            HorizontalTextAlignment="Center"
                                            TextColor="#A2A2A2"
                                            HorizontalOptions="FillAndExpand" />
@@ -670,7 +671,7 @@
                                            FontSize="18"
                                            IsPassword="True"
                                            TextColor="#A2A2A2"
-                                           Text="123"
+                                           Text=""
                                            BackgroundColor="Transparent"
                                            HorizontalTextAlignment="Center"
                                            HorizontalOptions="FillAndExpand" />

@@ -1488,4 +1488,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="AskForCodeSmsAgain" xml:space="preserve">
     <value>Sms waiting... TimerTime sec</value>
   </data>
+  <data name="DatePlaceHolder" xml:space="preserve">
+    <value>DD.MM.YYYY</value>
+  </data>
 </root>

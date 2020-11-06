@@ -318,7 +318,7 @@
                                                Text=""
                                                AutoSize="Disabled"
                                                Placeholder="{x:Static xamarinJkh:AppResources.ChatPlaceholder}"
-                                               TextColor="#A2A2A2"
+                                               TextColor="Black"
                                                HorizontalOptions="FillAndExpand" />
                     <xamarinJkh:IconView
                         x:Name="IconViewSend"
