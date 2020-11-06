@@ -325,21 +325,22 @@ namespace xamarinJKH.AppsConst
             {
                 // await ShowRating();
                 // await PopupNavigation.Instance
-                CommonResult result = await _server.CloseAppConst(_requestInfo.ID.ToString());
-                if (result.Error == null)
-                {
-                    var result2 = await DisplayAlert("", AppResources.RatingBarClose, "OK", AppResources.Cancel);
-                    if (result2)
+              
+                    CommonResult result = await _server.CloseAppConst(_requestInfo.ID.ToString());
+                    if (result.Error == null)
                     {
-                        await ClosePage();
-                        await ShowToast(AppResources.AppClosed);
-                        await RefreshData();
+                        var result2 = await DisplayAlert("", AppResources.RatingBarClose, "OK", AppResources.Cancel);
+                        if (result2)
+                        {
+                            await ClosePage();
+                            await ShowToast(AppResources.AppClosed);
+                            await RefreshData();
+                        }
                     }
-                }
-                else
-                {
-                    await ShowToast(result.Error);
-                }
+                    else
+                    {
+                        await ShowToast(result.Error);
+                    }
             };
             StackLayoutClose.GestureRecognizers.Add(closeApp);
             hex = (Color)Application.Current.Resources["MainColor"];
@@ -414,6 +415,7 @@ namespace xamarinJKH.AppsConst
         }
         private async Task ClosePage()
         {
+            MessagingCenter.Send<Object>(this, "UpdateAppCons");
             if (close)
             {
                 await Navigation.PopToRootAsync();
