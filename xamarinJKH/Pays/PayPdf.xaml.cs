@@ -19,6 +19,7 @@ namespace xamarinJKH.Pays
     public partial class PayPdf : ContentPage
     {
         public PayPdfViewModel viewModel { get; set; }
+        View pdfview;
         public PayPdf(PayPdfViewModel vm)
         {
             InitializeComponent();
@@ -26,7 +27,6 @@ namespace xamarinJKH.Pays
 
             BindingContext = viewModel = vm;
             viewModel.LoadPdf.Execute(null);
-            View pdfview;
             if (Device.RuntimePlatform == "Android")
             {
                 pdfview = new CustomWebView()
@@ -50,6 +50,7 @@ namespace xamarinJKH.Pays
                 };
                 Content.Children.Add(pdfview);
             }
+            
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
@@ -60,6 +61,12 @@ namespace xamarinJKH.Pays
         protected override void OnAppearing()
         {
             base.OnAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            Content.Children.Remove(pdfview);
         }
 
         async void GoBack(object sender, EventArgs args)
@@ -145,11 +152,18 @@ namespace xamarinJKH.Pays
         {
             Bill = info;
             RestClientMP server = new RestClientMP();
+            IsBusy = true;
             
             LoadPdf = new Command(async () =>
             {
-               //TODO: Получение ссылки на настоящий файл квитанции с бека
+                //TODO: Получение ссылки на настоящий файл квитанции с бека
+                await System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(1));
                 Path = info.FileLink;//"file:///" + DependencyService.Get<IFileWorker>().GetFilePath(filename);
+            });
+
+            MessagingCenter.Subscribe<Object>(this, "ReleasePdfLoading", (sender) =>
+            {
+                IsBusy = false;
             });
         }
     }
