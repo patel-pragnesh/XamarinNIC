@@ -224,6 +224,7 @@
                                                TextColor="#A2A2A2"
                                                Text=""
                                                Keyboard="Numeric"
+                                               Placeholder="{x:Static xamarinJkh:AppResources.DatePlaceHolder}"
                                                TextChanged="DateEntry_OnTextChanged"
                                                BackgroundColor="Transparent"
                                                HorizontalTextAlignment="Center"

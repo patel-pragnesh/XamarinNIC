@@ -845,6 +845,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ДД.ММ.ГГГГ.
+        /// </summary>
+        internal static string DatePlaceHolder {
+            get {
+                return ResourceManager.GetString("DatePlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  числа .
         /// </summary>
         internal static string DayOfMounth {
