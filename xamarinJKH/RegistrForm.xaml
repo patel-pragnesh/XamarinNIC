@@ -555,7 +555,7 @@
                             Orientation="Horizontal">
                             <Label Text="{x:Static xamarinJkh:AppResources.TroubleCode}"
                                    FontSize="10"
-                                   TextColor="#A2A2A2"
+                                   TextColor="Black"
                                    WidthRequest="180"
                                    HorizontalOptions="Center" />
                             <StackLayout
