@@ -622,7 +622,7 @@ namespace xamarinJKH
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorRegisterFillPassword, "OK");
             }
-            else if (passConfirm.Equals(""))
+            else if (EntryPassNew.IsPassword && passConfirm.Equals(""))
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorRegisterFillPasswordConfirm, "OK");
             }
