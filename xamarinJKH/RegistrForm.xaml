@@ -550,7 +550,7 @@
                         </pancakeView:PancakeView>
                         <StackLayout
                             x:Name="tech"
-                            Margin="15,0,15,0"
+                            Margin="15,15,15,0"
                             HorizontalOptions="Center"
                             Orientation="Horizontal">
                             <Label Text="{x:Static xamarinJkh:AppResources.TroubleCode}"
