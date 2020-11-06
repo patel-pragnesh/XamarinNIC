@@ -173,7 +173,7 @@
                         Margin="10, 10, 10, 0"
                         VerticalOptions="FillAndExpand">
                             <Frame CornerRadius="40"
-                               Margin="10,0,-50,-80"
+                               Margin="10,0,-50,-90"
                                x:Name="FrameKind"
                                BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                Padding="20, 20, 80, 70">
@@ -286,7 +286,7 @@
                                         </CollectionView.ItemsLayout>
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <StackLayout VerticalOptions="Start" BackgroundColor="Transparent" HeightRequest="150" Spacing="-10">
+                                                <StackLayout VerticalOptions="Start" BackgroundColor="Transparent"  Spacing="-15">
                                                     <!--<StackLayout  BackgroundColor="LightBlue" VerticalOptions="Start">-->
                                                         <pancakeView:PancakeView CornerRadius="20"
                                                                                  VerticalOptions="Start"
@@ -301,7 +301,7 @@
                                                                TextColor="Black"
                                                                VerticalTextAlignment="Center"
                                                                HorizontalOptions="Center"
-                                                               FontSize="12"
+                                                               FontSize="13"
                                                                HorizontalTextAlignment="Center"
                                                                />
                                                     <!--</StackLayout>-->
