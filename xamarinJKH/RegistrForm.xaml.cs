@@ -514,10 +514,10 @@ namespace xamarinJKH
                     {
                         FrameTimer.IsVisible = false;
                         FrameBtnReg.IsVisible = true;
-                        StackLayoutSms.IsVisible = true;
                         setDisabledSms(false);
                         if (EntryCode.Text.Equals(""))
                         {
+                            StackLayoutSms.IsVisible = true;
                             FrameBtnNextTwo.IsVisible = false;
                         }
                         isSms = true;
