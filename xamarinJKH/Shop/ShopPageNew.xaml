@@ -124,10 +124,10 @@
                         <yummy:PancakeView x:Name="GoodsLayot" CornerRadius="30,30,30,30" BackgroundColor="White"
                                                BorderThickness="1"
                                                VerticalOptions="FillAndExpand" Margin="15,10,15,0" Padding="10,0" >
-                            <StackLayout BackgroundColor="White">
+                            <StackLayout>
                                 <Grid Margin="10,10,10,0">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="50"/>
                                     </Grid.RowDefinitions>
 
                                     <Grid.ColumnDefinitions>
@@ -146,11 +146,14 @@
                                                  VerticalOptions="Center"
                                                  Padding="0,8">
                                         <svg:SvgCachedImage Source="{Binding Asending,Converter={x:StaticResource Arrow}}"
+                                                            HeightRequest="30"
+                                                            VerticalOptions="Center"
                                                              ReplaceStringMap="{Binding Asending, Converter={x:StaticResource SvgColor}}"/>
                                         <Label Text= "{x:Static xamarinJkh:AppResources.SortByPrice}"
                                                TextColor="{x:DynamicResource MainColor}"
                                                Margin="0,0"
                                                HorizontalTextAlignment="Center"
+                                               VerticalOptions="CenterAndExpand"
                                                FontSize="12"/>
                                         <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding Sort}"/>
