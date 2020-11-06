@@ -275,10 +275,10 @@
                                     </ListView.ItemTemplate>
                                 </ListView>
                                 <RefreshView IsRefreshing="{Binding IsRefreshing}"
-                                             Command="{Binding RefreshCommand}">
-                                    <CollectionView ItemsSource="{Binding Additional}"
-                                                    x:Name="CollectionViewAdd"
+                                             Command="{Binding RefreshCommand}" Margin="0,20,0,0">
+                                    <CollectionView ItemsSource="{Binding Additional}"                                                    
                                                     SelectionMode="Single"
+                                                    x:Name="CollectionViewAdd"
                                                     SelectionChanged="OnItemTapped">
                                         <CollectionView.ItemsLayout>
                                             <GridItemsLayout Orientation="Vertical" 
@@ -286,13 +286,14 @@
                                         </CollectionView.ItemsLayout>
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <StackLayout Padding="10">
-                                                    <StackLayout Spacing="-10" BackgroundColor="Transparent">
+                                                <StackLayout VerticalOptions="Start" BackgroundColor="Transparent" HeightRequest="150" Spacing="-10">
+                                                    <!--<StackLayout  BackgroundColor="LightBlue" VerticalOptions="Start">-->
                                                         <pancakeView:PancakeView CornerRadius="20"
+                                                                                 VerticalOptions="Start"
                                                                              x:Name="Pic"
                                                                              Scale="0.6"
                                                                              HeightRequest="{Binding Path=Width, Source={x:Reference Pic}}"
-                                                                             IsClippedToBounds="False">
+                                                                             IsClippedToBounds="False"  Padding="0">
                                                             <ff:CachedImage Source="{Binding LogoLink}"
                                                                         Aspect="AspectFill"/>
                                                         </pancakeView:PancakeView>
@@ -301,8 +302,9 @@
                                                                VerticalTextAlignment="Center"
                                                                HorizontalOptions="Center"
                                                                FontSize="12"
-                                                               HorizontalTextAlignment="Center"/>
-                                                    </StackLayout>
+                                                               HorizontalTextAlignment="Center"
+                                                               />
+                                                    <!--</StackLayout>-->
                                                     
                                                 </StackLayout>
                                             </DataTemplate>
