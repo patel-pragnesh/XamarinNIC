@@ -1481,4 +1481,7 @@
   <data name="TechDialogMailto" xml:space="preserve">
     <value>или напишите нам на электронную почту</value>
   </data>
+  <data name="application" xml:space="preserve">
+    <value>приложение</value>
+  </data>
 </root>

@@ -81,7 +81,7 @@ namespace xamarinJKH.DialogViews
                 {
                     var message = new EmailMessage
                     {
-                        //Subject = app,
+                        Subject = $"{AppResources.PhoneNumber+" "+Settings.Person.Phone}, {AppResources.application+": "+Settings.MobileSettings.main_name}",
                         //Body= ,
                         To = new List<string> { "mobile@sm-center.ru" }
 
