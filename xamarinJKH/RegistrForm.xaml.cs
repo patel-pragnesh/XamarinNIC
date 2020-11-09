@@ -189,10 +189,6 @@ namespace xamarinJKH
                         if (isWhatsApp)
                         {
                             bool loadUrl = await LoadUrl("com.whatsapp");
-                            if (!loadUrl)
-                            {
-                                return;
-                            }
                         }
                         CommonResult result = await _server.SendCheckCode(Person.Phone, isWhatsApp);
                         if (result.Error == null)
