@@ -1421,6 +1421,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введенное значение суммы не являтеся числом.
+        /// </summary>
+        internal static string ErrorNumberSumm {
+            get {
+                return ResourceManager.GetString("ErrorNumberSumm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Введенный пин-код не является числом.
         /// </summary>
         internal static string ErrorOSSAuthNotNumber {
