@@ -28,7 +28,7 @@ namespace xamarinJKH.DialogViews
             var stack = Rg.Plugins.Popup.Services.PopupNavigation.PopupStack;
             if (stack.Count == 0)
                 Device.BeginInvokeOnMainThread(async () => await SendTechTask());
-            else
+            else if (stack != null)
                 Device.BeginInvokeOnMainThread(async () => await Rg.Plugins.Popup.Services.PopupNavigation.PopAsync());
             InitializeComponent();
             Analytics.TrackEvent("Диалог тех.поддержки");
@@ -146,6 +146,7 @@ namespace xamarinJKH.DialogViews
         
         async Task sendTech()
         {
+            Analytics.TrackEvent("Запрос кода для тех.поддержки");
             TechSupportAppealArguments arguments = new TechSupportAppealArguments();
             arguments.OS = Device.RuntimePlatform;
             arguments.Phone = Settings.Person.Phone;
@@ -161,6 +162,7 @@ namespace xamarinJKH.DialogViews
             {
 
                 number = result.requestId.ToString();
+                Analytics.TrackEvent("Получили код: " + number);
                 BindingContext = this;
 
             }
