@@ -1475,4 +1475,10 @@
   <data name="DatePlaceHolder" xml:space="preserve">
     <value>ДД.ММ.РРРР</value>
   </data>
+  <data name="TechDialogMailto" xml:space="preserve">
+    <value>або напишіть нам на електронну пошту</value>
+  </data>
+  <data name="application" xml:space="preserve">
+    <value>застосунок</value>
+  </data>
 </root>

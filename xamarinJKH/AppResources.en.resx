@@ -1491,4 +1491,10 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="DatePlaceHolder" xml:space="preserve">
     <value>DD.MM.YYYY</value>
   </data>
+  <data name="TechDialogMailto" xml:space="preserve">
+    <value>or write us an email</value>
+  </data>
+  <data name="application" xml:space="preserve">
+    <value>application</value>
+  </data>
 </root>
