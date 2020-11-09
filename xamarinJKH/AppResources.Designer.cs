@@ -1421,7 +1421,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Введенное значение суммы не являтеся числом.
+        ///   Looks up a localized string similar to Введенное значение суммы не является числом.
         /// </summary>
         internal static string ErrorNumberSumm {
             get {

@@ -1485,6 +1485,6 @@
     <value>приложение</value>
   </data>
   <data name="ErrorNumberSumm" xml:space="preserve">
-    <value>Введенное значение суммы не являтеся числом</value>
+    <value>Введенное значение суммы не является числом</value>
   </data>
 </root>
