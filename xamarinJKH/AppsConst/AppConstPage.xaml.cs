@@ -888,38 +888,44 @@ namespace xamarinJKH.AppsConst
 
         private async void ShowInfo()
         {
-            string Status = request.Status;
-            string Source = Settings.GetStatusIcon(request.StatusID);
-            if (!string.IsNullOrWhiteSpace(request.Phone) && (request.Phone.Contains("+") == false && request.Phone.Substring(0, 2) == "79"))
+            if (request != null)
             {
-                request.Phone = "+" + request.Phone;
-            }
-            Call = new Command<string>(async (phone) =>
-            {
-                if (!string.IsNullOrWhiteSpace(phone))
+                string Status = request.Status;
+                string Source = Settings.GetStatusIcon(request.StatusID);
+                if (!string.IsNullOrEmpty(Source))
                 {
-                    IPhoneCallTask phoneDialer;
-                    phoneDialer = CrossMessaging.Current.PhoneDialer;
-                    if (phoneDialer.CanMakePhoneCall && !string.IsNullOrWhiteSpace(request.Phone)) 
-                        phoneDialer.MakePhoneCall(phone);
-                }
-            });
-            bool IsPass = request.PassInfo != null;
-            bool isMan = false;
-            if (IsPass)
-            {
-                isMan = request.PassInfo.CategoryId == 1;
-            }
+                    if (!string.IsNullOrWhiteSpace(request.Phone) && (request.Phone.Contains("+") == false && request.Phone.Substring(0, 2) == "79"))
+                    {
+                        request.Phone = "+" + request.Phone;
+                    }
+                    Call = new Command<string>(async (phone) =>
+                    {
+                        if (!string.IsNullOrWhiteSpace(phone))
+                        {
+                            IPhoneCallTask phoneDialer;
+                            phoneDialer = CrossMessaging.Current.PhoneDialer;
+                            if (phoneDialer.CanMakePhoneCall && !string.IsNullOrWhiteSpace(request.Phone))
+                                phoneDialer.MakePhoneCall(phone);
+                        }
+                    });
+                    bool IsPass = request.PassInfo != null;
+                    bool isMan = false;
+                    if (IsPass)
+                    {
+                        isMan = request.PassInfo.CategoryId == 1;
+                    }
 
-            var ret = await Dialog.Instance.ShowAsync<InfoAppDialog>(new
-            {
-                _Request = request,
-                HexColor = this.hex,
-                SourceApp = Source,
-                Calling = Call,
-                isPass = IsPass,
-                isManType = isMan
-            });
+                    var ret = await Dialog.Instance.ShowAsync<InfoAppDialog>(new
+                    {
+                        _Request = request,
+                        HexColor = this.hex,
+                        SourceApp = Source,
+                        Calling = Call,
+                        isPass = IsPass,
+                        isManType = isMan
+                    });
+                }
+            }
         }
 
         public Command<string> Call { get; set; }
