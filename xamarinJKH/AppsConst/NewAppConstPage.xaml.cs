@@ -166,7 +166,7 @@ namespace xamarinJKH.AppsConst
                 IconViewClose.IsVisible = true;
             });
 
-            MessagingCenter.Subscribe<Object, Tuple<int, int, int, string>>(this, "SetTypes", (sender, data) =>
+            MessagingCenter.Subscribe<Object, Tuple<int?, int?, int?, string>>(this, "SetTypes", (sender, data) =>
             {
                 this.District = data.Item1;
                 this.House = data.Item2;
