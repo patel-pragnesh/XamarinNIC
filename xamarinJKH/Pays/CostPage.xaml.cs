@@ -230,8 +230,30 @@ namespace xamarinJKH.Pays
         {
         }
 
+        bool isDigit(char s)
+        {
+            var dgts = new List<char>() { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            return dgts.Contains(s);
+        }
+
         private async void EntrySum_OnTextChanged(object sender, TextChangedEventArgs e)
         {
+           if(!isDigit(e.NewTextValue.Last()))
+            {
+                if (e.OldTextValue.Contains(e.NewTextValue.Last()))
+                {
+                    //var d = EntrySum.Text.LastIndexOf(e.NewTextValue.Last());
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        EntrySum.TextChanged -= EntrySum_OnTextChanged;
+                        EntrySum.Text = e.OldTextValue; // EntrySum.Text.Remove(d);// = e.OldTextValue;
+                        EntrySum.TextChanged += EntrySum_OnTextChanged;
+                    }
+);
+                    return;
+                }
+            }
+
             await SetSumPay();
         }
 
@@ -281,7 +303,7 @@ namespace xamarinJKH.Pays
                 isComission = true;
                 LabelCommision.Text = $"{AppResources.Commision} " + result.Comission + $" {AppResources.Currency}";
                 LabelCommision.IsVisible =  !result.HideComissionInfo;
-                ;
+                
                 totalSum = result.TotalSum;
             }
             // }
