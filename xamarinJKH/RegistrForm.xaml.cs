@@ -8,6 +8,7 @@ using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
 using Microsoft.AppCenter.Analytics;
 using Rg.Plugins.Popup.Services;
+using Xamarin.Essentials;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
@@ -185,6 +186,14 @@ namespace xamarinJKH
                     pressed = true;
                     await Loading.Instance.StartAsync(async progress =>
                     {
+                        if (isWhatsApp)
+                        {
+                            bool loadUrl = await LoadUrl("com.whatsapp");
+                            if (!loadUrl)
+                            {
+                                return;
+                            }
+                        }
                         CommonResult result = await _server.SendCheckCode(Person.Phone, isWhatsApp);
                         if (result.Error == null)
                         {
@@ -231,7 +240,55 @@ namespace xamarinJKH
                 {
                 }
         }
+        private async Task<bool> LoadUrl(string package)
+        {
+            try
+            {
+                if (Device.RuntimePlatform == "Android")
+                {
+                    if (DependencyService.Get<IOpenApp>().IsOpenApp(package))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        await Launcher.OpenAsync($"https://play.google.com/store/apps/details?id={package}");
+                    }
+                }
+                else
+                {
+                    if (DependencyService.Get<IOpenApp>().IsOpenApp(package))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        var uri = $"https://itunes.apple.com/us/app/";
 
+                        if (package.Contains("what"))
+                            uri += "whatsapp-messenger/id310633997";
+
+                        if (package.Contains("teleg"))
+                            uri += "telegram-messenger/id686449807";
+
+                        if (package.Contains("viber"))
+                            uri += "viber-messenger-chats-calls/id382617920";
+
+                        //await Launcher.OpenAsync(url);
+                        await Launcher.OpenAsync(uri);
+
+                    }
+
+                }
+                // await PopupNavigation.Instance.PopAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAdditionalLink, "OK");
+            }
+            return false;
+        }
 
         private void NextReg(object sender, EventArgs e)
         {

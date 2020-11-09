@@ -165,6 +165,7 @@ namespace xamarinJKH.Pays
             {
                 isComission = true;
                 LabelCommision.Text = $"{AppResources.Commision} " + result.Comission + $" {AppResources.Currency}";
+                LabelCommision.IsVisible = !result.HideComissionInfo;
                 totalSum = result.TotalSum.ToString();
             }
 
@@ -270,6 +271,8 @@ namespace xamarinJKH.Pays
             {
                 isComission = true;
                 LabelCommision.Text = $"{AppResources.Commision} " + result.Comission + $" {AppResources.Currency}";
+                LabelCommision.IsVisible =  !result.HideComissionInfo;
+                ;
                 totalSum = result.TotalSum;
             }
             // }
