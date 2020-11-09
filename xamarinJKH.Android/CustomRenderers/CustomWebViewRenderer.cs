@@ -16,6 +16,9 @@ using xamarinJKH.CustomRenderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
+using WebK = Android.Webkit.WebViewClient;
+using Cache = Android.Webkit.CacheModes;
+
 using System.Net;
 
 [assembly: ExportRenderer(typeof(CustomWebView), typeof(CustomWebViewRenderer))]
@@ -34,8 +37,11 @@ namespace xamarinJKH.Droid.CustomRenderers
                 Control.Settings.AllowUniversalAccessFromFileURLs = true;
                 Control.Settings.JavaScriptEnabled = true;
                 Control.Settings.JavaScriptCanOpenWindowsAutomatically = true;
+                Control.SetWebViewClient(new CustomViewClient());
+                Control.Settings.CacheMode = Cache.CacheElseNetwork;
+                Control.Settings.AllowContentAccess = true;
+                Control.Settings.DatabaseEnabled = false;
                 Control.LoadUrl(String.Format("https://docs.google.com/viewer?url={0}", customWebView.Uri));
-                //Control.LoadUrl(string.Format("file:///android_asset/pdfjs/web/viewer.html?file={0}", string.Format("file:///{0}", customWebView.Uri)));
             }
         }
     }

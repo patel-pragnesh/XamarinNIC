@@ -69,25 +69,25 @@
                                    FontSize="16"
                                    TextDecorations="Underline"/>
                         </StackLayout>
-                        
+
                     </StackLayout>
                 </Grid>
             </Frame>
-            <StackLayout Grid.Row="1"
-                         x:Name="Content"
+            <StackLayout x:Name="Content"
+                             Grid.Row="1"
                          Padding="10">
-                <StackLayout Orientation="Horizontal">
-                    <xamarinJkh:IconView Foreground="Black"
+                    <StackLayout Orientation="Horizontal">
+                        <xamarinJkh:IconView Foreground="Black"
                                          Source="ic_arrow_back"
                                          HeightRequest="10"/>
-                    <Label Text="{x:Static xamarinJkh:AppResources.Back}"
+                        <Label Text="{x:Static xamarinJkh:AppResources.Back}"
                            VerticalOptions="Center"
                            
                            VerticalTextAlignment="Center"/>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="GoBack"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="GoBack"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
                 <StackLayout Orientation="Horizontal"
                              Spacing="20"
                              Margin="10"
@@ -119,7 +119,12 @@
                         </xamarinJkh:IconView.GestureRecognizers>
                     </xamarinJkh:IconView>
                 </StackLayout>
+                <ActivityIndicator HeightRequest="100"
+                                   IsVisible="{Binding IsBusy}"
+                                   IsEnabled="{Binding IsBusy}"
+                                   IsRunning="{Binding IsBusy}"/>
             </StackLayout>
-        </Grid>
+
+            </Grid>
     </ContentPage.Content>
 </ContentPage>
