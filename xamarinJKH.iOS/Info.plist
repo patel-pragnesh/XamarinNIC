@@ -76,6 +76,7 @@
 		<string>whatsapp</string>
 		<string>tg</string>
 		<string>viber</string>
-	</array>
+    <string>mailto</string>
+	</array>  
 </dict>
 </plist>

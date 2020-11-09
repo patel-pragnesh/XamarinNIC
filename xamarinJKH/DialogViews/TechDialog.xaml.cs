@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
 using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -73,7 +74,61 @@ namespace xamarinJKH.DialogViews
             var openUrlVider = new TapGestureRecognizer();
             openUrlVider.Tapped += async (s, e) => { await LoadUrl("https://clc.am/4YSqZg", "com.viber.voip"); };
             ImageViber.GestureRecognizers.Add(item: openUrlVider);
+
+            var openMail = new TapGestureRecognizer();
+            openMail.Tapped += async (s, e) => {
+                try
+                {
+                    var message = new EmailMessage
+                    {
+                        //Subject = app,
+                        //Body= ,
+                        To = new List<string> { "mobile@sm-center.ru" }
+
+                    };
+                    await Email.ComposeAsync(message);
+                }
+                catch (FeatureNotSupportedException fbsEx)
+                {
+                    Analytics.TrackEvent("Диалог тех.поддержки, невозможно отправить письмо, не поддерживается устройством");
+                    Crashes.TrackError(fbsEx);
+                    // Email is not supported on this device
+                }
+                catch (Exception ex)
+                {
+                    Crashes.TrackError(ex);
+                    // Some other exception occurred
+                }
+            };
+            mailSpan.GestureRecognizers.Add(openMail);
         }
+
+        //private async Task OpenMail_TappedAsync(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        var message = new EmailMessage
+        //        {
+        //            Subject = "тема письма",
+        //            //Body= ,
+        //            To = new List<string> { "mobile@sm-center.ru" }
+                    
+        //        };
+        //        await Email.ComposeAsync(message);
+        //    }
+        //    catch (FeatureNotSupportedException fbsEx)
+        //    {
+        //        Analytics.TrackEvent("Диалог тех.поддержки, невозможно отправить письмо, не поддерживается устройством");
+        //        Crashes.TrackError(fbsEx);
+        //        // Email is not supported on this device
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Crashes.TrackError(ex);
+        //        // Some other exception occurred
+        //    }
+            
+        //}
 
         bool launched;
         private async Task SendTechTask()
@@ -93,6 +148,8 @@ namespace xamarinJKH.DialogViews
                 if (!launched)
                     await sendTech();
             });
+
+            Frame.IsVisible = true;
         }
         private async Task LoadUrl(string url, string package)
         {
