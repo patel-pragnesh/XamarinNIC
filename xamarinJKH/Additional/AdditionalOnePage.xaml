@@ -92,7 +92,7 @@
                 <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
                                      HeightRequest="15"
                                      WidthRequest="15"
-                                     ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000|#000000'}"
+                                     ReplaceStringMap="{Binding adress, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000'}"
                                      HorizontalOptions="Center" />
                 <Label
                     Text="{x:Static xamarinJkh:AppResources.Back}"
