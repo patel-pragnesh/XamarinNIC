@@ -433,18 +433,19 @@ namespace xamarinJKH.Main
 #if DEBUG
                 try
                 {
-                    if (accounts.Count < 2)
-                    {
-                        for (int i = 0; i < 9; i++)
-                        {
-                            AccountAccountingInfo a = new AccountAccountingInfo();
-                            a.Sum = accounts[i].Sum + i * 102;
-                            a.Ident = (i * 9 + i * 2).ToString();
-                            accounts.Add(a);
-                        }
+                    //accounts[0].Sum += (decimal)0.1;
+                    //if (accounts.Count < 2)
+                    //{
+                    //    for (int i = 0; i < 9; i++)
+                    //    {
+                    //        AccountAccountingInfo a = new AccountAccountingInfo();
+                    //        a.Sum = accounts[i].Sum + i * (decimal)10.1;
+                    //        a.Ident = (i * 9 + i * 2).ToString();
+                    //        accounts.Add(a);
+                    //    }
 
-                        ;
-                    }
+                    //    ;
+                    //}
                 }
                 catch (Exception e)
                 {

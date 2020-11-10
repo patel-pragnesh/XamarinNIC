@@ -1484,4 +1484,7 @@
   <data name="application" xml:space="preserve">
     <value>приложение</value>
   </data>
+  <data name="ErrorNumberSumm" xml:space="preserve">
+    <value>Введенное значение суммы не является числом</value>
+  </data>
 </root>
