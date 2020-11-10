@@ -304,19 +304,20 @@ namespace xamarinJKH.Pays
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             BillInfo select = e.Item as BillInfo;
-            if (select != null)
-            {
-                select.Period = select.Period.ToUpper();
-                if (Navigation.NavigationStack.FirstOrDefault(x => x is PayPdf) == null)
-                    await Navigation.PushAsync(new PayPdf(new PayPdfViewModel(select)));
-            }
-
-            return;
-            string filename = @select.Period + ".pdf";
             if (!select.HasFile)
             {
                 return;
             }
+            if (select != null)
+            {
+                
+                select.Period = select.Period.ToUpper();
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is PayPdf) == null)
+                    await Navigation.PushAsync(new PayPdf(select));
+            }
+
+            return;
+            string filename = @select.Period + ".pdf";
             
             if (await DependencyService.Get<IFileWorker>().ExistsAsync(filename))
             {
