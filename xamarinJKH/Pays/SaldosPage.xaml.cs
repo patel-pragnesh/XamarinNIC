@@ -333,36 +333,39 @@ namespace xamarinJKH.Pays
             }
             else
             {
-                Configurations.LoadingConfig = new LoadingConfig
-                {
-                    IndicatorColor = Color.FromHex(Settings.MobileSettings.color),
-                    OverlayColor = Color.Black,
-                    Opacity = 0.8,
-                    DefaultMessage = AppResources.LoadingFile,
-                };
-                byte[] stream;
-                await Loading.Instance.StartAsync(async (action) =>
-                {
-                    stream = await server.DownloadFileAsync(select.ID.ToString());
-                    if (stream != null)
-                    {
-                        await DependencyService.Get<IFileWorker>().SaveTextAsync(filename, stream);
-                        Loading.Instance.Hide();
-                        await Launcher.OpenAsync(new OpenFileRequest
-                        {
-                            File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(filename))
-                        });
-                    }
-                    else
-                    {
-                        Loading.Instance.Hide();
-                        await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
-                    }
-                });
-                
+                new Task(async () => await GetFile(@select.ID.ToString(), filename)).Start();
+
             }
         }
+        public async Task GetFile(string id, string fileName)
+        {
+            // Loading settings
+            Configurations.LoadingConfig = new LoadingConfig
+            {
+                IndicatorColor =(Color)Application.Current.Resources["MainColor"] ,
+                OverlayColor = Color.Black,
+                Opacity = 0.8,
+                DefaultMessage = AppResources.Loading,
+            };
 
+            await Loading.Instance.StartAsync(async progress =>
+            {
+                byte[] stream;
+                stream = await server.DownloadFileAsync(id);
+                if (stream != null)
+                {
+                    await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, stream);
+                    await Launcher.OpenAsync(new OpenFileRequest
+                    {
+                        File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+                    });
+                }
+                else
+                {
+                    await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
+                }
+            });
+        }
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
             additionalList.ItemsSource = null;

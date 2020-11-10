@@ -78,7 +78,14 @@ namespace xamarinJKH
             }
             else
             {
-                Application.Current.Properties.Add("Culture", CultureInfo.CurrentUICulture.Name.Substring(0,2));
+                try
+                {
+                    Application.Current.Properties.Add("Culture", CultureInfo.CurrentUICulture.Name.Substring(0,2));
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
             InitializeComponent();
             getSettings();
