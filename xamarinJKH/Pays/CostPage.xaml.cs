@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -167,6 +168,10 @@ namespace xamarinJKH.Pays
                 LabelCommision.Text = $"{AppResources.Commision} " + result.Comission + $" {AppResources.Currency}";
                 LabelCommision.IsVisible = !result.HideComissionInfo;
                 totalSum = result.TotalSum.ToString();
+                if (result.Comission == 0)
+                {
+                    LabelCommision.Text = AppResources.NotComissions;
+                }
             }
 
             LayoutInsurance.IsVisible = account.InsuranceSum != 0;
@@ -248,16 +253,24 @@ namespace xamarinJKH.Pays
             }
             else
             {
-                //try
-                //{
-                    
-                    totalSum = decimal.Parse(sumText.Replace(',', '.'), CultureInfo.InvariantCulture);
-                //}
-                //catch
-                //{
-                //    totalSum = decimal.Parse(sumText.Replace(',', '.'), CultureInfo.InvariantCulture);
-                   
-                //}
+                try
+                {                    
+                    var sumWithDot = sumText.Replace(',', '.');
+                    var correctSum = decimal.TryParse(sumWithDot, NumberStyles.Any, CultureInfo.InvariantCulture, out totalSum);
+
+                    if (!correctSum)
+                    {
+                        Analytics.TrackEvent($"Оплата по ЛС. ошибка при конвертации в decimal числа {sumText}");
+                        Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorNumberSumm, null, "OK"));
+                        return;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Analytics.TrackEvent($"Оплата по ЛС. ошибка при конвертации в decimal числа {sumText}");
+                    Crashes.TrackError(ex);
+                    throw;
+                }
             }
 
             // if (isComission)
@@ -274,6 +287,10 @@ namespace xamarinJKH.Pays
                 LabelCommision.IsVisible =  !result.HideComissionInfo;
                 ;
                 totalSum = result.TotalSum;
+                if (result.Comission == 0)
+                {
+                    LabelCommision.Text = AppResources.NotComissions;
+                }
             }
             // }
 
@@ -320,17 +337,38 @@ namespace xamarinJKH.Pays
             
             if (!sumText.Equals("") && !sumText.Equals("0") && !sumText.Equals("-"))
             {
-                decimal sumPay = Decimal.Parse(sumText);
+                decimal sumPay = -1; // Decimal.Parse(sumText);
+
+                try
+                {
+                    var sumWithDot = sumText.Replace(',', '.');
+                    var correctSum = decimal.TryParse(sumWithDot, NumberStyles.Any, CultureInfo.InvariantCulture, out sumPay);
+
+                    if (!correctSum)
+                    {
+                        Analytics.TrackEvent($"Оплата по ЛС. ошибка при конвертации в decimal числа {sumText}");
+                        Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorNumberSumm, null, "OK"));
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Analytics.TrackEvent($"Оплата по ЛС. ошибка при конвертации в decimal числа {sumText}");
+                    Crashes.TrackError(ex);
+                    throw;
+                }
+
+
                 if (sumPay < 1 && sumPay > 0)
                 {
                     await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorEnterSumOne, "OK");
                     return;
                 }
-                decimal sum = Decimal.Parse(sumText);
-                if (sum > 0)
+                //decimal sum = Decimal.Parse(sumText);
+                if (sumPay > 0)
                 {
                     if (Navigation.NavigationStack.FirstOrDefault(x => x is PayServicePage) == null)
-                        await Navigation.PushAsync(new PayServicePage(account.Ident, sum, null, SwitchInsurance.IsToggled && SwitchInsurance.IsVisible));
+                        await Navigation.PushAsync(new PayServicePage(account.Ident, sumPay, null, SwitchInsurance.IsToggled && SwitchInsurance.IsVisible));
                 }
                 else
                 {

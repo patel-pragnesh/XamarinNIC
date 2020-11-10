@@ -1484,4 +1484,10 @@
   <data name="application" xml:space="preserve">
     <value>приложение</value>
   </data>
+  <data name="ErrorNumberSumm" xml:space="preserve">
+    <value>Введенное значение суммы не является числом</value>
+  </data>
+  <data name="NotComissions" xml:space="preserve">
+    <value>*Комиссия не взимается</value>
+  </data>
 </root>

@@ -1497,4 +1497,10 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="application" xml:space="preserve">
     <value>application</value>
   </data>
+  <data name="ErrorNumberSumm" xml:space="preserve">
+    <value>The amount entered is not a number</value>
+  </data>
+  <data name="NotComissions" xml:space="preserve">
+    <value>Commission is not charged</value>
+  </data>
 </root>

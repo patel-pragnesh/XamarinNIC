@@ -21,6 +21,7 @@ using xamarinJKH.Main;
 using xamarinJKH.Notifications;
 using Device = Xamarin.Forms.Device;
 using System.Threading.Tasks;
+using Badge.Plugin;
 
 namespace xamarinJKH
 {
@@ -54,6 +55,7 @@ namespace xamarinJKH
             public App()
         {
             InitializeComponent();
+            CrossBadge.Current.ClearBadge();
             Crashes.SendingErrorReport += SendingErrorReportHandler;
             Crashes.SentErrorReport += SentErrorReportHandler;
             Crashes.FailedToSendErrorReport += FailedToSendErrorReportHandler;
@@ -141,7 +143,7 @@ namespace xamarinJKH
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
             {
                 System.Diagnostics.Debug.WriteLine("Received");
-
+                CrossBadge.Current.ClearBadge();
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     try

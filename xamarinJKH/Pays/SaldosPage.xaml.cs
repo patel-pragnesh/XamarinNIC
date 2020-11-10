@@ -72,7 +72,7 @@ namespace xamarinJKH.Pays
             if (info.Error == null)
             {
                 SetBills(info.Data);
-                isSortDate = false;
+                isSortDate = !isSortDate;
                 SortDate();
                 // additionalList.ItemsSource = null;
                 // additionalList.ItemsSource = BillInfos;
