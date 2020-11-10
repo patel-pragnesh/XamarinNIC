@@ -1484,4 +1484,7 @@
   <data name="ErrorNumberSumm" xml:space="preserve">
     <value>Введене значення суми не є числом</value>
   </data>
+  <data name="NotComissions" xml:space="preserve">
+    <value>Комісія не стягується</value>
+  </data>
 </root>
