@@ -67,6 +67,7 @@ namespace xamarinJKH.Pays
         {
             base.OnDisappearing();
             Content.Children.Remove(pdfview);
+            this.BindingContext = null;
         }
 
         async void GoBack(object sender, EventArgs args)
@@ -157,7 +158,7 @@ namespace xamarinJKH.Pays
             LoadPdf = new Command(async () =>
             {
                 //TODO: Получение ссылки на настоящий файл квитанции с бека
-                await System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(1));
+                await System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(2));
                 Path = info.FileLink;//"file:///" + DependencyService.Get<IFileWorker>().GetFilePath(filename);
             });
 
