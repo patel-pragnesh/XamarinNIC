@@ -20,6 +20,7 @@ using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 using xamarinJKH.Utils.Compatator;
+using AiForms.Dialogs.Abstractions;
 
 namespace xamarinJKH.Pays
 {
@@ -308,18 +309,22 @@ namespace xamarinJKH.Pays
             {
                 return;
             }
-            if (select != null)
+            if (Device.RuntimePlatform == "iOS")
             {
-                
-                select.Period = select.Period.ToUpper();
-                if (Navigation.NavigationStack.FirstOrDefault(x => x is PayPdf) == null)
-                    await Navigation.PushAsync(new PayPdf(select));
-            }
+                if (select != null)
+                {
 
-            return;
+                    select.Period = select.Period.ToUpper();
+                    if (Navigation.NavigationStack.FirstOrDefault(x => x is PayPdf) == null)
+                        await Navigation.PushAsync(new PayPdf(select));
+                }
+                return;
+            }
+            
+
             string filename = @select.Period + ".pdf";
             
-            if (await DependencyService.Get<IFileWorker>().ExistsAsync(filename))
+            if (await DependencyService.Get<IFileWorker>().ExistsAsync(filename)) 
             {
                 await Launcher.OpenAsync(new OpenFileRequest
                 {
@@ -328,22 +333,33 @@ namespace xamarinJKH.Pays
             }
             else
             {
-                await Settings.StartProgressBar();
-                var stream = await server.DownloadFileAsync(select.ID.ToString());
-                if (stream != null)
+                Configurations.LoadingConfig = new LoadingConfig
                 {
-                    await DependencyService.Get<IFileWorker>().SaveTextAsync(filename, stream);
-                    Loading.Instance.Hide();
-                    await Launcher.OpenAsync(new OpenFileRequest
+                    IndicatorColor = Color.FromHex(Settings.MobileSettings.color),
+                    OverlayColor = Color.Black,
+                    Opacity = 0.8,
+                    DefaultMessage = AppResources.LoadingFile,
+                };
+                byte[] stream;
+                await Loading.Instance.StartAsync(async (action) =>
+                {
+                    stream = await server.DownloadFileAsync(select.ID.ToString());
+                    if (stream != null)
                     {
-                        File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(filename))
-                    });
-                }
-                else
-                {
-                    Loading.Instance.Hide();
-                    await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
-                }
+                        await DependencyService.Get<IFileWorker>().SaveTextAsync(filename, stream);
+                        Loading.Instance.Hide();
+                        await Launcher.OpenAsync(new OpenFileRequest
+                        {
+                            File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(filename))
+                        });
+                    }
+                    else
+                    {
+                        Loading.Instance.Hide();
+                        await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
+                    }
+                });
+                
             }
         }
 
