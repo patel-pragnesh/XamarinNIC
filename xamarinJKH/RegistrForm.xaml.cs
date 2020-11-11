@@ -338,7 +338,7 @@ namespace xamarinJKH
                 Console.WriteLine(e);
                 isDate = false;
             }
-            
+            Settings.MobileSettings.requireBirthDate = false;
             
             if (phone.Equals(""))
             {
@@ -356,7 +356,7 @@ namespace xamarinJKH
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ProcessUserData, "OK");
             }
-            else if (!isDate)
+            else if (!isDate && Settings.MobileSettings.requireBirthDate)
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.DatePick, "OK");
             }
