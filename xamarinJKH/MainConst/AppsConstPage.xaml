@@ -151,7 +151,7 @@
                                                  Padding="0,10,0,2"
                                                  BorderThickness="1"
                                                  Margin="0"
-                                                 VerticalOptions="Start">
+                                                 VerticalOptions="End">
                             <StackLayout>
                                 <StackLayout Orientation="Horizontal"
                                              IsVisible="False"
