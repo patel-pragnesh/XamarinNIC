@@ -50,6 +50,7 @@ namespace xamarinJKH.Server.RequestModel
         public string appLinkAndroid { get; set; }
 
         public string appTheme { get; set; }
+        public bool requireBirthDate { get; set; }
     }
 
     public class MobileMenu

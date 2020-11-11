@@ -20,12 +20,12 @@ namespace xamarinJKH.Pays
     {
         public PayPdfViewModel viewModel { get; set; }
         View pdfview;
-        public PayPdf(PayPdfViewModel vm)
+        public PayPdf(BillInfo info)
         {
             InitializeComponent();
-            Analytics.TrackEvent("Просмотр ПДФ по квитанции №" + vm.Bill.ID);
 
-            BindingContext = viewModel = vm;
+            BindingContext = viewModel = new PayPdfViewModel(info);
+            Analytics.TrackEvent("Просмотр ПДФ по квитанции №" + viewModel.Bill.ID);
             viewModel.LoadPdf.Execute(null);
             if (Device.RuntimePlatform == "Android")
             {
@@ -33,7 +33,7 @@ namespace xamarinJKH.Pays
                 {
                     VerticalOptions = LayoutOptions.FillAndExpand,
                     HorizontalOptions = LayoutOptions.FillAndExpand,
-                    Uri = vm.Bill.FileLink
+                    Uri = viewModel.Bill.FileLink
                 };
                 Content.Children.Add(pdfview);
             }
@@ -46,7 +46,7 @@ namespace xamarinJKH.Pays
                 {
                     VerticalOptions = LayoutOptions.FillAndExpand,
                     HorizontalOptions = LayoutOptions.FillAndExpand,
-                    Source = vm.Bill.FileLink
+                    Source = viewModel.Bill.FileLink
                 };
                 Content.Children.Add(pdfview);
             }
@@ -66,7 +66,6 @@ namespace xamarinJKH.Pays
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            Content.Children.Remove(pdfview);
         }
 
         async void GoBack(object sender, EventArgs args)
@@ -153,12 +152,19 @@ namespace xamarinJKH.Pays
             Bill = info;
             RestClientMP server = new RestClientMP();
             IsBusy = true;
+            Path = null;
             
             LoadPdf = new Command(async () =>
             {
                 //TODO: Получение ссылки на настоящий файл квитанции с бека
-                await System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(1));
-                Path = info.FileLink;//"file:///" + DependencyService.Get<IFileWorker>().GetFilePath(filename);
+                if (!info.HasFile)
+                {
+                    IsBusy = false;
+                }
+                else
+                {
+                    Path = info.FileLink;//"file:///" + DependencyService.Get<IFileWorker>().GetFilePath(filename);
+                }
             });
 
             MessagingCenter.Subscribe<Object>(this, "ReleasePdfLoading", (sender) =>

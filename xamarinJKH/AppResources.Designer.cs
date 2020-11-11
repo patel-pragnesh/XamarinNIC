@@ -19,7 +19,7 @@ namespace xamarinJKH {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -2078,7 +2078,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Укажите консультанта:.
+        ///   Looks up a localized string similar to Укажите сотрудника:.
         /// </summary>
         internal static string MoveDispatcher {
             get {
@@ -2272,6 +2272,15 @@ namespace xamarinJKH {
         internal static string NoMore {
             get {
                 return ResourceManager.GetString("NoMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to *Комиссия не взимается.
+        /// </summary>
+        internal static string NotComissions {
+            get {
+                return ResourceManager.GetString("NotComissions", resourceCulture);
             }
         }
         

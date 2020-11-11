@@ -339,7 +339,6 @@ namespace xamarinJKH
                 isDate = false;
             }
             
-            
             if (phone.Equals(""))
             {
                 await DisplayAlert(AppResources.ErrorTitle, $"{AppResources.ErrorFill} {AppResources.Phone}", "OK");
@@ -356,7 +355,7 @@ namespace xamarinJKH
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ProcessUserData, "OK");
             }
-            else if (!isDate)
+            else if (!isDate && Settings.MobileSettings.requireBirthDate)
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.DatePick, "OK");
             }

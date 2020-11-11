@@ -168,6 +168,10 @@ namespace xamarinJKH.Pays
                 LabelCommision.Text = $"{AppResources.Commision} " + result.Comission + $" {AppResources.Currency}";
                 LabelCommision.IsVisible = !result.HideComissionInfo;
                 totalSum = result.TotalSum.ToString();
+                if (result.Comission == 0)
+                {
+                    LabelCommision.Text = AppResources.NotComissions;
+                }
             }
 
             LayoutInsurance.IsVisible = account.InsuranceSum != 0;
@@ -305,6 +309,10 @@ namespace xamarinJKH.Pays
                 LabelCommision.IsVisible =  !result.HideComissionInfo;
                 
                 totalSum = result.TotalSum;
+                if (result.Comission == 0)
+                {
+                    LabelCommision.Text = AppResources.NotComissions;
+                }
             }
             // }
 

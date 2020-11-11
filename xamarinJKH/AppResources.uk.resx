@@ -626,7 +626,7 @@
     <value>За місяць</value>
   </data>
   <data name="MoveDispatcher" xml:space="preserve">
-    <value>Вибрати консультанта?</value>
+    <value>Вкажіть співробітника:</value>
   </data>
   <data name="MoveDispatcherChoose" xml:space="preserve">
     <value>Виберіть диспетчера:</value>
@@ -1483,5 +1483,8 @@
   </data>
   <data name="ErrorNumberSumm" xml:space="preserve">
     <value>Введене значення суми не є числом</value>
+  </data>
+  <data name="NotComissions" xml:space="preserve">
+    <value>Комісія не стягується</value>
   </data>
 </root>

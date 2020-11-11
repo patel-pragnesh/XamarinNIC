@@ -24,5 +24,10 @@ namespace xamarinJKH.Droid.CustomRenderers
             base.OnPageFinished(view, url);
             Messaging.Send<Object>(this, "ReleasePdfLoading");
         }
+
+        public override void OnReceivedError(WebView view, [GeneratedEnum] ClientError errorCode, string description, string failingUrl)
+        {
+            base.OnReceivedError(view, errorCode, description, failingUrl);
+        }
     }
 }

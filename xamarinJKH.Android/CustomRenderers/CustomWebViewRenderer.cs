@@ -38,7 +38,7 @@ namespace xamarinJKH.Droid.CustomRenderers
                 Control.Settings.JavaScriptEnabled = true;
                 Control.Settings.JavaScriptCanOpenWindowsAutomatically = true;
                 Control.SetWebViewClient(new CustomViewClient());
-                Control.Settings.CacheMode = Cache.CacheElseNetwork;
+                Control.Settings.CacheMode = Cache.NoCache;
                 Control.Settings.AllowContentAccess = true;
                 Control.Settings.DatabaseEnabled = false;
                 Control.LoadUrl(String.Format("https://docs.google.com/viewer?url={0}", customWebView.Uri));

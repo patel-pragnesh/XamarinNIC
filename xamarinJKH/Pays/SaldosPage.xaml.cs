@@ -20,6 +20,7 @@ using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 using xamarinJKH.Utils.Compatator;
+using AiForms.Dialogs.Abstractions;
 
 namespace xamarinJKH.Pays
 {
@@ -72,7 +73,7 @@ namespace xamarinJKH.Pays
             if (info.Error == null)
             {
                 SetBills(info.Data);
-                isSortDate = false;
+                isSortDate = !isSortDate;
                 SortDate();
                 // additionalList.ItemsSource = null;
                 // additionalList.ItemsSource = BillInfos;
@@ -304,21 +305,26 @@ namespace xamarinJKH.Pays
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             BillInfo select = e.Item as BillInfo;
-            if (select != null)
-            {
-                select.Period = select.Period.ToUpper();
-                if (Navigation.NavigationStack.FirstOrDefault(x => x is PayPdf) == null)
-                    await Navigation.PushAsync(new PayPdf(new PayPdfViewModel(select)));
-            }
-
-            return;
-            string filename = @select.Period + ".pdf";
             if (!select.HasFile)
             {
                 return;
             }
+            if (Device.RuntimePlatform == "iOS")
+            {
+                if (select != null)
+                {
+
+                    select.Period = select.Period.ToUpper();
+                    if (Navigation.NavigationStack.FirstOrDefault(x => x is PayPdf) == null)
+                        await Navigation.PushAsync(new PayPdf(select));
+                }
+                return;
+            }
             
-            if (await DependencyService.Get<IFileWorker>().ExistsAsync(filename))
+
+            string filename = @select.Period + ".pdf";
+            
+            if (await DependencyService.Get<IFileWorker>().ExistsAsync(filename)) 
             {
                 await Launcher.OpenAsync(new OpenFileRequest
                 {
@@ -327,25 +333,39 @@ namespace xamarinJKH.Pays
             }
             else
             {
-                await Settings.StartProgressBar();
-                var stream = await server.DownloadFileAsync(select.ID.ToString());
+                new Task(async () => await GetFile(@select.ID.ToString(), filename)).Start();
+
+            }
+        }
+        public async Task GetFile(string id, string fileName)
+        {
+            // Loading settings
+            Configurations.LoadingConfig = new LoadingConfig
+            {
+                IndicatorColor =(Color)Application.Current.Resources["MainColor"] ,
+                OverlayColor = Color.Black,
+                Opacity = 0.8,
+                DefaultMessage = AppResources.Loading,
+            };
+
+            await Loading.Instance.StartAsync(async progress =>
+            {
+                byte[] stream;
+                stream = await server.DownloadFileAsync(id);
                 if (stream != null)
                 {
-                    await DependencyService.Get<IFileWorker>().SaveTextAsync(filename, stream);
-                    Loading.Instance.Hide();
+                    await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, stream);
                     await Launcher.OpenAsync(new OpenFileRequest
                     {
-                        File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(filename))
+                        File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
                     });
                 }
                 else
                 {
-                    Loading.Instance.Hide();
                     await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
                 }
-            }
+            });
         }
-
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
         {
             additionalList.ItemsSource = null;

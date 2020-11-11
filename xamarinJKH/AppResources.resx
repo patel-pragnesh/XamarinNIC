@@ -1175,7 +1175,7 @@
     <value>Пользователь не найден</value>
   </data>
   <data name="MoveDispatcher" xml:space="preserve">
-    <value>Укажите консультанта:</value>
+    <value>Укажите сотрудника:</value>
   </data>
   <data name="MoveDispatcherChoose" xml:space="preserve">
     <value>Выберите диспетчера:</value>
@@ -1486,5 +1486,8 @@
   </data>
   <data name="ErrorNumberSumm" xml:space="preserve">
     <value>Введенное значение суммы не является числом</value>
+  </data>
+  <data name="NotComissions" xml:space="preserve">
+    <value>*Комиссия не взимается</value>
   </data>
 </root>

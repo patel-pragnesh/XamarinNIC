@@ -4,6 +4,7 @@ using xamarinJKH.CustomRenderers;
 using xamarinJKH.Notifications;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
+using System;
 
 namespace xamarinJKH
 {
@@ -91,6 +92,14 @@ namespace xamarinJKH
             frame.Content = containerMain;
             View = frame;
             View.BackgroundColor = Color.White;
+
+            MessagingCenter.Subscribe<Object, int>(this, "SetNotificationRead", (sender, args) =>
+            {
+                if (this.ID == args)
+                {
+                    ReadIndicator.IsVisible = false;
+                }
+            });
         }
 
         public static readonly BindableProperty TextNotifProperty =
@@ -103,7 +112,7 @@ namespace xamarinJKH
             BindableProperty.Create("TitleNotif", typeof(string), typeof(NotificationCell), "");
 
         public static readonly BindableProperty IdProperty =
-            BindableProperty.Create("ID", typeof(string), typeof(NotificationCell), "");
+            BindableProperty.Create("ID", typeof(int), typeof(NotificationCell), 0);
 
 
         public static readonly BindableProperty ReadProperty =
@@ -127,9 +136,9 @@ namespace xamarinJKH
             set { SetValue(TitleNotifProperty, value); }
         }
 
-        public string ID
+        public int ID
         {
-            get { return (string) GetValue(IdProperty); }
+            get { return (int) GetValue(IdProperty); }
             set { SetValue(IdProperty, value); }
         }
 
