@@ -112,7 +112,7 @@ namespace xamarinJKH
             BindableProperty.Create("TitleNotif", typeof(string), typeof(NotificationCell), "");
 
         public static readonly BindableProperty IdProperty =
-            BindableProperty.Create("ID", typeof(int), typeof(NotificationCell), "");
+            BindableProperty.Create("ID", typeof(int), typeof(NotificationCell), 0);
 
 
         public static readonly BindableProperty ReadProperty =
