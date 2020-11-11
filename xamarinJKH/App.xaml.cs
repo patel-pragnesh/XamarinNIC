@@ -55,7 +55,8 @@ namespace xamarinJKH
             public App()
         {
             InitializeComponent();
-            CrossBadge.Current.ClearBadge();
+            // CrossBadge.Current.ClearBadge();
+            CrossBadge.Current.SetBadge(2);
             Crashes.SendingErrorReport += SendingErrorReportHandler;
             Crashes.SentErrorReport += SentErrorReportHandler;
             Crashes.FailedToSendErrorReport += FailedToSendErrorReportHandler;
@@ -143,7 +144,7 @@ namespace xamarinJKH
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
             {
                 System.Diagnostics.Debug.WriteLine("Received");
-                CrossBadge.Current.ClearBadge();
+                // CrossBadge.Current.ClearBadge();
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     try
