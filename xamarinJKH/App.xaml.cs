@@ -159,7 +159,7 @@ namespace xamarinJKH
                             if (!(current_page is AppPage))
                             {
                                 displayAlert = await MainPage.DisplayAlert(p.Data["title"].ToString(),
-                                    p.Data["body"].ToString(), "OK", "Отмена");
+                                    p.Data["body"].ToString() + "\n " + Newtonsoft.Json.JsonConvert.SerializeObject(p.Data), "OK", "Отмена");
                                 if (p.Data.ContainsKey("type_push"))
                                     o = p.Data["type_push"].ToString();
                             }
