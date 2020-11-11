@@ -56,7 +56,6 @@ namespace xamarinJKH
         {
             InitializeComponent();
             // CrossBadge.Current.ClearBadge();
-            CrossBadge.Current.SetBadge(2);
             Crashes.SendingErrorReport += SendingErrorReportHandler;
             Crashes.SentErrorReport += SentErrorReportHandler;
             Crashes.FailedToSendErrorReport += FailedToSendErrorReportHandler;

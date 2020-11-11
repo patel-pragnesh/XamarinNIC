@@ -16,13 +16,15 @@ namespace xamarinJKH.Droid
 
         public override void OnCreate()
         {
+            int id = 1;
             base.OnCreate();
 
             //Set the default notification channel for your app when running Android Oreo
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
+                id++;
                 //Change for your default notification channel id here
-                FirebasePushNotificationManager.DefaultNotificationChannelId = "FirebasePushNotificationChannel";
+                FirebasePushNotificationManager.DefaultNotificationChannelId = id.ToString();
             
                 //Change for your default notification channel name here
                 FirebasePushNotificationManager.DefaultNotificationChannelName = "General";
