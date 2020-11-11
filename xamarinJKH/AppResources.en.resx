@@ -1183,7 +1183,7 @@ A bot will call you on your number PHONE and tell an access code</value>
     <value>User is not found</value>
   </data>
   <data name="MoveDispatcher" xml:space="preserve">
-    <value>Choose a consultant</value>
+    <value>Choose a consultant:</value>
   </data>
   <data name="MoveDispatcherChoose" xml:space="preserve">
     <value>Choose a consultant:</value>

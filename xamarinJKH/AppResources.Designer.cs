@@ -2078,7 +2078,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Укажите консультанта:.
+        ///   Looks up a localized string similar to Укажите сотрудника:.
         /// </summary>
         internal static string MoveDispatcher {
             get {

@@ -626,7 +626,7 @@
     <value>За місяць</value>
   </data>
   <data name="MoveDispatcher" xml:space="preserve">
-    <value>Вибрати консультанта?</value>
+    <value>Вкажіть співробітника:</value>
   </data>
   <data name="MoveDispatcherChoose" xml:space="preserve">
     <value>Виберіть диспетчера:</value>

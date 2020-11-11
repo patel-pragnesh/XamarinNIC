@@ -1175,7 +1175,7 @@
     <value>Пользователь не найден</value>
   </data>
   <data name="MoveDispatcher" xml:space="preserve">
-    <value>Укажите консультанта:</value>
+    <value>Укажите сотрудника:</value>
   </data>
   <data name="MoveDispatcherChoose" xml:space="preserve">
     <value>Выберите диспетчера:</value>
