@@ -338,7 +338,6 @@ namespace xamarinJKH
                 Console.WriteLine(e);
                 isDate = false;
             }
-            Settings.MobileSettings.requireBirthDate = false;
             
             if (phone.Equals(""))
             {
