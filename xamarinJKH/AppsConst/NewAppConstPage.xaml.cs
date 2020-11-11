@@ -577,7 +577,7 @@ namespace xamarinJKH.AppsConst
                 }
             }
 
-            if (ident.Equals(""))
+            if (ident.Equals("") && (BindingContext as AddAppConstModel).Ident)
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorFillIdent, "OK");
                 FrameBtnAdd.IsVisible = true;
