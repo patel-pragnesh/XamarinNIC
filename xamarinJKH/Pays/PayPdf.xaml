@@ -119,10 +119,6 @@
                         </xamarinJkh:IconView.GestureRecognizers>
                     </xamarinJkh:IconView>
                 </StackLayout>
-                <ActivityIndicator HeightRequest="100"
-                                   IsVisible="{Binding IsBusy}"
-                                   IsEnabled="{Binding IsBusy}"
-                                   IsRunning="{Binding IsBusy}"/>
             </StackLayout>
 
             </Grid>
