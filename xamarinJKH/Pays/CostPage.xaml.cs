@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using Newtonsoft.Json.Converters;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -242,9 +243,11 @@ namespace xamarinJKH.Pays
 
         private async void EntrySum_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-           if(!isDigit(e.NewTextValue.Last()))
+            if (!string.IsNullOrWhiteSpace(e.NewTextValue))
+           //if(!isDigit(e.NewTextValue.Last()))
+           if(!Char.IsDigit( e.NewTextValue.Last()))
             {
-                if (e.OldTextValue.Contains(e.NewTextValue.Last()))
+                if (e.OldTextValue.Length< e.NewTextValue.Length && e.OldTextValue.Contains(e.NewTextValue.Last()))
                 {
                     //var d = EntrySum.Text.LastIndexOf(e.NewTextValue.Last());
                     Device.BeginInvokeOnMainThread(() =>
