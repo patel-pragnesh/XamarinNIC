@@ -145,7 +145,7 @@
                                 <StackLayout>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.3*"/>
+                                            <ColumnDefinition Width="0.4*"/>
                                             <ColumnDefinition Width="0.8*"/>
                                             <ColumnDefinition Width="0.2*"/>
                                         </Grid.ColumnDefinitions>
