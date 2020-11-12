@@ -44,6 +44,10 @@ namespace xamarinJKH
 
         private bool isNext = false;
         RegistrFormViewModel viewModel { get; set; }
+        public bool ShowBirthDay
+        {
+            get => Settings.MobileSettings.requireBirthDate;
+        }
 
         public RegistrForm(MainPage mainPage)
         {

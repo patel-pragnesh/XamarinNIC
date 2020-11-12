@@ -189,6 +189,7 @@
                                 </StackLayout>
 
                                 <StackLayout x:Name="DOB"
+                                             IsVisible="{Binding ShowBirthDay}"
                                              Margin="15, 10, 0, 0"
                                              Orientation="Horizontal">
                                     <forms:SvgCachedImage
@@ -250,6 +251,7 @@
                                     </StackLayout>
                                 </StackLayout>
                                 <StackLayout x:Name="DOBSeparator"
+                                             IsVisible="{Binding ShowBirthDay}"
                                              Margin="0,0,0,0"
                                              Orientation="Horizontal">
                                     <!-- <Image Source="ic_separator" -->
