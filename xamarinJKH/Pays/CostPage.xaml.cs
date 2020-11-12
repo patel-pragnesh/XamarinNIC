@@ -242,7 +242,7 @@ namespace xamarinJKH.Pays
 
         private async void EntrySum_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-           if(!isDigit(e.NewTextValue.Last()))
+           if(!string.IsNullOrWhiteSpace(e.NewTextValue) && !isDigit(e.NewTextValue.Last()))
             {
                 if (e.OldTextValue.Contains(e.NewTextValue.Last()))
                 {
