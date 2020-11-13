@@ -26,6 +26,7 @@ using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Xamarin.Essentials;
 using System.Collections.ObjectModel;
+using System.Net.Http.Headers;
 
 namespace xamarinJKH.AppsConst
 {
@@ -175,7 +176,7 @@ namespace xamarinJKH.AppsConst
             });
 
 
-            (TypeStack.Children[0] as RadioButton).IsChecked = true;
+            ((TypeStack.Children[0] as StackLayout).Children[0] as RadioButton).IsChecked = true;
         }
 
         private async void AddFile()
@@ -537,14 +538,24 @@ namespace xamarinJKH.AppsConst
             FrameBtnAdd.IsVisible = false;
             progress.IsVisible = true;
             string ident = EntryLS.Text;
+
+            
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
                 Device.BeginInvokeOnMainThread(async () =>
                     await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
+
             if (!(BindingContext as AddAppConstModel).Ident)
             {
+                if (this.District == null || this.House == null || this.Flat == null || string.IsNullOrEmpty(this.Street))
+                {
+                    await DisplayAlert(AppResources.Error, AppResources.ErrorFills.Replace(':',' '), "OK");
+                    progress.IsVisible = false;
+                    FrameBtnAdd.IsVisible = true;
+                    return;
+                }
                 try
                 {
                     string typeId = Convert.ToInt32(Settings.TypeApp[PickerType.SelectedIndex].ID).ToString();
@@ -683,8 +694,8 @@ namespace xamarinJKH.AppsConst
 
         private void RadioButton_Pressed(object sender, EventArgs e)
         {
-            var parent = (sender as View).Parent as StackLayout;
-            var index = parent.Children.IndexOf(sender as RadioButton);
+            var parent = (sender as View).Parent.Parent as StackLayout;
+            var index = (parent as StackLayout).Children.IndexOf((sender as RadioButton).Parent as StackLayout);
 
             (BindingContext as AddAppConstModel).Ident = index == 0;
         }
@@ -692,7 +703,7 @@ namespace xamarinJKH.AppsConst
         private async void AddressApp(object sender, EventArgs e)
         {
 
-            var select = TypeStack.Children.First(x => (x as RadioButton).IsChecked);
+            var select = TypeStack.Children.First(x => ((x as StackLayout).Children[0] as RadioButton).IsChecked);
             if (select != null)
             {
                 var index = TypeStack.Children.IndexOf(select);
