@@ -335,7 +335,8 @@
                                             <RadioButton
                                                 x:Name="RadioButtonAuto"
                                                 FontSize="16"
-                                                CheckedChanged="RadioButtonAuto_OnCheckedChanged" />
+                                                CheckedChanged="RadioButtonAuto_OnCheckedChanged" 
+                                                GroupName="themeGroup"/>
                                             <Label Text="{x:Static xamarinJkh:AppResources.Automatic}"
                                                    FontSize="16"
                                                    TextColor="Black"
@@ -347,7 +348,8 @@
                                             <RadioButton
                                                 x:Name="RadioButtonDark"
                                                 CheckedChanged="RadioButtonDark_OnCheckedChanged"
-                                                FontSize="16" />
+                                                FontSize="16"
+                                                GroupName="themeGroup"/>
                                             <Label Text="{x:Static xamarinJkh:AppResources.Dark}"
                                                    FontSize="16"
                                                    TextColor="Black"
@@ -359,7 +361,8 @@
                                             <RadioButton
                                                 x:Name="RadioButtonLigth"
                                                 CheckedChanged="RadioButtonLigth_OnCheckedChanged"
-                                                FontSize="16" />
+                                                FontSize="16"
+                                                GroupName="themeGroup"/>
                                             <Label Text="{x:Static xamarinJkh:AppResources.Light}"
                                                    FontSize="16"
                                                    TextColor="Black"
@@ -384,7 +387,8 @@
                                             <RadioButton
                                                 x:Name="Russian"
                                                 FontSize="16"
-                                                CheckedChanged="Russian_CheckedChanged" />
+                                                CheckedChanged="Russian_CheckedChanged" 
+                                                GroupName="langGroup"/>
                                             <Label Text="Русский"
                                                    FontSize="16"
                                                    TextColor="Black"
@@ -396,7 +400,8 @@
                                             <RadioButton
                                                 x:Name="English"
                                                 CheckedChanged="English_CheckedChanged"
-                                                FontSize="16" />
+                                                FontSize="16" 
+                                                GroupName="langGroup"/>
                                             <Label Text="English"
                                                    FontSize="16"
                                                    TextColor="Black"
@@ -408,7 +413,8 @@
                                             <RadioButton
                                                 x:Name="Ukranian"
                                                 CheckedChanged="Ukranian_CheckedChanged"
-                                                FontSize="16" />
+                                                FontSize="16"
+                                                GroupName="langGroup"/>
                                             <Label Text="Український"
                                                    FontSize="16"
                                                    TextColor="Black"

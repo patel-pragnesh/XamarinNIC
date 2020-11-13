@@ -179,6 +179,7 @@ namespace xamarinJKH
             
             RadioButton radioButton = new RadioButton
             {
+                GroupName = "ossGroup",
                 IsChecked = isChecked,
                 BackgroundColor = Color.Transparent
             };
