@@ -418,22 +418,35 @@ namespace xamarinJKH.MainConst
 
         private void SetReaded()
         {
-            if (_requestList == null)
+            try
             {
-                return;
+                if (_requestList == null)
+                {
+                    return;
+                }
+
+                if (SwitchApp.IsToggled)
+                {
+                    RequestInfos =
+                        new ObservableCollection<RequestInfo>(from i in _requestList.Requests
+                            where i.IsReaded
+                            select i);
+                }
+                else
+                {
+                    RequestInfos =
+                        new ObservableCollection<RequestInfo>(
+                            from i in _requestList.Requests where !i.IsReaded select i);
+                }
+
+                BindingContext = this;
+                additionalList.ItemsSource = null;
+                additionalList.ItemsSource = RequestInfos.OrderBy(o => o.ID).Reverse();
             }
-            if (SwitchApp.IsToggled)
+            catch (Exception ex)
             {
-                RequestInfos = new ObservableCollection<RequestInfo>(from i in _requestList.Requests where i.IsReaded select i);
             }
-            else
-            {
-                RequestInfos =
-                    new ObservableCollection<RequestInfo>(from i in _requestList.Requests where !i.IsReaded select i);
-            }
-            BindingContext = this;
-            additionalList.ItemsSource = null;
-            additionalList.ItemsSource = RequestInfos.OrderBy(o=>o.ID).Reverse();
+
             try
             {
                 Empty = RequestInfos.Count == 0;
