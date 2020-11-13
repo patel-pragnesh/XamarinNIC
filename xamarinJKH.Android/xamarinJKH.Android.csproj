@@ -148,6 +148,7 @@
     <PackageReference Include="XamEffects" Version="1.6.3" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomReader\CustomButtonRender.cs" />
     <Compile Include="CustomReader\CustomEntryRenderer.cs" />
     <Compile Include="CustomReader\FileWorker.cs" />
     <Compile Include="CustomReader\FirebaseTokenObtainer.cs" />
