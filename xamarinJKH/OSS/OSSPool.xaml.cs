@@ -170,18 +170,26 @@ namespace xamarinJKH
             }
         }
 
-        RadioButton GetButton(string text, bool isChecked)
+        StackLayout GetButton(string text, bool isChecked)
         {
+            StackLayout horizont = new StackLayout()
+            {
+                Orientation = StackOrientation.Horizontal
+            };
+            
             RadioButton radioButton = new RadioButton
             {
-                Text = text,
                 IsChecked = isChecked,
                 BackgroundColor = Color.Transparent
             };
-
+            Label textRadio = new Label()
+            {
+                Text = text,
+                VerticalOptions = LayoutOptions.Center
+            };
             if (isChecked)
             {
-                radioButton.TextColor = colorFromMobileSettings;
+                textRadio.TextColor = colorFromMobileSettings;
             }
 
             switch (Device.RuntimePlatform)
@@ -213,17 +221,18 @@ namespace xamarinJKH
                             _oss.Questions[quest].Answer = "2";
                             break;
                     }
-                    radioButton.TextColor = colorFromMobileSettings;
+                    textRadio.TextColor = colorFromMobileSettings;
                 }
                 else
                 {
-                    radioButton.TextColor = Color.Black;
+                    textRadio.TextColor = Color.Black;
                 }
 
                 setVisibleButton();
             };
-
-            return radioButton;
+            horizont.Children.Add(radioButton);
+            horizont.Children.Add(textRadio);
+            return horizont;
         }
 
 

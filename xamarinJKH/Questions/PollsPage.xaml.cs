@@ -235,16 +235,25 @@ namespace xamarinJKH.Questions
                 StackLayout radio = new StackLayout();
                 foreach (var jAnswer in each.Answers)
                 {
+                    StackLayout horizont = new StackLayout()
+                    {
+                        Orientation = StackOrientation.Horizontal
+                    };
                     RadioButton radioButton = new RadioButton
                     {
-                        Text = jAnswer.Text,
+                       
                         IsChecked = jAnswer.IsUserAnswer,
                         BackgroundColor = Color.Transparent
+                    };
+                    Label textRadio = new Label()
+                    {
+                        Text = jAnswer.Text,
+                        VerticalOptions = LayoutOptions.Center
                     };
                     isCheched = jAnswer.IsUserAnswer;
                     if (jAnswer.IsUserAnswer)
                     {
-                        radioButton.TextColor = (Color)Application.Current.Resources["MainColor"];
+                        textRadio.TextColor = (Color)Application.Current.Resources["MainColor"];
                     }
 
                     switch (Device.RuntimePlatform)
@@ -265,17 +274,18 @@ namespace xamarinJKH.Questions
                         if (radioButton.IsChecked)
                         {
                             pollAnswer.AnswerId = jAnswer.ID;
-                            radioButton.TextColor = (Color)Application.Current.Resources["MainColor"];
+                            textRadio.TextColor = (Color)Application.Current.Resources["MainColor"];
                         }
                         else
                         {
-                            radioButton.TextColor = Color.Black;
+                            textRadio.TextColor = Color.Black;
                         }
-
+                       
                         setVisibleButton();
                     };
-
-                    radio.Children.Add(radioButton);
+                    horizont.Children.Add(radioButton);
+                    horizont.Children.Add(textRadio);
+                    radio.Children.Add(horizont);
                 }
 
                 containerPolss.Children.Add(radio);
