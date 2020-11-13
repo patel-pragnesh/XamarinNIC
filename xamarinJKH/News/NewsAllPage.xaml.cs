@@ -23,7 +23,8 @@ namespace xamarinJKH.News
         {
             NavigationPage.SetHasNavigationBar(this, false);
             this.AllNews = AllNews;
-            News = new ObservableCollection<NewsInfo>(this.AllNews);
+            if(this.AllNews != null )
+                News = new ObservableCollection<NewsInfo>(this.AllNews);
             InitializeComponent();
             HeaderViewMain.BackClick = new Command(async () =>
             {
@@ -111,7 +112,6 @@ namespace xamarinJKH.News
                 {
                     Console.WriteLine(e);
                 }
-
                 
             }
         }
