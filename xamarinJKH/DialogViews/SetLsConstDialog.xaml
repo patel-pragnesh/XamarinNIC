@@ -102,7 +102,7 @@
                     HorizontalOptions="Fill" />
             </StackLayout>
             <Frame CornerRadius="15"
-                   BackgroundColor="{Binding hex}"
+                   BackgroundColor="{x:DynamicResource MainColor}"
                    IsVisible="False"
                    Margin="0, 10, 0, 20"
                    x:Name="FrameBtnAdd"

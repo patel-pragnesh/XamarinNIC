@@ -981,7 +981,21 @@ namespace xamarinJKH.Counters
 
         private void d1_Completed(object sender, EventArgs e)
         {
+
             var entryNew = sender as CounterEntryNew;
+
+            if(Xamarin.Essentials.DeviceInfo.Platform==DevicePlatform.iOS)
+            {
+                if(((TextChangedEventArgs)e).NewTextValue.Length>1)
+                {
+                    Device.BeginInvokeOnMainThread(() => {
+                        d1.TextChanged -= d1_Completed;
+                    d1.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
+                        d1.TextChanged += d1_Completed;
+                    });
+                }
+            }
+
             Device.BeginInvokeOnMainThread(() =>
             {
                 if(string.IsNullOrWhiteSpace(entryNew.Text))
@@ -1003,6 +1017,17 @@ namespace xamarinJKH.Counters
         private void d2_Completed(object sender, EventArgs e)
         {
             var entryNew = sender as CounterEntryNew;
+            if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+            {
+                if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
+                {
+                    Device.BeginInvokeOnMainThread(() => {
+                        d2.TextChanged -= d2_Completed;
+                        d2.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
+                        d2.TextChanged += d2_Completed;
+                    });
+                }
+            }
             Device.BeginInvokeOnMainThread(() =>
             {
                 if (string.IsNullOrWhiteSpace(entryNew.Text))
@@ -1024,6 +1049,17 @@ namespace xamarinJKH.Counters
         private void d3_Completed(object sender, EventArgs e)
         {
             var entryNew = sender as CounterEntryNew;
+            if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+            {
+                if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
+                {
+                    Device.BeginInvokeOnMainThread(() => {
+                        d3.TextChanged -= d3_Completed;
+                        d3.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
+                        d3.TextChanged += d3_Completed;
+                    });
+                }
+            }
             Device.BeginInvokeOnMainThread(() =>
             {
                 if (string.IsNullOrWhiteSpace(entryNew.Text))
@@ -1045,6 +1081,17 @@ namespace xamarinJKH.Counters
         private void d4_Completed(object sender, EventArgs e)
         {
             var entryNew = sender as CounterEntryNew;
+            if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+            {
+                if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
+                {
+                    Device.BeginInvokeOnMainThread(() => {
+                        d4.TextChanged -= d4_Completed;
+                        d4.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
+                        d4.TextChanged += d4_Completed;
+                    });
+                }
+            }
             Device.BeginInvokeOnMainThread(() =>
             {
                 if (string.IsNullOrWhiteSpace(entryNew.Text))
@@ -1066,6 +1113,17 @@ namespace xamarinJKH.Counters
         private void d5_Completed(object sender, EventArgs e)
         {
             var entryNew = sender as CounterEntryNew;
+            if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+            {
+                if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
+                {
+                    Device.BeginInvokeOnMainThread(() => {
+                        d5.TextChanged -= d5_Completed;
+                        d5.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
+                        d5.TextChanged += d5_Completed;
+                    });
+                }
+            }
             Device.BeginInvokeOnMainThread(() =>
             {
                 if (string.IsNullOrWhiteSpace(entryNew.Text))
@@ -1093,6 +1151,17 @@ namespace xamarinJKH.Counters
         private void d6_Completed(object sender, EventArgs e)
         {
             var entryNew = sender as CounterEntryNew;
+            if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+            {
+                if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
+                {
+                    Device.BeginInvokeOnMainThread(() => {
+                        d6.TextChanged -= d6_Completed;
+                        d6.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
+                        d6.TextChanged += d6_Completed;
+                    });
+                }
+            }
             Device.BeginInvokeOnMainThread(() =>
             {
                 if (string.IsNullOrWhiteSpace(entryNew.Text))
@@ -1115,6 +1184,17 @@ namespace xamarinJKH.Counters
         private void d7_Completed(object sender, EventArgs e)
         {
             var entryNew = sender as CounterEntryNew;
+            if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+            {
+                if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
+                {
+                    Device.BeginInvokeOnMainThread(() => {
+                        d7.TextChanged -= d7_Completed;
+                        d7.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
+                        d7.TextChanged += d7_Completed;
+                    });
+                }
+            }
             Device.BeginInvokeOnMainThread(() =>
             {
                 if (string.IsNullOrWhiteSpace(entryNew.Text))
@@ -1138,6 +1218,17 @@ namespace xamarinJKH.Counters
         private void d8_Completed(object sender, EventArgs e)
         {
             var entryNew = sender as CounterEntryNew;
+            if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+            {
+                if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
+                {
+                    Device.BeginInvokeOnMainThread(() => {
+                        d8.TextChanged -= d8_Completed;
+                        d8.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
+                        d8.TextChanged += d8_Completed;
+                    });
+                }
+            }
             Device.BeginInvokeOnMainThread(() =>
             {
                 if (string.IsNullOrWhiteSpace(entryNew.Text))
