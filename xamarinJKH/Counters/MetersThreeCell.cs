@@ -613,20 +613,20 @@ namespace xamarinJKH.Main
             container.Children.Add(labelDisable);
             frame.Content = container;
 
-            ext(mInfo.Values, mInfo.NumberOfDecimalPlaces, mInfo.ID, mInfo.IsDisabled, mInfo.Resource, mInfo.Address,
+            ext(mInfo, mInfo.Values, mInfo.NumberOfDecimalPlaces, mInfo.ID, mInfo.IsDisabled, mInfo.Resource, mInfo.Address,
              mInfo.CustomName, mInfo.FactoryNumber, mInfo.UniqueNum, mInfo.Units, mInfo.LastCheckupDate, mInfo.RecheckInterval.ToString(),mInfo.Tariff1Name, mInfo.Tariff2Name, mInfo.Tariff3Name);
 
            Children.Add(frame);
         }
 
-        void SetEditButton(string Period)
+        void SetEditButton(string Period, MeterInfo mInfo)
         {
             frameBtn.IsVisible = false;
             var stack = frame.Content as StackLayout;
             try
             {
                 int currDay = DateTime.Now.Day;
-                if (CheckPeriod(currDay))
+                if (mInfo.ValuesCanAdd)
                 {
                     int indexOf = stack.Children.IndexOf(editLabel);
                     int index = stack.Children.IndexOf(labelЗPeriod);
@@ -664,23 +664,22 @@ namespace xamarinJKH.Main
             }
         }
 
-        private static bool CheckPeriod(int currDay)
+        private static bool CheckPeriod(int currDay, MeterInfo meterInfo)
         {
 //#if DEBUG
 //            return true;
 //#endif
-            if (Settings.Person.Accounts[0].MetersEndDay < Settings.Person.Accounts[0].MetersStartDay)
+            if (meterInfo.ValuesEndDay < meterInfo.ValuesStartDay)
             {
-                
-                return  GetPeriodEnabled() || (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                                                Settings.Person.Accounts[0].MetersEndDay == 0);
+                return MetersThreeCell.GetPeriodEnabled() || (meterInfo.ValuesStartDay == 0 &&
+                                                              meterInfo.ValuesEndDay == 0);
 
             }
             
-            return (Settings.Person.Accounts[0].MetersStartDay <= currDay &&
-                    Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
-                   (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                    Settings.Person.Accounts[0].MetersEndDay == 0);
+            return (meterInfo.ValuesStartDay <= currDay &&
+                    meterInfo.ValuesEndDay >= currDay) ||
+                   (meterInfo.ValuesStartDay == 0 &&
+                    meterInfo.ValuesEndDay == 0);
         }
 
         public static bool GetPeriodEnabled()
@@ -722,7 +721,7 @@ namespace xamarinJKH.Main
             return "{0:0.000}";
         }
 
-        void ext(List<MeterValueInfo> Values, int DecimalPoint, int MeterID, bool IsDisabled, string Resource, string Address,
+        void ext(MeterInfo mInfo, List<MeterValueInfo> Values, int DecimalPoint, int MeterID, bool IsDisabled, string Resource, string Address,
             string CustomName, string FactoryNumber, string UniqueNum, string Units, string CheckupDate, string RecheckInterval, string Tariff1Name, string Tariff2Name, string Tariff3Name)
         {   
             
@@ -934,8 +933,8 @@ namespace xamarinJKH.Main
                     
                 }else if (Values.Count > 0 && int.Parse(Values[0].Period.Split('.')[1]) == DateTime.Now.Month && !meterInfo.AutoValueGettingOnly)
                 {
-                    SetEditButton(Values[0].Period);
-                    SetDellValue(MeterID);
+                    SetEditButton(Values[0].Period, mInfo);
+                    SetDellValue(MeterID, mInfo);
                 }
                 else
                 {
@@ -983,7 +982,7 @@ namespace xamarinJKH.Main
                 }
 
                 string month = AppResources.CountersCurrentMonth;
-                if (Settings.Person.Accounts[0].MetersEndDay < Settings.Person.Accounts[0].MetersStartDay)
+                if (mInfo.ValuesEndDay < mInfo.ValuesStartDay)
                 {
                     month = AppResources.NextMonth;
                 }
@@ -1003,17 +1002,17 @@ namespace xamarinJKH.Main
                                 FontAttributes = FontAttributes.None,
                                 FontSize = 12
                             });
-                            if (Settings.Person.Accounts[0].MetersStartDay != null &&
-                                Settings.Person.Accounts[0].MetersEndDay != null)
+                            if (mInfo.ValuesStartDay != null &&
+                                mInfo.ValuesEndDay != null)
                             {
-                                if (Settings.Person.Accounts[0].MetersStartDay != 0 &&
-                                    Settings.Person.Accounts[0].MetersEndDay != 0)
+                                if (mInfo.ValuesStartDay != 0 &&
+                                    mInfo.ValuesEndDay != 0)
                                 {
                                     formattedDate.Spans.Add(new Span
                                     {
-                                        Text = $"{AppResources.From} " + Settings.Person.Accounts[0].MetersStartDay +
+                                        Text = $"{AppResources.From} " + mInfo.ValuesEndDay +
                                                $" {AppResources.To} " +
-                                               Settings.Person.Accounts[0].MetersEndDay + " числа ",
+                                               mInfo.ValuesEndDay + " числа ",
                                         TextColor = (Color)Application.Current.Resources["MainColor"],
                                         FontAttributes = FontAttributes.Bold,
                                         FontSize = 12
@@ -1049,7 +1048,7 @@ namespace xamarinJKH.Main
                             }
 
                             canCount.FormattedText = formattedDate;
-                            if (CheckPeriod(currDay))
+                            if (mInfo.ValuesCanAdd)
                             {
                                 frameBtn.IsVisible = true;
                                 canCount.IsVisible = false;
@@ -1077,7 +1076,7 @@ namespace xamarinJKH.Main
             
         }
 
-        private void SetDellValue(int MeterID)
+        private void SetDellValue(int MeterID, MeterInfo meterInfo)
         {
             if (Settings.Person.Accounts.Count == 0)
             {
@@ -1085,7 +1084,7 @@ namespace xamarinJKH.Main
             }
             
             int currentDay = DateTime.Now.Day;
-            if (CheckPeriod(currentDay))
+            if (meterInfo.ValuesCanAdd)
             {
                 Label del = new Label();
                 del.TextColor = (Color) Application.Current.Resources["MainColor"];
