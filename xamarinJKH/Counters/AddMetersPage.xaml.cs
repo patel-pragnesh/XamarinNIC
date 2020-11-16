@@ -549,7 +549,7 @@ namespace xamarinJKH.Counters
                 bool All = tryParse1 && tryParse2 && tryParse3 && tryParse4 && tryParse5 && tryParse6 && tryParse7 && tryParse8 && tryParse9; // Проверка на вводимые символы
 
                 bool isNotNull = (p1>0 || p2 >0 || p3 > 0 || p4 > 0 || p5 >0 || p6 >0 || p7 >0 || p8 > 0 || p41 >0); // Проверка что бы все клетки не были бы нулями
-                if (All && isNotNull) //  && IntegerPoint == 6 || d41.Text == null && (IntegerPoint == 5 || IntegerPoint ==0)
+                if (All ) //  && IntegerPoint == 6 || d41.Text == null && (IntegerPoint == 5 || IntegerPoint ==0)
                 {
                     count += d1.Text;// != "0" ? d1.Text : "";
                     count += d2.Text;// != "0" ? d2.Text : "";
