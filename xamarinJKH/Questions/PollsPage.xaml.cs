@@ -241,7 +241,7 @@ namespace xamarinJKH.Questions
                     };
                     RadioButton radioButton = new RadioButton
                     {
-                       
+                        GroupName = "poolsGroup",
                         IsChecked = jAnswer.IsUserAnswer,
                         BackgroundColor = Color.Transparent
                     };
