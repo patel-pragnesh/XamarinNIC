@@ -188,6 +188,12 @@ namespace xamarinJKH
                 Text = text,
                 VerticalOptions = LayoutOptions.Center
             };
+
+            var tClick = new TapGestureRecognizer();
+            tClick.Tapped += (s, e) => { Device.BeginInvokeOnMainThread(() => radioButton.IsChecked = true); };
+            textRadio.GestureRecognizers.Add(tClick);
+            
+
             if (isChecked)
             {
                 textRadio.TextColor = colorFromMobileSettings;
