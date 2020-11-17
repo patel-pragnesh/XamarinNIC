@@ -42,7 +42,6 @@ namespace xamarinJKH
 
             
             };
-            LabelPhone.GestureRecognizers.Add(call);
            
 
 
@@ -50,7 +49,6 @@ namespace xamarinJKH
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     //BackgroundColor = Color.White;
                     break;
                 default:
@@ -71,10 +69,7 @@ namespace xamarinJKH
             
             SetData(oSS);
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);{ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
             PancakeBot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             FrameResult.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
@@ -85,15 +80,7 @@ namespace xamarinJKH
         void SetDecorations()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-            {
-                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-            }
-            else
-            {
-                IconViewLogin.IsVisible = false;
-                LabelPhone.IsVisible = false;
-            }
+           
             Btn.BackgroundColor = colorFromMobileSettings;
 
             StackLayout statusNameIcon = new StackLayout() { Orientation = StackOrientation.Vertical, HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -225,7 +212,7 @@ namespace xamarinJKH
 
             ClosePage();
         }
-        
+        public bool IsRefreshing {get; set; }
         async void ClosePage()
         {
             try

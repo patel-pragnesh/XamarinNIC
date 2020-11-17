@@ -34,6 +34,7 @@ namespace xamarinJKH
         private bool isCheched = false;
         private readonly bool _isComplite;
         private List<StackLayout> _contentQuest = new List<StackLayout>();
+        public bool forsvg { get; set; }
 
         public OSSPool(OSS oSS)
         {
@@ -56,7 +57,6 @@ namespace xamarinJKH
 
             
             };
-            LabelPhone.GestureRecognizers.Add(call);
             
 
 
@@ -64,7 +64,6 @@ namespace xamarinJKH
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     //BackgroundColor = Color.White;
                     break;
                 default:
@@ -76,15 +75,7 @@ namespace xamarinJKH
             BackStackLayout.GestureRecognizers.Add(backClick);
 
             UkName.Text = Settings.MobileSettings.main_name;
-            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-            {
-                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-            }
-            else
-            {
-                IconViewLogin.IsVisible = false;
-                LabelPhone.IsVisible = false;
-            }
+          
 
             
             //FrameBack.BackgroundColor = colorFromMobileSettings;
@@ -133,10 +124,7 @@ namespace xamarinJKH
 
             pdf2.Foreground = colorFromMobileSettings;
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);{ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
             FramePool.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             Color unselect = hexColor.AddLuminosity(0.3);

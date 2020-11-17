@@ -210,7 +210,6 @@ namespace xamarinJKH.Main
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     break;
                 default:
                     break;
@@ -231,7 +230,6 @@ namespace xamarinJKH.Main
                             System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
                 }
             };
-            LabelPhone.GestureRecognizers.Add(call);
             var pickLs = new TapGestureRecognizer();
             pickLs.Tapped += async (s, e) => {  
                 Device.BeginInvokeOnMainThread(() =>
@@ -259,13 +257,7 @@ namespace xamarinJKH.Main
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
           
-                if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo")
-                {
-                    PancakeViewIcon.Padding = new Thickness(0);
-                }
 
                 LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameTop.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
@@ -292,7 +284,6 @@ namespace xamarinJKH.Main
                 arrowcolor.Add("#000000", "#FFFFFF");
             }
 
-            IconViewLogin.ReplaceStringMap = colors;
             IconViewTech.ReplaceStringMap = colors;
             Arrow.ReplaceStringMap = arrowcolor;
 
@@ -545,15 +536,7 @@ namespace xamarinJKH.Main
         void SetTextAndColor()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-            {
-                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-            }
-            else
-            {
-                IconViewLogin.IsVisible = false;
-                LabelPhone.IsVisible = false;
-            }
+            
         }
 
         async void getInfo()

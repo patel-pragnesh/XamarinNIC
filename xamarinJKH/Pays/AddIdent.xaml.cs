@@ -46,12 +46,10 @@ namespace xamarinJKH.Pays
 
             
             };
-            LabelPhone.GestureRecognizers.Add(call);
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     //BackgroundColor = Color.White;
                     break;
                 default:
@@ -79,29 +77,18 @@ namespace xamarinJKH.Pays
         {
             AddIdentAccount(EntryIdent.Text);
         }
-        
+        public bool hex { get; set; }
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-            {
-                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-            }
-            else
-            {
-                IconViewLogin.IsVisible = false;
-                LabelPhone.IsVisible = false;
-            }
+           
             FrameBtnAdd.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             progress.Color = (Color)Application.Current.Resources["MainColor"];
             Labelseparator.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             IconViewFio.Foreground = (Color)Application.Current.Resources["MainColor"];
             
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);{ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             Frame.SetAppThemeColor(Xamarin.Forms.Frame.BorderColorProperty, hexColor, Color.White);
         }

@@ -88,7 +88,6 @@ namespace xamarinJKH.Pays
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     //BackgroundColor = Color.White;
                     break;
                 default:
@@ -116,7 +115,6 @@ namespace xamarinJKH.Pays
                         phoneDialer.MakePhoneCall(System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
                 }
             };
-            LabelPhone.GestureRecognizers.Add(call);
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); };
             LabelTech.GestureRecognizers.Add(techSend);
@@ -173,21 +171,11 @@ namespace xamarinJKH.Pays
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-            {
-                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-            }
-            else
-            {
-                IconViewLogin.IsVisible = false;
-                LabelPhone.IsVisible = false;
-            }
+           
             
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             // IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);{ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameSaldo.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
             FrameHistory.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);

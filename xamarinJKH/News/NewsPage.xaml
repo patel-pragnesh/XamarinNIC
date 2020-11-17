@@ -13,12 +13,13 @@
                 <Image x:Name="ImageFon"
                        Source="{AppThemeBinding Light=ic_news_top_light, Dark=ic_news_top}"
                        VerticalOptions="Start"
-					   Margin="0,20,0,0"
+					   Margin="0,0,0,0"
                        Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout>
                     <pancakeView:PancakeView
                         Padding="0"
+                        IsVisible="False"
                         CornerRadius="0,0,25,25"
                         BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
                         HorizontalOptions="Fill"
@@ -33,11 +34,6 @@
                                          HorizontalOptions="FillAndExpand">
                                 <StackLayout Padding="10"
                                              HorizontalOptions="FillAndExpand">
-                                    <Label x:Name="UkName"
-                                           Text="Название"
-                                           FontAttributes="Bold"
-                                           FontSize="16"
-                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                                     <StackLayout
                                         Spacing="0"
                                         Orientation="Horizontal">
@@ -75,25 +71,33 @@
                         </Grid>
                     </pancakeView:PancakeView>
                     <StackLayout
-                        HorizontalOptions="End"
-                        Margin="0,0,15,0"
+                        Margin="25,10,15,0"
                         Orientation="Horizontal">
-                        <forms:SvgCachedImage
-                            x:Name="IconViewTech"
-                            Source="resource://xamarinJKH.Resources.ic_tech.svg"
-                            HeightRequest="25"
-                            WidthRequest="25"
-                            Margin="0, 0,5,0"
-                            HorizontalOptions="Start"
-                            ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
-                            VerticalOptions="Center" />
-                        <Label x:Name="LabelTech"
-                               Text="{x:Static xamarinJkh:AppResources.Support}"
-                               FontSize="14"
-                               TextDecorations="Underline"
-                               TextColor="White"
-                               Margin="-10, 0, 0, 0"
-                               VerticalOptions="Center" />
+                        <Label x:Name="UkName"
+                               Text="Название"
+                               FontAttributes="Bold"
+                               HorizontalOptions="StartAndExpand"
+                               FontSize="16"
+                               TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                        <StackLayout
+                            HorizontalOptions="EndAndExpand"
+                            Orientation="Horizontal">
+                        
+                            <forms:SvgCachedImage x:Name="IconViewTech"
+                                                  Source="resource://xamarinJKH.Resources.ic_tech.svg"
+                                                  HeightRequest="20"
+                                                  ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                                  Margin="0, 0,0,0"
+                                                  HorizontalOptions="Start"
+                                                  VerticalOptions="Center" />
+                            <Label x:Name="LabelTech"
+                                   Text="{x:Static xamarinJkh:AppResources.Support}"
+                                   FontSize="14"
+                                   TextDecorations="Underline"
+                                   TextColor="White"
+                                   Margin="0, 0, 0, 0"
+                                   VerticalOptions="Center" />
+                        </StackLayout>
                     </StackLayout>
                   
                     <StackLayout

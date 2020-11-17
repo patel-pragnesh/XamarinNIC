@@ -718,7 +718,7 @@ A bot will call you on your number PHONE and tell an access code</value>
     <value>Order in transit</value>
   </data>
   <data name="Support" xml:space="preserve">
-    <value>Contact support</value>
+    <value>Support</value>
   </data>
   <data name="TechAdditionalText1" xml:space="preserve">
     <value>This form is intended for contacting application support. If you want to contact </value>

@@ -3765,7 +3765,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Написать в тех.поддержку.
+        ///   Looks up a localized string similar to Тех.поддержка.
         /// </summary>
         internal static string Support {
             get {

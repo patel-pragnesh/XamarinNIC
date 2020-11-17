@@ -58,7 +58,6 @@ namespace xamarinJKH.Counters
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     break;
                 default:
                     break;
@@ -141,20 +140,7 @@ namespace xamarinJKH.Counters
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await PopupNavigation.Instance.PushAsync(new TechDialog()); };
             LabelTech.GestureRecognizers.Add(techSend);
-            var call = new TapGestureRecognizer();
-            call.Tapped += async (s, e) =>
-            {
-                if (Settings.Person.Phone != null)
-                {
-                    IPhoneCallTask phoneDialer;
-                    phoneDialer = CrossMessaging.Current.PhoneDialer;
-                    if (phoneDialer.CanMakePhoneCall && !string.IsNullOrWhiteSpace(Settings.Person.companyPhone)) 
-                        phoneDialer.MakePhoneCall(System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
-                }
-
-            
-            };
-            LabelPhone.GestureRecognizers.Add(call);
+         
             var saveClick = new TapGestureRecognizer();
             saveClick.Tapped += async (s, e) => { ButtonClick(FrameBtnLogin, null); };
             FrameBtnLogin.GestureRecognizers.Add(saveClick);
@@ -817,15 +803,7 @@ namespace xamarinJKH.Counters
             }
 
             UkName.Text = Settings.MobileSettings.main_name;
-            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-            {
-                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-            }
-            else
-            {
-                IconViewLogin.IsVisible = false;
-                LabelPhone.IsVisible = false;
-            }
+         
             NameLbl.Text = meter.CustomName != null && !meter.CustomName.Equals("") ? meter.CustomName : meter.Resource;
             LabelseparatorFio.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             progress.Color = (Color)Application.Current.Resources["MainColor"];
@@ -887,10 +865,7 @@ namespace xamarinJKH.Counters
             }
             
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);{ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameTop.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
             FrameMeterReading.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);

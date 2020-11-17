@@ -97,7 +97,6 @@ namespace xamarinJKH.Pays
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     if(Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width<700)
                     {
                         kvitLabel2.FontSize = 14;
@@ -113,20 +112,7 @@ namespace xamarinJKH.Pays
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {     await PopupNavigation.Instance.PushAsync(new TechDialog()); };
             LabelTech.GestureRecognizers.Add(techSend);
-            var call = new TapGestureRecognizer();
-            call.Tapped += async (s, e) =>
-            {
-                if (Settings.Person.Phone != null)
-                {
-                    IPhoneCallTask phoneDialer;
-                    phoneDialer = CrossMessaging.Current.PhoneDialer;
-                    if (phoneDialer.CanMakePhoneCall && !string.IsNullOrWhiteSpace(Settings.Person.companyPhone)) 
-                        phoneDialer.MakePhoneCall(System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
-                }
-
-            
-            };
-            LabelPhone.GestureRecognizers.Add(call);
+           
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
@@ -279,15 +265,7 @@ namespace xamarinJKH.Pays
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-            {
-                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-            }
-            else
-            {
-                IconViewLogin.IsVisible = false;
-                LabelPhone.IsVisible = false;
-            }
+            
             // IconViewSortIdent.Foreground = (Color)Application.Current.Resources["MainColor"];
 
             IconViewSortDate.ReplaceStringMap =  new Dictionary<string, string>
@@ -299,8 +277,6 @@ namespace xamarinJKH.Pays
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             // IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);{ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameSaldo.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
         }

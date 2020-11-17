@@ -6,91 +6,48 @@
              mc:Ignorable="d"
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.OSSTotalVotingResult">
     <ContentPage.Content>
         <StackLayout>            
             <Grid VerticalOptions="FillAndExpand">
                 <Image x:Name="ImageFon"
-                       Margin="0,20,0,0"
+                       Margin="0,0,0,0"
                        Source="{AppThemeBinding Light=ic_background_OSS_light, Dark=ic_background_OSS}"
                        VerticalOptions="Start"
                        Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout>
-                    <yummy:PancakeView                        
-                        Padding="0"
-                        CornerRadius="0,0,25,25"
-                        BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
-                        HorizontalOptions="Fill"
-                        BorderThickness="1"
-                        MinimumHeightRequest="102"
-                        VerticalOptions="Start"
-                        x:Name="Pancake"
-                        IsClippedToBounds="True">
-                        <Grid IsClippedToBounds="True">
-                            <StackLayout Orientation="Horizontal"
-                                         VerticalOptions="Fill"
-                                         HorizontalOptions="FillAndExpand">
-                                <StackLayout Padding="10"
-                                             HorizontalOptions="FillAndExpand">
-                                    <Label x:Name="UkName"
-                                           Text="Название"
-                                           FontAttributes="Bold"
-                                           FontSize="16"
-                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
-                                    <StackLayout
-                                        Spacing="0"
-                                        Orientation="Horizontal">
-                                        <xamarinJkh:IconView x:Name="IconViewLogin"
-                                                             Source="ic_phone"
-                                                             HeightRequest="15"
-                                                             Foreground="White"
-                                                             Margin="-10, 0,0,0"
-                                                             HorizontalOptions="Start"
-                                                             VerticalOptions="Center" />
-                                        <Label x:Name="LabelPhone"
-                                               Text="Телефон"
-                                               FontSize="14"
-                                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                                               Margin="-5, 0, 0, 0"
-                                               VerticalOptions="Center" />
-                                    </StackLayout>
-                                </StackLayout>
-                                <yummy:PancakeView
-                                    BorderColor="Gray"
-                                    x:Name="PancakeViewIcon"
-                                    BorderThickness="1"
-                                    Padding="5"
-                                    CornerRadius="25,0,25,25"
-                                    BackgroundColor="White"
-                                    HorizontalOptions="End"
-                                    IsClippedToBounds="True">
-                                    <Image x:Name="IconViewNameUk"
-                                           Source="icon_login"
-                                           HeightRequest="70" />
-                                </yummy:PancakeView>
-                            </StackLayout>
-                        </Grid>
-                    </yummy:PancakeView>
+                    
                     <StackLayout
-                        HorizontalOptions="End"
-                        Margin="0,0,15,0"
+                        Margin="25,10,15,0"
                         Orientation="Horizontal">
-                        <xamarinJkh:IconView x:Name="IconViewTech"
-                                             Source="ic_tech"
-                                             HeightRequest="20"
-                                             Foreground="White"
-                                             Margin="0, 0,0,0"
-                                             HorizontalOptions="Start"
-                                             VerticalOptions="Center" />
-                        <Label x:Name="LabelTech"
-                               Text="{x:Static xamarinJkh:AppResources.Support}"
-                               FontSize="14"
-                               TextDecorations="Underline"
-                               TextColor="White"
-                               Margin="-10, 0, 0, 0"
-                               VerticalOptions="Center" />
+                        <Label x:Name="UkName"
+                               Text="Название"
+                               FontAttributes="Bold"
+                               HorizontalOptions="StartAndExpand"
+                               FontSize="16"
+                               TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                        <StackLayout
+                            HorizontalOptions="EndAndExpand"
+                            Orientation="Horizontal">
+                        
+                            <forms:SvgCachedImage x:Name="IconViewTech"
+                                                  Source="resource://xamarinJKH.Resources.ic_tech.svg"
+                                                  HeightRequest="20"
+                                                  ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                                  Margin="0, 0,0,0"
+                                                  HorizontalOptions="Start"
+                                                  VerticalOptions="Center" />
+                            <Label x:Name="LabelTech"
+                                   Text="{x:Static xamarinJkh:AppResources.Support}"
+                                   FontSize="14"
+                                   TextDecorations="Underline"
+                                   TextColor="White"
+                                   Margin="0, 0, 0, 0"
+                                   VerticalOptions="Center" />
+                        </StackLayout>
                     </StackLayout>
                     <StackLayout
                         x:Name="BackStackLayout"

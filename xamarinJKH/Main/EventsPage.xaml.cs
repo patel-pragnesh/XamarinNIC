@@ -50,7 +50,6 @@ namespace xamarinJKH.Main
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     //BackgroundColor = Color.White;                    
                     break;
                 default:
@@ -82,7 +81,6 @@ namespace xamarinJKH.Main
             // if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
             //     IconViewProfile.IsVisible = true;
 
-            IconViewProfile.GestureRecognizers.Add(profile);
 
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
@@ -106,7 +104,6 @@ namespace xamarinJKH.Main
                     }
                 }
             };
-            LabelPhone.GestureRecognizers.Add(call);
             SetText();
             SetColor();
             StartNews();
@@ -147,7 +144,6 @@ namespace xamarinJKH.Main
                     arrowcolor.Add("#000000", "#FFFFFF");
                 }
 
-                IconViewLogin.ReplaceStringMap = colors;
                 IconViewTech.ReplaceStringMap = colors;
             });
         }
@@ -262,15 +258,7 @@ namespace xamarinJKH.Main
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-            {
-                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-            }
-            else
-            {
-                IconViewLogin.IsVisible = false;
-                LabelPhone.IsVisible = false;
-            }
+         
 
             // LabelTech.TextColor = (Color)Application.Current.Resources["MainColor"];
             // IconViewTech.Foreground = (Color)Application.Current.Resources["MainColor"];
@@ -281,14 +269,7 @@ namespace xamarinJKH.Main
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            {
-                if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo")
-                {
-                    PancakeViewIcon.Padding = new Thickness(0);
-                }
-            }
+            
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
 
             FrameNews.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);

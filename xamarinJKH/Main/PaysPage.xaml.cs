@@ -87,7 +87,6 @@ namespace xamarinJKH.Main
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
                     {
                         LabelHistory.FontSize = 10;
@@ -150,7 +149,6 @@ namespace xamarinJKH.Main
                         phoneDialer.MakePhoneCall(System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
                 }
             };
-            LabelPhone.GestureRecognizers.Add(call);
             SetTextAndColor();
 
 
@@ -187,7 +185,6 @@ namespace xamarinJKH.Main
                     colors.Add("#000000", "#FFFFFF");
                     arrowcolor.Add("#000000", "#FFFFFF");
                 }
-                IconViewLogin.ReplaceStringMap = colors;
                 IconViewTech.ReplaceStringMap = colors;
             });
         }
@@ -216,15 +213,7 @@ namespace xamarinJKH.Main
         void SetTextAndColor()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-            {
-                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-            }
-            else
-            {
-                IconViewLogin.IsVisible = false;
-                LabelPhone.IsVisible = false;
-            }
+            
 
             FrameBtnHistory.BorderColor = hex;
             FrameBtnSaldos.BorderColor = hex;
@@ -234,8 +223,6 @@ namespace xamarinJKH.Main
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);{ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameAddIdent.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#494949"));

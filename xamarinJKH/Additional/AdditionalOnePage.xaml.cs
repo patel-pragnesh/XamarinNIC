@@ -51,7 +51,6 @@ namespace xamarinJKH.Additional
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     break;
                 default:
                     break;
@@ -85,7 +84,6 @@ namespace xamarinJKH.Additional
 
             
             };
-            LabelPhone.GestureRecognizers.Add(call);
             
             SetText();
             BindingContext = this;
@@ -99,16 +97,7 @@ namespace xamarinJKH.Additional
 
         async void SetText()
         {
-            UkName.Text = Settings.MobileSettings.main_name;
-            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-            {
-                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-            }
-            else
-            {
-                IconViewLogin.IsVisible = false;
-                LabelPhone.IsVisible = false;
-            }
+           
 
             if (additionalService.Name != null && !additionalService.Name.Equals(""))
             {
@@ -151,8 +140,6 @@ namespace xamarinJKH.Additional
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(SvgCachedImage.ReplaceStringMapProperty, hexColor, Color.Black);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);{ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.Black);
         }
 
