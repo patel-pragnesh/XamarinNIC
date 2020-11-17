@@ -739,7 +739,8 @@ namespace xamarinJKH.AppsConst
         async void sendMessage()
         {
             string message = EntryMess.Text;
-            if (!message.Equals(""))
+
+            if (!string.IsNullOrWhiteSpace(message))
             {
                 progress.IsVisible = true;
                 IconViewSend.IsVisible = false;
@@ -747,7 +748,7 @@ namespace xamarinJKH.AppsConst
                 if (result.Error == null)
                 {
                     EntryMess.Text = "";
-                    await ShowToast(AppResources.MessageSent);
+                    //await ShowToast(AppResources.MessageSent);
                     await RefreshData();
                 }
             }

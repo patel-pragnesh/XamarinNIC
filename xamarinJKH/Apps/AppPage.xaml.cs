@@ -417,6 +417,7 @@ namespace xamarinJKH.Apps
 
         private void SpeechToTextFinalResultRecieved(string args)
         {
+            if(!string.IsNullOrWhiteSpace(args))
                 EntryMess.Text += " " + args;            
         }
 
@@ -709,7 +710,13 @@ namespace xamarinJKH.Apps
             try
             {
                 string message = EntryMess.Text;
-                if (!message.Equals(""))
+                //if (string.IsNullOrWhiteSpace(message))
+                //{
+                //    EntryMess.Text = string.Empty;
+                //    return;
+                //}
+
+                if (!string.IsNullOrWhiteSpace(message))
                 {
                     progress.IsVisible = true;
                     IconViewSend.IsVisible = false;
@@ -717,7 +724,7 @@ namespace xamarinJKH.Apps
                     if (result.Error == null)
                     {
                         EntryMess.Text = "";
-                        await ShowToast(AppResources.MessageSent);
+                       // await ShowToast(AppResources.MessageSent);
                         //await RefreshData();
 
                         var lastChild = baseForApp.Children.LastOrDefault();

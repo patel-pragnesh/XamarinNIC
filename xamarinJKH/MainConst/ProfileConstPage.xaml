@@ -288,21 +288,48 @@
                                     </StackLayout>
                                     <StackLayout x:Name="ThemeButtonBlock"
                                         Margin="5,0,0,0">
-                                        <RadioButton
-                                            x:Name="RadioButtonAuto"
-                                            FontSize="16"
-                                            CheckedChanged="RadioButtonAuto_OnCheckedChanged"
-                                            Text="{x:Static xamarinJkh:AppResources.Automatic}" />
-                                        <RadioButton
-                                            x:Name="RadioButtonDark"
-                                            CheckedChanged="RadioButtonDark_OnCheckedChanged"
-                                            FontSize="16"
-                                            Text="{x:Static xamarinJkh:AppResources.Dark}" />
-                                        <RadioButton
-                                            x:Name="RadioButtonLigth"
-                                            CheckedChanged="RadioButtonLigth_OnCheckedChanged"
-                                            FontSize="16"
-                                            Text="{x:Static xamarinJkh:AppResources.Light}" />
+                                       <StackLayout
+                                            Orientation="Horizontal">
+                                            <RadioButton
+                                                x:Name="RadioButtonAuto"
+                                                FontSize="16"
+                                                CheckedChanged="RadioButtonAuto_OnCheckedChanged"
+                                                GroupName="themeGroupSotr"/>
+                                            <Label Text="{x:Static xamarinJkh:AppResources.Automatic}"
+                                                   FontSize="16"
+                                                   TextColor="Black"
+                                                   Margin="5, 0, 0, 0"
+                                                   VerticalOptions="Center" 
+                                                   x:Name="tAuto"/>
+                                        </StackLayout>
+                                        <StackLayout
+                                            Orientation="Horizontal">
+                                            <RadioButton
+                                                x:Name="RadioButtonDark"
+                                                CheckedChanged="RadioButtonDark_OnCheckedChanged"
+                                                FontSize="16" 
+                                                GroupName="themeGroupSotr"/>
+                                            <Label Text="{x:Static xamarinJkh:AppResources.Dark}"
+                                                   FontSize="16"
+                                                   TextColor="Black"
+                                                   Margin="5, 0, 0, 0"
+                                                   VerticalOptions="Center" 
+                                                   x:Name="tDark"/>
+                                        </StackLayout>
+                                        <StackLayout
+                                            Orientation="Horizontal">
+                                            <RadioButton
+                                                x:Name="RadioButtonLigth"
+                                                CheckedChanged="RadioButtonLigth_OnCheckedChanged"
+                                                FontSize="16" 
+                                                GroupName="themeGroupSotr"/>
+                                            <Label Text="{x:Static xamarinJkh:AppResources.Light}"
+                                                   FontSize="16"
+                                                   TextColor="Black"
+                                                   Margin="5, 0, 0, 0"
+                                                   VerticalOptions="Center" 
+                                                   x:Name="tLight" />
+                                        </StackLayout>
                                     </StackLayout>
 
                                     <StackLayout Orientation="Horizontal" >
@@ -317,21 +344,48 @@
 
                                     <StackLayout 
                                         Margin="5,0,0,0">
-                                        <RadioButton
-                                            x:Name="Russian"
-                                            FontSize="16"
-                                            CheckedChanged="Russian_CheckedChanged"
-                                            Text="Русский" />
-                                        <RadioButton
-                                            x:Name="English"
-                                            CheckedChanged="English_CheckedChanged"
-                                            FontSize="16"
-                                            Text="English" />
-                                        <RadioButton
-                                            x:Name="Ukranian"
-                                            CheckedChanged="Ukranian_CheckedChanged"
-                                            FontSize="16"
-                                            Text="Український" />
+                                        <StackLayout
+                                            Orientation="Horizontal">
+                                            <RadioButton
+                                                x:Name="Russian"
+                                                FontSize="16"
+                                                CheckedChanged="Russian_CheckedChanged" 
+                                                GroupName="lGroup"/>
+                                            <Label Text="Русский"
+                                                   FontSize="16"
+                                                   TextColor="Black"
+                                                   Margin="5, 0, 0, 0"
+                                                   VerticalOptions="Center"
+                                                   x:Name="lRu"/>
+                                        </StackLayout>
+                                        <StackLayout
+                                            Orientation="Horizontal">
+                                            <RadioButton
+                                                x:Name="English"
+                                                CheckedChanged="English_CheckedChanged"
+                                                FontSize="16" 
+                                                GroupName="lGroup"/>
+                                            <Label Text="English"
+                                                   FontSize="16"
+                                                   TextColor="Black"
+                                                   Margin="5, 0, 0, 0"
+                                                   VerticalOptions="Center" 
+                                                   x:Name="lEn"/>
+                                        </StackLayout>
+                                        <StackLayout
+                                            Orientation="Horizontal">
+                                            <RadioButton
+                                                x:Name="Ukranian"
+                                                CheckedChanged="Ukranian_CheckedChanged"
+                                                FontSize="16" 
+                                                GroupName="lGroup"/>
+                                            <Label Text="Український"
+                                                   FontSize="16"
+                                                   TextColor="Black"
+                                                   Margin="5, 0, 0, 0"
+                                                   VerticalOptions="Center"
+                                                   x:Name="lUa"/>
+                                        </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
                             </customRenderers:MaterialFrame>

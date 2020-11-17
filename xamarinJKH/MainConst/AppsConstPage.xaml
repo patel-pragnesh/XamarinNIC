@@ -146,12 +146,12 @@
                                    IsVisible="{Binding Empty}"/>
                         </Grid>
                         
-                        <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0"
+                        <pancakeView:PancakeView x:Name="bottomMenu" CornerRadius="50,50,0,0"
                                                  BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
                                                  Padding="0,10,0,2"
                                                  BorderThickness="1"
                                                  Margin="0"
-                                                 VerticalOptions="FillAndExpand">
+                                                 VerticalOptions="End">
                             <StackLayout>
                                 <StackLayout Orientation="Horizontal"
                                              IsVisible="False"

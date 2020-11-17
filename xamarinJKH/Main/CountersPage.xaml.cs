@@ -138,7 +138,7 @@ namespace xamarinJKH.Main
                 if (Settings.Person != null)
                     if (Settings.Person.Accounts != null)
                         if (Settings.Person.Accounts.Count > 0)
-                            if (CheckPeriod(currDay))
+                            if (select.ValuesCanAdd)
                             {
                                 if (select.Values!=null && select.Values.Count >= 1 )
                                 {
@@ -609,7 +609,7 @@ namespace xamarinJKH.Main
             if (Settings.Person != null)
                 if (Settings.Person.Accounts != null)
                     if (Settings.Person.Accounts.Count > 0)
-                        if (CheckPeriod(currDay))
+                        if (select.ValuesCanAdd)
                         {
                             if (select.Values.Count >= 1 &&
                                 int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
@@ -629,22 +629,22 @@ namespace xamarinJKH.Main
                             }
                         }
         }
-        private static bool CheckPeriod(int currDay)
+        private static bool CheckPeriod(int currDay, MeterInfo meterInfo)
         {
 //#if DEBUG
 //            return true;
 //#endif
-            if (Settings.Person.Accounts[0].MetersEndDay < Settings.Person.Accounts[0].MetersStartDay)
+            if (meterInfo.ValuesEndDay < meterInfo.ValuesStartDay)
             {
-                return MetersThreeCell.GetPeriodEnabled() || (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                                                              Settings.Person.Accounts[0].MetersEndDay == 0);
+                return MetersThreeCell.GetPeriodEnabled() || (meterInfo.ValuesStartDay == 0 &&
+                                                              meterInfo.ValuesEndDay == 0);
 
             }
             
-            return (Settings.Person.Accounts[0].MetersStartDay <= currDay &&
-                    Settings.Person.Accounts[0].MetersEndDay >= currDay) ||
-                   (Settings.Person.Accounts[0].MetersStartDay == 0 &&
-                    Settings.Person.Accounts[0].MetersEndDay == 0);
+            return (meterInfo.ValuesStartDay <= currDay &&
+                    meterInfo.ValuesEndDay >= currDay) ||
+                   (meterInfo.ValuesStartDay == 0 &&
+                    meterInfo.ValuesEndDay == 0);
         }
         private async void RefreshView_RefreshingAsync(object sender, EventArgs e)
         {

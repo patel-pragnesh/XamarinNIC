@@ -169,6 +169,7 @@
                                Margin="0,0,0,0"
                                TextDecorations="Underline"
                                FontAttributes="Bold"
+                               IsVisible="False"
                                HorizontalOptions="CenterAndExpand"
                                HorizontalTextAlignment="Center"
                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
