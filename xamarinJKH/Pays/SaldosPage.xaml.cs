@@ -20,7 +20,10 @@ using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 using xamarinJKH.Utils.Compatator;
+using System.Threading.Tasks.Sources;
 using AiForms.Dialogs.Abstractions;
+using System.Threading;
+using MediaManager.Forms;
 
 namespace xamarinJKH.Pays
 {
@@ -333,7 +336,9 @@ namespace xamarinJKH.Pays
             }
             else
             {
-                new Task(async () => await GetFile(@select.ID.ToString(), filename)).Start();
+                CancellationTokenSource TokenSource = new CancellationTokenSource();
+                CancellationToken Token = TokenSource.Token;
+                await Task.Run(async () => await GetFile(@select.ID.ToString(), filename),Token);
 
             }
         }
