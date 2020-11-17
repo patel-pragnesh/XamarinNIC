@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Analytics;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Server.RequestModel;
@@ -41,9 +42,20 @@ namespace xamarinJKH.VideoStreaming
         {
             try
             {
-                var camera = args.CurrentSelection[0] as CameraModel; 
-                if (Navigation.ModalStack.FirstOrDefault(x => x is CameraPage) == null)
-                    await Navigation.PushModalAsync(new CameraPage(camera.Url));
+                var camera = args.CurrentSelection[0] as CameraModel;
+
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    if (Navigation.ModalStack.FirstOrDefault(x => x is CameraPage) == null)
+                        await Navigation.PushModalAsync(new CameraPage(camera.Url));
+                }
+                else
+                {
+                    Device.BeginInvokeOnMainThread(async () => await Launcher.OpenAsync(camera.Url));
+
+                    //if (Navigation.ModalStack.FirstOrDefault(x => x is CameraIos) == null)
+                    //    await Navigation.PushModalAsync(new CameraIos(camera.Url));
+                }
                 (sender as CollectionView).SelectedItem = null;
             }
             catch
