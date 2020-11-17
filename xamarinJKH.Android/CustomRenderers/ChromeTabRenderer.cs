@@ -41,17 +41,17 @@ namespace xamarinJKH.Droid.CustomRenderers
         }
         public void OpenTab(string uri)
         {
-            var uiBuilder = new HostedUIBuilder();
+            //var uiBuilder = new HostedUIBuilder();
             
-            var manager = (CrossCurrentActivity.Current.Activity as MainActivity).hostedManager;
-            manager.BindService();
-            manager.LoadUrl("https://google.com/", uiBuilder);
+            //var manager = (CrossCurrentActivity.Current.Activity as MainActivity).hostedManager;
+            //manager.BindService();
+            //manager.LoadUrl("https://google.com/", uiBuilder);
 
-            var url = "https://www.xamarin.com";
-            var customTabsIntent = new CustomTabsIntent.Builder().Build();
-            var helper = new CustomTabActivityHelper();
-            helper.LaunchUrlWithCustomTabsOrFallback(activity, customTabsIntent, Xamarin.Essentials.AppInfo.PackageName, Uri.Parse(url), null);
-            Device.OpenUri(new System.Uri(url));
+            //var url = "https://www.xamarin.com";
+            //var customTabsIntent = new CustomTabsIntent.Builder().Build();
+            //var helper = new CustomTabActivityHelper();
+            //helper.LaunchUrlWithCustomTabsOrFallback(activity, customTabsIntent, Xamarin.Essentials.AppInfo.PackageName, Uri.Parse(url), null);
+            //Device.OpenUri(new System.Uri(url));
         }
 
     }
