@@ -250,6 +250,11 @@ namespace xamarinJKH.Questions
                         Text = jAnswer.Text,
                         VerticalOptions = LayoutOptions.Center
                     };
+
+                    var tClick = new TapGestureRecognizer();
+                    tClick.Tapped += (s, e) => { Device.BeginInvokeOnMainThread(() => radioButton.IsChecked = true); };
+                    textRadio.GestureRecognizers.Add(tClick);
+
                     isCheched = jAnswer.IsUserAnswer;
                     if (jAnswer.IsUserAnswer)
                     {
