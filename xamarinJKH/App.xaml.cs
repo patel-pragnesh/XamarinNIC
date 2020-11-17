@@ -232,17 +232,17 @@ namespace xamarinJKH
                     }
                 });
             };
-            CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
+            CrossFirebasePushNotification.Current.OnNotificationOpened += (s, rea) =>
             {
                 Analytics.TrackEvent("открыт пуш");
                 System.Diagnostics.Debug.WriteLine("Opened");
-                if (p.Data.ContainsKey("type_push") || p.Data.ContainsKey("gcm.notification.type_push"))
+                if (rea.Data.ContainsKey("type_push") || rea.Data.ContainsKey("gcm.notification.type_push"))
                 {
                     string o = "";
                     if (Device.RuntimePlatform == Device.Android)
-                        o = p.Data["type_push"].ToString();
+                        o = rea.Data["type_push"].ToString();
                     else
-                        o = p.Data["gcm.notification.type_push"].ToString();
+                        o = rea.Data["gcm.notification.type_push"].ToString();
 
                     Analytics.TrackEvent($"тип пуша{o}");
 
@@ -260,21 +260,25 @@ namespace xamarinJKH
                                     Settings.EventBlockData = await server.GetEventBlockData();
                                     foreach (var each in Settings.EventBlockData.Announcements)
                                     {
-                                        if (p.Data.ContainsKey("aps.alert.title") && p.Data.ContainsKey("aps.alert.body"))
+                                        if (rea.Data.ContainsKey("aps.alert.title") && rea.Data.ContainsKey("aps.alert.body"))
                                         {
-                                            if (p.Data["aps.alert.title"].Equals(each.Header) & p.Data["aps.alert.body"].Equals(each.Text))
+                                            if (rea.Data["aps.alert.title"].Equals(each.Header) & rea.Data["aps.alert.body"].Equals(each.Text))
                                             {
                                                 await MainPage.Navigation.PushModalAsync(new NotificationOnePage(each));
                                             }
                                         }
-                                        if (p.Data.ContainsKey("title") && p.Data.ContainsKey("body"))
+                                        if (rea.Data.ContainsKey("title") && rea.Data.ContainsKey("body"))
                                         {
-                                            if (p.Data["title"].Equals(each.Header) & p.Data["body"].Equals(each.Text))
+                                            if (rea.Data["title"].Equals(each.Header) & rea.Data["body"].Equals(each.Text))
                                             {
                                                 await MainPage.Navigation.PushModalAsync(new NotificationOnePage(each));
                                             }
-                                        }                                        
+                                        }
                                     }
+                                }
+                                else
+                                {
+                                    Analytics.TrackEvent($"сервер вернул ошибку: {loginResult.Error}");
                                 }
                             }
                         });
@@ -318,12 +322,12 @@ namespace xamarinJKH
                                     }
                                     else
                                     {
-                                        pExec(p);                                                                          
+                                        pExec(rea);                                                                          
                                     }
                                 }
                                 else
                                 {
-                                    pExec(p);
+                                    pExec(rea);
                                 }
                             }
 
@@ -340,12 +344,12 @@ namespace xamarinJKH
                                     }
                                     else
                                     {
-                                        pExec(p);
+                                        pExec(rea);
                                     }
                                 }
                                 else
                                 {
-                                    pExec(p);
+                                    pExec(rea);
                                 }
 
                             }
@@ -535,17 +539,17 @@ namespace xamarinJKH
                 }
             };
 
-            CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
+            CrossFirebasePushNotification.Current.OnNotificationOpened += (s, rea) =>
             {
                 //System.Diagnostics.Debug.WriteLine(p.Identifier);
 
                 System.Diagnostics.Debug.WriteLine("Opened");
-                foreach (var data in p.Data)
+                foreach (var data in rea.Data)
                 {
                     System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
                 }
 
-                if (!string.IsNullOrEmpty(p.Identifier))
+                if (!string.IsNullOrEmpty(rea.Identifier))
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
@@ -553,22 +557,22 @@ namespace xamarinJKH
                         System.Diagnostics.Debug.WriteLine("123");
                     });
                 }
-                else if (p.Data.ContainsKey("color"))
+                else if (rea.Data.ContainsKey("color"))
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         MainPage.Navigation.PushAsync(new ContentPage()
                         {
-                            BackgroundColor = Color.FromHex($"{p.Data["color"]}")
+                            BackgroundColor = Color.FromHex($"{rea.Data["color"]}")
                         });
                     });
                 }
-                else if (p.Data.ContainsKey("aps.alert.title"))
+                else if (rea.Data.ContainsKey("aps.alert.title"))
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         // MainPage.Message = $"{p.Data["aps.alert.title"]}";
-                        System.Diagnostics.Debug.WriteLine($"Пушшшш2 ==== {p.Data["aps.alert.title"]}");
+                        System.Diagnostics.Debug.WriteLine($"Пушшшш2 ==== {rea.Data["aps.alert.title"]}");
                     });
                 }
             };

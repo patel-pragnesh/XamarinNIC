@@ -74,6 +74,30 @@ namespace xamarinJKH.Main
             saveClick.Tapped += async (s, e) => { ButtonClick(FrameBtnLogin, null); };
             FrameBtnLogin.GestureRecognizers.Add(saveClick);
 
+            var tAutoClick = new TapGestureRecognizer();
+            tAutoClick.Tapped += (s, e) => { Device.BeginInvokeOnMainThread(() => RadioButtonAuto.IsChecked = true); };
+            tAuto.GestureRecognizers.Add(tAutoClick);
+
+            var tBlackClick = new TapGestureRecognizer();
+            tBlackClick.Tapped += (s, e) => { Device.BeginInvokeOnMainThread(() => RadioButtonDark.IsChecked = true); };
+            tDark.GestureRecognizers.Add(tBlackClick);
+
+            var tLightClick = new TapGestureRecognizer();
+            tLightClick.Tapped += (s, e) => { Device.BeginInvokeOnMainThread(() => RadioButtonLigth.IsChecked = true); };
+            tLight.GestureRecognizers.Add(tLightClick);
+
+            var lRuClick = new TapGestureRecognizer();
+            lRuClick.Tapped += (s, e) => { Device.BeginInvokeOnMainThread(() => Russian.IsChecked = true); };
+            lRu.GestureRecognizers.Add(lRuClick);
+
+            var lEnClick = new TapGestureRecognizer();
+            lEnClick.Tapped += (s, e) => { Device.BeginInvokeOnMainThread(() => English.IsChecked = true); };
+            lEn.GestureRecognizers.Add(lEnClick);
+
+            var lUaClick = new TapGestureRecognizer();
+            lUaClick.Tapped += (s, e) => { Device.BeginInvokeOnMainThread(() => Ukranian.IsChecked = true); };
+            lUa.GestureRecognizers.Add(lUaClick);
+
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:

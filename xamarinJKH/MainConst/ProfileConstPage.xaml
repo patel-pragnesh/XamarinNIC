@@ -299,7 +299,8 @@
                                                    FontSize="16"
                                                    TextColor="Black"
                                                    Margin="5, 0, 0, 0"
-                                                   VerticalOptions="Center" />
+                                                   VerticalOptions="Center" 
+                                                   x:Name="tAuto"/>
                                         </StackLayout>
                                         <StackLayout
                                             Orientation="Horizontal">
@@ -312,7 +313,8 @@
                                                    FontSize="16"
                                                    TextColor="Black"
                                                    Margin="5, 0, 0, 0"
-                                                   VerticalOptions="Center" />
+                                                   VerticalOptions="Center" 
+                                                   x:Name="tDark"/>
                                         </StackLayout>
                                         <StackLayout
                                             Orientation="Horizontal">
@@ -325,7 +327,8 @@
                                                    FontSize="16"
                                                    TextColor="Black"
                                                    Margin="5, 0, 0, 0"
-                                                   VerticalOptions="Center" />
+                                                   VerticalOptions="Center" 
+                                                   x:Name="tLight" />
                                         </StackLayout>
                                     </StackLayout>
 
@@ -352,7 +355,8 @@
                                                    FontSize="16"
                                                    TextColor="Black"
                                                    Margin="5, 0, 0, 0"
-                                                   VerticalOptions="Center" />
+                                                   VerticalOptions="Center"
+                                                   x:Name="lRu"/>
                                         </StackLayout>
                                         <StackLayout
                                             Orientation="Horizontal">
@@ -365,7 +369,8 @@
                                                    FontSize="16"
                                                    TextColor="Black"
                                                    Margin="5, 0, 0, 0"
-                                                   VerticalOptions="Center" />
+                                                   VerticalOptions="Center" 
+                                                   x:Name="lEn"/>
                                         </StackLayout>
                                         <StackLayout
                                             Orientation="Horizontal">
@@ -378,7 +383,8 @@
                                                    FontSize="16"
                                                    TextColor="Black"
                                                    Margin="5, 0, 0, 0"
-                                                   VerticalOptions="Center" />
+                                                   VerticalOptions="Center"
+                                                   x:Name="lUa"/>
                                         </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
