@@ -8,7 +8,8 @@
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              NavigationPage.HasNavigationBar="False"
-             x:Class="xamarinJKH.VideoStreaming.CameraListPage">
+             x:Class="xamarinJKH.VideoStreaming.CameraListPage"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label" x:Key="Number">
@@ -27,11 +28,11 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <local:HeaderViewStack Title="{x:Static local:AppResources.EventsCam}"
+            <local:HeaderViewStack x:Name="headerStack" Title="{x:Static local:AppResources.EventsCam}"
                                     Grid.RowSpan="3"/>
             <StackLayout Grid.Row="1"
                          Grid.RowSpan="2"
-                         Padding="20">
+                         Padding="20" x:Name="cameraStack">
                 <CollectionView ItemsSource="{Binding Cameras}"
                                 SelectionMode="Single"
                                 SelectionChanged="CameraSelect">
