@@ -11,7 +11,9 @@ using xamarinJKH.CustomRenderers;
 using System.Net.Http;
 using AiForms.Dialogs;
 using Microsoft.AppCenter.Analytics;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms.PancakeView;
+using xamarinJKH.DialogViews;
 
 namespace xamarinJKH.Pays
 {
@@ -23,7 +25,9 @@ namespace xamarinJKH.Pays
         public PayPdf(BillInfo info)
         {
             InitializeComponent();
-
+            var techSend = new TapGestureRecognizer();
+            techSend.Tapped += async (s, e) => {  await PopupNavigation.Instance.PushAsync(new TechDialog());    };
+            LabelTech.GestureRecognizers.Add(techSend);
             BindingContext = viewModel = new PayPdfViewModel(info);
             Analytics.TrackEvent("Просмотр ПДФ по квитанции №" + viewModel.Bill.ID);
             viewModel.LoadPdf.Execute(null);
@@ -52,10 +56,6 @@ namespace xamarinJKH.Pays
             }
             
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            TopBar.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);{ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
         }
 
         protected override void OnAppearing()

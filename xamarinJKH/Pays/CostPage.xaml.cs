@@ -49,26 +49,11 @@ namespace xamarinJKH.Pays
                 });
             };
             StackLayoutLs.GestureRecognizers.Add(pickLs);
-            var call = new TapGestureRecognizer();
-            call.Tapped += async (s, e) =>
-            {
-                if (Settings.Person.Phone != null)
-                {
-                    IPhoneCallTask phoneDialer;
-                    phoneDialer = CrossMessaging.Current.PhoneDialer;
-                    if (phoneDialer.CanMakePhoneCall && !string.IsNullOrWhiteSpace(Settings.Person.companyPhone)) 
-                        phoneDialer.MakePhoneCall(System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
-                }
-
-            
-            };
-            LabelPhone.GestureRecognizers.Add(call);
 
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
                     {
                         LabelHistory.FontSize = 10;
@@ -128,15 +113,7 @@ namespace xamarinJKH.Pays
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-            {
-                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-            }
-            else
-            {
-                IconViewLogin.IsVisible = false;
-                LabelPhone.IsVisible = false;
-            }
+           
             Picker.Title = account.Ident;
             // IconViewUslugi.Foreground = (Color)Application.Current.Resources["MainColor"];
             Labelseparator.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
@@ -146,10 +123,7 @@ namespace xamarinJKH.Pays
             FrameBtnHistory.BorderColor = (Color)Application.Current.Resources["MainColor"];
             FrameBtnSaldos.BorderColor = (Color)Application.Current.Resources["MainColor"];
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);{ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             Frame.SetAppThemeColor(Xamarin.Forms.Frame.BorderColorProperty, hexColor, Color.White);

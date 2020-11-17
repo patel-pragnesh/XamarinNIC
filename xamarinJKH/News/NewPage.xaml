@@ -11,6 +11,7 @@
         <StackLayout>
             <pancakeView:PancakeView
                 Padding="0"
+                IsVisible="False"
                 CornerRadius="0,0,25,25"
                 BackgroundColor="{AppThemeBinding Light=White, Dark=#131313}"
                 HorizontalOptions="Fill"
@@ -66,82 +67,84 @@
                     </StackLayout>
                 </Grid>
             </pancakeView:PancakeView>
-            <StackLayout
-                HorizontalOptions="End"
-                Margin="0,0,15,0"
-                Orientation="Horizontal">
-                <forms:SvgCachedImage
-                    x:Name="IconViewTech"
-                    Source="resource://xamarinJKH.Resources.ic_tech.svg"
-                    HeightRequest="25"
-                    WidthRequest="25"
-                    Margin="0, 0,5,0"
-                    HorizontalOptions="Start"
-                    ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000'}"
-                    VerticalOptions="Center" />
-                <Label x:Name="LabelTech"
-                       Text="{x:Static xamarinJkh:AppResources.Support}"
-                       FontSize="14"
-                       TextDecorations="Underline"
-                       TextColor="Black"
-                       Margin="-10, 0, 0, 0"
-                       VerticalOptions="Center" />
+            <StackLayout Margin="0,20,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <StackLayout
+                    x:Name="BackStackLayout"
+                    Orientation="Horizontal"
+                    Margin="20, 0, 0, 0"
+                    HorizontalOptions="StartAndExpand">
+                    <forms:SvgCachedImage
+                        Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
+                        HeightRequest="20"
+                        HorizontalOptions="Start"
+                        ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000'}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Text="{x:Static xamarinJkh:AppResources.Back}"
+                        FontSize="15"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start" />
+                </StackLayout>
+                <StackLayout
+                    HorizontalOptions="EndAndExpand"
+                    Margin="0,0,15,0"
+                    Orientation="Horizontal">
+                    <forms:SvgCachedImage
+                        x:Name="IconViewTech"
+                        Source="resource://xamarinJKH.Resources.ic_tech.svg"
+                        HeightRequest="25"
+                        WidthRequest="25"
+                        Margin="0, 0,5,0"
+                        HorizontalOptions="Start"
+                        ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000'}"
+                        VerticalOptions="Center" />
+                    <Label x:Name="LabelTech"
+                           Text="{x:Static xamarinJkh:AppResources.Support}"
+                           FontSize="14"
+                           TextDecorations="Underline"
+                           TextColor="Black"
+                           Margin="-10, 0, 0, 0"
+                           VerticalOptions="Center" />
+                </StackLayout>
             </StackLayout>
-            <StackLayout
-                x:Name="BackStackLayout"
-                Orientation="Horizontal"
-                Margin="20, 0, 0, 0"
-                HorizontalOptions="Start">
-                <forms:SvgCachedImage
-                    Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
-                    HeightRequest="20"
-                    HorizontalOptions="Start"
-                    ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000'}"
-                    VerticalOptions="Center" />
-                <Label
-                    Text="{x:Static xamarinJkh:AppResources.Back}"
-                    FontSize="15"
-                    TextColor="Black"
-                    HorizontalOptions="Start" />
-            </StackLayout>
-
             <!--<ScrollView Orientation="Vertical"
                         Margin="0, 0, 0, 0">-->
-                <StackLayout
-                    BackgroundColor="White"
-                        Spacing="0"
-                    Margin="0">
-                    <Label x:Name="LabelTitle"
-                               FontAttributes="Bold"
-                               FontSize="20"
+            <StackLayout
+                BackgroundColor="White"
+                Spacing="0"
+                Margin="0">
+                <Label x:Name="LabelTitle"
+                       FontAttributes="Bold"
+                       FontSize="20"
+                       Margin="20,0"
+                       HorizontalOptions="StartAndExpand"
+                       TextColor="Black"
+                       Text="Заголовок" />
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="LabelDate"
+                           HorizontalOptions="StartAndExpand"
+                           TextColor="Black"
                            Margin="20,0"
-                               HorizontalOptions="StartAndExpand"
-                               TextColor="Black"
-                               Text="Заголовок" />
-                    <StackLayout Orientation="Horizontal">
-                        <Label x:Name="LabelDate"
-                               HorizontalOptions="StartAndExpand"
-                               TextColor="Black"
-                           Margin="20,0"
-                               FontSize="15"
-                               Text="23.05.2020" />
-                        <Label Text="{x:Static xamarinJkh:AppResources.NewAppFiles}"
-                               TextColor="{x:StaticResource MainColor}"
-                               TextDecorations="Underline"
-                               x:Name="Files"
-                               HorizontalOptions="FillAndExpand">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OpenFile"/>
-                            </Label.GestureRecognizers>
-                        </Label>
-                    </StackLayout>
+                           FontSize="15"
+                           Text="23.05.2020" />
+                    <Label Text="{x:Static xamarinJkh:AppResources.NewAppFiles}"
+                           TextColor="{x:StaticResource MainColor}"
+                           TextDecorations="Underline"
+                           x:Name="Files"
+                           HorizontalOptions="FillAndExpand">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OpenFile" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
 
                 <WebView x:Name="MainText"
                          VerticalOptions="StartAndExpand"
                          HeightRequest="400"
-                                 Margin="20,0"/>
+                         Margin="20,0" />
             </StackLayout>
-                <!--</ScrollView>-->
+            <!--</ScrollView>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

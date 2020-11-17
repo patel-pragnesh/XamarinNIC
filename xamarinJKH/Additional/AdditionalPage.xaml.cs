@@ -170,7 +170,6 @@ namespace xamarinJKH.Additional
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
 
                     //headerImg.HorizontalOptions = LayoutOptions.Center;
                     //headerImg.Aspect = Aspect.AspectFit;
@@ -196,7 +195,6 @@ namespace xamarinJKH.Additional
             BackStackLayout.GestureRecognizers.Add(backClick);
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); };
-            StackLayoutTech.GestureRecognizers.Add(techSend);
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
             {
@@ -208,7 +206,6 @@ namespace xamarinJKH.Additional
                         phoneDialer.MakePhoneCall(System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
                 }
             };
-            LabelPhone.GestureRecognizers.Add(call);
             additionalList.BackgroundColor = Color.Transparent;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
             MainColor = "#" + Settings.MobileSettings.color;
@@ -258,7 +255,6 @@ namespace xamarinJKH.Additional
                     colors.Add("#000000", "#FFFFFF");
                     arrowcolor.Add("#000000", "#FFFFFF");
                 }
-                IconViewLogin.ReplaceStringMap = colors;
                 IconViewTech.ReplaceStringMap = colors;
             });
         }
@@ -266,20 +262,10 @@ namespace xamarinJKH.Additional
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-            {
-                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-            }
-            else
-            {
-                IconViewLogin.IsVisible = false;
-                LabelPhone.IsVisible = false;
-            }
+            
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);{ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
             FrameKind.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
         }

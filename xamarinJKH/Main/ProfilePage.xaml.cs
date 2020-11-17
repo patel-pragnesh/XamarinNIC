@@ -68,7 +68,6 @@ namespace xamarinJKH.Main
 
             
             };
-            LabelPhone.GestureRecognizers.Add(call);
             FrameBtnExit.GestureRecognizers.Add(exitClick);
             var saveClick = new TapGestureRecognizer();
             saveClick.Tapped += async (s, e) => { ButtonClick(FrameBtnLogin, null); };
@@ -78,7 +77,6 @@ namespace xamarinJKH.Main
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
                     {
                         EntryEmail.FontSize = 10;                        
@@ -192,15 +190,7 @@ namespace xamarinJKH.Main
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            if (!string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-            {
-                LabelPhone.Text = "+" + Settings.Person.companyPhone.Replace("+", "");
-            }
-            else
-            {
-                IconViewLogin.IsVisible = false;
-                LabelPhone.IsVisible = false;
-            }
+          
         }
         
         void SetColor()
@@ -268,10 +258,7 @@ namespace xamarinJKH.Main
                     break;
             }
             
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);{ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameTop.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
             FrameSettings.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
@@ -282,18 +269,18 @@ namespace xamarinJKH.Main
         {
             switch (Application.Current.RequestedTheme)
             {
-                case OSAppTheme.Dark:
-                    IconViewLogin.ReplaceStringMap = IconViewTech.ReplaceStringMap = ImageBack.ReplaceStringMap = new Dictionary<string, string>
-                    {
-                        {"#000000", "#FFFFFF"}
-                    };
-                    break;
-                case OSAppTheme.Light:
-                    IconViewLogin.ReplaceStringMap = IconViewTech.ReplaceStringMap = ImageBack.ReplaceStringMap = new Dictionary<string, string>
-                    {
-                        {"#000000", $"#{Settings.MobileSettings.color}"}
-                    };
-                    break;
+                // case OSAppTheme.Dark:
+                //     IconViewLogin.ReplaceStringMap = IconViewTech.ReplaceStringMap = ImageBack.ReplaceStringMap = new Dictionary<string, string>
+                //     {
+                //         {"#000000", "#FFFFFF"}
+                //     };
+                //     break;
+                // case OSAppTheme.Light:
+                //     IconViewLogin.ReplaceStringMap = IconViewTech.ReplaceStringMap = ImageBack.ReplaceStringMap = new Dictionary<string, string>
+                //     {
+                //         {"#000000", $"#{Settings.MobileSettings.color}"}
+                //     };
+                //     break;
             }
         }
         

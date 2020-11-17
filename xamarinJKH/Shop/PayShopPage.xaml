@@ -19,38 +19,43 @@
                        Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout x:Name="OrderConfirmStackMain" Margin="0,10,0,0" VerticalOptions="FillAndExpand">
-                    <StackLayout
-                        x:Name="BackStackLayout"
-                        Orientation="Horizontal"
-                        Margin="0, 20, 0, 0"
-                        HorizontalOptions="Start">
-                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
-                                             HeightRequest="25"
-                                             Margin="0,0"
-                                             VerticalOptions="Center"
-                                             ReplaceStringMap="{Binding hex,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
-                                             HorizontalOptions="Center" />
-                        <Label
-                            Text="{x:Static xamarinJkh:AppResources.ConfirmingOrder}"
-                            FontSize="20"
-                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                            HorizontalOptions="Start" />
-                    </StackLayout>
-                    <StackLayout
-                        Orientation="Horizontal">
-                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_tech.svg"
-                                            HeightRequest="20"
-                                            ReplaceStringMap="{Binding hex,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
-                                            HorizontalOptions="Start"
-                                            Margin="10,0,0,0"
-                                            VerticalOptions="Center" />
-                        <Label x:Name="LabelTech"
-                               Text="{x:Static xamarinJkh:AppResources.Support}"
-                               FontSize="16"
-                               TextDecorations="Underline"
-                               TextColor="White"
-                               Margin="0, 0, 0, 0"
-                               VerticalOptions="Center" />
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="0, 20, 10, 0"
+                                 HorizontalOptions="FillAndExpand">
+                        <StackLayout
+                            x:Name="BackStackLayout"
+                            Orientation="Horizontal"
+                            HorizontalOptions="StartAndExpand">
+                            <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
+                                                 HeightRequest="25"
+                                                 Margin="0,0"
+                                                 VerticalOptions="Center"
+                                                 ReplaceStringMap="{Binding hex,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
+                                                 HorizontalOptions="Center" />
+                            <Label
+                                Text="{x:Static xamarinJkh:AppResources.ConfirmingOrder}"
+                                FontSize="18"
+                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                HorizontalOptions="Start" />
+                        </StackLayout>
+                        <StackLayout
+                            HorizontalOptions="EndAndExpand"
+                            VerticalOptions="Center"
+                            Orientation="Horizontal">
+                            <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_tech.svg"
+                                                HeightRequest="20"
+                                                ReplaceStringMap="{Binding hex,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
+                                                HorizontalOptions="Start"
+                                                Margin="10,0,0,0"
+                                                VerticalOptions="Center" />
+                            <Label x:Name="LabelTech"
+                                   Text="{x:Static xamarinJkh:AppResources.Support}"
+                                   FontSize="16"
+                                   TextDecorations="Underline"
+                                   TextColor="White"
+                                   Margin="0, 0, 0, 0"
+                                   VerticalOptions="Center" />
+                        </StackLayout>
                     </StackLayout>
                     <ScrollView Margin="10,10,10,10">
                         <yummy:PancakeView

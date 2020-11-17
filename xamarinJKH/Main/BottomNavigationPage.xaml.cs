@@ -348,9 +348,7 @@ namespace xamarinJKH.Main
                 //     Children.Remove(ShopNavPage);
                 //     Children.Remove(ProfPage);
                 // }
-
-
-
+                
                 foreach (var each in Settings.MobileSettings.menu)
                 {
                     if (each.name_app.Equals("Заявки"))
