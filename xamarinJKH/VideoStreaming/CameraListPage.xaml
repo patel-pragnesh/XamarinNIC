@@ -31,7 +31,7 @@
                                     Grid.RowSpan="3"/>
             <StackLayout Grid.Row="1"
                          Grid.RowSpan="2"
-                         Padding="20">
+                         Padding="15,0,15,0">
                 <CollectionView ItemsSource="{Binding Cameras}"
                                 SelectionMode="Single"
                                 SelectionChanged="CameraSelect">
@@ -41,7 +41,7 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <pancake:PancakeView CornerRadius="30"
+                            <pancake:PancakeView CornerRadius="45"
                                      VerticalOptions="Start"
                                      BackgroundColor="White"
                                      Padding="20,10"
@@ -50,20 +50,24 @@
                                 <StackLayout>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.2*"/>
                                             <ColumnDefinition Width="0.8*"/>
+                                            <ColumnDefinition Width="0.2*"/>
                                         </Grid.ColumnDefinitions>
-                                        <StackLayout Grid.Column="1">
-
-                                            <Label 
-                                           Style="{x:StaticResource Number}"
-                                               Text="Камера по адресу"/>
-                                            <Label Text="{Binding Address}"/>
+                                        <StackLayout VerticalOptions="Center" Grid.Column="0">
+                                            
+                                            <Label Text="{Binding Address}"
+                                                   TextColor="Black"
+                                                   Margin="5,0,0,0"
+                                                   VerticalOptions="Center"
+                                                   FontSize="18"
+                                                   FontAttributes="Bold"/>
                                         </StackLayout>
-                                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_camera.svg"
+                                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
                                                             ReplaceStringMap="{Binding Address, Converter={x:StaticResource SvgColor}}"
-                                                        HeightRequest="50"
-                                                        WidthRequest="50"
+                                                        HeightRequest="35"
+                                                            HorizontalOptions="EndAndExpand"
+                                                            Grid.Column="1"
+                                                        WidthRequest="35"
                                                         Margin="0,15"/>
                                     </Grid>
                                 </StackLayout>

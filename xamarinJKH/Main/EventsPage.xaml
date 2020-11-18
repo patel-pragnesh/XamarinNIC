@@ -466,11 +466,11 @@
                                 <StackLayout
                                     Orientation="Horizontal">
                                     <svg:SvgCachedImage
-                                        Source="resource://xamarinJKH.Resources.ic_camera.svg"
+                                        Source="resource://xamarinJKH.Resources.ic_web_cams_icon.svg"
                                         HeightRequest="40"
                                         ReplaceStringMap="{Binding ShowAnnouncements, Converter={x:StaticResource SvgColor}}"
                                         WidthRequest="60"
-                                         Margin="5,0,0,0"
+                                        Margin="5,0,0,0"
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center" />
                                     <Label

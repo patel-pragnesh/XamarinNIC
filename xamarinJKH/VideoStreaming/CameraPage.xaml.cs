@@ -24,6 +24,16 @@ namespace xamarinJKH.VideoStreaming
                 OnPropertyChanged("Link");
             }
         }
+        string _adress;
+        public string Adress
+        {
+            get => _adress;
+            set
+            {
+                _adress = value;
+                OnPropertyChanged("Adress");
+            }
+        }
         bool isLoading;
         public bool IsLoading
         {
@@ -45,7 +55,7 @@ namespace xamarinJKH.VideoStreaming
             }
         }
         bool rotated;
-        public CameraPage(string link)
+        public CameraPage(string link, string adress)
         {
             InitializeComponent();
             Analytics.TrackEvent("Камера " + link);
@@ -58,6 +68,8 @@ namespace xamarinJKH.VideoStreaming
 
             IsLoading = true;
             Link = link;
+            Adress = adress;
+            HeaderViewStack.Title = adress;
             PlayerHeight = 100;
             MessagingCenter.Subscribe<object>(this, "StopLoadingPlayer", sender =>
             {
@@ -71,6 +83,9 @@ namespace xamarinJKH.VideoStreaming
                 var width = Video.Width;
                 PlayerHeight = Convert.ToDouble(width * args);
             });
+            var fullScreenTap = new TapGestureRecognizer();
+            fullScreenTap.Tapped += async (s, e) => { Button_Clicked(this, null); };
+            FullScreen.GestureRecognizers.Add(fullScreenTap);
             // FullScreen.IsVisible = true;
         }
 

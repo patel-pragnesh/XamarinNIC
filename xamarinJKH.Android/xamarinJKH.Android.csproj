@@ -194,6 +194,12 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_web_cams_top.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_web_cams_top_light.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_web_cams_top.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_web_cams_top_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_web_cams_top.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_web_cams_top_light.png" />
     <AndroidResource Include="Resources\drawable\icon_login.png" />
     <AndroidResource Include="Resources\drawable\ic_accept_app.png" />
     <AndroidResource Include="Resources\drawable\ic_additional_top.png" />
@@ -264,6 +270,8 @@
     <AndroidResource Include="Resources\drawable\ic_status_wait.png" />
     <AndroidResource Include="Resources\drawable\ic_time.png" />
     <AndroidResource Include="Resources\drawable\ic_top_event_back.png" />
+    <AndroidResource Include="Resources\drawable\ic_web_cams_top.png" />
+    <AndroidResource Include="Resources\drawable\ic_web_cams_top_light.png" />
     <AndroidResource Include="Resources\drawable\pay.png" />
     <AndroidResource Include="Resources\drawable\telegram.png" />
     <AndroidResource Include="Resources\drawable\top_fon_login_light.png" />

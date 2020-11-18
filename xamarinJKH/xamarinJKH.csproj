@@ -67,6 +67,8 @@
     <None Remove="Resources\ic_star.svg" />
     <None Remove="Resources\ic_sms.svg" />
     <None Remove="Resources\ic_whatsapp.svg" />
+    <None Remove="Resources\ic_web_cams_icon.svg" />
+    <None Remove="Resources\ic_full_screen.svg" />
     <None Remove="Resources\ic_status_done.svg" />
     <None Remove="Resources\ic_status_new.svg" />
     <None Remove="Resources\ic_status_wait.svg" />
@@ -243,6 +245,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource> 
     <EmbeddedResource Include="Resources\ic_whatsapp.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ic_web_cams_icon.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource> 
+    <EmbeddedResource Include="Resources\ic_full_screen.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ic_status_done.svg">

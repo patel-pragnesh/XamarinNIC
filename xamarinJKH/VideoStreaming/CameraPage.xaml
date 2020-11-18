@@ -24,12 +24,13 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <local:HeaderViewStack Title="{x:Static local:AppResources.Back}"
+            <local:HeaderViewStack Title="{Binding Adress}"
+                                   x:Name="HeaderViewStack"
                                    Grid.RowSpan="3"/>
             <StackLayout Grid.Row="1"
                          Grid.RowSpan="2">
                 <Grid   HeightRequest="{Binding PlayerHeight}"
-                        Padding="10"
+                        Padding="20,0,20,0"
                          x:Name="VideoContainer">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="200"/>
@@ -44,6 +45,7 @@
                     <video:VideoPlayerExo Source="{Binding Link}"
                                           Opacity="0"
                                           IsVisible="True"
+                                          Margin="0,-20,0,0"
                                           HeightRequest="{Binding PlayerHeight}"
                                           Grid.RowSpan="2"
                                           Grid.ColumnSpan="2"
@@ -66,15 +68,31 @@
                         </svg:SvgCachedImage.GestureRecognizers>   
                     </svg:SvgCachedImage>
                 </Grid>
-                <Button CornerRadius="20"
-                        x:Name="FullScreen"
-                        BackgroundColor="{x:StaticResource MainColor}"
-                        Margin="20"
-                        VerticalOptions="End"
-                        TextColor="White"
-                        IsVisible="False"
-                        Text="Полноэкранный режим"
-                        Clicked="Button_Clicked"/>
+                <Frame
+                    CornerRadius="15"
+                    Margin="20, 30"
+                    IsVisible="False"
+                    x:Name="FullScreen"
+                    Padding="0"
+                    BorderColor="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=Transparent}"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark={x:StaticResource MainColor}}"
+                    >
+                    <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Center">
+                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_full_screen.svg"
+                                            Grid.Row="1"
+                                            HeightRequest="25"
+                                            WidthRequest="25"
+                                            ReplaceStringMap="{Binding Link, Converter={x:StaticResource SvgColor},ConverterParameter='#FFFFFF'}"
+                                            Grid.Column="1"/>
+                        <Button 
+                            BackgroundColor="Transparent"
+                            VerticalOptions="End"
+                            TextColor="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=White}"
+                            FontSize="16"
+                            Text="Полноэкранный режим"
+                            Clicked="Button_Clicked"/>
+                    </StackLayout>
+                </Frame>
             </StackLayout>
             
 

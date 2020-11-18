@@ -43,7 +43,8 @@ namespace xamarinJKH.VideoStreaming
             {
                 var camera = args.CurrentSelection[0] as CameraModel; 
                 if (Navigation.ModalStack.FirstOrDefault(x => x is CameraPage) == null)
-                    await Navigation.PushModalAsync(new CameraPage(camera.Url));
+                    if (camera != null)
+                        await Navigation.PushModalAsync(new CameraPage(camera.Url, camera.Address));
                 (sender as CollectionView).SelectedItem = null;
             }
             catch
