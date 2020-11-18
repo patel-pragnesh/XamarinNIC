@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace xamarinJKH.Main
         public List<MeterInfo> _meterInfo { get; set; }
         public List<MeterInfo> _meterInfoAll { get; set; }
         private string account = "";
-        public List<string> Accounts = new List<string>();
+        public ObservableCollection<string> Accounts { get; set; }
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
 
@@ -59,6 +60,7 @@ namespace xamarinJKH.Main
                 });
             }
         }
+
 
         public async Task RefreshCountersData()
         {
@@ -201,6 +203,7 @@ namespace xamarinJKH.Main
         {
             InitializeComponent();
             Analytics.TrackEvent("Показания");
+            Accounts = new ObservableCollection<string>();
             Settings.mainPage = this;
             NavigationPage.SetHasNavigationBar(this, false);
             switch (Device.RuntimePlatform)
@@ -269,6 +272,8 @@ namespace xamarinJKH.Main
             ChangeTheme = new Command(async () => { SetTitle(); });
             MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) => ChangeTheme.Execute(null));
             MessagingCenter.Subscribe<Object>(this, "UpdateCounters", (sender) => RefreshCommand.Execute(null));
+            MessagingCenter.Subscribe<Object, string>(this, "AddIdent", (sender, ident) => Accounts.Add(ident));
+            MessagingCenter.Subscribe<Object, string>(this, "RemoveIdent", (sender, ident) => Accounts.Remove(ident));
         }
 
         private void SetTitle()
@@ -427,6 +432,8 @@ namespace xamarinJKH.Main
             base.OnAppearing();
 
             new Task(SyncSetup).Start(); // This could be an await'd task if need be
+            
+            
         }
 
         async void SyncSetup()
