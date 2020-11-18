@@ -196,6 +196,11 @@ namespace xamarinJKH.AppsConst
                     try
                     {
                         (((s as View).Parent as StackLayout).Children[0] as RadioButton).IsChecked = true;
+                        var index = Convert.ToInt32((((s as View).Parent as StackLayout).Children[0] as RadioButton).ClassId);
+
+                        (BindingContext as AddAppConstModel).Ident = index == 0;
+                        this.CreateType = index;
+
                     }
                     catch { }
                 };
@@ -573,7 +578,7 @@ namespace xamarinJKH.AppsConst
 
             if (!(BindingContext as AddAppConstModel).Ident)
             {
-                if (this.District == null && this.CreateType == 1 || this.House == null && this.CreateType == 2 || this.Flat == null && this.CreateType == 3)
+                if ((this.District == null && this.CreateType == 1 || this.House == null && this.CreateType == 2 || this.Flat == null && (this.CreateType == 3 || this.CreateType == 4)) || string.IsNullOrEmpty(text))
                 {
                     await DisplayAlert(AppResources.Error, AppResources.ErrorFills.Replace(':',' '), "OK");
                     progress.IsVisible = false;
