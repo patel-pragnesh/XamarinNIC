@@ -345,6 +345,8 @@ namespace xamarinJKH.Main
 
                     IsRefreshing = false;
                 });
+
+                MessagingCenter.Send<Object, string>(this, "RemoveIdent", ident);
             }
             else
             {
