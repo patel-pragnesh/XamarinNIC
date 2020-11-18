@@ -11,10 +11,10 @@ using Android.Views;
 using Android.Widget;
 using Android.Net;
 
-using Xamarin.Android.ChromeCustomTabs;
-using Android.Support.CustomTabs.Chromium.SharedUtilities;
+// using Xamarin.Android.ChromeCustomTabs;
+// using Android.Support.CustomTabs.Chromium.SharedUtilities;
 using Android.Support.CustomTabs;
-using Android.Support.CustomTabs.Shared;
+// using Android.Support.CustomTabs.Shared;
 using Xamarin.Forms.Platform.Android;
 using Android.Webkit;
 
@@ -23,11 +23,11 @@ using xamarinJKH.Droid.CustomRenderers;
 using Xamarin.Forms;
 using Plugin.CurrentActivity;
 
-using Org.Chromium.Chrome;
-using Org.Chromium.Chrome.Browser.Hosted;
-using Org;
-using Org.Chromium;
-using Org.Chromium.Chrome.Browser;
+// using Org.Chromium.Chrome;
+// using Org.Chromium.Chrome.Browser.Hosted;
+// using Org;
+// using Org.Chromium;
+// using Org.Chromium.Chrome.Browser;
 
 [assembly:Dependency(typeof(ChromeTabRenderer))]
 namespace xamarinJKH.Droid.CustomRenderers
