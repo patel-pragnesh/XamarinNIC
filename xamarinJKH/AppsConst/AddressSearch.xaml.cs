@@ -54,6 +54,7 @@ namespace xamarinJKH.AppsConst
         {
             base.OnDisappearing();
             MessagingCenter.Send<Object, Tuple<NamedValue, NamedValue, NamedValue>>(this, "SetNames", new Tuple<NamedValue, NamedValue, NamedValue>(this.viewModel.DistrictObject, this.viewModel.HouseObject, this.viewModel.FlatObject));
+            MessagingCenter.Send<Object, Tuple<int?, int?, int?, string>>(this, "SetTypes", new Tuple<int?, int?, int?, string>(viewModel.DistrictID, viewModel.HouseID, viewModel.PremiseID, viewModel.Street));
         }
 
         private void District_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
