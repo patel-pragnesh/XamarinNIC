@@ -150,16 +150,25 @@
                                          VerticalOptions="FillAndExpand">
                     <StackLayout>
                         <StackLayout x:Name="StackLayoutIdent"
-                                     IsVisible="False">
+                                     IsVisible="False" Orientation="Vertical" >
                                 <Label
                                 Text="{x:Static xamarinJkh:AppResources.AddIdent}"
                                 TextDecorations="Underline"
                                 FontAttributes="Bold"
-                                Margin="0,0,0,15"
+                                Margin="0,0,0,5"
                                 HorizontalOptions="CenterAndExpand"
                                 TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                 FontSize="15" />
-                        </StackLayout>
+                                    <Label x:Name="AccExistsLbl"
+                               Text="{x:Static xamarinJkh:AppResources.NoAccounts}"
+                               Margin="0,0,0,15"
+                               TextDecorations="Underline"
+                               FontAttributes="Bold"                               
+                               HorizontalOptions="CenterAndExpand"
+                               HorizontalTextAlignment="Center"
+                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                               FontSize="12" />
+                                </StackLayout>
                         <StackLayout
                         HorizontalOptions="Center"
                         x:Name="StackLayoutNewApp"

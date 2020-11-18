@@ -233,6 +233,14 @@ namespace xamarinJKH.Main
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameAddIdent.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
+
+            if (Settings.Person != null)
+                if (Settings.Person.Accounts != null)
+                    if (Settings.Person.Accounts.Count == 0)
+                    {
+                        AccExistsLbl.IsVisible = true;
+                        AccExistsLbl.Text = AppResources.NoAccounts;
+                    }    
         }
 
         async void getInfo()
@@ -455,6 +463,7 @@ namespace xamarinJKH.Main
                 }
 
 #endif
+
                 if (accounts != null)
                 {
                     foreach (var account in accounts)
@@ -463,10 +472,22 @@ namespace xamarinJKH.Main
                         Device.BeginInvokeOnMainThread(() =>
                             {
                                 Accounts.Add(account);
-                                baseForPays.Children.Add(AddAccountToList(account, PaysPage._accountingInfos));
+                                baseForPays.Children.Add(AddAccountToList(account, PaysPage._accountingInfos));                               
                             }
                         );
                     }
+                    if (accounts.Count == 0)
+                    {
+                        Device.BeginInvokeOnMainThread(() => { AccExistsLbl.IsVisible = true; });                        
+                    }
+                    else
+                    {
+                        Device.BeginInvokeOnMainThread(() => { AccExistsLbl.IsVisible = false; });
+                    }
+                }
+                else
+                {
+                    Device.BeginInvokeOnMainThread(() => { AccExistsLbl.IsVisible = true; } );
                 }
 
                 IsRefreshing = false;

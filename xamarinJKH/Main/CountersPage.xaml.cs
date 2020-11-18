@@ -414,13 +414,14 @@ namespace xamarinJKH.Main
                                 FontSize = 15
                             });
                         }
-
+                        PeriodSendLbl.IsVisible = false;
                         PeriodSendLbl.FormattedText = formattedResource;
                         StackLayoutPicker.IsVisible = true;
                         StackLayoutAddIdent.IsVisible = false;
                     }
                     else
                     {
+                        PeriodSendLbl.IsVisible = true;
                         PeriodSendLbl.Text = AppResources.NoAccounts;
                         StackLayoutPicker.IsVisible = false;
                         StackLayoutAddIdent.IsVisible = true;
