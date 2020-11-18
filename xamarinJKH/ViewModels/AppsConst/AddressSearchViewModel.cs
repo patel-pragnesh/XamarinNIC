@@ -95,11 +95,21 @@ namespace xamarinJKH.ViewModels.AppsConst
             FlatObject = selected.Item3;
 
             if (selected.Item1 != null)
+            {
+
                 District = selected.Item1.Name;
+                DistrictID = selected.Item1.ID;
+            }
             if (selected.Item2 != null)
+            {
                 House = selected.Item2.Name;
+                HouseID = selected.Item2.ID;
+            }
             if (selected.Item3 != null)
+            {
                 Flat = selected.Item3.Name;
+                PremiseID = selected.Item3.ID;
+            }
 
 
             MessagingCenter.Subscribe<Object, NamedValue>(this, "SetDistrict", (sender, args) =>
