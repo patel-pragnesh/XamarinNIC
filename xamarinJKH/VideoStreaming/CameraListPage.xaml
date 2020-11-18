@@ -35,40 +35,42 @@
                          Padding="20" x:Name="cameraStack">
                 <CollectionView ItemsSource="{Binding Cameras}"
                                 SelectionMode="Single"
-                                SelectionChanged="CameraSelect">
+                                SelectionChanged="CameraSelect" >
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical"
                                            ItemSpacing="20"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <pancake:PancakeView CornerRadius="30"
+                            <StackLayout Padding="2" >
+                                <pancake:PancakeView CornerRadius="40"
                                      VerticalOptions="Start"
                                      BackgroundColor="White"
-                                     Padding="20,10"
-                                     BorderThickness="1"
+                                     Padding="20,10"                                                    
+                                     BorderThickness="{AppThemeBinding Dark=0, Light=1}"
                                      BorderColor="{AppThemeBinding Dark=White, Light={x:StaticResource MainColor}}">
-                                <StackLayout>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.2*"/>
-                                            <ColumnDefinition Width="0.8*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <StackLayout Grid.Column="1">
+                                    <StackLayout>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.2*"/>
+                                                <ColumnDefinition Width="0.8*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout Grid.Column="1">
 
-                                            <Label 
+                                                <Label 
                                            Style="{x:StaticResource Number}"
                                                Text="Камера по адресу"/>
-                                            <Label Text="{Binding Address}"/>
-                                        </StackLayout>
-                                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_camera.svg"
+                                                <Label Text="{Binding Address}"/>
+                                            </StackLayout>
+                                            <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_camera.svg"
                                                             ReplaceStringMap="{Binding Address, Converter={x:StaticResource SvgColor}}"
                                                         HeightRequest="50"
                                                         WidthRequest="50"
                                                         Margin="0,15"/>
-                                    </Grid>
-                                </StackLayout>
-                            </pancake:PancakeView>
+                                        </Grid>
+                                    </StackLayout>
+                                </pancake:PancakeView>
+                            </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
