@@ -61,7 +61,11 @@ namespace xamarinJKH.ViewModels.AppsConst
                 OnPropertyChanged(nameof(Flat));
             }
         }
-        public AddressSearchViewModel()
+
+        public NamedValue DistrictObject;
+        public NamedValue HouseObject;
+        public NamedValue FlatObject;
+        public AddressSearchViewModel(Tuple<NamedValue, NamedValue, NamedValue> selected)
         {
             Districts = new List<NamedValue>();
             Streets = new List<NamedValue>();
@@ -86,22 +90,35 @@ namespace xamarinJKH.ViewModels.AppsConst
                     Houses.Add(house);
                 }
             });
+            DistrictObject = selected.Item1;
+            HouseObject = selected.Item2;
+            FlatObject = selected.Item3;
+
+            if (selected.Item1 != null)
+                District = selected.Item1.Name;
+            if (selected.Item2 != null)
+                House = selected.Item2.Name;
+            if (selected.Item3 != null)
+                Flat = selected.Item3.Name;
 
 
             MessagingCenter.Subscribe<Object, NamedValue>(this, "SetDistrict", (sender, args) =>
             {
                 DistrictID = args.ID;
                 District = args.Name;
+                DistrictObject = args;
             });
             MessagingCenter.Subscribe<Object, NamedValue>(this, "SetHouse", (sender, args) =>
             {
                 HouseID = args.ID;
                 House = args.Name;
+                HouseObject = args;
             });
             MessagingCenter.Subscribe<Object, NamedValue>(this, "SetPremise", (sender, args) =>
             {
                 PremiseID = args.ID;
                 Flat = args.Name;
+                FlatObject = args;
             });
 
         }

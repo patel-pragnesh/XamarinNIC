@@ -59,6 +59,10 @@ namespace xamarinJKH.AppsConst
         public bool ShowHouses { get => Settings.MobileSettings.housesExists; }
         public bool ShowPremises { get => Settings.MobileSettings.premisesExists; }
 
+        public NamedValue selectedDistrict;
+        public NamedValue selectedHouse;
+        public NamedValue selectedFlat;
+
         public NewAppConstPage(AppsConstPage appsPage)
         {
             _appsPage = appsPage;
@@ -175,8 +179,28 @@ namespace xamarinJKH.AppsConst
                 this.Street = data.Item4;
             });
 
+            MessagingCenter.Subscribe<Object, Tuple<NamedValue, NamedValue, NamedValue>>(this, "SetNames", (sender, data) =>
+            {
+                selectedDistrict = data.Item1;
+                selectedHouse = data.Item2;
+                selectedFlat = data.Item3;
+            });
 
             ((TypeStack.Children[0] as StackLayout).Children[0] as RadioButton).IsChecked = true;
+
+            foreach (StackLayout option in TypeStack.Children)
+            {
+                var Tapped = new TapGestureRecognizer();
+                Tapped.Tapped += (s, e) =>
+                {
+                    try
+                    {
+                        (((s as View).Parent as StackLayout).Children[0] as RadioButton).IsChecked = true;
+                    }
+                    catch { }
+                };
+                (option.Children[1] as Label).GestureRecognizers.Add(Tapped);
+            }
         }
 
         private async void AddFile()
@@ -549,7 +573,7 @@ namespace xamarinJKH.AppsConst
 
             if (!(BindingContext as AddAppConstModel).Ident)
             {
-                if (this.District == null || this.House == null || this.Flat == null || string.IsNullOrEmpty(this.Street))
+                if (this.District == null && this.CreateType == 1 || this.House == null && this.CreateType == 2 || this.Flat == null && this.CreateType == 3)
                 {
                     await DisplayAlert(AppResources.Error, AppResources.ErrorFills.Replace(':',' '), "OK");
                     progress.IsVisible = false;
@@ -559,6 +583,18 @@ namespace xamarinJKH.AppsConst
                 try
                 {
                     string typeId = Convert.ToInt32(Settings.TypeApp[PickerType.SelectedIndex].ID).ToString();
+                    switch (CreateType)
+                    {
+                        case 1: House = null;
+                            Flat = null;
+                            break;
+                        case 2: Flat = null;
+                            District = null;
+                            break;
+                        case 3: District = null;
+                            House = null;
+                            break;
+                    }
                     IDResult result = await _server.newAppConst(null, typeId, text, "", this.District, this.House, this.Flat, this.Street);
 
 
@@ -698,6 +734,7 @@ namespace xamarinJKH.AppsConst
             var index = (parent as StackLayout).Children.IndexOf((sender as RadioButton).Parent as StackLayout);
 
             (BindingContext as AddAppConstModel).Ident = index == 0;
+            this.CreateType = index;
         }
 
         private async void AddressApp(object sender, EventArgs e)
@@ -707,7 +744,7 @@ namespace xamarinJKH.AppsConst
             if (select != null)
             {
                 var index = TypeStack.Children.IndexOf(select);
-                await Navigation.PushAsync(new AddressSearch(index));
+                await Navigation.PushAsync(new AddressSearch(index, new Tuple<NamedValue, NamedValue, NamedValue>(selectedDistrict, selectedHouse, selectedFlat)));
 
             }
         }

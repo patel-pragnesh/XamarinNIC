@@ -10,6 +10,7 @@ using xamarinJKH.ViewModels.AppsConst;
 using dotMorten.Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
 using xamarinJKH.DialogViews;
+using xamarinJKH.Server.RequestModel;
 
 namespace xamarinJKH.AppsConst
 {
@@ -18,11 +19,11 @@ namespace xamarinJKH.AppsConst
     {
         public int Type { get; set; }
         AddressSearchViewModel viewModel { get; set; }
-        public AddressSearch(int type)
+        public AddressSearch(int type, Tuple<NamedValue, NamedValue, NamedValue> selected)
         {
             InitializeComponent();
             this.Type = type;
-            BindingContext = viewModel = new AddressSearchViewModel();
+            BindingContext = viewModel = new AddressSearchViewModel(selected);
             switch (type)
             {
                 case 1: StreetStack.IsVisible = false;
@@ -47,6 +48,12 @@ namespace xamarinJKH.AppsConst
         private async void GoBack(object sender, EventArgs args)
         {
             await Navigation.PopAsync();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Send<Object, Tuple<NamedValue, NamedValue, NamedValue>>(this, "SetNames", new Tuple<NamedValue, NamedValue, NamedValue>(this.viewModel.DistrictObject, this.viewModel.HouseObject, this.viewModel.FlatObject));
         }
 
         private void District_TextChanged(object sender, dotMorten.Xamarin.Forms.AutoSuggestBoxTextChangedEventArgs e)
