@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Xml.Xsl;
@@ -191,19 +192,24 @@ namespace xamarinJKH.Main
             });
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
             Settings.mainPage = this;
-            new Task(SyncSetup).Start(); // This could be an await'd task if need be
+            
+            await SyncSetup(); // This could be an await'd task if need be
+           
         }
 
-        async void SyncSetup()
+        async Task SyncSetup()
         {
-            Device.BeginInvokeOnMainThread(() =>
+           
+            Device.BeginInvokeOnMainThread(async () =>
             {
+                aIndicator.IsVisible = true;
                 // Assuming this function needs to use Main/UI thread to move to your "Main Menu" Page
-                RefreshPaysData();
+                await InfoForUpd();
+                aIndicator.IsVisible = false;
             });
         }
 
@@ -233,9 +239,42 @@ namespace xamarinJKH.Main
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameAddIdent.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
+
+            if (Settings.Person != null)
+                if (Settings.Person.Accounts != null)
+                    if (Settings.Person.Accounts.Count == 0)
+                    {
+                        AccExistsLbl.IsVisible = true;
+                        AccExistsLbl.Text = AppResources.NoAccounts;
+                    }    
         }
 
         async void getInfo()
+        {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
+
+            ItemsList<AccountAccountingInfo> info = await _server.GetAccountingInfo();
+            if (info.Error == null)
+            {
+                _accountingInfo = info.Data;
+                _accountingInfos = _accountingInfo;
+                /*viewModel.*/
+                LoadAccounts.Execute(info.Data);
+                //this.BindingContext = this;
+            }
+            else
+            {
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorCountersNoData, "OK");
+            }
+        }
+
+
+        async Task InfoForUpd()
         {
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
@@ -345,6 +384,8 @@ namespace xamarinJKH.Main
 
                     IsRefreshing = false;
                 });
+
+                MessagingCenter.Send<Object, string>(this, "RemoveIdent", ident);
             }
             else
             {
@@ -453,6 +494,7 @@ namespace xamarinJKH.Main
                 }
 
 #endif
+
                 if (accounts != null)
                 {
                     foreach (var account in accounts)
@@ -461,10 +503,22 @@ namespace xamarinJKH.Main
                         Device.BeginInvokeOnMainThread(() =>
                             {
                                 Accounts.Add(account);
-                                baseForPays.Children.Add(AddAccountToList(account, PaysPage._accountingInfos));
+                                baseForPays.Children.Add(AddAccountToList(account, PaysPage._accountingInfos));                               
                             }
                         );
                     }
+                    if (accounts.Count == 0)
+                    {
+                        Device.BeginInvokeOnMainThread(() => { AccExistsLbl.IsVisible = true; });                        
+                    }
+                    else
+                    {
+                        Device.BeginInvokeOnMainThread(() => { AccExistsLbl.IsVisible = false; });
+                    }
+                }
+                else
+                {
+                    Device.BeginInvokeOnMainThread(() => { AccExistsLbl.IsVisible = true; } );
                 }
 
                 IsRefreshing = false;

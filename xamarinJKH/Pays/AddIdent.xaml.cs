@@ -105,6 +105,15 @@ namespace xamarinJKH.Pays
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             Frame.SetAppThemeColor(Xamarin.Forms.Frame.BorderColorProperty, hexColor, Color.White);
         }
+
+        async void AddIdentToList(string ident)
+        {
+            string login = Preferences.Get("login", "");
+            string pass = Preferences.Get("pass", "");
+            LoginResult person = await _server.Login(login, pass);
+            Settings.Person = person;
+            MessagingCenter.Send<Object, string>(this, "AddIdent", ident);
+        }
         
         public async void AddIdentAccount(string ident)
         {
@@ -175,6 +184,7 @@ namespace xamarinJKH.Pays
                 AddAccountResult result = await _server.AddIdent(ident);
                 if (result.Error == null)
                 {
+                    AddIdentToList(ident);
                     Console.WriteLine(result.Address);
                     Console.WriteLine("Отправлено");
                     await DisplayAlert("", $"{AppResources.Acc} " + ident + $"{AppResources.AddLsString}", "ОК");

@@ -105,14 +105,13 @@
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
-                    <StackLayout VerticalOptions="FillAndExpand"
-                       >
+                    <StackLayout VerticalOptions="FillAndExpand">
                         <Frame x:Name="FrameAddIdent"
                                CornerRadius="40"
-                               Margin="20, 10, 20, -60"
+                               Margin="20, 10, 20, -40"
                                VerticalOptions="Start"
                                BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
-                               Padding="20,20,20,60">
+                               Padding="20,20,20,50">
                             <StackLayout>
                                 <Label
                                 Text="{x:Static xamarinJkh:AppResources.AddIdent}"
@@ -122,6 +121,16 @@
                                 HorizontalOptions="CenterAndExpand"
                                 TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                 FontSize="15" />
+                                <Label x:Name="AccExistsLbl"
+                               Text="добавьте аккаунт"
+                               Margin="0,0,0,0"
+                               TextDecorations="Underline"
+                               FontAttributes="Bold"
+                               IsVisible="False"
+                               HorizontalOptions="CenterAndExpand"
+                               HorizontalTextAlignment="Center"
+                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                               FontSize="12" />
 
                                 <Label Text="История спиания"
                                        IsVisible="False"
@@ -137,9 +146,16 @@
                             </StackLayout>
                             
                         </Frame>
+                        <ActivityIndicator x:Name="aIndicator" Color="{Binding hex}" Scale="2"
+                                           
+                                          IsRunning="True" IsEnabled="True" IsVisible="false" 
+                                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></ActivityIndicator>
+
                         <RefreshView x:Name="paysRefreshView" Margin="10, 0, 10, 0" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" VerticalOptions="FillAndExpand">
                             <ScrollView x:Name="scrollForPays" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
-                                <StackLayout x:Name="baseForPays" VerticalOptions="FillAndExpand"></StackLayout>
+                                <StackLayout x:Name="baseForPays" VerticalOptions="FillAndExpand">
+                                    
+                                </StackLayout>
                             </ScrollView>
                         </RefreshView>
                         <!--<ListView x:Name="additionalList"
