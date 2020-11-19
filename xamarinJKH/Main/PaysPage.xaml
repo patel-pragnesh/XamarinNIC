@@ -135,7 +135,7 @@
 
                             </ListView.ItemTemplate>
                         </ListView>-->
-                        <StackLayout VerticalOptions="End"
+                        <StackLayout VerticalOptions="EndAndExpand"
                             >
                             <pancakeView:PancakeView x:Name="GoodsLayot" Elevation="20" CornerRadius="50,50,0,0"
                                                      BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
