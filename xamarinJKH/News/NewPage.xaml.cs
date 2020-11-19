@@ -78,6 +78,14 @@ namespace xamarinJKH.News
             BackStackLayout.GestureRecognizers.Add(backClick);
             SetText();
             BindingContext = this;
+            if (!newsInfo.IsReaded)
+            {
+                Task.Run(async () =>
+                {
+                    var response = await _server.SetNewReadFlag(newsInfo.ID);
+                    MessagingCenter.Send<Object, int>(this, "SetEventsAmount", -1);
+                });
+            }
         }
 
         bool navigated;
