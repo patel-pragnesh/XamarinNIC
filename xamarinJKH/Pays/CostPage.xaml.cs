@@ -54,6 +54,8 @@ namespace xamarinJKH.Pays
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+
                     if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
                     {
                         LabelHistory.FontSize = 10;

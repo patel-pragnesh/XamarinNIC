@@ -26,7 +26,8 @@
                   
                     <StackLayout
                         Margin="25,10,15,0"
-                        Orientation="Horizontal">
+                        Orientation="Horizontal"
+                        x:Name="Pancake">
                         <Label x:Name="UkName"
                                Text="Название"
                                FontAttributes="Bold"

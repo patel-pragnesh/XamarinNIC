@@ -44,7 +44,9 @@ namespace xamarinJKH.Notifications
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    //Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    Pancake2.Padding = new Thickness(0, statusBarHeight, 0, 0);
+
                     //BackgroundColor = Color.White;
                     break;
                 default:

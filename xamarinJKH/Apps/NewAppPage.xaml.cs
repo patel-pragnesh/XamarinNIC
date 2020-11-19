@@ -61,36 +61,13 @@ namespace xamarinJKH.Apps
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    break;
-                default:
-                    break;
-            }
-            switch (Device.RuntimePlatform)
-            {
-                case Device.iOS:
-                    //BackgroundColor = Color.White;
-                    // ImageTop.Margin = new Thickness(0, 0, 0, 0);
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
-                    // if (Application.Current.MainPage.Height > 800)
-                    // {
-                    //     ScrollViewContainer.Margin = new Thickness(0, 0, 0, -180);
-                    //     BackStackLayout.Margin = new Thickness(-5, 35, 0, 0);
-                    // }
-                    break;
-                case Device.Android:
-                    // ScrollViewContainer.Margin = new Thickness(0, 0, 0, -162);
-                    // double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
-                    // if (Math.Abs(or - 0.5) < 0.02)
-                    // {
-                    //     ScrollViewContainer.Margin = new Thickness(0, 0, 0, -115);
-                    //     BackStackLayout.Margin = new Thickness(-5, 15, 0, 0);
-                    // }
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
 
                     break;
                 default:
                     break;
             }
+     
 
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();

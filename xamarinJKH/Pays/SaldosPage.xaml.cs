@@ -97,7 +97,9 @@ namespace xamarinJKH.Pays
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    if(Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width<700)
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+
+                    if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width<700)
                     {
                         kvitLabel2.FontSize = 14;
                         LabelDate.FontSize = 12;

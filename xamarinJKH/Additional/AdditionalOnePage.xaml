@@ -11,7 +11,7 @@
 >
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Orientation="Horizontal"
+            <StackLayout Orientation="Horizontal" x:Name="Pancake"
                          Margin="10, 10, 10, 0"
                          HorizontalOptions="FillAndExpand">
                 <StackLayout

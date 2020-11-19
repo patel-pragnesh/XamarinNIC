@@ -64,7 +64,8 @@
             </pancakeView:PancakeView>
             <StackLayout
                 Margin="25,0,15,0"
-                Orientation="Horizontal">
+                Orientation="Horizontal"
+                x:Name="Pancake2">
                 <Label x:Name="UkName"
                        Text="Название"
                        IsVisible="False"
