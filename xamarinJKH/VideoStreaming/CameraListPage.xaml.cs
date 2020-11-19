@@ -26,8 +26,8 @@ namespace xamarinJKH.VideoStreaming
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    var p = cameraStack.Padding;
-                    cameraStack.Padding= new Thickness(p.Left,p.Top+ statusBarHeight,p.Right,p.Bottom);
+                    //var p = cameraStack.Padding;
+                    //cameraStack.Padding= new Thickness(p.Left,p.Top+ statusBarHeight,p.Right,p.Bottom);
                     
                     break;
                 default:
@@ -59,7 +59,7 @@ namespace xamarinJKH.VideoStreaming
                 {
                     if (Navigation.ModalStack.FirstOrDefault(x => x is CameraPage) == null)
                         if (camera != null)
-                            await Navigation.PushModalAsync(new CameraPage(camera.Url));
+                            await Navigation.PushModalAsync(new CameraPage(camera.Url, camera.Address));
                 }
                 else
                 {

@@ -336,7 +336,9 @@
     <BundleResource Include="Resources\ic_background_event_light.png" />
     <BundleResource Include="Resources\ic_background_OSS_light.png" />
     <BundleResource Include="Resources\ic_background_profile.png" />
-    <BundleResource Include="Resources\ic_background_profile_light.png" />
+    <BundleResource Include="Resources\ic_background_profile_light.png">
+      <SubType>Designer</SubType>
+    </BundleResource>
     <BundleResource Include="Resources\ic_background_quest_light.png" />
     <BundleResource Include="Resources\ic_bottom_login.png" />
     <BundleResource Include="Resources\ic_calendar.png" />
@@ -370,7 +372,9 @@
     <BundleResource Include="Resources\ic_no_photo.png" />
     <BundleResource Include="Resources\ic_password_login.png" />
     <BundleResource Include="Resources\ic_pays_top.png" />
-    <BundleResource Include="Resources\ic_pays_top_light.png" />
+    <BundleResource Include="Resources\ic_pays_top_light.png">
+      <SubType>Designer</SubType>
+    </BundleResource>
     <BundleResource Include="Resources\ic_phone_login.png" />
     <BundleResource Include="Resources\ic_phone.png" />
     <BundleResource Include="Resources\ic_plus.png" />
@@ -480,5 +484,11 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_receipt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_web_cams_top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_web_cams_top_light.png" />
   </ItemGroup>
 </Project>
