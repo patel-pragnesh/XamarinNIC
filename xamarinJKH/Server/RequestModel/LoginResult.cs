@@ -24,6 +24,13 @@ namespace xamarinJKH.Server.RequestModel
         {
             return FIO + " " + Login;
         }
+        public UserSettings UserSettings { get; set; }
+    }
+
+    public class UserSettings
+    {
+        public bool RightCloseRequest { get; set; }
+        public bool RightPerformRequest { get; set; }
     }
 
     public class AccountInfo
