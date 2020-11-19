@@ -189,6 +189,7 @@ namespace xamarinJKH.Server
         public const string READ_REQUEST = "Requests/SetReadedFlag"; // Установка флага прочтения заявки
         public const string READ_NOTIFICATION = "Announcements/SetReadedFlag"; //Установка флага прочтения объявления
         public const string READ_POLL = "Polls/SetReadedFlag";//Установка флага прочтения опроса
+        public const string READ_NEW = "Common/SetNewsReadedFlag";//Установка флага прочтения новости
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -2504,6 +2505,33 @@ namespace xamarinJKH.Server
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(READ_POLL, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                ID
+            });
+
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+
+        public async Task<CommonResult> SetNewReadFlag(int ID)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(READ_NEW, Method.POST);
             restRequest.RequestFormat = DataFormat.Json;
             restRequest.AddHeader("client", Device.RuntimePlatform);
             restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
