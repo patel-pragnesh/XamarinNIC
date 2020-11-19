@@ -85,6 +85,9 @@ namespace xamarinJKH.MainConst
             Empty = RequestInfos.Count == 0;
         }
 
+        public bool CanComplete => Settings.Person.UserSettings.RightPerformRequest;
+        public bool CanClose => Settings.Person.UserSettings.RightCloseRequest;
+
         public AppsConstPage()
         {
             InitializeComponent();

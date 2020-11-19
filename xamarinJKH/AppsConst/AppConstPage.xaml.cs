@@ -239,6 +239,9 @@ namespace xamarinJKH.AppsConst
         }
 
         public string DateUniq = "";
+        public bool CanComplete => Settings.Person.UserSettings.RightPerformRequest;
+        public bool CanClose => Settings.Person.UserSettings.RightCloseRequest;
+
 
         void addAppMessage(RequestMessage message, string prevAuthor)
         {

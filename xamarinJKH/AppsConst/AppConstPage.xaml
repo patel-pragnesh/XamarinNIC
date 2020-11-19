@@ -146,6 +146,7 @@
                             <StackLayout
                                 Margin="0,5,0,0"
                                 x:Name="StackLayoutExecute"
+                                IsVisible="{Binding CanComplete}"
                                 VerticalOptions="Center"
                                 HorizontalOptions="StartAndExpand">
                                 <xamarinJkh:IconView Source="ic_check_mark"
@@ -234,6 +235,7 @@
                                 Margin="0,5,0,0"
                                 VerticalOptions="Center"
                                 x:Name="StackLayoutClose"
+                                IsVisible="{Binding CanClose}"
                                 HorizontalOptions="EndAndExpand">
                                 <xamarinJkh:IconView Source="ic_close_app1"
                                                      Foreground="{AppThemeBinding Light=Black, Dark=White}"

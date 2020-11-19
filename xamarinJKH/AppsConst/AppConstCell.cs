@@ -280,7 +280,8 @@ namespace xamarinJKH.AppsConst
                 {
                     ImageStatus.Source = "resource://xamarinJKH.Resources.ic_status_wait.svg";
                 }
-                checkBox.IsVisible = CheckCommand;
+                var canCheck = Settings.Person.UserSettings.RightCloseRequest || Settings.Person.UserSettings.RightPerformRequest;
+                checkBox.IsVisible = CheckCommand && canCheck;
                 
                 checkBox.IsChecked = Check;
 
