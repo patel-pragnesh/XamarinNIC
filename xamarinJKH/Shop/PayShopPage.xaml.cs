@@ -17,6 +17,7 @@ using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
+using AppPage = xamarinJKH.Apps.AppPage;
 
 namespace xamarinJKH.Shop
 {

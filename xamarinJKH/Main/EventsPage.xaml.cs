@@ -17,6 +17,7 @@ using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.Additional;
+using xamarinJKH.Apps;
 using xamarinJKH.CustomRenderers;
 using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
@@ -29,6 +30,7 @@ using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 using xamarinJKH.VideoStreaming;
 using Application = Xamarin.Forms.Application;
+using AppPage = xamarinJKH.Tech.AppPage;
 using NavigationPage = Xamarin.Forms.NavigationPage;
 using VisualElement = Xamarin.Forms.VisualElement;
 
@@ -68,6 +70,7 @@ namespace xamarinJKH.Main
 
 
                 await PopupNavigation.Instance.PushAsync(new TechDialog());
+                // await Navigation.PushAsync(new AppPage());
             };
             LabelTech.GestureRecognizers.Add(techSend);
 

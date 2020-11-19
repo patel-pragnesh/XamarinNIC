@@ -24,6 +24,7 @@ using System.Text.RegularExpressions;
 using System.Runtime.CompilerServices;
 using Microsoft.AppCenter.Analytics;
 using xamarinJKH.Pays;
+using AppPage = xamarinJKH.Apps.AppPage;
 using System.Runtime.Serialization;
 
 namespace xamarinJKH.Main
