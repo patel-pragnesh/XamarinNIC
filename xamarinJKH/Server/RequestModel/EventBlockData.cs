@@ -63,6 +63,7 @@ namespace xamarinJKH.Server.RequestModel
         public string ShortContent { get; set; }
         public string Created { get; set; }
         public bool HasImage { get; set; }
+        public bool IsReaded { get; set; }
     }
     public class NewsInfoFull
     {

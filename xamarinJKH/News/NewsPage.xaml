@@ -140,7 +140,8 @@
                                     <xamarinJkh:NotificationCell
                                         TextNotif="{Binding ShortContent}"
                                         DateNotif = "{Binding Created}"
-                                        Read="True"
+                                        Read="{Binding IsReaded}"
+                                        ID="{Binding ID}"
                                         TitleNotif = "{Binding Header}"/>
                                 </DataTemplate>
 

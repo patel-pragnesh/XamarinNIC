@@ -61,11 +61,6 @@ namespace xamarinJKH.VideoStreaming
             Analytics.TrackEvent("Камера " + link);
             BindingContext = this;
 
-            //var item =  CrossMediaManager.Current.Extractor.CreateMediaItem(link);
-            
-            //mmVideoView.Source = link;
-            //mmVideoView.AutoPlay = true;
-
             IsLoading = true;
             Link = link;
             Adress = adress;

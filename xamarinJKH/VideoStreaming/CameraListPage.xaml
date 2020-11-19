@@ -8,7 +8,8 @@
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              NavigationPage.HasNavigationBar="False"
-             x:Class="xamarinJKH.VideoStreaming.CameraListPage">
+             x:Class="xamarinJKH.VideoStreaming.CameraListPage"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label" x:Key="Number">
@@ -27,25 +28,26 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <local:HeaderViewStack Title="{x:Static local:AppResources.EventsCam}"
+            <local:HeaderViewStack x:Name="headerStack" Title="{x:Static local:AppResources.EventsCam}"
                                     Grid.RowSpan="3"/>
             <StackLayout Grid.Row="1"
                          Grid.RowSpan="2"
                          Padding="15,0,15,0">
                 <CollectionView ItemsSource="{Binding Cameras}"
                                 SelectionMode="Single"
-                                SelectionChanged="CameraSelect">
+                                SelectionChanged="CameraSelect" >
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical"
                                            ItemSpacing="20"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <pancake:PancakeView CornerRadius="45"
+                            <StackLayout Padding="2" >
+                                <pancake:PancakeView CornerRadius="45"
                                      VerticalOptions="Start"
                                      BackgroundColor="White"
-                                     Padding="20,10"
-                                     BorderThickness="1"
+                                     Padding="20,10"                                                    
+                                     BorderThickness="{AppThemeBinding Dark=0, Light=1}"
                                      BorderColor="{AppThemeBinding Dark=White, Light={x:StaticResource MainColor}}">
                                 <StackLayout>
                                     <Grid>
@@ -69,9 +71,10 @@
                                                             Grid.Column="1"
                                                         WidthRequest="35"
                                                         Margin="0,15"/>
-                                    </Grid>
-                                </StackLayout>
-                            </pancake:PancakeView>
+                                        </Grid>
+                                    </StackLayout>
+                                </pancake:PancakeView>
+                            </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

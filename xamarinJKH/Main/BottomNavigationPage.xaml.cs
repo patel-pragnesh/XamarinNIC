@@ -229,6 +229,12 @@ namespace xamarinJKH.Main
                 else
                     EventsAmount = args;
             });
+
+            MessagingCenter.Subscribe<Object, string>(this, "RemoveIdent", (sender, args) =>
+            {
+                if (args == null)
+                    RequestsAmount = 0;
+            });
         }
 
         void StartUpdateToken()

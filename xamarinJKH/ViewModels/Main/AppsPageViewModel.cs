@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using xamarinJKH.Utils;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace xamarinJKH.ViewModels.Main
 {
@@ -102,6 +103,8 @@ namespace xamarinJKH.ViewModels.Main
                         }
                     }
                 }
+
+                MessagingCenter.Subscribe<Object, string>(this, "AddIdent", (sender, args) => LoadRequests.Execute(null));
             });
         }
 

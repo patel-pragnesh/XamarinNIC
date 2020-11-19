@@ -89,6 +89,7 @@
                                         TextNotif="{Binding Text}"
                                         DateNotif="{Binding Created}"
                                         TitleNotif="{Binding Header}" 
+                                        ID="{Binding ID}"
                                         Read="{Binding IsReaded}"/>
                                 </DataTemplate>
 
