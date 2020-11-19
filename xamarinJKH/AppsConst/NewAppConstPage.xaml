@@ -155,7 +155,7 @@
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
                                             <RadioButton  ClassId="2" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed" IsVisible="{Binding ShowStreets}" GroupName="TypeApp"/>
-                                            <Label Text="{x:Static xamarinJkh:AppResources.Street}" Style="{x:StaticResource RadioButton}"/>
+                                            <Label Text="{x:Static xamarinJkh:AppResources.House}" Style="{x:StaticResource RadioButton}"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
                                             <RadioButton ClassId="4" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed" IsVisible="{Binding ShowPremises}" GroupName="TypeApp"/>
