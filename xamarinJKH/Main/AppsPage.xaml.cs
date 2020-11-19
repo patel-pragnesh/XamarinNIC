@@ -24,6 +24,7 @@ using System.Text.RegularExpressions;
 using System.Runtime.CompilerServices;
 using Microsoft.AppCenter.Analytics;
 using xamarinJKH.Pays;
+using System.Runtime.Serialization;
 
 namespace xamarinJKH.Main
 {
@@ -313,6 +314,14 @@ namespace xamarinJKH.Main
                     });
                 }
             });
+
+            MessagingCenter.Subscribe<Object, string>(this, "RemoveIdent", (sender, args) =>
+           {
+               if (args == null)
+               {
+                   viewModel.Requests.Clear();
+               }
+           });
         }
 
         private void SwitchApp_Toggled(object sender, ToggledEventArgs e)

@@ -496,7 +496,8 @@ namespace xamarinJKH.Main
                     }
                     if (accounts.Count == 0)
                     {
-                        Device.BeginInvokeOnMainThread(() => { AccExistsLbl.IsVisible = true; });                        
+                        Device.BeginInvokeOnMainThread(() => { AccExistsLbl.IsVisible = true; });
+                        MessagingCenter.Send<Object, string>(this, "RemoveIdent", null);
                     }
                     else
                     {
