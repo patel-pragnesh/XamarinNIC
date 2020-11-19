@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Analytics;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.ViewModels.VideoStreamingViewModels;
 
@@ -20,7 +22,17 @@ namespace xamarinJKH.VideoStreaming
             InitializeComponent();
             Analytics.TrackEvent("Список камер");
             BindingContext = viewModel = new CameraListViewModel();
-
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    var p = cameraStack.Padding;
+                    cameraStack.Padding= new Thickness(p.Left,p.Top+ statusBarHeight,p.Right,p.Bottom);
+                    
+                    break;
+                default:
+                    break;
+            }
             MessagingCenter.Subscribe<HeaderViewStack>(this, "GoBack", async sender =>
             {
                 if (Application.Current.MainPage.Navigation.ModalStack.Count > 1)
@@ -41,10 +53,21 @@ namespace xamarinJKH.VideoStreaming
         {
             try
             {
-                var camera = args.CurrentSelection[0] as CameraModel; 
-                if (Navigation.ModalStack.FirstOrDefault(x => x is CameraPage) == null)
-                    if (camera != null)
-                        await Navigation.PushModalAsync(new CameraPage(camera.Url, camera.Address));
+                var camera = args.CurrentSelection[0] as CameraModel;
+
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    if (Navigation.ModalStack.FirstOrDefault(x => x is CameraPage) == null)
+                        if (camera != null)
+                            await Navigation.PushModalAsync(new CameraPage(camera.Url));
+                }
+                else
+                {
+                    Device.BeginInvokeOnMainThread(async () => await Launcher.OpenAsync(camera.Url));
+
+                    //if (Navigation.ModalStack.FirstOrDefault(x => x is CameraIos) == null)
+                    //    await Navigation.PushModalAsync(new CameraIos(camera.Url));
+                }
                 (sender as CollectionView).SelectedItem = null;
             }
             catch

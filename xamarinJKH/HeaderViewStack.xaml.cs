@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 
 using Rg.Plugins.Popup.Services;
 using xamarinJKH.DialogViews;
+using xamarinJKH.InterfacesIntegration;
 
 namespace xamarinJKH
 {
@@ -24,6 +25,18 @@ namespace xamarinJKH
         public HeaderViewStack()
         {
             InitializeComponent();
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    BackStackLayout.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    
+                    break;
+                default:
+                    break;
+            }
+
             BindingContext = this;
         }
 

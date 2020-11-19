@@ -398,7 +398,8 @@
                                 </StackLayout>
                             </Frame>
 
-                            <Frame 
+                            <customRenderers:MaterialFrame 
+                                Elevation="20"
                                    CornerRadius="30"
                                    Margin="10, 10, 10, 10"
                                    HorizontalOptions="FillAndExpand"
@@ -439,7 +440,7 @@
                                         <TapGestureRecognizer Tapped="Cameras"/>
                                     </StackLayout.GestureRecognizers>
                                 </StackLayout>
-                            </Frame>
+                            </customRenderers:MaterialFrame>
                         </StackLayout>
                     </ScrollView>
                 </StackLayout>
