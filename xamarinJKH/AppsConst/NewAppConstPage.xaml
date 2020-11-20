@@ -8,8 +8,19 @@
              xmlns:apps="clr-namespace:xamarinJKH.AppsConst;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:converters="clr-namespace:xamarinJKH.Converters"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.AppsConst.NewAppConstPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseBoolConverter x:Key="Invert"/>
+            <Style TargetType="Label" x:Key="RadioButton">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             
@@ -79,20 +90,51 @@
 
                     <StackLayout
                         Margin="10, 10, 10, 10">
-                        <StackLayout
+                                <StackLayout
                             Spacing="0"
                             Margin="5, 5, 5, 5"
                             HorizontalOptions="FillAndExpand"
                             Orientation="Horizontal">
 
-                            <Label
+                                    <Label Text="Создание по:"
+                                           FontAttributes="Bold"
+                                           TextColor="Black"
+                                           FontSize="17"/>
+
+                                    <StackLayout Spacing="0" x:Name="TypeStack">
+                                        <StackLayout Orientation="Horizontal">
+                                            <RadioButton ClassId="0" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed" GroupName="TypeApp"/>
+                                            <Label Text="{x:Static xamarinJkh:AppResources.Ident}" Style="{x:StaticResource RadioButton}"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <RadioButton ClassId="1" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed" IsVisible="{Binding ShowArea}" GroupName="TypeApp"/>
+                                            <Label Text="{x:Static xamarinJkh:AppResources.District}" Style="{x:StaticResource RadioButton}"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <RadioButton  ClassId="2" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed" IsVisible="{Binding ShowStreets}" GroupName="TypeApp"/>
+                                            <Label Text="{x:Static xamarinJkh:AppResources.House}" Style="{x:StaticResource RadioButton}"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <RadioButton ClassId="4" Focused="RadioButton_Focused" Pressed="RadioButton_Pressed" IsVisible="{Binding ShowPremises}" GroupName="TypeApp"/>
+                                            <Label Text="{x:Static xamarinJkh:AppResources.Flat}" Style="{x:StaticResource RadioButton}"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout
+                            Spacing="0"
+                            Margin="5, 5, 5, 5"
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding Ident}"
+                            Orientation="Horizontal">
+
+                                    <Label
                                 TextColor="Black"
                                 Text="{x:Static xamarinJkh:AppResources.Ident}"
                                 VerticalOptions="Center"
                                 HorizontalOptions="Start"
                                 FontAttributes="Bold"
                                 FontSize="17" />
-                            <Entry
+                                    <Entry
                                 x:Name="EntryLS"
                                 FontSize="15"
                                 Text=""
@@ -102,8 +144,8 @@
                                 TextColor="#A2A2A2"
                                 HorizontalOptions="FillAndExpand"
                                 Keyboard="Text"/>
-                            
-                            <Label
+
+                                    <Label
                                 x:Name="LabelLs"
                                 Text="Нажмите для выбора"
                                 VerticalOptions="Center"
@@ -112,7 +154,7 @@
                                 HorizontalOptions="FillAndExpand"
                                 IsVisible="False"
                                 FontSize="17" />
-                            <xamarinJkh:IconView x:Name="IconViewClose"
+                                    <xamarinJkh:IconView x:Name="IconViewClose"
                                                  Source="ic_close"
                                                  HeightRequest="15"
                                                  IsVisible="False"
@@ -120,21 +162,54 @@
                                                  WidthRequest="15"
                                                  Foreground="{x:DynamicResource MainColor}"
                                                  VerticalOptions="Center" />
-                        </StackLayout>
-                        <StackLayout
+                                </StackLayout>
+                                <StackLayout
+                            Spacing="0"
+                            Margin="5, 5, 5, 5"
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding Ident, Converter={x:StaticResource Invert}}"
+                            Orientation="Horizontal">
+
+                                    <Label
+                                TextColor="Black"
+                                Text="Нажмите для поиска"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Start"
+                                FontAttributes="Bold"
+                                FontSize="17" />
+                                    <Label
+                                Text=""
+                                VerticalOptions="Center"
+                                TextColor="#A2A2A2"
+                                HorizontalTextAlignment="Center"
+                                HorizontalOptions="FillAndExpand"
+                                FontSize="17" />
+                                    <xamarinJkh:IconView 
+                                                 Source="ic_close"
+                                                 HeightRequest="15"
+                                                 IsVisible="False"
+                                                 Margin="0,0,5,0"
+                                                 WidthRequest="15"
+                                                 Foreground="{x:DynamicResource MainColor}"
+                                                 VerticalOptions="Center" />
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="AddressApp"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                                <StackLayout
                             Margin="5, 5, 5, 5"
                             Spacing="0"
                             HorizontalOptions="FillAndExpand"
                             Orientation="Horizontal">
 
-                            <Label
+                                    <Label
                                 TextColor="Black"
                                 Text="{x:Static xamarinJkh:AppResources.PhoneNumber}"
                                 HorizontalOptions="Start"
                                 VerticalOptions="Center"
                                 FontAttributes="Bold"
                                 FontSize="17" />
-                            <Entry
+                                    <Entry
                                 x:Name="EntryPhone"
                                 FontSize="15"
                                 VerticalOptions="End"
@@ -143,13 +218,13 @@
                                 HorizontalOptions="FillAndExpand"
                                 Placeholder="+7 (900) 000-0000"
                                 Keyboard="Numeric">
-                                <Entry.Behaviors>
-                                    <mask:MaskedBehavior Mask="+7 (XXX) XXX-XXXX" />
-                                </Entry.Behaviors>
-                                </Entry>
-                        </StackLayout>
+                                        <Entry.Behaviors>
+                                            <mask:MaskedBehavior Mask="+7 (XXX) XXX-XXXX" />
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                </StackLayout>
 
-                        <StackLayout
+                                <StackLayout
                             Margin="5, 5, 5, 5"
                             Spacing="0"
                             HorizontalOptions="Center"
