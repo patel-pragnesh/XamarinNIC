@@ -78,7 +78,7 @@
                                 TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                 FontSize="15" />
                                 <Label x:Name="AccExistsLbl"
-                               Text="добавьте аккаунт"
+                               Text="{x:Static xamarinJkh:AppResources.NoAccounts}"
                                Margin="0,0,0,0"
                                TextDecorations="Underline"
                                FontAttributes="Bold"

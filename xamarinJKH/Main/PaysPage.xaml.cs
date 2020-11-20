@@ -234,7 +234,7 @@ namespace xamarinJKH.Main
                     if (Settings.Person.Accounts.Count == 0)
                     {
                         AccExistsLbl.IsVisible = true;
-                        AccExistsLbl.Text = AppResources.NoAccounts;
+                        //AccExistsLbl.Text = AppResources.NoAccounts;
                     }    
         }
 
