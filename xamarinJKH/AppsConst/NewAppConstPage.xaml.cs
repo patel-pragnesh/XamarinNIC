@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
-using Microsoft.AppCenter.Analytics;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
 using Plugin.Media;
@@ -26,6 +25,8 @@ using xamarinJKH.Utils;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Xamarin.Essentials;
+using System.Collections.ObjectModel;
+using System.Net.Http.Headers;
 
 namespace xamarinJKH.AppsConst
 {
@@ -46,17 +47,31 @@ namespace xamarinJKH.AppsConst
         public int PikerLsItem = 0;
         public int PikerTypeItem = 0;
 
+        public int CreateType { get; set; }
+
+        int? District;
+        string Street;
+        int? House;
+        int? Flat;
+
+        public bool ShowArea { get => Settings.MobileSettings.districtsExists; }
+        public bool ShowStreets { get => Settings.MobileSettings.streetsExists; }
+        public bool ShowHouses { get => Settings.MobileSettings.housesExists; }
+        public bool ShowPremises { get => Settings.MobileSettings.premisesExists; }
+
+        public NamedValue selectedDistrict;
+        public NamedValue selectedHouse;
+        public NamedValue selectedFlat;
+
         public NewAppConstPage(AppsConstPage appsPage)
         {
             _appsPage = appsPage;
             InitializeComponent();
-            Analytics.TrackEvent("Создание заявки сотрудником");
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
-
                     break;
                 default:
                     break;
@@ -91,7 +106,8 @@ namespace xamarinJKH.AppsConst
 
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => {
+            backClick.Tapped += async (s, e) =>
+            {
                 try
                 {
                     _ = await Navigation.PopAsync();
@@ -99,19 +115,11 @@ namespace xamarinJKH.AppsConst
                 catch { }
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
-            var pickType = new TapGestureRecognizer();
-            pickType.Tapped += async (s, e) => {  
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    PickerType.Focus();
-                });
-            };
-            StackLayoutType.GestureRecognizers.Add(pickType);
             var addFile = new TapGestureRecognizer();
             addFile.Tapped += async (s, e) => { AddFile(); };
             StackLayoutAddFile.GestureRecognizers.Add(addFile);
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new AppPage()); };
+            techSend.Tapped += async (s, e) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); };
             LabelTech.GestureRecognizers.Add(techSend);
 
             var delLS = new TapGestureRecognizer();
@@ -123,7 +131,7 @@ namespace xamarinJKH.AppsConst
                 LabelLs.Text = "Нажмите для выбора";
                 IconViewClose.IsVisible = false;
             };
-            IconViewClose.GestureRecognizers.Add(delLS);
+            (IconViewClose.Parent as View).GestureRecognizers.Add(delLS);
 
             var setLss = new TapGestureRecognizer();
             if (Settings.MobileSettings.chooseIdentByHouse)
@@ -162,6 +170,42 @@ namespace xamarinJKH.AppsConst
                 EntryLS.Text = args;
                 IconViewClose.IsVisible = true;
             });
+
+            MessagingCenter.Subscribe<Object, Tuple<int?, int?, int?, string>>(this, "SetTypes", (sender, data) =>
+            {
+                this.District = data.Item1;
+                this.House = data.Item2;
+                this.Flat = data.Item3;
+                this.Street = data.Item4;
+            });
+
+            MessagingCenter.Subscribe<Object, Tuple<NamedValue, NamedValue, NamedValue>>(this, "SetNames", (sender, data) =>
+            {
+                selectedDistrict = data.Item1;
+                selectedHouse = data.Item2;
+                selectedFlat = data.Item3;
+            });
+
+            ((TypeStack.Children[0] as StackLayout).Children[0] as RadioButton).IsChecked = true;
+
+            foreach (StackLayout option in TypeStack.Children)
+            {
+                var Tapped = new TapGestureRecognizer();
+                Tapped.Tapped += (s, e) =>
+                {
+                    try
+                    {
+                        (((s as View).Parent as StackLayout).Children[0] as RadioButton).IsChecked = true;
+                        var index = Convert.ToInt32((((s as View).Parent as StackLayout).Children[0] as RadioButton).ClassId);
+
+                        (BindingContext as AddAppConstModel).Ident = index == 0;
+                        this.CreateType = index;
+
+                    }
+                    catch { }
+                };
+                (option.Children[1] as Label).GestureRecognizers.Add(Tapped);
+            }
         }
 
         private async void AddFile()
@@ -227,22 +271,22 @@ namespace xamarinJKH.AppsConst
 
             if (Device.RuntimePlatform == Device.Android)
             {
-                fileTypes = new string[] {"image/png", "image/jpeg"};
+                fileTypes = new string[] { "image/png", "image/jpeg" };
             }
 
             if (Device.RuntimePlatform == Device.iOS)
             {
-                fileTypes = new string[] {"public.image"}; // same as iOS constant UTType.Image
+                fileTypes = new string[] { "public.image" }; // same as iOS constant UTType.Image
             }
 
             if (Device.RuntimePlatform == Device.UWP)
             {
-                fileTypes = new string[] {".jpg", ".png"};
+                fileTypes = new string[] { ".jpg", ".png" };
             }
 
             if (Device.RuntimePlatform == Device.WPF)
             {
-                fileTypes = new string[] {"JPEG files (*.jpg)|*.jpg", "PNG files (*.png)|*.png"};
+                fileTypes = new string[] { "JPEG files (*.jpg)|*.jpg", "PNG files (*.png)|*.png" };
             }
 
             await PickAndShowFile(fileTypes);
@@ -388,7 +432,7 @@ namespace xamarinJKH.AppsConst
         {
             if (stream is MemoryStream)
             {
-                return ((MemoryStream) stream).ToArray();
+                return ((MemoryStream)stream).ToArray();
             }
             else
             {
@@ -439,8 +483,12 @@ namespace xamarinJKH.AppsConst
                 FontAttributes = FontAttributes.None,
                 FontSize = 16
             });
-            Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            LabelName.FormattedText = formattedName;
+            Color hexColor = (Color)Application.Current.Resources["MainColor"];
+            //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
+            PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent); if (Device.RuntimePlatform == Device.iOS) { if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo") { PancakeViewIcon.Padding = new Thickness(0); } }
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameTop.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
         }
@@ -482,13 +530,35 @@ namespace xamarinJKH.AppsConst
             // }
         }
 
-        public class AddAppConstModel
+        public class AddAppConstModel : xamarinJKH.ViewModels.BaseViewModel
         {
             public List<NamedValue> AllType { get; set; }
             public NamedValue SelectedType { get; set; }
 
             public List<FileData> Files { get; set; }
             public Color hex { get; set; }
+            public ObservableCollection<NamedValue> CreateTypes { get; set; }
+            public AddAppConstModel()
+            {
+                Ident = true;
+                CreateTypes = new ObservableCollection<NamedValue>();
+                CreateTypes.Add(new NamedValue { Name = "Лицевому счету", ID = 1 });
+                CreateTypes.Add(new NamedValue { Name = "Району" });
+                CreateTypes.Add(new NamedValue { Name = "Улице" });
+                CreateTypes.Add(new NamedValue { Name = "Дому" });
+                CreateTypes.Add(new NamedValue { Name = "Квартире" });
+            }
+
+            bool _ident;
+            public bool Ident
+            {
+                get => _ident;
+                set
+                {
+                    _ident = value;
+                    OnPropertyChanged("Ident");
+                }
+            }
         }
 
         private async void addApp(object sender, EventArgs e)
@@ -497,6 +567,8 @@ namespace xamarinJKH.AppsConst
             FrameBtnAdd.IsVisible = false;
             progress.IsVisible = true;
             string ident = EntryLS.Text;
+
+            
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
                 Device.BeginInvokeOnMainThread(async () =>
@@ -504,7 +576,60 @@ namespace xamarinJKH.AppsConst
                 return;
             }
 
-            if (ident.Equals(""))
+            if (!(BindingContext as AddAppConstModel).Ident)
+            {
+                if ((this.District == null && this.CreateType == 1 || this.House == null && this.CreateType == 2 || this.Flat == null && (this.CreateType == 3 || this.CreateType == 4)) || string.IsNullOrEmpty(text))
+                {
+                    await DisplayAlert(AppResources.Error, AppResources.ErrorFills.Replace(':',' '), "OK");
+                    progress.IsVisible = false;
+                    FrameBtnAdd.IsVisible = true;
+                    return;
+                }
+                try
+                {
+                    string typeId = Convert.ToInt32(Settings.TypeApp[PickerType.SelectedIndex].ID).ToString();
+                    switch (CreateType)
+                    {
+                        case 1: House = null;
+                            Flat = null;
+                            break;
+                        case 2: Flat = null;
+                            District = null;
+                            break;
+                        case 3: District = null;
+                            House = null;
+                            break;
+                    }
+                    IDResult result = await _server.newAppConst(null, typeId, text, "", this.District, this.House, this.Flat, this.Street);
+
+
+                    if (result.Error == null)
+                    {
+                        sendFiles(result.ID.ToString());
+                        await DisplayAlert(AppResources.AlertSuccess, AppResources.AppCreated, "OK");
+                        try
+                        {
+                            _ = await Navigation.PopAsync();
+                        }
+                        catch { }
+                    }
+                    else
+                    {
+                        if (result.Error.Contains("Not"))
+                        {
+                            await DisplayAlert(AppResources.ErrorTitle, AppResources.IdentNotFound, "OK");
+                        }
+                        else
+                            await DisplayAlert(AppResources.ErrorTitle, result.Error, "OK");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // ignored
+                }
+            }
+
+            if (ident.Equals("") && (BindingContext as AddAppConstModel).Ident)
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorFillIdent, "OK");
                 FrameBtnAdd.IsVisible = true;
@@ -512,11 +637,12 @@ namespace xamarinJKH.AppsConst
                 return;
             }
 
+
             if (!text.Equals(""))
             {
                 try
                 {
-                    string typeId = Settings.TypeApp[PickerType.SelectedIndex].ID;
+                    string typeId = Convert.ToInt32(Settings.TypeApp[PickerType.SelectedIndex].ID).ToString();
                     IDResult result = await _server.newAppConst(ident, typeId, text);
 
 
@@ -601,5 +727,32 @@ namespace xamarinJKH.AppsConst
             //     // ignored
             // }
         }
+
+        private void RadioButton_Focused(object sender, FocusEventArgs e)
+        {
+
+        }
+
+        private void RadioButton_Pressed(object sender, EventArgs e)
+        {
+            var parent = (sender as View).Parent.Parent as StackLayout;
+            var index = (parent as StackLayout).Children.IndexOf((sender as RadioButton).Parent as StackLayout);
+
+            (BindingContext as AddAppConstModel).Ident = index == 0;
+            this.CreateType = index;
+        }
+
+        private async void AddressApp(object sender, EventArgs e)
+        {
+
+            var select = TypeStack.Children.First(x => ((x as StackLayout).Children[0] as RadioButton).IsChecked);
+            if (select != null)
+            {
+                var index = TypeStack.Children.IndexOf(select);
+                await Navigation.PushAsync(new AddressSearch(index, new Tuple<NamedValue, NamedValue, NamedValue>(selectedDistrict, selectedHouse, selectedFlat)));
+
+            }
+        }
+
     }
 }

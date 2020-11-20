@@ -769,7 +769,7 @@ namespace xamarinJKH.MainConst
             int i = 0;
             foreach (var each in groups.Data)
             {
-                HousesGroup.Add(each.Name, each.ID);
+                HousesGroup.Add(each.Name, each.ID.ToString());
                 param[i] = each.Name;
                 i++;
             }

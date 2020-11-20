@@ -4,7 +4,7 @@ namespace xamarinJKH.Server.RequestModel
 {
     public class NamedValue
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         
         public class AccountingInfoModel

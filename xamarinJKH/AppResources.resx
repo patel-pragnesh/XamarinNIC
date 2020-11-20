@@ -1496,4 +1496,16 @@
   <data name="EnterPhone" xml:space="preserve">
     <value>Введите номер телефона</value>
   </data>
+  <data name="District" xml:space="preserve">
+    <value>Район</value>
+  </data>
+  <data name="Flat" xml:space="preserve">
+    <value>Квартира</value>
+  </data>
+  <data name="House" xml:space="preserve">
+    <value>Дом</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Улица</value>
+  </data>
 </root>

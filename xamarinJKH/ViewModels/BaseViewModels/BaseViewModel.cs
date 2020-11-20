@@ -63,6 +63,8 @@ namespace xamarinJKH.ViewModels
             //    OnPropertyChanged("Title");
             //}
         }
+        string phone;
+        public string Phone => Settings.Person.companyPhone;
         public event PropertyChangedEventHandler PropertyChanged;
         public RestClientMP Server => DependencyService.Get<RestClientMP>(DependencyFetchTarget.NewInstance);
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")

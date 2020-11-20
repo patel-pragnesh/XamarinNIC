@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:xamarinJkh="clr-namespace:xamarinJKH"
+             xmlns:suggest="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             mc:Ignorable="d"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="xamarinJKH.AppsConst.AddressSearch">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="ListLabel">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <pancakeView:PancakeView CornerRadius="0,0,30,30"
+                                     IsVisible="False"
+                                     Margin="0,-2,0,0"
+                                     BackgroundColor="{AppThemeBinding Dark=#494949, Light=White}"
+                                     BorderColor="{AppThemeBinding Dark=#494949, Light={x:StaticResource MainColor}}" BorderThickness="2">
+                <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Fill"
+                                 HorizontalOptions="FillAndExpand">
+                    <StackLayout Padding="10"
+                                     HorizontalOptions="FillAndExpand">
+                        <Label x:Name="UkName"
+                                   Text="{Binding Title}"
+                                   FontAttributes="Bold"
+                                   FontSize="16"
+                                   TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                        <StackLayout
+                                Spacing="0"
+                                Orientation="Horizontal">
+                            <forms:SvgCachedImage
+                                    x:Name="IconViewLogin"
+                                    Source="resource://xamarinJKH.Resources.ic_phone.svg"
+                                    HeightRequest="15"
+                                    WidthRequest="15"
+                                    Margin="0, 0,5,0"
+                                    HorizontalOptions="Start"
+                                    ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                    VerticalOptions="Center" />
+                            <Label x:Name="LabelPhone"
+                                       Text="{Binding Phone}"
+                                       FontSize="14"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                       Margin="0, 0, 0, 0"
+                                       VerticalOptions="Center" />
+                        </StackLayout>
+                    </StackLayout>
+                    <pancakeView:PancakeView
+                            BorderColor="{AppThemeBinding Dark=#494949, Light={x:StaticResource MainColor}}"
+                            x:Name="PancakeViewIcon"
+                            BorderThickness="1"
+                            Padding="5"
+                            CornerRadius="25,0,25,25"
+                            BackgroundColor="White"
+                            HorizontalOptions="End"
+                            IsClippedToBounds="True">
+                        <Image x:Name="IconViewNameUk"
+                                   Source="icon_login"
+                                   HeightRequest="70" />
+                    </pancakeView:PancakeView>
+                </StackLayout>
+            </pancakeView:PancakeView>
+            <StackLayout
+                Margin="10"
+                        x:Name="BackStackLayout"
+                        Orientation="Horizontal"
+                        HorizontalOptions="Start">
+                <forms:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
+                                             HeightRequest="25"
+                                             HorizontalOptions="Center" />
+                <Label
+                            Text="{x:Static xamarinJkh:AppResources.Back}"
+                            FontSize="15"
+                    Margin="0,2,0,0"
+                            TextColor="Black"
+                            HorizontalOptions="Start" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GoBack"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <StackLayout Padding="20" Spacing="30">
+                <StackLayout x:Name="DistictStack">
+                    <Label Text="{x:Static xamarinJkh:AppResources.District}" Style="{x:StaticResource ListLabel}"/>
+                    <Label Text="{Binding District}"
+                           x:Name="DistrictText"/>
+                    <Label BackgroundColor="{x:StaticResource MainColor}"
+                           HeightRequest="2"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ChooseDistrict"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout x:Name="StreetStack">
+                    <Label Text="{x:Static xamarinJkh:AppResources.Street}" Style="{x:StaticResource ListLabel}"/>
+                    <Label Text="{Binding House}"
+                           x:Name="StreetText"/>
+                    <Label BackgroundColor="{x:StaticResource MainColor}"
+                           HeightRequest="2"/>
+
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ChooseStreet"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <!--<StackLayout x:Name="HouseStack">
+
+                    <Label Text="{x:Static xamarinJkh:AppResources.House}" Style="{x:StaticResource ListLabel}"/>
+                    <Label Text="{Binding House}"
+                                            x:Name="HouseText"/>
+                    <Label BackgroundColor="{x:StaticResource MainColor}"
+                           HeightRequest="2"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ChooseHouse"/>
+                    </StackLayout.GestureRecognizers>
+                    
+                </StackLayout>-->
+                <StackLayout x:Name="FlatStack">
+                    <Label Text="{x:Static xamarinJkh:AppResources.Flat}" Style="{x:StaticResource ListLabel}"/>
+                    <Label Text="{Binding Flat}"
+                           x:Name="FlatText"/>
+
+                    <Label BackgroundColor="{x:StaticResource MainColor}"
+                           HeightRequest="2"/>
+
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ChoosePremise"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <Button BackgroundColor="{x:StaticResource MainColor}"
+                        Text="{x:Static xamarinJkh:AppResources.Confirm}"
+                        TextColor="White"
+                        CornerRadius="20"
+                        Clicked="Confirm"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
