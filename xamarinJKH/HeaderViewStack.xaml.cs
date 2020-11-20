@@ -30,7 +30,7 @@ namespace xamarinJKH
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    BackStackLayout.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     
                     break;
                 default:

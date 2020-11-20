@@ -14,7 +14,8 @@
                        VerticalOptions="Start"
                        Aspect="AspectFill"
                        HorizontalOptions="FillAndExpand" />
-            <StackLayout Margin="0,10,10,0" VerticalOptions="FillAndExpand">
+            <StackLayout Margin="0,10,10,0" VerticalOptions="FillAndExpand" 
+                         x:Name="Pancake">
                 <StackLayout
                     HorizontalOptions="EndAndExpand"
                     Orientation="Horizontal">
