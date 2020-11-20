@@ -266,8 +266,16 @@ namespace xamarinJKH.Main
             ChangeTheme = new Command(async () => { SetTitle(); });
             MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) => ChangeTheme.Execute(null));
             MessagingCenter.Subscribe<Object>(this, "UpdateCounters", (sender) => RefreshCommand.Execute(null));
-            MessagingCenter.Subscribe<Object, string>(this, "AddIdent", (sender, ident) => Accounts.Add(ident));
+            MessagingCenter.Subscribe<Object, string>(this, "AddIdent", (sender, ident) =>
+            { 
+                if (Accounts.Count == 0)
+                {
+                    Accounts.Add("Все");
+                }
+                Accounts.Add(ident); 
+            });
             MessagingCenter.Subscribe<Object, string>(this, "RemoveIdent", (sender, ident) => Accounts.Remove(ident));
+            Picker.ItemsSource = Accounts;
         }
 
         private void SetTitle()
