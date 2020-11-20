@@ -195,6 +195,7 @@ namespace xamarinJKH.Server
         public const string GET_TECH_MESSAGE = "https://help.1caero.ru/MobileAPI/TechSupport/RequestDetails.ashx";//скрипт, который отдает переписку по заявке 
         public const string ADD_TECH_MESSAGE = "https://help.1caero.ru/MobileAPI/TechSupport/AddMessage.ashx";// Скрипт, который сохранит коммент от пользователя и отдаст его специалисту поддержки в ксп 
         public const string ADD_TECH_FILE = "https://help.1caero.ru/MobileAPI/TechSupport/AddFile.ashx";//  Скрипт,  который отдаст файл от пользователя в тех поддеркжку
+        public const string GET_TECH_FILE = " https://help.1caero.ru/MobileAPI/TechSupport/DownloadFile.ashx";//  Скрипт,  который отдаст файл от пользователя в тех поддеркжку
 
         /// <summary>
         /// Аунтификация сотрудника
@@ -785,7 +786,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         } 
-        public async Task<RequestContent> GetRequestsDetailListTech(string phone)
+        public async Task<RequestContent> GetRequestsDetailListTech(string phone, string messageId = null)
         {
             RestClient restClientMp = new RestClient(GET_TECH_MESSAGE);
             RestRequest restRequest = new RestRequest("", Method.GET);
@@ -794,6 +795,7 @@ namespace xamarinJKH.Server
             restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddParameter("phone", phone);
             restRequest.AddParameter("database", SERVER_ADDR.Split("/")[3]);
+            restRequest.AddParameter("messageId", messageId);
             var response = await restClientMp.ExecuteTaskAsync<RequestContent>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
@@ -920,7 +922,7 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
-        public async Task<CommonResult> AddMessageTech(string text, string Phone)
+        public async Task<IsSucceed> AddMessageTech(string text, string Phone)
         {
             string Database = SERVER_ADDR.Split("/")[3];
             RestClient restClientMp = new RestClient(ADD_TECH_MESSAGE);
@@ -935,12 +937,12 @@ namespace xamarinJKH.Server
                 Phone,
                 Database
             });
-            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            var response = await restClientMp.ExecuteTaskAsync<IsSucceed>(restRequest);
 
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                return new CommonResult()
+                return new IsSucceed()
                 {
                     Error = $"Ошибка {response.StatusDescription}"
                 };
@@ -1086,6 +1088,22 @@ namespace xamarinJKH.Server
             restRequest.AddHeader("client", Device.RuntimePlatform);
             restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             restRequest.AddHeader("acx", Settings.Person.acx);
+            var response = restClientMp.Execute(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return null;
+            }
+
+            return response.RawBytes;
+        }public async Task<byte[]> GetFileAPP_Tech(string id)
+        {
+            RestClient restClientMp = new RestClient(GET_TECH_FILE);
+            RestRequest restRequest = new RestRequest("", Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddParameter("id", id);
             var response = restClientMp.Execute(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)

@@ -112,7 +112,7 @@ namespace xamarinJKH.Pays
             }
 
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => {     await PopupNavigation.Instance.PushAsync(new TechDialog()); };
+            techSend.Tapped += async (s, e) => {    await Navigation.PushAsync(new AppPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
            
             NavigationPage.SetHasNavigationBar(this, false);

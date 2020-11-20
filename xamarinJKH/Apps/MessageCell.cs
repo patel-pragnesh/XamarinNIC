@@ -3,6 +3,8 @@ using FFImageLoading.Svg.Forms;
 using Microsoft.AppCenter.Analytics;
 using System;
 using System.IO;
+using System.Threading.Tasks;
+using AiForms.Dialogs.Abstractions;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using xamarinJKH.InterfacesIntegration;
@@ -240,7 +242,7 @@ namespace xamarinJKH.Apps
         SvgCachedImage imageA = new SvgCachedImage();
         Frame frameA = new Frame();
 
-        public MessageCellAuthor(RequestMessage message, Page p, string DateUniq, out string newDate)
+        public MessageCellAuthor(RequestMessage message, Page p, string DateUniq, out string newDate, bool isTech = false)
         {
             frameA.HorizontalOptions = LayoutOptions.Start;
             frameA.VerticalOptions = LayoutOptions.Start;
@@ -321,21 +323,46 @@ namespace xamarinJKH.Apps
                     }
                     else
                     {
-                        await Settings.StartProgressBar(AppResources.Loading, 0.8);
-                        byte[] memoryStream = await _server.GetFileAPP(message.FileID.ToString());
-                        if (memoryStream != null)
+                        var LoadFileTask = new Task(async () =>
                         {
-                            await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
-                            Loading.Instance.Hide();
-                            await Launcher.OpenAsync(new OpenFileRequest
+                            Configurations.LoadingConfig = new LoadingConfig
                             {
-                                File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+                                IndicatorColor = (Color) Application.Current.Resources["MainColor"],
+                                OverlayColor = Color.Black,
+                                Opacity = 0.8,
+                                DefaultMessage = AppResources.Loading,
+                            };
+
+                            await Loading.Instance.StartAsync(async progress =>
+                            {
+                                byte[] memoryStream = null;
+                                if (isTech)
+                                {
+                                    memoryStream = await _server.GetFileAPP_Tech(message.FileID.ToString());
+
+                                }
+                                else
+                                {
+                                    memoryStream = await _server.GetFileAPP(message.FileID.ToString());
+
+                                }
+
+                                if (memoryStream != null)
+                                {
+                                    await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
+                                    await Launcher.OpenAsync(new OpenFileRequest
+                                    {
+                                        File = new ReadOnlyFile(DependencyService.Get<IFileWorker>()
+                                            .GetFilePath(fileName))
+                                    });
+                                }
+                                else
+                                {
+                                    await p.DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorFileLoading, "OK");
+                                }
                             });
-                        }
-                        else
-                        {
-                            await p.DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorFileLoading, "OK");
-                        }
+                        });
+                        LoadFileTask.Start();
                     }
                     //// await ShowRating();
                     //await PopupNavigation.Instance.PushAsync(new RatingBarContentView(hex, _requestInfo, false));
@@ -753,7 +780,7 @@ namespace xamarinJKH.Apps
         private RestClientMP _server = new RestClientMP();
 
 
-        public MessageCellService(RequestMessage message, Page p, string DateUniq, out string newDate, string prevAuthor)
+        public MessageCellService(RequestMessage message, Page p, string DateUniq, out string newDate, string prevAuthor, bool isTech = false)
         {
             frame.HorizontalOptions = LayoutOptions.Start;
             frame.VerticalOptions = LayoutOptions.Start;
@@ -825,26 +852,54 @@ namespace xamarinJKH.Apps
                     }
                     else
                     {
-                        await Settings.StartProgressBar(AppResources.Loading, 0.8);
-                        byte[] memoryStream = await _server.GetFileAPP(message.FileID.ToString());
-                        if (memoryStream != null)
+
+                        var LoadFileTask = new Task(async () =>
                         {
-                            Analytics.TrackEvent($"сохранение файла {fileName}");
 
-                            await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
-                            Loading.Instance.Hide();
-
-                            Analytics.TrackEvent($"открытие файла {fileName}");
-
-                            await Launcher.OpenAsync(new OpenFileRequest
+                            Configurations.LoadingConfig = new LoadingConfig
                             {
-                                File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+                                IndicatorColor = (Color)Application.Current.Resources["MainColor"],
+                                OverlayColor = Color.Black,
+                                Opacity = 0.8,
+                                DefaultMessage = AppResources.Loading,
+                            };
+
+                            await Loading.Instance.StartAsync(async progress =>
+                            {
+
+                                byte[] memoryStream = null;
+                                if (isTech)
+                                {
+                                    memoryStream = await _server.GetFileAPP_Tech(message.FileID.ToString());
+
+                                }
+                                else
+                                {
+                                    memoryStream = await _server.GetFileAPP(message.FileID.ToString());
+
+                                }
+
+                                if (memoryStream != null)
+                                {
+                                    Analytics.TrackEvent($"сохранение файла {fileName}");
+
+                                    await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
+
+                                    Analytics.TrackEvent($"открытие файла {fileName}");
+
+                                    await Launcher.OpenAsync(new OpenFileRequest
+                                    {
+                                        File = new ReadOnlyFile(DependencyService.Get<IFileWorker>()
+                                            .GetFilePath(fileName))
+                                    });
+                                }
+                                else
+                                {
+                                    await p.DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorFileLoading, "OK");
+                                }
                             });
-                        }
-                        else
-                        {
-                            await p.DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorFileLoading, "OK");
-                        }
+                        });
+                        LoadFileTask.Start();
                     }
                     //// await ShowRating();
                     //await PopupNavigation.Instance.PushAsync(new RatingBarContentView(hex, _requestInfo, false));

@@ -74,91 +74,85 @@ namespace xamarinJKH.Tech
         CancellationTokenSource TokenSource { get; set; }
         CancellationToken Token { get; set; }
         bool PermissionAsked;
+
         protected async override void OnAppearing()
         {
             base.OnAppearing();
 
-            // TokenSource = new CancellationTokenSource();
-            // Token = TokenSource.Token;
-            // RequestsUpdate requestsUpdate =
-            //     await _server.GetRequestsUpdates(Settings.UpdateKey, _requestInfo.ID.ToString());
-            // if (requestsUpdate.Error == null)
-            // {
-            //     Settings.UpdateKey = requestsUpdate.NewUpdateKey;
-            // }
-            //     var UpdateTask = new Task(async () =>
-            // {
-            //     try
-            //     {
-            //         while (!Token.IsCancellationRequested)
-            //         {
-            //             await Task.Delay(TimeSpan.FromSeconds(2));
-            //             var update = await _server.GetRequestsUpdates(Settings.UpdateKey, _requestInfo.ID.ToString());
-            //             if (update.Error == null)
-            //             {
-            //                 Settings.UpdateKey = update.NewUpdateKey;
-            //                 if (update.CurrentRequestUpdates != null)
-            //                 {
-            //                     //Settings.DateUniq = "";
-            //
-            //                     request = update.CurrentRequestUpdates;
-            //                     foreach (var each in update.CurrentRequestUpdates.Messages)
-            //                     {
-            //                         if (!messages.Contains(each))
-            //                             //Device.BeginInvokeOnMainThread(() => messages.Add(each));
-            //                             Device.BeginInvokeOnMainThread(async () =>
-            //                             {
-            //                                 addAppMessage(each, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
-            //                                 var lastChild = baseForApp.Children.LastOrDefault();
-            //                                 //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true));
-            //                                 if (lastChild != null)
-            //                                 await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
-            //                             });
-            //                     }
-            //                     //Device.BeginInvokeOnMainThread(() => additionalList.ScrollTo(messages[messages.Count - 1], 0, true));
-            //                 }
-            //             }
-            //         }
-            //     }
-            //     catch (Exception e)
-            //     {
-            //
-            //     }
-            //
-            // }, Token);
-            // try
-            // {
-            //     UpdateTask.Start();
-            // }
-            // catch { }
-            // await Task.Delay(TimeSpan.FromSeconds(1));
-            // if (Device.RuntimePlatform == "Android")
-            // {
-            //     return;
-            //     try
-            //     {
-            //         if (!PermissionAsked)
-            //         {
-            //             var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
-            //             if (camera_perm != PermissionStatus.Granted)
-            //             {
-            //                 await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
-            //             }
-            //         }
-            //
-            //     }
-            //     catch
-            //     {
-            //
-            //     }
-            //     finally
-            //     {
-            //
-            //         PermissionAsked = true;
-            //     }
-            //
+            TokenSource = new CancellationTokenSource();
+            Token = TokenSource.Token;
 
-            // }
+            var UpdateTask = new Task(async () =>
+            {
+                try
+                {
+                    while (!Token.IsCancellationRequested)
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(2));
+                        var update = await _server.GetRequestsDetailListTech(Settings.Person.Phone, GetLastIdMessage());
+                        if (update.Error == null)
+                        {
+                            //Settings.DateUniq = "";
+
+                            foreach (var each in update.Messages)
+                            {
+                                if (!messages.Contains(each))
+                                    //Device.BeginInvokeOnMainThread(() => messages.Add(each));
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                    {
+                                        addAppMessage(each,
+                                            messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
+                                        var lastChild = baseForApp.Children.LastOrDefault();
+                                        //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true));
+                                        if (lastChild != null)
+                                            await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End,
+                                                true);
+                                    });
+                                request.Messages.Add(each);
+                            }
+
+                            //Device.BeginInvokeOnMainThread(() => additionalList.ScrollTo(messages[messages.Count - 1], 0, true));
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                }
+            }, Token);
+            try
+            {
+                UpdateTask.Start();
+            }
+            catch
+            {
+            }
+
+            await Task.Delay(TimeSpan.FromSeconds(1));
+            if (Device.RuntimePlatform == "Android")
+            {
+                return;
+                try
+                {
+                    if (!PermissionAsked)
+                    {
+                        var camera_perm =
+                            await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission
+                                .Camera);
+                        if (camera_perm != PermissionStatus.Granted)
+                        {
+                            await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera,
+                                Permission.Storage);
+                        }
+                    }
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    PermissionAsked = true;
+                }
+            }
         }
 
         public string DateUniq = "";
@@ -174,71 +168,83 @@ namespace xamarinJKH.Tech
             }
             catch
             {
-
             }
+
             MessagingCenter.Send<Object>(this, "AutoUpdate");
             base.OnDisappearing();
         }
 
         private async Task RefreshData()
         {
-            // if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
-            // {
-            //     Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
-            //     return;
-            // }
-            // RequestsUpdate requestsUpdate =
-            //     await _server.GetRequestsUpdates(Settings.UpdateKey, _requestInfo.ID.ToString());
-            // if (requestsUpdate.Error == null)
-            // {
-            //     Settings.UpdateKey = requestsUpdate.NewUpdateKey;
-            //     if (requestsUpdate.CurrentRequestUpdates != null)
-            //     {
-            //         //Settings.DateUniq = "";
-            //         request = requestsUpdate.CurrentRequestUpdates;
-            //         foreach (var each in requestsUpdate.CurrentRequestUpdates.Messages)
-            //         {
-            //             if (!messages.Contains(each))
-            //             {
-            //                 Device.BeginInvokeOnMainThread(async () =>
-            //                 {
-            //                     addAppMessage(each, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
-            //                     var lastChild = baseForApp.Children.LastOrDefault();
-            //
-            //                     //var y = lastChild.Y- scrollFroAppMessages.Y;
-            //                     //var x = lastChild.X;
-            //                     //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(x, y + 30, true));
-            //                     if (lastChild != null)
-            //                         Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true));
-            //                 });
-            //                 messages.Add(each);
-            //             }
-            //
-            //         }
-            //         // additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
-            //         var lastChild = baseForApp.Children.LastOrDefault();
-            //
-            //         //var y = lastChild.Y- scrollFroAppMessages.Y;
-            //         //var x = lastChild.X;
-            //         //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(x, y + 30, true));
-            //         Device.BeginInvokeOnMainThread(async () =>
-            //         {
-            //             if (lastChild != null) 
-            //                 await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
-            //         });
-            //         //Device.BeginInvokeOnMainThread(async () => await MethodWithDelayAsync(500));
-            //         //await MethodWithDelayAsync(500);
-            //
-            //         //await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true);
-            //     }
-            //
-            // }
-            // else
-            // {
-            //     await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorComments, "OK");
-            // }
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                return;
+            }
 
-            // additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
+            var update =
+                await _server.GetRequestsDetailListTech(Settings.Person.Phone, GetLastIdMessage());
+            if (update.Error == null)
+            {
+                //Settings.DateUniq = "";
+
+                foreach (var each in update.Messages)
+                {
+                    if (!messages.Contains(each))
+                    {
+                        Device.BeginInvokeOnMainThread(async () =>
+                        {
+                            addAppMessage(each, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
+                            var lastChild = baseForApp.Children.LastOrDefault();
+
+                            //var y = lastChild.Y- scrollFroAppMessages.Y;
+                            //var x = lastChild.X;
+                            //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(x, y + 30, true));
+                            if (lastChild != null)
+                                Device.BeginInvokeOnMainThread(async () =>
+                                    await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true));
+                        });
+                        messages.Add(each);
+                        request.Messages.Add(each);
+                    }
+                }
+
+                // additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
+                var lastChild = baseForApp.Children.LastOrDefault();
+
+                //var y = lastChild.Y- scrollFroAppMessages.Y;
+                //var x = lastChild.X;
+                //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(x, y + 30, true));
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    if (lastChild != null)
+                        await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
+                });
+                //Device.BeginInvokeOnMainThread(async () => await MethodWithDelayAsync(500));
+                //await MethodWithDelayAsync(500);
+
+                //await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true);
+            }
+            else
+            {
+                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorComments, "OK");
+            }
+        }
+
+        string GetLastIdMessage()
+        {
+            String lastId = null;
+            try
+            {
+                lastId = request.Messages.LastOrDefault()?.ID.ToString();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return lastId;
         }
 
         //public System.Collections.ObjectModel.ObservableCollection<RequestMessage> messages { get; set; }
@@ -266,30 +272,26 @@ namespace xamarinJKH.Tech
                 throw ex;
             }
 
-            MessagingCenter.Subscribe<ISpeechToText, string>(this, "STT", (sender, args) =>
-            {
-                SpeechToTextFinalResultRecieved(args);
-            });
+            MessagingCenter.Subscribe<ISpeechToText, string>(this, "STT",
+                (sender, args) => { SpeechToTextFinalResultRecieved(args); });
 
             MessagingCenter.Subscribe<ISpeechToText>(this, "Final", (sender) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     new PopupPage();
-                    IconViewMic.ReplaceStringMap = new Dictionary<string, string> { { "#000000", hex.ToHex() } };
-                });                
+                    IconViewMic.ReplaceStringMap = new Dictionary<string, string> {{"#000000", hex.ToHex()}};
+                });
             });
 
-            MessagingCenter.Subscribe<IMessageSender, string>(this, "STT", (sender, args) =>
-            {
-                SpeechToTextFinalResultRecieved(args);
-            });
+            MessagingCenter.Subscribe<IMessageSender, string>(this, "STT",
+                (sender, args) => { SpeechToTextFinalResultRecieved(args); });
 
 
-           
-            messages = new List<RequestMessage>();// System.Collections.ObjectModel.ObservableCollection<RequestMessage>();
+            messages =
+                new List<RequestMessage>(); // System.Collections.ObjectModel.ObservableCollection<RequestMessage>();
 
-            hex = (Color)Application.Current.Resources["MainColor"];
+            hex = (Color) Application.Current.Resources["MainColor"];
             getMessage2();
             this.BindingContext = this;
 
@@ -304,7 +306,7 @@ namespace xamarinJKH.Tech
 
                     break;
                 case Device.Android:
-                    double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
+                    double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
                         //ScrollViewContainer.Margin = new Thickness(0, 0, 0, -150);
@@ -319,21 +321,17 @@ namespace xamarinJKH.Tech
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) =>
             {
-                if (close)
-                {
-                    MessagingCenter.Send<Object>(this, "LoadGoods");
-                    await Navigation.PopToRootAsync();
-                }
-                else
-                {
+               
                     Settings.isSelf = null;
                     Settings.DateUniq = "";
                     try
                     {
                         _ = await Navigation.PopAsync();
                     }
-                    catch { }
-                }
+                    catch
+                    {
+                        _ = await Navigation.PopModalAsync();
+                    }
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
             var sendMess = new TapGestureRecognizer();
@@ -345,7 +343,7 @@ namespace xamarinJKH.Tech
             var addFile = new TapGestureRecognizer();
             addFile.Tapped += async (s, e) => { addFileApp(); };
             IconViewAddFile.GestureRecognizers.Add(addFile);
-            
+
             setText();
             //additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
@@ -368,8 +366,8 @@ namespace xamarinJKH.Tech
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    IconViewMic.ReplaceStringMap = new Dictionary<string, string> { { "#000000", "#A2A2A2" } };
-                });                
+                    IconViewMic.ReplaceStringMap = new Dictionary<string, string> {{"#000000", "#A2A2A2"}};
+                });
             }
 
             //var result = await CrossSpeechToText.StartVoiceInput(AppResources.VoiceInput);
@@ -378,12 +376,12 @@ namespace xamarinJKH.Tech
 
         private void SpeechToTextFinalResultRecieved(string args)
         {
-            if(!string.IsNullOrWhiteSpace(args))
-                EntryMess.Text += " " + args;            
+            if (!string.IsNullOrWhiteSpace(args))
+                EntryMess.Text += " " + args;
         }
 
         private ISpeechToText _speechRecongnitionInstance;
-        
+
         protected override bool OnBackButtonPressed()
         {
             if (close)
@@ -454,12 +452,18 @@ namespace xamarinJKH.Tech
             {
                 try
                 {
-                    var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
-                    var storage_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                    var camera_perm =
+                        await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                    var storage_perm =
+                        await Plugin.Permissions.CrossPermissions.Current
+                            .CheckPermissionStatusAsync(Permission.Storage);
                     if (camera_perm != PermissionStatus.Granted || storage_perm != PermissionStatus.Granted)
                     {
-                        var status = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
-                        if (status[Permission.Camera] == PermissionStatus.Denied && status[Permission.Storage] == PermissionStatus.Denied)
+                        var status =
+                            await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera,
+                                Permission.Storage);
+                        if (status[Permission.Camera] == PermissionStatus.Denied &&
+                            status[Permission.Storage] == PermissionStatus.Denied)
                         {
                             return;
                         }
@@ -469,14 +473,15 @@ namespace xamarinJKH.Tech
                 {
                     Device.BeginInvokeOnMainThread(async () =>
                     {
-                        var result = await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoPermissions, "OK", AppResources.Cancel);
+                        var result = await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoPermissions, "OK",
+                            AppResources.Cancel);
                         if (result)
                             Plugin.Permissions.CrossPermissions.Current.OpenAppSettings();
-
                     });
                     return;
                 }
             }
+
             var action = await DisplayActionSheet(AppResources.AttachmentTitle, AppResources.Cancel, null,
                 TAKE_PHOTO,
                 TAKE_GALRY, TAKE_FILE);
@@ -531,6 +536,7 @@ namespace xamarinJKH.Tech
 
                 return;
             }
+
             if (action == TAKE_FILE)
                 await startLoadFile(FILE, null);
 
@@ -595,7 +601,7 @@ namespace xamarinJKH.Tech
         {
             if (stream is MemoryStream)
             {
-                return ((MemoryStream)stream).ToArray();
+                return ((MemoryStream) stream).ToArray();
             }
             else
             {
@@ -666,6 +672,7 @@ namespace xamarinJKH.Tech
             progressFile.IsVisible = false;
         }
 
+
         async void sendMessage()
         {
             try
@@ -676,21 +683,28 @@ namespace xamarinJKH.Tech
                 //    EntryMess.Text = string.Empty;
                 //    return;
                 //}
-
+                var anim = new Task(async () =>
+                {
+                    IconViewSend.Scale = 0.7;
+                    await Task.Delay(TimeSpan.FromSeconds(0.5));
+                    IconViewSend.Scale = 1;
+                });
+                anim.Start();
                 if (!string.IsNullOrWhiteSpace(message))
                 {
-                    progress.IsVisible = true;
-                    IconViewSend.IsVisible = false;
-                    CommonResult result = await _server.AddMessageTech(message, Settings.Person.Phone);
-                    if (result.Error == null)
+                    // progress.IsVisible = true;
+                    IconViewSend.IsEnabled = false;
+                    IsSucceed result = await _server.AddMessageTech(message, Settings.Person.Phone);
+                    if (result.isSucceed)
                     {
                         EntryMess.Text = "";
-                       // await ShowToast(AppResources.MessageSent);
+                        // await ShowToast(AppResources.MessageSent);
                         //await RefreshData();
 
                         var lastChild = baseForApp.Children.LastOrDefault();
                         if (lastChild != null)
-                            Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true));
+                            Device.BeginInvokeOnMainThread(async () =>
+                                await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true));
                     }
                 }
                 else
@@ -698,18 +712,17 @@ namespace xamarinJKH.Tech
                     await ShowToast(AppResources.ErrorMessageEmpty);
                 }
 
-                progress.IsVisible = false;
-                IconViewSend.IsVisible = true;
+                // progress.IsVisible = false;
+                IconViewSend.IsEnabled = true;
             }
             catch (Exception e)
             {
                 await ShowToast(AppResources.MessageNotSent);
 
 
-                progress.IsVisible = false;
-                IconViewSend.IsVisible = true;
+                // progress.IsVisible = false;
+                IconViewSend.IsEnabled = true;
             }
-
         }
 
         private async Task ShowToast(string text)
@@ -754,30 +767,44 @@ namespace xamarinJKH.Tech
 
         async void getMessage2()
         {
-
-            request = await _server.GetRequestsDetailListTech(Settings.Person.Phone);
-            if (request.Error == null)
+            new Task(async () =>
             {
-                Settings.DateUniq = "";
-                foreach (var message in request.Messages)
+                Configurations.LoadingConfig = new LoadingConfig
                 {
-                    if (!messages.Contains(message))
+                    IndicatorColor = (Color) Application.Current.Resources["MainColor"],
+                    OverlayColor = Color.Black,
+                    Opacity = 0.8,
+                    DefaultMessage = AppResources.Loading,
+                };
+
+                await Loading.Instance.StartAsync(async progress =>
+                {
+                    request = await _server.GetRequestsDetailListTech(Settings.Person.Phone);
+                    if (request.Error == null)
                     {
-                        Device.BeginInvokeOnMainThread(() => addAppMessage(message, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null));
-                        messages.Add(message);
+                        Settings.DateUniq = "";
+                        foreach (var message in request.Messages)
+                        {
+                            if (!messages.Contains(message))
+                            {
+                                Device.BeginInvokeOnMainThread(() => addAppMessage(message,
+                                    messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null));
+                                messages.Add(message);
+                            }
+
+                            //messages.Add(message);
+                            //Device.BeginInvokeOnMainThread(() => addAppMessage(message));
+                        }
+
+                        // LabelNumber.Text = "№ " + request.RequestNumber;
                     }
-
-                    //messages.Add(message);
-                    //Device.BeginInvokeOnMainThread(() => addAppMessage(message));
-                }
-                // LabelNumber.Text = "№ " + request.RequestNumber;
-            }
-            else
-            {
-                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorComments, "OK");
-            }
-
-            await MethodWithDelayAsync(1000);
+                    else
+                    {
+                        await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorComments, "OK");
+                    }
+                    Device.BeginInvokeOnMainThread(async () => await MethodWithDelayAsync(1000));
+                });
+            }).Start();
 
         }
 
@@ -787,18 +814,17 @@ namespace xamarinJKH.Tech
             string newDate;
             if (message.IsSelf)
             {
-                data = new MessageCellAuthor(message, this, DateUniq, out newDate);
+                data = new MessageCellAuthor(message, this, DateUniq, out newDate, true);
             }
             else
             {
-                data = new MessageCellService(message, this, DateUniq, out newDate, prevAuthor);
+                data = new MessageCellService(message, this, DateUniq, out newDate, prevAuthor, true);
             }
 
             DateUniq = newDate;
 
             baseForApp.Children.Add(data);
         }
-
 
 
         public async Task MethodWithDelayAsync(int milliseconds)
@@ -810,19 +836,19 @@ namespace xamarinJKH.Tech
                 //additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
                 var lastChild = baseForApp.Children.LastOrDefault();
                 if (lastChild != null)
-                //await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true);// (lastChild.X, lastChild.Y + 30, true);
-                await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
+                    //await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true);// (lastChild.X, lastChild.Y + 30, true);
+                    await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         async void setText()
         {
             await CrossMedia.Current.Initialize();
-            LabelNumber.Text = "Обращение в тех.поддержку";
-            Color hexColor = (Color)Application.Current.Resources["MainColor"];
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
             FrameMessage.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
-
         }
 
         private async void ShowInfo()
@@ -833,7 +859,8 @@ namespace xamarinJKH.Tech
                 if (!string.IsNullOrEmpty(Status))
                 {
                     string Source = Settings.GetStatusIcon(request.StatusID);
-                    if (!string.IsNullOrWhiteSpace(request.Phone) && (request.Phone.Contains("+") == false && request.Phone.Substring(0, 2) == "79"))
+                    if (!string.IsNullOrWhiteSpace(request.Phone) && (request.Phone.Contains("+") == false &&
+                                                                      request.Phone.Substring(0, 2) == "79"))
                     {
                         request.Phone = "+" + request.Phone;
                     }
@@ -844,23 +871,24 @@ namespace xamarinJKH.Tech
                     {
                         isMan = request.PassInfo.CategoryId == 1;
                     }
+
                     try
                     {
                         if (!string.IsNullOrEmpty(Source))
-                        await Dialog.Instance.ShowAsync<InfoAppDialog>(new
-                        {
-                            _Request = request,
-                            HexColor = this.hex,
-                            SourceApp = Source,
-                            isPass = IsPass,
-                            isManType = isMan
-                        });
+                            await Dialog.Instance.ShowAsync<InfoAppDialog>(new
+                            {
+                                _Request = request,
+                                HexColor = this.hex,
+                                SourceApp = Source,
+                                isPass = IsPass,
+                                isManType = isMan
+                            });
                     }
-                    catch { }
+                    catch
+                    {
+                    }
                 }
             }
-            
-            
         }
 
         public async Task ShowRating()
@@ -875,10 +903,11 @@ namespace xamarinJKH.Tech
 
         private async void OpenReceipt(object sender, EventArgs args)
         {
-            await Dialog.Instance.ShowAsync(new AppReceiptDialogWindow(new ViewModels.DialogViewModels.AppRecieptViewModel(request.ReceiptItems)));
+            await Dialog.Instance.ShowAsync(
+                new AppReceiptDialogWindow(new ViewModels.DialogViewModels.AppRecieptViewModel(request.ReceiptItems)));
         }
 
-        
+
         private void EntryMess_TextChanged(object sender, TextChangedEventArgs e)
         {
             var entry = sender as BordlessEditor;
@@ -893,13 +922,15 @@ namespace xamarinJKH.Tech
                 }
                 else
                 {
-                    if (e.OldTextValue != null && e.NewTextValue.Length < e.OldTextValue.Length && e.NewTextValue.Length < 100)
+                    if (e.OldTextValue != null && e.NewTextValue.Length < e.OldTextValue.Length &&
+                        e.NewTextValue.Length < 100)
                     {
                         entry.HeightRequest = -1;
                     }
+
                     entry.AutoSize = EditorAutoSizeOption.TextChanges;
                 }
             }
         }
-}
+    }
 }

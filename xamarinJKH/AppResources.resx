@@ -1490,4 +1490,10 @@
   <data name="NotComissions" xml:space="preserve">
     <value>*Комиссия не взимается</value>
   </data>
+  <data name="TechChat" xml:space="preserve">
+    <value>Чат с тех.поддержкой</value>
+  </data>
+  <data name="EnterPhone" xml:space="preserve">
+    <value>Введите номер телефона</value>
+  </data>
 </root>

@@ -1503,4 +1503,10 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="NotComissions" xml:space="preserve">
     <value>Commission is not charged</value>
   </data>
+  <data name="TechChat" xml:space="preserve">
+    <value>Chat with technical support</value>
+  </data>
+  <data name="EnterPhone" xml:space="preserve">
+    <value>Enter your phone number</value>
+  </data>
 </root>

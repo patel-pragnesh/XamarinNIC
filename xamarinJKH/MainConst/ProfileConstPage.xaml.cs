@@ -43,7 +43,7 @@ namespace xamarinJKH.MainConst
             };
             FrameBtnExit.GestureRecognizers.Add(exitClick);
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => {     await PopupNavigation.Instance.PushAsync(new TechDialog()); };
+            techSend.Tapped += async (s, e) => {    await Navigation.PushAsync(new AppPage());};
             LabelTech.GestureRecognizers.Add(techSend);
             var saveClick = new TapGestureRecognizer();
             saveClick.Tapped += async (s, e) => { ButtonClick(FrameBtnLogin, null); };

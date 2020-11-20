@@ -69,8 +69,8 @@ namespace xamarinJKH.Main
                 }
 
 
-                await PopupNavigation.Instance.PushAsync(new TechDialog());
-                // await Navigation.PushAsync(new AppPage());
+                // await PopupNavigation.Instance.PushAsync(new TechDialog());
+                await Navigation.PushAsync(new AppPage());
             };
             LabelTech.GestureRecognizers.Add(techSend);
 
@@ -130,7 +130,7 @@ namespace xamarinJKH.Main
                 }
             });
             MessagingCenter.Subscribe<Object>(this, "StartTech",
-                async (sender) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); });
+                async (sender) => { await Navigation.PushAsync(new AppPage()); });
             MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) =>
             {
                 OSAppTheme currentTheme = Application.Current.RequestedTheme;

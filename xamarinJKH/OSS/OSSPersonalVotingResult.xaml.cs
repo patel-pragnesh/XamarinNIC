@@ -52,7 +52,7 @@ namespace xamarinJKH
                 listNeedUpdate = userFinishPool;
             }
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => {     await PopupNavigation.Instance.PushAsync(new TechDialog()); };
+            techSend.Tapped += async (s, e) => {    await Navigation.PushAsync(new AppPage());};
             LabelTech.GestureRecognizers.Add(techSend);
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>

@@ -11,6 +11,7 @@ using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.ViewModels.Shop;
 using Microsoft.AppCenter.Crashes;
+using xamarinJKH.Tech;
 
 namespace xamarinJKH.Shop
 {
@@ -30,7 +31,7 @@ namespace xamarinJKH.Shop
             }
 
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); };
+            techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new AppPage());};
             LabelTech.GestureRecognizers.Add(techSend);
 
             BindingContext = viewModel = new ShopViewModel(select, this.Navigation);
