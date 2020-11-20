@@ -14,6 +14,7 @@ using Microsoft.AppCenter.Analytics;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms.PancakeView;
 using xamarinJKH.DialogViews;
+using xamarinJKH.Tech;
 
 namespace xamarinJKH.Pays
 {
@@ -26,7 +27,7 @@ namespace xamarinJKH.Pays
         {
             InitializeComponent();
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => {  await PopupNavigation.Instance.PushAsync(new TechDialog());    };
+            techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new AppPage());  };
             LabelTech.GestureRecognizers.Add(techSend);
             BindingContext = viewModel = new PayPdfViewModel(info);
             Analytics.TrackEvent("Просмотр ПДФ по квитанции №" + viewModel.Bill.ID);

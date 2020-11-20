@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using Rg.Plugins.Popup.Services;
 using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
+using xamarinJKH.Tech;
 
 namespace xamarinJKH
 {
@@ -42,7 +43,7 @@ namespace xamarinJKH
 
         async void Tech(object sender, EventArgs args)
         {
-            await PopupNavigation.Instance.PushAsync(new TechDialog());
+            await Navigation.PushAsync(new AppPage());
         }
 
         void Back(object sender, EventArgs args)

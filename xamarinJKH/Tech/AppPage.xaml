@@ -32,6 +32,7 @@
                                      HorizontalOptions="Center" />
                         <Label x:Name="LabelNumber"
                                FontSize="20"
+                               Text="{x:Static xamarinJkh:AppResources.TechChat}"
                                VerticalOptions="Center"
                                Margin="0, 0 ,0,0"
                                TextColor="{AppThemeBinding Light=Black, Dark=White}" />
@@ -45,13 +46,13 @@
                                            Margin="15, 0, 15, -30"
                                            BackgroundColor="White"
                                            Padding="5,0,5,70" VerticalOptions="FillAndExpand">
-                <RefreshView x:Name="messageRefreshView" Command="{Binding RefreshCommand}"
-                             IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" VerticalOptions="FillAndExpand">
+                <!-- <RefreshView x:Name="messageRefreshView" -->
+                <!--              IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" VerticalOptions="FillAndExpand"> -->
                     <ScrollView x:Name="scrollFroAppMessages" VerticalScrollBarVisibility="Never"
                                 VerticalOptions="FillAndExpand">
                         <StackLayout x:Name="baseForApp" VerticalOptions="FillAndExpand" />
                     </ScrollView>
-                </RefreshView>
+                <!-- </RefreshView> -->
 
                 <!--<ListView x:Name="additionalList"
                           HasUnevenRows="True"
@@ -143,20 +144,6 @@
                                            Grid.Column="3"
                                            Color="{Binding hex}" />
                     </Grid>
-                    <StackLayout
-                        IsVisible="False"
-                        Spacing="-5">
-
-                        <CheckBox
-                            HorizontalOptions="Center"
-                            Color="{Binding hex}" />
-                        <Label
-                            FontSize="10"
-                            TextColor="Black"
-                            HorizontalOptions="Center"
-                            Text="{x:Static xamarinJkh:AppResources.Hidden}" />
-                    </StackLayout>
-
                 </StackLayout>
             </Frame>
         </StackLayout>

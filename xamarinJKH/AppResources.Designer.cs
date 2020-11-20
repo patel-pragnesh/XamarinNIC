@@ -1088,6 +1088,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введите номер телефона.
+        /// </summary>
+        internal static string EnterPhone {
+            get {
+                return ResourceManager.GetString("EnterPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Введите пин - код с последней квитанции.
         /// </summary>
         internal static string EnterPin {
@@ -3860,6 +3869,15 @@ namespace xamarinJKH {
         internal static string TechAdditionalText3 {
             get {
                 return ResourceManager.GetString("TechAdditionalText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Чат с тех.поддержкой.
+        /// </summary>
+        internal static string TechChat {
+            get {
+                return ResourceManager.GetString("TechChat", resourceCulture);
             }
         }
         

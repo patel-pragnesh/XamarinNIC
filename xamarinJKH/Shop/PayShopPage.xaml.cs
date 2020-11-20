@@ -76,7 +76,7 @@ namespace xamarinJKH.Shop
             };
             LabelDoc.GestureRecognizers.Add(openUrl);
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); };
+            techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new Tech.AppPage());};
             LabelTech.GestureRecognizers.Add(techSend);
 
             switch (Device.RuntimePlatform)

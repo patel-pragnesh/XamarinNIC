@@ -364,8 +364,17 @@ namespace xamarinJKH
         private async void TechSend(object sender, EventArgs e)
         {
             
-            await PopupNavigation.Instance.PushAsync(new TechDialog(false));
+            // await PopupNavigation.Instance.PushAsync(new TechDialog(false));
+            if (Settings.Person != null && !string.IsNullOrWhiteSpace(Settings.Person.Phone))
+            {
+                await Navigation.PushModalAsync(new AppPage());
+            }
+            else
+            {
+                await PopupNavigation.Instance.PushAsync(new EnterPhoneDialog());
+            }
         }
+        
 
         private async void ButtonClick(object sender, EventArgs e)
         {
