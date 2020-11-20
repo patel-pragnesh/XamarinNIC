@@ -542,7 +542,7 @@ namespace xamarinJKH.Server
         }
 
         public async Task<IDResult> newAppConst(string ident, string typeID, string Text,
-            string AutoLockDisptacherId = "")
+            string AutoLockDisptacherId = "", int? DistrictId = null, int? HouseId = null, int? PremiseId = null, string HouseStreet = null)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(NEW_APP_CONST, Method.POST);
@@ -555,7 +555,11 @@ namespace xamarinJKH.Server
                 ident,
                 typeID,
                 Text,
-                AutoLockDisptacherId
+                AutoLockDisptacherId,
+                DistrictId,
+                HouseId,
+                PremiseId,
+                HouseStreet
             });
             var response = await restClientMp.ExecuteTaskAsync<IDResult>(restRequest);
             // Проверяем статус
