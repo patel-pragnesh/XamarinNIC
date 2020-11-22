@@ -53,6 +53,14 @@
                                TextColor="White"
                                Margin="0, 0, 0, 0"
                                VerticalOptions="Center" />
+                            <svg:SvgCachedImage  x:Name="IconViewProfile"
+                                                     Source="resource://xamarinJKH.Resources.ic_profile_top.svg"
+                                                     HeightRequest="70"
+                                                     IsVisible="False"
+                                                     WidthRequest="30"
+                                                     Margin="0, 0,0,0"
+                                                     HorizontalOptions="Start"
+                                                     VerticalOptions="Center" />
                     </StackLayout>
                         </StackLayout>
                     <StackLayout

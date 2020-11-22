@@ -161,6 +161,10 @@ namespace xamarinJKH.Main
                     return;
                 inUpdateNow = true;
 
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    aIndicator.IsVisible = true;
+                });
 
                 await getAppsAsync();
                 //Device.BeginInvokeOnMainThread(() =>
@@ -178,6 +182,10 @@ namespace xamarinJKH.Main
             finally
             {
                 inUpdateNow = false;
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    aIndicator.IsVisible = false;
+                });
             }
         }
 
@@ -194,8 +202,16 @@ namespace xamarinJKH.Main
                 : "#FF0000");
             BindingContext = viewModel = new AppsPageViewModel();
 
+            aIndicator.Color = hex;
+
             NavigationPage.SetHasNavigationBar(this, false);
             MessagingCenter.Subscribe<Object>(this, "AutoUpdate", (sender) => { StartAutoUpdate(); });
+
+            MessagingCenter.Subscribe<Object>(this, "StartRefresh", (sender) => 
+            { Device.BeginInvokeOnMainThread(() => aIndicator.IsVisible = true); });
+            MessagingCenter.Subscribe<Object>(this, "EndRefresh", (sender) => 
+            { Device.BeginInvokeOnMainThread(() => aIndicator.IsVisible = false); });
+
             var goAddIdent = new TapGestureRecognizer();
             goAddIdent.Tapped += async (s, e) =>
             {
@@ -204,6 +220,8 @@ namespace xamarinJKH.Main
                     await Navigation.PushAsync(new AddIdent((PaysPage) Settings.mainPage));
             };
             StackLayoutIdent.GestureRecognizers.Add(goAddIdent);
+
+            
 
             switch (Device.RuntimePlatform)
             {

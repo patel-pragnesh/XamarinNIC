@@ -55,6 +55,8 @@ namespace xamarinJKH.Server.RequestModel
         public bool housesExists { get; set; }
         public bool streetsExists { get; set; }
         public bool premisesExists { get; set; }
+
+        public bool showOurService { get; set; }
     }
 
     public class MobileMenu

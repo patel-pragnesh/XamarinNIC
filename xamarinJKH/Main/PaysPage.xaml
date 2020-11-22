@@ -102,8 +102,7 @@
                             </StackLayout>
                             
                         </Frame>
-                        <ActivityIndicator x:Name="aIndicator" Color="{Binding hex}" Scale="2"
-                                           
+                        <ActivityIndicator x:Name="aIndicator" Color="{Binding hex}" Scale="2"                                           
                                           IsRunning="True" IsEnabled="True" IsVisible="false" 
                                            HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></ActivityIndicator>
 
