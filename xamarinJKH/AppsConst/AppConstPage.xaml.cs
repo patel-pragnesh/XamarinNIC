@@ -29,6 +29,7 @@ using System.Threading.Tasks.Sources;
 using System.Threading.Tasks;
 using System.Threading;
 using Microsoft.AppCenter.Analytics;
+using System.Collections.ObjectModel;
 
 namespace xamarinJKH.AppsConst
 {
@@ -119,7 +120,7 @@ namespace xamarinJKH.AppsConst
                                         //Device.BeginInvokeOnMainThread(() => messages.Add(each));
                                         Device.BeginInvokeOnMainThread(async () =>
                                         {
-                                            addAppMessage(each,messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
+                                            addAppMessage(each, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
                                             var lastChild = baseForApp.Children.LastOrDefault();
                                             //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true));
                                             if (lastChild != null)
@@ -158,7 +159,7 @@ namespace xamarinJKH.AppsConst
                 }
             });
         }
-        
+
         protected override void OnDisappearing()
         {
             try
@@ -221,7 +222,7 @@ namespace xamarinJKH.AppsConst
                     request = requestsUpdate.CurrentRequestUpdates;
                     foreach (var each in requestsUpdate.CurrentRequestUpdates.Messages)
                     {
-                        Device.BeginInvokeOnMainThread(async () => 
+                        Device.BeginInvokeOnMainThread(async () =>
                         {
                             addAppMessage(each, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
                             var lastChild = baseForApp.Children.LastOrDefault();
@@ -266,15 +267,17 @@ namespace xamarinJKH.AppsConst
 
         public bool close = false;
         public bool isNotRead { get; set; }
+        public ObservableCollection<OptionModel> Options { get; set; }
 
         public AppConstPage(RequestInfo requestInfo, bool isNotRead = true, bool closeAll = false)
         {
             close = closeAll;
             _requestInfo = requestInfo;
             this.isNotRead = isNotRead;
+            Options = new ObservableCollection<OptionModel>();
             InitializeComponent();
-            Analytics.TrackEvent("Заявка сотрудника №"+ requestInfo.RequestNumber);
-
+            Analytics.TrackEvent("Заявка сотрудника №" + requestInfo.RequestNumber);
+            IsRequestPaid = requestInfo.IsPaid;
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -296,6 +299,88 @@ namespace xamarinJKH.AppsConst
                     break;
             }
             SetReadedApp();
+            Options.Add(new OptionModel { Name = AppResources.InfoApp, Image = "ic_info_app1", Command = new Command(() => ShowInfo()), IsVisible = true });
+            Options.Add(new OptionModel { Name = AppResources.AcceptApp, Image = "ic_accept_app", Command = new Command(() => acceptApp()), IsVisible = true });
+            Options.Add(new OptionModel { Name = AppResources.CompleteApp, Image = "ic_check_mark", Command = new Command(() => performApp()), IsVisible = CanComplete });
+            Options.Add(new OptionModel
+            {
+                Name = AppResources.PassApp,
+                Image = "ic_next_disp",
+                Command = new Command(() =>
+{
+Device.BeginInvokeOnMainThread(async () =>
+{
+await PopupNavigation.Instance.PushAsync(new MoveDispatcherView(hex, _requestInfo, true));
+await RefreshData();
+});
+
+}),
+                IsVisible = true
+            });
+            Options.Add(new OptionModel
+            {
+                Name = AppResources.Transit,
+                Image = "ic_in_way",
+                Command = new Command(async () =>
+{
+progress.IsVisible = true;
+var request = await _server.SetPaidRequestStatusOnTheWay(_requestInfo.ID.ToString());
+if (request.Error == null)
+{
+await ShowToast(AppResources.TransitOrder);
+await RefreshData();
+}
+else
+{
+await DisplayAlert(AppResources.Order, request.Error, "OK");
+}
+progress.IsVisible = false;
+}),
+                IsVisible = IsRequestPaid
+            });
+            Options.Add(new OptionModel { Name = AppResources.SendCodeApp, Image = "ic_send_code", Command = new Command(async () => await AiForms.Dialogs.Dialog.Instance.ShowAsync(new EnterCodeDialogView(this._requestInfo.ID.ToString()))), IsVisible = IsRequestPaid });
+            Options.Add(new OptionModel
+            {
+                Name = AppResources.Receipt,
+                Image = "ic_receipt",
+                Command = new Command(async () =>
+{
+List<RequestsReceiptItem> Items = new List<RequestsReceiptItem>();
+foreach (var item in request.ReceiptItems)
+{
+Items.Add(item.Copy());
+}
+await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, request.ShopId));
+}),
+                IsVisible = IsRequestPaid
+            });
+            Options.Add(new OptionModel
+            {
+                Name = AppResources.CloseApp,
+                Image = "ic_close_app1",
+                Command = new Command(async () =>
+{
+    // await ShowRating();
+    // await PopupNavigation.Instance
+
+    CommonResult result = await _server.CloseAppConst(_requestInfo.ID.ToString());
+    if (result.Error == null)
+    {
+        var result2 = await DisplayAlert("", AppResources.RatingBarClose, "OK", AppResources.Cancel);
+        if (result2)
+        {
+            await ClosePage();
+            await ShowToast(AppResources.AppClosed);
+            await RefreshData();
+        }
+    }
+    else
+    {
+        await ShowToast(result.Error);
+    }
+}),
+                IsVisible = CanClose
+            });
             NavigationPage.SetHasNavigationBar(this, false);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { await ClosePage(); };
@@ -328,22 +413,22 @@ namespace xamarinJKH.AppsConst
             {
                 // await ShowRating();
                 // await PopupNavigation.Instance
-              
-                    CommonResult result = await _server.CloseAppConst(_requestInfo.ID.ToString());
-                    if (result.Error == null)
+
+                CommonResult result = await _server.CloseAppConst(_requestInfo.ID.ToString());
+                if (result.Error == null)
+                {
+                    var result2 = await DisplayAlert("", AppResources.RatingBarClose, "OK", AppResources.Cancel);
+                    if (result2)
                     {
-                        var result2 = await DisplayAlert("", AppResources.RatingBarClose, "OK", AppResources.Cancel);
-                        if (result2)
-                        {
-                            await ClosePage();
-                            await ShowToast(AppResources.AppClosed);
-                            await RefreshData();
-                        }
+                        await ClosePage();
+                        await ShowToast(AppResources.AppClosed);
+                        await RefreshData();
                     }
-                    else
-                    {
-                        await ShowToast(result.Error);
-                    }
+                }
+                else
+                {
+                    await ShowToast(result.Error);
+                }
             };
             StackLayoutClose.GestureRecognizers.Add(closeApp);
             hex = (Color)Application.Current.Resources["MainColor"];
@@ -379,7 +464,7 @@ namespace xamarinJKH.AppsConst
                     catch { }
                 }
             });
-           // additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+            // additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
 
         async void getFile(string id, string fileName)
@@ -393,7 +478,7 @@ namespace xamarinJKH.AppsConst
             // Loading settings
             Configurations.LoadingConfig = new LoadingConfig
             {
-                IndicatorColor =(Color)Application.Current.Resources["MainColor"] ,
+                IndicatorColor = (Color)Application.Current.Resources["MainColor"],
                 OverlayColor = Color.Black,
                 Opacity = 0.8,
                 DefaultMessage = AppResources.Loading,
@@ -600,7 +685,7 @@ namespace xamarinJKH.AppsConst
 
         async Task getCameraFile(MediaFile file)
         {
-           
+
             if (file == null)
                 return;
             CommonResult commonResult = await _server.AddFileAppsConst(_requestInfo.ID.ToString(),
@@ -630,18 +715,18 @@ namespace xamarinJKH.AppsConst
 
                 //await Loading.Instance.StartAsync(async progress =>
                 //{
-                    switch (metod)
-                    {
-                        case CAMERA:
-                            await getCameraFile(file);
-                            break;
-                        case GALERY:
-                            await GetGalaryFile(file);
-                            break;
-                        case FILE:
-                            await PickAndShowFile(null);
-                            break;
-                    }
+                switch (metod)
+                {
+                    case CAMERA:
+                        await getCameraFile(file);
+                        break;
+                    case GALERY:
+                        await GetGalaryFile(file);
+                        break;
+                    case FILE:
+                        await PickAndShowFile(null);
+                        break;
+                }
                 //});
             }
             catch (Exception ex)
@@ -649,7 +734,7 @@ namespace xamarinJKH.AppsConst
                 await DisplayAlert(null, $"{ex.Message}\n{ex.StackTrace}", "OK");
                 Console.WriteLine(ex.Message);
             }
-            
+
         }
 
         async Task GetGalaryFile(MediaFile file)
@@ -866,7 +951,7 @@ namespace xamarinJKH.AppsConst
                 //additionalList.ScrollTo(messages[messages.Count - 1], 0, true);
                 var lastChild = baseForApp.Children.LastOrDefault();
                 if (lastChild != null)
-                await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
+                    await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
             }
             catch (Exception e)
             {
@@ -884,8 +969,8 @@ namespace xamarinJKH.AppsConst
             {
                 Console.WriteLine(e);
             }
-            
-            Color hexColor = (Color) Application.Current.Resources["MainColor"];
+
+            Color hexColor = (Color)Application.Current.Resources["MainColor"];
             FrameKeys.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#B5B5B5"));
             FrameMessage.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
         }
