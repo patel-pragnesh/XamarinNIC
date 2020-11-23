@@ -139,6 +139,7 @@ namespace xamarinJKH.Main
 
         private void CheckAkk()
         {
+            if (Settings.Person.Accounts != null)
             if (Settings.Person.Accounts.Count > 0)
             {
                 StackLayoutNewApp.IsVisible = true;
