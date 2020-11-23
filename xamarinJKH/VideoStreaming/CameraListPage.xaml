@@ -21,7 +21,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid>
+        <Grid VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.2*"/>
                 <RowDefinition Height="0.2*"/>
@@ -32,10 +32,10 @@
                                     Grid.RowSpan="3"/>
             <StackLayout Grid.Row="1"
                          Grid.RowSpan="2"
-                         Padding="15,0,15,0">
+                         Padding="15,0,15,0" VerticalOptions="FillAndExpand">
                 <CollectionView ItemsSource="{Binding Cameras}"
                                 SelectionMode="Single"
-                                SelectionChanged="CameraSelect" >
+                                SelectionChanged="CameraSelect" VerticalOptions="FillAndExpand">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical"
                                            ItemSpacing="20"/>
