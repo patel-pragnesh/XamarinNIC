@@ -139,6 +139,7 @@ namespace xamarinJKH.Main
 
         private void CheckAkk()
         {
+            if (Settings.Person.Accounts != null)
             if (Settings.Person.Accounts.Count > 0)
             {
                 StackLayoutNewApp.IsVisible = true;
@@ -322,6 +323,8 @@ namespace xamarinJKH.Main
 
             MessagingCenter.Subscribe<Object, int>(this, "OpenApp", async (sender, index) =>
             {
+                await viewModel.UpdateTask();
+
                 while (viewModel.AllRequests == null)
                 {
                     await Task.Delay(TimeSpan.FromMilliseconds(50));

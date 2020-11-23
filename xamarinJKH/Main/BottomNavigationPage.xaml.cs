@@ -151,8 +151,17 @@ namespace xamarinJKH.Main
 
             MessagingCenter.Subscribe<Object, int>(this, "SwitchToApps", (sender, index) =>
             {
-                this.CurrentPage = this.Children[3];
-                MessagingCenter.Send<Object, int>(this, "OpenApp", index);
+                try
+                {
+                    this.CurrentPage = AppPage;
+                    MessagingCenter.Send<Object, int>(this, "OpenApp", index);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    Analytics.TrackEvent(e.Message);
+                }
+                
             });
 
             ChangeTheme = new Command(async () =>
