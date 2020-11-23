@@ -323,12 +323,14 @@ namespace xamarinJKH.Main
 
             MessagingCenter.Subscribe<Object, int>(this, "OpenApp", async (sender, index) =>
             {
+                await viewModel.UpdateTask();
+
                 while (viewModel.AllRequests == null)
                 {
                     await Task.Delay(TimeSpan.FromMilliseconds(50));
                 }
                 var request = viewModel.AllRequests.Where(x => x.ID == index).ToList();
-                if (request != null)
+                if (request != null && request.Count > 0)
                 {
                     Device.BeginInvokeOnMainThread(async () =>
                     {

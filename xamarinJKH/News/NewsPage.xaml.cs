@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using AiForms.Dialogs;
+using AiForms.Dialogs.Abstractions;
 using Microsoft.AppCenter.Analytics;
 using Plugin.Messaging;
 using Rg.Plugins.Popup.Services;
@@ -58,16 +60,31 @@ namespace xamarinJKH.News
             {
                 Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
+                
             }
-            Settings.EventBlockData = await server.GetEventBlockData();
-            if (Settings.EventBlockData.Error == null)
+
+            if (!isAll)
             {
-                NewsInfos = Settings.EventBlockData.News;
-                NotificationList.ItemsSource = null;
-                NotificationList.ItemsSource = NewsInfos;
-            }else
+                NewsInfos = await server.AllNews();
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    NotificationList.ItemsSource = null;
+                    NotificationList.ItemsSource = NewsInfos;
+                });
+            }
+            else
             {
-                await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNewsInfo, "OK");
+                Settings.EventBlockData = await server.GetEventBlockData();
+                if (Settings.EventBlockData.Error == null)
+                {
+                    NewsInfos = Settings.EventBlockData.News;
+                    NotificationList.ItemsSource = null;
+                    NotificationList.ItemsSource = NewsInfos;
+                }
+                else
+                {
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNewsInfo, "OK");
+                }
             }
         }
 
@@ -147,6 +164,47 @@ namespace xamarinJKH.News
             MessagingCenter.Send<Object, int>(this, "SetNotificationRead", select.ID);
             if (Navigation.NavigationStack.FirstOrDefault(x => x is NewPage) == null)
                 await Navigation.PushAsync(new NewPage(select));
+        }
+
+        private bool isAll = true;
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            new Task(async () =>
+            {
+                Configurations.LoadingConfig = new LoadingConfig
+                {
+                    IndicatorColor =(Color) Application.Current.Resources["MainColor"],
+                    OverlayColor = Color.Black,
+                    Opacity = 0.8,
+                    DefaultMessage = AppResources.Loading,
+                };
+
+                await Loading.Instance.StartAsync(async progress =>
+                {
+                    if (isAll)
+                    {
+                        NewsInfos = await server.AllNews();
+                        Device.BeginInvokeOnMainThread(async () =>
+                        {
+                            NotificationList.ItemsSource = null;
+                            NotificationList.ItemsSource = NewsInfos;
+                            SeeAll.Text = AppResources.SeeNews;
+                            isAll = false;
+                        });
+                    }
+                    else
+                    {
+                        Device.BeginInvokeOnMainThread(async () =>
+                        {
+                            NewsInfos = Settings.EventBlockData.News;
+                            NotificationList.ItemsSource = null;
+                            NotificationList.ItemsSource = NewsInfos;
+                            SeeAll.Text = AppResources.AllNews;
+                            isAll = true;
+                        });
+                    }
+                });
+            }).Start();
         }
     }
 }

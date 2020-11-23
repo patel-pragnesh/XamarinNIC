@@ -1508,4 +1508,10 @@
   <data name="Street" xml:space="preserve">
     <value>Улица</value>
   </data>
+  <data name="AllNews" xml:space="preserve">
+    <value>Смотреть все</value>
+  </data>
+  <data name="SeeNews" xml:space="preserve">
+    <value>Показать новые</value>
+  </data>
 </root>

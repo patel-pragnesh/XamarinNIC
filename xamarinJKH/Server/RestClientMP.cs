@@ -18,10 +18,10 @@ namespace xamarinJKH.Server
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         // public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        public const string SERVER_ADDR = "https://api.sm-center.ru/water2"; // Тихая гавань water/ water2 - тихая гавань - 2 
+        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань water/ water2 - тихая гавань - 2 
         //public const string SERVER_ADDR = "https://api.sm-center.ru/newjkh"; // Еще одна тестовая база
         //public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
-        //public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
+        // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
         // public const string SERVER_ADDR = "https://api.sm-center.ru/uk_sibir_alians"; //Альянс
          //public const string SERVER_ADDR = "https://api.sm-center.ru/ooo_yegkh"; //Легкая жизнъ
         // public const string SERVER_ADDR = "https://api.sm-center.ru/vodokanal_narof"; // Водоканал
@@ -94,7 +94,7 @@ namespace xamarinJKH.Server
         public const string CLOSE_APP_CONST = "RequestsDispatcher/Close "; // Закрытие заявки
         public const string LOCK_APP_CONST = "RequestsDispatcher/Lock "; // Прием заявки к работе
         public const string PERFORM_APP_CONST = "RequestsDispatcher/Perform "; // Выполнение заявки
-
+        public const string GET_ALL_NEWS = "Common/AllNews";
         public const string
             CHANGE_DISPATCHER_CONST = "RequestsDispatcher/ChangeDispatcher "; // Перевод заявки диспетчеру
 
@@ -2651,6 +2651,28 @@ namespace xamarinJKH.Server
                 return new CommonResult()
                 {
                     Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        
+        public async Task<List<NewsInfo>> AllNews()
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_ALL_NEWS, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+
+            var response = await restClientMp.ExecuteTaskAsync<List<NewsInfo>>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new List<NewsInfo>()
+                {
+                    // Error = $"Ошибка {response.StatusDescription}"
                 };
             }
 

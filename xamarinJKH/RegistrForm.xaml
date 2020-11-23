@@ -668,7 +668,7 @@
                                                           VerticalOptions="Center" />
                                     <Label x:Name="lblConfirmPass"
                                            Text="{x:Static xamarinJkh:AppResources.ConfirmPass}"
-                                           FontSize="13.5"
+                                           FontSize="12"
                                            TextColor="Black"
                                            Margin="-10, 0, 5, 0"
                                            VerticalOptions="Center" />

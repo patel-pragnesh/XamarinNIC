@@ -1521,4 +1521,10 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="Street" xml:space="preserve">
     <value>Street</value>
   </data>
+  <data name="AllNews" xml:space="preserve">
+    <value>See all</value>
+  </data>
+  <data name="SeeNews" xml:space="preserve">
+    <value>Show new</value>
+  </data>
 </root>
