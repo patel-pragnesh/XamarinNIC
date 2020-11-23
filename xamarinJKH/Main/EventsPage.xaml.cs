@@ -74,15 +74,20 @@ namespace xamarinJKH.Main
             };
             LabelTech.GestureRecognizers.Add(techSend);
 
-            var profile = new TapGestureRecognizer();
-            profile.Tapped += async (s, e) =>
-            {
-                if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfilePage) == null)
-                    await Navigation.PushAsync(new ProfilePage());
-            };
+            
 
             // if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
-            //     IconViewProfile.IsVisible = true;
+            if(Settings.MobileSettings.showOurService)
+            { 
+                IconViewProfile.IsVisible = true;
+                var profile = new TapGestureRecognizer();
+                profile.Tapped += async (s, e) =>
+                {
+                    if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfilePage) == null)
+                        await Navigation.PushAsync(new ProfilePage());
+                };
+                IconViewProfile.GestureRecognizers.Add(profile);
+            }
 
 
             var call = new TapGestureRecognizer();

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             popup:Padding="50"
+             xmlns:local="clr-namespace:xamarinJKH"
+             x:Class="xamarinJKH.DialogViews.SearchDialogView">
+    <Frame CornerRadius="20">
+        <Grid>
+            <StackLayout>
+                <local:BordlessEditor TextChanged="BordlessEditor_TextChanged"/>
+                <Label BackgroundColor="{x:StaticResource MainColor}"
+                       HeightRequest="2"/>
+                <CollectionView ItemsSource="{Binding Items}"
+                            SelectionMode="Single"
+                            SelectionChanged="ItemSelected">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding Name}"
+                                   Margin="5"
+                                   FontSize="14"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+            <ActivityIndicator Color="{x:StaticResource MainColor}"
+                               IsEnabled="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}">
+            </ActivityIndicator>
+        </Grid>
+        
+    </Frame>
+</popup:PopupPage>

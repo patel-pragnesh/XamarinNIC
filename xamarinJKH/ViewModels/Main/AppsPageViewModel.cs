@@ -76,6 +76,7 @@ namespace xamarinJKH.ViewModels.Main
             Requests = new ObservableCollection<RequestInfo>();
             LoadRequests = new Command(async () =>
             {
+
                 var response = await Server.GetRequestsList();
                 AllRequests = new List<RequestInfo>();
                 if (response.Error != null)
@@ -87,24 +88,46 @@ namespace xamarinJKH.ViewModels.Main
                 {
                     if (Settings.UpdateKey != response.UpdateKey)
                         Settings.UpdateKey = response.UpdateKey;
-                    if (response.Requests != null)
-                    {
-                        MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => !x.IsReadedByClient).Count());
-                        AllRequests.AddRange(response.Requests);
-                        if (Requests == null)
+                    Device.BeginInvokeOnMainThread(() => {
+                        if (response.Requests != null)
                         {
-                            Empty = Requests.Count == 0;
-                            Requests = new ObservableCollection<RequestInfo>();
+                            MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => !x.IsReadedByClient).Count());
+                            AllRequests.AddRange(response.Requests);
+                            if (Requests == null)
+                            {
+                                Empty = Requests.Count == 0;
+                                Requests = new ObservableCollection<RequestInfo>();
+                            }
+                            Requests.Clear();
+                            foreach (var App in AllRequests.Where(x => x.IsClosed == ShowClosed))
+                            {
+                                Device.BeginInvokeOnMainThread(() => Requests.Add(App));
+                            }
                         }
-                        Requests.Clear();
-                        foreach (var App in AllRequests.Where(x => x.IsClosed == ShowClosed))
-                        {
-                            Device.BeginInvokeOnMainThread(() => Requests.Add(App));
-                        }
-                    }
+
+                        MessagingCenter.Subscribe<Object, string>(this, "AddIdent", (sender, args) => LoadRequests.Execute(null));
+                        MessagingCenter.Send<Object>(this, "EndRefresh");
+
+                    });
+                    //if (response.Requests != null)
+                    //{
+                    //    MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => !x.IsReadedByClient).Count());
+                    //    AllRequests.AddRange(response.Requests);
+                    //    if (Requests == null)
+                    //    {
+                    //        Empty = Requests.Count == 0;
+                    //        Requests = new ObservableCollection<RequestInfo>();
+                    //    }
+                    //    Requests.Clear();
+                    //    foreach (var App in AllRequests.Where(x => x.IsClosed == ShowClosed))
+                    //    {
+                    //        Device.BeginInvokeOnMainThread(() => Requests.Add(App));
+                    //    }
+                    //}
                 }
 
-                MessagingCenter.Subscribe<Object, string>(this, "AddIdent", (sender, args) => LoadRequests.Execute(null));
+                //MessagingCenter.Subscribe<Object, string>(this, "AddIdent", (sender, args) => LoadRequests.Execute(null));
+                //MessagingCenter.Send<Object>(this, "EndRefresh");
             });
         }
 

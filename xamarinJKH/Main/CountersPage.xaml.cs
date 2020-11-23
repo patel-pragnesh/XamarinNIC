@@ -36,6 +36,8 @@ namespace xamarinJKH.Main
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
 
+        public Color hex { get; set; }
+
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -71,7 +73,13 @@ namespace xamarinJKH.Main
                 return;
             }
 
-            try
+            Device.BeginInvokeOnMainThread( () =>
+            {
+                if(!IsRefreshing)
+                aIndicator.IsVisible = true;
+            });
+
+                try
             {
                 ItemsList<MeterInfo> info = await _server.GetThreeMeters();
                 if (info.Error == null)
@@ -113,13 +121,27 @@ namespace xamarinJKH.Main
                 }
                 OSAppTheme currentTheme = Application.Current.RequestedTheme;
                 SetHeader(currentTheme);
+
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    aIndicator.IsVisible = false;
+                });
+
             }
             catch
             {
+                
 
             }
-            
-            
+            finally
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    aIndicator.IsVisible = false;
+                });
+            }
+
+
 
             //countersList.ItemsSource = null;
             //countersList.ItemsSource = _meterInfo;
@@ -217,6 +239,8 @@ namespace xamarinJKH.Main
                     break;
             }
 
+            hex = (Color)Application.Current.Resources["MainColor"];
+
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new AppPage());};
             LabelTech.GestureRecognizers.Add(techSend);
@@ -265,9 +289,18 @@ namespace xamarinJKH.Main
             FrameTop.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
             ChangeTheme = new Command(async () => { SetTitle(); });
             MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) => ChangeTheme.Execute(null));
-            MessagingCenter.Subscribe<Object>(this, "UpdateCounters", (sender) => RefreshCommand.Execute(null));
-            MessagingCenter.Subscribe<Object, string>(this, "AddIdent", (sender, ident) => Accounts.Add(ident));
+            //MessagingCenter.Subscribe<Object>(this, "UpdateCounters", (sender) => RefreshCommand.Execute(null));
+            MessagingCenter.Subscribe<Object>(this, "UpdateCounters", async (sender) => await RefreshCountersData());
+            MessagingCenter.Subscribe<Object, string>(this, "AddIdent", (sender, ident) =>
+            { 
+                if (Accounts.Count == 0)
+                {
+                    Accounts.Add("Все");
+                }
+                Accounts.Add(ident); 
+            });
             MessagingCenter.Subscribe<Object, string>(this, "RemoveIdent", (sender, ident) => Accounts.Remove(ident));
+            Picker.ItemsSource = Accounts;
         }
 
         private void SetTitle()

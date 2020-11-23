@@ -338,23 +338,35 @@ namespace xamarinJKH.Main
         {
             try
             {
-                // if (AppInfo.PackageName != "rom.best.UkComfort" && AppInfo.PackageName != "sys_rom.ru.comfort_uk_app")
-                // {
-                // if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
-                // {
                 Children.Remove(ShopNavPage);
-                // }
-                // else
-                // {
-                Children.Remove(ShopNavPage2);
-                // }
-                // }
-                // else
-                // {
-                //     Children.Remove(ShopNavPage);
-                //     Children.Remove(ProfPage);
-                // }
+                if (!Settings.MobileSettings.showOurService)
+                {
+                    
+                    Children.Remove(ShopNavPage2);
+                }
+                else
+                {
+                    Children.Remove(ProfPage);
+                }
                 
+                
+                //// if (AppInfo.PackageName != "rom.best.UkComfort" && AppInfo.PackageName != "sys_rom.ru.comfort_uk_app")
+                //// {
+                //// if (RestClientMP.SERVER_ADDR.Contains("komfortnew"))
+                //// {
+                //Children.Remove(ShopNavPage);
+                //// }
+                //// else
+                //// {
+                //Children.Remove(ShopNavPage2);
+                //// }
+                //// }
+                //// else
+                //// {
+                ////     Children.Remove(ShopNavPage);
+                ////     Children.Remove(ProfPage);
+                //// }
+
                 foreach (var each in Settings.MobileSettings.menu)
                 {
                     if (each.name_app.Equals("Заявки"))

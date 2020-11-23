@@ -102,6 +102,11 @@ namespace xamarinJKH.Pays
             LoginResult person = await _server.Login(login, pass);
             Settings.Person = person;
             MessagingCenter.Send<Object, string>(this, "AddIdent", ident);
+
+            MessagingCenter.Send<Object>(this, "UpdateCounters");
+            MessagingCenter.Send<Object>(this, "AutoUpdate");
+
+            MessagingCenter.Send<Object>(this, "StartRefresh");
         }
         
         public async void AddIdentAccount(string ident)
@@ -167,18 +172,18 @@ namespace xamarinJKH.Pays
         {
             if (ident != "")
             {
-                progress.IsVisible = true;
-                FrameBtnAdd.IsVisible = false;
+                Device.BeginInvokeOnMainThread( ()=> { progress.IsVisible = true; FrameBtnAdd.IsVisible = false;});
+                
                 progress.IsVisible = true;
                 AddAccountResult result = await _server.AddIdent(ident);
                 if (result.Error == null)
                 {
-                    AddIdentToList(ident);
+                    
                     Console.WriteLine(result.Address);
                     Console.WriteLine("Отправлено");
                     await DisplayAlert("", $"{AppResources.Acc} " + ident + $"{AppResources.AddLsString}", "ОК");
                     FrameBtnAdd.IsVisible = true;
-                    progress.IsVisible = false;
+                    Device.BeginInvokeOnMainThread(() => progress.IsVisible = false);
                     if (!string.IsNullOrWhiteSpace(result.acx))
                     {
                        
@@ -201,13 +206,13 @@ namespace xamarinJKH.Pays
                                     Settings.Person = loginResult;
                                 }
                                 Settings.Person.acx = result.acx;
-                                MessagingCenter.Send<Object>(this, "UpdateCounters");
-                                MessagingCenter.Send<Object>(this, "AutoUpdate");
+                                
                             }
                         });
                     }
                     try
                     {
+                        AddIdentToList(ident);
                         _ = await Navigation.PopAsync();
                     }
                     catch { }

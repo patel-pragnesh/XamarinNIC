@@ -593,7 +593,7 @@ _appModel = new AddAppModel()
                         return;
                     }
                     string ident = Settings.Person.Accounts[PickerLs.SelectedIndex].Ident;
-                    string typeId = Settings.TypeApp[PickerType.SelectedIndex].ID;
+                    string typeId = Settings.TypeApp[PickerType.SelectedIndex].ID.ToString();
                     IDResult result = new IDResult();
                     if (isPassAPP)
                     {
