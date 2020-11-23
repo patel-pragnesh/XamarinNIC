@@ -303,7 +303,7 @@ namespace xamarinJKH.Pays
             }
             
 
-            string filename = @select.Period + ".pdf";
+            string filename = @select.Period + select.Ident + ".pdf";
             
             if (await DependencyService.Get<IFileWorker>().ExistsAsync(filename)) 
             {

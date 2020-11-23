@@ -39,7 +39,7 @@
                                     <Label x:Name="UkName"
                                            Text="Название"
                                            FontAttributes="Bold"
-                                           FontSize="16"
+                                           FontSize="15"
                                            TextColor="White" />
                                     <StackLayout
                                         Spacing="0"

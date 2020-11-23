@@ -71,7 +71,7 @@
                        IsVisible="False"
                        FontAttributes="Bold"
                        HorizontalOptions="StartAndExpand"
-                       FontSize="16"
+                       FontSize="15"
                        TextColor="{AppThemeBinding Light=Black, Dark=Black}" />
                
             </StackLayout>
