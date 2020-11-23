@@ -206,7 +206,7 @@ namespace xamarinJKH
                 isCheched = true;
                 if (radioButton.IsChecked)
                 {   
-                    switch(radioButton.Text)
+                    switch(textRadio.Text)
                     {
                         case "За":
                             _oss.Questions[quest].Answer = "0";
