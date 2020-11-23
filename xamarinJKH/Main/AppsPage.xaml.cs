@@ -327,7 +327,7 @@ namespace xamarinJKH.Main
                     await Task.Delay(TimeSpan.FromMilliseconds(50));
                 }
                 var request = viewModel.AllRequests.Where(x => x.ID == index).ToList();
-                if (request != null)
+                if (request != null && request.Count > 0)
                 {
                     Device.BeginInvokeOnMainThread(async () =>
                     {
