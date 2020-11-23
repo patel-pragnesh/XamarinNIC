@@ -11,7 +11,7 @@
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Questions.QuestionsPage">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="FillAndExpand">
+        <StackLayout VerticalOptions="FillAndExpand" >
             <Grid VerticalOptions="FillAndExpand">
                 <Image x:Name="ImageFon"
                        Source="{AppThemeBinding Light=ic_background_event_light, Dark=ic_background_event}"

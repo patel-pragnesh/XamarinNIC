@@ -6,7 +6,7 @@
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
-             x:Class="xamarinJKH.Questions.PollsPage">
+             x:Class="xamarinJKH.Questions.PollsPage" >
 
     <ContentPage.Content>
         <StackLayout>
@@ -68,8 +68,9 @@
                     </StackLayout>
                 </Grid>
             </pancakeView:PancakeView>
-
-            <StackLayout Margin="0,20,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" x:Name="Pancake2">
+            <StackLayout HorizontalOptions="FillAndExpand" x:Name="Pancake2" IsVisible="{OnPlatform iOS=true, Android=false}" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"></StackLayout>
+            <StackLayout Margin="0,20,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" x:Name="Pancake22">
+                
                 <StackLayout
                     x:Name="BackStackLayout"
                     Orientation="Horizontal"

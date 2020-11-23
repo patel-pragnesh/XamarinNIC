@@ -44,10 +44,11 @@ namespace xamarinJKH.Questions
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                    Pancake2.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    //Pancake2.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    Pancake2.HeightRequest = statusBarHeight;
                     //BackgroundColor = Color.White;
 
-                    if(Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width<700)
+                    if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width<700)
                     {
                         FrameBack.Padding = new Thickness(15, 12);
                         FrameBtnFinish.Padding = new Thickness(10, 12);
