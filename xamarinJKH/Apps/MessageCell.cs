@@ -332,35 +332,37 @@ namespace xamarinJKH.Apps
                                 Opacity = 0.8,
                                 DefaultMessage = AppResources.Loading,
                             };
-
-                            await Loading.Instance.StartAsync(async progress =>
-                            {
-                                byte[] memoryStream = null;
-                                if (isTech)
+                            Device.BeginInvokeOnMainThread(async () => {
+                                await Loading.Instance.StartAsync(async progress =>
                                 {
-                                    memoryStream = await _server.GetFileAPP_Tech(message.FileID.ToString());
-
-                                }
-                                else
-                                {
-                                    memoryStream = await _server.GetFileAPP(message.FileID.ToString());
-
-                                }
-
-                                if (memoryStream != null)
-                                {
-                                    await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
-                                    await Launcher.OpenAsync(new OpenFileRequest
+                                    byte[] memoryStream = null;
+                                    if (isTech)
                                     {
-                                        File = new ReadOnlyFile(DependencyService.Get<IFileWorker>()
-                                            .GetFilePath(fileName))
-                                    });
-                                }
-                                else
-                                {
-                                    await p.DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorFileLoading, "OK");
-                                }
+                                        memoryStream = await _server.GetFileAPP_Tech(message.FileID.ToString());
+
+                                    }
+                                    else
+                                    {
+                                        memoryStream = await _server.GetFileAPP(message.FileID.ToString());
+
+                                    }
+
+                                    if (memoryStream != null)
+                                    {
+                                        await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
+                                        await Launcher.OpenAsync(new OpenFileRequest
+                                        {
+                                            File = new ReadOnlyFile(DependencyService.Get<IFileWorker>()
+                                                .GetFilePath(fileName))
+                                        });
+                                    }
+                                    else
+                                    {
+                                        await p.DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorFileLoading, "OK");
+                                    }
+                                });
                             });
+                            
                         });
                         LoadFileTask.Start();
                     }
@@ -864,40 +866,43 @@ namespace xamarinJKH.Apps
                                 DefaultMessage = AppResources.Loading,
                             };
 
-                            await Loading.Instance.StartAsync(async progress =>
-                            {
-
-                                byte[] memoryStream = null;
-                                if (isTech)
+                            Device.BeginInvokeOnMainThread(async () => {
+                                await Loading.Instance.StartAsync(async progress =>
                                 {
-                                    memoryStream = await _server.GetFileAPP_Tech(message.FileID.ToString());
 
-                                }
-                                else
-                                {
-                                    memoryStream = await _server.GetFileAPP(message.FileID.ToString());
-
-                                }
-
-                                if (memoryStream != null)
-                                {
-                                    Analytics.TrackEvent($"сохранение файла {fileName}");
-
-                                    await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
-
-                                    Analytics.TrackEvent($"открытие файла {fileName}");
-
-                                    await Launcher.OpenAsync(new OpenFileRequest
+                                    byte[] memoryStream = null;
+                                    if (isTech)
                                     {
-                                        File = new ReadOnlyFile(DependencyService.Get<IFileWorker>()
-                                            .GetFilePath(fileName))
-                                    });
-                                }
-                                else
-                                {
-                                    await p.DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorFileLoading, "OK");
-                                }
+                                        memoryStream = await _server.GetFileAPP_Tech(message.FileID.ToString());
+
+                                    }
+                                    else
+                                    {
+                                        memoryStream = await _server.GetFileAPP(message.FileID.ToString());
+
+                                    }
+
+                                    if (memoryStream != null)
+                                    {
+                                        Analytics.TrackEvent($"сохранение файла {fileName}");
+
+                                        await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
+
+                                        Analytics.TrackEvent($"открытие файла {fileName}");
+
+                                        await Launcher.OpenAsync(new OpenFileRequest
+                                        {
+                                            File = new ReadOnlyFile(DependencyService.Get<IFileWorker>()
+                                                .GetFilePath(fileName))
+                                        });
+                                    }
+                                    else
+                                    {
+                                        await p.DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorFileLoading, "OK");
+                                    }
+                                });
                             });
+                           
                         });
                         LoadFileTask.Start();
                     }
