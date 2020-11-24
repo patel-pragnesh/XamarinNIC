@@ -214,7 +214,7 @@ namespace xamarinJKH.Questions
         {
             UkName.Text = Settings.MobileSettings.main_name;
             
-            SwitchQuest.ThumbColor = Color.Black;
+            //SwitchQuest.ThumbColor = Color.Black;
             SwitchQuest.OnColor = (Color)Application.Current.Resources["MainColor"];
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);

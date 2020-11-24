@@ -8,15 +8,15 @@
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.News.NewsPage">
     <ContentPage.Content>
-         <StackLayout>
-             <Grid>
+         <StackLayout VerticalOptions="FillAndExpand">
+            <Grid VerticalOptions="FillAndExpand">
                 <Image x:Name="ImageFon"
                        Source="{AppThemeBinding Light=ic_news_top_light, Dark=ic_news_top}"
                        VerticalOptions="Start"
 					   Margin="0,0,0,0"
                        Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
                        HorizontalOptions="FillAndExpand" />
-                <StackLayout>
+                <StackLayout  VerticalOptions="FillAndExpand">
                     <pancakeView:PancakeView
                         Padding="0"
                         IsVisible="False"
@@ -149,7 +149,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </StackLayout>
-                    <StackLayout Spacing="0">
+                    <StackLayout Spacing="0"  VerticalOptions="End">
                         <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0"
                                                  BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
                                                  Padding="0,17,0,5"
