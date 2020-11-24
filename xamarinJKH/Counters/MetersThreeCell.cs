@@ -1072,6 +1072,7 @@ namespace xamarinJKH.Main
                     };
                     stack.Children.Add(auto_label);
                     canCount.IsVisible = false;
+                    frameBtn.IsVisible = false;
                 }
             
         }
