@@ -31,8 +31,20 @@ namespace xamarinJKH.Monitor
         private bool _isRefreshing = false;
         public Color hex { get; set; }
 
-        
-        
+        private async void TechSend(object sender, EventArgs e)
+        {
+
+            // await PopupNavigation.Instance.PushAsync(new TechDialog(false));
+            if (Settings.Person != null && !string.IsNullOrWhiteSpace(Settings.Person.Phone))
+            {
+                await Navigation.PushModalAsync(new Tech.AppPage());
+            }
+            else
+            {
+                await PopupNavigation.Instance.PushAsync(new EnterPhoneDialog());
+            }
+        }
+
         public MonitorAppsPage(List<Requests> requestInfos)
         {
             InitializeComponent();
@@ -69,7 +81,7 @@ namespace xamarinJKH.Monitor
                     break;
             }
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new Tech.AppPage()); };
+            techSend.Tapped += TechSend;// async (s, e) => {     await Navigation.PushAsync(new Tech.AppPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => {

@@ -63,6 +63,20 @@ namespace xamarinJKH.AppsConst
         public NamedValue selectedHouse;
         public NamedValue selectedFlat;
 
+        private async void TechSend(object sender, EventArgs e)
+        {
+
+            // await PopupNavigation.Instance.PushAsync(new TechDialog(false));
+            if (Settings.Person != null && !string.IsNullOrWhiteSpace(Settings.Person.Phone))
+            {
+                await Navigation.PushModalAsync(new Tech.AppPage());
+            }
+            else
+            {
+                await PopupNavigation.Instance.PushAsync(new EnterPhoneDialog());
+            }
+        }
+
         public NewAppConstPage(AppsConstPage appsPage)
         {
             _appsPage = appsPage;
@@ -119,7 +133,7 @@ namespace xamarinJKH.AppsConst
             addFile.Tapped += async (s, e) => { AddFile(); };
             StackLayoutAddFile.GestureRecognizers.Add(addFile);
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); };
+            techSend.Tapped += TechSend; //async(s, e) => { await PopupNavigation.Instance.PushAsync(new TechDialog()); };
             LabelTech.GestureRecognizers.Add(techSend);
 
             var delLS = new TapGestureRecognizer();
