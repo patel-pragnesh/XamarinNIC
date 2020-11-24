@@ -11,6 +11,7 @@ using dotMorten.Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
 using xamarinJKH.DialogViews;
 using xamarinJKH.Server.RequestModel;
+using xamarinJKH.InterfacesIntegration;
 
 namespace xamarinJKH.AppsConst
 {
@@ -36,6 +37,16 @@ namespace xamarinJKH.AppsConst
                     break;
             }
 
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    Pancake2.HeightRequest = statusBarHeight;                    
+                    break;
+                default:
+                    break;
+            }
 
 
         }

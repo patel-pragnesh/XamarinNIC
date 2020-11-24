@@ -1527,4 +1527,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="SeeNews" xml:space="preserve">
     <value>Show new</value>
   </data>
+  <data name="Ident1" xml:space="preserve">
+    <value>Account</value>
+  </data>
 </root>

@@ -1514,4 +1514,7 @@
   <data name="SeeNews" xml:space="preserve">
     <value>Показать новые</value>
   </data>
+  <data name="Ident1" xml:space="preserve">
+    <value>Лицевой счет</value>
+  </data>
 </root>
