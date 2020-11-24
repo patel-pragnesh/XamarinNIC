@@ -97,7 +97,7 @@
                             HorizontalOptions="FillAndExpand"
                             Orientation="Horizontal">
                                     
-                                    <Label Text="Создание по:"
+                                    <Label Text="{x:Static xamarinJkh:AppResources.AppConstCreateFor}"
                                            FontAttributes="Bold"
                                            TextColor="Black"
                                            FontSize="17"
@@ -150,7 +150,7 @@
 
                                     <Label
                                 x:Name="LabelLs"
-                                Text="Нажмите для выбора"
+                                Text="{x:Static xamarinJkh:AppResources.AppConstEnterIdent}"
                                 VerticalOptions="Center"
                                 TextColor="#A2A2A2"
                                 HorizontalTextAlignment="Center"
@@ -175,7 +175,7 @@
 
                                     <Label
                                 TextColor="Black"
-                                Text="Нажмите для поиска"
+                                Text="{x:Static xamarinJkh:AppResources.AppConstPressToSearch}"
                                 VerticalOptions="Center"
                                 HorizontalOptions="Start"
                                 FontAttributes="Bold"

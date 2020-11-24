@@ -1511,4 +1511,13 @@
   <data name="Ident1" xml:space="preserve">
     <value>Особовий рахунок</value>
   </data>
+  <data name="AppConstCreateFor" xml:space="preserve">
+    <value>Провадження у</value>
+  </data>
+  <data name="AppConstEnterIdent" xml:space="preserve">
+    <value>Виберіть особовий рахунок</value>
+  </data>
+  <data name="AppConstPressToSearch" xml:space="preserve">
+    <value>Натисніть для пошуку</value>
+  </data>
 </root>

@@ -1635,4 +1635,13 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="Ident1" xml:space="preserve">
     <value>Account</value>
   </data>
+  <data name="AppConstCreateFor" xml:space="preserve">
+    <value>Create for</value>
+  </data>
+  <data name="AppConstEnterIdent" xml:space="preserve">
+    <value>Choose account</value>
+  </data>
+  <data name="AppConstPressToSearch" xml:space="preserve">
+    <value>Proceed to searh</value>
+  </data>
 </root>

@@ -1622,4 +1622,13 @@
   <data name="Ident1" xml:space="preserve">
     <value>Лицевой счет</value>
   </data>
+  <data name="AppConstCreateFor" xml:space="preserve">
+    <value>Создание по</value>
+  </data>
+  <data name="AppConstEnterIdent" xml:space="preserve">
+    <value>Выберите лицевой счет</value>
+  </data>
+  <data name="AppConstPressToSearch" xml:space="preserve">
+    <value>Нажмите для поиска</value>
+  </data>
 </root>

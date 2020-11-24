@@ -313,6 +313,33 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Создание по.
+        /// </summary>
+        internal static string AppConstCreateFor {
+            get {
+                return ResourceManager.GetString("AppConstCreateFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выберите лицевой счет.
+        /// </summary>
+        internal static string AppConstEnterIdent {
+            get {
+                return ResourceManager.GetString("AppConstEnterIdent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Нажмите для поиска.
+        /// </summary>
+        internal static string AppConstPressToSearch {
+            get {
+                return ResourceManager.GetString("AppConstPressToSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Заявка успешно создана.
         /// </summary>
         internal static string AppCreated {
