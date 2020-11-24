@@ -1514,6 +1514,111 @@
   <data name="SeeNews" xml:space="preserve">
     <value>Показать новые</value>
   </data>
+  <data name="SfPdfViewerBookmarkToolbarTitle" xml:space="preserve">
+    <value>Закладки</value>
+  </data>
+  <data name="SfPdfViewerCancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="SfPdfViewerClear" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="SfPdfViewerContinuousPage" xml:space="preserve">
+    <value>Одностраничный вид</value>
+  </data>
+  <data name="SfPdfViewerCopy" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="SfPdfViewerDone" xml:space="preserve">
+    <value>Готово</value>
+  </data>
+  <data name="SfPdfViewerHighlight" xml:space="preserve">
+    <value>Выделить</value>
+  </data>
+  <data name="SfPdfViewerHyperlinkCancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="SfPdfViewerHyperlinkMessage" xml:space="preserve">
+    <value>Желаете открыть веб-страницу?</value>
+  </data>
+  <data name="SfPdfViewerHyperlinkMessageTitle" xml:space="preserve">
+    <value>Открыть веб страницу</value>
+  </data>
+  <data name="SfPdfViewerHyperlinkOpen" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="SfPdfViewerInvalidPageMessage" xml:space="preserve">
+    <value>Неправильный номер страницы</value>
+  </data>
+  <data name="SfPdfViewerInvalidPageMessageTitle" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="SfPdfViewerNoBookmarksText" xml:space="preserve">
+    <value>Закладок нет</value>
+  </data>
+  <data name="SfPdfViewerNoMatches" xml:space="preserve">
+    <value>Совпадений не было найдено</value>
+  </data>
+  <data name="SfPdfViewerNoOccurrences" xml:space="preserve">
+    <value>Больше совпадений не найдено</value>
+  </data>
+  <data name="SfPdfViewerOfMessage" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="SfPdfViewerOkMessage" xml:space="preserve">
+    <value>Ок</value>
+  </data>
+  <data name="SfPdfViewerPageByPage" xml:space="preserve">
+    <value>Постраничный вид</value>
+  </data>
+  <data name="SfPdfViewerPageEntryCancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="SfPdfViewerPageEntryOkay" xml:space="preserve">
+    <value>Ок</value>
+  </data>
+  <data name="SfPdfViewerPageNumberEntryMessage" xml:space="preserve">
+    <value>Введите номер страницы</value>
+  </data>
+  <data name="SfPdfViewerPageNumberEntryMessageTitle" xml:space="preserve">
+    <value>Перейти на страницу</value>
+  </data>
+  <data name="SfPdfViewerPlaceHolderText" xml:space="preserve">
+    <value>Введите текст</value>
+  </data>
+  <data name="SfPdfViewerPrint" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="SfPdfViewerRedo" xml:space="preserve">
+    <value>Повторить</value>
+  </data>
+  <data name="SfPdfViewerSave" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="SfPdfViewerSearchPlaceHolderText" xml:space="preserve">
+    <value>Введите текст для поиска</value>
+  </data>
+  <data name="SfPdfViewerSearchResult" xml:space="preserve">
+    <value>Результаты поиска</value>
+  </data>
+  <data name="SfPdfViewerSignatureCancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="SfPdfViewerSignaturePadTitle" xml:space="preserve">
+    <value>Создать подпись</value>
+  </data>
+  <data name="SfPdfViewerStrikethrough" xml:space="preserve">
+    <value>Перечеркнуть</value>
+  </data>
+  <data name="SfPdfViewerSubmit" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="SfPdfViewerUnderline" xml:space="preserve">
+    <value>Подчеркнуть</value>
+  </data>
+  <data name="SfPdfViewerUndo" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
   <data name="Ident1" xml:space="preserve">
     <value>Лицевой счет</value>
   </data>
