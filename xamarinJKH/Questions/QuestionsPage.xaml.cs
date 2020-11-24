@@ -119,7 +119,6 @@ namespace xamarinJKH.Questions
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
-
                     if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
                     {
                         labelShowClosed.FontSize = 14;
@@ -221,6 +220,8 @@ namespace xamarinJKH.Questions
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            additionalList.RefreshControlColor = hexColor;
+
         }
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)

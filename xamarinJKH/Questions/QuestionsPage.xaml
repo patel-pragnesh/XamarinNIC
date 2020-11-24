@@ -7,18 +7,19 @@
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:questions="clr-namespace:xamarinJKH.Questions;assembly=xamarinJKH"
              xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Questions.QuestionsPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Grid>
+        <StackLayout VerticalOptions="FillAndExpand" >
+            <Grid VerticalOptions="FillAndExpand">
                 <Image x:Name="ImageFon"
                        Source="{AppThemeBinding Light=ic_background_event_light, Dark=ic_background_event}"
                        VerticalOptions="Start"
                        Margin="0,0,0,0"
                        Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
                        HorizontalOptions="FillAndExpand" />
-                <StackLayout>
+                <StackLayout VerticalOptions="FillAndExpand">
                     <StackLayout
                         Margin="25,10,15,0"
                         Orientation="Horizontal"
@@ -32,14 +33,14 @@
                         <StackLayout
                             HorizontalOptions="EndAndExpand"
                             Orientation="Horizontal">
-                        
-                            <forms:SvgCachedImage x:Name="IconViewTech"
-                                                  Source="resource://xamarinJKH.Resources.ic_tech.svg"
-                                                  HeightRequest="20"
-                                                  ReplaceStringMap="{Binding ShowAnnouncements, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
-                                                  Margin="0, 0,0,0"
-                                                  HorizontalOptions="Start"
-                                                  VerticalOptions="Center" />
+
+                            <svg:SvgCachedImage x:Name="IconViewTech"
+                                                Source="resource://xamarinJKH.Resources.ic_tech.svg"
+                                                HeightRequest="20"
+                                                ReplaceStringMap="{Binding ShowAnnouncements, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                                Margin="0, 0,0,0"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Center" />
                             <Label x:Name="LabelTech"
                                    Text="{x:Static xamarinJkh:AppResources.Support}"
                                    FontSize="14"
@@ -85,6 +86,7 @@
                                   ItemTapped="OnItemTapped"
                                   ItemsSource="{Binding Quest}"
                                   CachingStrategy="RecycleElement"
+                                  VerticalOptions="FillAndExpand"
                                   >
 
                             <ListView.ItemTemplate>

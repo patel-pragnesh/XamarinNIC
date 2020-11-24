@@ -9,7 +9,6 @@
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:selector="clr-namespace:xamarinJKH.Apps"
              xmlns:datatypes="clr-namespace:xamarinJKH.Server.RequestModel"
-
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Apps.AppPage">
     <ContentPage.Content>

@@ -251,7 +251,7 @@ namespace xamarinJKH
                     else
                         o = rea.Data["gcm.notification.type_push"].ToString();
 
-                    Analytics.TrackEvent($"тип пуша{o}");
+                    Analytics.TrackEvent($"тип пуша {o}");
 
                     if (o.ToLower().Equals("announcement"))
                     {
