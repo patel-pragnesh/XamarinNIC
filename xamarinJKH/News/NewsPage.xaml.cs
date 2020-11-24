@@ -178,32 +178,35 @@ namespace xamarinJKH.News
                     Opacity = 0.8,
                     DefaultMessage = AppResources.Loading,
                 };
-
-                await Loading.Instance.StartAsync(async progress =>
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    if (isAll)
+                    await Loading.Instance.StartAsync(async progress =>
                     {
-                        NewsInfos = await server.AllNews();
-                        Device.BeginInvokeOnMainThread(async () =>
+                        if (isAll)
                         {
-                            NotificationList.ItemsSource = null;
-                            NotificationList.ItemsSource = NewsInfos;
-                            SeeAll.Text = AppResources.SeeNews;
-                            isAll = false;
-                        });
-                    }
-                    else
-                    {
-                        Device.BeginInvokeOnMainThread(async () =>
+                            NewsInfos = await server.AllNews();
+                            Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                NotificationList.ItemsSource = null;
+                                NotificationList.ItemsSource = NewsInfos;
+                                SeeAll.Text = AppResources.SeeNews;
+                                isAll = false;
+                            });
+                        }
+                        else
                         {
-                            NewsInfos = Settings.EventBlockData.News;
-                            NotificationList.ItemsSource = null;
-                            NotificationList.ItemsSource = NewsInfos;
-                            SeeAll.Text = AppResources.AllNews;
-                            isAll = true;
-                        });
-                    }
+                            Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                NewsInfos = Settings.EventBlockData.News;
+                                NotificationList.ItemsSource = null;
+                                NotificationList.ItemsSource = NewsInfos;
+                                SeeAll.Text = AppResources.AllNews;
+                                isAll = true;
+                            });
+                        }
+                    });
                 });
+                
             }).Start();
         }
     }

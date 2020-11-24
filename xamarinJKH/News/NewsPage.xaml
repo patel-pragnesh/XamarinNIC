@@ -171,7 +171,7 @@
                                         FontAttributes="Bold"
                                         HorizontalOptions="FillAndExpand"
                                         TextColor="White"
-                                        Text="Смотреть все"
+                                        Text="{x:Static xamarinJkh:AppResources.AllNews}"
                                         Clicked="Button_Clicked"/>
                                 
                             </StackLayout>

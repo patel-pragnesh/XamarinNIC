@@ -67,7 +67,11 @@
                     </StackLayout>
                 </Grid>
             </pancakeView:PancakeView>
-            <StackLayout Margin="0,20,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" x:Name="Pancake2">
+            
+            <StackLayout HorizontalOptions="FillAndExpand" x:Name="Pancake2" IsVisible="{OnPlatform iOS=true, Android=false}" 
+                         BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"></StackLayout>
+
+            <StackLayout Margin="0,20,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
                 <StackLayout
                     x:Name="BackStackLayout"
                     Orientation="Horizontal"

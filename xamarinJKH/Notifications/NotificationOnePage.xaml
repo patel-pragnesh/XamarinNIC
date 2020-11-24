@@ -62,10 +62,14 @@
                     </StackLayout>
                 </Grid>
             </pancakeView:PancakeView>
+            
+            <StackLayout HorizontalOptions="FillAndExpand" x:Name="Pancake2" IsVisible="{OnPlatform iOS=true, Android=false}" 
+                         BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"></StackLayout>
+            
             <StackLayout
                 Margin="25,0,15,0"
                 Orientation="Horizontal"
-                x:Name="Pancake2">
+                >
                 <Label x:Name="UkName"
                        Text="Название"
                        IsVisible="False"
