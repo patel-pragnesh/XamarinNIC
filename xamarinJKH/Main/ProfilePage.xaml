@@ -118,6 +118,7 @@
                                                    Text="{x:Static xamarinJkh:AppResources.FIO}"
                                                    MinimumWidthRequest="50"
                                                    MaxLines="1"
+                                                   IsVisible="False"
                                                    FontSize="16"
                                                    TextColor="Black"
                                                    Margin="0, 0, 0, 0"
@@ -126,10 +127,11 @@
                                             <Entry x:Name="EntryFio"
                                                    FontSize="15"
                                                    VerticalOptions="End"
-                                                   HorizontalTextAlignment="Center"
+                                                   HorizontalTextAlignment="Start"
                                                    TextColor="#A2A2A2"
+                                                   PlaceholderColor="Black"
                                                    HorizontalOptions="FillAndExpand"
-                                                   Placeholder="Иванов Иван Иванович"
+                                                   Placeholder="{x:Static xamarinJkh:AppResources.FIO}"
                                                    Keyboard="Text" />
                                         </StackLayout>
 
@@ -141,11 +143,12 @@
                                             <Label
                                                 HeightRequest="2"
                                                 BackgroundColor="#DEDEDE"
+                                                IsVisible="False"
                                                 WidthRequest="110" />
                                             <Label
                                                 x:Name="LabelseparatorFio"
                                                 HeightRequest="2"
-                                                Margin="-10, 0, 0, 0"
+                                                Margin="0, 0, 0, 0"
                                                 BackgroundColor="Red"
                                                 HorizontalOptions="FillAndExpand" />
 
@@ -164,6 +167,7 @@
                                             <Label Text="E-mail"
                                                    MinimumWidthRequest="50"
                                                    MaxLines="1"
+                                                   IsVisible="False"
                                                    FontSize="16"
                                                    TextColor="Black"
                                                    Margin="0, 0, 0, 5"
@@ -173,9 +177,10 @@
                                                    FontSize="15"
                                                    TextColor="#A2A2A2"
                                                    BackgroundColor="Transparent"
-                                                   HorizontalTextAlignment="Center"
+                                                   HorizontalTextAlignment="Start"
                                                    HorizontalOptions="FillAndExpand"
-                                                   Placeholder="example@test.com"
+                                                   PlaceholderColor="Black"
+                                                   Placeholder="E-mail"
                                                    Keyboard="Email" />
 
                                         </StackLayout>
@@ -187,11 +192,12 @@
                                             <Label
                                                 HeightRequest="2"
                                                 BackgroundColor="#DEDEDE"
+                                                IsVisible="False"
                                                 WidthRequest="110" />
                                             <Label
                                                 x:Name="LabelseparatorEmail"
                                                 HeightRequest="2"
-                                                Margin="-10, 0, 0, 0"
+                                                Margin="0, 0, 0, 0"
                                                 BackgroundColor="Red"
                                                 HorizontalOptions="FillAndExpand" />
 
