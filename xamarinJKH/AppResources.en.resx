@@ -1527,4 +1527,109 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="SeeNews" xml:space="preserve">
     <value>Show new</value>
   </data>
+  <data name="SfPdfViewerBookmarkToolbarTitle" xml:space="preserve">
+    <value>Bookmarks</value>
+  </data>
+  <data name="SfPdfViewerCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="SfPdfViewerClear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="SfPdfViewerContinuousPage" xml:space="preserve">
+    <value>Continuous Pages</value>
+  </data>
+  <data name="SfPdfViewerCopy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="SfPdfViewerDone" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="SfPdfViewerHighlight" xml:space="preserve">
+    <value>Highlight</value>
+  </data>
+  <data name="SfPdfViewerHyperlinkCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="SfPdfViewerHyperlinkMessage" xml:space="preserve">
+    <value>Do you want to open the webpage</value>
+  </data>
+  <data name="SfPdfViewerHyperlinkMessageTitle" xml:space="preserve">
+    <value>Open web page</value>
+  </data>
+  <data name="SfPdfViewerHyperlinkOpen" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="SfPdfViewerInvalidPageMessage" xml:space="preserve">
+    <value>Invalid Page Number</value>
+  </data>
+  <data name="SfPdfViewerInvalidPageMessageTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="SfPdfViewerNoBookmarksText" xml:space="preserve">
+    <value>No Bookmarks</value>
+  </data>
+  <data name="SfPdfViewerNoMatches" xml:space="preserve">
+    <value>No matches were found</value>
+  </data>
+  <data name="SfPdfViewerNoOccurrences" xml:space="preserve">
+    <value>No more matches were found</value>
+  </data>
+  <data name="SfPdfViewerOfMessage" xml:space="preserve">
+    <value>Of</value>
+  </data>
+  <data name="SfPdfViewerOkMessage" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="SfPdfViewerPageByPage" xml:space="preserve">
+    <value>Page By Page</value>
+  </data>
+  <data name="SfPdfViewerPageEntryCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="SfPdfViewerPageEntryOkay" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="SfPdfViewerPageNumberEntryMessage" xml:space="preserve">
+    <value>Enter Page Number</value>
+  </data>
+  <data name="SfPdfViewerPageNumberEntryMessageTitle" xml:space="preserve">
+    <value>Go To Page</value>
+  </data>
+  <data name="SfPdfViewerPlaceHolderText" xml:space="preserve">
+    <value>Type your text</value>
+  </data>
+  <data name="SfPdfViewerPrint" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="SfPdfViewerRedo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="SfPdfViewerSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SfPdfViewerSearchPlaceHolderText" xml:space="preserve">
+    <value>Enter text to search</value>
+  </data>
+  <data name="SfPdfViewerSearchResult" xml:space="preserve">
+    <value>Search Result</value>
+  </data>
+  <data name="SfPdfViewerSignatureCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="SfPdfViewerSignaturePadTitle" xml:space="preserve">
+    <value>Create Signature</value>
+  </data>
+  <data name="SfPdfViewerStrikethrough" xml:space="preserve">
+    <value>Strikethrough</value>
+  </data>
+  <data name="SfPdfViewerSubmit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="SfPdfViewerUnderline" xml:space="preserve">
+    <value>Underline</value>
+  </data>
+  <data name="SfPdfViewerUndo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
 </root>
