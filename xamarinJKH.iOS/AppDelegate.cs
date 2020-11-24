@@ -31,7 +31,8 @@ namespace xamarinJKH.iOS
 
             //KeyboardOverlapRenderer.Init();
 
-            
+            Syncfusion.SfPdfViewer.XForms.iOS.SfPdfDocumentViewRenderer.Init();
+            Syncfusion.SfRangeSlider.XForms.iOS.SfRangeSliderRenderer.Init();
 
             AiForms.Dialogs.Dialogs.Init();
             XamEffects.iOS.Effects.Init(); 
