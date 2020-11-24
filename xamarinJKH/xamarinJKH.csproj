@@ -303,6 +303,7 @@
     <PackageReference Include="Plugin.MediaManager.Forms" Version="1.0.3" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer" Version="18.3.0.50" />
     <PackageReference Include="Xam.Plugin.Badge" Version="1.0.0" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
     <PackageReference Include="Xam.Plugins.Messaging" Version="5.2.0" />
@@ -423,6 +424,9 @@
     <EmbeddedResource Update="Pays\PayPdf.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pays\PdfView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Questions\QuestionsPage.xaml">
       <SubType>Designer</SubType>
       <Generator></Generator>
@@ -516,6 +520,10 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Shop\ShopPageNew.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Syncfusion.SfPdfViewer.XForms.ru-RU.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Syncfusion.SfPdfViewer.XForms.ru-RU.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Tech\TechSendPage.xaml">
       <SubType>Designer</SubType>
@@ -659,6 +667,11 @@
     </Compile>
     <Compile Update="Pays\PayServicePage.xaml.cs">
       <DependentUpon>PayServicePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Syncfusion.SfPdfViewer.XForms.ru-RU.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Syncfusion.SfPdfViewer.XForms.ru-RU.resx</DependentUpon>
     </Compile>
     <Compile Update="Tech\TechSendPage.xaml.cs">
       <DependentUpon>TechSendPage.xaml</DependentUpon>

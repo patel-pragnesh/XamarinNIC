@@ -22,6 +22,10 @@ using xamarinJKH.Notifications;
 using Device = Xamarin.Forms.Device;
 using System.Threading.Tasks;
 using Badge.Plugin;
+using Syncfusion.Licensing;
+using Syncfusion.SfPdfViewer.XForms;
+using System.Resources;
+using System.Reflection;
 
 namespace xamarinJKH
 {
@@ -55,6 +59,9 @@ namespace xamarinJKH
             public App()
         {
             InitializeComponent();
+
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzU2OTY1QDMxMzgyZTMzMmUzMEtpcFNHRnBKOUppMFJ1RUxjWTlsbUt6QzFOY3JyMUlGVi9McDJSSmQxVW89");
+            PdfViewerResourceManager.Manager = new ResourceManager("xamarinJKH.Resources.Syncfusion.SfPdfViewer.XForms", GetType().GetTypeInfo().Assembly);
             CrossBadge.Current.ClearBadge();
             Crashes.SendingErrorReport += SendingErrorReportHandler;
             Crashes.SentErrorReport += SentErrorReportHandler;
