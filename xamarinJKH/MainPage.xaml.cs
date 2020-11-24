@@ -458,11 +458,11 @@ namespace xamarinJKH
             FrameBtnLogin.IsVisible = false;
 
             var replace = loginAuth;
-
-            if (!replace.Equals("") && !pass.Equals(""))
+            if (!string.IsNullOrEmpty(replace) && !string.IsNullOrEmpty(pass)) 
             {
 
                 LoginResult login = await server.LoginDispatcher(replace, pass);
+                //login.UserSettings.RightCloseRequest = false;
                 if (login.Error == null)
                 {
                     App.isCons = true;

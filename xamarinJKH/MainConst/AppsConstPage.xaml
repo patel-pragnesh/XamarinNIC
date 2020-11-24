@@ -11,17 +11,15 @@
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.MainConst.AppsConstPage">
     <ContentPage.Content>
-        <StackLayout>
-
-
-            <Grid>
+        <StackLayout  VerticalOptions="FillAndExpand">
+            <Grid  VerticalOptions="FillAndExpand">
                 <Image x:Name="ImageFon"
                        Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top}"
                        VerticalOptions="Start"
                        Margin="0,0,0,0"
                        Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
                        HorizontalOptions="FillAndExpand" />
-                <StackLayout>
+                <StackLayout  VerticalOptions="FillAndExpand">
                     <StackLayout
                         Margin="25,10,15,0"
                         Orientation="Horizontal"
@@ -65,7 +63,7 @@
                             HorizontalOptions="Start" />
                     </StackLayout>
                     <StackLayout VerticalOptions="FillAndExpand">
-                        <Grid>
+                        <Grid  VerticalOptions="FillAndExpand">
                             <ListView x:Name="additionalList"
                                   HasUnevenRows="True"
                                   Margin="10, 10, 10, 0"
@@ -77,7 +75,8 @@
                                   SelectionMode="None"
                                   ItemTapped="OnItemTapped"
                                   CachingStrategy="RecycleElement"
-                                  ItemsSource="{Binding RequestInfos}">
+                                  ItemsSource="{Binding RequestInfos}"
+                                       VerticalOptions="FillAndExpand">
                                 <ListView.Header>
 
                                 </ListView.Header>

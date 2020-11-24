@@ -777,20 +777,21 @@ namespace xamarinJKH.Tech
                     DefaultMessage = AppResources.Loading,
                 };
 
-                await Loading.Instance.StartAsync(async progress =>
-                {
-                    request = await _server.GetRequestsDetailListTech(Settings.Person.Phone);
-                    if (request.Error == null)
-                    {
-                        Settings.DateUniq = "";
-                        foreach (var message in request.Messages)
-                        {
-                            if (!messages.Contains(message))
-                            {
-                                Device.BeginInvokeOnMainThread(() => addAppMessage(message,
-                                    messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null));
-                                messages.Add(message);
-                            }
+                Device.BeginInvokeOnMainThread(async () =>
+                              await Loading.Instance.StartAsync(async progress =>
+                              {
+                                  request = await _server.GetRequestsDetailListTech(Settings.Person.Phone);
+                                  if (request.Error == null)
+                                  {
+                                      Settings.DateUniq = "";
+                                      foreach (var message in request.Messages)
+                                      {
+                                          if (!messages.Contains(message))
+                                          {
+                                              Device.BeginInvokeOnMainThread(() => addAppMessage(message,
+                                                  messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null));
+                                              messages.Add(message);
+                                          }
 
                             //messages.Add(message);
                             //Device.BeginInvokeOnMainThread(() => addAppMessage(message));
@@ -798,12 +799,13 @@ namespace xamarinJKH.Tech
 
                         // LabelNumber.Text = "№ " + request.RequestNumber;
                     }
-                    else
-                    {
-                        await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorComments, "OK");
-                    }
-                    Device.BeginInvokeOnMainThread(async () => await MethodWithDelayAsync(1000));
-                });
+                                  else
+                                  {
+                                      await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorComments, "OK");
+                                  }
+                                  Device.BeginInvokeOnMainThread(async () => await MethodWithDelayAsync(1000));
+                              })
+                              );
             }).Start();
 
         }
