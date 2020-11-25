@@ -19,6 +19,7 @@ using xamarinJKH.Utils;
 using System.Globalization;
 using System.Threading;
 using Microsoft.AppCenter.Analytics;
+using xamarinJKH.PushNotification;
 
 namespace xamarinJKH.MainConst
 {
@@ -46,7 +47,14 @@ namespace xamarinJKH.MainConst
             techSend.Tapped += async (s, e) => {    await Navigation.PushAsync(new AppPage());};
             LabelTech.GestureRecognizers.Add(techSend);
             var saveClick = new TapGestureRecognizer();
-            saveClick.Tapped += async (s, e) => { ButtonClick(FrameBtnLogin, null); };
+            saveClick.Tapped += async (s, e) =>
+            {
+#if DEBUG
+                await Navigation.PushAsync(new SendPushPage());
+#else
+                ButtonClick(FrameBtnLogin, null);
+#endif
+            };
             FrameBtnLogin.GestureRecognizers.Add(saveClick);
 
             switch (Device.RuntimePlatform)

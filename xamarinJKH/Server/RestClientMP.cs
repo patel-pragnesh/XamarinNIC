@@ -110,6 +110,8 @@ namespace xamarinJKH.Server
         public const string CLOSE_APP_LIST_DISP = "RequestsDispatcher/CloseList"; // Закрытие списка заявки. 
         public const string PERFORM_APP_LIST_DISP = "RequestsDispatcher/PerformList"; // Закрытие списка заявки. 
         public const string SET_READED_APP = "RequestsDispatcher/SetReadedFlag"; // Метод, который устанавливает что заявка прочитана сотрудником
+        public const string CREATE_PUSH = "Dispatcher/NewAnnouncement"; //создание уведомления
+        public const string SEND_PUSH = "Dispatcher/SendAnnouncement"; //создание уведомления
         
 
         public const string
@@ -2674,6 +2676,50 @@ namespace xamarinJKH.Server
                 {
                     // Error = $"Ошибка {response.StatusDescription}"
                 };
+            }
+
+            return response.Data;
+        }
+        
+        public async Task<int> NewAnnouncement(AnnouncementArguments announcementArguments)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(CREATE_PUSH, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                announcementArguments
+            });
+            var response = await restClientMp.ExecuteTaskAsync<int>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return -1;
+            }
+
+            return response.Data;
+        } 
+        
+        public async Task<int> SendAnnouncement (int ID)
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(SEND_PUSH, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                ID
+            });
+            var response = await restClientMp.ExecuteTaskAsync<int>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return -1;
             }
 
             return response.Data;
