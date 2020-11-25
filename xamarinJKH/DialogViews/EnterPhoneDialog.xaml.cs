@@ -46,10 +46,18 @@ namespace xamarinJKH.DialogViews
                 }
                 else
                 {
-                    Settings.Person = new LoginResult()
-                    {
-                        Phone = replace
-                    };
+                    //Settings.Person = new LoginResult()
+                    //{
+                    //    Phone = replace
+                    //};
+                    if (Settings.Person == null)
+                        Settings.Person = new LoginResult()
+                        {
+                            Phone = replace
+                        };
+                    else
+                        Settings.Person.Phone = replace;
+
                     await Navigation.PushModalAsync(new AppPage());
                     await PopupNavigation.Instance.PopAsync();
                 }

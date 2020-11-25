@@ -9,8 +9,8 @@
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.NotificationsPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Grid>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Grid VerticalOptions="FillAndExpand">
                 <Image x:Name="ImageFon"
                        Source="{AppThemeBinding Light=ic_notification_top_light, Dark=ic_notification_top}"
                        VerticalOptions="Start"
@@ -70,7 +70,7 @@
                     </StackLayout>
 
                     <StackLayout
-                        VerticalOptions="StartAndExpand">
+                        VerticalOptions="FillAndExpand">
                         <ListView x:Name="NotificationList"
                                   HasUnevenRows="True"
                                   Margin="10, 10, 10, 0"
@@ -81,7 +81,8 @@
                                   RefreshCommand="{Binding RefreshCommand}"
                                   IsRefreshing="{Binding IsRefreshing}"
                                   ItemTapped="OnItemTapped"
-                                  ItemsSource="{Binding Notifications}">
+                                  ItemsSource="{Binding Notifications}"
+                                  VerticalOptions="FillAndExpand">
                             <ListView.ItemTemplate>
 
                                 <DataTemplate>

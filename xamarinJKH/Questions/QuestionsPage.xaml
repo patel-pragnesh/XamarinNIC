@@ -115,11 +115,17 @@
                                     Margin="0, 0, 0, 10"
                                     Orientation="Horizontal">
 
-                                    <Switch
-                                        OnColor="White"
+                                    <!--<Switch
+                                        ThumbColor="White"
+                                        OnColor="{x:DynamicResource MainColor}"
                                         IsToggled="false"
                                         PropertyChanged="chage"
-                                        x:Name="SwitchQuest" />
+                                        x:Name="SwitchQuest" />-->
+                                    <Switch
+                                OnColor="{x:DynamicResource MainColor}"
+                                IsToggled="False"
+                                x:Name="SwitchQuest"
+                                VerticalOptions="Center"  />
 
                                     <Label x:Name="labelShowClosed" Text="{x:Static xamarinJkh:AppResources.ShowAnsweredQuizes}"
                                            FontAttributes="Bold"

@@ -64,6 +64,7 @@
                     <StackLayout
                 VerticalOptions="StartAndExpand">
                 <Frame CornerRadius="40"
+                       HasShadow="False"
                        Margin="20, 10, 20, -40"
                        VerticalOptions="Start"
                        x:Name="FrameTop"

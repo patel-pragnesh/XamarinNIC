@@ -19,7 +19,7 @@ namespace xamarinJKH {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -309,6 +309,33 @@ namespace xamarinJKH {
         internal static string AppCompleted {
             get {
                 return ResourceManager.GetString("AppCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Создание по.
+        /// </summary>
+        internal static string AppConstCreateFor {
+            get {
+                return ResourceManager.GetString("AppConstCreateFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выберите лицевой счет.
+        /// </summary>
+        internal static string AppConstEnterIdent {
+            get {
+                return ResourceManager.GetString("AppConstEnterIdent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Нажмите для поиска.
+        /// </summary>
+        internal static string AppConstPressToSearch {
+            get {
+                return ResourceManager.GetString("AppConstPressToSearch", resourceCulture);
             }
         }
         
@@ -1849,6 +1876,15 @@ namespace xamarinJKH {
         internal static string Ident {
             get {
                 return ResourceManager.GetString("Ident", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Лицевой счет.
+        /// </summary>
+        internal static string Ident1 {
+            get {
+                return ResourceManager.GetString("Ident1", resourceCulture);
             }
         }
         
@@ -3626,6 +3662,321 @@ namespace xamarinJKH {
         internal static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Закладки.
+        /// </summary>
+        internal static string SfPdfViewerBookmarkToolbarTitle {
+            get {
+                return ResourceManager.GetString("SfPdfViewerBookmarkToolbarTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Отменить.
+        /// </summary>
+        internal static string SfPdfViewerCancel {
+            get {
+                return ResourceManager.GetString("SfPdfViewerCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Очистить.
+        /// </summary>
+        internal static string SfPdfViewerClear {
+            get {
+                return ResourceManager.GetString("SfPdfViewerClear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Одностраничный вид.
+        /// </summary>
+        internal static string SfPdfViewerContinuousPage {
+            get {
+                return ResourceManager.GetString("SfPdfViewerContinuousPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Копировать.
+        /// </summary>
+        internal static string SfPdfViewerCopy {
+            get {
+                return ResourceManager.GetString("SfPdfViewerCopy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Готово.
+        /// </summary>
+        internal static string SfPdfViewerDone {
+            get {
+                return ResourceManager.GetString("SfPdfViewerDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выделить.
+        /// </summary>
+        internal static string SfPdfViewerHighlight {
+            get {
+                return ResourceManager.GetString("SfPdfViewerHighlight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Отменить.
+        /// </summary>
+        internal static string SfPdfViewerHyperlinkCancel {
+            get {
+                return ResourceManager.GetString("SfPdfViewerHyperlinkCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Желаете открыть веб-страницу?.
+        /// </summary>
+        internal static string SfPdfViewerHyperlinkMessage {
+            get {
+                return ResourceManager.GetString("SfPdfViewerHyperlinkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Открыть веб страницу.
+        /// </summary>
+        internal static string SfPdfViewerHyperlinkMessageTitle {
+            get {
+                return ResourceManager.GetString("SfPdfViewerHyperlinkMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Открыть.
+        /// </summary>
+        internal static string SfPdfViewerHyperlinkOpen {
+            get {
+                return ResourceManager.GetString("SfPdfViewerHyperlinkOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Неправильный номер страницы.
+        /// </summary>
+        internal static string SfPdfViewerInvalidPageMessage {
+            get {
+                return ResourceManager.GetString("SfPdfViewerInvalidPageMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ошибка.
+        /// </summary>
+        internal static string SfPdfViewerInvalidPageMessageTitle {
+            get {
+                return ResourceManager.GetString("SfPdfViewerInvalidPageMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Закладок нет.
+        /// </summary>
+        internal static string SfPdfViewerNoBookmarksText {
+            get {
+                return ResourceManager.GetString("SfPdfViewerNoBookmarksText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Совпадений не было найдено.
+        /// </summary>
+        internal static string SfPdfViewerNoMatches {
+            get {
+                return ResourceManager.GetString("SfPdfViewerNoMatches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Больше совпадений не найдено.
+        /// </summary>
+        internal static string SfPdfViewerNoOccurrences {
+            get {
+                return ResourceManager.GetString("SfPdfViewerNoOccurrences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  .
+        /// </summary>
+        internal static string SfPdfViewerOfMessage {
+            get {
+                return ResourceManager.GetString("SfPdfViewerOfMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ок.
+        /// </summary>
+        internal static string SfPdfViewerOkMessage {
+            get {
+                return ResourceManager.GetString("SfPdfViewerOkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Постраничный вид.
+        /// </summary>
+        internal static string SfPdfViewerPageByPage {
+            get {
+                return ResourceManager.GetString("SfPdfViewerPageByPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Отменить.
+        /// </summary>
+        internal static string SfPdfViewerPageEntryCancel {
+            get {
+                return ResourceManager.GetString("SfPdfViewerPageEntryCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ок.
+        /// </summary>
+        internal static string SfPdfViewerPageEntryOkay {
+            get {
+                return ResourceManager.GetString("SfPdfViewerPageEntryOkay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введите номер страницы.
+        /// </summary>
+        internal static string SfPdfViewerPageNumberEntryMessage {
+            get {
+                return ResourceManager.GetString("SfPdfViewerPageNumberEntryMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Перейти на страницу.
+        /// </summary>
+        internal static string SfPdfViewerPageNumberEntryMessageTitle {
+            get {
+                return ResourceManager.GetString("SfPdfViewerPageNumberEntryMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введите текст.
+        /// </summary>
+        internal static string SfPdfViewerPlaceHolderText {
+            get {
+                return ResourceManager.GetString("SfPdfViewerPlaceHolderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Печать.
+        /// </summary>
+        internal static string SfPdfViewerPrint {
+            get {
+                return ResourceManager.GetString("SfPdfViewerPrint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Повторить.
+        /// </summary>
+        internal static string SfPdfViewerRedo {
+            get {
+                return ResourceManager.GetString("SfPdfViewerRedo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сохранить.
+        /// </summary>
+        internal static string SfPdfViewerSave {
+            get {
+                return ResourceManager.GetString("SfPdfViewerSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введите текст для поиска.
+        /// </summary>
+        internal static string SfPdfViewerSearchPlaceHolderText {
+            get {
+                return ResourceManager.GetString("SfPdfViewerSearchPlaceHolderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Результаты поиска.
+        /// </summary>
+        internal static string SfPdfViewerSearchResult {
+            get {
+                return ResourceManager.GetString("SfPdfViewerSearchResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Отменить.
+        /// </summary>
+        internal static string SfPdfViewerSignatureCancel {
+            get {
+                return ResourceManager.GetString("SfPdfViewerSignatureCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Создать подпись.
+        /// </summary>
+        internal static string SfPdfViewerSignaturePadTitle {
+            get {
+                return ResourceManager.GetString("SfPdfViewerSignaturePadTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Перечеркнуть.
+        /// </summary>
+        internal static string SfPdfViewerStrikethrough {
+            get {
+                return ResourceManager.GetString("SfPdfViewerStrikethrough", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подтвердить.
+        /// </summary>
+        internal static string SfPdfViewerSubmit {
+            get {
+                return ResourceManager.GetString("SfPdfViewerSubmit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подчеркнуть.
+        /// </summary>
+        internal static string SfPdfViewerUnderline {
+            get {
+                return ResourceManager.GetString("SfPdfViewerUnderline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Отменить.
+        /// </summary>
+        internal static string SfPdfViewerUndo {
+            get {
+                return ResourceManager.GetString("SfPdfViewerUndo", resourceCulture);
             }
         }
         

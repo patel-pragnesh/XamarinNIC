@@ -9,6 +9,8 @@
              x:Class="xamarinJKH.Tech.AppPage">
     <ContentPage.Content>
          <Grid x:Name="ScrollViewContainer" VerticalOptions="FillAndExpand" >
+            <!--<StackLayout HorizontalOptions="FillAndExpand" x:Name="Pancake22" IsVisible="{OnPlatform iOS=true, Android=false}" 
+                         BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"></StackLayout>-->
             <Image x:Name="ImageFon"
                    Source="{AppThemeBinding Light=ic_app_top_light, Dark=ic_app_top_in}"
                    VerticalOptions="Start"

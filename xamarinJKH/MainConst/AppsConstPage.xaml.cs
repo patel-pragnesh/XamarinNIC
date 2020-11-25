@@ -88,6 +88,20 @@ namespace xamarinJKH.MainConst
         public bool CanComplete => Settings.Person.UserSettings.RightPerformRequest;
         public bool CanClose => Settings.Person.UserSettings.RightCloseRequest;
 
+        private async void TechSend(object sender, EventArgs e)
+        {
+
+            // await PopupNavigation.Instance.PushAsync(new TechDialog(false));
+            if (Settings.Person != null && !string.IsNullOrWhiteSpace(Settings.Person.Phone))
+            {
+                await Navigation.PushModalAsync(new Tech.AppPage());
+            }
+            else
+            {
+                await PopupNavigation.Instance.PushAsync(new EnterPhoneDialog());
+            }
+        }
+
         public AppsConstPage()
         {
             InitializeComponent();
@@ -127,7 +141,7 @@ namespace xamarinJKH.MainConst
                     break;
             }
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => {     await Navigation.PushAsync(new AppPage()); };
+            techSend.Tapped += TechSend; // async(s, e) => {     await Navigation.PushAsync(new AppPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
             
             var addClick = new TapGestureRecognizer();

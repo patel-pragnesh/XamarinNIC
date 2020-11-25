@@ -290,37 +290,25 @@ namespace xamarinJKH.Pays
             {
                 return;
             }
-            if (Device.RuntimePlatform == "iOS")
-            {
-                if (select != null)
-                {
+            //if (Device.RuntimePlatform == "iOS")
+            //{
+            //    if (select != null)
+            //    {
 
-                    select.Period = select.Period.ToUpper();
-                    if (Navigation.NavigationStack.FirstOrDefault(x => x is PayPdf) == null)
-                        await Navigation.PushAsync(new PayPdf(select));
-                }
-                return;
-            }
+            //        select.Period = select.Period.ToUpper();
+            //        if (Navigation.NavigationStack.FirstOrDefault(x => x is PayPdf) == null)
+            //            await Navigation.PushAsync(new PayPdf(select));
+            //    }
+            //    return;
+            //}
             
 
             string filename = @select.Period + select.Ident + ".pdf";
-            
-            if (await DependencyService.Get<IFileWorker>().ExistsAsync(filename)) 
-            {
-                await Launcher.OpenAsync(new OpenFileRequest
-                {
-                    File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(filename))
-                });
-            }
-            else
-            {
-                CancellationTokenSource TokenSource = new CancellationTokenSource();
-                CancellationToken Token = TokenSource.Token;
-                await Task.Run(async () => await GetFile(@select.ID.ToString(), filename),Token);
 
-            }
+            if (Navigation.NavigationStack.FirstOrDefault(x => x is PdfView) == null)
+                await Navigation.PushAsync(new PdfView(filename, select.ID.ToString()));
         }
-        public async Task GetFile(string id, string fileName)
+        public async Task<bool> GetFile(string id, string fileName)
         {
             // Loading settings
             Configurations.LoadingConfig = new LoadingConfig
@@ -330,7 +318,7 @@ namespace xamarinJKH.Pays
                 Opacity = 0.8,
                 DefaultMessage = AppResources.Loading,
             };
-
+            bool result = false;
             await Loading.Instance.StartAsync(async progress =>
             {
                 byte[] stream;
@@ -338,16 +326,19 @@ namespace xamarinJKH.Pays
                 if (stream != null)
                 {
                     await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, stream);
-                    await Launcher.OpenAsync(new OpenFileRequest
-                    {
-                        File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
-                    });
+                    result = true;
+                    //await Launcher.OpenAsync(new OpenFileRequest
+                    //{
+                    //    File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+                    //});
                 }
                 else
                 {
                     await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
+                    result = false;
                 }
             });
+            return result;
         }
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
         {

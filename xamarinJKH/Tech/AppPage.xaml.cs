@@ -299,6 +299,8 @@ namespace xamarinJKH.Tech
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    //Pancake22.HeightRequest = statusBarHeight;
+                    //Pancake22.IsVisible = true;
                     if (DeviceDisplay.MainDisplayInfo.Width < 700)
                         mainStack.Padding = new Thickness(0, statusBarHeight * 2, 0, 0);
                     else

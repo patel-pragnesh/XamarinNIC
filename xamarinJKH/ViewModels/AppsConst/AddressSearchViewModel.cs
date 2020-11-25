@@ -114,12 +114,28 @@ namespace xamarinJKH.ViewModels.AppsConst
 
             MessagingCenter.Subscribe<Object, NamedValue>(this, "SetDistrict", (sender, args) =>
             {
+                if (DistrictID != args.ID)
+                {
+                    HouseID = null;
+                    House = null;
+                    HouseObject = null;
+                    PremiseID = null;
+                    Flat = null;
+                    FlatObject = null;
+                }
                 DistrictID = args.ID;
                 District = args.Name;
                 DistrictObject = args;
+                
             });
             MessagingCenter.Subscribe<Object, NamedValue>(this, "SetHouse", (sender, args) =>
             {
+                if (HouseID != args.ID)
+                {
+                    PremiseID = null;
+                    Flat = null;
+                    FlatObject = null;
+                }
                 HouseID = args.ID;
                 House = args.Name;
                 HouseObject = args;
