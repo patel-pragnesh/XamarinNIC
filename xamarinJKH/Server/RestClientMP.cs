@@ -803,7 +803,12 @@ namespace xamarinJKH.Server
             restRequest.AddParameter("phone", phone);
             restRequest.AddParameter("database", SERVER_ADDR.Split("/")[3]);
             restRequest.AddParameter("messageId", messageId);
+            Analytics.TrackEvent("Запрос:\n" +"messageId: " +  messageId +
+                                 "database: " + SERVER_ADDR.Split("/")[3] + 
+                                 "phone: " + phone);
             var response = await restClientMp.ExecuteTaskAsync<RequestContent>(restRequest);
+            Analytics.TrackEvent("Ответ: " + response.ErrorMessage + "\n" +
+                                 response.ResponseUri);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
             {
