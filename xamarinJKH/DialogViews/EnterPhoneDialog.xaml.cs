@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
@@ -15,6 +16,8 @@ namespace xamarinJKH.DialogViews
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EnterPhoneDialog : Rg.Plugins.Popup.Pages.PopupPage
     {
+        private RestClientMP _server = new RestClientMP();
+
         public EnterPhoneDialog()
         {
             InitializeComponent();
@@ -57,7 +60,7 @@ namespace xamarinJKH.DialogViews
                         };
                     else
                         Settings.Person.Phone = replace;
-
+                    await _server.RegisterDeviceNotAvtorization(Settings.Person.Phone);
                     await Navigation.PushModalAsync(new AppPage());
                     await PopupNavigation.Instance.PopAsync();
                 }

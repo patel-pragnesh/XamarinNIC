@@ -367,6 +367,7 @@ namespace xamarinJKH
             // await PopupNavigation.Instance.PushAsync(new TechDialog(false));
             if (Settings.Person != null && !string.IsNullOrWhiteSpace(Settings.Person.Phone))
             {
+                await server.RegisterDeviceNotAvtorization(Settings.Person.Phone);
                 await Navigation.PushModalAsync(new AppPage());
             }
             else
