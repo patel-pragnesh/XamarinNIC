@@ -410,7 +410,7 @@
                             <customRenderers:MaterialFrame 
                                 Elevation="20"
                                    CornerRadius="30"
-                                   Margin="10, 10, 10, 10"
+                                   Margin="10, 0, 10, 10"
                                    HorizontalOptions="FillAndExpand"
                                    VerticalOptions="Start"
                                    BackgroundColor="White"
