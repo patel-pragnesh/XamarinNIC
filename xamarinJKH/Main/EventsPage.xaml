@@ -326,6 +326,7 @@
                             </customRenderers:MaterialFrame>
                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOSS"
                                                            CornerRadius="30"
+                                                           IsVisible="{Binding ShowOss}"
                                                            Margin="10, 0, 10, 10"
                                                            HorizontalOptions="FillAndExpand"
                                                            VerticalOptions="Start"

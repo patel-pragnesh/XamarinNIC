@@ -160,6 +160,7 @@ namespace xamarinJKH.Main
         {
             base.OnAppearing();
             MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
+            
             //new Task(SyncSetup).Start(); // This could be an await'd task if need be
         }
 
@@ -248,15 +249,15 @@ namespace xamarinJKH.Main
             };
             // startOSSTGR.Tapped += async (s, e) => { await Navigation.PushAsync(new OSSAuth()); };
             FrameOSS.GestureRecognizers.Add(startOSSTGR);
-            if (!Settings.MobileSettings.enableOSS || !Settings.Person.accessOSS)
-            {
-                FrameOSS.IsVisible = false;
-            }
-
-            if (RestClientMP.SERVER_ADDR.ToLower().Contains("water"))
-            {
-                FrameOSS.IsVisible = true;
-            }
+            // if (!Settings.MobileSettings.enableOSS || !Settings.Person.accessOSS)
+            // {
+            //     FrameOSS.IsVisible = false;
+            // }
+            //
+            // if (RestClientMP.SERVER_ADDR.ToLower().Contains("water") && Settings.Person.Accounts.Count > 0)
+            // {
+            //     FrameOSS.IsVisible = true;
+            // }
         }
 
         private void StartShop()
@@ -342,6 +343,17 @@ namespace xamarinJKH.Main
                 _showAddService = value;
                 OnPropertyChanged("ShowAdditionalServices");
             }
+        }  
+        bool _ShowOSS;
+
+        public bool ShowOss
+        {
+            get => _ShowOSS;
+            set
+            {
+                _ShowOSS = value;
+                OnPropertyChanged("ShowOss");
+            }
         }
 
         bool _showCameras;
@@ -353,7 +365,7 @@ namespace xamarinJKH.Main
                 try
                 {
                     MobileMenu mobileMenu = Settings.MobileSettings.menu.Find(x => x.name_app == "Web-камеры");
-                    return mobileMenu != null && mobileMenu.visible != 0 
+                    return mobileMenu != null && mobileMenu.visible != 0 && Settings.Person.Accounts.Count > 0;
                         //&&
                         //   Device.RuntimePlatform == "Android"
                            ;
@@ -364,6 +376,8 @@ namespace xamarinJKH.Main
                     return true;
                 }
             }
+            set {  _showCameras = value;
+                OnPropertyChanged("ShowCameras"); }
         }
 
         public Command LoadData { get; set; }
@@ -397,6 +411,7 @@ namespace xamarinJKH.Main
         {
             LoadData = new Command(async () =>
             {
+                bool isPerson = Settings.Person.Accounts.Count > 0;
                 var server = new RestClientMP();
                 var data = Settings.EventBlockData;
                 data = await server.GetEventBlockData();
@@ -406,11 +421,28 @@ namespace xamarinJKH.Main
                     if (data.News != null)
                         ShowNews = data.News.Count != 0;
                     if (data.Polls != null)
-                        ShowPolls = data.Polls.Count != 0 && Settings.QuestVisible;
+                        ShowPolls = data.Polls.Count != 0 && Settings.QuestVisible && isPerson;
                     if (data.AdditionalServices != null)
                         ShowAdditionalServices = data.AdditionalServices.Count != 0 && Settings.AddVisible;
                     if (data.Announcements != null)
-                        ShowAnnouncements = data.Announcements.Count != 0 && Settings.NotifVisible;
+                        ShowAnnouncements = data.Announcements.Count != 0 && Settings.NotifVisible && isPerson;
+                    
+                    MobileMenu mobileMenu = Settings.MobileSettings.menu.Find(x => x.name_app == "Web-камеры");
+                    ShowCameras =  mobileMenu != null && mobileMenu.visible != 0 && Settings.Person.Accounts.Count > 0;
+                    
+                    if (!Settings.MobileSettings.enableOSS || !Settings.Person.accessOSS)
+                    {
+                        ShowOss = false;
+                    }
+
+                    if (RestClientMP.SERVER_ADDR.ToLower().Contains("water") && Settings.Person.Accounts.Count > 0)
+                    {
+                        ShowOss = true;
+                    }
+                    else
+                    {
+                        ShowOss = false;
+                    }
                 }
 
                 ShowAdditionalServices = false;
