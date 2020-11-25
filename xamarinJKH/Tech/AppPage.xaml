@@ -37,6 +37,7 @@
                                FontSize="20"
                                Text="{x:Static xamarinJkh:AppResources.TechChat}"
                                VerticalOptions="Center"
+                               FontAttributes="Bold"
                                Margin="0, 0 ,0,0"
                                TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                     </StackLayout>
