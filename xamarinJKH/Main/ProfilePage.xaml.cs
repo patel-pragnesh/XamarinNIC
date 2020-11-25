@@ -31,6 +31,16 @@ namespace xamarinJKH.Main
         private RestClientMP _server = new RestClientMP();
         public bool isSave  {get;set;}
         public bool GoodsIsVisible  {get;set;}
+        bool _convert;
+        public bool Convert
+        {
+            get => _convert;
+            set
+            {
+                _convert = value;
+                OnPropertyChanged("Convert");
+            }
+        }
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -45,7 +55,7 @@ namespace xamarinJKH.Main
             
             if(Settings.MobileSettings.showOurService)
              ImageBack.IsVisible = true;
-
+            Convert = true;
             GoodsIsVisible = Settings.GoodsIsVisible;
             isSave = Preferences.Get("isPass", false);
             NavigationPage.SetHasNavigationBar(this, false);
@@ -142,6 +152,25 @@ namespace xamarinJKH.Main
             EntryFio.Text = Settings.Person.FIO;
             EntryEmail.Text = Settings.Person.Email;
             BindingContext = this;
+
+            MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) =>
+            {
+                OSAppTheme currentTheme = Application.Current.RequestedTheme;
+                var colors = new Dictionary<string, string>();
+                var arrowcolor = new Dictionary<string, string>();
+                if (currentTheme == OSAppTheme.Light || currentTheme == OSAppTheme.Unspecified)
+                {
+                    colors.Add("#000000", ((Color)Application.Current.Resources["MainColor"]).ToHex());
+                    arrowcolor.Add("#000000", "#494949");
+                }
+                else
+                {
+                    colors.Add("#000000", "#FFFFFF");
+                    arrowcolor.Add("#000000", "#FFFFFF");
+                }
+
+                IconViewTech.ReplaceStringMap = colors;
+            });
         }
         
         private async void ButtonClick(object sender, EventArgs e)
@@ -325,6 +354,21 @@ namespace xamarinJKH.Main
             Preferences.Set("Theme", 1);
             SetTheme();
 
+            OSAppTheme currentTheme = Application.Current.RequestedTheme;
+            var colors = new Dictionary<string, string>();
+            var arrowcolor = new Dictionary<string, string>();
+            if (currentTheme == OSAppTheme.Light || currentTheme == OSAppTheme.Unspecified)
+            {
+                colors.Add("#000000", ((Color)Application.Current.Resources["MainColor"]).ToHex());
+                arrowcolor.Add("#000000", "#494949");
+            }
+            else
+            {
+                colors.Add("#000000", "#FFFFFF");
+                arrowcolor.Add("#000000", "#FFFFFF");
+            }
+
+            IconViewTech.ReplaceStringMap = colors;
         }
 
         private void RadioButtonAuto_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -349,7 +393,22 @@ namespace xamarinJKH.Main
             MessagingCenter.Send<Object>(this, "ChangeThemeCounter");
                 Preferences.Set("Theme", 0);
             SetTheme();
-                //}                
+            //}                
+            OSAppTheme currentTheme = Application.Current.RequestedTheme;
+            var colors = new Dictionary<string, string>();
+            var arrowcolor = new Dictionary<string, string>();
+            if (currentTheme == OSAppTheme.Light || currentTheme == OSAppTheme.Unspecified)
+            {
+                colors.Add("#000000", ((Color)Application.Current.Resources["MainColor"]).ToHex());
+                arrowcolor.Add("#000000", "#494949");
+            }
+            else
+            {
+                colors.Add("#000000", "#FFFFFF");
+                arrowcolor.Add("#000000", "#FFFFFF");
+            }
+
+            IconViewTech.ReplaceStringMap = colors;
 
 
         }

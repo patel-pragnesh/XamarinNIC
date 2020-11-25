@@ -25,9 +25,20 @@ namespace xamarinJKH.Pays
     {
         private RestClientMP _server = new RestClientMP();
         private PaysPage _paysPage;
+        bool _convert;
+        public bool Convert
+        {
+            get => _convert;
+            set
+            {
+                _convert = value;
+                OnPropertyChanged("Convert");
+            }
+        }
         public AddIdent(PaysPage paysPage)
         {
             InitializeComponent();
+            Convert = true;
             Analytics.TrackEvent("Добавление ЛС");
             NavigationPage.SetHasNavigationBar(this, false);
             var techSend = new TapGestureRecognizer();
@@ -73,6 +84,32 @@ namespace xamarinJKH.Pays
             {
                 _ = await Navigation.PopAsync();
             });
+
+            SetIconColor();
+
+            MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) =>
+            {
+                SetIconColor();
+            });
+        }
+
+        void SetIconColor()
+        {
+            OSAppTheme currentTheme = Application.Current.RequestedTheme;
+            var colors = new Dictionary<string, string>();
+            var arrowcolor = new Dictionary<string, string>();
+            if (currentTheme == OSAppTheme.Light || currentTheme == OSAppTheme.Unspecified)
+            {
+                colors.Add("#000000", ((Color)Application.Current.Resources["MainColor"]).ToHex());
+                arrowcolor.Add("#000000", "#494949");
+            }
+            else
+            {
+                colors.Add("#000000", "#FFFFFF");
+                arrowcolor.Add("#000000", "#FFFFFF");
+            }
+
+            IconViewTech.ReplaceStringMap = colors;
         }
         
         private async void AddButtonClick(object sender, EventArgs e)
