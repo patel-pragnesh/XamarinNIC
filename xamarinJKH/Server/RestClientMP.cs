@@ -803,6 +803,14 @@ namespace xamarinJKH.Server
             restRequest.AddParameter("phone", phone);
             restRequest.AddParameter("database", SERVER_ADDR.Split("/")[3]);
             restRequest.AddParameter("messageId", messageId);
+            restRequest.AddParameter("ident", GetIdent());
+            restRequest.AddParameter("os", Device.RuntimePlatform);
+            restRequest.AddParameter("appVersion", Xamarin.Essentials.AppInfo.VersionString);
+            // ident - номер л/сч
+            // os - ОС
+            // appVersion - версия МП
+            // info - доп инфо
+
             Analytics.TrackEvent("Запрос:\n" +"messageId: " +  messageId +
                                  "database: " + SERVER_ADDR.Split("/")[3] + 
                                  "phone: " + phone);
@@ -820,7 +828,17 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
-
+        string GetIdent()
+        {
+            try
+            {
+                return Settings.Person.Accounts[0].Ident;
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+        }
         public async Task<RequestContent> GetRequestsDetailListConst(string id)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
