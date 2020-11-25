@@ -5,6 +5,7 @@ using xamarinJKH.Notifications;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Utils;
 using System;
+using Xamarin.Forms.PancakeView;
 
 namespace xamarinJKH
 {
@@ -18,9 +19,11 @@ namespace xamarinJKH
 
         public NotificationCell()
         {
-            MaterialFrame frame = new MaterialFrame();
-            frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
-            frame.Elevation = 20;
+            PancakeView frame = new PancakeView();
+            frame.HasShadow = false;
+            frame.BorderThickness = 1;
+            frame.SetAppThemeColor(PancakeView.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
+            //frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;

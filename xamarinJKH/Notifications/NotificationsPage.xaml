@@ -70,7 +70,7 @@
                     </StackLayout>
 
                     <StackLayout
-                        VerticalOptions="StartAndExpand">
+                        VerticalOptions="FillAndExpand">
                         <ListView x:Name="NotificationList"
                                   HasUnevenRows="True"
                                   Margin="10, 10, 10, 0"
