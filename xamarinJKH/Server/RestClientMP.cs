@@ -141,6 +141,7 @@ namespace xamarinJKH.Server
 
         public const string ADD_PERSONAL_DATA = "User/AddPersonalData"; // Добавление/обновление информации о физ лице
         public const string REGISTR_DEVICE = "User/RegisterDevice"; // регистрация устройства
+        public const string REGISTR_DEVICE_NOT_AVTORIZATION = "Public/RegisterDevice"; // регистрация устройства
 
         public const string GET_METERS_THREE = "Meters/List"; // Получить последние 3 показания по приборам
         public const string SAVE_METER_VALUE = "Meters/SaveMeterValue"; // Получить полную инфу по новости
@@ -803,6 +804,14 @@ namespace xamarinJKH.Server
             restRequest.AddParameter("phone", phone);
             restRequest.AddParameter("database", SERVER_ADDR.Split("/")[3]);
             restRequest.AddParameter("messageId", messageId);
+            restRequest.AddParameter("ident", GetIdent());
+            restRequest.AddParameter("os", Device.RuntimePlatform);
+            restRequest.AddParameter("appVersion", Xamarin.Essentials.AppInfo.VersionString);
+            // ident - номер л/сч
+            // os - ОС
+            // appVersion - версия МП
+            // info - доп инфо
+
             Analytics.TrackEvent("Запрос:\n" +"messageId: " +  messageId +
                                  "database: " + SERVER_ADDR.Split("/")[3] + 
                                  "phone: " + phone);
@@ -820,7 +829,17 @@ namespace xamarinJKH.Server
 
             return response.Data;
         }
-
+        string GetIdent()
+        {
+            try
+            {
+                return Settings.Person.Accounts[0].Ident;
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+        }
         public async Task<RequestContent> GetRequestsDetailListConst(string id)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
@@ -1847,6 +1866,41 @@ namespace xamarinJKH.Server
                 Model,
                 OS,
                 Version
+            });
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
+            }
+
+            return response.Data;
+        }
+        public async Task<CommonResult> RegisterDeviceNotAvtorization(string Phone )
+        {
+            string OS = Device.RuntimePlatform;
+            if (OS.ToLower() == "ios")
+                await Task.Delay(500);
+    
+            string Version = App.version;
+            string Model = App.model;
+            string DeviceId = App.token;
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(REGISTR_DEVICE_NOT_AVTORIZATION, Method.POST);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            restRequest.AddHeader("acx", Settings.Person.acx);
+            restRequest.AddBody(new
+            {
+                DeviceId,
+                Model,
+                OS,
+                Version,
+                Phone
             });
             var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус

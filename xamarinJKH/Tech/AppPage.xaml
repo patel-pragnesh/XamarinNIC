@@ -29,12 +29,12 @@
                         Orientation="Horizontal"
                         HorizontalOptions="Start">
                         <forms:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
-                                     HeightRequest="15"
-                                     WidthRequest="15"
-                                     ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
+                                     HeightRequest="25"
+                                     WidthRequest="25"
+                                     ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                                      HorizontalOptions="Center" />
                         <Label x:Name="LabelNumber"
-                               FontSize="20"
+                               FontSize="18"
                                Text="{x:Static xamarinJkh:AppResources.TechChat}"
                                VerticalOptions="Center"
                                FontAttributes="Bold"
