@@ -169,6 +169,12 @@ namespace xamarinJKH.Main
             FrameBtnSaldos.GestureRecognizers.Add(openSaldos);
             //additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
             MessagingCenter.Subscribe<Object>(this, "UpdateIdent", (sender) => SyncSetup());
+
+            MessagingCenter.Subscribe<Object>(this, "StartRefresh", (sender) =>
+            { Device.BeginInvokeOnMainThread(() => aIndicator.IsVisible = true); });
+            MessagingCenter.Subscribe<Object>(this, "EndRefresh", (sender) =>
+            { Device.BeginInvokeOnMainThread(() => aIndicator.IsVisible = false); });
+
             PaysPageViewModel(this.baseForPays, _accountingInfo);
             BindingContext = this;
             MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) =>

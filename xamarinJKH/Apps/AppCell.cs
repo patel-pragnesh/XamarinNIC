@@ -147,7 +147,10 @@ namespace xamarinJKH.Apps
                 containerMain.Children.Add(ReadIndicator, 1, 0);
             frame.Content = containerMain;
 
-            View = frame;
+            var stackLMain = new StackLayout() { Margin=new Thickness(0,2)};
+            stackLMain.Children.Add(frame);
+            View = stackLMain;
+            //View = frame;
 
             MessagingCenter.Subscribe<Object, int>(this, "SetAppRead", (sender, args) =>
             {

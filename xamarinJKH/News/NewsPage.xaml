@@ -121,14 +121,14 @@
                             HorizontalOptions="Start" />
                     </StackLayout>
                     <StackLayout
-                        VerticalOptions="StartAndExpand">
+                        VerticalOptions="FillAndExpand">
                         <ListView x:Name="NotificationList"
                                   HasUnevenRows="True"
                                   Margin="10, 10, 10, 0"
                                   SeparatorVisibility="None"
                                   VerticalScrollBarVisibility="Never"
                                   SelectionMode="None"
-                          
+                          VerticalOptions="FillAndExpand"
                                   IsPullToRefreshEnabled="True"
                                   RefreshCommand="{Binding RefreshCommand}"
                                   IsRefreshing="{Binding IsRefreshing}"
