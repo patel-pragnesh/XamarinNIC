@@ -769,6 +769,7 @@ namespace xamarinJKH.Tech
 
         async void getMessage2()
         {
+            Analytics.TrackEvent("Запрос сообщений");
             new Task(async () =>
             {
                 Configurations.LoadingConfig = new LoadingConfig
@@ -782,9 +783,11 @@ namespace xamarinJKH.Tech
                 Device.BeginInvokeOnMainThread(async () =>
                               await Loading.Instance.StartAsync(async progress =>
                               {
+                                  Analytics.TrackEvent("Запрос сообщений " + Settings.Person.Phone);
                                   request = await _server.GetRequestsDetailListTech(Settings.Person.Phone);
                                   if (request.Error == null)
                                   {
+                                      Analytics.TrackEvent("Результат запроса " + Newtonsoft.Json.JsonConvert.SerializeObject(request));
                                       Settings.DateUniq = "";
                                       foreach (var message in request.Messages)
                                       {
