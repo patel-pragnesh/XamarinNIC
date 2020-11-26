@@ -129,7 +129,8 @@ namespace xamarinJKH.Pays
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             Frame.SetAppThemeColor(Xamarin.Forms.Frame.BorderColorProperty, hexColor, Color.White);
-            
+
+            SwitchInsurance.IsToggled = true;
             SetPays();
         }
 
@@ -144,6 +145,7 @@ namespace xamarinJKH.Pays
                 isComission = true;
                 LabelCommision.Text = $"{AppResources.Commision} " + result.Comission + $" {AppResources.Currency}";
                 LabelCommision.IsVisible = !result.HideComissionInfo;
+                
                 totalSum = result.TotalSum.ToString();
                 if (result.Comission == 0)
                 {
@@ -152,6 +154,7 @@ namespace xamarinJKH.Pays
             }
 
             LayoutInsurance.IsVisible = account.InsuranceSum != 0;
+            InsuranceDoc.IsVisible = account.InsuranceSum != 0;
             
             LabelInsurance.Text = AppResources.InsuranceText.Replace("111", account.InsuranceSum.ToString());
             formatted.Spans.Add(new Span
@@ -192,6 +195,7 @@ namespace xamarinJKH.Pays
             });
             LabelMonth.FormattedText = formatted;
             Picker.Title = account.Ident;
+            SwitchInsurance.IsToggled = true; 
         }
 
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
@@ -276,7 +280,7 @@ namespace xamarinJKH.Pays
             // {
             if (SwitchInsurance.IsToggled && SwitchInsurance.IsVisible)
             {
-                totalSum += account.InsuranceSum;
+                //totalSum += account.InsuranceSum;
             }
             ComissionModel result = await server.GetSumWithComission(totalSum.ToString());
             if (result.Error == null && !result.Comission.Equals("0"))
@@ -284,8 +288,8 @@ namespace xamarinJKH.Pays
                 isComission = true;
                 LabelCommision.Text = $"{AppResources.Commision} " + result.Comission + $" {AppResources.Currency}";
                 LabelCommision.IsVisible =  !result.HideComissionInfo;
-                
-                totalSum = result.TotalSum;
+
+                totalSum = result.TotalSum + (SwitchInsurance.IsToggled ? account.InsuranceSum : 0);
                 if (result.Comission == 0)
                 {
                     LabelCommision.Text = AppResources.NotComissions;
@@ -293,7 +297,7 @@ namespace xamarinJKH.Pays
             }
             // }
 
-           
+            await Task.Delay(TimeSpan.FromMilliseconds(100));
             
             formatted.Spans.Add(new Span
             {
@@ -383,6 +387,11 @@ namespace xamarinJKH.Pays
         private async void SwitchLogin_OnToggled(object sender, ToggledEventArgs e)
         {
             await SetSumPay();
+        }
+
+        private async void OpenInsuranceInfo(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new PdfView("insurance.pdf", "0", true));
         }
     }
 }

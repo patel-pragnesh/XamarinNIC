@@ -79,12 +79,12 @@ namespace xamarinJKH.Main
                 aIndicator.IsVisible = true;
             });
 
-                try
+            try
             {
                 ItemsList<MeterInfo> info = await _server.GetThreeMeters();
-                if (info.Error == null)
+                if (info.Error == null && info.Data != null)
                 {
-                    if (string.IsNullOrWhiteSpace(account))
+                    if (string.IsNullOrEmpty(account) || string.IsNullOrWhiteSpace(account))
                     {
                         account = "Все";
                     }
@@ -125,27 +125,29 @@ namespace xamarinJKH.Main
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     aIndicator.IsVisible = false;
+                    IsRefreshing = false;
                 });
 
-            }
-            catch
+        }
+            catch (Exception e)
             {
-                
 
+                Microsoft.AppCenter.Crashes.Crashes.TrackError(e);
             }
             finally
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     aIndicator.IsVisible = false;
+                    IsRefreshing = false;
                 });
-            }
-
-
-
-            //countersList.ItemsSource = null;
-            //countersList.ItemsSource = _meterInfo;
         }
+
+
+
+        //countersList.ItemsSource = null;
+        //countersList.ItemsSource = _meterInfo;
+    }
 
         private async void Tap_Tapped(object sender, EventArgs e)
         {

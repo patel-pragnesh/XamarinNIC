@@ -186,7 +186,7 @@
 
                                             <Switch
                                                 OnColor="{x:DynamicResource MainColor}"
-                                                IsToggled="False"
+                                                IsToggled="True"
                                                 Toggled="SwitchLogin_OnToggled"
                                                 x:Name="SwitchInsurance" />
 
@@ -196,6 +196,18 @@
                                                    TextColor="Gray"
                                                    HorizontalOptions="Center" />
                                         </StackLayout>
+                                        <Label Text="Условия страхования"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="FillAndExpand"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"
+                                               FontSize="15"
+                                               x:Name="InsuranceDoc"
+                                               TextColor="{x:StaticResource MainColor}">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OpenInsuranceInfo"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
                                         <Label
                                             HeightRequest="1"
                                             Margin="-10, 0, 0, 0"

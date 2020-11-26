@@ -39,7 +39,7 @@
                             <forms:SvgCachedImage x:Name="IconViewTech"
                                                 Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                                 HeightRequest="20"
-                                                ReplaceStringMap="{Binding ShowAnnouncements, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                                ReplaceStringMap="{Binding Convert, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                                                 Margin="0, 0,0,0"
                                                 HorizontalOptions="Start"
                                                 VerticalOptions="Center" />
@@ -63,7 +63,7 @@
                             HeightRequest="25"
                             IsVisible="False"
                             HorizontalOptions="Start"
-                            ReplaceStringMap="{Binding isSave, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                            ReplaceStringMap="{Binding Convert, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                             VerticalOptions="Center" />
                         <Label
                             Text="{x:Static xamarinJkh:AppResources.Profile_NavBar}"

@@ -22,12 +22,12 @@ namespace xamarinJKH.Pays
     {
         FileStream Stream { get; set; }
         PayViewModel viewModel { get; set; }
-        public PdfView(string filename, string id)
+        public PdfView(string filename, string id, bool insurance = false)
         {
             InitializeComponent();
             
             
-            BindingContext = viewModel = new PayViewModel(filename, id);
+            BindingContext = viewModel = new PayViewModel(filename, id, insurance);
             //((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.White;
             MessagingCenter.Subscribe<Object, FileStream>(this, "SetFileStream", (sender, Stream) =>
             {
