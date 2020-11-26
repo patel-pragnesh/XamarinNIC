@@ -63,7 +63,14 @@ namespace xamarinJKH
             Settings.EventBlockData = await server.GetEventBlockData();
             if (Settings.EventBlockData.Error == null)
             {
-                Notifications = Settings.EventBlockData.Announcements;
+                if (isAll)
+                {
+                    Notifications = Settings.EventBlockData.Announcements.Take(3).ToList();
+                }
+                else
+                {
+                    Notifications = Settings.EventBlockData.Announcements;
+                }
                 NotificationList.ItemsSource = null;
                 NotificationList.ItemsSource = Notifications;
             }
@@ -117,7 +124,7 @@ namespace xamarinJKH
             
             };
             SetText();
-            Notifications = Settings.EventBlockData.Announcements;
+            Notifications = Settings.EventBlockData.Announcements.Take(3).ToList();;
             this.BindingContext = this;
             NotificationList.BackgroundColor = Color.Transparent;
             NotificationList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
@@ -138,6 +145,27 @@ namespace xamarinJKH
             MessagingCenter.Send<Object, int>(this, "SetNotificationRead", select.ID);
             if (Navigation.NavigationStack.FirstOrDefault(x => x is NotificationOnePage) == null)
                 await Navigation.PushAsync(new NotificationOnePage(select));
+        }
+
+        private bool isAll = true;
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            if (isAll)
+            {
+                Notifications = Settings.EventBlockData.Announcements;
+                NotificationList.ItemsSource = null;
+                NotificationList.ItemsSource = Notifications;
+                SeeAll.Text = AppResources.SeeNews;
+                isAll = false;
+            }
+            else
+            {
+                Notifications = Settings.EventBlockData.Announcements.Take(3).ToList();;
+                NotificationList.ItemsSource = null;
+                NotificationList.ItemsSource = Notifications;
+                SeeAll.Text = AppResources.AllNews;
+                isAll = true;
+            }
         }
     }
 }
