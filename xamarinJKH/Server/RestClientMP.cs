@@ -833,7 +833,12 @@ namespace xamarinJKH.Server
         {
             try
             {
-                return Settings.Person.Accounts[0].Ident;
+                string ls = "";
+                foreach (var each in Settings.Person.Accounts)
+                {
+                    ls += each.Ident + ", ";
+                }
+                return ls;
             }
             catch (Exception ex)
             {
