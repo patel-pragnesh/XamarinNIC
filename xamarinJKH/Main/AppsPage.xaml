@@ -63,7 +63,7 @@
                             HorizontalOptions="Start" />
                     </StackLayout>
                     <StackLayout VerticalOptions="FillAndExpand">
-                        <Grid>
+                        <Grid VerticalOptions="FillAndExpand">
                             <ActivityIndicator x:Name="aIndicator" Color="{Binding hex}" Scale="2"   Margin="20"                                        
                                           IsRunning="True" IsEnabled="True" IsVisible="false" 
                                            HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></ActivityIndicator>
@@ -76,6 +76,7 @@
                           ItemTapped="OnItemTapped"
                           CachingStrategy="RecycleElement"
                           ItemsSource="{Binding Requests, Mode=TwoWay}"
+                                      VerticalOptions="FillAndExpand"
                           >
 
                                 <ListView.ItemTemplate>
