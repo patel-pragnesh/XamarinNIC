@@ -833,7 +833,12 @@ namespace xamarinJKH.Server
         {
             try
             {
-                return Newtonsoft.Json.JsonConvert.SerializeObject(Settings.Person.Accounts);
+                string ls = "";
+                foreach (var each in Settings.Person.Accounts)
+                {
+                    ls += each.Ident + ", ";
+                }
+                return ls;
             }
             catch (Exception ex)
             {
