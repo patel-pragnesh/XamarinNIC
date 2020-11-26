@@ -346,6 +346,7 @@
                    Padding="15">
                 <StackLayout
                     Spacing="10"
+                    MinimumHeightRequest="50"
                     Orientation="Horizontal">
                     <ActivityIndicator x:Name="progressFile"
                                        IsRunning="true"

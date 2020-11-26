@@ -91,6 +91,7 @@
                    Padding="15">
                 <StackLayout
                     Spacing="10"
+                    MinimumHeightRequest="50"
                     Orientation="Horizontal">
                     <Grid Padding="0">
                         <Grid.ColumnDefinitions>

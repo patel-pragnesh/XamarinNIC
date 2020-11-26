@@ -21,7 +21,7 @@
 	<key>MinimumOSVersion</key>
 	<string>10.0</string>
 	<key>CFBundleIdentifier</key>
-	<string>rom.best.dezsodruzhestvo</string>
+	<string>rom.best.tih-gavan</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
@@ -35,7 +35,7 @@
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.100</string>
+	<string>3.109</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
@@ -57,7 +57,7 @@
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Предоставьте доступ к распознованию речи чтобы была возможность отпрапвлять сообщения в заявку голосом</string>
 	<key>CFBundleVersion</key>
-	<string>3.100</string>
+	<string>3.109</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
@@ -70,7 +70,7 @@
 		<false/>
 	</dict>
 	<key>CFBundleDisplayName</key>
-	<string>ООО ДЕЗ «Содружество»</string>
+	<string>УК Тихая Гавань</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>whatsapp</string>
