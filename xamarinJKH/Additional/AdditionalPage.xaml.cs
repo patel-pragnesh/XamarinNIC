@@ -17,13 +17,13 @@ using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 using xamarinJKH.ViewModels.Additional;
 using static Akavache.BlobCache;
-
 using Xamarin.Forms.Maps;
 using AiForms.Dialogs;
 using Rg.Plugins.Popup.Services;
 using xamarinJKH.DialogViews;
 using Xamarin.Essentials;
 using System.Text.RegularExpressions;
+using FFImageLoading.Forms;
 using Microsoft.AppCenter.Analytics;
 
 namespace xamarinJKH.Additional
@@ -80,18 +80,22 @@ namespace xamarinJKH.Additional
 
                     if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
                     {
-                        Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, null, "OK"));
+                        Device.BeginInvokeOnMainThread(async () =>
+                            await DisplayAlert(AppResources.ErrorTitle, null, "OK"));
                         IsRefreshing = false;
                     }
                     else
                     {
                         if (Settings.EventBlockData.AdditionalServices != null)
                         {
-                            var l = Settings.EventBlockData.AdditionalServices.Where(x => x.HasLogo && x.ShowInAdBlock != null && !x.ShowInAdBlock.ToLower().Equals("не отображать"));
+                            var l = Settings.EventBlockData.AdditionalServices.Where(x =>
+                                x.HasLogo && x.ShowInAdBlock != null &&
+                                !x.ShowInAdBlock.ToLower().Equals("не отображать"));
                             var groups = l.GroupBy(x => x.Group).Select(x => x.First())
                                 .Select(y => y.Group).ToList();
 
-                            var groups1 = Settings.EventBlockData.AdditionalServices.GroupBy(x => x.Group).Select(x => x.First())
+                            var groups1 = Settings.EventBlockData.AdditionalServices.GroupBy(x => x.Group)
+                                .Select(x => x.First())
                                 .Select(y => y.Group).ToList();
                             Additional.Clear();
 
@@ -151,7 +155,6 @@ namespace xamarinJKH.Additional
                 SetAdditional();
                 //additionalList.ItemsSource = null;
                 //additionalList.ItemsSource = Additional;
-                
             }
             else
             {
@@ -186,44 +189,36 @@ namespace xamarinJKH.Additional
             }
 
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => {
+            backClick.Tapped += async (s, e) =>
+            {
                 try
                 {
                     _ = await Navigation.PopAsync();
                 }
-                catch { }
+                catch
+                {
+                }
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new AppPage()); };
-            var call = new TapGestureRecognizer();
-            call.Tapped += async (s, e) =>
-            {
-                if (Settings.Person.Phone != null)
-                {
-                    IPhoneCallTask phoneDialer;
-                    phoneDialer = CrossMessaging.Current.PhoneDialer;
-                    if (phoneDialer.CanMakePhoneCall && !string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-                        phoneDialer.MakePhoneCall(System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
-                }
-            };
-            additionalList.BackgroundColor = Color.Transparent;
-            additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
             MainColor = "#" + Settings.MobileSettings.color;
             Additional = new ObservableCollection<AdditionalService>();
             Groups = new ObservableCollection<string>();
             this.BindingContext = this;
-            CatalogMenu.TextColor = (Color)Application.Current.Resources["MainColor"];
+            // CatalogMenu.TextColor = (Color) Application.Current.Resources["MainColor"];
             MessagingCenter.Subscribe<Object>(this, "LoadGoods", async (s) =>
             {
                 await Task.Delay(TimeSpan.FromMilliseconds(500));
                 SetAdditional();
             });
 
-            MessagingCenter.Subscribe<MapPageViewModel, Xamarin.Forms.Maps.Position>(this, "FocusMap", (sender, args) =>
-            {
-                (Map.Children[0] as Xamarin.Forms.Maps.Map).MoveToRegion(MapSpan.FromCenterAndRadius(args, Distance.FromKilometers(2)));
-            });
+            MessagingCenter.Subscribe<MapPageViewModel, Xamarin.Forms.Maps.Position>(this, "FocusMap",
+                (sender, args) =>
+                {
+                    (Map.Children[0] as Xamarin.Forms.Maps.Map).MoveToRegion(
+                        MapSpan.FromCenterAndRadius(args, Distance.FromKilometers(2)));
+                });
 
             MessagingCenter.Subscribe<Object, AdditionalService>(this, "OpenService", async (sender, args) =>
             {
@@ -242,13 +237,12 @@ namespace xamarinJKH.Additional
 
             MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) =>
             {
-
                 OSAppTheme currentTheme = Application.Current.RequestedTheme;
                 var colors = new Dictionary<string, string>();
                 var arrowcolor = new Dictionary<string, string>();
                 if (currentTheme == OSAppTheme.Light || currentTheme == OSAppTheme.Unspecified)
                 {
-                    colors.Add("#000000", ((Color)Application.Current.Resources["MainColor"]).ToHex());
+                    colors.Add("#000000", ((Color) Application.Current.Resources["MainColor"]).ToHex());
                     arrowcolor.Add("#000000", "#494949");
                 }
                 else
@@ -256,6 +250,7 @@ namespace xamarinJKH.Additional
                     colors.Add("#000000", "#FFFFFF");
                     arrowcolor.Add("#000000", "#FFFFFF");
                 }
+
                 IconViewTech.ReplaceStringMap = colors;
             });
         }
@@ -263,11 +258,10 @@ namespace xamarinJKH.Additional
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            FrameKind.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
+            FrameKind.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
         }
 
@@ -291,62 +285,135 @@ namespace xamarinJKH.Additional
             IsBusy = true;
             Groups.Clear();
             Additional.Clear();
-            Device.BeginInvokeOnMainThread(() => 
-            Task.Run(() =>
-            {
-                if (Settings.EventBlockData.AdditionalServices != null)
+            Device.BeginInvokeOnMainThread(() =>
+                Task.Run(() =>
                 {
-                    var l = Settings.EventBlockData.AdditionalServices.Where(x => x.HasLogo && x.ShowInAdBlock != null && !x.ShowInAdBlock.ToLower().Equals("не отображать"));
-                    var groups = l.GroupBy(x => x.Group).Select(x => x.First())
-                        .Select(y => y.Group ).ToList();
-
-                    var groups1 = Settings.EventBlockData.AdditionalServices.GroupBy(x => x.Group).Select(x => x.First())
-                        .Select(y => y.Group).ToList();
-
-                    foreach (var group in groups)
+                    if (Settings.EventBlockData.AdditionalServices != null)
                     {
-                        Device.BeginInvokeOnMainThread(() => Groups.Add(group));
-                    }
+                        var l = Settings.EventBlockData.AdditionalServices.Where(x =>
+                            x.HasLogo && x.ShowInAdBlock != null && !x.ShowInAdBlock.ToLower().Equals("не отображать"));
+                        var groups = l.GroupBy(x => x.Group).Select(x => x.First())
+                            .Select(y => y.Group).ToList();
 
-                    foreach (var each in Settings.EventBlockData.AdditionalServices)
-                    {
-                        //try
-                        //{
-                        if (each.HasLogo)
-                            if (each.ShowInAdBlock != null)
-                                if (!each.ShowInAdBlock.ToLower().Equals("не отображать"))
-                                {
-                                    if (SelectedGroup != null)
+                        var groups1 = Settings.EventBlockData.AdditionalServices.GroupBy(x => x.Group)
+                            .Select(x => x.First())
+                            .Select(y => y.Group).ToList();
+
+                        foreach (var group in groups)
+                        {
+                            Groups.Add(group);
+                        }
+
+                        foreach (var each in Settings.EventBlockData.AdditionalServices)
+                        {
+                            //try
+                            //{
+                            if (each.HasLogo)
+                                if (each.ShowInAdBlock != null)
+                                    if (!each.ShowInAdBlock.ToLower().Equals("не отображать"))
                                     {
-                                        if (each.Group == SelectedGroup)
-                                        {
-                                            Device.BeginInvokeOnMainThread(() => Additional.Add(each));
-                                        }
+                                        Additional.Add(each);
                                     }
-                                    else
-                                    {
-                                        Device.BeginInvokeOnMainThread(() => Additional.Add(each));
-                                    }
-                                }
-                    }
+                        }
 
 
                         if (groups.Count > 0)
                         {
                             SelectedGroup = null;
-                            Device.BeginInvokeOnMainThread(() => SelectedGroup = Groups[0]);
-
                         }
-                }
+                    }
 
-                IsBusy = false;
-            })
+                    Device.BeginInvokeOnMainThread(SetGrupAdditional);
+
+                    IsBusy = false;
+                })
             );
 
             //AiForms.Dialogs.Loading.Instance.Hide();
         }
 
-     
+
+        void SetGrupAdditional()
+        {
+            StackLayout containerData = new StackLayout();
+            containerData.HorizontalOptions = LayoutOptions.FillAndExpand;
+            containerData.VerticalOptions = LayoutOptions.Start;
+            foreach (var group in Groups)
+            {
+                
+                Label titleLable = new Label();
+                titleLable.TextColor = Color.Black;
+                titleLable.FontSize = 18;
+                titleLable.Text = group;
+                titleLable.FontAttributes = FontAttributes.Bold;
+                titleLable.VerticalOptions = LayoutOptions.StartAndExpand;
+                titleLable.HorizontalOptions = LayoutOptions.StartAndExpand;
+
+                ScrollView scrollViewAdditional = new ScrollView();
+                scrollViewAdditional.Orientation = ScrollOrientation.Horizontal;
+                StackLayout containerAdd = new StackLayout();
+                containerAdd.HorizontalOptions = LayoutOptions.FillAndExpand;
+                containerAdd.Orientation = StackOrientation.Horizontal;
+                foreach (var service in Settings.EventBlockData.AdditionalServices.Where(x => x.Group == group))
+                {
+                   
+                    StackLayout stackLayoutCon = new StackLayout()
+                    {
+                        Padding = 10
+                    };
+                    PancakeView pic = new PancakeView()
+                    {
+                        HorizontalOptions=LayoutOptions.Center,
+                        CornerRadius=20,
+                        
+                    };
+                    
+                    CachedImage cachedImage = new CachedImage()
+                    {
+                        HeightRequest=70,
+                        WidthRequest=70,
+                        Source = service.LogoLink
+                    };
+                    pic.Content = cachedImage;
+                    
+                    Label labelText = new Label()
+                    {
+                        TextColor=Color.Black,
+                        Text=service.Name,
+                        VerticalTextAlignment=TextAlignment.Center,
+                        HorizontalOptions=LayoutOptions.Center,
+                        FontSize=12,
+                        HorizontalTextAlignment=TextAlignment.Center
+                    };
+                    stackLayoutCon.Children.Add(pic);
+                    stackLayoutCon.Children.Add(labelText);
+                    containerAdd.Children.Add(stackLayoutCon);
+                    
+                    var onItemTaped = new TapGestureRecognizer();
+                    onItemTaped.Tapped += async (s, e) =>
+                    {
+                        if (service.ShopID == null)
+                        {
+                            if (Navigation.NavigationStack.FirstOrDefault(x => x is AdditionalOnePage) == null)
+                                await Navigation.PushAsync(new AdditionalOnePage(service));
+                        }
+                        else
+                        {
+                            if (Navigation.NavigationStack.FirstOrDefault(x => x is ShopPageNew) == null)
+                                await Navigation.PushAsync(new ShopPageNew(service));
+                        }
+                    };
+                    stackLayoutCon.GestureRecognizers.Add(onItemTaped);
+                    
+                }
+
+                scrollViewAdditional.Content = containerAdd;
+                containerData.Children.Add(titleLable);
+                containerData.Children.Add(scrollViewAdditional);
+            }
+
+            StackLayoutContainer.Content = containerData;
+        }
 
 
         private async void OnItemTapped(object sender, SelectionChangedEventArgs e)
@@ -379,48 +446,64 @@ namespace xamarinJKH.Additional
             }
             catch
             {
-
             }
-            
         }
 
         private void SwitchList(object sender, EventArgs args)
         {
-            var label = sender as Label;
-            var mainColor = Application.Current.Resources["MainColor"];
-            label.TextColor =  (Color)mainColor;
-            if(DevicePlatform.iOS==DevicePlatform.iOS)
-                MapMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Light || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? Color.Black : Color.White;
-            else
-                MapMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Dark || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? Color.White : Color.Black;
-            Map.IsVisible = false;
-            SetAdditional();
+            // var label = sender as Label;
+            // var mainColor = Application.Current.Resources["MainColor"];
+            // label.TextColor = (Color) mainColor;
+            // if (DevicePlatform.iOS == DevicePlatform.iOS)
+            //     MapMenu.TextColor =
+            //         Application.Current.UserAppTheme == OSAppTheme.Light ||
+            //         Application.Current.UserAppTheme == OSAppTheme.Unspecified
+            //             ? Color.Black
+            //             : Color.White;
+            // else
+            //     MapMenu.TextColor =
+            //         Application.Current.UserAppTheme == OSAppTheme.Dark ||
+            //         Application.Current.UserAppTheme == OSAppTheme.Unspecified
+            //             ? Color.White
+            //             : Color.Black;
+            // Map.IsVisible = false;
+            // SetAdditional();
         }
 
         private void SwitchMap(object sender, EventArgs args)
         {
-            var label = sender as Label;
-            var mainColor = Application.Current.Resources["MainColor"];
-            label.TextColor = (Color)mainColor;
-
-            if (DevicePlatform.iOS == DevicePlatform.iOS)
-                CatalogMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Light || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? Color.Black : Color.White;
-            else
-                CatalogMenu.TextColor = Application.Current.UserAppTheme == OSAppTheme.Dark || Application.Current.UserAppTheme == OSAppTheme.Unspecified ? Color.White : Color.Black;
-            
-            Map.IsVisible = true;
-            (Map.BindingContext as MapPageViewModel).GetPermission.Execute(Additional);
-            (Map.BindingContext as MapPageViewModel).LoadPins.Execute(Additional);
+            // var label = sender as Label;
+            // var mainColor = Application.Current.Resources["MainColor"];
+            // label.TextColor = (Color) mainColor;
+            //
+            // if (DevicePlatform.iOS == DevicePlatform.iOS)
+            //     CatalogMenu.TextColor =
+            //         Application.Current.UserAppTheme == OSAppTheme.Light ||
+            //         Application.Current.UserAppTheme == OSAppTheme.Unspecified
+            //             ? Color.Black
+            //             : Color.White;
+            // else
+            //     CatalogMenu.TextColor =
+            //         Application.Current.UserAppTheme == OSAppTheme.Dark ||
+            //         Application.Current.UserAppTheme == OSAppTheme.Unspecified
+            //             ? Color.White
+            //             : Color.Black;
+            //
+            // Map.IsVisible = true;
+            // (Map.BindingContext as MapPageViewModel).GetPermission.Execute(Additional);
+            // (Map.BindingContext as MapPageViewModel).LoadPins.Execute(Additional);
         }
 
         private async void Pin_Clicked(object sender, EventArgs e)
         {
-            var shop = Additional.FirstOrDefault(x => x.ID == Convert.ToInt32((sender as Xamarin.Forms.Maps.Pin).ClassId));
+            var shop = Additional.FirstOrDefault(x =>
+                x.ID == Convert.ToInt32((sender as Xamarin.Forms.Maps.Pin).ClassId));
             if (shop != null)
             {
                 await Dialog.Instance.ShowAsync(new MapShopDialogView(shop));
             }
         }
+
         private void CollectionView_Scrolled(object sender, ItemsViewScrolledEventArgs e)
         {
             var index = e.FirstVisibleItemIndex;

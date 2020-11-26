@@ -17,34 +17,35 @@
                 
             </Style>-->
             <Style TargetType="Label" x:Key="Tab">
-                <Setter Property="TextColor" Value="{AppThemeBinding Dark={x:DynamicResource MainColor}, Light=Black}"/>
-                <Setter Property="FontSize" Value="18"/>
-                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding Dark={x:DynamicResource MainColor}, Light=Black}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="TextColor" Value="{AppThemeBinding Dark=White, Light=Black}"/>
+                                    <Setter Property="TextColor" Value="{AppThemeBinding Dark=White, Light=Black}" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>
             </Style>
-            <converters:TextDecorationsUnderline x:Key="Underline"/>
+            <converters:TextDecorationsUnderline x:Key="Underline" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-           <Grid>
+            <Grid>
                 <Image x:Name="ImageFon"
                        Source="{AppThemeBinding Light=ic_additional_top_Light, Dark=ic_additional_top}"
                        VerticalOptions="Start"
-					   Margin="0,0,0,0"
+                       Margin="0,0,0,0"
                        Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
                        HorizontalOptions="FillAndExpand" />
-                <StackLayout>
+                
+                <StackLayout >
                     <StackLayout
                         Margin="25,10,15,0"
                         Orientation="Horizontal" x:Name="Pancake">
@@ -57,14 +58,14 @@
                         <StackLayout
                             HorizontalOptions="EndAndExpand"
                             Orientation="Horizontal">
-                        
+
                             <svg:SvgCachedImage x:Name="IconViewTech"
-                                                  Source="resource://xamarinJKH.Resources.ic_tech.svg"
-                                                  HeightRequest="20"
-                                                  ReplaceStringMap="{Binding Groups, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
-                                                  Margin="0, 0,0,0"
-                                                  HorizontalOptions="Start"
-                                                  VerticalOptions="Center" />
+                                                Source="resource://xamarinJKH.Resources.ic_tech.svg"
+                                                HeightRequest="20"
+                                                ReplaceStringMap="{Binding Groups, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                                Margin="0, 0,0,0"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Center" />
                             <Label x:Name="LabelTech"
                                    Text="{x:Static xamarinJkh:AppResources.Support}"
                                    FontSize="14"
@@ -74,7 +75,7 @@
                                    VerticalOptions="Center" />
                         </StackLayout>
                     </StackLayout>
-                  
+
                     <StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
@@ -88,203 +89,52 @@
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 Spacing="20"
-                                 Padding="30,0">
-                        <!--<Frame BackgroundColor="White" CornerRadius="10" Opacity="0.25" x:Name="frameMenuCatalog" Padding="5" HorizontalOptions="End">
-                            <Label Text="Каталог" Style="{x:StaticResource Tab}"
-                               x:Name="CatalogMenu"
-                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                               HorizontalTextAlignment="End" Opacity="2">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="SwitchList"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </Frame>-->
-                        <Label Text="{x:Static xamarinJkh:AppResources.AdditionalList}" Style="{x:StaticResource Tab}"
-                               x:Name="CatalogMenu"
-                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                               HorizontalTextAlignment="End" Opacity="2">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="SwitchList"/>
-                            </Label.GestureRecognizers>
-                        </Label>
+                    <Grid VerticalOptions="FillAndExpand">
+                        <pancakeView:PancakeView CornerRadius="40,40,0,0"
+                                                 Margin="10,0,0,-10"
+                                                 x:Name="FrameKind"
+                                                 BorderThickness="1"
+                                                 VerticalOptions="FillAndExpand"
+                                                 BorderColor="{AppThemeBinding Light={x:DynamicResource MainColor}, Dark=Transparent}"
+                                                 BackgroundColor="White"
+                                                 Padding="0, 0, 0, 10">
+                            <StackLayout VerticalOptions="FillAndExpand" HeightRequest="1000">
+                                <StackLayout VerticalOptions="FillAndExpand"
+                                             Margin="20, 20, 0, 0">
+                                    <ActivityIndicator Color="{Binding MainColor}"
+                                                       IsRunning="{Binding IsBusy}"
+                                                       IsEnabled="{Binding IsBusy}"
+                                                       IsVisible="{Binding IsBusy}" />
+                                    <RefreshView IsRefreshing="{Binding IsRefreshing} "
+                                                 VerticalOptions="FillAndExpand"
+                                                 Command="{Binding RefreshCommand}">
+                                        <ScrollView  x:Name="StackLayoutContainer"  />
+                                    </RefreshView>
+                                    
 
-                        <Label x:Name="MenuDelimiter" Text="/"/>
-                        <Label Text="{x:Static xamarinJkh:AppResources.AdditionalMap}" Style="{x:StaticResource Tab}"
-                               x:Name="MapMenu"
-                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                               HorizontalTextAlignment="Start">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="SwitchMap"/>
-                            </Label.GestureRecognizers>
-
-                        </Label>
-
-                    </StackLayout>
-                    <Grid>
-                        <StackLayout
-                        Margin="10, 10, 10, 0"
-                        VerticalOptions="FillAndExpand">
-                            <Frame CornerRadius="40"
-                               Margin="10,0,-50,-90"
-                               x:Name="FrameKind"
-                               BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
-                               Padding="20, 20, 80, 70">
-                                <CollectionView ItemsSource="{Binding Groups}"
-                                        HeightRequest="30"
-                                        Scrolled="CollectionView_Scrolled"
-                                        SelectedItem="{Binding SelectedGroup}"
-                                        SelectionMode="Single"                                                
-                                        SelectionChanged="GroupChanged">                                    
-                                    <CollectionView.ItemsLayout>
-                                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="30" 
-                                                           SnapPointsAlignment="Start" SnapPointsType="MandatorySingle" />
-                                    </CollectionView.ItemsLayout>
-                                    <CollectionView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Label Text="{Binding .}" 
-                                               x:Name="Category"
-                                               VerticalTextAlignment="Center"
-                                               HorizontalTextAlignment="Center"
-                                               TextDecorations="{Binding Path=TextColor, Source={x:Reference Category},
-                                                Converter={x:StaticResource Underline}}"
-                                               Margin="5,5,5,-5"
-                                               FontSize="Medium"
-                                               BackgroundColor="Transparent">
-                                                <VisualStateManager.VisualStateGroups>
-                                                    <VisualStateGroup x:Name="CommonStates">
-                                                        <VisualState x:Name="Normal">
-                                                            <VisualState.Setters>
-                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White}"/>
-                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#494949}"/>
-                                                                <Setter Property="TextDecorations" Value="None"/>
-                                                            </VisualState.Setters>
-                                                        </VisualState>
-
-                                                        <VisualState x:Name="Selected">
-                                                            <VisualState.Setters>
-                                                                <Setter Property="TextColor" Value="{x:DynamicResource MainColor}"/>
-                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#494949}"/>
-                                                                <Setter Property="TextDecorations" Value="Underline"/>
-                                                            </VisualState.Setters>
-                                                        </VisualState>
-                                                    </VisualStateGroup>
-                                                </VisualStateManager.VisualStateGroups>
-                                            </Label>
-
-                                            <!--<additional:UnderLineLabel BackgroundColor="Transparent">
-                                                <VisualStateManager.VisualStateGroups>
-                                                    <VisualStateGroup x:Name="CommonStates">
-                                                        <VisualState x:Name="Normal">
-                                                            <VisualState.Setters>
-                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White}"/>
-                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#49494}"/>
-                                                                <Setter Property="LineColor" Value="Transparent"/>
-                                                            </VisualState.Setters>
-                                                        </VisualState>
-
-                                                        <VisualState x:Name="Selected">
-                                                            <VisualState.Setters>
-                                                                <Setter Property="TextColor" Value="{x:DynamicResource MainColor}"/>
-                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#49494}"/>
-                                                                <Setter Property="LineColor" Value="{x:DynamicResource MainColor}"/>
-                                                            </VisualState.Setters>
-                                                        </VisualState>
-                                                    </VisualStateGroup>
-                                                </VisualStateManager.VisualStateGroups>
-                                            </additional:UnderLineLabel>-->
-                                        </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                                </CollectionView>
-
-                            </Frame>
-                            <ActivityIndicator Color="{Binding MainColor}"
-                                           IsRunning="{Binding IsBusy}"
-                                           IsEnabled="{Binding IsBusy}"
-                                           IsVisible="{Binding IsBusy}"/>
-                            <Grid>
-                                <ListView x:Name="additionalList"
-                                          IsVisible="False"
-                                  HasUnevenRows="True"
-                                  SeparatorVisibility="None"
-                                  VerticalScrollBarVisibility="Never"
-                                  IsPullToRefreshEnabled="True"
-                                  RefreshCommand="{Binding RefreshCommand}"
-                                  IsRefreshing="{Binding IsRefreshing}"
-                                  SelectionMode="None"
-                                  CachingStrategy="RecycleElement"
-                                  ItemsSource="{Binding Additional}">
-                                    <ListView.ItemTemplate>
-
-                                        <DataTemplate>
-
-                                            <additional:AdditionalCell
-                                        ImageWidth="45"
-                                        ImageHeight="180"
-                                        Detail="{Binding ID}"
-                                        LogoFileId="{Binding LogoFileId}" />
-                                        </DataTemplate>
-
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                                <RefreshView IsRefreshing="{Binding IsRefreshing}"
-                                             Command="{Binding RefreshCommand}">
-                                    <CollectionView ItemsSource="{Binding Additional}"
-                                                    
-                                                    SelectionMode="Single"
-                                                    SelectionChanged="OnItemTapped">
-                                        <CollectionView.ItemsLayout>
-                                            <GridItemsLayout Orientation="Vertical" 
-                                                             Span="3"/>
-                                        </CollectionView.ItemsLayout>
-                                        <CollectionView.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackLayout Padding="10">
-                                                    <StackLayout Spacing="-10" BackgroundColor="Transparent">
-                                                        <pancakeView:PancakeView CornerRadius="20"
-                                                                             x:Name="Pic"
-                                                                             Scale="0.6"
-                                                                             HeightRequest="{Binding Path=Width, Source={x:Reference Pic}}"
-                                                                             IsClippedToBounds="False">
-                                                            <ff:CachedImage Source="{Binding LogoLink}"
-                                                                        Aspect="AspectFill"/>
-                                                        </pancakeView:PancakeView>
-                                                        <Label Text="{Binding Name}"
-                                                               TextColor="Black"
-                                                               VerticalTextAlignment="Center"
-                                                               HorizontalOptions="Center"
-                                                               FontSize="12"
-                                                               HorizontalTextAlignment="Center"/>
-                                                    </StackLayout>
-                                                    
-                                                </StackLayout>
-                                            </DataTemplate>
-                                        </CollectionView.ItemTemplate>
-                                    </CollectionView>
-                                </RefreshView>
-
-
-                            </Grid>
-
-                        </StackLayout>
-                        <pancakeView:PancakeView CornerRadius="40"
-                               x:Name="Map"
-                               IsVisible="False"
-                               IsClippedToBounds="True"
-                               Padding="0"
-                               Margin="20,10,-40,-40">
-                            <map:Map Margin="0,0,40,40" ItemsSource="{Binding Pins}" IsShowingUser="{Binding ShowUser}">
-                                <map:Map.ItemTemplate>
-                                    <DataTemplate>
-                                        <map:Pin Position="{Binding Position}" Label="{Binding Name}" MarkerClicked="Pin_Clicked" ClassId="{Binding ID}"/>
-                                    </DataTemplate>
-                                </map:Map.ItemTemplate>
-                            </map:Map>
+                                </StackLayout>
+                            </StackLayout>
                         </pancakeView:PancakeView>
+                        
                     </Grid>
                     
+                    <pancakeView:PancakeView CornerRadius="40"
+                                             x:Name="Map"
+                                             IsVisible="False"
+                                             IsClippedToBounds="True"
+                                             Padding="0"
+                                             Margin="20,10,-40,-40">
+                        <map:Map Margin="0,0,40,40" ItemsSource="{Binding Pins}" IsShowingUser="{Binding ShowUser}">
+                            <map:Map.ItemTemplate>
+                                <DataTemplate>
+                                    <map:Pin Position="{Binding Position}" Label="{Binding Name}"
+                                             MarkerClicked="Pin_Clicked" ClassId="{Binding ID}" />
+                                </DataTemplate>
+                            </map:Map.ItemTemplate>
+                        </map:Map>
+                    </pancakeView:PancakeView>
                 </StackLayout>
+              
             </Grid>
 
         </StackLayout>
