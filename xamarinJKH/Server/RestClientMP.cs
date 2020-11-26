@@ -833,7 +833,7 @@ namespace xamarinJKH.Server
         {
             try
             {
-                return Settings.Person.Accounts[0].Ident;
+                return Newtonsoft.Json.JsonConvert.SerializeObject(Settings.Person.Accounts);
             }
             catch (Exception ex)
             {
