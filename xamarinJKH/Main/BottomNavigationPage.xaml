@@ -24,10 +24,10 @@
             </Style>
         </ResourceDictionary>
     </TabbedPage.Resources>
-    <!--<NavigationPage x:Name="EventsNavPage" HasNavigationBar="False" Title="{x:Static resources:AppResources.Events_NavBar}" IconImageSource="ic_events" BarBackgroundColor="Black" BarTextColor="White" 
+    <NavigationPage x:Name="EventsNavPage" HasNavigationBar="False" Title="{x:Static resources:AppResources.Events_NavBar}" IconImageSource="ic_events" BarBackgroundColor="Black" BarTextColor="White" 
                     badge:TabBadge.BadgeText="{Binding EventsAmount}"
-                    badge:TabBadge.BadgeColor="{Binding EventsAmount, Converter={x:StaticResource BadgeColor}}">-->
-    <NavigationPage x:Name="EventsNavPage" HasNavigationBar="False" Title="{x:Static resources:AppResources.Events_NavBar}" IconImageSource="ic_events" BarBackgroundColor="Black" BarTextColor="White">
+                    badge:TabBadge.BadgeColor="{Binding EventsAmount, Converter={x:StaticResource BadgeColor}}">
+    <!--<NavigationPage x:Name="EventsNavPage" HasNavigationBar="False" Title="{x:Static resources:AppResources.Events_NavBar}" IconImageSource="ic_events" BarBackgroundColor="Black" BarTextColor="White">-->
         <x:Arguments>
             <local:EventsPage  Title="{x:Static resources:AppResources.Events_NavBar}" IconImageSource="ic_events" />
         </x:Arguments>
