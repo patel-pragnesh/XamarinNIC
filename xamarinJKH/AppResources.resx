@@ -1631,4 +1631,16 @@
   <data name="AppConstPressToSearch" xml:space="preserve">
     <value>Нажмите для поиска</value>
   </data>
+  <data name="ToRayon" xml:space="preserve">
+    <value>По району</value>
+  </data>
+  <data name="ByHome" xml:space="preserve">
+    <value>По домам</value>
+  </data>
+  <data name="ByLS" xml:space="preserve">
+    <value>По л/сч</value>
+  </data>
+  <data name="ByDuty" xml:space="preserve">
+    <value>По долгу</value>
+  </data>
 </root>
