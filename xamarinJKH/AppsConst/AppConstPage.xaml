@@ -365,7 +365,6 @@
                                                FontSize="18"
                                                VerticalOptions="Center"
                                                Text=""
-                                               AutoSize="Disabled"
                                                Placeholder="{x:Static xamarinJkh:AppResources.ChatPlaceholder}"
                                                TextColor="Black"
                                                HorizontalOptions="FillAndExpand" 
