@@ -1644,4 +1644,16 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="AppConstPressToSearch" xml:space="preserve">
     <value>Proceed to searh</value>
   </data>
+  <data name="ToRayon" xml:space="preserve">
+    <value>By district</value>
+  </data>
+  <data name="ByHome" xml:space="preserve">
+    <value>At home</value>
+  </data>
+  <data name="ByLS" xml:space="preserve">
+    <value>By ident</value>
+  </data>
+  <data name="ByDuty" xml:space="preserve">
+    <value>By debt</value>
+  </data>
 </root>

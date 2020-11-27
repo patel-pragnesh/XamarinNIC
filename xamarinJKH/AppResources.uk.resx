@@ -1520,4 +1520,16 @@
   <data name="AppConstPressToSearch" xml:space="preserve">
     <value>Натисніть для пошуку</value>
   </data>
+  <data name="ToRayon" xml:space="preserve">
+    <value>По району</value>
+  </data>
+  <data name="ByHome" xml:space="preserve">
+    <value>По дому</value>
+  </data>
+  <data name="ByLS" xml:space="preserve">
+    <value>За л / с</value>
+  </data>
+  <data name="ByDuty" xml:space="preserve">
+    <value>за борг</value>
+  </data>
 </root>

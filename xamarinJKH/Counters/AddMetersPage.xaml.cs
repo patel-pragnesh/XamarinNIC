@@ -86,6 +86,7 @@ namespace xamarinJKH.Counters
 
                     break;
                 case Device.Android:
+                    //GetFocusCells();
                     if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width <= 720)
                     {
                         CounterLayout.Margin = new Thickness(5, 0);

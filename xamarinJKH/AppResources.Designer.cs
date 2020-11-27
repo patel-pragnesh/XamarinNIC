@@ -19,7 +19,7 @@ namespace xamarinJKH {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -561,6 +561,33 @@ namespace xamarinJKH {
         internal static string By {
             get {
                 return ResourceManager.GetString("By", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to По долгу.
+        /// </summary>
+        internal static string ByDuty {
+            get {
+                return ResourceManager.GetString("ByDuty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to По домам.
+        /// </summary>
+        internal static string ByHome {
+            get {
+                return ResourceManager.GetString("ByHome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to По л/сч.
+        /// </summary>
+        internal static string ByLS {
+            get {
+                return ResourceManager.GetString("ByLS", resourceCulture);
             }
         }
         
@@ -4400,6 +4427,15 @@ namespace xamarinJKH {
         internal static string ToGetSignatureText {
             get {
                 return ResourceManager.GetString("ToGetSignatureText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to По району.
+        /// </summary>
+        internal static string ToRayon {
+            get {
+                return ResourceManager.GetString("ToRayon", resourceCulture);
             }
         }
         
