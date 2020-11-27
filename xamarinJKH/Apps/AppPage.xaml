@@ -209,7 +209,8 @@
                                                    Placeholder="{x:Static xamarinJkh:AppResources.ChatPlaceholder}"
                                                    TextColor="#A2A2A2"
                                                    MinimumHeightRequest="35"
-                                                   HorizontalOptions="FillAndExpand" />
+                                                   HorizontalOptions="FillAndExpand" 
+                                                   AutoSize="TextChanges"/>
                         <svg:SvgCachedImage
                             x:Name="IconViewMic"
                             Source="resource://xamarinJKH.Resources.ic_microphone.svg"
