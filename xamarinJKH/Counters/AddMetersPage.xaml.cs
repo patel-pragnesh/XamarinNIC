@@ -484,14 +484,31 @@ namespace xamarinJKH.Counters
 
             Device.BeginInvokeOnMainThread(() =>
             {
-                d08.Text = d[0];
-                d07.Text = d[1];
-                d06.Text = d[2];
-                d05.Text = d[3];
-                d04.Text = d[4];
-                d03.Text = d[5];
-                d02.Text = d[6];
-                d01.Text = d[7];
+                if (IntegerPoint == 6)
+                {
+                    d08.Text = d[0];
+                    d07.Text = d[1];
+                    d06.Text = d[2];
+                    d041.Text = d[3];
+                    d05.Text = d[4];
+                    d04.Text = d[5];
+                    d03.Text = d[6];
+                    d02.Text = d[7];
+                    d01.Text = d[8];
+                }
+                else
+                {
+                    d08.Text = d[0];
+                    d07.Text = d[1];
+                    d06.Text = d[2];
+                    d05.Text = d[3];
+                    d04.Text = d[4];
+                    d03.Text = d[5];
+                    d02.Text = d[6];
+                    d01.Text = d[7];
+                }
+                
+                
             });            
         }
 
