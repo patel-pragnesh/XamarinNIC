@@ -1010,7 +1010,7 @@ namespace xamarinJKH.Main
                                 {
                                     formattedDate.Spans.Add(new Span
                                     {
-                                        Text = $"{AppResources.From} " + mInfo.ValuesEndDay +
+                                        Text = $"{AppResources.From} " + mInfo.ValuesStartDay +
                                                $" {AppResources.To} " +
                                                mInfo.ValuesEndDay + " числа ",
                                         TextColor = (Color)Application.Current.Resources["MainColor"],
