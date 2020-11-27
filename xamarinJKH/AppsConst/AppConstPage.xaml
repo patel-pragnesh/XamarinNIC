@@ -365,10 +365,10 @@
                                                FontSize="18"
                                                VerticalOptions="Center"
                                                Text=""
-                                               AutoSize="Disabled"
                                                Placeholder="{x:Static xamarinJkh:AppResources.ChatPlaceholder}"
                                                TextColor="Black"
-                                               HorizontalOptions="FillAndExpand" />
+                                               HorizontalOptions="FillAndExpand" 
+                                               AutoSize="TextChanges"/>
                     <xamarinJkh:IconView
                         x:Name="IconViewSend"
                         Source="ic_send_mess"

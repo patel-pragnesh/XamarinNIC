@@ -10,5 +10,10 @@ namespace xamarinJKH.iOS.CustomRenderers
     public class BordlessEditorRender : EditorRenderer
     {
         public static void Init() { }
+        protected override void OnElementChanged(ElementChangedEventArgs<Editor> e)
+        {
+            base.OnElementChanged(e);
+            this.Control.InputAccessoryView = null;
+        }
     }
 }

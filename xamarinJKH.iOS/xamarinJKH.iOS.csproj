@@ -76,12 +76,12 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>Apple Distribution: Evgeny Yurtaykin (UK4AR963E7)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>distrSodruzhestvo</CodesignProvision>
+    <CodesignProvision>distrTihayaGavan</CodesignProvision>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
     <MtouchLink>SdkOnly</MtouchLink>
     <BuildIpa>true</BuildIpa>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
-    <IpaPackageName>содружество_3100</IpaPackageName>
+    <IpaPackageName>тихая_гавань_3109</IpaPackageName>
     <IpaIncludeArtwork>false</IpaIncludeArtwork>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
