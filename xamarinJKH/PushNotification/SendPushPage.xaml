@@ -5,6 +5,8 @@
              xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
              xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
+             xmlns:xForms="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+             xmlns:generic="clr-namespace:System.Collections.Generic;assembly=netstandard"
              x:Class="xamarinJKH.PushNotification.SendPushPage">
     <ContentPage.Content>
         <Grid VerticalOptions="FillAndExpand">
@@ -85,7 +87,7 @@
                                        Placeholder="Введите название"
                                        Keyboard="Text" />
                                 <Label
-                                    HeightRequest="2"
+                                    HeightRequest="1"
                                     Margin="0, 0, 0, 15"
                                     BackgroundColor="{x:DynamicResource MainColor}"
                                     HorizontalOptions="FillAndExpand" />
@@ -107,7 +109,7 @@
                                 </Frame>
 
                                 <StackLayout Orientation="Horizontal"
-                                             Margin="-7,0,0,0">
+                                             Margin="-7,5,0,5">
                                     <CheckBox
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center"
@@ -189,6 +191,123 @@
                                             HorizontalOptions="Fill" />
                                     </StackLayout>
                                 </StackLayout>
+                                
+                                <StackLayout Spacing="0" Margin="0, 10,0,0"  x:Name="StackLayoutKind" HorizontalOptions="Start">
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                                        <Label
+                                            x:Name="LabelKind"
+                                            Margin="0,0,0,0"
+                                            FontSize="16"
+                                            Text="{x:Static xamarinJkh:AppResources.ByHome}"
+                                            HorizontalOptions="Fill"
+                                            TextColor="{x:StaticResource MainColor}" />
+                                        <forms:SvgCachedImage
+                                            Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
+                                            HeightRequest="12"
+                                            Rotation="90"
+                                            Margin="0,5,0,0"
+                                            HorizontalOptions="Start"
+                                            ReplaceStringMap="{Binding isRefresh, Converter={x:StaticResource SvgColor}}"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
+                                    <Label
+                                        HeightRequest="1"
+                                        BackgroundColor="{x:StaticResource MainColor}"
+                                        HorizontalOptions="Fill" />
+                                </StackLayout>
+                                <StackLayout 
+                                    x:Name="LayoutRayon"
+                                    VerticalOptions="Start" 
+                                    IsVisible="False"
+                                    HorizontalOptions="Start"
+                                    Padding="0">
+                                    <xForms:SfAutoComplete x:Name="autoComplete"
+                                                           DisplayMemberPath="Name" 
+                                                           SelectionChanged="AutoComplete_OnSelectionChanged"
+                                                           DropDownItemHeight="50" 
+                                                           LoadMoreText="Показать ещё"
+                                                           BorderColor="{x:StaticResource MainColor}"
+                                                           MaximumSuggestion="3"
+                                                           SuggestionMode = "ContainsWithCaseSensitive"
+                                                           ShowSuggestionsOnFocus="True"
+                                                           HighlightedTextColor="{x:StaticResource MainColor}"
+                                                           Watermark = "Начните вводить район"
+                                                           DataSource="{Binding groups}" />
+                                </StackLayout>
+                                <StackLayout 
+                                    x:Name="LayoutHouses"
+                                    VerticalOptions="Start" 
+                                    Margin="0,10,0,0"
+                                    HorizontalOptions="Start"
+                                    Padding="0">
+                                    <ScrollView>
+                                    <xForms:SfAutoComplete x:Name="autoCompleteHouses"
+                                                           DisplayMemberPath="Address" 
+                                                           MultiSelectMode="Token" 
+                                                           TokensWrapMode="Wrap" 
+                                                           IsSelectedItemsVisibleInDropDown = "False"
+                                                           MaximumDropDownHeight="150"
+                                                           BorderColor="{x:StaticResource MainColor}"
+                                                           EnableAutoSize="True"
+                                                           VerticalOptions="Fill"
+                                                           HighlightedTextColor="{x:StaticResource MainColor}"
+                                                           ShowSuggestionsOnFocus="True"
+                                                           SuggestionMode = "ContainsWithCaseSensitive"
+                                                           Watermark="Начните вводить адрес дома"
+                                                           FocusChanged="AutoCompleteHouses_OnFocusChanged"
+                                                           SelectionChanged="AutoCompleteHouses_OnSelectionChanged"
+                                                           DropDownItemHeight="50" 
+                                                           DataSource="{Binding HouseProfiles}" />
+                                    </ScrollView>
+                                </StackLayout>
+                                <StackLayout Margin="0,15,0,0"
+                                             IsVisible="False"
+                                             x:Name="LayoutLs">
+                                    <Entry x:Name="EntryLS"
+                                           FontSize="16"
+                                           VerticalOptions="End"
+                                           HorizontalTextAlignment="Start"
+                                           TextColor="#A2A2A2"
+                                           PlaceholderColor="Black"
+                                           HorizontalOptions="FillAndExpand"
+                                           Placeholder="Введите лицевой счет"
+                                           Keyboard="Text" />
+                                    <Label
+                                        HeightRequest="1"
+                                        Margin="0, 0, 0, 15"
+                                        BackgroundColor="{x:DynamicResource MainColor}"
+                                        HorizontalOptions="FillAndExpand" />
+                                </StackLayout>
+                                <StackLayout Margin="0,15,0,0"
+                                             IsVisible="False"
+                                             x:Name="LayoutDebt">
+                                    <Entry x:Name="EntryDebt"
+                                           FontSize="16"
+                                           VerticalOptions="End"
+                                           HorizontalTextAlignment="Start"
+                                           TextColor="#A2A2A2"
+                                           PlaceholderColor="Black"
+                                           HorizontalOptions="FillAndExpand"
+                                           Placeholder="Сумма долга более"
+                                           Keyboard="Numeric" />
+                                    <Label
+                                        HeightRequest="1"
+                                        Margin="0, 0, 0, 15"
+                                        BackgroundColor="{x:DynamicResource MainColor}"
+                                        HorizontalOptions="FillAndExpand" />
+                                </StackLayout>
+                                <Frame CornerRadius="15"
+                                       BackgroundColor="{x:DynamicResource MainColor}"
+                                       Margin="10, 10, 10, 20"
+                                       x:Name="FrameBtnAdd"
+                                       Padding="0">
+                                    <Button x:Name="BtnAdd"
+                                            Text="{x:Static xamarinJkh:AppResources.Create}"
+                                            TextColor="White"
+                                            Clicked="addApp"
+                                            FontAttributes="Bold"
+                                            BackgroundColor="Transparent" />
+                                </Frame>
                             </StackLayout>
                         </ScrollView>
 

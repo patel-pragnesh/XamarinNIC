@@ -351,6 +351,7 @@ namespace xamarinJKH.Additional
 
                 ScrollView scrollViewAdditional = new ScrollView();
                 scrollViewAdditional.Orientation = ScrollOrientation.Horizontal;
+                scrollViewAdditional.HorizontalScrollBarVisibility = ScrollBarVisibility.Never;
                 StackLayout containerAdd = new StackLayout();
                 containerAdd.HorizontalOptions = LayoutOptions.FillAndExpand;
                 containerAdd.Orientation = StackOrientation.Horizontal;
@@ -379,7 +380,7 @@ namespace xamarinJKH.Additional
                     Label labelText = new Label()
                     {
                         TextColor=Color.Black,
-                        Text=service.Name,
+                        Text=service.Name.Replace(" ","\n"),
                         VerticalTextAlignment=TextAlignment.Center,
                         HorizontalOptions=LayoutOptions.Center,
                         FontSize=12,

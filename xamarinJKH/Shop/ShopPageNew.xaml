@@ -50,7 +50,7 @@
                            Text="{Binding ShopName}"
                            FontAttributes="Bold"
                            Margin="0,0,0,0"
-                           FontSize="22"
+                           FontSize="18"
                            TextColor="{AppThemeBinding Light=Black, Dark=White}" />
 
                         <StackLayout.GestureRecognizers>
@@ -179,7 +179,7 @@
                                                 <StackLayout>
                                                     <Grid ColumnSpacing="6">
                                                         <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="50"/>
+                                                            <ColumnDefinition  Width="Auto"/>
                                                             <ColumnDefinition Width="*"/>
                                                             <ColumnDefinition Width="{Binding ColumnAdditionWidth}"/>
                                                             <!--<ColumnDefinition Width="0.4*"/>-->
@@ -191,6 +191,8 @@
                                                         <Frame CornerRadius="10"
                                                            BackgroundColor="#e7e7e7"
                                                            Padding="5"
+                                                           WidthRequest="50"
+                                                           IsVisible="{Binding HasImage}"
                                                            Grid.RowSpan="2"
                                                            HasShadow="False" 
                                                            Grid.Column="0"

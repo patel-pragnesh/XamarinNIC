@@ -87,7 +87,7 @@
                                HorizontalOptions="CenterAndExpand"
                                HorizontalTextAlignment="Center"
                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                               FontSize="12" />
+                               FontSize="15" />
 
                                 <Label Text="История спиания"
                                        IsVisible="False"

@@ -144,9 +144,9 @@
                                HorizontalOptions="CenterAndExpand"
                                HorizontalTextAlignment="Center"
                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                               FontSize="12" />
-                            </StackLayout>
-                            <StackLayout
+                               FontSize="15" />
+                                    </StackLayout>
+                                    <StackLayout
                         HorizontalOptions="Center"
                         x:Name="StackLayoutNewApp"
                         Margin="20, 10, 20, 15"
