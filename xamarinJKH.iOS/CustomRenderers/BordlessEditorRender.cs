@@ -15,9 +15,10 @@ namespace xamarinJKH.iOS.CustomRenderers
         {
             try
             {
-                if(this.Control != null)
+                base.OnElementChanged(e);
+                if (this.Control != null)
                 {
-                    base.OnElementChanged(e);
+                    
                     this.Control.InputAccessoryView = null;
                 }                
             }
