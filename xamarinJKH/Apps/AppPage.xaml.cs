@@ -715,7 +715,13 @@ namespace xamarinJKH.Apps
                 //    EntryMess.Text = string.Empty;
                 //    return;
                 //}
-
+                var anim = new Task(async () =>
+                {
+                    IconViewSend.Scale = 0.7;
+                    await Task.Delay(TimeSpan.FromSeconds(0.5));
+                    IconViewSend.Scale = 1;
+                });
+                anim.Start();
                 if (!string.IsNullOrWhiteSpace(message))
                 {
                     progress.IsVisible = true;
@@ -729,7 +735,8 @@ namespace xamarinJKH.Apps
 
                         var lastChild = baseForApp.Children.LastOrDefault();
                         if (lastChild != null)
-                            Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true));
+                            await MethodWithDelayAsync(600);
+                            //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true));
                     }
                 }
                 else
