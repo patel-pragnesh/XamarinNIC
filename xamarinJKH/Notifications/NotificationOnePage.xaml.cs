@@ -82,6 +82,7 @@ namespace xamarinJKH.Notifications
             {
                 var result = await _server.SetNotificationReadFlag(announcementInfo.ID);
                 MessagingCenter.Send<Object, int>(this, "SetEventsAmount", -1);
+                MessagingCenter.Send<Object>(this, "ReduceAnnounsements");
             });
         }
 

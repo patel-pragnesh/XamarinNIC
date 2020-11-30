@@ -128,6 +128,15 @@ namespace xamarinJKH
             this.BindingContext = this;
             NotificationList.BackgroundColor = Color.Transparent;
             NotificationList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+
+            MessagingCenter.Subscribe<Object, int>(this, "SetNotificationRead", (sender, args) =>
+            {
+                var notif = Notifications.FirstOrDefault(x => x.ID == args);
+                if (notif != null)
+                {
+                    notif.IsReaded = true;
+                }
+            });
         }
 
         void SetText()
@@ -142,9 +151,10 @@ namespace xamarinJKH
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             AnnouncementInfo select = e.Item as AnnouncementInfo;
-            MessagingCenter.Send<Object, int>(this, "SetNotificationRead", select.ID);
             if (Navigation.NavigationStack.FirstOrDefault(x => x is NotificationOnePage) == null)
                 await Navigation.PushAsync(new NotificationOnePage(select));
+
+            MessagingCenter.Send<Object, int>(this, "SetNotificationRead", select.ID);
         }
 
         private bool isAll = true;
