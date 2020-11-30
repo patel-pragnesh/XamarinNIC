@@ -450,6 +450,7 @@ namespace xamarinJKH.Main
                     else
                     {
                         PeriodSendLbl.IsVisible = true;
+                        PeriodSendLbl.FontSize = 15;
                         PeriodSendLbl.Text = AppResources.NoAccounts;
                         StackLayoutPicker.IsVisible = false;
                         StackLayoutAddIdent.IsVisible = true;

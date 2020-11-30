@@ -147,7 +147,7 @@
                                                BackgroundColor="Red"
                                                Padding="0"
                                                HasShadow="False"
-                                               IsVisible="False"  
+                                               IsVisible="{Binding AnnounsmentsCount, Converter={x:StaticResource Greater}}"  
                                                CornerRadius="15">
                                             <Label Text="{Binding AnnounsmentsCount}"
                                                    HorizontalOptions="FillAndExpand"
@@ -267,7 +267,7 @@
                                                BackgroundColor="Red"
                                                Padding="0"
                                                HasShadow="False"
-                                               IsVisible="False"
+                                               IsVisible="{Binding PollsCount, Converter={x:StaticResource Greater}}"
                                                CornerRadius="15">
                                             <Label Text="{Binding PollsCount}"
                                                    HorizontalOptions="FillAndExpand"
@@ -416,7 +416,7 @@
                                    VerticalOptions="Start"
                                    BackgroundColor="White"
                                    IsVisible="{Binding ShowCameras}"
-                                BorderColor="{AppThemeBinding Dark=White, Light={x:StaticResource MainColor}}"
+                                   BorderColor="{AppThemeBinding Dark=White, Light={x:StaticResource MainColor}}"
                                    Padding="0, 25, 0, 25">
                                 <StackLayout
                                     Orientation="Horizontal">
