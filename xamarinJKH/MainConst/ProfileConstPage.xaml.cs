@@ -64,13 +64,17 @@ namespace xamarinJKH.MainConst
             var saveClick = new TapGestureRecognizer();
             saveClick.Tapped += async (s, e) =>
             {
-#if DEBUG
-                await Navigation.PushAsync(new SendPushPage());
-#else
+
                 ButtonClick(FrameBtnLogin, null);
-#endif
             };
             FrameBtnLogin.GestureRecognizers.Add(saveClick);
+            
+            var createPush = new TapGestureRecognizer();
+            createPush.Tapped += async (s, e) =>
+            {
+                await Navigation.PushAsync(new SendPushPage());
+            };
+            FrameOffers.GestureRecognizers.Add(createPush);
 
             switch (Device.RuntimePlatform)
             {

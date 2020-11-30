@@ -1532,4 +1532,40 @@
   <data name="ByDuty" xml:space="preserve">
     <value>за борг</value>
   </data>
+  <data name="ShowMainPage" xml:space="preserve">
+    <value>Показувати на головній</value>
+  </data>
+  <data name="FromToDate" xml:space="preserve">
+    <value>Терміни дії:</value>
+  </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>Показати ще</value>
+  </data>
+  <data name="StartEnterHome" xml:space="preserve">
+    <value>Почніть вводити адресу будинку</value>
+  </data>
+  <data name="EnterLs" xml:space="preserve">
+    <value>Введите лицевой счет</value>
+  </data>
+  <data name="SumDebtMore" xml:space="preserve">
+    <value>Сума боргу більш</value>
+  </data>
+  <data name="DateFromText" xml:space="preserve">
+    <value>Введіть дату завершення дії</value>
+  </data>
+  <data name="DontCreatePush" xml:space="preserve">
+    <value>Не вдалося створити повідомлення</value>
+  </data>
+  <data name="SendingPush" xml:space="preserve">
+    <value>повідомлення відправлено</value>
+  </data>
+  <data name="OsTake" xml:space="preserve">
+    <value>Відбір по ОС</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Усе</value>
+  </data>
+  <data name="CreatePush" xml:space="preserve">
+    <value>Створення повідомлення</value>
+  </data>
 </root>

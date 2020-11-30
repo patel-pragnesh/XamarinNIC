@@ -228,7 +228,38 @@
                                     </Frame>
                                 </StackLayout>
                             </customRenderers:MaterialFrame>
-                            
+                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOffers"
+                                                           IsVisible="{Binding ShowAdditionalServices}"
+                                                           CornerRadius="30"
+                                                           Margin="10, 0, 10, 10"
+                                                           HorizontalOptions="FillAndExpand"
+                                                           VerticalOptions="Start"
+                                                           BackgroundColor="White"
+                                                           Padding="0">
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout
+                                        Padding="0, 25, 0, 25"
+                                        HorizontalOptions="FillAndExpand"
+                                        Orientation="Horizontal">
+                                        <svg:SvgCachedImage
+                                            x:Name="IconViewOffers"
+                                            Source="resource://xamarinJKH.Resources.ic_notification.svg"
+                                            ReplaceStringMap="{Binding svg2, Converter={x:StaticResource SvgColor}}"
+                                            HeightRequest="40"
+                                            Margin="15,0,30,0"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Text="{x:Static xamarinJkh:AppResources.CreatePush}"
+                                            FontSize="20"
+                                            TextColor="Black"
+                                            Margin="-20, 0, 0, 0"
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </customRenderers:MaterialFrame>
                             <customRenderers:MaterialFrame Elevation="20"
                                                            CornerRadius="30"
                                                            x:Name="FrameSettings"

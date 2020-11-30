@@ -2746,7 +2746,7 @@ namespace xamarinJKH.Server
             return response.Data;
         }
         
-        public async Task<int> NewAnnouncement(AnnouncementArguments announcementArguments)
+        public async Task<IDResult> NewAnnouncement(AnnouncementArguments announcementArguments)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(CREATE_PUSH, Method.POST);
@@ -2756,19 +2756,34 @@ namespace xamarinJKH.Server
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
-                announcementArguments
+                announcementArguments.ID,
+                announcementArguments.ShowOnMainPage,
+                announcementArguments.Header,
+                announcementArguments.Text,
+                announcementArguments.id_homegroup,
+                announcementArguments.ActiveFrom,
+                announcementArguments.ActiveTo,
+                announcementArguments.ForAccountsWithDebtOver,
+                announcementArguments.Ident,
+                announcementArguments.id_AdditionalService,
+                announcementArguments.id_QuestionGroup,
+                announcementArguments.OS,
+                announcementArguments.Houses
             });
-            var response = await restClientMp.ExecuteTaskAsync<int>(restRequest);
+            var response = await restClientMp.ExecuteTaskAsync<IDResult>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                return -1;
+                return new IDResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
             }
 
             return response.Data;
         } 
         
-        public async Task<int> SendAnnouncement (int ID)
+        public async Task<CommonResult> SendAnnouncement (int ID)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(SEND_PUSH, Method.POST);
@@ -2780,11 +2795,14 @@ namespace xamarinJKH.Server
             {
                 ID
             });
-            var response = await restClientMp.ExecuteTaskAsync<int>(restRequest);
+            var response = await restClientMp.ExecuteTaskAsync<CommonResult>(restRequest);
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                return -1;
+                return new CommonResult()
+                {
+                    Error = $"Ошибка {response.StatusDescription}"
+                };
             }
 
             return response.Data;

@@ -60,7 +60,7 @@
                         ReplaceStringMap="{Binding isRefresh, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                         VerticalOptions="Center" />
                     <Label
-                        Text="Создание уведомления"
+                        Text="{x:Static xamarinJkh:AppResources.CreatePush}"
                         FontSize="18"
                         TextColor="{AppThemeBinding Light=Black, Dark=White}"
                         FontAttributes="Bold"
@@ -81,10 +81,11 @@
                                        FontSize="16"
                                        VerticalOptions="End"
                                        HorizontalTextAlignment="Start"
-                                       TextColor="#A2A2A2"
-                                       PlaceholderColor="Black"
+                                       TextColor="Black"
+                                       Text=""
+                                       PlaceholderColor="#A2A2A2"
                                        HorizontalOptions="FillAndExpand"
-                                       Placeholder="Введите название"
+                                       Placeholder="{x:Static xamarinJkh:AppResources.EnterName}"
                                        Keyboard="Text" />
                                 <Label
                                     HeightRequest="1"
@@ -101,8 +102,9 @@
                                                                Text=""
                                                                WidthRequest="100"
                                                                IsSpellCheckEnabled="True"
-                                                               Placeholder="Введите текст..."
-                                                               TextColor="#A2A2A2"
+                                                               PlaceholderColor="#A2A2A2"
+                                                               Placeholder="{x:Static xamarinJkh:AppResources.SfPdfViewerPlaceHolderText}"
+                                                               TextColor="Black"
                                                                HorizontalOptions="FillAndExpand"
                                                                Focused="BordlessEditor_Focused"
                                                                Unfocused="BordlessEditor_Unfocused" />
@@ -123,28 +125,29 @@
                                         HorizontalTextAlignment="Start"
                                         VerticalOptions="Center"
                                         HorizontalOptions="Start"
-                                        Text="Показывать на главной" />
+                                        Text="{x:Static xamarinJkh:AppResources.ShowMainPage}" />
                                 </StackLayout>
                                 <Label
                                     TextColor="Black"
                                     HorizontalTextAlignment="Start"
                                     VerticalOptions="Center"
                                     HorizontalOptions="Start"
-                                    Text="Сроки действия:" />
+                                    Text="{x:Static xamarinJkh:AppResources.FromToDate}" />
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
-                                    <Label Text="С"
+                                    <Label Text="{x:Static xamarinJkh:AppResources.With}"
                                            FontSize="16"
                                            TextColor="Black"
                                            HorizontalOptions="Center"
                                            Margin="0"
                                            VerticalOptions="Center" />
-                                    <StackLayout Spacing="0">
+                                    <StackLayout Spacing="0" x:Name="StackLayoutDate">
                                         <StackLayout Orientation="Horizontal" x:Name="StackLayoutDo">
                                             <xamarinJkh:BorderlessDatePicker
                                                 x:Name="DatePicker"
                                                 Margin="0,0,0,0"
                                                 Format="dd.MM.yyyy"
                                                 FontSize="16"
+                                                DateSelected="DatePicker_OnDateSelected"
                                                 HorizontalOptions="Center"
                                                 TextColor="{x:StaticResource MainColor}" />
                                             <forms:SvgCachedImage
@@ -161,19 +164,20 @@
                                             BackgroundColor="{x:StaticResource MainColor}"
                                             HorizontalOptions="Fill" />
                                     </StackLayout>
-                                    <Label Text="до"
+                                    <Label Text="{x:Static xamarinJkh:AppResources.To}"
                                            FontSize="16"
                                            TextColor="Black"
                                            HorizontalOptions="Center"
                                            Margin="0"
                                            VerticalOptions="Center" />
-                                    <StackLayout Spacing="0">
+                                    <StackLayout Spacing="0" x:Name="StackLayoutDate2">
                                         <StackLayout Orientation="Horizontal">
                                             <xamarinJkh:BorderlessDatePicker
                                                 x:Name="DatePicker2"
                                                 Margin="0,0,0,0"
                                                 Format="dd.MM.yyyy"
                                                 FontSize="16"
+                                                DateSelected="DatePicker2_OnDateSelected"
                                                 HorizontalOptions="Center"
                                                 TextColor="{x:StaticResource MainColor}" />
                                             <forms:SvgCachedImage
@@ -191,73 +195,101 @@
                                             HorizontalOptions="Fill" />
                                     </StackLayout>
                                 </StackLayout>
-                                
-                                <StackLayout Spacing="0" Margin="0, 10,0,0"  x:Name="StackLayoutKind" HorizontalOptions="Start">
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout Spacing="0"
+
+                                                 Margin="0, 10,0,0" x:Name="StackLayoutKind"
+                                                 HorizontalOptions="StartAndExpand">
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                                            <Label
+                                                x:Name="LabelKind"
+                                                Margin="0,0,0,0"
+                                                FontSize="16"
+                                                Text="{x:Static xamarinJkh:AppResources.ByHome}"
+                                                HorizontalOptions="Fill"
+                                                TextColor="{x:StaticResource MainColor}" />
+                                            <forms:SvgCachedImage
+                                                Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
+                                                HeightRequest="12"
+                                                Rotation="90"
+                                                Margin="0,5,0,0"
+                                                HorizontalOptions="Start"
+                                                ReplaceStringMap="{Binding isRefresh, Converter={x:StaticResource SvgColor}}"
+                                                VerticalOptions="Center" />
+                                        </StackLayout>
                                         <Label
-                                            x:Name="LabelKind"
-                                            Margin="0,0,0,0"
-                                            FontSize="16"
-                                            Text="{x:Static xamarinJkh:AppResources.ByHome}"
-                                            HorizontalOptions="Fill"
-                                            TextColor="{x:StaticResource MainColor}" />
-                                        <forms:SvgCachedImage
-                                            Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
-                                            HeightRequest="12"
-                                            Rotation="90"
-                                            Margin="0,5,0,0"
-                                            HorizontalOptions="Start"
-                                            ReplaceStringMap="{Binding isRefresh, Converter={x:StaticResource SvgColor}}"
-                                            VerticalOptions="Center" />
+                                            HeightRequest="1"
+                                            BackgroundColor="{x:StaticResource MainColor}"
+                                            HorizontalOptions="Fill" />
                                     </StackLayout>
-                                    <Label
-                                        HeightRequest="1"
-                                        BackgroundColor="{x:StaticResource MainColor}"
-                                        HorizontalOptions="Fill" />
+                                    <StackLayout Spacing="0" Margin="0, 10,0,0" x:Name="StackLayoutOs"
+                                                 HorizontalOptions="EndAndExpand">
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                                            <Label
+                                                x:Name="LabelKindOs"
+                                                Margin="0,0,0,0"
+                                                FontSize="16"
+                                                Text="{x:Static xamarinJkh:AppResources.OsTake}"
+                                                HorizontalOptions="Fill"
+                                                TextColor="{x:StaticResource MainColor}" />
+                                            <forms:SvgCachedImage
+                                                Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
+                                                HeightRequest="12"
+                                                Rotation="90"
+                                                Margin="0,5,0,0"
+                                                HorizontalOptions="Start"
+                                                ReplaceStringMap="{Binding isRefresh, Converter={x:StaticResource SvgColor}}"
+                                                VerticalOptions="Center" />
+                                        </StackLayout>
+                                        <Label
+                                            HeightRequest="1"
+                                            BackgroundColor="{x:StaticResource MainColor}"
+                                            HorizontalOptions="Fill" />
+                                    </StackLayout>
                                 </StackLayout>
-                                <StackLayout 
+                                <StackLayout
                                     x:Name="LayoutRayon"
-                                    VerticalOptions="Start" 
+                                    VerticalOptions="Start"
                                     IsVisible="False"
                                     HorizontalOptions="Start"
                                     Padding="0">
                                     <xForms:SfAutoComplete x:Name="autoComplete"
-                                                           DisplayMemberPath="Name" 
+                                                           DisplayMemberPath="Name"
                                                            SelectionChanged="AutoComplete_OnSelectionChanged"
-                                                           DropDownItemHeight="50" 
-                                                           LoadMoreText="Показать ещё"
+                                                           DropDownItemHeight="50"
+                                                           LoadMoreText="{x:Static xamarinJkh:AppResources.ShowMore}"
                                                            BorderColor="{x:StaticResource MainColor}"
                                                            MaximumSuggestion="3"
-                                                           SuggestionMode = "ContainsWithCaseSensitive"
+                                                           SuggestionMode="ContainsWithCaseSensitive"
                                                            ShowSuggestionsOnFocus="True"
                                                            HighlightedTextColor="{x:StaticResource MainColor}"
-                                                           Watermark = "Начните вводить район"
+                                                           Watermark="Начните вводить район"
                                                            DataSource="{Binding groups}" />
                                 </StackLayout>
-                                <StackLayout 
+                                <StackLayout
                                     x:Name="LayoutHouses"
-                                    VerticalOptions="Start" 
+                                    VerticalOptions="Start"
                                     Margin="0,10,0,0"
                                     HorizontalOptions="Start"
                                     Padding="0">
                                     <ScrollView>
-                                    <xForms:SfAutoComplete x:Name="autoCompleteHouses"
-                                                           DisplayMemberPath="Address" 
-                                                           MultiSelectMode="Token" 
-                                                           TokensWrapMode="Wrap" 
-                                                           IsSelectedItemsVisibleInDropDown = "False"
-                                                           MaximumDropDownHeight="150"
-                                                           BorderColor="{x:StaticResource MainColor}"
-                                                           EnableAutoSize="True"
-                                                           VerticalOptions="Fill"
-                                                           HighlightedTextColor="{x:StaticResource MainColor}"
-                                                           ShowSuggestionsOnFocus="True"
-                                                           SuggestionMode = "ContainsWithCaseSensitive"
-                                                           Watermark="Начните вводить адрес дома"
-                                                           FocusChanged="AutoCompleteHouses_OnFocusChanged"
-                                                           SelectionChanged="AutoCompleteHouses_OnSelectionChanged"
-                                                           DropDownItemHeight="50" 
-                                                           DataSource="{Binding HouseProfiles}" />
+                                        <xForms:SfAutoComplete x:Name="autoCompleteHouses"
+                                                               DisplayMemberPath="Address"
+                                                               MultiSelectMode="Token"
+                                                               TokensWrapMode="Wrap"
+                                                               IsSelectedItemsVisibleInDropDown="False"
+                                                               MaximumDropDownHeight="150"
+                                                               BorderColor="{x:StaticResource MainColor}"
+                                                               EnableAutoSize="True"
+                                                               VerticalOptions="Fill"
+                                                               HighlightedTextColor="{x:StaticResource MainColor}"
+                                                               ShowSuggestionsOnFocus="True"
+                                                               SuggestionMode="ContainsWithCaseSensitive"
+                                                               Watermark="{x:Static xamarinJkh:AppResources.StartEnterHome}"
+                                                               FocusChanged="AutoCompleteHouses_OnFocusChanged"
+                                                               SelectionChanged="AutoCompleteHouses_OnSelectionChanged"
+                                                               DropDownItemHeight="50"
+                                                               DataSource="{Binding HouseProfiles}" />
                                     </ScrollView>
                                 </StackLayout>
                                 <StackLayout Margin="0,15,0,0"
@@ -267,10 +299,11 @@
                                            FontSize="16"
                                            VerticalOptions="End"
                                            HorizontalTextAlignment="Start"
-                                           TextColor="#A2A2A2"
-                                           PlaceholderColor="Black"
+                                           TextColor="Black"
+                                           Text=""
+                                           PlaceholderColor="#A2A2A2"
                                            HorizontalOptions="FillAndExpand"
-                                           Placeholder="Введите лицевой счет"
+                                           Placeholder="{x:Static xamarinJkh:AppResources.EnterLs}"
                                            Keyboard="Text" />
                                     <Label
                                         HeightRequest="1"
@@ -285,10 +318,10 @@
                                            FontSize="16"
                                            VerticalOptions="End"
                                            HorizontalTextAlignment="Start"
-                                           TextColor="#A2A2A2"
-                                           PlaceholderColor="Black"
+                                           TextColor="Black"
+                                           PlaceholderColor="#A2A2A2"
                                            HorizontalOptions="FillAndExpand"
-                                           Placeholder="Сумма долга более"
+                                           Placeholder="{x:Static xamarinJkh:AppResources.SumDebtMore}"
                                            Keyboard="Numeric" />
                                     <Label
                                         HeightRequest="1"
@@ -304,7 +337,7 @@
                                     <Button x:Name="BtnAdd"
                                             Text="{x:Static xamarinJkh:AppResources.Create}"
                                             TextColor="White"
-                                            Clicked="addApp"
+                                            Clicked="AddPush"
                                             FontAttributes="Bold"
                                             BackgroundColor="Transparent" />
                                 </Frame>

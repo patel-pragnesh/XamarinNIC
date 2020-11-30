@@ -223,6 +223,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Все.
+        /// </summary>
+        internal static string All {
+            get {
+                return ResourceManager.GetString("All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Смотреть все.
         /// </summary>
         internal static string AllNews {
@@ -872,6 +881,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Создать уведомление.
+        /// </summary>
+        internal static string CreatePush {
+            get {
+                return ResourceManager.GetString("CreatePush", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  руб. .
         /// </summary>
         internal static string Currency {
@@ -899,6 +917,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введите дату окончания действия.
+        /// </summary>
+        internal static string DateFromText {
+            get {
+                return ResourceManager.GetString("DateFromText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Дата рождения.
         /// </summary>
         internal static string DateOfBirth {
@@ -922,6 +949,15 @@ namespace xamarinJKH {
         internal static string DatePlaceHolder {
             get {
                 return ResourceManager.GetString("DatePlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введите дату начала.
+        /// </summary>
+        internal static string DateToText {
+            get {
+                return ResourceManager.GetString("DateToText", resourceCulture);
             }
         }
         
@@ -1003,6 +1039,15 @@ namespace xamarinJKH {
         internal static string District {
             get {
                 return ResourceManager.GetString("District", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не удалось создать уведомление.
+        /// </summary>
+        internal static string DontCreatePush {
+            get {
+                return ResourceManager.GetString("DontCreatePush", resourceCulture);
             }
         }
         
@@ -1151,11 +1196,29 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введите лицевой счет.
+        /// </summary>
+        internal static string EnterLs {
+            get {
+                return ResourceManager.GetString("EnterLs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Введите название.
         /// </summary>
         internal static string EnterName {
             get {
                 return ResourceManager.GetString("EnterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string EnterNamePush {
+            get {
+                return ResourceManager.GetString("EnterNamePush", resourceCulture);
             }
         }
         
@@ -1831,6 +1894,15 @@ namespace xamarinJKH {
         internal static string From {
             get {
                 return ResourceManager.GetString("From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сроки действия:.
+        /// </summary>
+        internal static string FromToDate {
+            get {
+                return ResourceManager.GetString("FromToDate", resourceCulture);
             }
         }
         
@@ -3080,6 +3152,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отбор по ОС.
+        /// </summary>
+        internal static string OsTake {
+            get {
+                return ResourceManager.GetString("OsTake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Просрочено.
         /// </summary>
         internal static string Overdue {
@@ -3684,6 +3765,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Уведомление отправлено.
+        /// </summary>
+        internal static string SendingPush {
+            get {
+                return ResourceManager.GetString("SendingPush", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Настройки.
         /// </summary>
         internal static string Settings {
@@ -4080,6 +4170,24 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Показывать на главной.
+        /// </summary>
+        internal static string ShowMainPage {
+            get {
+                return ResourceManager.GetString("ShowMainPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Показать ещё.
+        /// </summary>
+        internal static string ShowMore {
+            get {
+                return ResourceManager.GetString("ShowMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Показать прочитанные.
         /// </summary>
         internal static string ShowReadApps {
@@ -4112,6 +4220,15 @@ namespace xamarinJKH {
         internal static string SortByPrice {
             get {
                 return ResourceManager.GetString("SortByPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Начните вводить адрес дома.
+        /// </summary>
+        internal static string StartEnterHome {
+            get {
+                return ResourceManager.GetString("StartEnterHome", resourceCulture);
             }
         }
         
@@ -4193,6 +4310,15 @@ namespace xamarinJKH {
         internal static string Sum {
             get {
                 return ResourceManager.GetString("Sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сумма долга более.
+        /// </summary>
+        internal static string SumDebtMore {
+            get {
+                return ResourceManager.GetString("SumDebtMore", resourceCulture);
             }
         }
         
@@ -4404,6 +4530,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to До.
+        /// </summary>
+        internal static string ToDate {
+            get {
+                return ResourceManager.GetString("ToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Сегодня.
         /// </summary>
         internal static string TodayPeriod {
@@ -4589,6 +4724,15 @@ namespace xamarinJKH {
         internal static string WeekPeriod {
             get {
                 return ResourceManager.GetString("WeekPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to С.
+        /// </summary>
+        internal static string With {
+            get {
+                return ResourceManager.GetString("With", resourceCulture);
             }
         }
         

@@ -1643,4 +1643,52 @@
   <data name="ByDuty" xml:space="preserve">
     <value>По долгу</value>
   </data>
+  <data name="EnterNamePush" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ShowMainPage" xml:space="preserve">
+    <value>Показывать на главной</value>
+  </data>
+  <data name="FromToDate" xml:space="preserve">
+    <value>Сроки действия:</value>
+  </data>
+  <data name="With" xml:space="preserve">
+    <value>С</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>До</value>
+  </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>Показать ещё</value>
+  </data>
+  <data name="StartEnterHome" xml:space="preserve">
+    <value>Начните вводить адрес дома</value>
+  </data>
+  <data name="EnterLs" xml:space="preserve">
+    <value>Введите лицевой счет</value>
+  </data>
+  <data name="SumDebtMore" xml:space="preserve">
+    <value>Сумма долга более</value>
+  </data>
+  <data name="DateToText" xml:space="preserve">
+    <value>Введите дату начала</value>
+  </data>
+  <data name="DateFromText" xml:space="preserve">
+    <value>Введите дату окончания действия</value>
+  </data>
+  <data name="DontCreatePush" xml:space="preserve">
+    <value>Не удалось создать уведомление</value>
+  </data>
+  <data name="SendingPush" xml:space="preserve">
+    <value>Уведомление отправлено</value>
+  </data>
+  <data name="OsTake" xml:space="preserve">
+    <value>Отбор по ОС</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="CreatePush" xml:space="preserve">
+    <value>Создать уведомление</value>
+  </data>
 </root>

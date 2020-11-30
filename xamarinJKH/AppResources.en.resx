@@ -1656,4 +1656,43 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="ByDuty" xml:space="preserve">
     <value>By debt</value>
   </data>
+  <data name="ShowMainPage" xml:space="preserve">
+    <value>Show on home</value>
+  </data>
+  <data name="FromToDate" xml:space="preserve">
+    <value>Validity period:</value>
+  </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>Show more</value>
+  </data>
+  <data name="StartEnterHome" xml:space="preserve">
+    <value>Start typing home address</value>
+  </data>
+  <data name="EnterLs" xml:space="preserve">
+    <value>Enter ident</value>
+  </data>
+  <data name="SumDebtMore" xml:space="preserve">
+    <value>Debt amount over</value>
+  </data>
+  <data name="DateToText" xml:space="preserve">
+    <value>Enter start date</value>
+  </data>
+  <data name="DateFromText" xml:space="preserve">
+    <value>Enter the expiration date</value>
+  </data>
+  <data name="DontCreatePush" xml:space="preserve">
+    <value>Failed to create notification</value>
+  </data>
+  <data name="SendingPush" xml:space="preserve">
+    <value>Notification sent</value>
+  </data>
+  <data name="OsTake" xml:space="preserve">
+    <value>Selection by OS</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="CreatePush" xml:space="preserve">
+    <value>Create notification</value>
+  </data>
 </root>
