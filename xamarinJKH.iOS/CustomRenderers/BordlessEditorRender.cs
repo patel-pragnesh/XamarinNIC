@@ -1,4 +1,5 @@
 ﻿
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using xamarinJKH;
@@ -12,8 +13,20 @@ namespace xamarinJKH.iOS.CustomRenderers
         public static void Init() { }
         protected override void OnElementChanged(ElementChangedEventArgs<Editor> e)
         {
-            base.OnElementChanged(e);
-            this.Control.InputAccessoryView = null;
+            try
+            {
+                base.OnElementChanged(e);
+                if (this.Control != null)
+                {
+                    
+                    this.Control.InputAccessoryView = null;
+                }                
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
         }
     }
 }
