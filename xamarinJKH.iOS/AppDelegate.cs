@@ -33,6 +33,7 @@ namespace xamarinJKH.iOS
 
             Syncfusion.SfPdfViewer.XForms.iOS.SfPdfDocumentViewRenderer.Init();
             Syncfusion.SfRangeSlider.XForms.iOS.SfRangeSliderRenderer.Init();
+            new Syncfusion.SfAutoComplete.XForms.iOS.SfAutoCompleteRenderer();
 
             AiForms.Dialogs.Dialogs.Init();
             XamEffects.iOS.Effects.Init(); 
