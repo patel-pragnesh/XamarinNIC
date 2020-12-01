@@ -1691,4 +1691,7 @@
   <data name="CreatePush" xml:space="preserve">
     <value>Создать уведомление</value>
   </data>
+  <data name="ChoizeAction" xml:space="preserve">
+    <value>Выберите действие</value>
+  </data>
 </root>
