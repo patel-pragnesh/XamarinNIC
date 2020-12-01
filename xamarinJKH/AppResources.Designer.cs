@@ -700,6 +700,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Выберите действие.
+        /// </summary>
+        internal static string ChoizeAction {
+            get {
+                return ResourceManager.GetString("ChoizeAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Выбор.
         /// </summary>
         internal static string Choose {
@@ -4346,6 +4355,15 @@ namespace xamarinJKH {
         internal static string TakeIdent {
             get {
                 return ResourceManager.GetString("TakeIdent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Отбор.
+        /// </summary>
+        internal static string Takes {
+            get {
+                return ResourceManager.GetString("Takes", resourceCulture);
             }
         }
         

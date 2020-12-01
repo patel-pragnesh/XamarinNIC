@@ -301,12 +301,31 @@ namespace xamarinJKH.Pays
             //    }
             //    return;
             //}
-            
-
-            string filename = @select.Period + select.Ident + ".pdf";
-
-            if (Navigation.NavigationStack.FirstOrDefault(x => x is PdfView) == null)
-                await Navigation.PushAsync(new PdfView(filename, select.ID.ToString()));
+            var action = await DisplayActionSheet(AppResources.ChoizeAction, AppResources.Cancel, null,
+                AppResources.Download, AppResources.SfPdfViewerHyperlinkOpen);
+            if(action != null && !action.Equals(AppResources.Cancel))
+            {
+                try
+                {
+                    if (action.Equals(AppResources.SfPdfViewerHyperlinkOpen))
+                    {
+                        Analytics.TrackEvent("Открытие квитанции " + select.Period + " " + select.Ident);
+                        string filename = @select.Period + select.Ident + ".pdf";
+                        if (Navigation.NavigationStack.FirstOrDefault(x => x is PdfView) == null)
+                            await Navigation.PushAsync(new PdfView(filename, select.ID.ToString()));
+                    }
+                    else
+                    {
+                        Analytics.TrackEvent("Скачивание квитанции " + select.Period + " " + select.Ident);
+                        await Launcher.OpenAsync(select.FileLink);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception);
+                }
+               
+            }
         }
         public async Task<bool> GetFile(string id, string fileName)
         {

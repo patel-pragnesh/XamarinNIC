@@ -167,6 +167,7 @@ namespace xamarinJKH.MainConst
             SetColor();
             EntryFio.Text = Settings.Person.FIO;
             EntryEmail.Text = Settings.Person.Email;
+            FrameOffers.IsVisible = Settings.Person.UserSettings.RightCreateAnnouncements;
             BindingContext = this;
         }
 

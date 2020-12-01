@@ -65,7 +65,7 @@ namespace xamarinJKH.PushNotification
             
             takeOS.Tapped += async (s, e) =>
             {
-                var action = await DisplayActionSheet(AppResources.AreaChoose, AppResources.Cancel, null,
+                var action = await DisplayActionSheet(AppResources.OsTake, AppResources.Cancel, null,
                     "Android", "iOS", AppResources.All);
                 if (action != null && !action.Equals(AppResources.Cancel))
                 {
@@ -90,7 +90,7 @@ namespace xamarinJKH.PushNotification
             var kind = new TapGestureRecognizer();
             kind.Tapped += async (s, e) =>
             {
-                var action = await DisplayActionSheet(AppResources.AreaChoose, AppResources.Cancel, null,
+                var action = await DisplayActionSheet(AppResources.Takes, AppResources.Cancel, null,
                     AppResources.ToRayon, AppResources.ByHome, AppResources.ByLS, AppResources.ByDuty);
                 if (action != null && !action.Equals(AppResources.Cancel))
                 {
