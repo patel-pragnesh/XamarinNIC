@@ -36,6 +36,17 @@ namespace xamarinJKH.MainConst
             {
                 empty = value;
                 OnPropertyChanged("Empty");
+
+                if (Device.RuntimePlatform == Device.iOS)
+                    if (empty)
+                    {
+                        Device.BeginInvokeOnMainThread(() => additionalList.HeightRequest = -1);
+                    }
+                    else
+                    {
+                        Device.BeginInvokeOnMainThread(() => additionalList.HeightRequest = 3000);
+                    }
+
             }
         }
         public ObservableCollection<RequestInfo> RequestInfos { get; set; }
@@ -114,6 +125,7 @@ namespace xamarinJKH.MainConst
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
+                    additionalList.HeightRequest = 3000;
 
                     break;
                 default:
