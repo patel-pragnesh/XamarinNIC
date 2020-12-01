@@ -161,9 +161,9 @@ namespace xamarinJKH.News
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             NewsInfo select = e.Item as NewsInfo;
-            MessagingCenter.Send<Object, int>(this, "SetNotificationRead", select.ID);
             if (Navigation.NavigationStack.FirstOrDefault(x => x is NewPage) == null)
                 await Navigation.PushAsync(new NewPage(select));
+            MessagingCenter.Send<Object, int>(this, "SetNotificationRead", select.ID);
         }
 
         private bool isAll = true;

@@ -444,7 +444,6 @@ namespace xamarinJKH.Main
                         ShowOss = false;
                     }
                 }
-
                 ShowAdditionalServices = false;
                 CountNew.Execute(null);
             });
@@ -475,6 +474,19 @@ namespace xamarinJKH.Main
                     Console.WriteLine(e);
                     PollsCount = 0;
                 }
+
+                MessagingCenter.Send<Object, int>(this, "SetEventsAmount", PollsCount + AnnounsmentsCount);
+            });
+            MessagingCenter.Subscribe<Object>(this, "ReducePolls", sender =>
+            {
+                PollsCount--;
+                //MessagingCenter.Send<Object, int>(this, "SetEventsAmount", PollsCount + AnnounsmentsCount);
+            });
+
+            MessagingCenter.Subscribe<Object>(this, "ReduceAnnounsements", sender =>
+            {
+                AnnounsmentsCount--;
+                //MessagingCenter.Send<Object, int>(this, "SetEventsAmount", PollsCount + AnnounsmentsCount);
             });
         }
     }

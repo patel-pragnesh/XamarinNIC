@@ -120,6 +120,7 @@ namespace xamarinJKH.Questions
             {
                 var result = await server.SetPollReadFlag(pollInfo.ID);
                 MessagingCenter.Send<Object, int>(this, "SetEventsAmount", -1);
+                MessagingCenter.Send<Object>(this, "ReducePolls");
             });
         }
 
