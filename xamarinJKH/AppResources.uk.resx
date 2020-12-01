@@ -1571,4 +1571,7 @@
   <data name="ChoizeAction" xml:space="preserve">
     <value>Виберіть дію</value>
   </data>
+  <data name="Takes" xml:space="preserve">
+    <value>Відбір</value>
+  </data>
 </root>

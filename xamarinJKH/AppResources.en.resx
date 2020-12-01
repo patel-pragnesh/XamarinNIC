@@ -1698,4 +1698,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="ChoizeAction" xml:space="preserve">
     <value>Select an action</value>
   </data>
+  <data name="Takes" xml:space="preserve">
+    <value>Selection</value>
+  </data>
 </root>

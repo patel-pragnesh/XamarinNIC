@@ -4359,6 +4359,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отбор.
+        /// </summary>
+        internal static string Takes {
+            get {
+                return ResourceManager.GetString("Takes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Тариф 1.
         /// </summary>
         internal static string tarif1 {
