@@ -61,34 +61,20 @@
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
+                       
+                        
                     </StackLayout>
                     <!--<StackLayout VerticalOptions="Fill" BackgroundColor="Aqua">-->
-                        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
-                            <!--<Grid VerticalOptions="FillAndExpand" BackgroundColor="Red">-->
-                                <ActivityIndicator x:Name="aIndicator" Color="{Binding hex}" Scale="2"   Margin="20"                                        
+                    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                        <!--<Grid VerticalOptions="FillAndExpand" BackgroundColor="Red">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>-->
+                        <ActivityIndicator  x:Name="aIndicator" Color="{Binding hex}" Scale="2"   Margin="20"                                        
                                           IsRunning="True" IsEnabled="True" IsVisible="false" 
                                            HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></ActivityIndicator>
-                        <!--<CollectionView x:Name="additionalList"
-                                        
-                             Margin="10, 10, 10, 0"
-                             SelectionMode="None"
-                             VerticalScrollBarVisibility="Never"
-                             ItemsSource="{Binding Requests, Mode=TwoWay}"
-                             VerticalOptions="FillAndExpand">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <apps:AppCell
-                                        Number="{Binding RequestNumber}"
-                                        Status="{Binding Status}"
-                                        DateApp="{Binding Added}"
-                                        StatusID="{Binding StatusID}"
-                                        Read="{Binding IsReadedByClient}"
-                                        ID="{Binding ID}"
-                                        TextApp="{Binding Name}" />                                    
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>-->
-                        <ListView x:Name="additionalList"
+                        <ListView                                      
+                                x:Name="additionalList"
                              HasUnevenRows="True"
                              Margin="10, 10, 10, 0"
                              SelectionMode="None"
@@ -98,9 +84,9 @@
                              CachingStrategy="RecycleElement"
                              ItemsSource="{Binding Requests, Mode=TwoWay}"
                              VerticalOptions="FillAndExpand">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <apps:AppCell
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <apps:AppCell
                                         Number="{Binding RequestNumber}"
                                         Status="{Binding Status}"
                                         DateApp="{Binding Added}"
@@ -108,18 +94,18 @@
                                         Read="{Binding IsReadedByClient}"
                                         ID="{Binding ID}"
                                         TextApp="{Binding Name}" />
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                                <Label Text="Нет заявок"
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Label  Text="Нет заявок"
                                    VerticalTextAlignment="Center"
                                    HorizontalTextAlignment="Center"
                                    IsVisible="{Binding Empty}"/>
-                            <!--</Grid>-->
-                        </StackLayout>
-                       
+                        <!--</Grid>-->
+                    </StackLayout>
 
-                        <!--<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Blue">-->
+
+                    <!--<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Blue">-->
                     <pancakeView:PancakeView x:Name="GoodsLayot" CornerRadius="50,50,0,0" BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
                                          Padding="0,10,0,2"
                                          BorderThickness="1"

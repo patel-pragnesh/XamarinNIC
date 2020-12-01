@@ -230,6 +230,9 @@ namespace xamarinJKH.Main
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
 
+                    //хак чтобы список растягивался на все необходимое пространоство. а так
+                    //есть баг в xamarin, потому что fillAndExpand не работает(https://github.com/xamarin/Xamarin.Forms/issues/6908)
+                    additionalList.HeightRequest = 3000;
 
                     if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
                         LabelSwitch.FontSize = 12;
