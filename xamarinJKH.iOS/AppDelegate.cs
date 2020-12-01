@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
-using MediaManager;
+//using MediaManager;
 //using KeyboardOverlap.Forms.Plugin.iOSUnified;
 using Plugin.FirebasePushNotification;
 using UIKit;
@@ -43,7 +43,7 @@ namespace xamarinJKH.iOS
             Rg.Plugins.Popup.Popup.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
 
-            CrossMediaManager.Current.Init();
+            //CrossMediaManager.Current.Init();
             
             //SimpleImageButton.SimpleImageButton.Initializator.Initializator.Init();
             LoadApplication(new App());

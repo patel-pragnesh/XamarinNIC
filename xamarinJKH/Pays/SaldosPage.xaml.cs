@@ -23,7 +23,7 @@ using xamarinJKH.Utils.Compatator;
 using System.Threading.Tasks.Sources;
 using AiForms.Dialogs.Abstractions;
 using System.Threading;
-using MediaManager.Forms;
+//using MediaManager.Forms;
 
 namespace xamarinJKH.Pays
 {
