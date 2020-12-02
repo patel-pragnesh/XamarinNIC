@@ -26,6 +26,7 @@ using Syncfusion.Licensing;
 using Syncfusion.SfPdfViewer.XForms;
 using System.Resources;
 using System.Reflection;
+using xamarinJKH.InterfacesIntegration;
 
 namespace xamarinJKH
 {
@@ -56,7 +57,10 @@ namespace xamarinJKH
                 Crashes.TrackError(ex);                
             }
         }
-            public App()
+
+        static int badgeCount=0;
+
+        public App()
         {
             InitializeComponent();
 
@@ -146,12 +150,25 @@ namespace xamarinJKH
                 await server.RegisterDevice(isCons);
             };
 
-
+            
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
             {
                 System.Diagnostics.Debug.WriteLine("Received");
-                CrossBadge.Current.ClearBadge();
-                Device.BeginInvokeOnMainThread(async () =>
+                //CrossBadge.Current.ClearBadge();
+                if(Device.RuntimePlatform==Device.iOS)
+                {
+                    if (DependencyService.Get<IAppState>().IsAppBackbround())
+                    {
+                        badgeCount++;
+                        CrossBadge.Current.SetBadge(badgeCount);
+                    }                    
+                }
+                else
+                { 
+                    CrossBadge.Current.ClearBadge();
+                }
+
+                    Device.BeginInvokeOnMainThread(async () =>
                 {
                     try
                     {
@@ -525,6 +542,9 @@ namespace xamarinJKH
             {
                 try
                 {
+                    //badgeCount++;
+                    //CrossBadge.Current.SetBadge(badgeCount);
+
                     System.Diagnostics.Debug.WriteLine("Received");
                     if (p.Data.ContainsKey("body"))
                     {
@@ -612,6 +632,8 @@ namespace xamarinJKH
 
         protected override void OnResume()
         {
+            CrossBadge.Current.ClearBadge();
+            badgeCount = 0;
         }
         
         
