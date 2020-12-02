@@ -700,6 +700,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Выберите действие.
+        /// </summary>
+        internal static string ChoizeAction {
+            get {
+                return ResourceManager.GetString("ChoizeAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Выбор.
         /// </summary>
         internal static string Choose {
@@ -3702,6 +3711,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отказ.
+        /// </summary>
+        internal static string Rejection_App {
+            get {
+                return ResourceManager.GetString("Rejection App", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Заявок поступило:.
         /// </summary>
         internal static string RequestsReceived {
@@ -4350,6 +4368,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отбор.
+        /// </summary>
+        internal static string Takes {
+            get {
+                return ResourceManager.GetString("Takes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Тариф 1.
         /// </summary>
         internal static string tarif1 {
@@ -4670,6 +4697,15 @@ namespace xamarinJKH {
         internal static string UpdateDialogUpdate {
             get {
                 return ResourceManager.GetString("UpdateDialogUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Житель отказался от заявки?.
+        /// </summary>
+        internal static string UserRejectionApp {
+            get {
+                return ResourceManager.GetString("UserRejectionApp", resourceCulture);
             }
         }
         

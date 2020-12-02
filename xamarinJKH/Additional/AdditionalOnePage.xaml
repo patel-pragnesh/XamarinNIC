@@ -84,7 +84,6 @@
                     <Image x:Name="ImageAdd"
                            HeightRequest="200"
                            Aspect="Fill"
-                           Source="ic_background_event"
                     />
                     <ActivityIndicator x:Name="progress"
                                        IsRunning="true"

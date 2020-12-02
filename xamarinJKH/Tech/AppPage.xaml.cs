@@ -103,10 +103,16 @@ namespace xamarinJKH.Tech
                                         addAppMessage(each,
                                             messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
                                         var lastChild = baseForApp.Children.LastOrDefault();
-                                        //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true));
+
                                         if (lastChild != null)
-                                            await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End,
-                                                true);
+                                        {
+                                        //    Device.BeginInvokeOnMainThread(async () =>
+                                        //await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true)
+                                        //);
+                                            await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, false);
+                                            //await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End,
+                                            //      false);
+                                        }
                                     });
                                 request.Messages.Add(each);
                             }

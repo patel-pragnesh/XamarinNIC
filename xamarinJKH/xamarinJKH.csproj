@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <None Remove="Resources\edit.svg" />
+    <None Remove="Resources\crossed.svg" />
     <None Remove="Resources\icon_add_app.svg" />
     <None Remove="Resources\ic_accept_app.svg" />
     <None Remove="Resources\ic_add_file.svg" />
@@ -87,6 +88,9 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\edit.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource> 
+    <EmbeddedResource Include="Resources\crossed.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\oss_event.svg">
@@ -299,8 +303,6 @@
     <PackageReference Include="Plugin.Badge" Version="2.3.0" />
     <PackageReference Include="Plugin.FirebaseCrashlytics" Version="2.0.0" />
     <PackageReference Include="Plugin.FirebasePushNotification" Version="3.1.6" />
-    <PackageReference Include="Plugin.MediaManager" Version="1.0.3" />
-    <PackageReference Include="Plugin.MediaManager.Forms" Version="1.0.3" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
     <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="18.3.0.51" />

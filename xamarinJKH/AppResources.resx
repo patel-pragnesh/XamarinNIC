@@ -1691,4 +1691,16 @@
   <data name="CreatePush" xml:space="preserve">
     <value>Создать уведомление</value>
   </data>
+  <data name="ChoizeAction" xml:space="preserve">
+    <value>Выберите действие</value>
+  </data>
+  <data name="Takes" xml:space="preserve">
+    <value>Отбор</value>
+  </data>
+  <data name="Rejection App" xml:space="preserve">
+    <value>Отказ</value>
+  </data>
+  <data name="UserRejectionApp" xml:space="preserve">
+    <value>Житель отказался от заявки?</value>
+  </data>
 </root>

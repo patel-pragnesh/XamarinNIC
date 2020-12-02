@@ -132,8 +132,16 @@ namespace xamarinJKH.Additional
             }
 
             byte[] imageByte = await _server.GetPhotoAdditionalDop(additionalService.ID.ToString());
-            Stream stream = new MemoryStream(imageByte);
-            ImageAdd.Source = ImageSource.FromStream(() => { return stream; });
+            if (imageByte != null)
+            {
+                Stream stream = new MemoryStream(imageByte);
+                ImageAdd.Source = ImageSource.FromStream(() => { return stream; });
+            }
+            else
+            {
+                ImageAdd.IsVisible = false;
+            }
+
             FrameBtnQuest.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             if (additionalService.CanBeOrdered)
             {

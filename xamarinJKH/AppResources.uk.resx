@@ -1568,4 +1568,16 @@
   <data name="CreatePush" xml:space="preserve">
     <value>Створення повідомлення</value>
   </data>
+  <data name="ChoizeAction" xml:space="preserve">
+    <value>Виберіть дію</value>
+  </data>
+  <data name="Takes" xml:space="preserve">
+    <value>Відбір</value>
+  </data>
+  <data name="Rejection App" xml:space="preserve">
+    <value>Відмова</value>
+  </data>
+  <data name="UserRejectionApp" xml:space="preserve">
+    <value>Житель відмовився від заявки?</value>
+  </data>
 </root>

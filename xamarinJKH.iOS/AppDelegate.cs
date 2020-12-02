@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
-using MediaManager;
+//using MediaManager;
 //using KeyboardOverlap.Forms.Plugin.iOSUnified;
 using Plugin.FirebasePushNotification;
 using UIKit;
@@ -33,6 +33,7 @@ namespace xamarinJKH.iOS
 
             Syncfusion.SfPdfViewer.XForms.iOS.SfPdfDocumentViewRenderer.Init();
             Syncfusion.SfRangeSlider.XForms.iOS.SfRangeSliderRenderer.Init();
+            new Syncfusion.SfAutoComplete.XForms.iOS.SfAutoCompleteRenderer();
 
             AiForms.Dialogs.Dialogs.Init();
             XamEffects.iOS.Effects.Init(); 
@@ -42,7 +43,7 @@ namespace xamarinJKH.iOS
             Rg.Plugins.Popup.Popup.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
 
-            CrossMediaManager.Current.Init();
+            //CrossMediaManager.Current.Init();
             
             //SimpleImageButton.SimpleImageButton.Initializator.Initializator.Init();
             LoadApplication(new App());

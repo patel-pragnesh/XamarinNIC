@@ -31,6 +31,7 @@ namespace xamarinJKH.Server.RequestModel
     {
         public bool RightCloseRequest { get; set; }
         public bool RightPerformRequest { get; set; }
+        public bool RightCreateAnnouncements { get; set; }
     }
 
     public class AccountInfo

@@ -123,6 +123,15 @@ namespace xamarinJKH.Main
                     }
 
                     await viewModel.UpdateTask();
+                    //if (Device.RuntimePlatform == Device.iOS)
+                    //    if (viewModel.Empty)
+                    //    {
+                    //        Device.BeginInvokeOnMainThread(() => additionalList.HeightRequest = -1);
+                    //    }
+                    //    else
+                    //    {
+                    //        Device.BeginInvokeOnMainThread(() => additionalList.HeightRequest = 3000);
+                    //    }
                     await Task.Delay(TimeSpan.FromSeconds(5));
                 }
 
@@ -230,6 +239,9 @@ namespace xamarinJKH.Main
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
 
+                    //хак чтобы список растягивался на все необходимое пространоство. а так
+                    //есть баг в xamarin, потому что fillAndExpand не работает(https://github.com/xamarin/Xamarin.Forms/issues/6908)
+                    additionalList.HeightRequest = 3000;
 
                     if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
                         LabelSwitch.FontSize = 12;
@@ -324,7 +336,15 @@ namespace xamarinJKH.Main
             MessagingCenter.Subscribe<Object, int>(this, "OpenApp", async (sender, index) =>
             {
                 await viewModel.UpdateTask();
-
+                //if (Device.RuntimePlatform == Device.iOS)
+                //    if (viewModel.Empty)
+                //    {
+                //        Device.BeginInvokeOnMainThread(() => additionalList.HeightRequest = -1);
+                //    }
+                //    else
+                //    {
+                //        Device.BeginInvokeOnMainThread(() => additionalList.HeightRequest = 3000);
+                //    }
                 while (viewModel.AllRequests == null)
                 {
                     await Task.Delay(TimeSpan.FromMilliseconds(50));
