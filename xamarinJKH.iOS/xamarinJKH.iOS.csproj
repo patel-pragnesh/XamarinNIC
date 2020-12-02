@@ -59,7 +59,8 @@
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchInterpreter>
     </MtouchInterpreter>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <CodesignProvision>
+    </CodesignProvision>
     <MtouchExtraArgs> -v -v -v -v</MtouchExtraArgs>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
@@ -76,7 +77,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>Apple Distribution: Evgeny Yurtaykin (UK4AR963E7)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>distrMolodejnaya</CodesignProvision>
+    <CodesignProvision>distrTihayaGavan</CodesignProvision>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
     <MtouchLink>SdkOnly</MtouchLink>
     <BuildIpa>true</BuildIpa>
@@ -128,6 +129,7 @@
     <Compile Include="CustomRenderers\TapHighlightRemoveAdditionalCellRenderer.cs" />
     <Compile Include="CustomRenderers\TapHighlightRemoveNotificationCellRenderer.cs" />
     <Compile Include="CustomRenderers\RadioButtonEffect.cs" />
+    <Compile Include="DependencyImplementation\AppState.cs" />
     <Compile Include="DependencyImplementation\MessageIos.cs" />
     <Compile Include="DependencyImplementation\OpenAppIos.cs" />
     <Compile Include="DependencyImplementation\PrintService.cs" />
