@@ -42,13 +42,39 @@ namespace xamarinJKH.Counters
         bool SetPrev;
         int DecimalPoint { get; set; }
         int IntegerPoint { get; set; }
+
+        string mask;
+        public string Mask
+        {
+            get => mask;
+            set
+            {
+                mask = value;
+                OnPropertyChanged("Mask");
+            }
+        }
+
+        string prev;
+        public string Previous
+        {
+            get => prev;
+            set
+            {
+                prev = value;
+                OnPropertyChanged("Previous");
+            }
+        }
         public AddMetersPage(MeterInfo meter, List<MeterInfo> meters, CountersPage countersPage, decimal counterThisMonth = 0, decimal counterPrevMonth = 0)
         {            
             InitializeComponent();
+            IntegerPoint = meter.NumberOfIntegerPart;
+            DecimalPoint = meter.NumberOfDecimalPlaces;
+            SetMask();
             CounterEntryNews = new List<CounterEntryNew>
             {
                 d1,d2,d3,d4,d41,d5,d6,d7,d8
             };
+            BindingContext = this;
             GetFocusCells();
             Analytics.TrackEvent("Передача показаний по счетчику №" + meter.UniqueNum);
             NavigationPage.SetHasNavigationBar(this, false);
@@ -109,7 +135,6 @@ namespace xamarinJKH.Counters
             this.meter = meter;
             this.meters = meters;
             var backClick = new TapGestureRecognizer();
-            IntegerPoint = meter.NumberOfIntegerPart;
             d41_.IsVisible = IntegerPoint == 6;
             var screen = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width;
             if (IntegerPoint == 6 || (screen <= 720 && Device.RuntimePlatform == "Android"))
@@ -151,14 +176,15 @@ namespace xamarinJKH.Counters
 
             if (counterPrevMonth > 0)
             {
-                SetPrevious(counterPrevMonth);
                 SetPrev = true;
+                SetPreviousValue(counterPrevMonth);
             }
 
             if(counterThisMonth>0)
             {
                 meterReadingName.Text = AppResources.ChangePenance;
                 SetCurrent(counterThisMonth);
+                SetCurrentValue(counterThisMonth);
             }
             else
             {
@@ -170,7 +196,6 @@ namespace xamarinJKH.Counters
                 CellColor = (Color)Application.Current.Resources["MainColor"];
             });            
 
-            BindingContext = this;
 
             SetTextAndColor();
 
@@ -209,7 +234,6 @@ namespace xamarinJKH.Counters
             StackLayout cds7 = (StackLayout)CounterDigitsContainer.FindByName("cds7"); ;
             StackLayout cds8 = (StackLayout)CounterDigitsContainer.FindByName("cds8"); ;
 
-            DecimalPoint = meter.NumberOfDecimalPlaces;
             Analytics.TrackEvent("Установка кол-ва знаков после запятой " + DecimalPoint);
             switch (DecimalPoint)
             {
@@ -252,8 +276,47 @@ namespace xamarinJKH.Counters
                     break;
                     
             }
+            Data.Focus();
         }
 
+        private async void SetMask()
+        {
+                string result = string.Empty;
+                while (IntegerPoint > 0)
+                {
+                    result += "X";
+                    IntegerPoint--;
+                }
+                result += ".";
+                while (DecimalPoint > 0)
+                {
+                    result += "X";
+                    DecimalPoint--;
+                }
+                Mask = result;
+                Data.Behaviors.Add(new xamarinJKH.Mask.MaskedBehavior { Mask = this.Mask });
+                Data.TextChanged += Data_TextChanged;
+            
+        }
+
+        private void Data_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue.Contains(","))
+                (sender as Entry).Text = (sender as Entry).Text.Replace(",", " ").Trim();
+            
+        }
+
+        async void SetPreviousValue(decimal prevCount)
+        {
+            var format = "{0:" + Mask.Replace("X","0").Replace(",",".") + "}";
+            Prev.Text = String.Format(format, prevCount);
+        }
+
+        async void SetCurrentValue(decimal currentCount)
+        {
+            var format = "{0:" + Mask.Replace("X", "0").Replace(",", ".") + "}";
+            Data.Text = String.Format(format, currentCount);
+        }
         //private void Entry_Unfocused(object sender, FocusEventArgs e)
         //{
         //    if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 800)
@@ -482,6 +545,7 @@ namespace xamarinJKH.Counters
         void SetPrevious(decimal counterPrevMonth)
         {
             var d = GetNumbers(counterPrevMonth);
+            //Prev.Text = counterPrevMonth.ToString();
 
             Device.BeginInvokeOnMainThread(() =>
             {
@@ -555,7 +619,7 @@ namespace xamarinJKH.Counters
                 bool All = tryParse1 && tryParse2 && tryParse3 && tryParse4 && tryParse5 && tryParse6 && tryParse7 && tryParse8 && tryParse9; // Проверка на вводимые символы
 
                 bool isNotNull = (p1>0 || p2 >0 || p3 > 0 || p4 > 0 || p5 >0 || p6 >0 || p7 >0 || p8 > 0 || p41 >0); // Проверка что бы все клетки не были бы нулями
-                if (All ) //  && IntegerPoint == 6 || d41.Text == null && (IntegerPoint == 5 || IntegerPoint ==0)
+                if (All || 1 == 1) //  && IntegerPoint == 6 || d41.Text == null && (IntegerPoint == 5 || IntegerPoint ==0)
                 {
                     count += d1.Text;// != "0" ? d1.Text : "";
                     count += d2.Text;// != "0" ? d2.Text : "";
@@ -567,6 +631,7 @@ namespace xamarinJKH.Counters
                     count += d7.Text;// != "0" ? d7.Text : "";
                     count += d8.Text;// != "0" ? d8.Text : "";
 
+                    count = Data.Text;
                     decimal prevPenencies;
 
                     switch (tarif)
@@ -602,14 +667,17 @@ namespace xamarinJKH.Counters
                                 d6.Text = "";
                                 d7.Text = "";
                                 d8.Text = "";
+                                Data.Text = string.Empty;
                             }
                             else
                             {
                                 meterReadingName.Text = string.IsNullOrWhiteSpace(meter.Tariff2Name) ? AppResources.EditMetersTarif2 : AppResources.EditMetersTarif + " \"" + meter.Tariff2Name + "\""; // "изменить показания по второму тарифу";
                                 if(meter.Values[0].ValueT2!=null)
-                                SetCurrent(Convert.ToDecimal(meter.Values[0].ValueT2));
+                                SetCurrentValue(Convert.ToDecimal(meter.Values[0].ValueT2));
                                 d1.Unfocus();
                                 d1.Focus();
+                                Data.Unfocus();
+                                Data.Focus();
                             }
 
                             //d1.Text = "";
@@ -663,7 +731,7 @@ namespace xamarinJKH.Counters
                                  prevPenencies =  0;                                
                             }
 
-                            SetPrevious(prevPenencies);
+                            SetPreviousValue(prevPenencies);
 
                             break;
                         case 3:
@@ -686,6 +754,7 @@ namespace xamarinJKH.Counters
                                 d6.Text = "";
                                 d7.Text = "";
                                 d8.Text = "";
+                                Data.Text = string.Empty;
                             }
                             else
                             {
@@ -694,6 +763,8 @@ namespace xamarinJKH.Counters
                                     SetCurrent(Convert.ToDecimal(meter.Values[0].ValueT3));
                                 d1.Unfocus();
                                 d1.Focus();
+                                Data.Unfocus();
+                                Data.Focus();
                             }
 
                             //d1.Text = "";
@@ -746,7 +817,7 @@ namespace xamarinJKH.Counters
                                 prevPenencies = 0;
                             }
 
-                            SetPrevious(prevPenencies);
+                            SetPreviousValue(prevPenencies);
 
                             break;
                         default:
