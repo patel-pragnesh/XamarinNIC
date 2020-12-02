@@ -1574,4 +1574,10 @@
   <data name="Takes" xml:space="preserve">
     <value>Відбір</value>
   </data>
+  <data name="Rejection App" xml:space="preserve">
+    <value>Відмова</value>
+  </data>
+  <data name="UserRejectionApp" xml:space="preserve">
+    <value>Житель відмовився від заявки?</value>
+  </data>
 </root>

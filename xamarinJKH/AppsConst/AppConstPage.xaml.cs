@@ -49,6 +49,7 @@ namespace xamarinJKH.AppsConst
         const string GALERY = "galery";
         const string FILE = "file";
         bool isPaid;
+
         public bool IsRequestPaid
         {
             get => isPaid;
@@ -83,6 +84,7 @@ namespace xamarinJKH.AppsConst
                 });
             }
         }
+
         CancellationTokenSource TokenSource { get; set; }
         CancellationToken Token { get; set; }
 
@@ -98,6 +100,7 @@ namespace xamarinJKH.AppsConst
             {
                 Settings.UpdateKey = requestsUpdate.NewUpdateKey;
             }
+
             var UpdateTask = new Task(async () =>
             {
                 try
@@ -105,7 +108,8 @@ namespace xamarinJKH.AppsConst
                     while (!Token.IsCancellationRequested)
                     {
                         await Task.Delay(TimeSpan.FromSeconds(2));
-                        var update = await _server.GetRequestsUpdatesConst(Settings.UpdateKey, _requestInfo.ID.ToString());
+                        var update =
+                            await _server.GetRequestsUpdatesConst(Settings.UpdateKey, _requestInfo.ID.ToString());
                         if (update.Error == null)
                         {
                             Settings.UpdateKey = update.NewUpdateKey;
@@ -120,14 +124,17 @@ namespace xamarinJKH.AppsConst
                                         //Device.BeginInvokeOnMainThread(() => messages.Add(each));
                                         Device.BeginInvokeOnMainThread(async () =>
                                         {
-                                            addAppMessage(each, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
+                                            addAppMessage(each,
+                                                messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
                                             var lastChild = baseForApp.Children.LastOrDefault();
                                             //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true));
                                             if (lastChild != null)
-                                                await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, false);
+                                                await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30,
+                                                    false);
                                             //await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
                                         });
                                 }
+
                                 //Device.BeginInvokeOnMainThread(() => additionalList.ScrollTo(messages[messages.Count - 1], 0, true));
                             }
                         }
@@ -135,15 +142,15 @@ namespace xamarinJKH.AppsConst
                 }
                 catch (Exception e)
                 {
-
                 }
-
             }, Token);
             try
             {
                 UpdateTask.Start();
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         async void SetReadedApp()
@@ -170,8 +177,8 @@ namespace xamarinJKH.AppsConst
             }
             catch
             {
-
             }
+
             //MessagingCenter.Send<Object>(this, "AutoUpdate");
             base.OnDisappearing();
         }
@@ -209,9 +216,11 @@ namespace xamarinJKH.AppsConst
         {
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
-                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                Device.BeginInvokeOnMainThread(async () =>
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
+
             RequestsUpdate requestsUpdate =
                 await _server.GetRequestsUpdatesConst(Settings.UpdateKey, _requestInfo.ID.ToString());
             if (requestsUpdate.Error == null)
@@ -289,7 +298,7 @@ namespace xamarinJKH.AppsConst
                         mainStack.Padding = new Thickness(0, statusBarHeight, 0, 0);
                     break;
                 case Device.Android:
-                    double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
+                    double or = Math.Round(((double) App.ScreenWidth / (double) App.ScreenHeight), 2);
                     if (Math.Abs(or - 0.5) < 0.02)
                     {
                         //ScrollViewContainer.Margin = new Thickness(0, 0, 0, -150);
@@ -299,23 +308,62 @@ namespace xamarinJKH.AppsConst
                 default:
                     break;
             }
+
             SetReadedApp();
-            Options.Add(new OptionModel { Name = AppResources.InfoApp, Image = "ic_info_app1", Command = new Command(() => ShowInfo()), IsVisible = true });
-            Options.Add(new OptionModel { Name = AppResources.AcceptApp, Image = "ic_accept_app", Command = new Command(() => acceptApp()), IsVisible = true });
-            Options.Add(new OptionModel { Name = AppResources.CompleteApp, Image = "ic_check_mark", Command = new Command(() => performApp()), IsVisible = CanComplete });
+            Options.Add(new OptionModel
+            {
+                Name = AppResources.InfoApp, Image = "ic_info_app1", Command = new Command(() => ShowInfo()),
+                IsVisible = true
+            });
+            Options.Add(new OptionModel
+            {
+                Name = AppResources.AcceptApp, Image = "ic_accept_app", Command = new Command(() => acceptApp()),
+                IsVisible = true
+            });
+            Options.Add(new OptionModel
+            {
+                Name = AppResources.Rejection_App, Image = "crossed", Command = new Command(async () =>
+                {
+                    var result2 = await DisplayAlert("", AppResources.UserRejectionApp, AppResources.Yes,
+                        AppResources.No);
+                    if (result2)
+                    {
+                        CommonResult result = await _server.CloseAppConst(_requestInfo.ID.ToString());
+                        if (result.Error == null)
+                        {
+                            Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                await ShowToast(AppResources.Successfully);
+                                await ClosePage();
+                                await RefreshData();
+                            });
+                            
+                        }
+                        else
+                        {
+                            await ShowToast(result.Error);
+                        }
+                    }
+                }),
+                IsVisible = true
+            });
+            Options.Add(new OptionModel
+            {
+                Name = AppResources.CompleteApp, Image = "ic_check_mark", Command = new Command(() => performApp()),
+                IsVisible = CanComplete
+            });
             Options.Add(new OptionModel
             {
                 Name = AppResources.PassApp,
                 Image = "ic_next_disp",
                 Command = new Command(() =>
-{
-Device.BeginInvokeOnMainThread(async () =>
-{
-await PopupNavigation.Instance.PushAsync(new MoveDispatcherView(hex, _requestInfo, true));
-await RefreshData();
-});
-
-}),
+                {
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        await PopupNavigation.Instance.PushAsync(new MoveDispatcherView(hex, _requestInfo, true));
+                        await RefreshData();
+                    });
+                }),
                 IsVisible = true
             });
             Options.Add(new OptionModel
@@ -323,36 +371,45 @@ await RefreshData();
                 Name = AppResources.Transit,
                 Image = "ic_in_way",
                 Command = new Command(async () =>
-{
-progress.IsVisible = true;
-var request = await _server.SetPaidRequestStatusOnTheWay(_requestInfo.ID.ToString());
-if (request.Error == null)
-{
-await ShowToast(AppResources.TransitOrder);
-await RefreshData();
-}
-else
-{
-await DisplayAlert(AppResources.Order, request.Error, "OK");
-}
-progress.IsVisible = false;
-}),
+                {
+                    progress.IsVisible = true;
+                    var request = await _server.SetPaidRequestStatusOnTheWay(_requestInfo.ID.ToString());
+                    if (request.Error == null)
+                    {
+                        await ShowToast(AppResources.TransitOrder);
+                        await RefreshData();
+                    }
+                    else
+                    {
+                        await DisplayAlert(AppResources.Order, request.Error, "OK");
+                    }
+
+                    progress.IsVisible = false;
+                }),
                 IsVisible = IsRequestPaid
             });
-            Options.Add(new OptionModel { Name = AppResources.SendCodeApp, Image = "ic_send_code", Command = new Command(async () => await AiForms.Dialogs.Dialog.Instance.ShowAsync(new EnterCodeDialogView(this._requestInfo.ID.ToString()))), IsVisible = IsRequestPaid });
+            Options.Add(new OptionModel
+            {
+                Name = AppResources.SendCodeApp, Image = "ic_send_code",
+                Command = new Command(async () =>
+                    await AiForms.Dialogs.Dialog.Instance.ShowAsync(
+                        new EnterCodeDialogView(this._requestInfo.ID.ToString()))),
+                IsVisible = IsRequestPaid
+            });
             Options.Add(new OptionModel
             {
                 Name = AppResources.Receipt,
                 Image = "ic_receipt",
                 Command = new Command(async () =>
-{
-List<RequestsReceiptItem> Items = new List<RequestsReceiptItem>();
-foreach (var item in request.ReceiptItems)
-{
-Items.Add(item.Copy());
-}
-await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, request.ShopId));
-}),
+                {
+                    List<RequestsReceiptItem> Items = new List<RequestsReceiptItem>();
+                    foreach (var item in request.ReceiptItems)
+                    {
+                        Items.Add(item.Copy());
+                    }
+
+                    await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, request.ShopId));
+                }),
                 IsVisible = IsRequestPaid
             });
             Options.Add(new OptionModel
@@ -360,26 +417,26 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
                 Name = AppResources.CloseApp,
                 Image = "ic_close_app1",
                 Command = new Command(async () =>
-{
-    // await ShowRating();
-    // await PopupNavigation.Instance
+                {
+                    // await ShowRating();
+                    // await PopupNavigation.Instance
 
-    CommonResult result = await _server.CloseAppConst(_requestInfo.ID.ToString());
-    if (result.Error == null)
-    {
-        var result2 = await DisplayAlert("", AppResources.RatingBarClose, "OK", AppResources.Cancel);
-        if (result2)
-        {
-            await ClosePage();
-            await ShowToast(AppResources.AppClosed);
-            await RefreshData();
-        }
-    }
-    else
-    {
-        await ShowToast(result.Error);
-    }
-}),
+                    CommonResult result = await _server.CloseAppConst(_requestInfo.ID.ToString());
+                    if (result.Error == null)
+                    {
+                        var result2 = await DisplayAlert("", AppResources.RatingBarClose, "OK", AppResources.Cancel);
+                        if (result2)
+                        {
+                            await ClosePage();
+                            await ShowToast(AppResources.AppClosed);
+                            await RefreshData();
+                        }
+                    }
+                    else
+                    {
+                        await ShowToast(result.Error);
+                    }
+                }),
                 IsVisible = CanClose
             });
             NavigationPage.SetHasNavigationBar(this, false);
@@ -432,7 +489,7 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
                 }
             };
             StackLayoutClose.GestureRecognizers.Add(closeApp);
-            hex = (Color)Application.Current.Resources["MainColor"];
+            hex = (Color) Application.Current.Resources["MainColor"];
 
             setText();
 
@@ -462,7 +519,9 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
                     {
                         _ = await Navigation.PopAsync();
                     }
-                    catch { }
+                    catch
+                    {
+                    }
                 }
             });
             // additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
@@ -472,14 +531,14 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
         {
             var UpdateTask = new Task(async () => { await GetFile(id, fileName); });
             UpdateTask.Start();
-
         }
+
         public async Task GetFile(string id, string fileName)
         {
             // Loading settings
             Configurations.LoadingConfig = new LoadingConfig
             {
-                IndicatorColor = (Color)Application.Current.Resources["MainColor"],
+                IndicatorColor = (Color) Application.Current.Resources["MainColor"],
                 OverlayColor = Color.Black,
                 Opacity = 0.8,
                 DefaultMessage = AppResources.Loading,
@@ -502,6 +561,7 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
                 }
             });
         }
+
         private async Task ClosePage()
         {
             MessagingCenter.Send<Object>(this, "UpdateAppCons");
@@ -595,12 +655,18 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
             {
                 try
                 {
-                    var camera_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
-                    var storage_perm = await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+                    var camera_perm =
+                        await Plugin.Permissions.CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                    var storage_perm =
+                        await Plugin.Permissions.CrossPermissions.Current
+                            .CheckPermissionStatusAsync(Permission.Storage);
                     if (camera_perm != PermissionStatus.Granted || storage_perm != PermissionStatus.Granted)
                     {
-                        var status = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
-                        if (status[Permission.Camera] == PermissionStatus.Denied && status[Permission.Storage] == PermissionStatus.Denied)
+                        var status =
+                            await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera,
+                                Permission.Storage);
+                        if (status[Permission.Camera] == PermissionStatus.Denied &&
+                            status[Permission.Storage] == PermissionStatus.Denied)
                         {
                             return;
                         }
@@ -610,10 +676,10 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
                 {
                     Device.BeginInvokeOnMainThread(async () =>
                     {
-                        var result = await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoPermissions, "OK", AppResources.Cancel);
+                        var result = await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoPermissions, "OK",
+                            AppResources.Cancel);
                         if (result)
                             Plugin.Permissions.CrossPermissions.Current.OpenAppSettings();
-
                     });
                     return;
                 }
@@ -651,8 +717,10 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
                     await DisplayAlert(AppResources.ErrorTitle, $"{e.Message}\n{e.StackTrace}", "OK");
                     Console.WriteLine(e);
                 }
+
                 return;
             }
+
             if (action == TAKE_GALRY)
             {
                 if (!CrossMedia.Current.IsPickPhotoSupported)
@@ -664,7 +732,7 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
 
                 try
                 {
-                    file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions { PhotoSize = PhotoSize.Medium });
+                    file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions {PhotoSize = PhotoSize.Medium});
                     if (file == null)
                         return;
                     await startLoadFile(GALERY, file);
@@ -674,19 +742,18 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
                     await DisplayAlert(AppResources.ErrorTitle, $"{e.Message}\n{e.StackTrace}", "OK");
                     Console.WriteLine(e);
                 }
+
                 return;
             }
 
             if (action == TAKE_FILE)
             {
-
                 await startLoadFile(FILE, null);
             }
         }
 
         async Task getCameraFile(MediaFile file)
         {
-
             if (file == null)
                 return;
             CommonResult commonResult = await _server.AddFileAppsConst(_requestInfo.ID.ToString(),
@@ -728,6 +795,7 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
                         await PickAndShowFile(null);
                         break;
                 }
+
                 //});
             }
             catch (Exception ex)
@@ -735,7 +803,6 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
                 await DisplayAlert(null, $"{ex.Message}\n{ex.StackTrace}", "OK");
                 Console.WriteLine(ex.Message);
             }
-
         }
 
         async Task GetGalaryFile(MediaFile file)
@@ -754,7 +821,7 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
         {
             if (stream is MemoryStream)
             {
-                return ((MemoryStream)stream).ToArray();
+                return ((MemoryStream) stream).ToArray();
             }
             else
             {
@@ -833,7 +900,8 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
             {
                 progress.IsVisible = true;
                 IconViewSend.IsVisible = false;
-                CommonResult result = await _server.AddMessageConst(message, _requestInfo.ID.ToString(), CheckBoxHidden.IsChecked);
+                CommonResult result =
+                    await _server.AddMessageConst(message, _requestInfo.ID.ToString(), CheckBoxHidden.IsChecked);
                 if (result.Error == null)
                 {
                     EntryMess.Text = "";
@@ -883,7 +951,6 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
 
         async void getMessage2()
         {
-
             request = await _server.GetRequestsDetailListConst(_requestInfo.ID.ToString());
             if (request.Error == null)
             {
@@ -893,10 +960,10 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
                     messages.Add(message);
                     Device.BeginInvokeOnMainThread(() =>
                     {
-
                         addAppMessage(message, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
                     });
                 }
+
                 LabelNumber.Text = "№ " + request.RequestNumber;
                 IsRequestPaid = request.IsPaid;
                 this.BindingContext = this;
@@ -907,7 +974,6 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
             }
 
             await MethodWithDelayAsync(1000);
-
         }
 
         async void acceptApp()
@@ -923,6 +989,7 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppAccept, "OK");
             }
+
             progress.IsVisible = false;
         }
 
@@ -940,6 +1007,7 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorAppComplete, "OK");
             }
+
             progress.IsVisible = false;
         }
 
@@ -971,7 +1039,7 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
                 Console.WriteLine(e);
             }
 
-            Color hexColor = (Color)Application.Current.Resources["MainColor"];
+            Color hexColor = (Color) Application.Current.Resources["MainColor"];
             FrameKeys.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#B5B5B5"));
             FrameMessage.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
         }
@@ -984,10 +1052,12 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
                 string Source = Settings.GetStatusIcon(request.StatusID);
                 if (!string.IsNullOrEmpty(Source))
                 {
-                    if (!string.IsNullOrWhiteSpace(request.Phone) && (request.Phone.Contains("+") == false && request.Phone.Substring(0, 2) == "79"))
+                    if (!string.IsNullOrWhiteSpace(request.Phone) && (request.Phone.Contains("+") == false &&
+                                                                      request.Phone.Substring(0, 2) == "79"))
                     {
                         request.Phone = "+" + request.Phone;
                     }
+
                     Call = new Command<string>(async (phone) =>
                     {
                         if (!string.IsNullOrWhiteSpace(phone))
@@ -1043,6 +1113,7 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
             {
                 await DisplayAlert(AppResources.Order, request.Error, "OK");
             }
+
             progress.IsVisible = false;
         }
 
@@ -1053,6 +1124,7 @@ await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, requ
             {
                 Items.Add(item.Copy());
             }
+
             await Dialog.Instance.ShowAsync(new AppConstDialogWindow(Items, request.ID, request.ShopId));
         }
     }

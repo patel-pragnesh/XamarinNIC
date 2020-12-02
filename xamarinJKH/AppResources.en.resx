@@ -1701,4 +1701,10 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="Takes" xml:space="preserve">
     <value>Selection</value>
   </data>
+  <data name="Rejection App" xml:space="preserve">
+    <value>Rejection </value>
+  </data>
+  <data name="UserRejectionApp" xml:space="preserve">
+    <value>The resident refused the application?</value>
+  </data>
 </root>

@@ -3711,6 +3711,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отказ.
+        /// </summary>
+        internal static string Rejection_App {
+            get {
+                return ResourceManager.GetString("Rejection App", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Заявок поступило:.
         /// </summary>
         internal static string RequestsReceived {
@@ -4688,6 +4697,15 @@ namespace xamarinJKH {
         internal static string UpdateDialogUpdate {
             get {
                 return ResourceManager.GetString("UpdateDialogUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Житель отказался от заявки?.
+        /// </summary>
+        internal static string UserRejectionApp {
+            get {
+                return ResourceManager.GetString("UserRejectionApp", resourceCulture);
             }
         }
         

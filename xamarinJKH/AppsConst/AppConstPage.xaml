@@ -103,11 +103,11 @@
                        IsVisible="{Binding isNotRead}"
                        BackgroundColor="{AppThemeBinding Light=White, Dark=#B5B5B5}"
                        Padding="5,0,5,80">
-                        <StackLayout Padding="20, 20, 20,-10" WidthRequest="120">
+                        <StackLayout Padding="20, 20, 20,-10" WidthRequest="160">
                             <ScrollView Orientation="Horizontal"
                                         HorizontalScrollBarVisibility="Never"
                                         HeightRequest="90"
-                                WidthRequest="120">
+                                WidthRequest="160">
                                 <StackLayout Orientation="Horizontal"
                                              
                                              BindableLayout.ItemsSource="{Binding Options}"

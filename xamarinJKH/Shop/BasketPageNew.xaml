@@ -90,7 +90,7 @@
                                             <StackLayout>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="50"/>
+                                                        <ColumnDefinition Width="Auto"/>
                                                         <ColumnDefinition Width="*"/>
                                                         <ColumnDefinition Width="{Binding ColumnAdditionWidth}"/>
                                                         <!--<ColumnDefinition Width="0.45*"/>-->
@@ -102,6 +102,8 @@
                                                     <Frame CornerRadius="10"
                                                            BackgroundColor="#e7e7e7"
                                                            Padding="5"
+                                                           WidthRequest="50"
+                                                           IsVisible="{Binding HasImage}"
                                                            Grid.RowSpan="2"
                                                            HasShadow="False">
 
