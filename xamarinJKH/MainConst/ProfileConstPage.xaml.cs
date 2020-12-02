@@ -68,7 +68,7 @@ namespace xamarinJKH.MainConst
                 ButtonClick(FrameBtnLogin, null);
             };
             FrameBtnLogin.GestureRecognizers.Add(saveClick);
-            
+
             var createPush = new TapGestureRecognizer();
             createPush.Tapped += async (s, e) =>
             {
@@ -87,32 +87,6 @@ namespace xamarinJKH.MainConst
                     break;
             }
 
-            switch (Device.RuntimePlatform)
-            {
-                case Device.iOS:
-
-                    // //только темная тема в ios
-                    //themelabel.IsVisible = false;
-                    //ThemeButtonBlock.IsVisible = false;
-                    //ThemeButtonBlock.IsEnabled = false;
-
-                    //BackgroundColor = Color.White;
-                    // ImageFon.Margin = new Thickness(0, 0, 0, 0);
-                    // StackLayout.Margin = new Thickness(0, 33, 0, 0);
-                    // IconViewNameUk.Margin = new Thickness(0, 33, 0, 0);
-                    // ScrollViewContainer.Margin = new Thickness(10, -200, 10, 0);
-                    break;
-                case Device.Android:
-                    // double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
-                    // if (Math.Abs(or - 0.5) < 0.02)
-                    // {
-                    //     ScrollViewContainer.Margin = new Thickness(10, -150, 10, 0);
-                    //     BackStackLayout.Margin = new Thickness(5, 25, 0, 0);
-                    // }
-                    break;
-                default:
-                    break;
-            }
             Russian.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
             Ukranian.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
             English.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
@@ -140,34 +114,40 @@ namespace xamarinJKH.MainConst
             }
 
             var tAutoClick = new TapGestureRecognizer();
-            tAutoClick.Tapped +=  (s, e) => { Device.BeginInvokeOnMainThread(() => RadioButtonAuto.IsChecked = true); };
+            tAutoClick.Tapped += (s, e) => { Device.BeginInvokeOnMainThread(() => RadioButtonAuto.IsChecked = true); };
             tAuto.GestureRecognizers.Add(tAutoClick);
 
             var tBlackClick = new TapGestureRecognizer();
-            tBlackClick.Tapped +=  (s, e) => { Device.BeginInvokeOnMainThread(() => RadioButtonDark.IsChecked = true); };
+            tBlackClick.Tapped += (s, e) => { Device.BeginInvokeOnMainThread(() => RadioButtonDark.IsChecked = true); };
             tDark.GestureRecognizers.Add(tBlackClick);
 
             var tLightClick = new TapGestureRecognizer();
-            tLightClick.Tapped +=  (s, e) => { Device.BeginInvokeOnMainThread(() => RadioButtonLigth.IsChecked = true); };
+            tLightClick.Tapped += (s, e) => { Device.BeginInvokeOnMainThread(() => RadioButtonLigth.IsChecked = true); };
             tLight.GestureRecognizers.Add(tLightClick);
 
             var lRuClick = new TapGestureRecognizer();
-            lRuClick.Tapped +=  (s, e) => { Device.BeginInvokeOnMainThread(() => Russian.IsChecked = true); };
+            lRuClick.Tapped += (s, e) => { Device.BeginInvokeOnMainThread(() => Russian.IsChecked = true); };
             lRu.GestureRecognizers.Add(lRuClick);
 
             var lEnClick = new TapGestureRecognizer();
-            lEnClick.Tapped +=  (s, e) => { Device.BeginInvokeOnMainThread(() => English.IsChecked = true); };
+            lEnClick.Tapped += (s, e) => { Device.BeginInvokeOnMainThread(() => English.IsChecked = true); };
             lEn.GestureRecognizers.Add(lEnClick);
 
             var lUaClick = new TapGestureRecognizer();
-            lUaClick.Tapped +=  (s, e) => { Device.BeginInvokeOnMainThread(() => Ukranian.IsChecked = true); };
+            lUaClick.Tapped += (s, e) => { Device.BeginInvokeOnMainThread(() => Ukranian.IsChecked = true); };
             lUa.GestureRecognizers.Add(lUaClick);
 
             SetText();
             SetColor();
             EntryFio.Text = Settings.Person.FIO;
             EntryEmail.Text = Settings.Person.Email;
+
+#if DEBUG
+            FrameOffers.IsVisible = true;
+            #else
             FrameOffers.IsVisible = Settings.Person.UserSettings.RightCreateAnnouncements;
+#endif
+
             BindingContext = this;
         }
 
@@ -285,7 +265,9 @@ namespace xamarinJKH.MainConst
             LabelseparatorFio.BackgroundColor = hexColor;
             BtnExit.TextColor = hexColor;
             progress.Color = hexColor;
-            
+
+            FrameOffers.BorderColor = hexColor;
+
             RadioButtonAuto.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
             RadioButtonDark.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
             RadioButtonLigth.Effects.Add(Effect.Resolve("MyEffects.RadioButtonEffect"));
