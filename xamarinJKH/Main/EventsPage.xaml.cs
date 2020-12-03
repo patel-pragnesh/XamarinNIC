@@ -407,6 +407,17 @@ namespace xamarinJKH.Main
             }
         }
 
+        int newsCount;
+        public int NewsCount
+        {
+            get => newsCount;
+            set
+            {
+                newsCount = value;
+                OnPropertyChanged(nameof(NewsCount));
+            }
+        }
+
         public EventsPageViewModel()
         {
             LoadData = new Command(async () =>
@@ -475,7 +486,18 @@ namespace xamarinJKH.Main
                     PollsCount = 0;
                 }
 
-                MessagingCenter.Send<Object, int>(this, "SetEventsAmount", PollsCount + AnnounsmentsCount);
+                try
+                {
+                    if (Settings.EventBlockData.News != null)
+                        NewsCount = Settings.EventBlockData.News.Where(x => !x.IsReaded).Count();
+                    else
+                        Analytics.TrackEvent($"News is null");
+                }
+                catch
+                {
+                    NewsCount = 0;
+                }
+                MessagingCenter.Send<Object, int>(this, "SetEventsAmount", PollsCount + AnnounsmentsCount + NewsCount);
             });
             MessagingCenter.Subscribe<Object>(this, "ReducePolls", sender =>
             {
@@ -487,6 +509,11 @@ namespace xamarinJKH.Main
             {
                 AnnounsmentsCount--;
                 //MessagingCenter.Send<Object, int>(this, "SetEventsAmount", PollsCount + AnnounsmentsCount);
+            });
+
+            MessagingCenter.Subscribe<Object>(this, "ReduceNews", sender =>
+            {
+                NewsCount--;
             });
         }
     }

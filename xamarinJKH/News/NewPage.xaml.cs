@@ -85,6 +85,7 @@ namespace xamarinJKH.News
                 {
                     var response = await _server.SetNewReadFlag(newsInfo.ID);
                     MessagingCenter.Send<Object, int>(this, "SetEventsAmount", -1);
+                    MessagingCenter.Send<Object>(this, "ReduceNews");
                 });
             }
         }

@@ -149,7 +149,21 @@
                                 Orientation="Vertical"
                                 Margin="5, 10, 5, 10">
 
+                                        <Frame CornerRadius="20"
+                                               BorderColor="{x:StaticResource MainColor}"
+                                               HeightRequest="50"
+                                               
+                                               Margin="50,0"
+                                               Padding="0">
+                                            <Entry Keyboard="Numeric"
+                                                                  VerticalOptions="CenterAndExpand"
+                                                                  HorizontalTextAlignment="Center"
+                                                                  x:Name="Data">
+                                            </Entry>
+                                        </Frame>
+                                        <Label Text="{Binding Previous}" TextColor="#A2A2A2" FontSize="20" HorizontalTextAlignment="Center" x:Name="Prev"/>
                                         <StackLayout x:Name="CounterLayout"
+                                                     IsVisible="False"
                                     Orientation="Horizontal" HeightRequest="80"  Margin="20,0" Spacing="5" HorizontalOptions="CenterAndExpand">
                                             <StackLayout x:Name="CounterDigitsContainer" Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
                                                 <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
