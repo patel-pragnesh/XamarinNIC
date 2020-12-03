@@ -105,8 +105,7 @@ namespace xamarinJKH.AppsConst
             {
                 try
                 {
-                    while (!Token.IsCancellationRequested)
-                    {
+                   
                         await Task.Delay(TimeSpan.FromSeconds(2));
                         var update =
                             await _server.GetRequestsUpdatesConst(Settings.UpdateKey, _requestInfo.ID.ToString());
@@ -138,12 +137,11 @@ namespace xamarinJKH.AppsConst
                                 //Device.BeginInvokeOnMainThread(() => additionalList.ScrollTo(messages[messages.Count - 1], 0, true));
                             }
                         }
-                    }
                 }
                 catch (Exception e)
                 {
                 }
-            }, Token);
+            });
             try
             {
                 UpdateTask.Start();
@@ -237,7 +235,8 @@ namespace xamarinJKH.AppsConst
                             addAppMessage(each, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
                             var lastChild = baseForApp.Children.LastOrDefault();
                             if (lastChild != null)
-                                await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
+                                await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30,
+                                    false);
                         });
                         messages.Add(each);
                     }

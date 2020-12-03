@@ -51,28 +51,20 @@ namespace xamarinJKH.Main
             }
         }
 
-        public ICommand RefreshCommand
+        public ICommand RefreshCommand2
         {
             get
             {
                 return new Command(async () =>
                 {
                     IsRefreshing = true;
-                    try
-                    {
-                        CancellationTokenSource.Cancel();
-                        CancellationTokenSource.Dispose();
-                    }
-                    catch
-                    {
-                    }
 
-                    //await RefreshData();
-                    StartAutoUpdate();
+                    await RefreshData();
 
                     IsRefreshing = false;
                 });
             }
+            
         }
 
         Task UpdateTask;
@@ -100,8 +92,8 @@ namespace xamarinJKH.Main
             UpdateTask = null;
             UpdateTask = new Task(async () =>
             {
-                while (!this.CancellationToken.IsCancellationRequested)
-                {
+                // while (!this.CancellationToken.IsCancellationRequested)
+                // {
                     if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
                     {
                         Device.BeginInvokeOnMainThread(async () =>
@@ -132,11 +124,11 @@ namespace xamarinJKH.Main
                     //    {
                     //        Device.BeginInvokeOnMainThread(() => additionalList.HeightRequest = 3000);
                     //    }
-                    await Task.Delay(TimeSpan.FromSeconds(5));
-                }
+                    // await Task.Delay(TimeSpan.FromSeconds(5));
+                // }
 
                 return;
-            }, this.CancellationToken);
+            });
             try
             {
                 UpdateTask.Start();

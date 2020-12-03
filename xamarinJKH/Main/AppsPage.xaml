@@ -88,6 +88,9 @@
                              VerticalScrollBarVisibility="Never"
                              ItemTapped="OnItemTapped"
                              CachingStrategy="RecycleElement"
+                                IsPullToRefreshEnabled="True"
+                                RefreshCommand="{Binding LoadRequests}"
+                                IsRefreshing="{Binding IsRefreshing}"
                              ItemsSource="{Binding Requests, Mode=TwoWay}"
                              VerticalOptions="FillAndExpand">
                             <ListView.ItemTemplate>

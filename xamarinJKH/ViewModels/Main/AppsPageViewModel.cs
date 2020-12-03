@@ -24,6 +24,16 @@ namespace xamarinJKH.ViewModels.Main
                 OnPropertyChanged("Requests");
             }
         }
+        private bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
         public List<RequestInfo> AllRequests { get; set; }
         public Command LoadRequests { get; set; }
         public Command UpdateRequests { get; set; }
@@ -76,7 +86,7 @@ namespace xamarinJKH.ViewModels.Main
             Requests = new ObservableCollection<RequestInfo>();
             LoadRequests = new Command(async () =>
             {
-
+                IsRefreshing = true;
                 var response = await Server.GetRequestsList();
                 AllRequests = new List<RequestInfo>();
                 if (response.Error != null)
@@ -107,7 +117,7 @@ namespace xamarinJKH.ViewModels.Main
 
                         MessagingCenter.Subscribe<Object, string>(this, "AddIdent", (sender, args) => LoadRequests.Execute(null));
                         MessagingCenter.Send<Object>(this, "EndRefresh");
-
+                        IsRefreshing = false;
                     });
                     //if (response.Requests != null)
                     //{

@@ -153,6 +153,15 @@ namespace xamarinJKH
                 CrossBadge.Current.ClearBadge();
                 Device.BeginInvokeOnMainThread(async () =>
                 {
+                    if (isCons)
+                    {
+                        MessagingCenter.Send<Object>(this, "UpdateAppCons");
+                    }
+                    else
+                    {
+                        MessagingCenter.Send<Object>(this, "AutoUpdate");
+                    }
+
                     try
                     {
                         bool displayAlert = false;
@@ -192,6 +201,18 @@ namespace xamarinJKH
                             await MainPage.Navigation.PushModalAsync(new OSSMain());
                         }
 
+                        if (o.ToLower().Equals("comment"))
+                        {
+                            if (isCons)
+                            {
+                                MessagingCenter.Send<Object>(this, "RefreshApp");
+                            }
+                            else
+                            {
+                                MessagingCenter.Send<Object>(this, "AutoUpdateComments");
+                            }
+                        }
+                        
                         if (displayAlert && o.ToLower().Equals("comment"))
                         {
                             var tabbedpage = App.Current.MainPage.Navigation.ModalStack.ToList()[0];
