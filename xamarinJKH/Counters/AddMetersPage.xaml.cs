@@ -220,6 +220,8 @@ namespace xamarinJKH.Counters
             d8.Focused += Entry_Focused;
             d41.Focused += Entry_Focused;
 
+            Data.Focused += Entry_Focused;
+
 
             //d1.Unfocused += Entry_Unfocused;
             //d2.Unfocused += Entry_Unfocused;
@@ -282,28 +284,46 @@ namespace xamarinJKH.Counters
         private async void SetMask()
         {
                 string result = string.Empty;
-                while (IntegerPoint > 0)
+            var integer = IntegerPoint;
+            var decimal_ = DecimalPoint;
+                while (integer > 0)
                 {
                     result += "X";
-                    IntegerPoint--;
+                    integer--;
                 }
                 result += ".";
-                while (DecimalPoint > 0)
+                while (decimal_ > 0)
                 {
                     result += "X";
-                    DecimalPoint--;
+                    decimal_--;
                 }
                 Mask = result;
-                Data.Behaviors.Add(new xamarinJKH.Mask.MaskedBehavior { Mask = this.Mask });
+                //Data.Behaviors.Add(new xamarinJKH.Mask.MaskedBehavior { Mask = this.Mask });
                 Data.TextChanged += Data_TextChanged;
             
         }
 
-        private void Data_TextChanged(object sender, TextChangedEventArgs e)
+        private async void Data_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (e.NewTextValue.Contains(","))
-                (sender as Entry).Text = (sender as Entry).Text.Replace(",", " ").Trim();
-            
+            var entry = sender as Entry;
+            if ((entry.Text.Contains(",") || entry.Text.Contains(".")) && entry.Text.Length > 1)
+            {
+                var numbers = entry.Text.Split(',', '.');
+                if (numbers[1].Length > DecimalPoint)
+                {
+                    entry.Text = entry.Text.Remove(entry.Text.Length - 1);
+                }
+            }
+            else
+            {
+                if (entry.Text.Length == IntegerPoint && e.NewTextValue.Length > e.OldTextValue.Length) 
+                {
+                    entry.Text += ".";
+                }
+            }
+
+            await Task.Delay(TimeSpan.FromMilliseconds(100));
+            entry.Text = entry.Text.Replace(".", ",");
         }
 
         async void SetPreviousValue(decimal prevCount)
@@ -316,6 +336,9 @@ namespace xamarinJKH.Counters
         {
             var format = "{0:" + Mask.Replace("X", "0").Replace(",", ".") + "}";
             Data.Text = String.Format(format, currentCount);
+            await Task.Delay(TimeSpan.FromSeconds(2)); 
+            Data.Unfocus();
+            Data.Focus();
         }
         //private void Entry_Unfocused(object sender, FocusEventArgs e)
         //{
@@ -381,7 +404,7 @@ namespace xamarinJKH.Counters
                     await Task.Delay(100);
                 else
                     await Task.Delay(900);
-                var entry = (CounterEntryNew)sender;
+                var entry = (Entry)sender;
                 if (!string.IsNullOrWhiteSpace(entry.Text))
                 {
                     entry.CursorPosition = 0;
