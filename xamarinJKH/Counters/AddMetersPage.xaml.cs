@@ -278,7 +278,6 @@ namespace xamarinJKH.Counters
                     break;
                     
             }
-            Data.Focus();
         }
 
         private async void SetMask()
@@ -306,6 +305,7 @@ namespace xamarinJKH.Counters
         private async void Data_TextChanged(object sender, TextChangedEventArgs e)
         {
             var entry = sender as Entry;
+          
             if ((entry.Text.Contains(",") || entry.Text.Contains(".")) && entry.Text.Length > 1)
             {
                 var numbers = entry.Text.Split(',', '.');
@@ -316,12 +316,15 @@ namespace xamarinJKH.Counters
             }
             else
             {
-                if (entry.Text.Length == IntegerPoint && e.NewTextValue.Length > e.OldTextValue.Length) 
+                if (e.OldTextValue.Length == IntegerPoint && e.NewTextValue.Length > e.OldTextValue.Length)
                 {
-                    entry.Text += ".";
+                    entry.Text = e.OldTextValue;
                 }
             }
-
+            if (e.NewTextValue.Equals("-"))
+            {
+                entry.Text = e.OldTextValue;
+            }
             await Task.Delay(TimeSpan.FromMilliseconds(100));
             entry.Text = entry.Text.Replace(".", ",");
         }
@@ -337,8 +340,9 @@ namespace xamarinJKH.Counters
             var format = "{0:" + Mask.Replace("X", "0").Replace(",", ".") + "}";
             Data.Text = String.Format(format, currentCount);
             await Task.Delay(TimeSpan.FromSeconds(2)); 
-            Data.Unfocus();
-            Data.Focus();
+            
+             Device.BeginInvokeOnMainThread(() => { 
+                Data.Focus(); });
         }
         //private void Entry_Unfocused(object sender, FocusEventArgs e)
         //{
@@ -608,6 +612,7 @@ namespace xamarinJKH.Counters
                 d1.Unfocus();
                 d1.Focus();
             });
+            Device.BeginInvokeOnMainThread(() => { Data.Focus(); });
         }
 
         string value1 = "";
@@ -865,6 +870,7 @@ namespace xamarinJKH.Counters
         }
 
         int tarif = 1;
+        private Keyboard _dataKeyboard;
 
 
         void SetTextAndColor()
