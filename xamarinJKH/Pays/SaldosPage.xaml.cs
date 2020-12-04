@@ -311,6 +311,9 @@ namespace xamarinJKH.Pays
                     {
                         Analytics.TrackEvent("Открытие квитанции " + select.Period + " " + select.Ident);
                         string filename = @select.Period + select.Ident + ".pdf";
+
+                        filename = filename.Replace("/", "_").Replace("\"","_");
+
                         if (Navigation.NavigationStack.FirstOrDefault(x => x is PdfView) == null)
                             await Navigation.PushAsync(new PdfView(filename, select.ID.ToString()));
                     }
