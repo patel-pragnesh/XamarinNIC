@@ -156,6 +156,7 @@
                                                Margin="50,0"
                                                Padding="0">
                                             <Entry Keyboard="Numeric"
+                                                   Text=""
                                                                   VerticalOptions="CenterAndExpand"
                                                                   HorizontalTextAlignment="Center"
                                                                   x:Name="Data">
