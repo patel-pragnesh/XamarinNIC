@@ -39,7 +39,7 @@ namespace xamarinJKH.Pays
         private bool isSortLs = true;
         public List<AccountAccountingInfo> Accounts { get; set; }
         public AccountAccountingInfo SelectedAcc { get; set; }
-        private Color hex { get; set; } = (Color) Application.Current.Resources["MainColor"];
+        private Color hex { get; set; }= (Color)Application.Current.Resources["MainColor"];
 
         public bool IsRefreshing
         {
@@ -224,8 +224,9 @@ namespace xamarinJKH.Pays
             {
                 isSortLs = false;
                 IconViewSortIdent.Rotation = 180;
-                var list = BillInfos.OrderByDescending(u => u.Ident);
+                var list  = BillInfos.OrderByDescending(u => u.Ident);
                 BillInfos = new List<BillInfo>(list);
+             
             }
 
             additionalList.ItemsSource = null;
@@ -239,16 +240,15 @@ namespace xamarinJKH.Pays
             {
                 return;
             }
-
             foreach (var each in infos)
             {
                 if (each.Bills == null)
                 {
                     continue;
                 }
-
                 foreach (var VARIABLE in each.Bills)
                 {
+                  
                     BillInfos.Add(VARIABLE);
                 }
             }
@@ -260,20 +260,21 @@ namespace xamarinJKH.Pays
 
         void SortNotFormat()
         {
+            
         }
-
+        
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-
+            
             // IconViewSortIdent.Foreground = (Color)Application.Current.Resources["MainColor"];
 
-            IconViewSortDate.ReplaceStringMap = new Dictionary<string, string>
+            IconViewSortDate.ReplaceStringMap =  new Dictionary<string, string>
             {
-                {"#000000", $"#{Settings.MobileSettings.color}"}
-            };
+                {"#000000",$"#{Settings.MobileSettings.color}" }
+            };  
             LabelDate.TextColor = hex;
-
+            
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             // IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
@@ -314,7 +315,6 @@ namespace xamarinJKH.Pays
                 Console.WriteLine(exception);
             }
         }
-
         public async Task<bool> GetFile(string id, string fileName)
         {
             // Loading settings
