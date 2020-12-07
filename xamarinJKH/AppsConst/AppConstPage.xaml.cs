@@ -240,6 +240,23 @@ namespace xamarinJKH.AppsConst
                         });
                         messages.Add(each);
                     }
+
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        var lastChild = baseForApp.Children.LastOrDefault();
+                        if (FrameMessage.Height < baseForApp.Height)
+                        {
+                            if (lastChild != null)
+                            {
+                                if (baseForApp.Height < lastChild.Y)
+                                    await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, false);
+                                else
+                                    await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, false);
+                            }
+                        }
+
+
+                    });
                 }
             }
             else
