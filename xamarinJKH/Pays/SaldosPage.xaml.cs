@@ -332,6 +332,41 @@ namespace xamarinJKH.Pays
                 {
                     await Loading.Instance.StartAsync(async progress =>
                     {
+                        try
+                        {
+                            byte[] stream;
+                            stream = await server.DownloadFileAsync(id, 1);
+                            if (stream != null)
+                            {
+                                await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, stream);
+                                result = true;
+                                await Launcher.OpenAsync(new OpenFileRequest
+                                {
+                                    File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+                                });
+                            }
+                            else
+                            {
+                                await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
+                                result = false;
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e);
+                            await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
+                            result = false;
+                        }
+                       
+                    });
+                });
+            }
+            else
+            {
+                await Loading.Instance.StartAsync(async progress =>
+                {
+                    try
+                    {
                         byte[] stream;
                         stream = await server.DownloadFileAsync(id, 1);
                         if (stream != null)
@@ -348,29 +383,14 @@ namespace xamarinJKH.Pays
                             await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
                             result = false;
                         }
-                    });
-                });
-            }
-            else
-            {
-                await Loading.Instance.StartAsync(async progress =>
-                {
-                    byte[] stream;
-                    stream = await server.DownloadFileAsync(id, 1);
-                    if (stream != null)
-                    {
-                        await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, stream);
-                        result = true;
-                        await Launcher.OpenAsync(new OpenFileRequest
-                        {
-                            File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
-                        });
                     }
-                    else
+                    catch (Exception e)
                     {
+                        Console.WriteLine(e);
                         await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
                         result = false;
                     }
+                   
                 });
             }
 
