@@ -32,6 +32,7 @@
                             HorizontalOptions="Start" />
                 </StackLayout>
                 <StackLayout
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                         Orientation="Horizontal">
                     <xamarinJkh:IconView x:Name="IconViewTech"
                                              Source="ic_tech"

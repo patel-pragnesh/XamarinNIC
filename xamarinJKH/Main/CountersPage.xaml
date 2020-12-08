@@ -10,15 +10,15 @@
              x:Class="xamarinJKH.Main.CountersPage">
     <ContentPage.Content>
         <StackLayout>
-             <Grid>
+            <Grid>
                 <Image x:Name="ImageFon"
                        Source="{AppThemeBinding Light=ic_background_counter_light, Dark=ic_background_counter}"
                        VerticalOptions="Start"
-					   Margin="0,0,0,0"
+                       Margin="0,0,0,0"
                        Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout>
-                    
+
                     <StackLayout
                         Margin="25,10,15,0"
                         Orientation="Horizontal"
@@ -29,10 +29,11 @@
                                HorizontalOptions="StartAndExpand"
                                FontSize="15"
                                TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+
                         <StackLayout
                             HorizontalOptions="EndAndExpand"
+                            BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                             Orientation="Horizontal">
-                        
                             <svg:SvgCachedImage x:Name="IconViewTech"
                                                 Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                                 HeightRequest="20"
@@ -48,6 +49,7 @@
                                    Margin="0, 0, 0, 0"
                                    VerticalOptions="Center" />
                         </StackLayout>
+
                     </StackLayout>
                     <StackLayout
                         x:Name="BackStackLayout"
@@ -62,78 +64,79 @@
                             HorizontalOptions="Start" />
                     </StackLayout>
                     <StackLayout
-                VerticalOptions="StartAndExpand">
-                <Frame CornerRadius="40"
-                       HasShadow="False"
-                       Margin="20, 10, 20, -40"
-                       VerticalOptions="Start"
-                       x:Name="FrameTop"
-                       BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
-                       Padding="20,20,20,50">
-                    <StackLayout Orientation="Vertical"
-                                 HorizontalOptions="CenterAndExpand">
-                        <StackLayout
-                            x:Name="StackLayoutAddIdent"
-                            IsVisible="False">
-                            <Label
-                                Text="{x:Static xamarinJkh:AppResources.AddIdent}"
-                                TextDecorations="Underline"
-                                FontAttributes="Bold"
-                                Margin="0,0,0,15"
-                                HorizontalOptions="CenterAndExpand"
-                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                                FontSize="15" />
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal"
-                                     x:Name="StackLayoutPicker"
-                                     HorizontalOptions="CenterAndExpand">
-                            <Label
-                                Text="{x:Static xamarinJkh:AppResources.Ident}"
-                                HeightRequest="20"
-                                FontAttributes="Bold"
-                                VerticalTextAlignment="Center"
-                                HorizontalOptions="CenterAndExpand"
-                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                                FontSize="15" />
-                            <StackLayout Spacing="0">
-                                <StackLayout 
-                                    x:Name="StackLayoutLs"
-                                    Orientation="Horizontal">
-                                    <xamarinJkh:BorderlessPicker
-                                        x:Name="Picker" Title="{x:Static xamarinJkh:AppResources.Choose}"
-                                        TitleColor="{AppThemeBinding Light=Black, Dark=White}"
+                        VerticalOptions="StartAndExpand">
+                        <Frame CornerRadius="40"
+                               HasShadow="False"
+                               Margin="20, 10, 20, -40"
+                               VerticalOptions="Start"
+                               x:Name="FrameTop"
+                               BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
+                               Padding="20,20,20,50">
+                            <StackLayout Orientation="Vertical"
+                                         HorizontalOptions="CenterAndExpand">
+                                <StackLayout
+                                    x:Name="StackLayoutAddIdent"
+                                    IsVisible="False">
+                                    <Label
+                                        Text="{x:Static xamarinJkh:AppResources.AddIdent}"
+                                        TextDecorations="Underline"
+                                        FontAttributes="Bold"
+                                        Margin="0,0,0,15"
+                                        HorizontalOptions="CenterAndExpand"
                                         TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                                        BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
-                                        VerticalOptions="Start"
-                                        SelectedIndexChanged="picker_SelectedIndexChanged" />
-                                            <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
-                                                         HeightRequest="12"
-                                                         WidthRequest="12"
-                                                         Rotation="90"
-                                                         Margin="0,5,0,0"
-                                                         VerticalOptions="Center"
-                                                                x:Name="Arrow"
-                                                     ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}" />
+                                        FontSize="15" />
                                 </StackLayout>
-                                <Label
-                                    HeightRequest="1"
-                                    BackgroundColor="White"
-                                    HorizontalOptions="Fill" />
+                                <StackLayout Orientation="Horizontal"
+                                             x:Name="StackLayoutPicker"
+                                             HorizontalOptions="CenterAndExpand">
+                                    <Label
+                                        Text="{x:Static xamarinJkh:AppResources.Ident}"
+                                        HeightRequest="20"
+                                        FontAttributes="Bold"
+                                        VerticalTextAlignment="Center"
+                                        HorizontalOptions="CenterAndExpand"
+                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                        FontSize="15" />
+                                    <StackLayout Spacing="0">
+                                        <StackLayout
+                                            x:Name="StackLayoutLs"
+                                            Orientation="Horizontal">
+                                            <xamarinJkh:BorderlessPicker
+                                                x:Name="Picker" Title="{x:Static xamarinJkh:AppResources.Choose}"
+                                                TitleColor="{AppThemeBinding Light=Black, Dark=White}"
+                                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                                BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
+                                                VerticalOptions="Start"
+                                                SelectedIndexChanged="picker_SelectedIndexChanged" />
+                                            <svg:SvgCachedImage
+                                                Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
+                                                HeightRequest="12"
+                                                WidthRequest="12"
+                                                Rotation="90"
+                                                Margin="0,5,0,0"
+                                                VerticalOptions="Center"
+                                                x:Name="Arrow"
+                                                ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}" />
+                                        </StackLayout>
+                                        <Label
+                                            HeightRequest="1"
+                                            BackgroundColor="White"
+                                            HorizontalOptions="Fill" />
+                                    </StackLayout>
+                                </StackLayout>
+                                <Label x:Name="PeriodSendLbl"
+                                       Text="Возможность передавать показания доступна с 15 по 25 число текущего месяца!"
+                                       Margin="0,0,0,0"
+                                       TextDecorations="Underline"
+                                       FontAttributes="Bold"
+                                       IsVisible="False"
+                                       HorizontalOptions="CenterAndExpand"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                       FontSize="12" />
                             </StackLayout>
-                        </StackLayout>
-                        <Label x:Name="PeriodSendLbl"
-                               Text="Возможность передавать показания доступна с 15 по 25 число текущего месяца!"
-                               Margin="0,0,0,0"
-                               TextDecorations="Underline"
-                               FontAttributes="Bold"
-                               IsVisible="False"
-                               HorizontalOptions="CenterAndExpand"
-                               HorizontalTextAlignment="Center"
-                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                               FontSize="12" />
-                    </StackLayout>
 
-                </Frame>
+                        </Frame>
 
                         <!--<RefreshView Command="{Binding RefreshCommand}"
                           IsRefreshing="{Binding IsRefreshing}">
@@ -165,15 +168,17 @@
                         </RefreshView>-->
 
                         <RefreshView Command="{Binding RefreshCommand}" Padding="10,0"
-                          IsRefreshing="{Binding IsRefreshing}">
-                            <ScrollView x:Name="scrollForCounters" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
+                                     IsRefreshing="{Binding IsRefreshing}">
+                            <ScrollView x:Name="scrollForCounters" VerticalScrollBarVisibility="Never"
+                                        VerticalOptions="FillAndExpand">
                                 <StackLayout>
-                                    <ActivityIndicator x:Name="aIndicator" Color="{Binding hex}" Scale="2"   Margin="20"                                        
-                                          IsRunning="True" IsEnabled="True" IsVisible="false" 
-                                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></ActivityIndicator>
-                                    <StackLayout x:Name="baseForCounters" VerticalOptions="FillAndExpand"></StackLayout>
+                                    <ActivityIndicator x:Name="aIndicator" Color="{Binding hex}" Scale="2" Margin="20"
+                                                       IsRunning="True" IsEnabled="True" IsVisible="false"
+                                                       HorizontalOptions="CenterAndExpand"
+                                                       VerticalOptions="CenterAndExpand" />
+                                    <StackLayout x:Name="baseForCounters" VerticalOptions="FillAndExpand" />
                                 </StackLayout>
-                                
+
                             </ScrollView>
                         </RefreshView>
 
@@ -209,11 +214,11 @@
 
                     </ListView.ItemTemplate>
                 </ListView>-->
-                        
-            </StackLayout>
+
+                    </StackLayout>
                 </StackLayout>
             </Grid>
-            
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

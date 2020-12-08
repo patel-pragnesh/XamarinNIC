@@ -29,6 +29,7 @@
                                TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                         <StackLayout
                             HorizontalOptions="EndAndExpand"
+                            BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                             Orientation="Horizontal">
                         
                             <forms:SvgCachedImage x:Name="IconViewTech"

@@ -33,6 +33,7 @@
                 </StackLayout>
                 <StackLayout
                     HorizontalOptions="EndAndExpand"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                     Orientation="Horizontal">
                     <svg:SvgCachedImage x:Name="IconViewTech"
                                         Source="resource://xamarinJKH.Resources.ic_tech.svg"
