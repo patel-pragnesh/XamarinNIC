@@ -70,10 +70,10 @@ namespace xamarinJKH.Counters
             IntegerPoint = meter.NumberOfIntegerPart;
             DecimalPoint = meter.NumberOfDecimalPlaces;
             SetMask();
-            CounterEntryNews = new List<CounterEntryNew>
-            {
-                d1,d2,d3,d4,d41,d5,d6,d7,d8
-            };
+            //CounterEntryNews = new List<CounterEntryNew>
+            //{
+            //    d1,d2,d3,d4,d41,d5,d6,d7,d8
+            //};
             BindingContext = this;
             GetFocusCells();
             Analytics.TrackEvent("Передача показаний по счетчику №" + meter.UniqueNum);
@@ -97,7 +97,7 @@ namespace xamarinJKH.Counters
                     //для iphone5,5s,se,5c
                     if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width < 700)
                     {
-                        CounterLayout.Margin = new Thickness(5, 0);
+                        //CounterLayout.Margin = new Thickness(5, 0);
                         meterRootStack.Margin = new Thickness(5);
 
                         NameLbl.FontSize = 15;
@@ -115,7 +115,7 @@ namespace xamarinJKH.Counters
                     //GetFocusCells();
                     if (Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width <= 720)
                     {
-                        CounterLayout.Margin = new Thickness(5, 0);
+                        //CounterLayout.Margin = new Thickness(5, 0);
                         meterRootStack.Margin = new Thickness(5);
 
                         NameLbl.FontSize = 15;
@@ -135,24 +135,24 @@ namespace xamarinJKH.Counters
             this.meter = meter;
             this.meters = meters;
             var backClick = new TapGestureRecognizer();
-            d41_.IsVisible = IntegerPoint == 6;
+            //d41_.IsVisible = IntegerPoint == 6;
             var screen = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width;
             if (IntegerPoint == 6 || (screen <= 720 && Device.RuntimePlatform == "Android"))
             {
-                var view = d41_.Parent as StackLayout;
-                view.Margins<StackLayout>(-10, 0, -10, 0);
+               // var view = d41_.Parent as StackLayout;
+                //view.Margins<StackLayout>(-10, 0, -10, 0);
                 if (Device.RuntimePlatform == "Android")
                 {
-                    CounterLayout.Spacing = -5;
+                    //CounterLayout.Spacing = -5;
                     FrameMeterReading.IsClippedToBounds = true;
                     if (screen <= 720)
                     {
-                        (view.Parent as StackLayout).Margin = new Thickness(0);
+                     //   (view.Parent as StackLayout).Margin = new Thickness(0);
                     }
                     if (screen == 480)
                     {
-                        CounterDigitsContainer.Spacing = 3;
-                        CounterDigitsContainer.Padding = new Thickness(10, 0);
+                        //CounterDigitsContainer.Spacing = 3;
+                        //CounterDigitsContainer.Padding = new Thickness(10, 0);
                     }
                 }
                 
@@ -199,26 +199,26 @@ namespace xamarinJKH.Counters
 
             SetTextAndColor();
 
-            d2.OnBackspace += D2_OnBackspace;
-            d3.OnBackspace += D3_OnBackspace;
-            d4.OnBackspace += D4_OnBackspace;
-            d5.OnBackspace += D5_OnBackspace;
-            d6.OnBackspace += D6_OnBackspace;
-            d7.OnBackspace += D7_OnBackspace;
-            d8.OnBackspace += D8_OnBackspace;
+            //d2.OnBackspace += D2_OnBackspace;
+            //d3.OnBackspace += D3_OnBackspace;
+            //d4.OnBackspace += D4_OnBackspace;
+            //d5.OnBackspace += D5_OnBackspace;
+            //d6.OnBackspace += D6_OnBackspace;
+            //d7.OnBackspace += D7_OnBackspace;
+            //d8.OnBackspace += D8_OnBackspace;
 
-            d41.OnBackspace += D41_OnBackspace;
+            //d41.OnBackspace += D41_OnBackspace;
 
 
-            d1.Focused += Entry_Focused;
-            d2.Focused += Entry_Focused;
-            d3.Focused += Entry_Focused;
-            d4.Focused += Entry_Focused;
-            d5.Focused += Entry_Focused;
-            d6.Focused += Entry_Focused;
-            d7.Focused += Entry_Focused;
-            d8.Focused += Entry_Focused;
-            d41.Focused += Entry_Focused;
+            //d1.Focused += Entry_Focused;
+            //d2.Focused += Entry_Focused;
+            //d3.Focused += Entry_Focused;
+            //d4.Focused += Entry_Focused;
+            //d5.Focused += Entry_Focused;
+            //d6.Focused += Entry_Focused;
+            //d7.Focused += Entry_Focused;
+            //d8.Focused += Entry_Focused;
+            //d41.Focused += Entry_Focused;
 
             Data.Focused += Entry_Focused;
 
@@ -232,52 +232,53 @@ namespace xamarinJKH.Counters
             //d7.Unfocused += Entry_Unfocused;
             //d8.Unfocused += Entry_Unfocused;
 
-            StackLayout cds6 = (StackLayout)CounterDigitsContainer.FindByName("cds6"); ;
-            StackLayout cds7 = (StackLayout)CounterDigitsContainer.FindByName("cds7"); ;
-            StackLayout cds8 = (StackLayout)CounterDigitsContainer.FindByName("cds8"); ;
+            //StackLayout cds6 = (StackLayout)CounterDigitsContainer.FindByName("cds6"); ;
+            //StackLayout cds7 = (StackLayout)CounterDigitsContainer.FindByName("cds7"); ;
+            //StackLayout cds8 = (StackLayout)CounterDigitsContainer.FindByName("cds8"); ;
 
             Analytics.TrackEvent("Установка кол-ва знаков после запятой " + DecimalPoint);
-            switch (DecimalPoint)
-            {
-                case 0: Divider.IsVisible = false;
-                    (d6.Parent.Parent as VisualElement).IsVisible = (d7.Parent.Parent as VisualElement).IsVisible = (d8.Parent.Parent as VisualElement).IsVisible = false;
-                    d6.IsVisible = d7.IsVisible = d8.IsVisible = false;
+            //switch (DecimalPoint)
+            //{
+            //    case 0: 
+            //        Divider.IsVisible = false;
+            //        (d6.Parent.Parent as VisualElement).IsVisible = (d7.Parent.Parent as VisualElement).IsVisible = (d8.Parent.Parent as VisualElement).IsVisible = false;
+            //        d6.IsVisible = d7.IsVisible = d8.IsVisible = false;
                    
                       
-                    CounterDigitsContainer.Children.Remove(cds6);
+            //        CounterDigitsContainer.Children.Remove(cds6);
                       
-                    CounterDigitsContainer.Children.Remove(cds7);
+            //        CounterDigitsContainer.Children.Remove(cds7);
                       
-                    CounterDigitsContainer.Children.Remove(cds8);
-                    pc5.CornerRadius = new CornerRadius(5, 5, 0, 5);
-                    break;
-                case 1: Divider.IsVisible = true;
-                    (d7.Parent.Parent as VisualElement).IsVisible = (d8.Parent.Parent as VisualElement).IsVisible = false;
-                    (d6.Parent.Parent as VisualElement).IsVisible = d6.IsVisible = true;
-                    d7.IsVisible = d8.IsVisible = false;
+            //        CounterDigitsContainer.Children.Remove(cds8);
+            //        pc5.CornerRadius = new CornerRadius(5, 5, 0, 5);
+            //        break;
+            //    case 1: Divider.IsVisible = true;
+            //        (d7.Parent.Parent as VisualElement).IsVisible = (d8.Parent.Parent as VisualElement).IsVisible = false;
+            //        (d6.Parent.Parent as VisualElement).IsVisible = d6.IsVisible = true;
+            //        d7.IsVisible = d8.IsVisible = false;
 
                     
-                    CounterDigitsContainer.Children.Remove(cds7);
-                    CounterDigitsContainer.Children.Remove(cds8);
+            //        CounterDigitsContainer.Children.Remove(cds7);
+            //        CounterDigitsContainer.Children.Remove(cds8);
 
-                    pc6.CornerRadius = new CornerRadius(5, 5, 0, 5);
-                    break;
-                case 2: Divider.IsVisible = true;
-                    (d6.Parent.Parent as VisualElement).IsVisible = d6.IsVisible = (d7.Parent.Parent as VisualElement).IsVisible = d7.IsVisible = true;
-                    (d8.Parent.Parent as VisualElement).IsVisible = false;
-                    d8.IsVisible = false;
+            //        pc6.CornerRadius = new CornerRadius(5, 5, 0, 5);
+            //        break;
+            //    case 2: Divider.IsVisible = true;
+            //        (d6.Parent.Parent as VisualElement).IsVisible = d6.IsVisible = (d7.Parent.Parent as VisualElement).IsVisible = d7.IsVisible = true;
+            //        (d8.Parent.Parent as VisualElement).IsVisible = false;
+            //        d8.IsVisible = false;
 
-                    CounterDigitsContainer.Children.Remove(cds8);
+            //        CounterDigitsContainer.Children.Remove(cds8);
 
-                    pc7.CornerRadius = new CornerRadius(5, 5, 0, 5);
-                    break;
-                case 3: Divider.IsVisible = true;
-                    (d6.Parent.Parent as VisualElement).IsVisible = 
-                        d6.IsVisible = (d7.Parent.Parent as VisualElement).IsVisible = 
-                        d7.IsVisible = (d8.Parent.Parent as VisualElement).IsVisible = d8.IsVisible = true;
-                    break;
+            //        pc7.CornerRadius = new CornerRadius(5, 5, 0, 5);
+            //        break;
+            //    case 3: Divider.IsVisible = true;
+            //        (d6.Parent.Parent as VisualElement).IsVisible = 
+            //            d6.IsVisible = (d7.Parent.Parent as VisualElement).IsVisible = 
+            //            d7.IsVisible = (d8.Parent.Parent as VisualElement).IsVisible = d8.IsVisible = true;
+            //        break;
                     
-            }
+            //}
         }
 
         private async void SetMask()
@@ -305,7 +306,23 @@ namespace xamarinJKH.Counters
         private async void Data_TextChanged(object sender, TextChangedEventArgs e)
         {
             var entry = sender as Entry;
-          
+
+            if (e.NewTextValue == "," || e.NewTextValue == ".")
+            {
+                entry.TextChanged -= Data_TextChanged; 
+                    
+                entry.Text = e.OldTextValue;
+                entry.TextChanged += Data_TextChanged;
+                return;
+            }
+            
+            if (e.NewTextValue.Count(_=>_==',')>1 || e.NewTextValue.Count(_ => _ == '.') > 1)
+            {
+                
+                entry.Text = e.NewTextValue.Remove(e.NewTextValue.Length - 1); 
+                return;
+            }
+
             if ((entry.Text.Contains(",") || entry.Text.Contains(".")) && entry.Text.Length > 1)
             {
                 var numbers = entry.Text.Split(',', '.');
@@ -422,130 +439,130 @@ namespace xamarinJKH.Counters
             Analytics.TrackEvent("Установка предыдущих показаний" + counterThisMonth );
 
             var d = GetNumbers(counterThisMonth);
-            if (IntegerPoint == 5 || IntegerPoint ==0)
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                d8.Text = d[0];
-                d7.Text = d[1];
-                d6.Text = d[2];
-                d5.Text = d[3];
-                d4.Text = d[4];
-                d3.Text = d[5];
-                d2.Text = d[6];
-                d1.Text = d[7];                
-            });
+            //if (IntegerPoint == 5 || IntegerPoint ==0)
+            //Device.BeginInvokeOnMainThread(() =>
+            //{
+            //    d8.Text = d[0];
+            //    d7.Text = d[1];
+            //    d6.Text = d[2];
+            //    d5.Text = d[3];
+            //    d4.Text = d[4];
+            //    d3.Text = d[5];
+            //    d2.Text = d[6];
+            //    d1.Text = d[7];                
+            //});
 
-            if (IntegerPoint == 6)
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    d8.Text = d[0];
-                    d7.Text = d[1];
-                    d6.Text = d[2];
-                    d41.Text = d[3];
-                    d5.Text = d[4];
-                    d4.Text = d[5];
-                    d3.Text = d[6];
-                    d2.Text = d[7];
-                    d1.Text = d[8];
-                });
-        }
-
-        private void D2_OnBackspace(object sender, EventArgs e)
-        {
-            if(string.IsNullOrWhiteSpace(d2.Text))
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    d1.Text = "";
-                    d1.Focus();                    
-                });
-            }
-        }
-        private void D3_OnBackspace(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(d3.Text))
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    d2.Text = "";
-                    d2.Focus();
-                });
-            }
-        }
-        private void D4_OnBackspace(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(d4.Text))
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    d3.Text = "";
-                    d3.Focus();
-                });
-            }
-        }
-        private void D5_OnBackspace(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(d5.Text))
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    d4.Text = "";
-                    d4.Focus();
-                });
-            }
-        }
-        private void D6_OnBackspace(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(d6.Text))
-            {
-                if (IntegerPoint == 5|| IntegerPoint ==0)
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    d5.Text = "";
-                    d5.Focus();
-                });
-                if (IntegerPoint == 6)
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        d41.Text = "";
-                        d41.Focus();
-                    });
-            }
-        }
-        private void D7_OnBackspace(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(d7.Text))
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    d6.Text = "";
-                    d6.Focus();
-                });
-            }
-        }
-        private void D8_OnBackspace(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(d8.Text))
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    d7.Text = "";
-                    d7.Focus();
-                });
-            }
+            //if (IntegerPoint == 6)
+            //    Device.BeginInvokeOnMainThread(() =>
+            //    {
+            //        d8.Text = d[0];
+            //        d7.Text = d[1];
+            //        d6.Text = d[2];
+            //        d41.Text = d[3];
+            //        d5.Text = d[4];
+            //        d4.Text = d[5];
+            //        d3.Text = d[6];
+            //        d2.Text = d[7];
+            //        d1.Text = d[8];
+            //    });
         }
 
-        private void D41_OnBackspace(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(d41.Text))
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    d5.Text = "";
-                    d5.Focus();
-                });
-            }
-        }
+        //private void D2_OnBackspace(object sender, EventArgs e)
+        //{
+        //    if(string.IsNullOrWhiteSpace(d2.Text))
+        //    {
+        //        Device.BeginInvokeOnMainThread(() =>
+        //        {
+        //            d1.Text = "";
+        //            d1.Focus();                    
+        //        });
+        //    }
+        //}
+        //private void D3_OnBackspace(object sender, EventArgs e)
+        //{
+        //    if (string.IsNullOrWhiteSpace(d3.Text))
+        //    {
+        //        Device.BeginInvokeOnMainThread(() =>
+        //        {
+        //            d2.Text = "";
+        //            d2.Focus();
+        //        });
+        //    }
+        //}
+        //private void D4_OnBackspace(object sender, EventArgs e)
+        //{
+        //    if (string.IsNullOrWhiteSpace(d4.Text))
+        //    {
+        //        Device.BeginInvokeOnMainThread(() =>
+        //        {
+        //            d3.Text = "";
+        //            d3.Focus();
+        //        });
+        //    }
+        //}
+        //private void D5_OnBackspace(object sender, EventArgs e)
+        //{
+        //    if (string.IsNullOrWhiteSpace(d5.Text))
+        //    {
+        //        Device.BeginInvokeOnMainThread(() =>
+        //        {
+        //            d4.Text = "";
+        //            d4.Focus();
+        //        });
+        //    }
+        //}
+        //private void D6_OnBackspace(object sender, EventArgs e)
+        //{
+        //    if (string.IsNullOrWhiteSpace(d6.Text))
+        //    {
+        //        if (IntegerPoint == 5|| IntegerPoint ==0)
+        //        Device.BeginInvokeOnMainThread(() =>
+        //        {
+        //            d5.Text = "";
+        //            d5.Focus();
+        //        });
+        //        if (IntegerPoint == 6)
+        //            Device.BeginInvokeOnMainThread(() =>
+        //            {
+        //                d41.Text = "";
+        //                d41.Focus();
+        //            });
+        //    }
+        //}
+        //private void D7_OnBackspace(object sender, EventArgs e)
+        //{
+        //    if (string.IsNullOrWhiteSpace(d7.Text))
+        //    {
+        //        Device.BeginInvokeOnMainThread(() =>
+        //        {
+        //            d6.Text = "";
+        //            d6.Focus();
+        //        });
+        //    }
+        //}
+        //private void D8_OnBackspace(object sender, EventArgs e)
+        //{
+        //    if (string.IsNullOrWhiteSpace(d8.Text))
+        //    {
+        //        Device.BeginInvokeOnMainThread(() =>
+        //        {
+        //            d7.Text = "";
+        //            d7.Focus();
+        //        });
+        //    }
+        //}
+
+        //private void D41_OnBackspace(object sender, EventArgs e)
+        //{
+        //    if (string.IsNullOrWhiteSpace(d41.Text))
+        //    {
+        //        Device.BeginInvokeOnMainThread(() =>
+        //        {
+        //            d5.Text = "";
+        //            d5.Focus();
+        //        });
+        //    }
+        //}
 
         List<string> GetNumbers(decimal counter)
         {
@@ -574,44 +591,44 @@ namespace xamarinJKH.Counters
             var d = GetNumbers(counterPrevMonth);
             //Prev.Text = counterPrevMonth.ToString();
 
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                if (IntegerPoint == 6)
-                {
-                    d08.Text = d[0];
-                    d07.Text = d[1];
-                    d06.Text = d[2];
-                    d041.Text = d[3];
-                    d05.Text = d[4];
-                    d04.Text = d[5];
-                    d03.Text = d[6];
-                    d02.Text = d[7];
-                    d01.Text = d[8];
-                }
-                else
-                {
-                    d08.Text = d[0];
-                    d07.Text = d[1];
-                    d06.Text = d[2];
-                    d05.Text = d[3];
-                    d04.Text = d[4];
-                    d03.Text = d[5];
-                    d02.Text = d[6];
-                    d01.Text = d[7];
-                }
+            //Device.BeginInvokeOnMainThread(() =>
+            //{
+            //    if (IntegerPoint == 6)
+            //    {
+            //        d08.Text = d[0];
+            //        d07.Text = d[1];
+            //        d06.Text = d[2];
+            //        d041.Text = d[3];
+            //        d05.Text = d[4];
+            //        d04.Text = d[5];
+            //        d03.Text = d[6];
+            //        d02.Text = d[7];
+            //        d01.Text = d[8];
+            //    }
+            //    else
+            //    {
+            //        d08.Text = d[0];
+            //        d07.Text = d[1];
+            //        d06.Text = d[2];
+            //        d05.Text = d[3];
+            //        d04.Text = d[4];
+            //        d03.Text = d[5];
+            //        d02.Text = d[6];
+            //        d01.Text = d[7];
+            //    }
                 
                 
-            });            
+            //});            
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                d1.Unfocus();
-                d1.Focus();
-            });
+            //Device.BeginInvokeOnMainThread(() =>
+            //{
+            //    d1.Unfocus();
+            //    d1.Focus();
+            //});
             Device.BeginInvokeOnMainThread(() => { Data.Focus(); });
         }
 
@@ -625,39 +642,39 @@ namespace xamarinJKH.Counters
 
             try {
                 string count ="";
-                var p1 = -1;
-                var p2 = -1;
-                var p3 = -1;
-                var p4 = -1;
-                var p5 = -1;
-                var p6 = -1;
-                var p7 = -1;
-                var p8 = -1;
-                var p41 = -1;
+                //var p1 = -1;
+                //var p2 = -1;
+                //var p3 = -1;
+                //var p4 = -1;
+                //var p5 = -1;
+                //var p6 = -1;
+                //var p7 = -1;
+                //var p8 = -1;
+                //var p41 = -1;
 
-                bool tryParse1 = int.TryParse(d1.Text,out p1);
-                bool tryParse2 = int.TryParse(d2.Text, out p2);
-                bool tryParse3 = int.TryParse(d3.Text, out p3);
-                bool tryParse4 = int.TryParse(d4.Text, out p4);
-                bool tryParse5 = int.TryParse(d5.Text, out p5);
-                bool tryParse6 = int.TryParse(string.IsNullOrWhiteSpace(d6.Text) ? "0" : d6.Text, out p6);
-                bool tryParse7 = int.TryParse(string.IsNullOrWhiteSpace(d7.Text) ? "0" : d7.Text, out p7);
-                bool tryParse8 = int.TryParse(string.IsNullOrWhiteSpace(d8.Text) ? "0" : d8.Text, out p8);
-                bool tryParse9 = int.TryParse(d41.Text == null ? "0" : d41.Text, out p41);
-                bool All = tryParse1 && tryParse2 && tryParse3 && tryParse4 && tryParse5 && tryParse6 && tryParse7 && tryParse8 && tryParse9; // Проверка на вводимые символы
+                //bool tryParse1 = int.TryParse(d1.Text,out p1);
+                //bool tryParse2 = int.TryParse(d2.Text, out p2);
+                //bool tryParse3 = int.TryParse(d3.Text, out p3);
+                //bool tryParse4 = int.TryParse(d4.Text, out p4);
+                //bool tryParse5 = int.TryParse(d5.Text, out p5);
+                //bool tryParse6 = int.TryParse(string.IsNullOrWhiteSpace(d6.Text) ? "0" : d6.Text, out p6);
+                //bool tryParse7 = int.TryParse(string.IsNullOrWhiteSpace(d7.Text) ? "0" : d7.Text, out p7);
+                //bool tryParse8 = int.TryParse(string.IsNullOrWhiteSpace(d8.Text) ? "0" : d8.Text, out p8);
+                //bool tryParse9 = int.TryParse(d41.Text == null ? "0" : d41.Text, out p41);
+                //bool All = tryParse1 && tryParse2 && tryParse3 && tryParse4 && tryParse5 && tryParse6 && tryParse7 && tryParse8 && tryParse9; // Проверка на вводимые символы
 
-                bool isNotNull = (p1>0 || p2 >0 || p3 > 0 || p4 > 0 || p5 >0 || p6 >0 || p7 >0 || p8 > 0 || p41 >0); // Проверка что бы все клетки не были бы нулями
-                if (All || 1 == 1) //  && IntegerPoint == 6 || d41.Text == null && (IntegerPoint == 5 || IntegerPoint ==0)
+                //bool isNotNull = (p1>0 || p2 >0 || p3 > 0 || p4 > 0 || p5 >0 || p6 >0 || p7 >0 || p8 > 0 || p41 >0); // Проверка что бы все клетки не были бы нулями
+                //if (All || 1 == 1) //  && IntegerPoint == 6 || d41.Text == null && (IntegerPoint == 5 || IntegerPoint ==0)
                 {
-                    count += d1.Text;// != "0" ? d1.Text : "";
-                    count += d2.Text;// != "0" ? d2.Text : "";
-                    count += d3.Text;// != "0" ? d3.Text : "";
-                    count += d4.Text;// != "0" ? d4.Text : "";
-                    count += d5.Text;
-                    count += IntegerPoint == 6 ? d41.Text + "," : ",";
-                    count += d6.Text;// != "0" ? d6.Text : "";
-                    count += d7.Text;// != "0" ? d7.Text : "";
-                    count += d8.Text;// != "0" ? d8.Text : "";
+                    //count += d1.Text;// != "0" ? d1.Text : "";
+                    //count += d2.Text;// != "0" ? d2.Text : "";
+                    //count += d3.Text;// != "0" ? d3.Text : "";
+                    //count += d4.Text;// != "0" ? d4.Text : "";
+                    //count += d5.Text;
+                    //count += IntegerPoint == 6 ? d41.Text + "," : ",";
+                    //count += d6.Text;// != "0" ? d6.Text : "";
+                    //count += d7.Text;// != "0" ? d7.Text : "";
+                    //count += d8.Text;// != "0" ? d8.Text : "";
 
                     count = Data.Text;
                     decimal prevPenencies;
@@ -687,23 +704,23 @@ namespace xamarinJKH.Counters
                             if (_counterThisMonth == 0)
                             {
                                 meterReadingName.Text = string.IsNullOrWhiteSpace(meter.Tariff2Name) ? AppResources.Tarif2Meters : AppResources.EnterTarifMeters + " \"" + meter.Tariff2Name + "\""; //AppResources.Tarif2Meters;// "Показания по второму тарифу";                 
-                                d1.Text = "";
-                                d2.Text = "";
-                                d3.Text = "";
-                                d4.Text = "";
-                                d5.Text = "";
-                                d6.Text = "";
-                                d7.Text = "";
-                                d8.Text = "";
+                                //d1.Text = "";
+                                //d2.Text = "";
+                                //d3.Text = "";
+                                //d4.Text = "";
+                                //d5.Text = "";
+                                //d6.Text = "";
+                                //d7.Text = "";
+                                //d8.Text = "";
                                 Data.Text = string.Empty;
                             }
                             else
                             {
                                 meterReadingName.Text = string.IsNullOrWhiteSpace(meter.Tariff2Name) ? AppResources.EditMetersTarif2 : AppResources.EditMetersTarif + " \"" + meter.Tariff2Name + "\""; // "изменить показания по второму тарифу";
-                                if(meter.Values[0].ValueT2!=null)
-                                SetCurrentValue(Convert.ToDecimal(meter.Values[0].ValueT2));
-                                d1.Unfocus();
-                                d1.Focus();
+                                if (meter.Values[0].ValueT2 != null)
+                                    SetCurrentValue(Convert.ToDecimal(meter.Values[0].ValueT2));
+                                //d1.Unfocus();
+                                //d1.Focus();
                                 Data.Unfocus();
                                 Data.Focus();
                             }
@@ -717,9 +734,9 @@ namespace xamarinJKH.Counters
                             //d7.Text = "";
                             //d8.Text = "";
 
-                            
+
                             if (meter.Values != null && meter.Values.Count >= 1)
-                            {                                
+                            {
                                 int monthCounter;
                                 var parceMonthOk = int.TryParse(meter.Values[0].Period.Split('.')[1], out monthCounter);
                                 if (parceMonthOk)
@@ -736,14 +753,14 @@ namespace xamarinJKH.Counters
                                         else
                                         {
                                             prevPenencies = 0;
-                                        }                                                                                    
+                                        }
                                     }
                                     else
                                     {
                                         if (meter.Values[0].ValueT2 != null)
                                             prevPenencies = Convert.ToDecimal(meter.Values[0].ValueT2);
                                         else
-                                            prevPenencies = 0;                                                                             
+                                            prevPenencies = 0;
                                     }
                                 }
                                 else
@@ -756,7 +773,7 @@ namespace xamarinJKH.Counters
                             }
                             else
                             {
-                                 prevPenencies =  0;                                
+                                prevPenencies = 0;
                             }
 
                             SetPreviousValue(prevPenencies);
@@ -774,14 +791,14 @@ namespace xamarinJKH.Counters
                             if (_counterThisMonth == 0)
                             {
                                 meterReadingName.Text = string.IsNullOrWhiteSpace(meter.Tariff3Name) ? AppResources.Tarif3Meters : AppResources.EnterTarifMeters + " \"" + meter.Tariff3Name + "\""; //AppResources.Tarif3Meters;// "Показания по 3му тарифу";                 
-                                d1.Text = "";
-                                d2.Text = "";
-                                d3.Text = "";
-                                d4.Text = "";
-                                d5.Text = "";
-                                d6.Text = "";
-                                d7.Text = "";
-                                d8.Text = "";
+                                //d1.Text = "";
+                                //d2.Text = "";
+                                //d3.Text = "";
+                                //d4.Text = "";
+                                //d5.Text = "";
+                                //d6.Text = "";
+                                //d7.Text = "";
+                                //d8.Text = "";
                                 Data.Text = string.Empty;
                             }
                             else
@@ -789,8 +806,8 @@ namespace xamarinJKH.Counters
                                 meterReadingName.Text = string.IsNullOrWhiteSpace(meter.Tariff3Name) ? AppResources.EditMetersTarif3 : AppResources.EditMetersTarif + " \"" + meter.Tariff3Name + "\""; //"Изменить показания по 3му тарифу";                 
                                 if (meter.Values[0].ValueT3 != null)
                                     SetCurrent(Convert.ToDecimal(meter.Values[0].ValueT3));
-                                d1.Unfocus();
-                                d1.Focus();
+                                //d1.Unfocus();
+                                //d1.Focus();
                                 Data.Unfocus();
                                 Data.Focus();
                             }
@@ -857,10 +874,10 @@ namespace xamarinJKH.Counters
                             break;
                     }
                 }
-                else
-                {
-                    await DisplayAlert(AppResources.ErrorTitle, AppResources.AddMetersNotNumber, "OK");
-                }
+                //else
+                //{
+                //    await DisplayAlert(AppResources.ErrorTitle, AppResources.AddMetersNotNumber, "OK");
+                //}
             }
             catch(Exception ex)
             {
@@ -925,7 +942,7 @@ namespace xamarinJKH.Counters
             UkName.Text = Settings.MobileSettings.main_name;
          
             NameLbl.Text = meter.CustomName != null && !meter.CustomName.Equals("") ? meter.CustomName : meter.Resource;
-            LabelseparatorFio.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
+            //LabelseparatorFio.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             progress.Color = (Color)Application.Current.Resources["MainColor"];
             FrameBtnLogin.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             FormattedString formattedUniq = new FormattedString();
@@ -1074,293 +1091,293 @@ namespace xamarinJKH.Counters
             
         }
 
-        private void d1_Completed(object sender, EventArgs e)
-        {
+        //private void d1_Completed(object sender, EventArgs e)
+        //{
 
-            var entryNew = sender as CounterEntryNew;
+        //    var entryNew = sender as CounterEntryNew;
 
-            if(Xamarin.Essentials.DeviceInfo.Platform==DevicePlatform.iOS)
-            {
-                if(((TextChangedEventArgs)e).NewTextValue.Length>1)
-                {
-                    Device.BeginInvokeOnMainThread(() => {
-                        d1.TextChanged -= d1_Completed;
-                    d1.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
-                        d1.TextChanged += d1_Completed;
-                    });
-                }
-            }
+        //    if(Xamarin.Essentials.DeviceInfo.Platform==DevicePlatform.iOS)
+        //    {
+        //        if(((TextChangedEventArgs)e).NewTextValue.Length>1)
+        //        {
+        //            Device.BeginInvokeOnMainThread(() => {
+        //                d1.TextChanged -= d1_Completed;
+        //            d1.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
+        //                d1.TextChanged += d1_Completed;
+        //            });
+        //        }
+        //    }
 
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                if(string.IsNullOrWhiteSpace(entryNew.Text))
-                {
-                    return;
-                }
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        if(string.IsNullOrWhiteSpace(entryNew.Text))
+        //        {
+        //            return;
+        //        }
                 
-                if(!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
-                {
-                    entryNew.Text = "";
-                    entryNew.Focus();
-                    return;
-                }
+        //        if(!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+        //        {
+        //            entryNew.Text = "";
+        //            entryNew.Focus();
+        //            return;
+        //        }
                 
-                d2.Unfocus();
-                d2.Focus();                
-            });
-        }
-        private void d2_Completed(object sender, EventArgs e)
-        {
-            var entryNew = sender as CounterEntryNew;
-            if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
-            {
-                if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
-                {
-                    Device.BeginInvokeOnMainThread(() => {
-                        d2.TextChanged -= d2_Completed;
-                        d2.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
-                        d2.TextChanged += d2_Completed;
-                    });
-                }
-            }
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                if (string.IsNullOrWhiteSpace(entryNew.Text))
-                {
-                    return;
-                }
+        //        d2.Unfocus();
+        //        d2.Focus();                
+        //    });
+        //}
+        //private void d2_Completed(object sender, EventArgs e)
+        //{
+        //    var entryNew = sender as CounterEntryNew;
+        //    if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+        //    {
+        //        if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
+        //        {
+        //            Device.BeginInvokeOnMainThread(() => {
+        //                d2.TextChanged -= d2_Completed;
+        //                d2.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
+        //                d2.TextChanged += d2_Completed;
+        //            });
+        //        }
+        //    }
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        if (string.IsNullOrWhiteSpace(entryNew.Text))
+        //        {
+        //            return;
+        //        }
 
-                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
-                {
-                    entryNew.Text = "";
-                    entryNew.Focus();
-                    return;
-                }
+        //        if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+        //        {
+        //            entryNew.Text = "";
+        //            entryNew.Focus();
+        //            return;
+        //        }
 
-                d3.Unfocus();
-                d3.Focus();
-            });
-        }
-        private void d3_Completed(object sender, EventArgs e)
-        {
-            var entryNew = sender as CounterEntryNew;
-            if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
-            {
-                if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
-                {
-                    Device.BeginInvokeOnMainThread(() => {
-                        d3.TextChanged -= d3_Completed;
-                        d3.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
-                        d3.TextChanged += d3_Completed;
-                    });
-                }
-            }
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                if (string.IsNullOrWhiteSpace(entryNew.Text))
-                {
-                    return;
-                }
+        //        d3.Unfocus();
+        //        d3.Focus();
+        //    });
+        //}
+        //private void d3_Completed(object sender, EventArgs e)
+        //{
+        //    var entryNew = sender as CounterEntryNew;
+        //    if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+        //    {
+        //        if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
+        //        {
+        //            Device.BeginInvokeOnMainThread(() => {
+        //                d3.TextChanged -= d3_Completed;
+        //                d3.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
+        //                d3.TextChanged += d3_Completed;
+        //            });
+        //        }
+        //    }
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        if (string.IsNullOrWhiteSpace(entryNew.Text))
+        //        {
+        //            return;
+        //        }
 
-                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
-                {
-                    entryNew.Text = "";
-                    entryNew.Focus();
-                    return;
-                }
+        //        if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+        //        {
+        //            entryNew.Text = "";
+        //            entryNew.Focus();
+        //            return;
+        //        }
 
-                d4.Unfocus();
-                d4.Focus();
-            });
-        }
-        private void d4_Completed(object sender, EventArgs e)
-        {
-            var entryNew = sender as CounterEntryNew;
-            if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
-            {
-                if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
-                {
-                    Device.BeginInvokeOnMainThread(() => {
-                        d4.TextChanged -= d4_Completed;
-                        d4.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
-                        d4.TextChanged += d4_Completed;
-                    });
-                }
-            }
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                if (string.IsNullOrWhiteSpace(entryNew.Text))
-                {
-                    return;
-                }
+        //        d4.Unfocus();
+        //        d4.Focus();
+        //    });
+        //}
+        //private void d4_Completed(object sender, EventArgs e)
+        //{
+        //    var entryNew = sender as CounterEntryNew;
+        //    if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+        //    {
+        //        if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
+        //        {
+        //            Device.BeginInvokeOnMainThread(() => {
+        //                d4.TextChanged -= d4_Completed;
+        //                d4.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
+        //                d4.TextChanged += d4_Completed;
+        //            });
+        //        }
+        //    }
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        if (string.IsNullOrWhiteSpace(entryNew.Text))
+        //        {
+        //            return;
+        //        }
 
-                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
-                {
-                    entryNew.Text = "";
-                    entryNew.Focus();
-                    return;
-                }
+        //        if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+        //        {
+        //            entryNew.Text = "";
+        //            entryNew.Focus();
+        //            return;
+        //        }
 
-                d5.Unfocus();
-                d5.Focus();
-            });
-        }
-        private void d5_Completed(object sender, EventArgs e)
-        {
-            var entryNew = sender as CounterEntryNew;
-            if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
-            {
-                if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
-                {
-                    Device.BeginInvokeOnMainThread(() => {
-                        d5.TextChanged -= d5_Completed;
-                        d5.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
-                        d5.TextChanged += d5_Completed;
-                    });
-                }
-            }
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                if (string.IsNullOrWhiteSpace(entryNew.Text))
-                {
-                    return;
-                }
+        //        d5.Unfocus();
+        //        d5.Focus();
+        //    });
+        //}
+        //private void d5_Completed(object sender, EventArgs e)
+        //{
+        //    var entryNew = sender as CounterEntryNew;
+        //    if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+        //    {
+        //        if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
+        //        {
+        //            Device.BeginInvokeOnMainThread(() => {
+        //                d5.TextChanged -= d5_Completed;
+        //                d5.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
+        //                d5.TextChanged += d5_Completed;
+        //            });
+        //        }
+        //    }
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        if (string.IsNullOrWhiteSpace(entryNew.Text))
+        //        {
+        //            return;
+        //        }
 
-                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
-                {
-                    entryNew.Text = "";
-                    entryNew.Focus();
-                    return;
-                }
+        //        if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+        //        {
+        //            entryNew.Text = "";
+        //            entryNew.Focus();
+        //            return;
+        //        }
 
-                d6.Unfocus();
-                if (DecimalPoint >= 1)
-                {
-                    if (IntegerPoint == 5 || IntegerPoint ==0)
-                        d6.Focus();
-                    if (IntegerPoint == 6)
-                        d41.Focus();
-                }
-            });
-        }
-        private void d6_Completed(object sender, EventArgs e)
-        {
-            var entryNew = sender as CounterEntryNew;
-            if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
-            {
-                if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
-                {
-                    Device.BeginInvokeOnMainThread(() => {
-                        d6.TextChanged -= d6_Completed;
-                        d6.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
-                        d6.TextChanged += d6_Completed;
-                    });
-                }
-            }
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                if (string.IsNullOrWhiteSpace(entryNew.Text))
-                {
-                    return;
-                }
+        //        d6.Unfocus();
+        //        if (DecimalPoint >= 1)
+        //        {
+        //            if (IntegerPoint == 5 || IntegerPoint ==0)
+        //                d6.Focus();
+        //            if (IntegerPoint == 6)
+        //                d41.Focus();
+        //        }
+        //    });
+        //}
+        //private void d6_Completed(object sender, EventArgs e)
+        //{
+        //    var entryNew = sender as CounterEntryNew;
+        //    if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+        //    {
+        //        if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
+        //        {
+        //            Device.BeginInvokeOnMainThread(() => {
+        //                d6.TextChanged -= d6_Completed;
+        //                d6.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
+        //                d6.TextChanged += d6_Completed;
+        //            });
+        //        }
+        //    }
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        if (string.IsNullOrWhiteSpace(entryNew.Text))
+        //        {
+        //            return;
+        //        }
 
-                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
-                {
-                    entryNew.Text = "";
-                    entryNew.Focus();
-                    return;
-                }
+        //        if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+        //        {
+        //            entryNew.Text = "";
+        //            entryNew.Focus();
+        //            return;
+        //        }
 
-                d7.Unfocus();
-                if (DecimalPoint >= 2)
-                    d7.Focus();
-            });
-        }
-        private void d7_Completed(object sender, EventArgs e)
-        {
-            var entryNew = sender as CounterEntryNew;
-            if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
-            {
-                if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
-                {
-                    Device.BeginInvokeOnMainThread(() => {
-                        d7.TextChanged -= d7_Completed;
-                        d7.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
-                        d7.TextChanged += d7_Completed;
-                    });
-                }
-            }
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                if (string.IsNullOrWhiteSpace(entryNew.Text))
-                {
-                    return;
-                }
+        //        d7.Unfocus();
+        //        if (DecimalPoint >= 2)
+        //            d7.Focus();
+        //    });
+        //}
+        //private void d7_Completed(object sender, EventArgs e)
+        //{
+        //    var entryNew = sender as CounterEntryNew;
+        //    if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+        //    {
+        //        if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
+        //        {
+        //            Device.BeginInvokeOnMainThread(() => {
+        //                d7.TextChanged -= d7_Completed;
+        //                d7.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
+        //                d7.TextChanged += d7_Completed;
+        //            });
+        //        }
+        //    }
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        if (string.IsNullOrWhiteSpace(entryNew.Text))
+        //        {
+        //            return;
+        //        }
 
-                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
-                {
-                    entryNew.Text = "";
-                    entryNew.Focus();
-                    return;
-                }
+        //        if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+        //        {
+        //            entryNew.Text = "";
+        //            entryNew.Focus();
+        //            return;
+        //        }
 
-                d8.Unfocus();
-                if (DecimalPoint >= 3)
-                    d8.Focus();
-            });
-        }
+        //        d8.Unfocus();
+        //        if (DecimalPoint >= 3)
+        //            d8.Focus();
+        //    });
+        //}
 
-        private void d8_Completed(object sender, EventArgs e)
-        {
-            var entryNew = sender as CounterEntryNew;
-            if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
-            {
-                if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
-                {
-                    Device.BeginInvokeOnMainThread(() => {
-                        d8.TextChanged -= d8_Completed;
-                        d8.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
-                        d8.TextChanged += d8_Completed;
-                    });
-                }
-            }
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                if (string.IsNullOrWhiteSpace(entryNew.Text))
-                {
-                    return;
-                }
+        //private void d8_Completed(object sender, EventArgs e)
+        //{
+        //    var entryNew = sender as CounterEntryNew;
+        //    if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
+        //    {
+        //        if (((TextChangedEventArgs)e).NewTextValue.Length > 1)
+        //        {
+        //            Device.BeginInvokeOnMainThread(() => {
+        //                d8.TextChanged -= d8_Completed;
+        //                d8.Text = ((TextChangedEventArgs)e).NewTextValue[1].ToString();
+        //                d8.TextChanged += d8_Completed;
+        //            });
+        //        }
+        //    }
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        if (string.IsNullOrWhiteSpace(entryNew.Text))
+        //        {
+        //            return;
+        //        }
 
-                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
-                {
-                    entryNew.Text = "";
-                    entryNew.Focus();
-                    return;
-                }
-            });
-        }
+        //        if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+        //        {
+        //            entryNew.Text = "";
+        //            entryNew.Focus();
+        //            return;
+        //        }
+        //    });
+        //}
 
-        private void d41_Completed(object sender, EventArgs e)
-        {
-            var entryNew = sender as CounterEntryNew;
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                if (string.IsNullOrWhiteSpace(entryNew.Text))
-                {
-                    return;
-                }
+        //private void d41_Completed(object sender, EventArgs e)
+        //{
+        //    var entryNew = sender as CounterEntryNew;
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        if (string.IsNullOrWhiteSpace(entryNew.Text))
+        //        {
+        //            return;
+        //        }
 
-                if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
-                {
-                    entryNew.Text = "";
-                    entryNew.Focus();
-                    return;
-                }
+        //        if (!int.TryParse(((TextChangedEventArgs)e).NewTextValue, out _))
+        //        {
+        //            entryNew.Text = "";
+        //            entryNew.Focus();
+        //            return;
+        //        }
 
-                d6.Unfocus();
-                if (DecimalPoint >= 1)
-                    d6.Focus();
-            });
-        }
+        //        d6.Unfocus();
+        //        if (DecimalPoint >= 1)
+        //            d6.Focus();
+        //    });
+        //}
     }
 }
