@@ -349,7 +349,7 @@ namespace xamarinJKH.AppsConst
                         {
                             Device.BeginInvokeOnMainThread(async () =>
                             {
-                                await ShowToast(AppResources.Successfully);
+                                await ShowToast(AppResources.CloseAppUserDone);
                                 await ClosePage();
                                 await RefreshData();
                             });

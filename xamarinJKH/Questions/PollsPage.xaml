@@ -121,11 +121,6 @@
                        HorizontalOptions="StartAndExpand"
                        TextColor="Black"
                        Text="Заголовок" />
-                <Label x:Name="LabelDate"
-                       HorizontalOptions="Start"
-                       TextColor="Black"
-                       FontSize="15"
-                       Text="23.05.2020" />
             </StackLayout>
             <StackLayout x:Name="StackLayoutIndicator"
                          Orientation="Horizontal"

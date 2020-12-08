@@ -727,6 +727,15 @@ namespace xamarinJKH {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Заявка закрыта со статусом &quot;отказ жителя&quot;.
+        /// </summary>
+        internal static string CloseAppUserDone {
+            get {
+                return ResourceManager.GetString("CloseAppUserDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Закрытие заявки...
         /// </summary>
         internal static string ClosingApp {

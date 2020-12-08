@@ -125,6 +125,7 @@
                                 OnColor="{x:DynamicResource MainColor}"
                                 IsToggled="False"
                                 x:Name="SwitchQuest"
+                                PropertyChanged="chage"
                                 VerticalOptions="Center"  />
 
                                     <Label x:Name="labelShowClosed" Text="{x:Static xamarinJkh:AppResources.ShowAnsweredQuizes}"

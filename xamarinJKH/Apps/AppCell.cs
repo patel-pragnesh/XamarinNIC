@@ -255,8 +255,8 @@ namespace xamarinJKH.Apps
                     {"#000000",  $"#{Settings.MobileSettings.color}"}
                 };
                 ImageStatus.Source = "resource://xamarinJKH.Resources."+Settings.GetStatusIcon(StatusID)+".svg";
-                ReadIndicator.IsVisible = !Read;
-                
+                ReadIndicator.IsVisible = !Read && StatusID != 6;
+
             }
         }
     }

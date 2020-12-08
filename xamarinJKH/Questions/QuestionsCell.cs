@@ -41,6 +41,7 @@ namespace xamarinJKH.Questions
             date.HorizontalOptions = LayoutOptions.Start;
             date.TextColor = Color.Black;
             date.FontSize = 12;
+            date.IsVisible = false;
             date.Margin = new Thickness(0, -5, 0, 0);
             StackLayout containerCount = new StackLayout();
             containerCount.Orientation = StackOrientation.Horizontal;

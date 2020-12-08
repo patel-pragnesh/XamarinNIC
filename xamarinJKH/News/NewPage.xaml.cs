@@ -130,20 +130,21 @@ namespace xamarinJKH.News
             }
 
             Files.IsVisible = newsInfoFull.HasImage;
-            
-            if (newsInfoFull.HasImage)
-            {
-                MemoryStream stream = await _server.GetNewsImage(newsInfoFull.ID.ToString());
-                //ImageAdd.Source = ImageSource.FromStream(() => { return stream; });
-                //ImageAdd.IsVisible = true;
-                
-            }
         }
 
         public async void OpenFile(object sender, EventArgs args)
         {
-            var link = RestClientMP.SERVER_ADDR + "/News/Image/" + newsInfoFull.ID.ToString();
-            await AiForms.Dialogs.Dialog.Instance.ShowAsync(new NewFile(link));
+            Analytics.TrackEvent("Открытие файла новости");
+            try
+            {
+                var link = RestClientMP.SERVER_ADDR + "/News/Image/" + newsInfoFull.ID.ToString();
+                await AiForms.Dialogs.Dialog.Instance.ShowAsync(new NewFile(link));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            
         }
     }
 }

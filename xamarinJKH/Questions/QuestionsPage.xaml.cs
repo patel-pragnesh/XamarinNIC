@@ -87,6 +87,7 @@ namespace xamarinJKH.Questions
 
                 additionalList.ItemsSource = null;
                 additionalList.ItemsSource = Quest;
+                this.BindingContext = this;
             }
             else
             {
@@ -144,7 +145,7 @@ namespace xamarinJKH.Questions
             SetText();
             // isComplite();
             // Quest = QuestNotComlite;
-            this.BindingContext = this;
+           
             additionalList.BackgroundColor = Color.Transparent;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
         }
