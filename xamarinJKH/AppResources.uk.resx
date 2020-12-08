@@ -1580,4 +1580,7 @@
   <data name="UserRejectionApp" xml:space="preserve">
     <value>Житель відмовився від заявки?</value>
   </data>
+  <data name="With" xml:space="preserve">
+    <value>З</value>
+  </data>
 </root>

@@ -13,6 +13,7 @@ using Syncfusion.SfAutoComplete.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.DialogViews;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
@@ -34,6 +35,29 @@ namespace xamarinJKH.PushNotification
         public SendPushPage()
         {
             InitializeComponent();
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                    //if (DeviceDisplay.MainDisplayInfo.Width < 700)
+                    //    mainStack.Padding = new Thickness(0, statusBarHeight * 2, 0, 0);
+                    //else
+                        mainStack.Padding = new Thickness(0, statusBarHeight, 0, 0);
+
+                    break;
+                case Device.Android:
+                    double or = Math.Round(((double)App.ScreenWidth / (double)App.ScreenHeight), 2);
+                    if (Math.Abs(or - 0.5) < 0.02)
+                    {
+                        //ScrollViewContainer.Margin = new Thickness(0, 0, 0, -150);
+                    }
+
+                    break;
+                default:
+                    break;
+            }
+
             getGroups();
             NavigationPage.SetHasNavigationBar(this, false);
             UkName.Text = Settings.MobileSettings.main_name;
@@ -194,9 +218,9 @@ namespace xamarinJKH.PushNotification
             }
         }
 
-        private void CheckBox_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-        }
+        //private void CheckBox_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
+        //{
+        //}
 
         private int _selectedGroupId = -1;
 
@@ -264,7 +288,7 @@ namespace xamarinJKH.PushNotification
                 {
                     Header = title,
                     Text = text,
-                    ShowOnMainPage = CheckBox.IsChecked,
+                    ShowOnMainPage = CheckBox.IsToggled,
                     ActiveFrom = DatePicker.Date.ToString("dd.MM.yyyy"),
                     ActiveTo = DatePicker2.Date.ToString("dd.MM.yyyy")
                 };
