@@ -1707,7 +1707,10 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="UserRejectionApp" xml:space="preserve">
     <value>The resident refused the application?</value>
   </data>
+  <data name="With" xml:space="preserve">
+    <value>From</value>
+  </data>
   <data name="CloseAppUserDone" xml:space="preserve">
-    <value>The application is closed with the status  "resident denial "</value>
+    <value>The application is closed with the status "resident denial "</value>
   </data>
 </root>
