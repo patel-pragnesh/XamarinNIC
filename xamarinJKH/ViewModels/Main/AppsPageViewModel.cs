@@ -101,7 +101,7 @@ namespace xamarinJKH.ViewModels.Main
                     Device.BeginInvokeOnMainThread(() => {
                         if (response.Requests != null)
                         {
-                            MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => !x.IsReadedByClient).Count());
+                            MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => !x.IsReadedByClient && x.StatusID != 6).Count());
                             AllRequests.AddRange(response.Requests);
                             if (Requests == null)
                             {
@@ -146,7 +146,7 @@ namespace xamarinJKH.ViewModels.Main
             var response = await Server.GetRequestsList();
             if (response.Error == null)
             {
-                MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => !x.IsReadedByClient).Count());
+                MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => !x.IsReadedByClient && x.StatusID != 6).Count());
                 if (AllRequests != null)
                 {
                     Empty = Requests.Count == 0;

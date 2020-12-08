@@ -1580,4 +1580,7 @@
   <data name="UserRejectionApp" xml:space="preserve">
     <value>Житель відмовився від заявки?</value>
   </data>
+  <data name="CloseAppUserDone" xml:space="preserve">
+    <value>Заявка закрита з правами  "відмова жителя "</value>
+  </data>
 </root>

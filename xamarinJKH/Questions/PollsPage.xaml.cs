@@ -250,6 +250,7 @@ namespace xamarinJKH.Questions
                     Label textRadio = new Label()
                     {
                         Text = jAnswer.Text,
+                        TextColor = Color.Black,
                         VerticalOptions = LayoutOptions.Center
                     };
 

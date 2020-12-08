@@ -51,7 +51,7 @@
                     badge:TabBadge.BadgeText="{Binding RequestsAmount}"
                     badge:TabBadge.BadgeColor="{Binding RequestsAmount, Converter={x:StaticResource BadgeColor}}">
         <x:Arguments>
-            <local:AppsPage Title="{x:Static resources:AppResources.App_NavBar}" IconImageSource="ic_apps" />
+            <local:AppsPage  Title="{x:Static resources:AppResources.App_NavBar}" IconImageSource="ic_apps" />
         </x:Arguments>
     </NavigationPage>
     <NavigationPage IsVisible="False" IsTabStop="False"  x:Name="ShopNavPage" Title="{x:Static resources:AppResources.Shop_NavBar}" IconImageSource="ic_shop" BarBackgroundColor="Black" BarTextColor="White">
