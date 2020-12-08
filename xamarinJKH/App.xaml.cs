@@ -40,6 +40,7 @@ namespace xamarinJKH
         public static bool isCons { get; set; } = false;
         public static bool isConnected { get; set; } = true;
         private RestClientMP server = new RestClientMP();
+        public static bool MessageNoInternet { get; set; }
 
 
         private async Task getSettingsAsync()

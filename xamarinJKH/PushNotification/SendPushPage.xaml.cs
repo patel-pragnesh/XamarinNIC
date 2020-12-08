@@ -85,6 +85,11 @@ namespace xamarinJKH.PushNotification
                 }
             };
             LabelTech.GestureRecognizers.Add(techSend);
+
+            Color hexColor = (Color)Application.Current.Resources["MainColor"];
+
+            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+
             var takeOS = new TapGestureRecognizer();
             
             takeOS.Tapped += async (s, e) =>
@@ -332,54 +337,60 @@ namespace xamarinJKH.PushNotification
                 {
                     announcementArguments.OS = _os;
                 }
-                
-                new Task(async () =>
-                {
-                    Configurations.LoadingConfig = new LoadingConfig
-                    {
-                        IndicatorColor = (Color) Application.Current.Resources["MainColor"],
-                        OverlayColor = Color.Black,
-                        Opacity = 0.8,
-                        DefaultMessage = AppResources.Loading,
-                    };
+               
 
-                   await Loading.Instance.StartAsync(async progress =>
-                   {
-                       IDResult newAnnouncement = await _server.NewAnnouncement(announcementArguments);
-                       if (newAnnouncement.Error == null)
-                       {
-                           CommonResult sendAnnouncement = await _server.SendAnnouncement(newAnnouncement.ID);
-                           if (sendAnnouncement.Error != null)
-                           {
-                               Device.BeginInvokeOnMainThread(async () =>
-                               {
-                                   await DisplayAlert(AppResources.ErrorTitle, sendAnnouncement.Error, "OK");
-                               });
-                           }
-                           else
-                           {
-                               Device.BeginInvokeOnMainThread(async () =>
-                               {
-                                   await DisplayAlert("", AppResources.SendingPush, "OK");
-                                   try
-                                   {
-                                       _ = await Navigation.PopAsync();
-                                   }
-                                   catch
-                                   {
-                                   }
-                               });
-                           }
-                       }
-                       else
-                       {
-                           Device.BeginInvokeOnMainThread(async () =>
-                           {
-                               await DisplayAlert(AppResources.ErrorTitle, newAnnouncement.Error, "OK");
-                           });
-                       }
-                   });
+                
+                new Task(() =>
+                {
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        Configurations.LoadingConfig = new LoadingConfig
+                        {
+                            IndicatorColor = (Color)Application.Current.Resources["MainColor"],
+                            OverlayColor = Color.Black,
+                            Opacity = 0.8,
+                            DefaultMessage = AppResources.Loading,
+                        };
+
+                        await Loading.Instance.StartAsync(async progress =>
+                        {
+                            IDResult newAnnouncement = await _server.NewAnnouncement(announcementArguments);
+                            if (newAnnouncement.Error == null)
+                            {
+                                CommonResult sendAnnouncement = await _server.SendAnnouncement(newAnnouncement.ID);
+                                if (sendAnnouncement.Error != null)
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                    {
+                                        await DisplayAlert(AppResources.ErrorTitle, sendAnnouncement.Error, "OK");
+                                    });
+                                }
+                                else
+                                {
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                    {
+                                        await DisplayAlert("", AppResources.SendingPush, "OK");
+                                        try
+                                        {
+                                            _ = await Navigation.PopAsync();
+                                        }
+                                        catch
+                                        {
+                                        }
+                                    });
+                                }
+                            }
+                            else
+                            {
+                                Device.BeginInvokeOnMainThread(async () =>
+                                {
+                                    await DisplayAlert(AppResources.ErrorTitle, newAnnouncement.Error, "OK");
+                                });
+                            }
+                        });
+                    });
                 }).Start();
+                
             }
         }
         

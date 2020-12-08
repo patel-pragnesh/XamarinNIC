@@ -164,7 +164,7 @@
                                             </Entry>
                                         </Frame>
                                         <Label Text="{Binding Previous}" TextColor="#A2A2A2" FontSize="20" HorizontalTextAlignment="Center" x:Name="Prev"/>
-                                        <StackLayout x:Name="CounterLayout"
+                                        <!--<StackLayout x:Name="CounterLayout"
                                                      IsVisible="False"
                                     Orientation="Horizontal" HeightRequest="80"  Margin="20,0" Spacing="5" HorizontalOptions="CenterAndExpand">
                                             <StackLayout x:Name="CounterDigitsContainer" Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
@@ -362,7 +362,7 @@
                                         BackgroundColor="Red"
                                         HorizontalOptions="FillAndExpand" />
 
-                                        </StackLayout>
+                                        </StackLayout>-->
                                         <!--<StackLayout
                                     Margin="0, 0, 0, 0"
                                     Orientation="Horizontal">

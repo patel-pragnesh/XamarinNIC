@@ -326,10 +326,15 @@ namespace xamarinJKH.Main
                 string pass = Preferences.Get("pass", "");
                 if (!pass.Equals("") && !login.Equals(""))
                 {
+                    if (!App.MessageNoInternet)
                     if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
                     {
                         Device.BeginInvokeOnMainThread(async () =>
-                            await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                        {
+                            App.MessageNoInternet = true;
+                            await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK");
+                            App.MessageNoInternet = false;
+                        });
                         return;
                     }
 
