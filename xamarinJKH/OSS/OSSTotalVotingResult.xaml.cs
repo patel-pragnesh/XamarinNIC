@@ -21,6 +21,7 @@ namespace xamarinJKH
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OSSTotalVotingResult : ContentPage
     {
+        
         public OSSTotalVotingResult(OSS oSS)
         {
             InitializeComponent();
@@ -75,6 +76,8 @@ namespace xamarinJKH
             PancakeBot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             FrameResult.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
             LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+
+            BindingContext = this;
         }
 
         Color colorFromMobileSettings = (Color)Application.Current.Resources["MainColor"];

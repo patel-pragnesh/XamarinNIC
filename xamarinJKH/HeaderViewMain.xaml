@@ -79,6 +79,7 @@
                 </pancakeView:PancakeView>
                 <StackLayout
                         HorizontalOptions="End"
+                        BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                         Margin="0,0,15,0"
                         Orientation="Horizontal">
                     <xamarinJkh:IconView x:Name="IconViewTech"

@@ -41,6 +41,7 @@
                         <StackLayout
                             HorizontalOptions="EndAndExpand"
                             VerticalOptions="Center"
+                            BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                             Orientation="Horizontal">
                             <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                                 HeightRequest="20"

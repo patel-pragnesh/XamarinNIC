@@ -29,25 +29,29 @@
                                HorizontalOptions="StartAndExpand"
                                FontSize="15"
                                TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+
                         <StackLayout
                             HorizontalOptions="EndAndExpand"
                             Orientation="Horizontal">
-                        
+
                             <svg:SvgCachedImage x:Name="IconViewTech"
                                                 Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                                 HeightRequest="20"
                                                 ReplaceStringMap="{Binding ShowAnnouncements, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                                                 Margin="0, 0,0,0"
+                                                BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                                                 HorizontalOptions="Start"
                                                 VerticalOptions="Center" />
                             <Label x:Name="LabelTech"
                                    Text="{x:Static xamarinJkh:AppResources.Support}"
                                    FontSize="14"
+                                   BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                                    TextDecorations="Underline"
                                    TextColor="White"
                                    Margin="0, 0, 0, 0"
                                    VerticalOptions="Center" />
                         </StackLayout>
+
                     </StackLayout>
                     <StackLayout
                         x:Name="BackStackLayout"
@@ -71,23 +75,23 @@
                                Padding="20,20,20,50">
                             <StackLayout>
                                 <Label
-                                Text="{x:Static xamarinJkh:AppResources.AddIdent}"
-                                TextDecorations="Underline"
-                                FontAttributes="Bold"
-                                Margin="0,0,0,15"
-                                HorizontalOptions="CenterAndExpand"
-                                TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                                FontSize="15" />
+                                    Text="{x:Static xamarinJkh:AppResources.AddIdent}"
+                                    TextDecorations="Underline"
+                                    FontAttributes="Bold"
+                                    Margin="0,0,0,15"
+                                    HorizontalOptions="CenterAndExpand"
+                                    TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                    FontSize="15" />
                                 <Label x:Name="AccExistsLbl"
-                               Text="{x:Static xamarinJkh:AppResources.NoAccounts}"
-                               Margin="0,0,0,0"
-                               TextDecorations="Underline"
-                               FontAttributes="Bold"
-                               IsVisible="False"
-                               HorizontalOptions="CenterAndExpand"
-                               HorizontalTextAlignment="Center"
-                               TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                               FontSize="15" />
+                                       Text="{x:Static xamarinJkh:AppResources.NoAccounts}"
+                                       Margin="0,0,0,0"
+                                       TextDecorations="Underline"
+                                       FontAttributes="Bold"
+                                       IsVisible="False"
+                                       HorizontalOptions="CenterAndExpand"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                       FontSize="15" />
 
                                 <Label Text="История спиания"
                                        IsVisible="False"
@@ -97,21 +101,21 @@
                                        HorizontalTextAlignment="Center"
                                        FontAttributes="Bold">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="ShowBonusHistory"/>
+                                        <TapGestureRecognizer Tapped="ShowBonusHistory" />
                                     </Label.GestureRecognizers>
                                 </Label>
                             </StackLayout>
-                            
-                        </Frame>
-                        <ActivityIndicator x:Name="aIndicator" Color="{Binding hex}" Scale="2"                                           
-                                          IsRunning="True" IsEnabled="True" IsVisible="false" 
-                                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></ActivityIndicator>
 
-                        <RefreshView x:Name="paysRefreshView" Margin="10, 0, 10, 0" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" VerticalOptions="FillAndExpand">
-                            <ScrollView x:Name="scrollForPays" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
-                                <StackLayout x:Name="baseForPays" VerticalOptions="FillAndExpand">
-                                    
-                                </StackLayout>
+                        </Frame>
+                        <ActivityIndicator x:Name="aIndicator" Color="{Binding hex}" Scale="2"
+                                           IsRunning="True" IsEnabled="True" IsVisible="false"
+                                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+
+                        <RefreshView x:Name="paysRefreshView" Margin="10, 0, 10, 0" Command="{Binding RefreshCommand}"
+                                     IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" VerticalOptions="FillAndExpand">
+                            <ScrollView x:Name="scrollForPays" VerticalScrollBarVisibility="Never"
+                                        VerticalOptions="FillAndExpand">
+                                <StackLayout x:Name="baseForPays" VerticalOptions="FillAndExpand" />
                             </ScrollView>
                         </RefreshView>
                         <!--<ListView x:Name="additionalList"
@@ -136,8 +140,7 @@
 
                             </ListView.ItemTemplate>
                         </ListView>-->
-                        <StackLayout VerticalOptions="EndAndExpand"
-                            >
+                        <StackLayout VerticalOptions="EndAndExpand">
                             <pancakeView:PancakeView x:Name="GoodsLayot" Elevation="20" CornerRadius="50,50,0,0"
                                                      BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
                                                      Padding="0,20,0,10"

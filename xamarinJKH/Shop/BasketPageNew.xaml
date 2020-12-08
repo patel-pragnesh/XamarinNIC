@@ -57,10 +57,11 @@
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <StackLayout
+                            BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                             Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
                             <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                                  HeightRequest="20"
-                                                 ReplaceStringMap="{Binding ShopName,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
+                                                 ReplaceStringMap="{Binding AllGoods,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                                                  HorizontalOptions="Start"
                                                 Margin="10,0,0,0"
                                                  VerticalOptions="Center" />
