@@ -103,7 +103,7 @@ namespace xamarinJKH.MainConst
                 }
             });
             MessagingCenter.Subscribe<Object>(this, "ChangeThemeConst", (sender) => ChangeTheme.Execute(null));
-            if (Device.RuntimePlatform == "Android")
+            //if (Device.RuntimePlatform == "Android")
                 RegisterNewDevice();
 
             MessagingCenter.Subscribe<Object, int>(this, "SwitchToAppsConst", (sender, args) =>
@@ -159,7 +159,12 @@ namespace xamarinJKH.MainConst
 
         async void RegisterNewDevice()
         {
-            App.token = DependencyService.Get<xamarinJKH.InterfacesIntegration.IFirebaseTokenObtainer>().GetToken();
+            if (Device.RuntimePlatform == "Android")
+                App.token = DependencyService.Get<xamarinJKH.InterfacesIntegration.IFirebaseTokenObtainer>().GetToken();
+            else
+            {
+                await Task.Delay(500);
+            }
             var response = await (new RestClientMP()).RegisterDevice(true);
         }
     }
