@@ -348,20 +348,31 @@
                     Spacing="10"
                     MinimumHeightRequest="50"
                     Orientation="Horizontal">
-                    <ActivityIndicator x:Name="progressFile"
+                        <Grid Padding="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.06*" />
+                                <ColumnDefinition Width="0.72*" />
+                                <ColumnDefinition Width="0.06*" />
+                                <ColumnDefinition Width="0.16*" />                                
+                            </Grid.ColumnDefinitions>
+
+                            <ActivityIndicator x:Name="progressFile"
+                                               Grid.Column="0"
                                        IsRunning="true"
                                        HeightRequest="25"
                                        WidthRequest="25"
                                        IsVisible="False"
                                        HorizontalOptions="StartAndExpand"
                                        Color="{Binding hex}" />
-                    <xamarinJkh:IconView
+                            <xamarinJkh:IconView
                         x:Name="IconViewAddFile"
+                                Grid.Column="0"
                         Source="ic_add_file"
                         Foreground="{Binding hex}"
                         HeightRequest="20"
                         WidthRequest="20" />
-                    <xamarinJkh:BordlessEditor x:Name="EntryMess"
+                            <xamarinJkh:BordlessEditor x:Name="EntryMess"
+                                                       Grid.Column="1"
                                                FontSize="18"
                                                VerticalOptions="Center"
                                                Text=""
@@ -369,34 +380,34 @@
                                                TextColor="Black"
                                                HorizontalOptions="FillAndExpand" 
                                                AutoSize="TextChanges"/>
-                    <xamarinJkh:IconView
+                            <xamarinJkh:IconView
                         x:Name="IconViewSend"
+                                Grid.Column="2"
                         Source="ic_send_mess"
                         Foreground="{Binding hex}"
                         HeightRequest="20"
                         WidthRequest="20" />
-                    <ActivityIndicator x:Name="progress"
+                            <ActivityIndicator x:Name="progress"
+                                               Grid.Column="2"
                                        IsRunning="true"
                                        HeightRequest="20"
                                        WidthRequest="20"
                                        IsVisible="False"
                                        Color="{Binding hex}" />
-                    <StackLayout
-
-                        Spacing="-5">
-
-                        <CheckBox
-                            x:Name="CheckBoxHidden"
+                            <StackLayout Grid.Column="3" Spacing="-10" VerticalOptions="Center">                                
+                                    <CheckBox
+                                    x:Name="CheckBoxHidden"
                             HorizontalOptions="Center"
                             Color="{Binding hex}" />
-                        <Label
+                                    <Label
                             FontSize="10"
                             TextColor="Black"
                             HorizontalOptions="Center"
                             Text="{x:Static xamarinJkh:AppResources.Hidden}" />
-                    </StackLayout>
+                            </StackLayout>
+                        </Grid>
 
-                </StackLayout>
+                    </StackLayout>
             </Frame>
         </StackLayout>
         </Grid>
