@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ using xamarinJKH.Utils.Compatator;
 using System.Threading.Tasks.Sources;
 using AiForms.Dialogs.Abstractions;
 using System.Threading;
+using xamarinJKH.News;
 
 //using MediaManager.Forms;
 
@@ -39,7 +41,7 @@ namespace xamarinJKH.Pays
         private bool isSortLs = true;
         public List<AccountAccountingInfo> Accounts { get; set; }
         public AccountAccountingInfo SelectedAcc { get; set; }
-        private Color hex { get; set; }= (Color)Application.Current.Resources["MainColor"];
+        private Color hex { get; set; } = (Color) Application.Current.Resources["MainColor"];
 
         public bool IsRefreshing
         {
@@ -136,6 +138,8 @@ namespace xamarinJKH.Pays
             this.BindingContext = this;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
             SortDate();
+          
+            
         }
 
         void SortDate()
@@ -224,9 +228,8 @@ namespace xamarinJKH.Pays
             {
                 isSortLs = false;
                 IconViewSortIdent.Rotation = 180;
-                var list  = BillInfos.OrderByDescending(u => u.Ident);
+                var list = BillInfos.OrderByDescending(u => u.Ident);
                 BillInfos = new List<BillInfo>(list);
-             
             }
 
             additionalList.ItemsSource = null;
@@ -240,15 +243,16 @@ namespace xamarinJKH.Pays
             {
                 return;
             }
+
             foreach (var each in infos)
             {
                 if (each.Bills == null)
                 {
                     continue;
                 }
+
                 foreach (var VARIABLE in each.Bills)
                 {
-                  
                     BillInfos.Add(VARIABLE);
                 }
             }
@@ -260,21 +264,20 @@ namespace xamarinJKH.Pays
 
         void SortNotFormat()
         {
-            
         }
-        
+
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-            
+
             // IconViewSortIdent.Foreground = (Color)Application.Current.Resources["MainColor"];
 
-            IconViewSortDate.ReplaceStringMap =  new Dictionary<string, string>
+            IconViewSortDate.ReplaceStringMap = new Dictionary<string, string>
             {
-                {"#000000",$"#{Settings.MobileSettings.color}" }
-            };  
+                {"#000000", $"#{Settings.MobileSettings.color}"}
+            };
             LabelDate.TextColor = hex;
-            
+
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             // IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
@@ -301,12 +304,13 @@ namespace xamarinJKH.Pays
             //    return;
             //}
 
+
             try
             {
                 Analytics.TrackEvent("Открытие квитанции " + select.Period + " " + select.Ident);
                 string filename = @select.Period + select.Ident.Replace("/", "").Replace("\\", "") + ".jpg";
-                new Task(async () => await GetFile(@select.ID.ToString(), filename)).Start();
-                //
+                // new Task(async () => GetFile(@select.ID.ToString(), filename, select)).Start();
+                await Navigation.PushAsync(new ImageSaldoPage( select));
                 // if (Navigation.NavigationStack.FirstOrDefault(x => x is PdfView) == null)
                 //     await Navigation.PushAsync(new PdfView(filename, select.ID.ToString()));
             }
@@ -315,7 +319,8 @@ namespace xamarinJKH.Pays
                 Console.WriteLine(exception);
             }
         }
-        public async Task<bool> GetFile(string id, string fileName)
+
+        public async void GetFile(string id, string fileName, BillInfo period)
         {
             // Loading settings
             Configurations.LoadingConfig = new LoadingConfig
@@ -325,6 +330,8 @@ namespace xamarinJKH.Pays
                 Opacity = 0.8,
                 DefaultMessage = AppResources.Loading,
             };
+            byte[] stream = null;
+
             bool result = false;
             if (Device.RuntimePlatform == "iOS")
             {
@@ -338,12 +345,17 @@ namespace xamarinJKH.Pays
                             stream = await server.DownloadFileAsync(id, 1);
                             if (stream != null)
                             {
-                                await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, stream);
-                                result = true;
-                                await Launcher.OpenAsync(new OpenFileRequest
+                                Device.BeginInvokeOnMainThread(async () =>
                                 {
-                                    File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+                                  
                                 });
+                                //
+                                // await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, stream);
+                                // result = true;
+                                // await Launcher.OpenAsync(new OpenFileRequest
+                                // {
+                                //     File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+                                // });
                             }
                             else
                             {
@@ -357,7 +369,6 @@ namespace xamarinJKH.Pays
                             await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
                             result = false;
                         }
-                       
                     });
                 });
             }
@@ -367,22 +378,7 @@ namespace xamarinJKH.Pays
                 {
                     try
                     {
-                        byte[] stream;
-                        stream = await server.DownloadFileAsync(id, 1);
-                        if (stream != null)
-                        {
-                            await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, stream);
-                            result = true;
-                            await Launcher.OpenAsync(new OpenFileRequest
-                            {
-                                File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
-                            });
-                        }
-                        else
-                        {
-                            await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
-                            result = false;
-                        }
+                        period.stream = await server.DownloadFileAsync(id, 1);
                     }
                     catch (Exception e)
                     {
@@ -390,11 +386,9 @@ namespace xamarinJKH.Pays
                         await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
                         result = false;
                     }
-                   
                 });
+              
             }
-
-            return result;
         }
 
         private void picker_SelectedIndexChanged(object sender, EventArgs e)

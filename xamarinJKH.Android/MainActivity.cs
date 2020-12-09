@@ -33,6 +33,9 @@ namespace xamarinJKH.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(savedInstanceState);
+            
+        
+            
             global::Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental", "AppTheme_Experimental", "Markup_Experimental");
             XamEffects.Droid.Effects.Init();
             AiForms.Dialogs.Dialogs.Init(this);
@@ -54,6 +57,12 @@ namespace xamarinJKH.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             DependencyService.Register<OpenAppAndroid>();
+            var width = Resources.DisplayMetrics.WidthPixels;
+            var height = Resources.DisplayMetrics.HeightPixels;
+            var density = Resources.DisplayMetrics.Density;
+
+            App.ScreenWidth2 = (width - 0.5f) / density;
+            App.ScreenHeight2 = (height - 0.5f) / density;
             LoadApplication(new App());
 
         }
