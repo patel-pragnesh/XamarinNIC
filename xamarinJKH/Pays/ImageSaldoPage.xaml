@@ -3,10 +3,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-             xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH" xmlns:customrenderers="clr-namespace:xamarinJKH.CustomRenderers"
              x:Class="xamarinJKH.Pays.ImageSaldoPage">
     <ContentPage.Content>
         <StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" x:Name="Pancake2" IsVisible="{OnPlatform iOS=true, Android=false}" 
+                         BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"></StackLayout>
             <StackLayout
                 x:Name="BackStackLayout"
                 Orientation="Horizontal"
@@ -51,11 +53,12 @@
             </StackLayout>
             <Grid
                 VerticalOptions="FillAndExpand">
-                
-                <ScrollView Orientation="Both">
-                    <Image x:Name="Image"
-                           Aspect="AspectFill" />
-                </ScrollView>
+
+                <!--<ScrollView Orientation="Both" WidthRequest="500">-->
+                    <customrenderers:ZoomImage x:Name="Image" 
+                            />
+                <!--</ScrollView>-->
+                    
                 <ActivityIndicator x:Name="progress"
                                    IsRunning="true"
                                    IsVisible="True"
