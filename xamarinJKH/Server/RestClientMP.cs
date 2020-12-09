@@ -1875,8 +1875,8 @@ namespace xamarinJKH.Server
             if (OS.ToLower() == "ios")
                 await Task.Delay(500);
 
-            string Version = App.version;
-            string Model = App.model;
+            string Version = Device.RuntimePlatform == Device.Android ? App.version : Xamarin.Essentials.DeviceInfo.VersionString;
+            string Model = Device.RuntimePlatform==Device.Android? App.model : Xamarin.Essentials.DeviceInfo.Model;
             string DeviceId = App.token;
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             string url = isCons ? REGISTR_DISPATCHER_DEVICE : REGISTR_DEVICE;
@@ -1896,10 +1896,11 @@ namespace xamarinJKH.Server
             // Проверяем статус
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                return new CommonResult()
+                var rcr = new CommonResult()
                 {
                     Error = $"Ошибка {response.StatusDescription}"
                 };
+                return rcr;
             }
 
             return response.Data;

@@ -549,33 +549,51 @@ namespace xamarinJKH.AppsConst
             UpdateTask.Start();
         }
 
+        static bool fileGettingNow = false;
         public async Task GetFile(string id, string fileName)
         {
-            // Loading settings
-            Configurations.LoadingConfig = new LoadingConfig
+            Device.BeginInvokeOnMainThread(async () =>
             {
-                IndicatorColor = (Color) Application.Current.Resources["MainColor"],
-                OverlayColor = Color.Black,
-                Opacity = 0.8,
-                DefaultMessage = AppResources.Loading,
-            };
-
-            await Loading.Instance.StartAsync(async progress =>
-            {
-                byte[] memoryStream = await _server.GetFileAPPConst(id);
-                if (memoryStream != null)
+                try
                 {
-                    await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
-                    await Launcher.OpenAsync(new OpenFileRequest
+                    if (fileGettingNow)
+                        return;
+                    fileGettingNow = true;
+                    // Loading settings
+                    Configurations.LoadingConfig = new LoadingConfig
                     {
-                        File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+                        IndicatorColor = (Color)Application.Current.Resources["MainColor"],
+                        OverlayColor = Color.Black,
+                        Opacity = 0.8,
+                        DefaultMessage = AppResources.Loading,
+                    };
+
+                    await Loading.Instance.StartAsync(async progress =>
+                    {
+                        byte[] memoryStream = await _server.GetFileAPPConst(id);
+                        if (memoryStream != null)
+                        {
+                            await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
+                            await Launcher.OpenAsync(new OpenFileRequest
+                            {
+                                File = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(fileName))
+                            });
+                        }
+                        else
+                        {
+                            await DisplayAlert("Ошибка", "Не удалось скачать файл", "OK");
+                        }
                     });
                 }
-                else
+                catch(Exception ex)
                 {
-                    await DisplayAlert("Ошибка", "Не удалось скачать файл", "OK");
+                    throw ex;
                 }
-            });
+                finally
+                {
+                    fileGettingNow = false;
+                }
+            });            
         }
 
         private async Task ClosePage()
