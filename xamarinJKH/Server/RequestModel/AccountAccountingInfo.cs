@@ -31,6 +31,8 @@ namespace xamarinJKH.Server.RequestModel
         public bool HasFile { get; set; }
         public string FileLink { get; set; }
         public decimal Total { get; set; }
+        public byte[] stream { get; set; }
+
         
     }
     

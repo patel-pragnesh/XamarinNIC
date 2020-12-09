@@ -52,7 +52,8 @@ namespace xamarinJKH.iOS
             Firebase.Crashlytics.Crashlytics.Configure();
 
             FirebasePushNotificationManager.Initialize(options, true);
-
+            App.ScreenWidth2 = UIScreen.MainScreen.Bounds.Width;
+            App.ScreenHeight2 = UIScreen.MainScreen.Bounds.Height;
 
             return base.FinishedLaunching(app, options);
         }

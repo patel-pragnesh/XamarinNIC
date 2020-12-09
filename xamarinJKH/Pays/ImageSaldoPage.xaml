@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             x:Class="xamarinJKH.Pays.ImageSaldoPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout
+                x:Name="BackStackLayout"
+                Orientation="Horizontal"
+                Margin="10, 10, 10, 0"
+                HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                    <forms:SvgCachedImage
+                        Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
+                        HeightRequest="25"
+                        HorizontalOptions="Start"
+                        ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}, ConverterParameter='#000000'}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Text="{Binding Period}"
+                        FontSize="18"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                    <xamarinJkh:IconView
+                        Source="ic_print"
+                        HeightRequest="20"
+                        WidthRequest="40"
+                        Foreground="{x:DynamicResource MainColor}"
+                        HorizontalOptions="End">
+                        <xamarinJkh:IconView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Print" />
+                        </xamarinJkh:IconView.GestureRecognizers>
+                    </xamarinJkh:IconView>
+                    <xamarinJkh:IconView Foreground="{x:DynamicResource MainColor}"
+                                         Source="ic_share"
+                                         HeightRequest="20"
+                                         WidthRequest="40"
+                                         HorizontalOptions="End">
+                        <xamarinJkh:IconView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ShareBill" />
+                        </xamarinJkh:IconView.GestureRecognizers>
+                    </xamarinJkh:IconView>
+                </StackLayout>
+            </StackLayout>
+            <Grid
+                VerticalOptions="FillAndExpand">
+                
+                <ScrollView Orientation="Both">
+                    <Image x:Name="Image"
+                           Aspect="AspectFill" />
+                </ScrollView>
+                <ActivityIndicator x:Name="progress"
+                                   IsRunning="true"
+                                   IsVisible="True"
+                                   HeightRequest="40"
+                                   VerticalOptions="StartAndExpand"
+                                   Color="{x:DynamicResource MainColor}" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

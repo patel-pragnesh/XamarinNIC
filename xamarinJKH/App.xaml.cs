@@ -34,6 +34,9 @@ namespace xamarinJKH
     {
         public static int ScreenHeight { get; set; }
         public static int ScreenWidth { get; set; }
+        
+        public static double ScreenHeight2 { get; set; }
+        public static double ScreenWidth2 { get; set; }
         public static string version { get; set; }
         public static string model { get; set; }
         public static string token { get; set; }
