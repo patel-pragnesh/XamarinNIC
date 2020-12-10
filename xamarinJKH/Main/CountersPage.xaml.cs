@@ -446,15 +446,17 @@ namespace xamarinJKH.Main
                         PeriodSendLbl.FormattedText = formattedResource;
                         StackLayoutPicker.IsVisible = true;
                         StackLayoutAddIdent.IsVisible = false;
+                        addIdentLbl.IsVisible = false;
                     }
                     else
                     {
                         Device.BeginInvokeOnMainThread(() =>
                         {
-                            PeriodSendLbl.IsVisible = true;
-                            PeriodSendLbl.FontSize = 15;
+                            PeriodSendLbl.IsVisible = false;
+                            //PeriodSendLbl.FontSize = 15;
                             //PeriodSendLbl.FontAttributes = FontAttributes.Bold;
-                            PeriodSendLbl.Text = AppResources.NoAccounts;
+                            //PeriodSendLbl.Text = AppResources.NoAccounts;
+                            addIdentLbl.IsVisible = true;
                             StackLayoutPicker.IsVisible = false;
                             StackLayoutAddIdent.IsVisible = true;
                         });

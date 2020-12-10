@@ -55,25 +55,9 @@ namespace xamarinJKH.Main
             SelectedTabColor = hex;
             GetBrand();
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
-            //только темная тема в ios
-            //if (Xamarin.Essentials.DeviceInfo.Platform == DevicePlatform.iOS)
-            //    currentTheme = OSAppTheme.Dark;
-
+            
             Color unselect = hex.WithLuminosity(0.75); //hex.AddLuminosity(0.3);
-            //switch (currentTheme)
-            //{
-            //    case OSAppTheme.Light: UnselectedTabColor = unselect;
-            //        break;
-            //    case OSAppTheme.Dark: UnselectedTabColor = Color.Gray;
-            //        break;
-            //}
-
-            // if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
-            // {
-            // ProfPage.IsVisible = false;
-            // }
-
-
+            
             switch (currentTheme)
             {
                 case OSAppTheme.Light:

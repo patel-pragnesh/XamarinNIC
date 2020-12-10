@@ -134,6 +134,16 @@
                                        HorizontalTextAlignment="Center"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontSize="12" />
+                                <Label x:Name="addIdentLbl"
+                                       Text="{x:Static xamarinJkh:AppResources.NoAccounts}"
+                                       Margin="0,0,0,0"
+                                       TextDecorations="Underline"
+                                       FontAttributes="Bold"
+                                       IsVisible="False"
+                                       HorizontalOptions="CenterAndExpand"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                       FontSize="15" />
                             </StackLayout>
 
                         </Frame>
