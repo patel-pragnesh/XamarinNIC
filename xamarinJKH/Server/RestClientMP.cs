@@ -901,7 +901,7 @@ namespace xamarinJKH.Server
             return response.Data;
         }
 
-        public async Task<RequestsUpdate> GetRequestsUpdatesConst(string updateKey, string currentRequestId)
+        public async Task<RequestsUpdate> GetRequestsUpdatesConst(string UpdateKey, string currentRequestId)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(REQUEST_UPDATES_CONST, Method.POST);
@@ -911,7 +911,7 @@ namespace xamarinJKH.Server
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
-                updateKey,
+                UpdateKey,
                 currentRequestId
             });
             var response = await restClientMp.ExecuteTaskAsync<RequestsUpdate>(restRequest);

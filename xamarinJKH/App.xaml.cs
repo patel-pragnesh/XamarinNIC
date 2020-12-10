@@ -226,6 +226,7 @@ namespace xamarinJKH
                         {
                             if (isCons)
                             {
+                                await Task.Delay(500);
                                 MessagingCenter.Send<Object>(this, "RefreshApp");
                             }
                             else

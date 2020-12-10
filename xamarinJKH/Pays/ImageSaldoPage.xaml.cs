@@ -23,22 +23,26 @@ namespace xamarinJKH.Pays
         RestClientMP server = new RestClientMP();
         public string Period { get; set; }
         BillInfo _billInfo = new BillInfo();
+        private string _filename = "";
+        private byte[] _file = null;
 
         public ImageSaldoPage(BillInfo bill)
         {
             Period = bill.Period;
             _billInfo = bill;
+            _filename = _billInfo.Period + "_" + _billInfo.Ident.Replace("/", "")
+                .Replace("\\", "") + ".pdf";
             InitializeComponent();
 
             if (Device.RuntimePlatform == Device.iOS)
             {
                 int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
-                Pancake2.HeightRequest = statusBarHeight;// new Thickness(0, statusBarHeight, 0, 0);
+                Pancake2.HeightRequest = statusBarHeight; // new Thickness(0, statusBarHeight, 0, 0);
             }
 
-           // var pinchGesture = new PinchGestureRecognizer();
-           // pinchGesture.PinchUpdated += OnPinchUpdated;
-           //Image.GestureRecognizers.Add(pinchGesture);
+            // var pinchGesture = new PinchGestureRecognizer();
+            // pinchGesture.PinchUpdated += OnPinchUpdated;
+            //Image.GestureRecognizers.Add(pinchGesture);
 
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
@@ -48,64 +52,11 @@ namespace xamarinJKH.Pays
             BindingContext = this;
         }
 
-        //double currentScale = 1;
-        //double startScale = 1;
-        //double xOffset = 0;
-        //double yOffset = 0;
-
-        //private void OnPinchUpdated(object sender, PinchGestureUpdatedEventArgs e)
-        //{
-
-        //    if (e.Status == GestureStatus.Started)
-        //    {
-        //        // Store the current scale factor applied to the wrapped user interface element,
-        //        // and zero the components for the center point of the translate transform.
-        //        startScale = Content.Scale;
-        //        Content.AnchorX = 0;
-        //        Content.AnchorY = 0;
-        //    }
-        //    if (e.Status == GestureStatus.Running)
-        //    {
-        //        // Calculate the scale factor to be applied.
-        //        currentScale += (e.Scale - 1) * startScale;
-        //        currentScale = Math.Max(1, currentScale);
-
-        //        // The ScaleOrigin is in relative coordinates to the wrapped user interface element,
-        //        // so get the X pixel coordinate.
-        //        double renderedX = Content.X + xOffset;
-        //        double deltaX = renderedX / Width;
-        //        double deltaWidth = Width / (Content.Width * startScale);
-        //        double originX = (e.ScaleOrigin.X - deltaX) * deltaWidth;
-
-        //        // The ScaleOrigin is in relative coordinates to the wrapped user interface element,
-        //        // so get the Y pixel coordinate.
-        //        double renderedY = Content.Y + yOffset;
-        //        double deltaY = renderedY / Height;
-        //        double deltaHeight = Height / (Content.Height * startScale);
-        //        double originY = (e.ScaleOrigin.Y - deltaY) * deltaHeight;
-
-        //        // Calculate the transformed element pixel coordinates.
-        //        double targetX = xOffset - (originX * Content.Width) * (currentScale - startScale);
-        //        double targetY = yOffset - (originY * Content.Height) * (currentScale - startScale);
-
-        //        // Apply translation based on the change in origin.
-        //        Content.TranslationX = targetX.Clamp(-Content.Width * (currentScale - 1), 0);
-        //        Content.TranslationY = targetY.Clamp(-Content.Height * (currentScale - 1), 0);
-
-        //        // Apply scale factor.
-        //        Content.Scale = currentScale;
-        //    }
-        //    if (e.Status == GestureStatus.Completed)
-        //    {
-        //        // Store the translation delta's of the wrapped user interface element.
-        //        xOffset = Content.TranslationX;
-        //        yOffset = Content.TranslationY;
-        //    }
-
-        //}
 
         async void LoadPdf()
         {
+            ViewPrint.IsEnabled = false;
+            ViewHare.IsEnabled = false;
             new Task(async () =>
             {
                 byte[] stream;
@@ -115,34 +66,53 @@ namespace xamarinJKH.Pays
                     Stream streamM = new MemoryStream(stream);
                     Device.BeginInvokeOnMainThread(async () =>
                         Image.Source = ImageSource.FromStream(() => { return streamM; }));
+                    _file = await server.DownloadFileAsync(_billInfo.ID.ToString());
                 }
                 else
                 {
                     await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
                 }
 
-                Device.BeginInvokeOnMainThread(async () => progress.IsVisible = false);
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    ViewPrint.IsEnabled = true;
+                    ViewHare.IsEnabled = true;
+                    progress.IsVisible = false;
+                });
             }).Start();
         }
 
         async void ShareBill(object sender, EventArgs args)
         {
-            await Xamarin.Essentials.Share.RequestAsync(new ShareTextRequest()
+            ViewHare.IsEnabled = false;
+            try
             {
-                Uri = _billInfo.FileLink,
-                Text = AppResources.ShareBill
-            });
+                if (_file != null)
+                {
+                    await DependencyService.Get<IFileWorker>().SaveTextAsync(_filename, _file);
+                    FileBase fileBase = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(_filename));
+                    await Xamarin.Essentials.Share.RequestAsync(new ShareFileRequest(AppResources.ShareBill, fileBase));
+                }
+                else
+                    await DisplayAlert(null, AppResources.ErrorFileLoading, "OK");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                ViewHare.IsEnabled = true;
+            }
         }
 
         async void Print(object sender, EventArgs args)
         {
-            HttpClient client = new HttpClient();
-            Loading.Instance.Show(AppResources.Loading);
+            ViewPrint.IsEnabled = false;
             try
             {
-                var file = await client.GetByteArrayAsync(_billInfo.FileLink);
-                if (file != null)
-                    DependencyService.Get<xamarinJKH.InterfacesIntegration.IPrintManager>().SendFileToPrint(file);
+                if (_file != null)
+                    DependencyService.Get<xamarinJKH.InterfacesIntegration.IPrintManager>().SendFileToPrint(_file);
                 else
                     await DisplayAlert(null, AppResources.ErrorFileLoading, "OK");
             }
@@ -152,7 +122,7 @@ namespace xamarinJKH.Pays
             }
             finally
             {
-                Loading.Instance.Hide();
+                ViewPrint.IsEnabled = true;
             }
         }
     }
