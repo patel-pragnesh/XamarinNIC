@@ -244,6 +244,11 @@ namespace xamarinJKH.Main
                 if (args == null)
                     RequestsAmount = 0;
             });
+
+            MessagingCenter.Subscribe<Object, (string, string)>(this, "OpenNotification", (sender, args) =>
+            {
+                this.CurrentPage = this.EventsNavPage;
+            });
         }
 
         void StartUpdateToken()

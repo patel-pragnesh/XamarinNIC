@@ -154,6 +154,15 @@ namespace xamarinJKH.Main
 
                 IconViewTech.ReplaceStringMap = colors;
             });
+
+            MessagingCenter.Subscribe<Object, (string, string)>(this, "OpenNotification", async (sender, args) =>
+            {
+                await Task.Delay(TimeSpan.FromMilliseconds(500));
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is NotificationsPage) == null)
+                    await Navigation.PushAsync(new NotificationsPage());
+
+                MessagingCenter.Send<Object, AnnouncementInfo>(this, "OpenAnnouncement", Settings.EventBlockData.Announcements.FirstOrDefault(x => x.Header == args.Item2 && x.Text == args.Item1));
+            });
         }
 
         protected override void OnAppearing()
