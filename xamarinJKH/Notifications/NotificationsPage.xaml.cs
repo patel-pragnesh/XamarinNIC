@@ -124,7 +124,8 @@ namespace xamarinJKH
             
             };
             SetText();
-            Notifications = Settings.EventBlockData.Announcements.Take(3).ToList();;
+            Settings.EventBlockData.Announcements = Settings.EventBlockData.Announcements.OrderByDescending(x => DateTime.ParseExact(x.Created, "dd.MM.yyyy", null)).ToList();
+            Notifications = Settings.EventBlockData.Announcements.Take(3).ToList();
             this.BindingContext = this;
             NotificationList.BackgroundColor = Color.Transparent;
             NotificationList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
@@ -137,6 +138,18 @@ namespace xamarinJKH
                     notif.IsReaded = true;
                 }
             });
+
+            MessagingCenter.Subscribe<Object, AnnouncementInfo>(this, "OpenAnnouncement", async (sender, args) =>
+             {
+                 if (args != null)
+                 {
+                     if (Navigation.NavigationStack.FirstOrDefault(x => x is NotificationOnePage) == null)
+                         await Navigation.PushAsync(new NotificationOnePage(args));
+
+                     MessagingCenter.Send<Object, int>(this, "SetNotificationRead", args.ID);
+                 }
+                 
+             });
         }
 
         void SetText()
