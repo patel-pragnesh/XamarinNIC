@@ -10,6 +10,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 
@@ -22,12 +23,27 @@ namespace xamarinJKH.Pays
         RestClientMP server = new RestClientMP();
         public string Period { get; set; }
         BillInfo _billInfo = new BillInfo();
+        private string _filename = "";
+        private byte[] _file = null;
 
         public ImageSaldoPage(BillInfo bill)
         {
             Period = bill.Period;
             _billInfo = bill;
+            _filename = _billInfo.Period + "_" + _billInfo.Ident.Replace("/", "")
+                .Replace("\\", "") + ".pdf";
             InitializeComponent();
+
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
+                Pancake2.HeightRequest = statusBarHeight; // new Thickness(0, statusBarHeight, 0, 0);
+            }
+
+            // var pinchGesture = new PinchGestureRecognizer();
+            // pinchGesture.PinchUpdated += OnPinchUpdated;
+            //Image.GestureRecognizers.Add(pinchGesture);
+
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) => { _ = await Navigation.PopAsync(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
@@ -36,8 +52,11 @@ namespace xamarinJKH.Pays
             BindingContext = this;
         }
 
+
         async void LoadPdf()
         {
+            ViewPrint.IsEnabled = false;
+            ViewHare.IsEnabled = false;
             new Task(async () =>
             {
                 byte[] stream;
@@ -47,34 +66,53 @@ namespace xamarinJKH.Pays
                     Stream streamM = new MemoryStream(stream);
                     Device.BeginInvokeOnMainThread(async () =>
                         Image.Source = ImageSource.FromStream(() => { return streamM; }));
+                    _file = await server.DownloadFileAsync(_billInfo.ID.ToString());
                 }
                 else
                 {
                     await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
                 }
 
-                Device.BeginInvokeOnMainThread(async () => progress.IsVisible = false);
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    ViewPrint.IsEnabled = true;
+                    ViewHare.IsEnabled = true;
+                    progress.IsVisible = false;
+                });
             }).Start();
         }
 
         async void ShareBill(object sender, EventArgs args)
         {
-            await Xamarin.Essentials.Share.RequestAsync(new ShareTextRequest()
+            ViewHare.IsEnabled = false;
+            try
             {
-                Uri = _billInfo.FileLink,
-                Text = AppResources.ShareBill
-            });
+                if (_file != null)
+                {
+                    await DependencyService.Get<IFileWorker>().SaveTextAsync(_filename, _file);
+                    FileBase fileBase = new ReadOnlyFile(DependencyService.Get<IFileWorker>().GetFilePath(_filename));
+                    await Xamarin.Essentials.Share.RequestAsync(new ShareFileRequest(AppResources.ShareBill, fileBase));
+                }
+                else
+                    await DisplayAlert(null, AppResources.ErrorFileLoading, "OK");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                ViewHare.IsEnabled = true;
+            }
         }
 
         async void Print(object sender, EventArgs args)
         {
-            HttpClient client = new HttpClient();
-            Loading.Instance.Show(AppResources.Loading);
+            ViewPrint.IsEnabled = false;
             try
             {
-                var file = await client.GetByteArrayAsync(_billInfo.FileLink);
-                if (file != null)
-                    DependencyService.Get<xamarinJKH.InterfacesIntegration.IPrintManager>().SendFileToPrint(file);
+                if (_file != null)
+                    DependencyService.Get<xamarinJKH.InterfacesIntegration.IPrintManager>().SendFileToPrint(_file);
                 else
                     await DisplayAlert(null, AppResources.ErrorFileLoading, "OK");
             }
@@ -84,7 +122,7 @@ namespace xamarinJKH.Pays
             }
             finally
             {
-                Loading.Instance.Hide();
+                ViewPrint.IsEnabled = true;
             }
         }
     }

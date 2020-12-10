@@ -49,7 +49,7 @@ namespace xamarinJKH.AppsConst
         const string GALERY = "galery";
         const string FILE = "file";
         bool isPaid;
-
+        private string updatekey = Settings.UpdateKey;
         public bool IsRequestPaid
         {
             get => isPaid;
@@ -220,10 +220,10 @@ namespace xamarinJKH.AppsConst
             }
 
             RequestsUpdate requestsUpdate =
-                await _server.GetRequestsUpdatesConst(Settings.UpdateKey, _requestInfo.ID.ToString());
+                await _server.GetRequestsUpdatesConst(updatekey, _requestInfo.ID.ToString());
             if (requestsUpdate.Error == null)
             {
-                Settings.UpdateKey = requestsUpdate.NewUpdateKey;
+                updatekey= requestsUpdate.NewUpdateKey;
                 if (requestsUpdate.CurrentRequestUpdates != null)
                 {
                     //Settings.DateUniq = "";
