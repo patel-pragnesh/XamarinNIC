@@ -355,7 +355,7 @@ namespace xamarinJKH.Apps
                     {
                         _ = await Navigation.PopAsync();
                     }
-                    catch { }
+                    catch { _ = await Navigation.PopModalAsync(); }
                 }
             };
             BackStackLayout.GestureRecognizers.Add(backClick);

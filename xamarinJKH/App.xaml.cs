@@ -26,6 +26,7 @@ using Syncfusion.Licensing;
 using Syncfusion.SfPdfViewer.XForms;
 using System.Resources;
 using System.Reflection;
+using xamarinJKH.AppsConst;
 using xamarinJKH.InterfacesIntegration;
 
 namespace xamarinJKH
@@ -40,6 +41,8 @@ namespace xamarinJKH
         public static string version { get; set; }
         public static string model { get; set; }
         public static string token { get; set; }
+        
+        public static bool isStart { get; set; } = false;
         public static bool isCons { get; set; } = false;
         public static bool isConnected { get; set; } = true;
         private RestClientMP server = new RestClientMP();
@@ -67,7 +70,6 @@ namespace xamarinJKH
         public App()
         {
             InitializeComponent();
-
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzU2OTY1QDMxMzgyZTMzMmUzMEtpcFNHRnBKOUppMFJ1RUxjWTlsbUt6QzFOY3JyMUlGVi9McDJSSmQxVW89");
             PdfViewerResourceManager.Manager = new ResourceManager("xamarinJKH.Resources.Syncfusion.SfPdfViewer.XForms", GetType().GetTypeInfo().Assembly);
             CrossBadge.Current.ClearBadge();
@@ -319,7 +321,7 @@ namespace xamarinJKH
                     }
                 });
             };
-            CrossFirebasePushNotification.Current.OnNotificationOpened += (s, rea) =>
+            CrossFirebasePushNotification.Current.OnNotificationOpened += async (s, rea) =>
             {
                 Analytics.TrackEvent("открыт пуш");
                 System.Diagnostics.Debug.WriteLine("Opened");
@@ -391,56 +393,99 @@ namespace xamarinJKH
 
                     if (o.ToLower().Equals("comment"))
                     {
-                        Analytics.TrackEvent($"App.Current.MainPage.Navigation.ModalStack.Count={App.Current.MainPage.Navigation.ModalStack.Count}");
-                        if (App.Current.MainPage.Navigation.ModalStack.Count>0)
+                        if (rea.Data.ContainsKey("id_request"))
                         {
-                            var tabbedpage = App.Current.MainPage.Navigation.ModalStack.ToList()[0];                            
-                            if (tabbedpage is xamarinJKH.Main.BottomNavigationPage)
-                            {
-                                var tp = (tabbedpage as Xamarin.Forms.TabbedPage);
-                                Analytics.TrackEvent($"BottomNavigationPage Children count = {tp.Children.Count}");
+                            var id = int.Parse(rea.Data["id_request"].ToString());
+                            Analytics.TrackEvent("ключ id_request=" + id);
+                            Analytics.TrackEvent("isCons=" + isCons);
 
-                                if (tp.Children.Count >= 4)
-                                {
-                                    var stack = tp.Children[3].Navigation.NavigationStack;
-                                    if (stack.Count == 2)
+                            // if (!isStart)
+                            // {
+                            //
+                            //     if (!isCons)
+                            //         MessagingCenter.Send<Object, int>(this, "SwitchToApps", id);
+                            //     else
+                            //         MessagingCenter.Send<Object, int>(this, "SwitchToAppsConst", id);
+                            // }
+                            // else
+                            // {
+                                string login = Preferences.Get("login", "");
+                                string pass = Preferences.Get("pass", "");
+                                string loginConst = Preferences.Get("loginConst", "");
+                                string passConst = Preferences.Get("passConst", "");
+                                
+                                    LoginResult loginResult = isCons ? await server.LoginDispatcher(loginConst, passConst) : await server.Login(login, pass);
+                                    if (loginResult.Error == null)
                                     {
-                                        var app_page = stack.ToList()[0];
+                                        if (isCons)
+                                        {
+                                            RequestList requestList = await server.GetRequestsListConst();
+                                            var request = requestList.Requests.Find(x => x.ID == id);
+                                            await MainPage.Navigation.PushModalAsync(new AppConstPage(request));
+                                        }
+                                        else
+                                        {
+                                            RequestList requestsList = await server.GetRequestsList();
+                                            var request = requestsList.Requests.Find(x => x.ID == id);
+                                            await MainPage.Navigation.PushModalAsync(new AppPage(request, false,
+                                                request.IsPaid));
+                                        }
                                     }
-                                    else
-                                    {
-                                        pExec(rea);                                                                          
-                                    }
-                                }
-                                else
-                                {
-                                    pExec(rea);
-                                }
-                            }
-
-                            if (tabbedpage is xamarinJKH.MainConst.BottomNavigationConstPage)
-                            {
-                                var tp = (tabbedpage as Xamarin.Forms.TabbedPage);
-                                Analytics.TrackEvent($"BottomNavigationConstPage Children count = {tp.Children.Count}");
-                                if (tp.Children.Count >= 1)
-                                {
-                                    var stack = tp.Children[0].Navigation.NavigationStack;
-                                    if (stack.Count == 2)
-                                    {
-                                            var app_page = stack.ToList()[0];
-                                    }
-                                    else
-                                    {
-                                        pExec(rea);
-                                    }
-                                }
-                                else
-                                {
-                                    pExec(rea);
-                                }
-
-                            }
                         }
+                        else
+                        {
+                            Analytics.TrackEvent("ключ id_request не найден");
+                        }
+                        // Analytics.TrackEvent($"App.Current.MainPage.Navigation.ModalStack.Count={App.Current.MainPage.Navigation.ModalStack.Count}");
+                        // if (App.Current.MainPage.Navigation.ModalStack.Count>0)
+                        // {
+                        //     var tabbedpage = App.Current.MainPage.Navigation.ModalStack.ToList()[0];                            
+                        //     if (tabbedpage is xamarinJKH.Main.BottomNavigationPage)
+                        //     {
+                        //         var tp = (tabbedpage as Xamarin.Forms.TabbedPage);
+                        //         Analytics.TrackEvent($"BottomNavigationPage Children count = {tp.Children.Count}");
+                        //
+                        //         if (tp.Children.Count >= 4)
+                        //         {
+                        //             var stack = tp.Children[3].Navigation.NavigationStack;
+                        //             if (stack.Count == 2)
+                        //             {
+                        //                 var app_page = stack.ToList()[0];
+                        //             }
+                        //             else
+                        //             {
+                        //                 pExec(rea);                                                                          
+                        //             }
+                        //         }
+                        //         else
+                        //         {
+                        //             pExec(rea);
+                        //         }
+                        //     }
+                        //
+                        //     if (tabbedpage is xamarinJKH.MainConst.BottomNavigationConstPage)
+                        //     {
+                        //         var tp = (tabbedpage as Xamarin.Forms.TabbedPage);
+                        //         Analytics.TrackEvent($"BottomNavigationConstPage Children count = {tp.Children.Count}");
+                        //         if (tp.Children.Count >= 1)
+                        //         {
+                        //             var stack = tp.Children[0].Navigation.NavigationStack;
+                        //             if (stack.Count == 2)
+                        //             {
+                        //                     var app_page = stack.ToList()[0];
+                        //             }
+                        //             else
+                        //             {
+                        //                 pExec(rea);
+                        //             }
+                        //         }
+                        //         else
+                        //         {
+                        //             pExec(rea);
+                        //         }
+                        //
+                        //     }
+                        // }
                        
                     }
                 }
@@ -460,7 +505,7 @@ namespace xamarinJKH
             };
         }
 
-        void pExec(FirebasePushNotificationResponseEventArgs p)
+        async void pExec(FirebasePushNotificationResponseEventArgs p)
         {
             if (p.Data.ContainsKey("id_request"))
             {

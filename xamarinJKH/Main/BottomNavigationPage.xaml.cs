@@ -47,6 +47,7 @@ namespace xamarinJKH.Main
 
         public BottomNavigationPage()
         {
+            App.isStart = true;
             Analytics.TrackEvent("Форма нижнего меню");
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
