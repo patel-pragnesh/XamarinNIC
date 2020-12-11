@@ -35,6 +35,7 @@
                             <Label
                                 Text="{x:Static xamarinJkh:AppResources.ConfirmingOrder}"
                                 FontSize="18"
+                                FontAttributes="Bold"
                                 TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                 HorizontalOptions="Start" />
                         </StackLayout>
@@ -45,7 +46,7 @@
                             Orientation="Horizontal">
                             <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                                 HeightRequest="20"
-                                                ReplaceStringMap="{Binding hex,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
+                                                ReplaceStringMap="{Binding hex,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                                                 HorizontalOptions="Start"
                                                 Margin="10,0,0,0"
                                                 VerticalOptions="Center" />
@@ -62,6 +63,7 @@
                         <yummy:PancakeView
                             x:Name="GoodsLayot"
                             BorderThickness="1"
+                            Padding="15"
                             CornerRadius="40" BackgroundColor="White" HasShadow="False">
                             <StackLayout Orientation="Vertical">
                                 <Label HorizontalOptions="Center" Margin="10">
@@ -88,7 +90,7 @@
                                         FontSize="17" />
                                     <StackLayout
                                         Spacing="0">
-                                        <StackLayout Orientation="Horizontal">
+                                        <StackLayout Orientation="Horizontal" x:Name="StackLayoutIdent">
                                             <xamarinJkh:BorderlessPicker x:Name="PickerLs"
                                                                          Title="{Binding Ident}"
                                                                          TitleColor="{Binding hex}"
@@ -100,13 +102,12 @@
                                                                          ItemsSource="{Binding AllAcc}"
                                                                          ItemDisplayBinding="{Binding Ident}"
                                                                          SelectedItem="{Binding SelectedAcc}" />
-                                            <svg:SvgCachedImage Source="resources://xamarinJKH.Resources.ic_arrow_forward.svg"
-                                                                 HeightRequest="12"
-                                                                 WidthRequest="12"
-                                                                 Rotation="90"
-                                                                 Margin="0,5,0,0"
-                                                                 ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}}"
-                                                                 VerticalOptions="Center" />
+                                            <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
+                                                                HeightRequest="12"
+                                                                Rotation="90"
+                                                                ReplaceStringMap="{Binding hex,Converter={x:StaticResource SvgColor}}"
+                                                                Margin="0,5,0,0"
+                                                                VerticalOptions="Center" />
                                         </StackLayout>
                                         <Label
                                             HeightRequest="1"
@@ -256,14 +257,16 @@
                                                    Color="{Binding hex}" />
                                 <Frame CornerRadius="10"
                                        x:Name="FrameBtn"
+                                       HasShadow="False"
                                        Padding="0"
                                        Margin="5,20">
                                     <Button x:Name="BtnCheckOut"
                                             BackgroundColor="{Binding hex}" HorizontalOptions="FillAndExpand"
                                             VerticalOptions="FillAndExpand"
                                             TextColor="White"
+                                            FontSize="16"
                                             FontAttributes="Bold"
-                                            Text="{x:Static xamarinJkh:AppResources.Confirm_order}" Font="18"
+                                            Text="{x:Static xamarinJkh:AppResources.Confirm_order}" 
                                             Clicked="BtnCheckOut_Clicked" />
                                 </Frame>
                             </StackLayout>

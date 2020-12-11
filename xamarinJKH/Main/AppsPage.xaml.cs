@@ -405,6 +405,22 @@ namespace xamarinJKH.Main
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            OSAppTheme currentTheme = Application.Current.RequestedTheme;
+            var colors = new Dictionary<string, string>();
+            var buttonColor = new Dictionary<string, string>();
+            if (currentTheme == OSAppTheme.Light || currentTheme == OSAppTheme.Unspecified)
+            {
+                colors.Add("#000000", ((Color)Application.Current.Resources["MainColor"]).ToHex());
+                buttonColor.Add("#000000", "#FFFFFF");
+            }
+            else
+            {
+                colors.Add("#000000", "#FFFFFF");
+                buttonColor.Add("#000000", "#FFFFFF");
+            }
+
+            IconViewTech.ReplaceStringMap = colors;
+            IconViewSaldos.ReplaceStringMap = buttonColor;
             CheckAkk();
             
         }

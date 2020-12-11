@@ -110,6 +110,12 @@ namespace xamarinJKH.Shop
                 catch { }
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
+            var tapPicker = new TapGestureRecognizer();
+            tapPicker.Tapped += async (s, e) =>
+            {
+                Device.BeginInvokeOnMainThread(async () => PickerLs.Focus());
+            };
+            StackLayoutIdent.GestureRecognizers.Add(tapPicker);
 
             hex = (Color)Application.Current.Resources["MainColor"];
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
