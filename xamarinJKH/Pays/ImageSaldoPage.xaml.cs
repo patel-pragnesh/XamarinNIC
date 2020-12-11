@@ -70,7 +70,10 @@ namespace xamarinJKH.Pays
                 }
                 else
                 {
-                    await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        await DisplayAlert(AppResources.ErrorTitle, "Не удалось скачать файл", "OK");
+                    });
                 }
 
                 Device.BeginInvokeOnMainThread(async () =>
