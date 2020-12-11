@@ -15,7 +15,9 @@ namespace xamarinJKH.AppsConst
     public class MessageCellAuthor : StackLayout
     {
         private StackLayout ConteinerA = new StackLayout();
+
         private Image ImagePersonA = new Image();
+
         //private Label LabelNameA = new Label();
         private Label LabeltimeA = new Label();
         private Label LabelTextA = new Label();
@@ -65,7 +67,7 @@ namespace xamarinJKH.AppsConst
             Frame frameTextA = new Frame();
             frameTextA.HorizontalOptions = LayoutOptions.End;
             frameTextA.VerticalOptions = LayoutOptions.StartAndExpand;
-            frameTextA.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
+            frameTextA.BackgroundColor = (Color) Application.Current.Resources["MainColor"];
             frameTextA.Margin = new Thickness(0, 0, 0, 10);
             frameTextA.Padding = new Thickness(15, 15, 15, 15);
             frameTextA.CornerRadius = 20;
@@ -86,6 +88,12 @@ namespace xamarinJKH.AppsConst
             imageA.Foreground = Color.White;
             imageA.Source = "ic_file_download";
 
+            ActivityIndicator indicator = new ActivityIndicator();
+            indicator.WidthRequest = 40;
+            indicator.HeightRequest = 40;
+            indicator.Color = Color.White;
+            indicator.IsVisible = false;
+
 
             if (message.FileID != -1)
             {
@@ -94,8 +102,8 @@ namespace xamarinJKH.AppsConst
                 tgr.Tapped += async (s, e) =>
                 {
                     string fileName = message.Text.Replace("Отправлен новый файл: ", "")
-                .Replace("\"", "")
-                .Replace("\"", "");
+                        .Replace("\"", "")
+                        .Replace("\"", "");
                     if (await DependencyService.Get<IFileWorker>().ExistsAsync(fileName))
                     {
                         await Launcher.OpenAsync(new OpenFileRequest
@@ -106,7 +114,8 @@ namespace xamarinJKH.AppsConst
                     else
                     {
                         await Settings.StartProgressBar("Загрузка", 0.8);
-                        byte[] memoryStream = await _server.GetFileAPP(message.FileID.ToString());
+
+                        byte[] memoryStream = await _server.GetFileAPPConst(message.FileID.ToString());
                         if (memoryStream != null)
                         {
                             await DependencyService.Get<IFileWorker>().SaveTextAsync(fileName, memoryStream);
@@ -121,6 +130,7 @@ namespace xamarinJKH.AppsConst
                             await p.DisplayAlert("Ошибка", "Не удалось скачать файл", "OK");
                         }
                     }
+
                     //// await ShowRating();
                     //await PopupNavigation.Instance.PushAsync(new RatingBarContentView(hex, _requestInfo, false));
                     //await RefreshData();
@@ -130,6 +140,7 @@ namespace xamarinJKH.AppsConst
 
 
             stackLayoutContentA.Children.Add(imageA);
+            stackLayoutContentA.Children.Add(indicator);
 
 
             StackLayout stackLayoutIcon = new StackLayout();
@@ -197,13 +208,11 @@ namespace xamarinJKH.AppsConst
         }
 
         private RestClientMP _server = new RestClientMP();
-
     }
 
 
     public class MessageCellService : StackLayout
     {
-
         private StackLayout Container = new StackLayout();
         private Image ImagePerson = new Image();
         private Label LabelName = new Label();
@@ -215,9 +224,10 @@ namespace xamarinJKH.AppsConst
         Frame frame = new Frame();
 
         private RestClientMP _server = new RestClientMP();
-       
 
-        public MessageCellService(RequestMessage message, Page p, string DateUniq, out string newDate, string prevAuthor)
+
+        public MessageCellService(RequestMessage message, Page p, string DateUniq, out string newDate,
+            string prevAuthor)
         {
             frame.HorizontalOptions = LayoutOptions.Start;
             frame.VerticalOptions = LayoutOptions.Start;
@@ -277,8 +287,8 @@ namespace xamarinJKH.AppsConst
                 tgr.Tapped += async (s, e) =>
                 {
                     string fileName = message.Text.Replace("Отправлен новый файл: ", "")
-                .Replace("\"", "")
-                .Replace("\"", "");
+                        .Replace("\"", "")
+                        .Replace("\"", "");
                     if (await DependencyService.Get<IFileWorker>().ExistsAsync(fileName))
                     {
                         await Launcher.OpenAsync(new OpenFileRequest
@@ -288,8 +298,10 @@ namespace xamarinJKH.AppsConst
                     }
                     else
                     {
-                        MessagingCenter.Send<Object, string>(this, "OpenFileConst", message.FileID.ToString() + "," + fileName);
+                        MessagingCenter.Send<Object, string>(this, "OpenFileConst",
+                            message.FileID.ToString() + "," + fileName);
                     }
+
                     //// await ShowRating();
                     //await PopupNavigation.Instance.PushAsync(new RatingBarContentView(hex, _requestInfo, false));
                     //await RefreshData();
@@ -359,6 +371,7 @@ namespace xamarinJKH.AppsConst
                     };
                     frame.BackgroundColor = Color.Transparent;
                 }
+
                 Settings.isSelf = message.IsSelf;
             }
             else
@@ -382,10 +395,8 @@ namespace xamarinJKH.AppsConst
 
             Children.Add(Container);
         }
-
-
     }
-    
+
     //public class MessageConstCell : ViewCell
     //{
     //    RestClientMP server = new RestClientMP();
