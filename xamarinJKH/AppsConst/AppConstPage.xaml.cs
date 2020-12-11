@@ -613,6 +613,7 @@ namespace xamarinJKH.AppsConst
                 }
                 catch
                 {
+                    _ = await Navigation.PopModalAsync();
                 }
             }
         }
