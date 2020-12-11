@@ -243,6 +243,14 @@ namespace xamarinJKH.Main
 
             hex = (Color)Application.Current.Resources["MainColor"];
 
+            var profile = new TapGestureRecognizer();
+            profile.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfilePage) == null)
+                    await Navigation.PushAsync(new ProfilePage());
+            };
+            IconViewProfile.GestureRecognizers.Add(profile);
+
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new AppPage());};
             LabelTech.GestureRecognizers.Add(techSend);

@@ -13,6 +13,7 @@ using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
 using xamarinJKH.ViewModels.Shop;
+using xamarinJKH.Main;
 
 namespace xamarinJKH.Shop
 {
@@ -36,6 +37,14 @@ namespace xamarinJKH.Shop
             hex = (Color)Application.Current.Resources["MainColor"];
             Color hexColor = (Color)Application.Current.Resources["MainColor"];
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.White);
+
+            var profile = new TapGestureRecognizer();
+            profile.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfilePage) == null)
+                    await Navigation.PushAsync(new ProfilePage());
+            };
+            IconViewProfile.GestureRecognizers.Add(profile);
 
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new AppPage()); };

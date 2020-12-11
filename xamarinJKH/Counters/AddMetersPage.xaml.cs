@@ -157,6 +157,15 @@ namespace xamarinJKH.Counters
                 }
                 
             }
+
+            var profile = new TapGestureRecognizer();
+            profile.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfilePage) == null)
+                    await Navigation.PushAsync(new ProfilePage());
+            };
+            IconViewProfile.GestureRecognizers.Add(profile);
+
             backClick.Tapped += async (s, e) => {
                 try
                 {

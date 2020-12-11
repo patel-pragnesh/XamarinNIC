@@ -152,6 +152,15 @@ namespace xamarinJKH.MainConst
                 default:
                     break;
             }
+
+            var profile = new TapGestureRecognizer();
+            profile.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfileConstPage) == null)
+                    await Navigation.PushAsync(new ProfileConstPage());
+            };
+            IconViewProfile.GestureRecognizers.Add(profile);
+
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += TechSend; // async(s, e) => {     await Navigation.PushAsync(new AppPage()); };
             LabelTech.GestureRecognizers.Add(techSend);

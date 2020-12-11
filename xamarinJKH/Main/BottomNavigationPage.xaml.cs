@@ -70,7 +70,7 @@ namespace xamarinJKH.Main
                         CounterPage.BarTextColor = Color.Black;
                         AppPage.BarTextColor = Color.Black;
                         ShopNavPage.BarTextColor = Color.Black;
-                        ProfPage.BarTextColor = Color.Black;
+                        //ProfPage.BarTextColor = Color.Black;
                         ShopNavPage2.BarTextColor = Color.Black;
                     }
 
@@ -84,7 +84,7 @@ namespace xamarinJKH.Main
                         CounterPage.BarTextColor = Color.White;
                         AppPage.BarTextColor = Color.White;
                         ShopNavPage.BarTextColor = Color.White;
-                        ProfPage.BarTextColor = Color.White;
+                        //ProfPage.BarTextColor = Color.White;
                         ShopNavPage2.BarTextColor = Color.White;
                     }
 
@@ -101,7 +101,7 @@ namespace xamarinJKH.Main
                                 CounterPage.BarTextColor = Color.Black;
                                 AppPage.BarTextColor = Color.Black;
                                 ShopNavPage.BarTextColor = Color.Black;
-                                ProfPage.BarTextColor = Color.Black;
+                                //ProfPage.BarTextColor = Color.Black;
                                 ShopNavPage2.BarTextColor = Color.Black;
                                 break;
                             case "dark":
@@ -110,7 +110,7 @@ namespace xamarinJKH.Main
                                 CounterPage.BarTextColor = Color.White;
                                 AppPage.BarTextColor = Color.White;
                                 ShopNavPage.BarTextColor = Color.White;
-                                ProfPage.BarTextColor = Color.White;
+                                //ProfPage.BarTextColor = Color.White;
                                 ShopNavPage2.BarTextColor = Color.White;
                                 break;
                         }
@@ -169,7 +169,7 @@ namespace xamarinJKH.Main
                             CounterPage.BarTextColor = Color.Black;
                             AppPage.BarTextColor = Color.Black;
                             ShopNavPage.BarTextColor = Color.Black;
-                            ProfPage.BarTextColor = Color.Black;
+                            //ProfPage.BarTextColor = Color.Black;
                             ShopNavPage2.BarTextColor = Color.Black;
                         }
 
@@ -183,7 +183,7 @@ namespace xamarinJKH.Main
                             CounterPage.BarTextColor = Color.White;
                             AppPage.BarTextColor = Color.White;
                             ShopNavPage.BarTextColor = Color.White;
-                            ProfPage.BarTextColor = Color.White;
+                            //ProfPage.BarTextColor = Color.White;
                             ShopNavPage2.BarTextColor = Color.White;
                         }
 
@@ -196,7 +196,7 @@ namespace xamarinJKH.Main
                             CounterPage.BarTextColor = Color.Black;
                             AppPage.BarTextColor = Color.Black;
                             ShopNavPage.BarTextColor = Color.Black;
-                            ProfPage.BarTextColor = Color.Black;
+                            //ProfPage.BarTextColor = Color.Black;
                             ShopNavPage2.BarTextColor = Color.Black;
                         }
 
@@ -348,10 +348,10 @@ namespace xamarinJKH.Main
                     
                     Children.Remove(ShopNavPage2);
                 }
-                else
-                {
-                    Children.Remove(ProfPage);
-                }
+                //else
+                //{
+                //    Children.Remove(ProfPage);
+                //}
                 
                 
                 //// if (AppInfo.PackageName != "rom.best.UkComfort" && AppInfo.PackageName != "sys_rom.ru.comfort_uk_app")

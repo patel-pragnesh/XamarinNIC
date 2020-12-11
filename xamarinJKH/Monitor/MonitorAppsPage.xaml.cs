@@ -15,6 +15,7 @@ using xamarinJKH.Apps;
 using xamarinJKH.AppsConst;
 using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
+using xamarinJKH.MainConst;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
@@ -80,6 +81,15 @@ namespace xamarinJKH.Monitor
                 default:
                     break;
             }
+
+            var profile = new TapGestureRecognizer();
+            profile.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfileConstPage) == null)
+                    await Navigation.PushAsync(new ProfileConstPage());
+            };
+            IconViewProfile.GestureRecognizers.Add(profile);
+
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += TechSend;// async (s, e) => {     await Navigation.PushAsync(new Tech.AppPage()); };
             LabelTech.GestureRecognizers.Add(techSend);

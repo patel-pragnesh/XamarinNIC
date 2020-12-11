@@ -13,6 +13,7 @@ using Xamarin.Forms.Xaml;
 using xamarinJKH.Apps;
 using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
+using xamarinJKH.Main;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
@@ -60,6 +61,15 @@ namespace xamarinJKH.Shop
             isBonusVisible = Settings.MobileSettings.useBonusSystem;
             InitializeComponent();
             Analytics.TrackEvent("Подтверждение заказа");
+
+            var profile = new TapGestureRecognizer();
+            profile.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfilePage) == null)
+                    await Navigation.PushAsync(new ProfilePage());
+            };
+            IconViewProfile.GestureRecognizers.Add(profile);
+
             var openUrl = new TapGestureRecognizer();
             openUrl.Tapped += async (s, e) =>
             {

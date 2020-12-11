@@ -74,9 +74,6 @@ namespace xamarinJKH.Main
             };
             LabelTech.GestureRecognizers.Add(techSend);
 
-            
-
-            // if (AppInfo.PackageName == "rom.best.UkComfort" || AppInfo.PackageName == "sys_rom.ru.comfort_uk_app")
             if(Settings.MobileSettings.showOurService)
             { 
                 IconViewProfile.IsVisible = true;
@@ -88,7 +85,6 @@ namespace xamarinJKH.Main
                 };
                 IconViewProfile.GestureRecognizers.Add(profile);
             }
-
 
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
@@ -275,8 +271,10 @@ namespace xamarinJKH.Main
 
         void SetText()
         {
-            UkName.Text = Settings.MobileSettings.main_name;
-         
+            UkName.Text = Settings.MobileSettings.main_name;// +"aaaaaaaaaaaaaaaaaaabbbbbaaaaaaaaaaaaaaaaaaaaaaccccc";
+
+            //UkName.FormattedText =  Settings.MobileSettings.main_name ;
+            //UkName.LineBreakMode = LineBreakMode.WordWrap;
 
             // LabelTech.TextColor = (Color)Application.Current.Resources["MainColor"];
             // IconViewTech.Foreground = (Color)Application.Current.Resources["MainColor"];

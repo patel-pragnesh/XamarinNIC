@@ -119,6 +119,15 @@ namespace xamarinJKH.AppsConst
             }
 
             NavigationPage.SetHasNavigationBar(this, false);
+
+            var profile = new TapGestureRecognizer();
+            profile.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfileConstPage) == null)
+                    await Navigation.PushAsync(new ProfileConstPage());
+            };
+            IconViewProfile.GestureRecognizers.Add(profile);
+
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) =>
             {

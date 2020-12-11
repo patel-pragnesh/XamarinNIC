@@ -25,6 +25,7 @@ using System.Threading.Tasks.Sources;
 using AiForms.Dialogs.Abstractions;
 using System.Threading;
 using xamarinJKH.News;
+using xamarinJKH.Main;
 
 //using MediaManager.Forms;
 
@@ -116,6 +117,14 @@ namespace xamarinJKH.Pays
                 default:
                     break;
             }
+
+            var profile = new TapGestureRecognizer();
+            profile.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfilePage) == null)
+                    await Navigation.PushAsync(new ProfilePage());
+            };
+            IconViewProfile.GestureRecognizers.Add(profile);
 
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new AppPage()); };

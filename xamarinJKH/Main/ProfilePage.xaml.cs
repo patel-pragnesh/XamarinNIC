@@ -59,6 +59,15 @@ namespace xamarinJKH.Main
             GoodsIsVisible = Settings.GoodsIsVisible;
             isSave = Preferences.Get("isPass", false);
             NavigationPage.SetHasNavigationBar(this, false);
+
+            //var profile = new TapGestureRecognizer();
+            //profile.Tapped += async (s, e) =>
+            //{
+            //    if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfilePage) == null)
+            //        await Navigation.PushAsync(new ProfilePage());
+            //};
+            //IconViewProfile.GestureRecognizers.Add(profile);
+
             var exitClick = new TapGestureRecognizer();
             exitClick.Tapped += async (s, e) =>
             {
