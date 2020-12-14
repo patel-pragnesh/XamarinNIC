@@ -75,6 +75,7 @@
                     VerticalOptions="FillAndExpand">
                     <Frame CornerRadius="40"
                        Margin="20, 10, 20, -70"
+                       HasShadow="{AppThemeBinding Light=false, Dark=true}"
                        VerticalOptions="Start"
                        x:Name="Frame"
                        BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
@@ -177,7 +178,8 @@
                         <StackLayout Spacing="0">
                             <StackLayout x:Name="LayoutContent" Spacing="0" />
                             <customRenderers:MaterialFrame
-                            Elevation="20"
+                            Elevation="{AppThemeBinding Light=0, Dark=20}"
+                            HasShadow="{AppThemeBinding Light=false, Dark=true}"
                             x:Name="MaterialFrameNotDoingContainer"
                             IsVisible="False"
                             Margin="20,0,20,10"

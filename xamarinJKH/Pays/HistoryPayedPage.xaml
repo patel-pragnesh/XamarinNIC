@@ -79,9 +79,10 @@
                     </StackLayout>
                     <StackLayout
                         VerticalOptions="FillAndExpand">
-                        <customRenderers:MaterialFrame Elevation="20" CornerRadius="40"
+                        <customRenderers:MaterialFrame Elevation="{AppThemeBinding Light=0, Dark=20}" CornerRadius="40"
                                                        Margin="20, 10, 20, -60"
                                                        x:Name="FrameSaldo"
+                                                       HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                        VerticalOptions="Start"
                                                        BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                                        Padding="20,15,20,80">
@@ -124,6 +125,7 @@
                         </customRenderers:MaterialFrame>
                         <Frame CornerRadius="30"
                                x:Name="FrameHistory"
+                               HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                Margin="20, 0, 20, 15"
                                BackgroundColor="White"
                                Padding="15">

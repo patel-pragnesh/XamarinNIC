@@ -194,9 +194,10 @@ namespace xamarinJKH.MainConst
             {
                 MaterialFrame container = new MaterialFrame();
                 container.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
-                container.Elevation = 20;
                 container.Margin = new Thickness(20, 0, 20, 10);
                 container.CornerRadius = 35;
+                container.SetOnAppTheme(Frame.HasShadowProperty, false, true);
+                container.SetOnAppTheme(MaterialFrame.ElevationProperty, 0, 20);
                 container.BackgroundColor = Color.White;
                 container.Padding = new Thickness(0, 0, 0, 25);
 
@@ -207,9 +208,10 @@ namespace xamarinJKH.MainConst
 
                 MaterialFrame materialFrameTop = new MaterialFrame();
                 materialFrameTop.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
-                materialFrameTop.Elevation = 20;
                 materialFrameTop.CornerRadius = 35;
                 materialFrameTop.BackgroundColor = Color.White;
+                materialFrameTop.SetOnAppTheme(Frame.HasShadowProperty, false, true);
+                materialFrameTop.SetOnAppTheme(MaterialFrame.ElevationProperty, 0, 20);
                 materialFrameTop.Padding = new Thickness(0, 25, 0, 25);
 
                 stackLayoutFrame.Children.Add(materialFrameTop);

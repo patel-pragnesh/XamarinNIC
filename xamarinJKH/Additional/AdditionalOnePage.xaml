@@ -104,6 +104,7 @@
                                        Color="{Binding hex}" />
                     <Frame CornerRadius="15"
                            BackgroundColor="Red"
+                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                            Margin="40, 10, 40, 30"
                            IsVisible="False"
                            x:Name="FrameBtnQuest"

@@ -148,10 +148,11 @@
                             </ListView.ItemTemplate>
                         </ListView>-->
                         <StackLayout VerticalOptions="EndAndExpand">
-                            <pancakeView:PancakeView x:Name="GoodsLayot" Elevation="20" CornerRadius="50,50,0,0"
+                            <pancakeView:PancakeView x:Name="GoodsLayot" Elevation="{AppThemeBinding Light=0, Dark=20}" CornerRadius="50,50,0,0"
                                                      BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
                                                      Padding="0,20,0,10"
                                                      BorderThickness="1"
+                                                     HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                      VerticalOptions="FillAndExpand">
                                 <!-- <StackLayout -->
                                 <!--     HorizontalOptions="FillAndExpand" -->
@@ -169,6 +170,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Frame CornerRadius="10"
                                            x:Name="FrameBtnHistory"
+                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                            Padding="0"
                                            Grid.Column="0" Grid.Row="0">
                                         <StackLayout
@@ -195,6 +197,7 @@
                                     <Frame CornerRadius="10"
                                            x:Name="FrameBtnSaldos"
                                            Padding="0"
+                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                            Grid.Column="1" Grid.Row="0"
                                            IsVisible="{x:DynamicResource Saldo}"
                                            HorizontalOptions="FillAndExpand">

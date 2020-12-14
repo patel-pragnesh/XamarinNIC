@@ -88,7 +88,7 @@
                         </StackLayout>
                     </ScrollView>-->
                     <StackLayout x:Name="ossContent"  Margin="20,10,20,0">
-                        <Frame x:Name="OssTypeFrame" HeightRequest="80" MinimumHeightRequest="60" WidthRequest="900"
+                        <Frame x:Name="OssTypeFrame" HeightRequest="80" MinimumHeightRequest="60" WidthRequest="900" HasShadow="{AppThemeBinding Light=false, Dark=true}"
                        BackgroundColor="{AppThemeBinding Light=White, Dark=#8d8d8d}" CornerRadius="40" HorizontalOptions="FillAndExpand"
                        VerticalOptions="Start">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start"

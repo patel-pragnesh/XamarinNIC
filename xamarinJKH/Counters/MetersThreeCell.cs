@@ -81,10 +81,11 @@ namespace xamarinJKH.Main
 
             frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"],
                 Color.White);
-            frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;
+            frame.SetOnAppTheme(Frame.HasShadowProperty, false, true);
+            frame.SetOnAppTheme(MaterialFrame.ElevationProperty, 0, 20);
             frame.Margin = new Thickness(10, 0, 10, 10);
             frame.Padding = new Thickness(15, 15, 15, 15);
             frame.CornerRadius = 30;

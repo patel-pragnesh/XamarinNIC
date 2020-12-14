@@ -400,7 +400,14 @@ namespace xamarinJKH.Pays
 
         private async void OpenInsuranceInfo(object sender, EventArgs args)
         {
-            await Navigation.PushAsync(new PdfView("insurance.pdf", "0", true));
+            try
+            {
+                await Launcher.OpenAsync("https://sm-center.ru/vsk_polis.pdf");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }

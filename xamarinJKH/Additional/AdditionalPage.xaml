@@ -100,8 +100,8 @@
                             HorizontalOptions="Start" />
                     </StackLayout>
                     <Grid VerticalOptions="FillAndExpand">
-                        <pancakeView:PancakeView CornerRadius="40,40,0,0"
-                                                 Margin="10,0,0,-10"
+                        <pancakeView:PancakeView CornerRadius="40,0,0,0"
+                                                 Margin="20,0,0,-10"
                                                  x:Name="FrameKind"
                                                  BorderThickness="1"
                                                  VerticalOptions="FillAndExpand"

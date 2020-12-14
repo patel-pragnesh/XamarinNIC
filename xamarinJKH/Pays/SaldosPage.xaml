@@ -78,9 +78,10 @@
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                     </StackLayout>
-                    <customRenderers:MaterialFrame Elevation="20" CornerRadius="30"
+                    <customRenderers:MaterialFrame Elevation="{AppThemeBinding Light=0, Dark=20}" CornerRadius="30"
                                                    Margin="20, 10, 20, 15"
                                                    x:Name="FrameSaldo"
+                                                   HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                    BackgroundColor="White"
                                                    Padding="15">
                         <StackLayout VerticalOptions="FillAndExpand"

@@ -163,6 +163,7 @@
                            BackgroundColor="Red"
                            Margin="40, 10, 40, 0"
                            IsVisible="False"
+                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                            x:Name="FrameBtnQuest"
                            Padding="0">
                         <Button x:Name="BtnQuest"

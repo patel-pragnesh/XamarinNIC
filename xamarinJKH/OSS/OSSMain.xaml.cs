@@ -194,6 +194,7 @@ namespace xamarinJKH
                         Frame f = new Frame();
                         f.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
                         f.MinimumHeightRequest = 50;
+                        f.SetOnAppTheme(Frame.HasShadowProperty, false, true);
                         f.BackgroundColor = Color.White;
 
                         f.CornerRadius = Device.RuntimePlatform==Device.iOS? 20: 40;

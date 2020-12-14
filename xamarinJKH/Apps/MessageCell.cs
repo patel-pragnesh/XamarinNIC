@@ -249,6 +249,7 @@ namespace xamarinJKH.Apps
             frameA.BackgroundColor = Color.White;
             frameA.Margin = new Thickness(-15, -30, 5, 0);
             frameA.Padding = 10;
+            frameA.SetOnAppTheme(Frame.HasShadowProperty, false, true);
             frameA.CornerRadius = 23;
 
             ImagePersonA.Source = ImageSource.FromFile("ic_author");
@@ -287,6 +288,7 @@ namespace xamarinJKH.Apps
             frameTextA.Margin = new Thickness(0, 0, 0, 10);
             frameTextA.Padding = new Thickness(15, 15, 15, 15);
             frameTextA.CornerRadius = 20;
+            frameTextA.SetOnAppTheme(Frame.HasShadowProperty, false, true);
 
             StackLayout stackLayoutContentA = new StackLayout();
             stackLayoutContentA.HorizontalOptions = LayoutOptions.End;
@@ -391,6 +393,7 @@ namespace xamarinJKH.Apps
             frameDateA.BackgroundColor = Color.FromHex("#E2E2E2");
             frameDateA.Margin = new Thickness(0, 2, 0, 10);
             frameDateA.Padding = 5;
+            frameDateA.SetOnAppTheme(Frame.HasShadowProperty, false, true);
             frameDateA.CornerRadius = 15;
 
             LabelDateA.FontSize = 15;
@@ -789,8 +792,8 @@ namespace xamarinJKH.Apps
             frame.BackgroundColor = Color.White;
             frame.Margin = new Thickness(5, -30, -15, 0);
             frame.Padding = 10;
-            frame.HasShadow = true;
             frame.CornerRadius = 23;
+            frame.SetOnAppTheme(Frame.HasShadowProperty, false, true);
 
             ImagePerson.Source = ImageSource.FromFile("ic_not_author");
             ImagePerson.HeightRequest = 25;
@@ -825,6 +828,7 @@ namespace xamarinJKH.Apps
             frameText.Margin = new Thickness(0, 0, 0, 10);
             frameText.Padding = new Thickness(15, 15, 15, 15);
             frameText.CornerRadius = 20;
+            frameText.SetOnAppTheme(Frame.HasShadowProperty, false, true);
 
             StackLayout stackLayoutContent = new StackLayout();
 
@@ -936,6 +940,7 @@ namespace xamarinJKH.Apps
             frameDate.Margin = new Thickness(0, 0, 0, 10);
             frameDate.Padding = new Thickness(5, 5, 5, 5);
             frameDate.CornerRadius = 15;
+            frameDate.SetOnAppTheme(Frame.HasShadowProperty, false, true);
 
             LabelDate.FontSize = 15;
             LabelDate.TextColor = Color.FromHex("#777777");

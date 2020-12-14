@@ -170,6 +170,7 @@
                                 </StackLayout>
                                 <Frame CornerRadius="10"
                                x:Name="FrameBtnAddIos"
+                               HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                Padding="10,0"
                                BackgroundColor="{x:DynamicResource MainColor}"
                                HorizontalOptions="FillAndExpand">
@@ -199,6 +200,7 @@
                                 <Frame CornerRadius="10"
                                x:Name="FrameBtnAdd"
                                Padding="0"
+                               HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                BackgroundColor="{x:DynamicResource MainColor}"
                                HorizontalOptions="FillAndExpand">
                                     <StackLayout

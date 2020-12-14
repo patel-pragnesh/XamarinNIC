@@ -65,6 +65,7 @@
                     CornerRadius="15"
                     Margin="20, 30"
                     IsVisible="False"
+                    HasShadow="{AppThemeBinding Light=false, Dark=true}"
                     x:Name="FullScreen"
                     Padding="0"
                     BorderColor="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=Transparent}"

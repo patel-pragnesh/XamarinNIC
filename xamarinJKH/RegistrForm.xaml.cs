@@ -313,6 +313,7 @@ namespace xamarinJKH
         {
             RegistrationFrameStep1.IsVisible = true;
             RegistrationFrameStep2.IsVisible = false;
+            tech.IsVisible = false;
             LabelSteps.Text = $"{AppResources.Step} 1";
             StepsImage.Source = ImageSource.FromFile("ic_steps_one");
             step = 0;
@@ -398,6 +399,7 @@ namespace xamarinJKH
                 StepsImage.Source = ImageSource.FromFile("ic_steps_two");
                 RegistrationFrameStep1.IsVisible = false;
                 RegistrationFrameStep2.IsVisible = true;
+                tech.IsVisible = true;
                 step = 1;
                 LabelSteps.Text = $"{AppResources.Step} 2";
                 if (Settings.TimerStart)
@@ -482,6 +484,7 @@ namespace xamarinJKH
                 StepsImage.Source = ImageSource.FromFile("ic_steps_three");
                 RegistrationFrameStep2.IsVisible = false;
                 RegistrationFrameStep3.IsVisible = true;
+                tech.IsVisible = false;
                 step = 2;
                 LabelSteps.Text = $"{AppResources.Step} 3";
                 Person.Code = entryCodeText;

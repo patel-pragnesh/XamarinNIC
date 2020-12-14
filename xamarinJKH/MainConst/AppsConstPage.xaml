@@ -184,6 +184,7 @@
                                            Margin="0,0,0,3"
                                            MinimumWidthRequest="300"
                                            MinimumHeightRequest="40"
+                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                            BackgroundColor="{Binding hex}"
                                            HorizontalOptions="FillAndExpand">
                                         <StackLayout
