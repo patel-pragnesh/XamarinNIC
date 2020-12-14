@@ -84,9 +84,10 @@
                         <StackLayout
                             VerticalOptions="FillAndExpand">
 
-                            <customRenderers:MaterialFrame Elevation="20" x:Name="FrameNotification"
+                            <customRenderers:MaterialFrame Elevation="{AppThemeBinding Light=0, Dark=20}" x:Name="FrameNotification"
                                                            IsVisible="{Binding ShowAnnouncements}"
                                                            CornerRadius="30"
+                                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                            HorizontalOptions="FillAndExpand"
                                                            VerticalOptions="Start"
                                                            BackgroundColor="White"
@@ -164,10 +165,11 @@
                                 </Grid>
 
                             </customRenderers:MaterialFrame>
-                            <customRenderers:MaterialFrame Elevation="20" x:Name="FrameNews"
+                            <customRenderers:MaterialFrame Elevation="{AppThemeBinding Light=0, Dark=20}" x:Name="FrameNews"
                                                            IsVisible="{Binding ShowNews}"
                                                            CornerRadius="30"
                                                            Padding="0"
+                                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                            HorizontalOptions="FillAndExpand"
                                                            VerticalOptions="Start"
                                                            BackgroundColor="White"
@@ -242,9 +244,10 @@
 
                             </customRenderers:MaterialFrame>
 
-                            <customRenderers:MaterialFrame Elevation="20" x:Name="FrameQuestions"
+                            <customRenderers:MaterialFrame Elevation="{AppThemeBinding Light=0, Dark=20}" x:Name="FrameQuestions"
                                                            IsVisible="{Binding ShowPolls}"
                                                            CornerRadius="30"
+                                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                            Margin="10, 0, 10, 10"
                                                            HorizontalOptions="FillAndExpand"
                                                            VerticalOptions="Start"
@@ -320,9 +323,10 @@
                                 </Grid>
 
                             </customRenderers:MaterialFrame>
-                            <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOffers"
+                            <customRenderers:MaterialFrame Elevation="{AppThemeBinding Light=0, Dark=20}" x:Name="FrameOffers"
                                                            IsVisible="{Binding ShowAdditionalServices}"
                                                            CornerRadius="30"
+                                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                            Margin="10, 0, 10, 10"
                                                            HorizontalOptions="FillAndExpand"
                                                            VerticalOptions="Start"
@@ -362,8 +366,9 @@
                                     </StackLayout>
                                 </StackLayout>
                             </customRenderers:MaterialFrame>
-                            <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOSS"
+                            <customRenderers:MaterialFrame Elevation="{AppThemeBinding Light=0, Dark=20}" x:Name="FrameOSS"
                                                            CornerRadius="30"
+                                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                            IsVisible="{Binding ShowOss}"
                                                            Margin="10, 0, 10, 10"
                                                            HorizontalOptions="FillAndExpand"
@@ -410,6 +415,7 @@
                                    CornerRadius="30"
                                    Margin="10, 10, 10, 10"
                                    IsVisible="False"
+                                   HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                    HorizontalOptions="FillAndExpand"
                                    VerticalOptions="Start"
                                    BackgroundColor="White"
@@ -447,8 +453,9 @@
                             </Frame>
 
                             <customRenderers:MaterialFrame
-                                Elevation="20"
+                                Elevation="{AppThemeBinding Light=0, Dark=20}"
                                 CornerRadius="30"
+                                HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                 Margin="10, 0, 10, 10"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="Start"

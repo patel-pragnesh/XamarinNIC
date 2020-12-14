@@ -86,6 +86,7 @@
                                      VerticalOptions="FillAndExpand"
                                      Margin="10, 0, 10, 10">
                             <Frame CornerRadius="40"
+                                   HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                    x:Name="FrameResult"
                                    BackgroundColor="White" Margin="20,20">
                                 <ScrollView>
@@ -241,6 +242,7 @@
 
                         <yummy:PancakeView Padding="0"
                                            x:Name="PancakeBot"
+                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                            BorderThickness="1"
                                            CornerRadius="50,50,0,0"
                                            BackgroundColor="{AppThemeBinding Light=White, Dark=#414141}"
@@ -254,6 +256,7 @@
                                 <StackLayout HorizontalOptions="FillAndExpand" Margin="0">
                                     <Frame CornerRadius="10"
                                            x:Name="FrameBtn"
+                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                            Padding="0"
                                            Margin="0,20">
                                         <Button x:Name="Btn"

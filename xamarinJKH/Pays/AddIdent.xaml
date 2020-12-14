@@ -84,6 +84,7 @@
                             VerticalOptions="StartAndExpand">
                             <Frame CornerRadius="30"
                                    x:Name="Frame"
+                                   HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                    Margin="10, 10, 10, 15"
                                    BackgroundColor="White"
                                    Padding="0">
@@ -148,6 +149,7 @@
                                                        Color="Red" />
                                     <Frame CornerRadius="15"
                                            BackgroundColor="Red"
+                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                            Margin="10, 10, 10, 10"
                                            x:Name="FrameBtnAdd"
                                            Padding="0">

@@ -94,6 +94,7 @@
                 <Frame CornerRadius="40"
                        Margin="20, 10, 20, -60"
                        VerticalOptions="Start"
+                       HasShadow="{AppThemeBinding Light=false, Dark=true}"
                        x:Name="FrameTop"
                        BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                        Padding="20,20,20,60">
@@ -140,6 +141,7 @@
                             <Frame CornerRadius="30" x:Name="FrameMeterReading"
                            Margin="20, 10, 20, 15"
                            BackgroundColor="White"
+                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                            Padding="0">
                                 <StackLayout x:Name="meterRootStack"
                             Margin="10, 10, 10, 10">
@@ -158,6 +160,7 @@
                                 Margin="5, 10, 5, 10">
 
                                         <Frame CornerRadius="20"
+                                               HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                BorderColor="{x:StaticResource MainColor}"
                                                HeightRequest="50"
                                                
@@ -403,6 +406,7 @@
                                     <Frame CornerRadius="15"
                                    Margin="0, 10, 0, 10"
                                    x:Name="FrameBtnLogin"
+                                   HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                    Padding="0">
                                         <StackLayout
                                     x:Name="SaveStackLayout"

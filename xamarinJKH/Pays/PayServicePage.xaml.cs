@@ -81,17 +81,21 @@ namespace xamarinJKH.Pays
                 PayService payLink = await server.GetPayLink(ident, sum, isInsurance);
                 if (payLink.payLink != null)
                 {
-                    webView.Source = payLink.payLink;
+                    Device.BeginInvokeOnMainThread(async () => webView.Source = payLink.payLink);
                 }
                 else
                 {
-                    Loading.Instance.Hide();
-                    await DisplayAlert(AppResources.ErrorTitle, payLink.Error, "OK");
-                    try
+                    Device.BeginInvokeOnMainThread(async () =>
                     {
-                        _ = await Navigation.PopAsync();
-                    }
-                    catch { }
+                        await DisplayAlert(AppResources.ErrorTitle, payLink.Error, "OK");
+                        try
+                        {
+                            _ = await Navigation.PopAsync();
+                        }
+                        catch
+                        {
+                        }
+                    });
                 }
             });
            

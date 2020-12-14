@@ -80,6 +80,7 @@
                                  Margin="10, 0, 10, 10">
                         <Frame 
                             x:Name="FramePool"
+                            HasShadow="{AppThemeBinding Light=false, Dark=true}"
                             CornerRadius="40" BackgroundColor="White" Margin="20,20">
                             <ScrollView>
                                 <StackLayout
@@ -111,6 +112,7 @@
                                                  Margin="40, 0, 40, 10">
                                         <Frame CornerRadius="10"
                                                BackgroundColor="Red"
+                                               HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                HorizontalOptions="EndAndExpand"
                                                Margin="0, 10, 0, 0"
                                                IsVisible="False"
@@ -139,6 +141,7 @@
                                         </Frame>
                                         <Frame CornerRadius="10"
                                                BackgroundColor="Red"
+                                               HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                Margin="0, 10, 0, 0"
                                                IsVisible="False"
                                                HorizontalOptions="EndAndExpand"

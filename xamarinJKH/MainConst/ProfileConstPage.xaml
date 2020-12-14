@@ -80,9 +80,10 @@
                                 Margin="10, 10, 10, 0">
                         <StackLayout
                             VerticalOptions="StartAndExpand">
-                            <customRenderers:MaterialFrame Elevation="20" CornerRadius="30"
+                            <customRenderers:MaterialFrame Elevation="{AppThemeBinding Light=0, Dark=20}" CornerRadius="30"
                                                            Margin="10, 0, 10, 15"
                                                            x:Name="FrameTop"
+                                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                            BackgroundColor="White"
                                                            Padding="0">
 
@@ -208,6 +209,7 @@
                                                        Color="Red" />
                                     <Frame CornerRadius="15"
                                            BackgroundColor="Red"
+                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                            Margin="0, 10, 0, 10"
                                            x:Name="FrameBtnLogin"
                                            Padding="0">
@@ -236,8 +238,9 @@
                                     </Frame>
                                 </StackLayout>
                             </customRenderers:MaterialFrame>
-                             <customRenderers:MaterialFrame Elevation="20" x:Name="FrameOffers"
+                             <customRenderers:MaterialFrame Elevation="{AppThemeBinding Light=0, Dark=20}" x:Name="FrameOffers"
                                                            IsVisible="false"
+                                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                            CornerRadius="30"
                                                            Margin="10, 0, 10, 10"
                                                            HorizontalOptions="FillAndExpand"
@@ -268,8 +271,9 @@
                                     </StackLayout>
                                 </StackLayout>
                             </customRenderers:MaterialFrame>
-                            <customRenderers:MaterialFrame Elevation="20"
+                            <customRenderers:MaterialFrame Elevation="{AppThemeBinding Light=0, Dark=20}"
                                                            CornerRadius="30"
+                                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                            x:Name="FrameSettings"
                                                            Margin="10, 15, 10, 15"
                                                            BackgroundColor="White"
@@ -393,6 +397,7 @@
                             
                             <Frame CornerRadius="15"
                                    BackgroundColor="Red"
+                                   HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                    Margin="10, 10, 10, 10"
                                    x:Name="FrameBtnExit"
                                    Padding="0">
