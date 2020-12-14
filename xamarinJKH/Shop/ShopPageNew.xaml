@@ -96,6 +96,7 @@
                             <CollectionView ItemsSource="{Binding Categories}"
                                             SelectionMode="Single"
                                             HeightRequest="70"
+                                            HorizontalScrollBarVisibility="Never"
                                             Scrolled="CollectionView_Scrolled"
                                             SelectedItem="{Binding SelectedCategory}">
                                 <CollectionView.ItemsLayout>
