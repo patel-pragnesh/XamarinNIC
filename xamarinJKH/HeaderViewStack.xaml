@@ -16,54 +16,60 @@
                        HorizontalOptions="FillAndExpand" />
             <StackLayout Margin="0,10,10,0" VerticalOptions="FillAndExpand" 
                          x:Name="Pancake">
-                <StackLayout
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <StackLayout
+                        x:Name="BackStackLayout"
+                        Orientation="Horizontal"
+                        Margin="10, 0, 0, 0"
+                        HorizontalOptions="Start">
+                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
+                                             HeightRequest="25"
+                                             ReplaceStringMap="{Binding Title, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                             HorizontalOptions="Center" />
+                        <Label
+                            Text="{Binding Title}"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            HorizontalOptions="Start" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Back"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout
                     HorizontalOptions="EndAndExpand"
                     BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                     Orientation="Horizontal">
-                    <svg:SvgCachedImage x:Name="IconViewTech"
+                        <StackLayout Orientation="Horizontal">
+                            <svg:SvgCachedImage x:Name="IconViewTech"
                                         Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                         HeightRequest="18"
                                         ReplaceStringMap="{Binding Title, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                                         Margin="5, 0,0,0"
                                         HorizontalOptions="Start"
                                         VerticalOptions="Center" />
-                    <Label x:Name="LabelTech"
+                            <Label x:Name="LabelTech"
                            Text="{x:Static xamarinJkh:AppResources.Support}"
-                           FontSize="Micro"
+                           FontSize="12"
                            TextDecorations="Underline"
                            TextColor="{AppThemeBinding Dark=White, Light={x:StaticResource MainColor}}"
                            Margin="0, 0, 0, 0"
                            VerticalOptions="Center" />
-                    <svg:SvgCachedImage x:Name="IconViewProfile" Margin="15,0,5,0"
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Tech"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <svg:SvgCachedImage x:Name="IconViewProfile" Margin="15,0,5,0"
                                                 Source="resource://xamarinJKH.Resources.ic_profile_top.svg"
                                                 HeightRequest="20"
                                                 ReplaceStringMap="{Binding Title, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"                                                
                                                 BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                                                 HorizontalOptions="Start"
                                                 VerticalOptions="Center"/>
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Tech"/>
-                    </StackLayout.GestureRecognizers>
+                    </StackLayout>
                 </StackLayout>
-                <StackLayout
-                        x:Name="BackStackLayout"
-                        Orientation="Horizontal"
-                        Margin="10, 0, 0, 0"
-                        HorizontalOptions="Start">
-                    <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
-                                             HeightRequest="25"
-                                             ReplaceStringMap="{Binding Title, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
-                                             HorizontalOptions="Center" />
-                    <Label
-                            Text="{Binding Title}"
-                            FontSize="20"
-                            FontAttributes="Bold"
-                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                            HorizontalOptions="Start" />
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Back"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
+               
+                
                 
             </StackLayout>
         </Grid>

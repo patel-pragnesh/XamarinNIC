@@ -106,7 +106,7 @@
                         VerticalOptions="Center" />
                     <Label x:Name="LabelTech"
                            Text="{x:Static xamarinJkh:AppResources.Support}"
-                           FontSize="Micro"
+                           FontSize="12"
                            TextDecorations="Underline"
                            TextColor="Black"
                            Margin="-10, 0, 0, 0"

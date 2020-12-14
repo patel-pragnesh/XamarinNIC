@@ -31,6 +31,15 @@ namespace xamarinJKH.MainConst
         public bool isSave { get; set; }
         public string svg2 { get; set; }
 
+        private async void GoBack(object sender, EventArgs args)
+        {
+            try
+            {
+                _ = await Navigation.PopAsync();
+            }
+            catch { }
+        }
+
         private async void TechSend(object sender, EventArgs e)
         {
 

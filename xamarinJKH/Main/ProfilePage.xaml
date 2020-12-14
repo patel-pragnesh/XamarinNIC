@@ -46,7 +46,7 @@
                                                 VerticalOptions="Center" />
                             <Label x:Name="LabelTech"
                                    Text="{x:Static local:AppResources.Support}"
-                                   FontSize="Micro"
+                                   FontSize="12"
                                    TextDecorations="Underline"
                                    TextColor="White"
                                    Margin="0, 0, 0, 0"
