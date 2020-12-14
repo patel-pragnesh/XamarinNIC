@@ -25,7 +25,7 @@ namespace xamarinJKH
             set => SetValue(TitleProperty, value);
         }
         public HeaderViewStack()
-        {
+        { 
             InitializeComponent();
 
             switch (Device.RuntimePlatform)

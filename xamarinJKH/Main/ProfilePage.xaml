@@ -69,7 +69,7 @@
                             x:Name="ImageBack"
                             Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
                             HeightRequest="25"
-                            IsVisible="False"
+                            IsVisible="True"
                             HorizontalOptions="Start"
                             ReplaceStringMap="{Binding Convert, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                             VerticalOptions="Center" />
