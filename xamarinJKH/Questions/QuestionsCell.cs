@@ -21,13 +21,14 @@ namespace xamarinJKH.Questions
         {
             MaterialFrame frame = new MaterialFrame();
             frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
-            frame.Elevation = 20;
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;
             frame.Margin = new Thickness(10, 0, 10, 10);
             frame.Padding = new Thickness(18, 18, 18, 18);
             frame.CornerRadius = 35;
+            frame.SetOnAppTheme(Frame.HasShadowProperty, false, true);
+            frame.SetOnAppTheme(MaterialFrame.ElevationProperty, 0, 20);
 
             StackLayout container = new StackLayout();
             container.Orientation = StackOrientation.Vertical;
@@ -106,6 +107,8 @@ namespace xamarinJKH.Questions
             frameBtn.Margin = new Thickness(0, 10, 0, 10);
             frameBtn.Padding = 0;
             frameBtn.CornerRadius = 10;
+            frameBtn.SetOnAppTheme(Frame.HasShadowProperty, false, true);
+            frameBtn.SetOnAppTheme(MaterialFrame.ElevationProperty, 0, 20);
 
             StackLayout containerBtn = new StackLayout();
             containerBtn.Spacing = 0;

@@ -27,7 +27,8 @@ namespace xamarinJKH.Main
             MaterialFrame frame = new MaterialFrame();
             frame.SetAppThemeColor(Frame.BorderColorProperty, (Color)Application.Current.Resources["MainColor"], Color.White);
             frame.HorizontalOptions = LayoutOptions.FillAndExpand;
-            frame.Elevation = 20;
+            frame.SetOnAppTheme(Frame.HasShadowProperty, false, true);
+            frame.SetOnAppTheme(MaterialFrame.ElevationProperty, 0, 20);
             frame.VerticalOptions = LayoutOptions.Start;
             frame.BackgroundColor = Color.White;
             frame.Margin = new Thickness(10, 0, 10, 10);

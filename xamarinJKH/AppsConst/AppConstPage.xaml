@@ -99,6 +99,7 @@
                 <Frame CornerRadius="40"
                        Margin="0, 0, 15, -95"
                        x:Name="FrameKeys"
+                       HasShadow="{AppThemeBinding Light=false, Dark=true}"
                        HorizontalOptions="End"
                        IsVisible="{Binding isNotRead}"
                        BackgroundColor="{AppThemeBinding Light=White, Dark=#B5B5B5}"
@@ -300,9 +301,10 @@
                 </Frame>
             </StackLayout>
 
-            <customRenderers:MaterialFrame Elevation="20"
+            <customRenderers:MaterialFrame Elevation="{AppThemeBinding Light=0, Dark=20}"
                                            x:Name="FrameMessage"
                                            CornerRadius="30"
+                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                            Margin="15, 0, 15, -30"
                                            BackgroundColor="White"
                                            Padding="5,0,5,70" VerticalOptions="FillAndExpand">
@@ -341,6 +343,7 @@
             <Frame CornerRadius="30"
                    Margin="15, -30, 15, 5"
                    BackgroundColor="White"
+                   HasShadow="{AppThemeBinding Light=false, Dark=true}"
                    BorderColor="{Binding hex}"
                    IsVisible="{Binding isNotRead}"
                    Padding="15">

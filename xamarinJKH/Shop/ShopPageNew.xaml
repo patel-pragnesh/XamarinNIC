@@ -90,12 +90,14 @@
                         <yummy:PancakeView CornerRadius="40,0,40,0" BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                            BorderColor="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=#494949}"
                                            Margin="15,10,0,-50"
+                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                            x:Name="PancakeViewKind"
                                            BorderThickness="1"
                                            Padding="20,5,10,30">
                             <CollectionView ItemsSource="{Binding Categories}"
                                             SelectionMode="Single"
                                             HeightRequest="70"
+                                            HorizontalScrollBarVisibility="Never"
                                             Scrolled="CollectionView_Scrolled"
                                             SelectedItem="{Binding SelectedCategory}">
                                 <CollectionView.ItemsLayout>
@@ -139,6 +141,7 @@
                         </yummy:PancakeView>
                         <yummy:PancakeView x:Name="GoodsLayot" CornerRadius="30,30,30,30" BackgroundColor="White"
                                                BorderThickness="1"
+                                               HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                VerticalOptions="FillAndExpand" Margin="15,10,15,0" Padding="10,0" >
                             <StackLayout>
                                 <Grid Margin="10,10,10,0">
@@ -323,6 +326,7 @@
                         <yummy:PancakeView
                         x:Name="PancakeBot"
                         BorderThickness="1"
+                        HasShadow="{AppThemeBinding Light=false, Dark=true}"
                         Margin="0,0,0,0" VerticalOptions="EndAndExpand" Padding="0" CornerRadius="50,50,0,0"
                         BorderColor="{AppThemeBinding Light={x:DynamicResource MainColor}, Dark=#e7e7e7}"
                         BackgroundColor="{AppThemeBinding Light=White, Dark=#e7e7e7}">

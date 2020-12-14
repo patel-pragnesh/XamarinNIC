@@ -125,17 +125,31 @@ namespace xamarinJKH.AppsConst
                                         {
                                             addAppMessage(each,
                                                 messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
-                                            var lastChild = baseForApp.Children.LastOrDefault();
+                                            //var lastChild = baseForApp.Children.LastOrDefault();
                                             //Device.BeginInvokeOnMainThread(async () => await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, true));
-                                            if (lastChild != null)
-                                                await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30,
-                                                    false);
+                                            //if (lastChild != null)
+                                            //    await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30,
+                                            //        false);
                                             //await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, true);
                                         });
                                 }
+                            Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                var lastChild = baseForApp.Children.LastOrDefault();
+                                if (FrameMessage.Height < baseForApp.Height)
+                                {
+                                    if (lastChild != null)
+                                    {
+                                        if (baseForApp.Height < lastChild.Y)
+                                            await scrollFroAppMessages.ScrollToAsync(lastChild, ScrollToPosition.End, false);
+                                        else
+                                            await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, false);
+                                    }
+                                }
+                            });
 
-                                //Device.BeginInvokeOnMainThread(() => additionalList.ScrollTo(messages[messages.Count - 1], 0, true));
-                            }
+                            //Device.BeginInvokeOnMainThread(() => additionalList.ScrollTo(messages[messages.Count - 1], 0, true));
+                        }
                         }
                 }
                 catch (Exception e)
@@ -233,10 +247,10 @@ namespace xamarinJKH.AppsConst
                         Device.BeginInvokeOnMainThread(async () =>
                         {
                             addAppMessage(each, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
-                            var lastChild = baseForApp.Children.LastOrDefault();
-                            if (lastChild != null)
-                                await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30,
-                                    false);
+                            //var lastChild = baseForApp.Children.LastOrDefault();
+                            //if (lastChild != null)
+                            //    await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30,
+                            //        false);
                         });
                         messages.Add(each);
                     }
@@ -254,8 +268,6 @@ namespace xamarinJKH.AppsConst
                                     await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30, false);
                             }
                         }
-
-
                     });
                 }
             }

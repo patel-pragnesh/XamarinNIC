@@ -23,6 +23,7 @@
 
             <Frame BackgroundColor="{AppThemeBinding Light=White, Dark=LightGray}"
                    Grid.Row="2"
+                   HasShadow="{AppThemeBinding Light=false, Dark=true}"
                    x:Name="BootomFrame"
                    Grid.RowSpan="2"
                    CornerRadius="40"
@@ -80,10 +81,12 @@
                            HorizontalOptions="Center" />
                     <!-- Первый шаг регистрации -->
                     <!--<customRenderers:MaterialFrame-->
-                    <pancakeView:PancakeView Elevation="20" x:Name="RegistrationFrameStep1"
+                    <pancakeView:PancakeView Elevation="{AppThemeBinding Light=0, Dark=20}" x:Name="RegistrationFrameStep1"
                                              CornerRadius="50"
+                                             BorderThickness="1"
+                                             BorderColor="{AppThemeBinding Light={x:DynamicResource MainColor}, Dark=Transparent}"
+                                             HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                              Margin="20, 15, 20, 15"
-                                             HasShadow="True"
                                              Padding="20"
                                              BackgroundColor="White" IsVisible="True">
 
@@ -295,7 +298,8 @@
                                    Margin="5, 5, 5, 0"
                                    x:Name="FrameBtnLogin"
                                    Padding="12"
-                                   HasShadow="True">
+                                   HasShadow="{AppThemeBinding Light=false, Dark=true}"
+                                   >
                                 <!-- <Button x:Name="BtnLogin" -->
                                 <!--         Text="Далее" -->
                                 <!--         TextColor="White" -->
@@ -328,14 +332,19 @@
                         </StackLayout>
                     </pancakeView:PancakeView>
                     <!-- Второй шаг регистрации -->
-                    <StackLayout x:Name="RegistrationFrameStep2"
-                                 IsVisible="False">
+                    <!-- <StackLayout  -->
+                    <!--              BackgroundColor="Transparent" -->
+                    <!--              IsVisible="False"> -->
                         <pancakeView:PancakeView Elevation="{AppThemeBinding Light=0, Dark=20}"
                                                  CornerRadius="50"
-                                                 Margin="15, 15, 15, 5"
+                                                 IsVisible="False"
+                                                 x:Name="RegistrationFrameStep2"
                                                  BackgroundColor="White"
+                                                 Margin="15, 15, 15, 5"
+                                                 BorderThickness="1"
+                                                 BorderColor="{AppThemeBinding Light={x:DynamicResource MainColor}, Dark=Transparent}"
                                                  Padding="5"
-                                                 HasShadow="True">
+                                                 HasShadow="{AppThemeBinding Light=false, Dark=true}">
 
                             <StackLayout
                                 Margin="10, 10, 10, 10">
@@ -377,6 +386,7 @@
                                 </Frame>
                                 <Frame x:Name="FrameTimer"
                                        CornerRadius="10"
+                                       HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                        BackgroundColor="{Binding hexWhite}"
                                        Margin="0, 5, 0, 0"
                                        Padding="0, 15, 0, 15">
@@ -444,6 +454,7 @@
                                        BackgroundColor="{Binding hexWhite}"
                                        Margin="5, 5, 5, 10"
                                        x:Name="FrameBtnNextTwo"
+                                       HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                        Padding="12">
                                     <!-- <Button x:Name="BtnNextTwo" -->
                                     <!--         Text="Далее" -->
@@ -484,8 +495,9 @@
                                         VerticalOptions="Center"
                                         HorizontalOptions="Center" />
                                     <StackLayout Orientation="Horizontal" Spacing="25">
-                                        <customRenderers:MaterialFrame Elevation="10"
+                                        <customRenderers:MaterialFrame Elevation="{AppThemeBinding Light=0, Dark=20}"
                                                                        x:Name="ToSms"
+                                                                       HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                                        CornerRadius="10"
                                                                        Margin="0,0,0,0"
                                                                        HorizontalOptions="FillAndExpand"
@@ -515,9 +527,10 @@
                                                     BackgroundColor="Transparent" />
                                             </StackLayout>
                                         </customRenderers:MaterialFrame>
-                                        <customRenderers:MaterialFrame Elevation="10"
+                                        <customRenderers:MaterialFrame Elevation="{AppThemeBinding Light=0, Dark=20}"
                                                                        x:Name="ToSmsWhatsApp"
                                                                        CornerRadius="10"
+                                                                       HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                                        Margin="0,0,0,0"
                                                                        HorizontalOptions="FillAndExpand"
                                                                        BorderColor="{x:DynamicResource MainColor}"
@@ -556,6 +569,7 @@
                         </pancakeView:PancakeView>
                         <StackLayout
                             x:Name="tech"
+                            IsVisible="False"
                             Margin="15,15,15,0"
                             HorizontalOptions="Center"
                             Orientation="Horizontal">
@@ -586,11 +600,12 @@
                                         BackgroundColor="Transparent" />
                             </StackLayout>
                         </StackLayout>
-                    </StackLayout>
                     <!-- Третий шаг регистрации -->
-                    <pancakeView:PancakeView Elevation="20" x:Name="RegistrationFrameStep3"
+                    <pancakeView:PancakeView Elevation="{AppThemeBinding Light=0, Dark=20}" x:Name="RegistrationFrameStep3"
                                              CornerRadius="50"
-                                             HasShadow="True"
+                                             BorderThickness="1"
+                                             BorderColor="{AppThemeBinding Light={x:DynamicResource MainColor}, Dark=Transparent}"
+                                             HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                              IsVisible="False"
                                              Margin="20, 15, 20, 15"
                                              BackgroundColor="White"
@@ -720,6 +735,7 @@
 
                             <Frame x:Name="FrameBtnRegFinal"
                                    CornerRadius="15"
+                                   HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                    BackgroundColor="{x:DynamicResource MainColor}"
                                    Margin="5, 10, 5, 10"
                                    Padding="0">
