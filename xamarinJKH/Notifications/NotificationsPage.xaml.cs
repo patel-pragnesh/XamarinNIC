@@ -61,7 +61,9 @@ namespace xamarinJKH
                 Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
-            Settings.EventBlockData = await server.GetEventBlockData();
+            var response = await server.GetEventBlockData();
+            Settings.EventBlockData = response;
+            Settings.EventBlockData.Announcements = response.Announcements.OrderByDescending(x => DateTime.ParseExact(x.Created, "dd.MM.yyyy", null)).ToList();
             if (Settings.EventBlockData.Error == null)
             {
                 if (isAll)
