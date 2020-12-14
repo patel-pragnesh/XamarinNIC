@@ -14,6 +14,7 @@ using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
+using xamarinJKH.Main;
 using xamarinJKH.Server;
 using xamarinJKH.Server.RequestModel;
 using xamarinJKH.Tech;
@@ -56,6 +57,15 @@ namespace xamarinJKH
             BindingContext = this;
 
             NavigationPage.SetHasNavigationBar(this, false);
+
+            var profile = new TapGestureRecognizer();
+            profile.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfilePage) == null)
+                    await Navigation.PushAsync(new ProfilePage());
+            };
+            IconViewProfile.GestureRecognizers.Add(profile);
+
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => {    await Navigation.PushAsync(new AppPage());};
             LabelTech.GestureRecognizers.Add(techSend);

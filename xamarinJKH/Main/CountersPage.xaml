@@ -43,11 +43,18 @@
                                                 VerticalOptions="Center" />
                             <Label x:Name="LabelTech"
                                    Text="{x:Static xamarinJkh:AppResources.Support}"
-                                   FontSize="14"
+                                   FontSize="Micro"
                                    TextDecorations="Underline"
                                    TextColor="White"
                                    Margin="0, 0, 0, 0"
                                    VerticalOptions="Center" />
+                            <svg:SvgCachedImage x:Name="IconViewProfile" Margin="15,0,5,0"
+                                                Source="resource://xamarinJKH.Resources.ic_profile_top.svg"
+                                                HeightRequest="20"
+                                                ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"                                                
+                                                BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Center"/>
                         </StackLayout>
 
                     </StackLayout>

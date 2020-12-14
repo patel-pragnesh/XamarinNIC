@@ -722,7 +722,7 @@
     <value>Сумма к оплате</value>
   </data>
   <data name="Support" xml:space="preserve">
-    <value>Тех.поддержка</value>
+    <value>Поддержка</value>
   </data>
   <data name="TechAdditionalText1" xml:space="preserve">
     <value>Данная форма предназначена для обращения в поддержку приложения. Если вы хотите обратиться в </value>

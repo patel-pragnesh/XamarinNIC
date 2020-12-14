@@ -25,6 +25,7 @@ using Xamarin.Essentials;
 using System.Text.RegularExpressions;
 using FFImageLoading.Forms;
 using Microsoft.AppCenter.Analytics;
+using xamarinJKH.Main;
 
 namespace xamarinJKH.Additional
 {
@@ -187,6 +188,14 @@ namespace xamarinJKH.Additional
                 default:
                     break;
             }
+
+            var profile = new TapGestureRecognizer();
+            profile.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfilePage) == null)
+                    await Navigation.PushAsync(new ProfilePage());
+            };
+            IconViewProfile.GestureRecognizers.Add(profile);
 
             var backClick = new TapGestureRecognizer();
             backClick.Tapped += async (s, e) =>

@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
+using xamarinJKH.Main;
 using xamarinJKH.Server;
 using xamarinJKH.Tech;
 using xamarinJKH.Utils;
@@ -74,15 +75,22 @@ namespace xamarinJKH
                 IconViewLogin.IsVisible = false;
                 LabelPhone.IsVisible = false;
             }
-            //IconViewLogin.Foreground = hex;
-            //IconViewPass.Foreground = hex;
-            //ImageClosePass.Foreground = hex;
+            
             FrameBtnLogin.BackgroundColor = hex;
             LabelseparatorPass.BackgroundColor = hex;            
             RegistLabel.TextColor = hex;
             progress.Color = hex;
 
             var backClick = new TapGestureRecognizer();
+
+            var profile = new TapGestureRecognizer();
+            profile.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfilePage) == null)
+                    await Navigation.PushAsync(new ProfilePage());
+            };
+            IconViewProfile.GestureRecognizers.Add(profile);
+
             backClick.Tapped += async (s, e) => { ClosePage(); };
             BackStackLayout.GestureRecognizers.Add(backClick);
 

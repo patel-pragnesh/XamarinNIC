@@ -12,6 +12,7 @@ using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.ViewModels.Shop;
 using Microsoft.AppCenter.Crashes;
 using xamarinJKH.Tech;
+using xamarinJKH.Main;
 
 namespace xamarinJKH.Shop
 {
@@ -29,6 +30,14 @@ namespace xamarinJKH.Shop
                 int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                 Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
             }
+
+            var profile = new TapGestureRecognizer();
+            profile.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfilePage) == null)
+                    await Navigation.PushAsync(new ProfilePage());
+            };
+            IconViewProfile.GestureRecognizers.Add(profile);
 
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new AppPage());};

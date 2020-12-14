@@ -65,7 +65,7 @@ namespace xamarinJKH.CustomRenderers
                         LastY = TranslationY;
                         break;
                     case GestureStatus.Running:
-                        TranslationX = Clamp(LastX + e.TotalX * Scale, -Width / 2, Width / 2);
+                        TranslationX = Clamp(LastX + e.TotalX * Scale, -Width / 2, Width / 2);                       
                         TranslationY = Clamp(LastY + e.TotalY * Scale, -Height / 2, Height / 2);
                         break;
                 }
@@ -90,7 +90,7 @@ namespace xamarinJKH.CustomRenderers
                     else if (Scale < MIN_SCALE)
                         this.ScaleTo(MIN_SCALE, 250, Easing.SpringOut);
                     break;
-            }
+            }           
         }
 
         private T Clamp<T>(T value, T minimum, T maximum) where T : IComparable

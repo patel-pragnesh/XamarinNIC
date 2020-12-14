@@ -54,10 +54,13 @@
                 </StackLayout>
             </StackLayout>
             <Grid
-                VerticalOptions="FillAndExpand">
+                VerticalOptions="FillAndExpand" IsClippedToBounds="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
 
                 <!--<ScrollView Orientation="Both" WidthRequest="500">-->
-                    <customrenderers:ZoomImage x:Name="Image" 
+                    <customrenderers:ZoomImage x:Name="Image"  Grid.Row="0"
                             />
                 <!--</ScrollView>-->
                     
@@ -65,8 +68,9 @@
                                    IsRunning="true"
                                    IsVisible="True"
                                    HeightRequest="40"
-                                   VerticalOptions="StartAndExpand"
-                                   Color="{x:DynamicResource MainColor}" />
+                                   VerticalOptions="Center"
+                                   Color="{x:DynamicResource MainColor}" 
+                                    Grid.Row="0"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>
