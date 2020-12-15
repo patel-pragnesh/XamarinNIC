@@ -52,7 +52,7 @@
                                                 VerticalOptions="Center" />
                             <Label x:Name="LabelTech"
                                    Text="{x:Static xamarinJkh:AppResources.Support}"
-                                   FontSize="Micro"
+                                   FontSize="12"
                                    TextDecorations="Underline"
                                    TextColor="White"
                                    Margin="0, 0, 0, 0"
@@ -262,20 +262,22 @@
                                                    VerticalOptions="Center"
                                                    IsVisible="False"
                                                    Color="{Binding hex}" />
-                                <Frame CornerRadius="10"
+                                <!--<Frame CornerRadius="20"
                                        x:Name="FrameBtn"
                                        HasShadow="False"
                                        Padding="0"
-                                       Margin="5,20">
+                                       Margin="5,20">-->
                                     <Button x:Name="BtnCheckOut"
+                                            Margin="5,20"
                                             BackgroundColor="{Binding hex}" HorizontalOptions="FillAndExpand"
                                             VerticalOptions="FillAndExpand"
                                             TextColor="White"
                                             FontSize="16"
                                             FontAttributes="Bold"
+                                            CornerRadius="10"                                            
                                             Text="{x:Static xamarinJkh:AppResources.Confirm_order}" 
                                             Clicked="BtnCheckOut_Clicked" />
-                                </Frame>
+                                <!--</Frame>-->
                             </StackLayout>
                         </yummy:PancakeView>
                     </ScrollView>

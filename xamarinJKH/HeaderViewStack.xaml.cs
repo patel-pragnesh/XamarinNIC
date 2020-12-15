@@ -11,6 +11,7 @@ using Rg.Plugins.Popup.Services;
 using xamarinJKH.DialogViews;
 using xamarinJKH.InterfacesIntegration;
 using xamarinJKH.Tech;
+using xamarinJKH.Main;
 
 namespace xamarinJKH
 {
@@ -24,7 +25,7 @@ namespace xamarinJKH
             set => SetValue(TitleProperty, value);
         }
         public HeaderViewStack()
-        {
+        { 
             InitializeComponent();
 
             switch (Device.RuntimePlatform)
@@ -37,6 +38,14 @@ namespace xamarinJKH
                 default:
                     break;
             }
+
+            var profile = new TapGestureRecognizer();
+            profile.Tapped += async (s, e) =>
+            {
+                if (Navigation.NavigationStack.FirstOrDefault(x => x is ProfilePage) == null)
+                    await Navigation.PushAsync(new ProfilePage());
+            };
+            IconViewProfile.GestureRecognizers.Add(profile);
 
             BindingContext = this;
         }

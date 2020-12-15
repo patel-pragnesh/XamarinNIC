@@ -311,7 +311,7 @@ namespace xamarinJKH.Shop
 
         private void CheckBox_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            FrameBtn.IsEnabled = CheckBox.IsChecked;
+            //FrameBtn.IsEnabled = CheckBox.IsChecked;
             BtnCheckOut.IsEnabled = CheckBox.IsChecked;
         }
 

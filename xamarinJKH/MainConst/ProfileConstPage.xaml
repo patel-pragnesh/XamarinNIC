@@ -48,7 +48,7 @@
                                                 VerticalOptions="Center" />
                             <Label x:Name="LabelTech"
                                    Text="{x:Static xamarinJkh:AppResources.Support}"
-                                   FontSize="Micro"
+                                   FontSize="12"
                                    TextDecorations="Underline"
                                    TextColor="White"
                                    Margin="0, 0, 0, 0"
@@ -62,7 +62,7 @@
                                                 VerticalOptions="Center"/>-->
                         </StackLayout>
                     </StackLayout>
-                    <StackLayout
+                    <!--<StackLayout
                         x:Name="BackStackLayout"
                         Orientation="Horizontal"
                         Margin="25, 0, 0, 0"
@@ -73,6 +73,29 @@
                             TextColor="{AppThemeBinding Light=Black, Dark=White}"
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
+                    </StackLayout>-->
+                    <StackLayout
+                        x:Name="BackStackLayout"
+                        Orientation="Horizontal"
+                        Margin="25, 0, 0, 0"
+                        HorizontalOptions="Start">
+                        <svg:SvgCachedImage
+                            x:Name="ImageBack"
+                            Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
+                            HeightRequest="25"
+                            IsVisible="True"
+                            HorizontalOptions="Start"
+                            ReplaceStringMap="{Binding svg2, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                            VerticalOptions="Center" />
+                        <Label
+                            Text="{x:Static xamarinJkh:AppResources.Profile_NavBar}"
+                            FontSize="23"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="GoBack" />
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                     <ScrollView x:Name="ScrollViewContainer"
                                 Orientation="Vertical"

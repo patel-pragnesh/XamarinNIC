@@ -118,7 +118,12 @@ namespace xamarinJKH.News
             newsInfoFull = await _server.GetNewsFull(newsInfo.ID.ToString());
             //LabelText.Text = newsInfoFull.Text;
             //LabelText.FormattedText = (FormattedString)(new HtmlTextConverter()).Convert(newsInfoFull.Text, null);
+            
+            //var new_text = System.Text.RegularExpressions.Regex.Replace(newsInfoFull.Text, @"width=\""[0-9]*\""", "width=\"100%\"");
+
+            //newsInfoFull.Text = System.Text.RegularExpressions.Regex.Replace(new_text, @"height=\""[0-9]*\""", "");
             MainText.Source = new HtmlWebViewSource { Html = newsInfoFull.Text };
+            MainText.FlowDirection = FlowDirection.MatchParent;
             MainText.Navigated += (s, e) =>
             {
                 if (!navigated)
