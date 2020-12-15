@@ -108,6 +108,7 @@
                                 IsVisible="{Binding isPayd}"
                                 Margin="0,5,0,0"
                                 VerticalOptions="Center"
+                                x:Name="LayoutResipt"
                                 HorizontalOptions="EndAndExpand">
                                 <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_receipt.svg"
                                                      HeightRequest="25"

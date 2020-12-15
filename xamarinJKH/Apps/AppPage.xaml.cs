@@ -819,6 +819,8 @@ namespace xamarinJKH.Apps
             if (request.Error == null)
             {
                 Settings.DateUniq = "";
+                StackLayoutPlay.IsVisible = request.IsPaid;
+                LayoutResipt.IsVisible = request.IsPaid;
                 foreach (var message in request.Messages)
                 {
                     if (!messages.Contains(message))
