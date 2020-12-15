@@ -447,19 +447,30 @@ namespace xamarinJKH.Main
                     
                     MobileMenu mobileMenu = Settings.MobileSettings.menu.Find(x => x.name_app == "Web-камеры");
                     ShowCameras =  mobileMenu != null && mobileMenu.visible != 0 && Settings.Person.Accounts.Count > 0;
-                    
-                    if (!Settings.MobileSettings.enableOSS || !Settings.Person.accessOSS)
-                    {
-                        ShowOss = false;
-                    }
 
-                    if (RestClientMP.SERVER_ADDR.ToLower().Contains("water") && Settings.Person.Accounts.Count > 0)
+                    if (!RestClientMP.SERVER_ADDR.ToLower().Contains("water"))
                     {
-                        ShowOss = true;
+                        if ((!Settings.MobileSettings.enableOSS || !Settings.Person.accessOSS) &&
+                            Settings.Person.Accounts.Count == 0)
+                        {
+                            ShowOss = false;
+                        }
+                        else
+                        {
+                            ShowOss = true;
+                        }
                     }
                     else
                     {
-                        ShowOss = false;
+
+                        if (Settings.Person.Accounts.Count > 0)
+                        {
+                            ShowOss = true;
+                        }
+                        else
+                        {
+                            ShowOss = false;
+                        }
                     }
                 }
                 ShowAdditionalServices = false;
