@@ -196,10 +196,11 @@
                                       IsRefreshing="{Binding IsRefreshing}"
                                       SelectionMode="None"
                                       ItemTapped="OnItemTapped"
-                                      ItemsSource="{Binding BillInfos}">
-                                <ListView.Header>
+                                      ItemsSource="{Binding BillInfos}"
+                                      VerticalOptions="FillAndExpand">
+                                <!--<ListView.Header>
 
-                                </ListView.Header>
+                                </ListView.Header>-->
                                 <ListView.ItemTemplate>
 
                                     <DataTemplate>
