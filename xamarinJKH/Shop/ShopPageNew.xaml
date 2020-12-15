@@ -33,13 +33,40 @@
                        Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout x:Name="Pancake" Margin="0,10,0,0" VerticalOptions="FillAndExpand">
-                    <StackLayout
+                    <StackLayout Orientation="Horizontal" 
+                                 Margin="10,0,10,0"
+                                 HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="StartAndExpand"
+                                 Margin="0,0,0,0">
+
+                            <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
+                                             HeightRequest="25"
+                                             Margin="0,0"
+                                             ReplaceStringMap="{Binding ShopName,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                             HorizontalOptions="Center" />
+
+                            <Label x:Name="ShopName"
+                           Text="{Binding ShopName}"
+                           FontAttributes="Bold"
+                           Margin="0,0,0,0"
+                           FontSize="18"
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Back"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout
                         Orientation="Horizontal"
                         HorizontalOptions="EndAndExpand"
                         Margin="0,0,10,0"
-                        BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                         VerticalOptions="Center">
-                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_tech.svg"
+                            <!--BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"-->
+                            <xamarinJkh:ButtonSupport x:Name="LabelTech"></xamarinJkh:ButtonSupport>
+                            <xamarinJkh:ButtonProfile  x:Name="IconViewProfile" Margin="15,0,5,0"></xamarinJkh:ButtonProfile>
+
+                            <!--<svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                             HeightRequest="20"
                                             ReplaceStringMap="{Binding ShopName, ShopName,Converter={x:StaticResource SvgColor} , ConverterParameter='#FFFFFF'} "
                                             HorizontalOptions="Start"
@@ -58,34 +85,11 @@
                                                 ReplaceStringMap="{Binding ShopName, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"                                                
                                                 BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                                                 HorizontalOptions="Start"
-                                                VerticalOptions="Center"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal" 
-                                 Margin="10,0,10,0"
-                                 HorizontalOptions="FillAndExpand">
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="StartAndExpand"
-                                 Margin="0,0,0,0">
-
-                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
-                                             HeightRequest="25"
-                                             Margin="0,0"
-                                             ReplaceStringMap="{Binding ShopName,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
-                                             HorizontalOptions="Center" />
-
-                        <Label x:Name="ShopName"
-                           Text="{Binding ShopName}"
-                           FontAttributes="Bold"
-                           Margin="0,0,0,0"
-                           FontSize="18"
-                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
-
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="Back"/>
-                        </StackLayout.GestureRecognizers>
+                                                VerticalOptions="Center"/>-->
+                        </StackLayout>
                     </StackLayout>
                     
-                    </StackLayout>
+                    
                     <StackLayout VerticalOptions="FillAndExpand">
                         <yummy:PancakeView CornerRadius="40,0,40,0" BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                            BorderColor="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=#494949}"

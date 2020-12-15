@@ -98,7 +98,7 @@ namespace xamarinJKH.PushNotification
 
             Color hexColor = (Color)Application.Current.Resources["MainColor"];
 
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
 
             var takeOS = new TapGestureRecognizer();
             

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xamarinJKH.CustomRenderers.ButtonSupport"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+>
+  <ContentView.Content>-->
+<Frame xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xamarinJKH.ButtonSupport"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+       xmlns:xamarinJkh="clr-namespace:xamarinJKH;assembly=xamarinJKH"
+             x:Name="btnSup" Padding="5" 
+               CornerRadius="10" 
+               HasShadow="False"               
+               BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}" 
+               BorderColor="{Binding clr}"
+       
+               >
+            <StackLayout Orientation="Horizontal">
+                <svg:SvgCachedImage x:Name="IconTech"
+                                        Source="resource://xamarinJKH.Resources.ic_tech.svg"
+                                        HeightRequest="20"
+                                        ReplaceStringMap="{Binding clr, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                        Margin="0"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center" />
+                <Label x:Name="LTech"
+                           Text="{x:Static xamarinJkh:AppResources.Support}"
+                           FontSize="12"                           
+                           TextColor="{AppThemeBinding Light={x:DynamicResource MainColor}, Dark=White}"
+                           Margin="0"
+                           VerticalOptions="Center" />
+            </StackLayout>
+        </Frame>
+      
+  <!--</ContentView.Content>
+</ContentView>-->

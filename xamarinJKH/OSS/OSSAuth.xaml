@@ -88,13 +88,7 @@
                         HorizontalOptions="End"
                         Margin="0,0,15,0"
                         Orientation="Horizontal">
-                        <!--<xamarinJkh:IconView x:Name="IconViewTech"
-                                             Source="ic_tech"
-                                             HeightRequest="20"
-                                             Foreground="White"
-                                             Margin="0, 0,0,0"
-                                             HorizontalOptions="Start"
-                                             VerticalOptions="Center" />-->
+                        
                         <forms:SvgCachedImage
                             x:Name="IconViewTech"
                             Source="resource://xamarinJKH.Resources.ic_tech.svg"

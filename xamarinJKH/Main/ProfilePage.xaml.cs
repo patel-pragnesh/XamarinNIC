@@ -178,7 +178,7 @@ namespace xamarinJKH.Main
                     arrowcolor.Add("#000000", "#FFFFFF");
                 }
 
-                IconViewTech.ReplaceStringMap = colors;
+                //IconViewTech.ReplaceStringMap = colors;
             });
         }
         
@@ -324,8 +324,8 @@ namespace xamarinJKH.Main
                     break;
             }
             
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameTop.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
             FrameSettings.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
             
@@ -377,7 +377,7 @@ namespace xamarinJKH.Main
                 arrowcolor.Add("#000000", "#FFFFFF");
             }
 
-            IconViewTech.ReplaceStringMap = colors;
+            //IconViewTech.ReplaceStringMap = colors;
         }
 
         private void RadioButtonAuto_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -417,7 +417,7 @@ namespace xamarinJKH.Main
                 arrowcolor.Add("#000000", "#FFFFFF");
             }
 
-            IconViewTech.ReplaceStringMap = colors;
+            //IconViewTech.ReplaceStringMap = colors;
 
 
         }

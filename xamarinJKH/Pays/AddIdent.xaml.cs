@@ -118,7 +118,7 @@ namespace xamarinJKH.Pays
                 arrowcolor.Add("#000000", "#FFFFFF");
             }
 
-            IconViewTech.ReplaceStringMap = colors;
+            //IconViewTech.ReplaceStringMap = colors;
         }
         
         private async void AddButtonClick(object sender, EventArgs e)
@@ -136,8 +136,8 @@ namespace xamarinJKH.Pays
             IconViewFio.Foreground = (Color)Application.Current.Resources["MainColor"];
             
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             Frame.SetAppThemeColor(Xamarin.Forms.Frame.BorderColorProperty, hexColor, Color.White);
         }
 

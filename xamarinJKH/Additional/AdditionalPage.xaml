@@ -49,7 +49,7 @@
                     <StackLayout
                         Margin="25,10,15,0"
                         Orientation="Horizontal" x:Name="Pancake">
-                        <Label x:Name="UkName"
+                        <Label x:Name="UkName"  VerticalOptions="Center"
                                Text="Название"
                                FontAttributes="Bold"
                                HorizontalOptions="StartAndExpand"
@@ -58,8 +58,9 @@
                         <StackLayout
                             HorizontalOptions="EndAndExpand"
                             Orientation="Horizontal">
-
-                            <svg:SvgCachedImage x:Name="IconViewTech"
+                            <xamarinJkh:ButtonSupport x:Name="LabelTech"></xamarinJkh:ButtonSupport>
+                            <xamarinJkh:ButtonProfile  x:Name="IconViewProfile" Margin="15,0,5,0"></xamarinJkh:ButtonProfile>
+                            <!--<svg:SvgCachedImage x:Name="IconViewTech"
                                                 Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                                 HeightRequest="20"
                                                 ReplaceStringMap="{Binding Groups, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
@@ -82,7 +83,7 @@
                                                 ReplaceStringMap="{Binding Groups, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"                                                
                                                 BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                                                 HorizontalOptions="Start"
-                                                VerticalOptions="Center"/>
+                                                VerticalOptions="Center"/>-->
                         </StackLayout>
                     </StackLayout>
 

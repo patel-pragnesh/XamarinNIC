@@ -33,10 +33,10 @@
                                TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                         <StackLayout
                             HorizontalOptions="EndAndExpand"
-                            BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                             Orientation="Horizontal">
-                        
-                            <forms:SvgCachedImage x:Name="IconViewTech"
+                            <xamarinJkh:ButtonSupport x:Name="LabelTech"></xamarinJkh:ButtonSupport>
+                            <xamarinJkh:ButtonProfile  x:Name="IconViewProfile" Margin="15,0,5,0"></xamarinJkh:ButtonProfile>
+                            <!--<forms:SvgCachedImage x:Name="IconViewTech"
                                                   Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                                   HeightRequest="20"
                                                   ReplaceStringMap="{Binding AllAcc, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
@@ -56,7 +56,7 @@
                                                 ReplaceStringMap="{Binding AllAcc, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"                                                
                                                 BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                                                 HorizontalOptions="Start"
-                                                VerticalOptions="Center"/>
+                                                VerticalOptions="Center"/>-->
                         </StackLayout>
                     </StackLayout>
 
