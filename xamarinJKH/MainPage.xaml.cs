@@ -30,6 +30,7 @@ using Rg.Plugins.Popup.Services;
 using xamarinJKH.CustomRenderers;
 using System.Globalization;
 using System.Threading;
+using Badge.Plugin;
 using Microsoft.AppCenter.Analytics;
 using xamarinJKH.InterfacesIntegration;
 
@@ -62,6 +63,7 @@ namespace xamarinJKH
         public MainPage()
         {
             adress = "sdf";
+            CrossBadge.Current.ClearBadge();
             //Application.Current.Properties.Remove("Culture");
             if (Application.Current.Properties.ContainsKey("Culture"))
             {
