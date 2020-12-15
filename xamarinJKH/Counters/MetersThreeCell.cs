@@ -569,6 +569,8 @@ namespace xamarinJKH.Main
             frameBtn.CornerRadius = 10;
             frameBtn.Margin = new Thickness(0, 10, 0, 0);
             frameBtn.Padding = 12;
+            frameBtn.SetOnAppTheme(Frame.HasShadowProperty, false, true);
+            frameBtn.SetOnAppTheme(MaterialFrame.ElevationProperty, 0, 20);
 
             containerBtn.Orientation = StackOrientation.Horizontal;
             containerBtn.HorizontalOptions = LayoutOptions.CenterAndExpand;

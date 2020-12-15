@@ -682,6 +682,8 @@ namespace xamarinJKH.Main
             frameBtn.Padding = 0;
             frameBtn.BackgroundColor = (Color)Application.Current.Resources["MainColor"];
             frameBtn.CornerRadius = 10;
+            frameBtn.SetOnAppTheme(Frame.HasShadowProperty, false, true);
+            frameBtn.SetOnAppTheme(MaterialFrame.ElevationProperty, 0, 20);
 
             StackLayout containerBtn = new StackLayout();
             containerBtn.Orientation = StackOrientation.Horizontal;
