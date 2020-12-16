@@ -410,7 +410,7 @@ namespace xamarinJKH
                         iconViewArrowButton.WidthRequest = 15;
                         iconViewArrowButton.VerticalOptions = LayoutOptions.Center;
                         iconViewArrowButton.HorizontalOptions = LayoutOptions.Center;
-                        
+                        buttonFrame.SetOnAppTheme(Frame.HasShadowProperty, false, true);
                         buttonFrame.Content = iconViewArrowButton;
 
                         TapGestureRecognizer buttonFrametapGesture = new TapGestureRecognizer();

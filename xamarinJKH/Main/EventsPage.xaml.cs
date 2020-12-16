@@ -450,14 +450,13 @@ namespace xamarinJKH.Main
 
                     if (!RestClientMP.SERVER_ADDR.ToLower().Contains("water"))
                     {
-                        if ((!Settings.MobileSettings.enableOSS || !Settings.Person.accessOSS) &&
-                            Settings.Person.Accounts.Count == 0)
+                        if ((!Settings.MobileSettings.enableOSS || !Settings.Person.accessOSS))
                         {
                             ShowOss = false;
                         }
                         else
                         {
-                            ShowOss = true;
+                            ShowOss = Settings.Person.Accounts.Count > 0;
                         }
                     }
                     else

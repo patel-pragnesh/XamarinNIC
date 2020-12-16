@@ -38,25 +38,26 @@ namespace xamarinJKH.ViewModels.Shop
             {
                 if (selected != value && value != " ")
                 {
+                    List<Goods> categ_list = new List<Goods>();
                     Goods.Clear();
                     if (!Asending)
                     {
-                        foreach (var good in AllGoods.OrderBy(_ => _.Price).Where(x => x.Categories != null || x.Categories.Count > 0).ToList())
-                        {
-                            if (good.Categories.Contains(value))
-                            {
-                                Device.BeginInvokeOnMainThread(() => Goods.Add(good));
-                            }
-                        }
+                        categ_list = AllGoods.OrderBy(_ => _.Price).Where(x => x.Categories != null || x.Categories.Count > 0).Where(y => y.Categories.Contains(value)).ToList();
                     }
                     else
                     {
-                        foreach (var good in AllGoods.OrderByDescending(_ => _.Price).Where(x => x.Categories != null || x.Categories.Count > 0).ToList())
+                        categ_list = AllGoods.OrderByDescending(_ => _.Price).Where(x => x.Categories != null || x.Categories.Count > 0).Where(y => y.Categories.Contains(value)).ToList();
+                        
+                    }
+                    var last = categ_list.LastOrDefault();
+                    if (last != null)
+                        last.IsLast = true;
+
+                    foreach (var good in categ_list)
+                    {
+                        if (good.Categories.Contains(value))
                         {
-                            if (good.Categories.Contains(value))
-                            {
-                                Device.BeginInvokeOnMainThread(() => Goods.Add(good));
-                            }
+                            Device.BeginInvokeOnMainThread(() => Goods.Add(good));
                         }
                     }
                 }
@@ -150,7 +151,6 @@ namespace xamarinJKH.ViewModels.Shop
                         {
                             AllGoods = new List<Goods>();
                             AllGoods.AddRange(goods.Data.Where(x => x.Categories != null || x.Categories.Count > 0));
-
                             foreach (var good in goods.Data.Where(x => x.Categories != null || x.Categories.Count > 0))
                             {
                                 foreach (var category in good.Categories)
@@ -162,13 +162,13 @@ namespace xamarinJKH.ViewModels.Shop
                                 }
                             }
                             Analytics.TrackEvent("начало добавления списка товаров категории 0");
-
-                            foreach (var good in AllGoods)
+                            var first_category = AllGoods.Where(x => x.Categories.Contains(categories[0])).ToList();
+                            var last = first_category.LastOrDefault();
+                            if (last != null)
+                                last.IsLast = true;
+                            foreach (var good in first_category)
                             {
-                                if (good.Categories.Contains(categories[0]))
-                                {
-                                    Device.BeginInvokeOnMainThread(() => Goods.Add(good));
-                                }
+                                Device.BeginInvokeOnMainThread(() => Goods.Add(good));
                             }
                         }
                     }).ContinueWith((result) =>
