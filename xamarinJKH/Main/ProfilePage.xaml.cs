@@ -178,7 +178,7 @@ namespace xamarinJKH.Main
                     arrowcolor.Add("#000000", "#FFFFFF");
                 }
 
-                //IconViewTech.ReplaceStringMap = colors;
+                ImageBack.ReplaceStringMap = colors;
             });
         }
         
