@@ -9,6 +9,7 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              xmlns:mask="clr-namespace:xamarinJKH.Mask;assembly=xamarinJKH"
              xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:models="clr-namespace:xamarinJKH.Server.RequestModel"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Apps.NewAppPage">
     <ContentPage.Content>
@@ -93,6 +94,28 @@
                                     HorizontalOptions="Center"
                                     Orientation="Horizontal">
 
+                                    <CollectionView ItemsSource="{Binding Accounts}"
+                                                    IsVisible="False"
+                                                    HeightRequest="50">
+                                        <CollectionView.ItemsLayout>
+                                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20"/>
+                                        </CollectionView.ItemsLayout>
+
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Frame BorderColor="{x:StaticResource MainColor}"
+                                                       Padding="0"
+                                                       CornerRadius="20">
+                                                    <StackLayout
+                                                       HeightRequest="50">
+                                                        <Label Text="{Binding Ident}"/>
+                                                        <Label Text="{Binding Address}"/>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                                    
                                     <Label
                                         TextColor="Black"
                                         Text="{x:Static xamarinJkh:AppResources.Ident}"
