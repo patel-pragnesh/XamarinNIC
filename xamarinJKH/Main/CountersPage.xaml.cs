@@ -295,7 +295,7 @@ namespace xamarinJKH.Main
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
           
 
-                LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+                //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameTop.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
             ChangeTheme = new Command(async () => { SetTitle(); });
             MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) => ChangeTheme.Execute(null));
@@ -329,7 +329,7 @@ namespace xamarinJKH.Main
                 arrowcolor.Add("#000000", "#FFFFFF");
             }
 
-            IconViewTech.ReplaceStringMap = colors;
+            //IconViewTech.ReplaceStringMap = colors;
             Arrow.ReplaceStringMap = arrowcolor;
 
             

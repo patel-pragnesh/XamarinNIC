@@ -104,8 +104,8 @@ namespace xamarinJKH
 
             NavigationPage.SetHasNavigationBar(this, false);
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             OssTypeFrame.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#8d8d8d"));
             
         }

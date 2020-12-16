@@ -133,11 +133,11 @@ namespace xamarinJKH.News
                 }
             };
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.Black);
+            IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);            
             Pancake.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             PancakeViewIcon.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);{ if (AppInfo.PackageName == "rom.best.saburovo" || AppInfo.PackageName == "sys_rom.ru.tsg_saburovo"){PancakeViewIcon.Padding = new Thickness(0);}}
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.Black);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.Black);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.Black);
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
                 Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));

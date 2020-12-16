@@ -329,7 +329,7 @@ namespace xamarinJKH.Main
                     arrowcolor.Add("#000000", "#FFFFFF");
                 }
 
-                IconViewTech.ReplaceStringMap = colors;
+                //IconViewTech.ReplaceStringMap = colors;
             });
 
             MessagingCenter.Subscribe<Object, int>(this, "OpenApp", async (sender, index) =>
@@ -426,7 +426,7 @@ namespace xamarinJKH.Main
                 buttonColor.Add("#000000", "#FFFFFF");
             }
 
-            IconViewTech.ReplaceStringMap = colors;
+            //IconViewTech.ReplaceStringMap = colors;
             IconViewSaldos.ReplaceStringMap = buttonColor;
             CheckAkk();
             
@@ -458,7 +458,7 @@ namespace xamarinJKH.Main
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
           
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
         }
 
         async Task getAppsAsync()

@@ -70,8 +70,8 @@
             </pancakeView:PancakeView>
             <StackLayout HorizontalOptions="FillAndExpand" x:Name="Pancake2" IsVisible="{OnPlatform iOS=true, Android=false}" BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"></StackLayout>
             <StackLayout Margin="0,20,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" x:Name="Pancake22">
-                
-                <StackLayout
+
+                <StackLayout  VerticalOptions="Center"
                     x:Name="BackStackLayout"
                     Orientation="Horizontal"
                     Margin="20, 0, 0, 0"
@@ -92,9 +92,13 @@
                 <StackLayout
                     HorizontalOptions="EndAndExpand"
                     Margin="0,0,15,0"
-                    BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
+                    
                     Orientation="Horizontal">
-                    <forms:SvgCachedImage
+                    <!--BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"-->
+                    <xamarinJkh:ButtonSupport x:Name="LabelTech"></xamarinJkh:ButtonSupport>
+                    <xamarinJkh:ButtonProfile  x:Name="IconViewProfile" Margin="15,0,5,0"></xamarinJkh:ButtonProfile>
+
+                    <!--<forms:SvgCachedImage
                         x:Name="IconViewTech"
                         Source="resource://xamarinJKH.Resources.ic_tech.svg"
                         HeightRequest="25"
@@ -116,7 +120,7 @@
                                                 ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"                                                
                                                 BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                                                 HorizontalOptions="Start"
-                                                VerticalOptions="Center"/>
+                                                VerticalOptions="Center"/>-->
                 </StackLayout>
             </StackLayout>
 

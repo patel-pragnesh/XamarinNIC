@@ -35,10 +35,9 @@
                     <StackLayout Orientation="Horizontal"
                                  Margin="0, 20, 10, 0"
                                  HorizontalOptions="FillAndExpand">
-                        <StackLayout
+                        <StackLayout  VerticalOptions="Center"
                             x:Name="BackStackLayout"
-                            Orientation="Horizontal"
-                           
+                            Orientation="Horizontal"                           
                             HorizontalOptions="StartAndExpand">
                             <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
                                                  HeightRequest="25"
@@ -57,9 +56,13 @@
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <StackLayout
-                            BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
+                            
                             Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
-                            <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_tech.svg"
+                            <!--BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"-->
+                            <xamarinJkh:ButtonSupport x:Name="LabelTech"></xamarinJkh:ButtonSupport>
+                            <xamarinJkh:ButtonProfile  x:Name="IconViewProfile" Margin="15,0,5,0"></xamarinJkh:ButtonProfile>
+
+                            <!--<svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                                  HeightRequest="20"
                                                  ReplaceStringMap="{Binding AllGoods,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
                                                  HorizontalOptions="Start"
@@ -78,7 +81,7 @@
                                                 ReplaceStringMap="{Binding AllGoods, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"                                                
                                                 BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                                                 HorizontalOptions="Start"
-                                                VerticalOptions="Center"/>
+                                                VerticalOptions="Center"/>-->
                         </StackLayout>
                     </StackLayout>
                     <yummy:PancakeView x:Name="GoodsLayot" 

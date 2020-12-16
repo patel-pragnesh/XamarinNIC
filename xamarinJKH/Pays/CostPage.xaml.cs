@@ -135,9 +135,9 @@ namespace xamarinJKH.Pays
             FrameBtnHistory.BorderColor = (Color)Application.Current.Resources["MainColor"];
             FrameBtnSaldos.BorderColor = (Color)Application.Current.Resources["MainColor"];
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             Frame.SetAppThemeColor(Xamarin.Forms.Frame.BorderColorProperty, hexColor, Color.White);
 
             SetPays();

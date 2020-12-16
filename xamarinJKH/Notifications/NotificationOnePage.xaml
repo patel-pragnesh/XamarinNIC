@@ -80,7 +80,7 @@
                
             </StackLayout>
             <StackLayout Margin="0,20,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                <StackLayout
+                <StackLayout  VerticalOptions="Center"
                     x:Name="BackStackLayout"
                     Orientation="Horizontal"
                     Margin="20, 0, 0, 0"
@@ -102,7 +102,10 @@
                     HorizontalOptions="EndAndExpand"
                     Margin="0,0,15,0"
                     Orientation="Horizontal">
-                    <forms:SvgCachedImage
+                    <xamarinJkh:ButtonSupport x:Name="LabelTech"></xamarinJkh:ButtonSupport>
+                    <xamarinJkh:ButtonProfile  x:Name="IconViewProfile" Margin="15,0,5,0"></xamarinJkh:ButtonProfile>
+
+                    <!--<forms:SvgCachedImage
                         x:Name="IconViewTech"
                         Source="resource://xamarinJKH.Resources.ic_tech.svg"
                         HeightRequest="25"
@@ -124,7 +127,7 @@
                                                 ReplaceStringMap="{Binding Files, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"                                                
                                                 BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                                                 HorizontalOptions="Start"
-                                                VerticalOptions="Center"/>
+                                                VerticalOptions="Center"/>-->
                 </StackLayout>
             </StackLayout>
 

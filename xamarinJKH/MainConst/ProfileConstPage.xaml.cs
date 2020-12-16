@@ -229,8 +229,8 @@ namespace xamarinJKH.MainConst
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             UkName.Text = Settings.MobileSettings.main_name;
             SetAdminName();
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameTop.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
             FrameSettings.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
         }

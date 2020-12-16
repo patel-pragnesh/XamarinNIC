@@ -1011,8 +1011,8 @@ namespace xamarinJKH.Counters
             }
             
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameTop.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
             FrameMeterReading.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
         }

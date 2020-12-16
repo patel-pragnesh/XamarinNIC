@@ -24,7 +24,7 @@
                         Margin="25,10,15,0"
                         Orientation="Horizontal"
                         x:Name="Pancake">
-                        <Label x:Name="UkName"
+                        <Label x:Name="UkName" VerticalOptions="Center"
                                Text="Название"
                                FontAttributes="Bold"
                                HorizontalOptions="StartAndExpand"
@@ -32,10 +32,12 @@
                                TextColor="{AppThemeBinding Light=Black, Dark=White}" />
                         <StackLayout
                             HorizontalOptions="EndAndExpand"
-                            BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                             Orientation="Horizontal">
-                        
-                            <forms:SvgCachedImage x:Name="IconViewTech"
+                            <!--BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"-->
+                            <xamarinJkh:ButtonSupport x:Name="LabelTech"></xamarinJkh:ButtonSupport>
+                            <xamarinJkh:ButtonProfile  x:Name="IconViewProfile" Margin="15,0,5,0"></xamarinJkh:ButtonProfile>
+
+                            <!--<forms:SvgCachedImage x:Name="IconViewTech"
                                                   Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                                   HeightRequest="20"
                                                   ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
@@ -55,7 +57,7 @@
                                                 ReplaceStringMap="{Binding IsRefreshing, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"                                                
                                                 BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                                                 HorizontalOptions="Start"
-                                                VerticalOptions="Center"/>
+                                                VerticalOptions="Center"/>-->
                         </StackLayout>
                     </StackLayout>
                     <StackLayout

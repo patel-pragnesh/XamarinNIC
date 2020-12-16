@@ -83,10 +83,10 @@ namespace xamarinJKH
             
             SetData(oSS);
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             PancakeBot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             FrameResult.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
 
             BindingContext = this;
         }

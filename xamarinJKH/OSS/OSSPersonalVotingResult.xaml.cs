@@ -187,10 +187,11 @@ namespace xamarinJKH
             var r1Time = oSS.ResultsReleaseDate.Split(' ')[1];
             dayEndPlus.Text =" " + AppResources.OSSText.Replace("{r1Date}", r1Date).Replace("{r1Time}", r1Time);
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            
             PancakeBot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             FrameResult.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White); 
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
 
         }
 

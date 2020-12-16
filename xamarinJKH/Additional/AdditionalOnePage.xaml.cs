@@ -162,7 +162,7 @@ namespace xamarinJKH.Additional
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(SvgCachedImage.ReplaceStringMapProperty, hexColor, Color.Black);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.Black);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.Black);
         }
 
 

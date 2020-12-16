@@ -39,6 +39,8 @@ namespace xamarinJKH.Main
         private bool _isRefreshing = false;
         private RestClientMP server = new RestClientMP();
 
+        public bool forSvg { get; set; }
+
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -77,6 +79,8 @@ namespace xamarinJKH.Main
         {
             InitializeComponent();
             //BindingContext = viewModel = new PaysPageViewModel(this.baseForPays, _accountingInfo);
+
+            forSvg = true;
 
             Analytics.TrackEvent("Оплата");
             //PaysPageViewModel(this.baseForPays, _accountingInfo);
@@ -203,7 +207,7 @@ namespace xamarinJKH.Main
                     colors.Add("#000000", "#FFFFFF");
                     arrowcolor.Add("#000000", "#FFFFFF");
                 }
-                IconViewTech.ReplaceStringMap = colors;
+                //IconViewTech.ReplaceStringMap = colors;
             });
         }
 
@@ -242,7 +246,7 @@ namespace xamarinJKH.Main
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+           // LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
             FrameAddIdent.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#494949"));
 
             if (Settings.Person != null)

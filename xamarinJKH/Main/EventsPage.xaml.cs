@@ -148,7 +148,7 @@ namespace xamarinJKH.Main
                     arrowcolor.Add("#000000", "#FFFFFF");
                 }
 
-                IconViewTech.ReplaceStringMap = colors;
+                //IconViewTech.ReplaceStringMap = colors;
             });
 
             MessagingCenter.Subscribe<Object, (string, string)>(this, "OpenNotification", async (sender, args) =>
@@ -286,7 +286,7 @@ namespace xamarinJKH.Main
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
 
             FrameNews.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
             FrameQuestions.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
