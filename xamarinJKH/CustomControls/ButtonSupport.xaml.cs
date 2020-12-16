@@ -49,6 +49,27 @@ namespace xamarinJKH
                 IconTech.ReplaceStringMap = colors;
             });
 
+            MessagingCenter.Subscribe<Object>(this, "ChangeThemeConst", (sender) =>
+            {
+                OSAppTheme currentTheme = Application.Current.RequestedTheme;
+                var colors = new Dictionary<string, string>();
+                if (currentTheme == OSAppTheme.Light || currentTheme == OSAppTheme.Unspecified)
+                {
+                    colors.Add("#000000", ((Color)Application.Current.Resources["MainColor"]).ToHex());
+                    Device.BeginInvokeOnMainThread(() => { btnSup.BorderColor = (Color)Application.Current.Resources["MainColor"]; LTech.TextColor = (Color)Application.Current.Resources["MainColor"]; });
+                }
+                else
+                {
+                    colors.Add("#000000", "#FFFFFF");
+                    Device.BeginInvokeOnMainThread(() => { btnSup.BorderColor = Color.Transparent; LTech.TextColor = Color.White; });
+
+                }
+
+                IconTech.ReplaceStringMap = colors;
+            });
+
+
+
             this.BindingContext = this;
         }      
     }
