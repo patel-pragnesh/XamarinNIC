@@ -168,8 +168,8 @@ namespace xamarinJKH
             UkName.Text = Settings.MobileSettings.main_name;
             
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
         }
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)

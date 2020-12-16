@@ -209,8 +209,11 @@ namespace xamarinJKH.Additional
                 }
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
+
             var techSend = new TapGestureRecognizer();
             techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new AppPage()); };
+            LabelTech.GestureRecognizers.Add(techSend);
+
             MainColor = "#" + Settings.MobileSettings.color;
             Additional = new ObservableCollection<AdditionalService>();
             Groups = new ObservableCollection<string>();
@@ -260,7 +263,7 @@ namespace xamarinJKH.Additional
                     arrowcolor.Add("#000000", "#FFFFFF");
                 }
 
-                IconViewTech.ReplaceStringMap = colors;
+                //IconViewTech.ReplaceStringMap = colors;
             });
         }
 
@@ -271,7 +274,7 @@ namespace xamarinJKH.Additional
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             FrameKind.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
         }
 
         protected override async void OnAppearing()

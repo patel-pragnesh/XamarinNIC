@@ -22,19 +22,20 @@
                     <StackLayout
                         Margin="25,10,15,0"
                         Orientation="Horizontal"
-                        x:Name="Pancake">
-                        <Label x:Name="UkName"
+                        x:Name="Pancake" >
+                        <Label x:Name="UkName" VerticalOptions="Center"
                                Text="Название"
                                FontAttributes="Bold"
-                               HorizontalOptions="StartAndExpand"
+                               HorizontalOptions="StartAndExpand" 
                                FontSize="15"
                                TextColor="{AppThemeBinding Light=Black, Dark=White}" />
 
                         <StackLayout
                             HorizontalOptions="EndAndExpand"
-                            Orientation="Horizontal">
-
-                            <svg:SvgCachedImage x:Name="IconViewTech"
+                            Orientation="Horizontal"  >
+                            <xamarinJkh:ButtonSupport x:Name="LabelTech"></xamarinJkh:ButtonSupport>
+                            <xamarinJkh:ButtonProfile  x:Name="IconViewProfile" Margin="15,0,5,0"></xamarinJkh:ButtonProfile>
+                            <!--<svg:SvgCachedImage x:Name="IconViewTech"
                                                 Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                                 HeightRequest="20"
                                                 ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
@@ -49,14 +50,15 @@
                                    TextDecorations="Underline"
                                    TextColor="White"
                                    Margin="0, 0, 0, 0"
-                                   VerticalOptions="Center" />
-                            <svg:SvgCachedImage x:Name="IconViewProfile" Margin="15,0,5,0"
+                                   VerticalOptions="Center" />-->
+                           
+                            <!--<svg:SvgCachedImage x:Name="IconViewProfile" Margin="15,0,5,0"
                                                 Source="resource://xamarinJKH.Resources.ic_profile_top.svg"
                                                 HeightRequest="20"
-                                                ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"                                                
+                                                ReplaceStringMap="{Binding forSvg, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"                                                
                                                 BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"
                                                 HorizontalOptions="Start"
-                                                VerticalOptions="Center" />
+                                                VerticalOptions="Center" />-->
                         </StackLayout>
 
                     </StackLayout>

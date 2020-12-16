@@ -148,7 +148,7 @@ namespace xamarinJKH.Main
                     arrowcolor.Add("#000000", "#FFFFFF");
                 }
 
-                IconViewTech.ReplaceStringMap = colors;
+                //IconViewTech.ReplaceStringMap = colors;
             });
 
             MessagingCenter.Subscribe<Object, (string, string)>(this, "OpenNotification", async (sender, args) =>
@@ -286,7 +286,7 @@ namespace xamarinJKH.Main
             //IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
 
             FrameNews.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
             FrameQuestions.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
@@ -447,19 +447,29 @@ namespace xamarinJKH.Main
                     
                     MobileMenu mobileMenu = Settings.MobileSettings.menu.Find(x => x.name_app == "Web-камеры");
                     ShowCameras =  mobileMenu != null && mobileMenu.visible != 0 && Settings.Person.Accounts.Count > 0;
-                    
-                    if (!Settings.MobileSettings.enableOSS || !Settings.Person.accessOSS)
-                    {
-                        ShowOss = false;
-                    }
 
-                    if (RestClientMP.SERVER_ADDR.ToLower().Contains("water") && Settings.Person.Accounts.Count > 0)
+                    if (!RestClientMP.SERVER_ADDR.ToLower().Contains("water"))
                     {
-                        ShowOss = true;
+                        if ((!Settings.MobileSettings.enableOSS || !Settings.Person.accessOSS))
+                        {
+                            ShowOss = false;
+                        }
+                        else
+                        {
+                            ShowOss = Settings.Person.Accounts.Count > 0;
+                        }
                     }
                     else
                     {
-                        ShowOss = false;
+
+                        if (Settings.Person.Accounts.Count > 0)
+                        {
+                            ShowOss = true;
+                        }
+                        else
+                        {
+                            ShowOss = false;
+                        }
                     }
                 }
                 ShowAdditionalServices = false;

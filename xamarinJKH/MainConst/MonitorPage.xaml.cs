@@ -1079,11 +1079,11 @@ namespace xamarinJKH.MainConst
             SetAdminName();
 
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
-            IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
+            //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             Frame.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.FromHex("#8D8D8D"));
             MaterialFrameNotDoingContainer.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
             MaterialFrameNotDoing.SetAppThemeColor(Frame.BorderColorProperty, hexColor, Color.White);
-            LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
+            //LabelTech.SetAppThemeColor(Label.TextColorProperty, hexColor, Color.White);
         }
 
         private void SetAdminName()
