@@ -112,6 +112,10 @@ namespace xamarinJKH.Pays
                         LabelLs.FontSize = 12;
                     }
 
+                    //хак чтобы список растягивался на все необходимое пространоство. а так
+                    //есть баг в xamarin, потому что fillAndExpand не работает(https://github.com/xamarin/Xamarin.Forms/issues/6908)
+                    additionalList.HeightRequest = 3000;
+
                     //BackgroundColor = Color.White;
                     break;
                 default:
