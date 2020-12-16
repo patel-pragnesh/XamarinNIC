@@ -54,6 +54,7 @@ namespace xamarinJKH.ViewModels.Main
                         {
                             Device.BeginInvokeOnMainThread(() => Requests.Add(App));
                         }
+                        Empty = AllRequests.Count(x => x.IsClosed)==0;
                     }
                 }
                 else
@@ -65,6 +66,7 @@ namespace xamarinJKH.ViewModels.Main
                         {
                             Device.BeginInvokeOnMainThread(() => Requests.Add(App));
                         }
+                        Empty = AllRequests.Count(x => !x.IsClosed)==0;
                     }
                 }
                 OnPropertyChanged("ShowClosed");
@@ -149,7 +151,15 @@ namespace xamarinJKH.ViewModels.Main
                 MessagingCenter.Send<Object, int>(this, "SetRequestsAmount", response.Requests.Where(x => !x.IsReadedByClient && x.StatusID != 6).Count());
                 if (AllRequests != null)
                 {
-                    Empty = Requests.Count == 0;
+                    if (ShowClosed)
+                    {
+                        Empty = response.Requests.Count(x => x.IsClosed) == 0;
+                    }
+                    else
+                    {
+                        Empty = response.Requests.Count(x => !x.IsClosed) == 0;
+                    }
+                    
                     var ids = AllRequests.Select(x => x.ID);
                     var newRequests = response.Requests.Where(x => !ids.Contains(x.ID)).ToList();
                     foreach (var newApp in newRequests)
