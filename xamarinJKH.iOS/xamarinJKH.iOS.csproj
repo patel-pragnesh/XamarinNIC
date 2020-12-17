@@ -14,7 +14,7 @@
     <AssemblyName>xamarinJKH.iOS</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <ProvisioningType>automatic</ProvisioningType>
+    <ProvisioningType>manual</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -27,9 +27,8 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignProvision>
-    </CodesignProvision>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <CodesignKey>Apple Development: Evgeny Yurtaykin (W7QP3Z4ZW5)</CodesignKey>
     <MtouchFastDev>true</MtouchFastDev>
     <MtouchFloat32>true</MtouchFloat32>
   </PropertyGroup>
@@ -42,7 +41,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Distribution: Evgeny Yurtaykin (UK4AR963E7)</CodesignKey>
+    <CodesignKey>Apple Development: Evgeny Yurtaykin (W7QP3Z4ZW5)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -74,9 +73,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Distribution: Evgeny Yurtaykin (UK4AR963E7)</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>distrArktika</CodesignProvision>
+    <CodesignProvision>distrSweetHomeNew</CodesignProvision>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
     <MtouchLink>SdkOnly</MtouchLink>
     <BuildIpa>true</BuildIpa>
@@ -122,6 +121,7 @@
     <Compile Include="CustomRenderers\BorderlessPickerRenderer.cs" />
     <Compile Include="CustomRenderers\BordlessEditorRender.cs" />
     <Compile Include="CustomRenderers\CounterEntryNewRenderer.cs" />
+    <Compile Include="CustomRenderers\KeyboardOverlapRendererTechAppPage.cs" />
     <Compile Include="CustomRenderers\KeyboardOverlapRenderer.cs" />
     <Compile Include="CustomRenderers\ListViewHighlightEffect.cs" />
     <Compile Include="CustomRenderers\MaterialFrameRenderer.cs" />
@@ -490,5 +490,10 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_web_cams_top_light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_close.png">
+      <SubType>Designer</SubType>
+    </BundleResource>
   </ItemGroup>
 </Project>
