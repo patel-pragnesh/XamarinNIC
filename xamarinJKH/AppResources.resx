@@ -1706,4 +1706,7 @@
   <data name="CloseAppUserDone" xml:space="preserve">
     <value>Заявка закрыта со статусом "отказ жителя"</value>
   </data>
+  <data name="PersonalPolicity" xml:space="preserve">
+    <value>Политика обработки персональных данных</value>
+  </data>
 </root>

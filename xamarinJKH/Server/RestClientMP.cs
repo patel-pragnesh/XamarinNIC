@@ -66,6 +66,7 @@ namespace xamarinJKH.Server
 
 
         public const string SEND_TEACH_MAIL = "Public/TechSupportAppeal"; // Создание обращения в тех поддержк
+        public const string GET_PERSONAL_POLICY = "Public/MobilePersonalDataPolicy"; // Создание обращения в тех поддержк
         public const string LOGIN_DISPATCHER = "auth/loginDispatcher"; // Аутентификация сотрудника
         public const string LOGIN = "auth/Login"; // Аутентификация пользователя
         public const string REQUEST_CODE = "auth/RequestAccessCode"; // Запрос кода подтверждения
@@ -423,6 +424,24 @@ namespace xamarinJKH.Server
                 {
                     Error = $"Ошибка {response.StatusDescription}"
                 };
+            }
+
+            return response.Data;
+        }
+        
+        public async Task<string> MobilePersonalDataPolicy ()
+        {
+            RestClient restClientMp = new RestClient(SERVER_ADDR);
+            RestRequest restRequest = new RestRequest(GET_PERSONAL_POLICY, Method.GET);
+            restRequest.RequestFormat = DataFormat.Json;
+            restRequest.AddHeader("client", Device.RuntimePlatform);
+            restRequest.AddHeader("CurrentLanguage", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+
+            var response = await restClientMp.ExecuteTaskAsync<string>(restRequest);
+            // Проверяем статус
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return $"Ошибка {response.StatusDescription}";
             }
 
             return response.Data;

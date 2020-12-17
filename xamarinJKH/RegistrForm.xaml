@@ -90,7 +90,7 @@
                                              Padding="20"
                                              BackgroundColor="White" IsVisible="True">
 
-                        <StackLayout>
+                        <StackLayout >
 
                             <StackLayout
                                 Orientation="Vertical"
@@ -292,7 +292,13 @@
                                     IsToggled="false"
                                     x:Name="SwitchConsent" />
                             </StackLayout>
-
+                            <Label Text="{x:Static xamarinJkh:AppResources.PersonalPolicity}"
+                                   FontSize="15"
+                                   x:Name="LabelPersonPolicity"
+                                   Margin="5, -10, 0, 0"
+                                   TextColor="{x:DynamicResource MainColor}"
+                                   TextDecorations="Underline"
+                                   HorizontalOptions="Start" />
                             <Frame CornerRadius="15"
                                    BackgroundColor="{x:DynamicResource MainColor}"
                                    Margin="5, 5, 5, 0"
@@ -328,7 +334,7 @@
                                         VerticalOptions="Center" />
                                 </StackLayout>
                             </Frame>
-
+                            
                         </StackLayout>
                     </pancakeView:PancakeView>
                     <!-- Второй шаг регистрации -->

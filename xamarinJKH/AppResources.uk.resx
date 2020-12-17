@@ -1586,4 +1586,7 @@
   <data name="CloseAppUserDone" xml:space="preserve">
     <value>Заявка закрита з правами "відмова жителя "</value>
   </data>
+  <data name="PersonalPolicity" xml:space="preserve">
+    <value>Політика обробки персональних даних</value>
+  </data>
 </root>

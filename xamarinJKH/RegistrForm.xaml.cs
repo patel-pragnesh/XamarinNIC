@@ -107,7 +107,10 @@ namespace xamarinJKH
             ToSms.GestureRecognizers.Add(sendCheckCode); 
             var sendCheckCodeWhatsApp = new TapGestureRecognizer();
             sendCheckCodeWhatsApp.Tapped += async (s, e) => { SendCheckCode(true); };
-            ToSmsWhatsApp.GestureRecognizers.Add(sendCheckCodeWhatsApp);
+            ToSmsWhatsApp.GestureRecognizers.Add(sendCheckCodeWhatsApp); 
+            var personPolicity = new TapGestureRecognizer();
+            personPolicity.Tapped += PersonPolicity;
+            LabelPersonPolicity.GestureRecognizers.Add(personPolicity);
 
             var nextReg2 = new TapGestureRecognizer();
             nextReg2.Tapped += async (s, e) =>
@@ -307,6 +310,10 @@ namespace xamarinJKH
             {
                 await PopupNavigation.Instance.PushAsync(new EnterPhoneDialog());
             }
+        }
+        private async void PersonPolicity(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PushAsync(new PersonalPolicityDialog());
         }
 
         void returnOneStep()

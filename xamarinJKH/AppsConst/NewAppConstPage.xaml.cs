@@ -154,7 +154,6 @@ namespace xamarinJKH.AppsConst
                 LabelLs.Text = "Нажмите для выбора";
                 IconViewClose.IsVisible = false;
             };
-            (IconViewClose.Parent as View).GestureRecognizers.Add(delLS);
 
             var setLss = new TapGestureRecognizer();
             if (Settings.MobileSettings.chooseIdentByHouse)
@@ -167,6 +166,11 @@ namespace xamarinJKH.AppsConst
                 LabelLs.GestureRecognizers.Add(setLss);
                 EntryLS.IsVisible = false;
                 LabelLs.IsVisible = true;
+                (IconViewClose.Parent as View).GestureRecognizers.Add(delLS);
+            }
+            else
+            {
+                StackLayoutHouses.IsVisible = false;
             }
 
             SetText();

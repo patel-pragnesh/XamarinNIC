@@ -1713,4 +1713,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="CloseAppUserDone" xml:space="preserve">
     <value>The application is closed with the status "resident denial "</value>
   </data>
+  <data name="PersonalPolicity" xml:space="preserve">
+    <value>Personal data processing policy</value>
+  </data>
 </root>
