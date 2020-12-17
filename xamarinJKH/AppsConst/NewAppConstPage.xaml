@@ -46,7 +46,7 @@
                             HorizontalOptions="EndAndExpand"
                             Orientation="Horizontal">
                             <xamarinJkh:ButtonSupport x:Name="LabelTech"></xamarinJkh:ButtonSupport>
-                            <xamarinJkh:ButtonProfile  x:Name="IconViewProfile" Margin="15,0,5,0"></xamarinJkh:ButtonProfile>
+                            <xamarinJkh:ButtonProfile  x:Name="IconViewProfile" Margin="10,0,5,0"></xamarinJkh:ButtonProfile>
                             <!--<forms:SvgCachedImage x:Name="IconViewTech"
                                                 Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                                 HeightRequest="20"
