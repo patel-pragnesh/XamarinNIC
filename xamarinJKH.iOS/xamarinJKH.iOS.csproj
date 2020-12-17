@@ -14,7 +14,7 @@
     <AssemblyName>xamarinJKH.iOS</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <ProvisioningType>automatic</ProvisioningType>
+    <ProvisioningType>manual</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,7 +41,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Distribution: Evgeny Yurtaykin (UK4AR963E7)</CodesignKey>
+    <CodesignKey>Apple Development: Evgeny Yurtaykin (W7QP3Z4ZW5)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -73,9 +73,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Distribution: Evgeny Yurtaykin (UK4AR963E7)</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>distrArktika</CodesignProvision>
+    <CodesignProvision>distrSweetHomeNew</CodesignProvision>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
     <MtouchLink>SdkOnly</MtouchLink>
     <BuildIpa>true</BuildIpa>
