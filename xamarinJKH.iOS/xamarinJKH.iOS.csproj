@@ -27,9 +27,8 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignProvision>
-    </CodesignProvision>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <CodesignKey>Apple Development: Evgeny Yurtaykin (W7QP3Z4ZW5)</CodesignKey>
     <MtouchFastDev>true</MtouchFastDev>
     <MtouchFloat32>true</MtouchFloat32>
   </PropertyGroup>
@@ -490,5 +489,10 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_web_cams_top_light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_close.png">
+      <SubType>Designer</SubType>
+    </BundleResource>
   </ItemGroup>
 </Project>
