@@ -157,6 +157,7 @@
   <ItemGroup>
     <Compile Include="CustomReader\CustomButtonRender.cs" />
     <Compile Include="CustomReader\CustomEntryRenderer.cs" />
+    <Compile Include="CustomReader\EntryWithCustomKeyboardRenderer.cs" />
     <Compile Include="CustomReader\FileWorker.cs" />
     <Compile Include="CustomReader\FirebaseTokenObtainer.cs" />
     <Compile Include="CustomReader\IconViewRenderer.cs" />
@@ -208,6 +209,7 @@
     <AndroidResource Include="Resources\drawable\ic_app_top.png" />
     <AndroidResource Include="Resources\drawable\ic_app_top_in.png" />
     <AndroidResource Include="Resources\drawable\ic_app_top_light.png" />
+    <AndroidResource Include="Resources\drawable\ic_arrow_back_white_24dp.xml" />
     <AndroidResource Include="Resources\drawable\ic_arrow_down_monitor.png" />
     <AndroidResource Include="Resources\drawable\ic_arrow_forward.png" />
     <AndroidResource Include="Resources\drawable\ic_arrow_up_monitorpng.png" />
@@ -223,6 +225,7 @@
     <AndroidResource Include="Resources\drawable\ic_calendar.png" />
     <AndroidResource Include="Resources\drawable\ic_call_app.png" />
     <AndroidResource Include="Resources\drawable\ic_card_pay_black.png" />
+    <AndroidResource Include="Resources\drawable\ic_check_unchecked.xml" />
     <AndroidResource Include="Resources\drawable\ic_close.png" />
     <AndroidResource Include="Resources\drawable\ic_close_app1.png" />
     <AndroidResource Include="Resources\drawable\ic_cold_water.png" />
@@ -271,15 +274,21 @@
     <AndroidResource Include="Resources\drawable\ic_top_event_back.png" />
     <AndroidResource Include="Resources\drawable\ic_web_cams_top.png" />
     <AndroidResource Include="Resources\drawable\ic_web_cams_top_light.png" />
+    <AndroidResource Include="Resources\drawable\kb_separator_line.xml" />
+    <AndroidResource Include="Resources\drawable\keyboard_background.xml" />
+    <AndroidResource Include="Resources\drawable\normal.xml" />
     <AndroidResource Include="Resources\drawable\pay.png" />
+    <AndroidResource Include="Resources\drawable\pressed.xml" />
     <AndroidResource Include="Resources\drawable\telegram.png" />
     <AndroidResource Include="Resources\drawable\top_fon_login_light.png" />
     <AndroidResource Include="Resources\drawable\triangle.png" />
     <AndroidResource Include="Resources\drawable\up_arrow.png" />
     <AndroidResource Include="Resources\drawable\viber.png" />
     <AndroidResource Include="Resources\drawable\whatsapp.png" />
+    <AndroidResource Include="Resources\layout\customkeyboard.xml" />
     <AndroidResource Include="Resources\layout\Tabbar.xml" />
     <AndroidResource Include="Resources\layout\Toolbar.xml" />
+    <AndroidResource Include="Resources\values\ids.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values\colors.xml" />
@@ -469,6 +478,7 @@
       <Generator>
       </Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\xml\apply.xml" />
     <AndroidResource Include="Resources\xml\file_paths.xml" />
     <AndroidResource Include="Resources\drawable\icon_add_app.png">
       <SubType>
@@ -487,6 +497,10 @@
       </SubType>
       <Generator>
       </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\xml\special_keyboard.xml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>

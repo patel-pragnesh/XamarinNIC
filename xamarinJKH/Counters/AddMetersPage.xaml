@@ -163,16 +163,31 @@
                                                HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                                BorderColor="{x:StaticResource MainColor}"
                                                HeightRequest="50"
-                                               
+                                               x:Name="FrameEntry"
                                                Margin="50,0"
                                                Padding="0">
-                                            <Entry Keyboard="Numeric"
-                                                   Text=""
-                                                                  VerticalOptions="CenterAndExpand"
-                                                                  HorizontalTextAlignment="Center"
-                                                                  x:Name="Data">
-                                            </Entry>
+                                            <!-- <Entry Keyboard="Numeric" -->
+                                            <!--        Text="" -->
+                                            <!--                       VerticalOptions="CenterAndExpand" -->
+                                            <!--                       HorizontalTextAlignment="Center" -->
+                                            <!--                       x:Name="Data"> -->
+                                            <!-- </Entry> -->
                                         </Frame>
+                                        <!-- <Frame CornerRadius="20" -->
+                                        <!--        HasShadow="{AppThemeBinding Light=false, Dark=true}" -->
+                                        <!--        BorderColor="{x:StaticResource MainColor}" -->
+                                        <!--        HeightRequest="50" -->
+                                        <!--         -->
+                                        <!--        Margin="50,0" -->
+                                        <!--        Padding="0"> -->
+                                        <!--     <local:EntryWithCustomKeyboard -->
+                                        <!--         x:Name="entry2" -->
+                                        <!--         HorizontalOptions="FillAndExpand" -->
+                                        <!--         Keyboard="Text" -->
+                                        <!--         HorizontalTextAlignment="Center" -->
+                                        <!--         TextColor="Black" -->
+                                        <!--         /> -->
+                                        <!-- </Frame> -->
                                         <Label Text="{Binding Previous}" TextColor="#A2A2A2" FontSize="20" HorizontalTextAlignment="Center" x:Name="Prev"/>
                                         <!--<StackLayout x:Name="CounterLayout"
                                                      IsVisible="False"
