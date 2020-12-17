@@ -12,14 +12,12 @@ using xamarinJKH.Counters;
 using xamarinJKH.Apps;
 using xamarinJKH.AppsConst;
 
-//[assembly: ExportRenderer(typeof(AddMetersPage), typeof(KeyboardOverlapRenderer))]
-[assembly: ExportRenderer(typeof(AppPage), typeof(KeyboardOverlapRenderer))]
-[assembly: ExportRenderer(typeof(AppConstPage), typeof(KeyboardOverlapRenderer))]
-//[assembly: ExportRenderer(typeof(xamarinJKH.Tech.AppPage), typeof(KeyboardOverlapRenderer))]
+
+[assembly: ExportRenderer(typeof(xamarinJKH.Tech.AppPage), typeof(KeyboardOverlapRendererTechAppPage))]
 namespace xamarinJKH.iOS.CustomRenderers
 {
     [Preserve(AllMembers = true)]
-    public class KeyboardOverlapRenderer : PageRenderer
+    public class KeyboardOverlapRendererTechAppPage : PageRenderer
     {
         NSObject _keyboardShowObserver;
         NSObject _keyboardHideObserver;
@@ -147,8 +145,8 @@ namespace xamarinJKH.iOS.CustomRenderers
 
         private double CalculateShiftByAmount(double pageHeight, nfloat keyboardHeight, double activeViewBottom)
         {
-            
-            return (pageHeight - activeViewBottom) - keyboardHeight + (int)UIApplication.SharedApplication.StatusBarFrame.Height; 
+
+            return (pageHeight - activeViewBottom) - keyboardHeight;// + (int)UIApplication.SharedApplication.StatusBarFrame.Height; 
         }
     }
 }
