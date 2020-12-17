@@ -293,6 +293,7 @@ namespace xamarinJKH.Main
             FrameOffers.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
             FrameOSS.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
             FrameNotification.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
+            FrameCameras.SetAppThemeColor(MaterialFrame.BorderColorProperty, hexColor, Color.White);
         }
 
         private async void Cameras(object sender, EventArgs e)

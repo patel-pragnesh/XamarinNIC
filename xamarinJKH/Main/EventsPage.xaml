@@ -454,7 +454,7 @@
                                 </StackLayout>
                             </Frame>
 
-                            <customRenderers:MaterialFrame
+                            <!--<customRenderers:MaterialFrame x:Name="FrameCameras"
                                 Elevation="{AppThemeBinding Light=0, Dark=20}"
                                 CornerRadius="30"
                                 HasShadow="{AppThemeBinding Light=false, Dark=true}"
@@ -464,7 +464,16 @@
                                 BackgroundColor="White"
                                 IsVisible="{Binding ShowCameras}"
                                 BorderColor="{AppThemeBinding Dark=White, Light={x:StaticResource MainColor}}"
-                                Padding="0, 25, 0, 25">
+                                Padding="0, 25, 0, 25">-->
+                            <customRenderers:MaterialFrame Elevation="{AppThemeBinding Light=0, Dark=20}" x:Name="FrameCameras"
+                                                           CornerRadius="30"
+                                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
+                                                           IsVisible="{Binding ShowCameras}"
+                                                           Margin="10, 0, 10, 10"
+                                                           HorizontalOptions="FillAndExpand"
+                                                           VerticalOptions="Start"
+                                                           BackgroundColor="White"
+                                                           Padding="0, 25, 0, 25">
                                 <StackLayout
                                     Orientation="Horizontal">
                                     <svg:SvgCachedImage

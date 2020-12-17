@@ -21,18 +21,39 @@ namespace xamarinJKH.iOS.CustomRenderers
  
             if (e.NewElement == null)
                 return;
-            UpdateShadow();
+            SetupLayer(); //UpdateShadow();
         }
  
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
-            if(e.PropertyName == "Elevation")
+            if (e.PropertyName == VisualElement.BackgroundColorProperty.PropertyName ||
+          e.PropertyName == Xamarin.Forms.Frame.BorderColorProperty.PropertyName ||
+          e.PropertyName == Xamarin.Forms.Frame.HasShadowProperty.PropertyName ||
+          e.PropertyName == Xamarin.Forms.Frame.CornerRadiusProperty.PropertyName || e.PropertyName == "Elevation")
+                SetupLayer();
+            //if(e.PropertyName == "Elevation")
+            //{
+            //    UpdateShadow();
+            //}
+        }
+
+        void SetupLayer()
+        {
+            if (Element.HasShadow)
             {
-                UpdateShadow();
+                var materialFrame = (MaterialFrame)Element;
+                float sr = 7;
+                if (materialFrame.Elevation < 10)
+                    sr = materialFrame.Elevation;
+                Layer.ShadowRadius = sr; 
+                Layer.ShadowColor = UIColor.Gray.CGColor;
+                Layer.ShadowOffset = new CGSize(2, 2);
+                Layer.ShadowOpacity = 0.80f;
             }
         }
- 
+
+
         private void UpdateShadow()
         {
  
@@ -44,8 +65,8 @@ namespace xamarinJKH.iOS.CustomRenderers
             Layer.ShadowOffset = new CGSize(2, 2);
             Layer.ShadowOpacity = 0.80f;
             Layer.ShadowPath = UIBezierPath.FromRect(Layer.Bounds).CGPath;
-            Layer.MasksToBounds = false;
- 
+            Layer.MasksToBounds = true;
         }
+
     }
 }
