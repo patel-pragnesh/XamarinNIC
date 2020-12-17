@@ -74,8 +74,8 @@ namespace xamarinJKH.Main
             };
             LabelTech.GestureRecognizers.Add(techSend);
 
-            if(Settings.MobileSettings.showOurService)
-            { 
+            //if(Settings.MobileSettings.showOurService)
+            //{ 
                 IconViewProfile.IsVisible = true;
                 var profile = new TapGestureRecognizer();
                 profile.Tapped += async (s, e) =>
@@ -84,7 +84,7 @@ namespace xamarinJKH.Main
                         await Navigation.PushAsync(new ProfilePage());
                 };
                 IconViewProfile.GestureRecognizers.Add(profile);
-            }
+            //}
 
             var call = new TapGestureRecognizer();
             call.Tapped += async (s, e) =>
