@@ -581,9 +581,19 @@ _appModel = new AddAppModel()
             public List<string> AllKindPass { get; set; }
             public AccountInfo SelectedAcc { get; set; }
             public NamedValue SelectedType { get; set; }
+            public ObservableCollection<AccountInfo> Accounts { get; set; }
 
             public ObservableCollection<FileData> Files { get; set; }
             public Color hex { get; set; }
+            public AddAppModel()
+            {
+                Accounts = new ObservableCollection<AccountInfo>();
+                AllAcc = Settings.Person.Accounts;
+                foreach (var account in AllAcc)
+                {
+                    Device.BeginInvokeOnMainThread(() => Accounts.Add(account));
+                }
+            }
         }
 
         private async void addApp(object sender, EventArgs e)

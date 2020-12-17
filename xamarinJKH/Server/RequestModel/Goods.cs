@@ -34,7 +34,17 @@ namespace xamarinJKH.Server.RequestModel
         {
             get => RestClientMP.SERVER_ADDR + "/public/GoodsImage/" + this.ID;
         }
-        
+
+        bool islast;
+        public bool IsLast
+        {
+            get => islast;
+            set
+            {
+                islast = value;
+                OnPropertyChanged("IsLast");
+            }
+        }
 
     }
 }

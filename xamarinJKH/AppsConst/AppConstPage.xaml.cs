@@ -244,19 +244,27 @@ namespace xamarinJKH.AppsConst
                     request = requestsUpdate.CurrentRequestUpdates;
                     foreach (var each in requestsUpdate.CurrentRequestUpdates.Messages)
                     {
-                        Device.BeginInvokeOnMainThread(async () =>
+                        if (!messages.Contains(each))
                         {
-                            addAppMessage(each, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
-                            //var lastChild = baseForApp.Children.LastOrDefault();
-                            //if (lastChild != null)
-                            //    await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30,
-                            //        false);
-                        });
-                        messages.Add(each);
+                            Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                addAppMessage(each, messages.Count > 1 ? messages[messages.Count - 2].AuthorName : null);
+                                //var lastChild = baseForApp.Children.LastOrDefault();
+                                //if (lastChild != null)
+                                //    await scrollFroAppMessages.ScrollToAsync(lastChild.X, lastChild.Y + 30,
+                                //        false);
+                            });
+                            //messages.Add(each);
+                        }                        
+                        
                     }
 
                     Device.BeginInvokeOnMainThread(async () =>
                     {
+                        if(Xamarin.Essentials.DeviceInfo.Platform==DevicePlatform.iOS)
+                        {
+                            await Task.Delay(500);
+                        }
                         var lastChild = baseForApp.Children.LastOrDefault();
                         if (FrameMessage.Height < baseForApp.Height)
                         {
@@ -297,6 +305,7 @@ namespace xamarinJKH.AppsConst
 
             DateUniq = newDate;
             baseForApp.Children.Add(data);
+            messages.Add(message);
         }
 
 

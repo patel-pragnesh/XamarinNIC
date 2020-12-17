@@ -14,7 +14,7 @@ namespace xamarinJKH.Converters
             var val = System.Convert.ToDouble(value);
             if (val > 0)
             {
-                return $"\n{val} {AppResources.Gram}";
+                return $"\n{val}";
             }
             else
             {

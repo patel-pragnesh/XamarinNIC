@@ -21,6 +21,8 @@
             <converters:WeightDisplayConverter x:Key="Weight"/>
             <converters:ArrowIconConverter x:Key="Arrow"/>
             <converters:TextDecorationsUnderline x:Key="Underline"/>
+            <converters:NumberIsGreaterThanZeroConverter x:Key="MoreThanZero"/>
+            <converters:InverseBoolConverter x:Key="Invert"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -102,6 +104,8 @@
                                             SelectionMode="Single"
                                             HeightRequest="70"
                                             HorizontalScrollBarVisibility="Never"
+                                            
+                                            VerticalScrollBarVisibility="Never"
                                             Scrolled="CollectionView_Scrolled"
                                             SelectedItem="{Binding SelectedCategory}">
                                 <CollectionView.ItemsLayout>
@@ -184,6 +188,7 @@
                                     </StackLayout>
                                 </Grid>
                                 <CollectionView ItemsSource="{Binding Goods}"
+                                                ItemSizingStrategy="MeasureAllItems"
                                                 SelectionMode="None">
                                     <CollectionView.ItemsLayout>
                                         <LinearItemsLayout Orientation="Vertical" ItemSpacing="0"/>
@@ -191,10 +196,11 @@
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>
                                             <Frame BackgroundColor="White"
+                                                  
                                                    HasShadow="False" Padding="5,20"
                                                BorderColor="{AppThemeBinding Dark=White, Light={x:DynamicResource MainColor}}">
                                                 <StackLayout>
-                                                    <Grid ColumnSpacing="6">
+                                                    <Grid ColumnSpacing="6" RowSpacing="15">
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition  Width="Auto"/>
                                                             <ColumnDefinition Width="*"/>
@@ -202,12 +208,13 @@
                                                             <!--<ColumnDefinition Width="0.4*"/>-->
                                                         </Grid.ColumnDefinitions>
                                                         <Grid.RowDefinitions>
-                                                            <RowDefinition Height="25"/>
+                                                            <RowDefinition Height="Auto"/>
                                                             <RowDefinition Height="25"/>
                                                         </Grid.RowDefinitions>
                                                         <Frame CornerRadius="10"
-                                                           BackgroundColor="#e7e7e7"
+                                                           BackgroundColor="White"
                                                            Padding="5"
+                                                           IsClippedToBounds="False"
                                                            WidthRequest="50"
                                                            IsVisible="{Binding HasImage}"
                                                            Grid.RowSpan="2"
@@ -220,7 +227,8 @@
                                                         <Label 
                                                            Grid.Column="1"
                                                             Grid.Row="0"
-                                                           Grid.RowSpan="2">
+                                                            HorizontalOptions="FillAndExpand"
+                                                            VerticalOptions="FillAndExpand">
                                                             <Label.FormattedText>
                                                                 <FormattedString>
                                                                     <FormattedString.Spans>
@@ -229,12 +237,18 @@
                                                                         <Span Text="{Binding Weight, Converter={x:StaticResource Weight}}"
                                                                           FontSize="10"
                                                                           FontAttributes="None"/>
+                                                                        <Span Text=" "/>
+                                                                        <Span Text="{Binding Units}"
+                                                                              FontSize="10"
+                                                                              FontAttributes="None"/>
                                                                     </FormattedString.Spans>
                                                                 </FormattedString>
                                                             </Label.FormattedText>
                                                         </Label>
 
-                                                        <Label Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="End">
+                                                        <Label Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="End" 
+                                                            HorizontalOptions="FillAndExpand"
+                                                            VerticalOptions="FillAndExpand">
                                                             <Label.FormattedText>
                                                                 <FormattedString>
                                                                     <FormattedString.Spans>
@@ -271,7 +285,7 @@
                                                                     </svg:SvgCachedImage.GestureRecognizers>
                                                                 </svg:SvgCachedImage>
                                                             </StackLayout>
-                                                            <BoxView Color="{x:DynamicResource MainColor}" HeightRequest="1" Margin="0, -2, 0, 0" HorizontalOptions="FillAndExpand"/>
+                                                            <!--<BoxView Color="{x:DynamicResource MainColor}" HeightRequest="1" Margin="0, -2, 0, 0" HorizontalOptions="FillAndExpand"/>-->
                                                         </StackLayout>
 
                                                         <!--<Grid Grid.Column="2"
@@ -317,6 +331,7 @@
                                                     </Grid>
                                                     <BoxView HeightRequest="2"
                                                              Margin="0,5,0,0"
+                                                             IsVisible="{Binding IsLast, Converter={x:StaticResource Invert}}"
                                                              BackgroundColor="#e7e7e7"/>
                                                 </StackLayout>
                                                 

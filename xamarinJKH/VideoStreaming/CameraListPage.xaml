@@ -46,9 +46,9 @@
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup Name="CommonStates">
                                         <VisualState Name="Normal">
-                                            <!--<VisualState.Setters>
-                                                <Setter Property="BackgroundColor" Value="Transparent" />
-                                            </VisualState.Setters>-->
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#F3F3F3}" />
+                                            </VisualState.Setters>
                                         </VisualState> 
                                         <VisualState Name="Selected">
                                             <VisualState.Setters>
