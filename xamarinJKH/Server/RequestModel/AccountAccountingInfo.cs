@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace xamarinJKH.Server.RequestModel
@@ -6,6 +7,8 @@ namespace xamarinJKH.Server.RequestModel
     public class AccountAccountingInfo
     {
         public string Ident { get; set; }
+        public string AccountID  { get; set; }
+        public string AccountType   { get; set; }
         public decimal Sum { get; set; }
         public decimal SumFine { get; set; }
         public string Address { get; set; }
