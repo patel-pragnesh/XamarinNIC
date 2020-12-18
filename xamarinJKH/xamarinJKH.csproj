@@ -11,6 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\app_accountaint.svg" />
+    <None Remove="Resources\app_domophone.svg" />
+    <None Remove="Resources\app_electritian.svg" />
+    <None Remove="Resources\app_other.svg" />
+    <None Remove="Resources\app_pass.svg" />
+    <None Remove="Resources\app_passport.svg" />
+    <None Remove="Resources\app_plumber.svg" />
     <None Remove="Resources\edit.svg" />
     <None Remove="Resources\crossed.svg" />
     <None Remove="Resources\icon_add_app.svg" />
@@ -87,6 +94,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\app_accountaint.svg" />
+    <EmbeddedResource Include="Resources\app_domophone.svg" />
     <EmbeddedResource Include="Resources\edit.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource> 
@@ -284,6 +293,11 @@
     <EmbeddedResource Include="Resources\up_arrow.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\app_plumber.svg" />
+    <EmbeddedResource Include="Resources\app_electritian.svg" />
+    <EmbeddedResource Include="Resources\app_passport.svg" />
+    <EmbeddedResource Include="Resources\app_pass.svg" />
+    <EmbeddedResource Include="Resources\app_other.svg" />
     <EmbeddedResource Include="Resources\viber.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
