@@ -166,12 +166,12 @@
                                                x:Name="FrameEntry"
                                                Margin="50,0"
                                                Padding="0">
-                                            <Entry Keyboard="Numeric"
-                                                   Text=""
-                                                                  VerticalOptions="CenterAndExpand"
-                                                                  HorizontalTextAlignment="Center"
-                                                                  x:Name="Data">
-                                            </Entry>
+                                            <!-- <Entry Keyboard="Numeric" -->
+                                            <!--        Text="" -->
+                                            <!--                       VerticalOptions="CenterAndExpand" -->
+                                            <!--                       HorizontalTextAlignment="Center" -->
+                                            <!--                       x:Name="Data"> -->
+                                            <!-- </Entry> -->
                                         </Frame>
                                         <!-- <Frame CornerRadius="20" -->
                                         <!--        HasShadow="{AppThemeBinding Light=false, Dark=true}" -->

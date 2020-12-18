@@ -47,12 +47,12 @@
                                     <VisualStateGroup Name="CommonStates">
                                         <VisualState Name="Normal">
                                             <VisualState.Setters>
-                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#F3F3F3}" />
+                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=Transparent}" />
                                             </VisualState.Setters>
                                         </VisualState> 
                                         <VisualState Name="Selected">
                                             <VisualState.Setters>
-                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#F3F3F3}" />
+                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=Transparent}" />
                                             </VisualState.Setters>
                                         </VisualState>
                                     </VisualStateGroup>
@@ -62,7 +62,7 @@
                                      BackgroundColor="White"
                                      Padding="20,10"                                                    
                                      BorderThickness="{AppThemeBinding Dark=0, Light=1}"
-                                     BorderColor="{AppThemeBinding Dark=White, Light={x:StaticResource MainColor}}">
+                                     BorderColor="{AppThemeBinding Dark=Transparent, Light={x:StaticResource MainColor}}">
                                 <StackLayout>
                                     <Grid>
                                         <Grid.ColumnDefinitions>

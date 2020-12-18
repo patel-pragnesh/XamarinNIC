@@ -788,7 +788,7 @@ namespace xamarinJKH.Main
                 TextColor = Color.Black,
                 FontSize = fs
             });
-            adress.Text = info.Address;
+            adress.Text = info.AccountType + "\n" + info.Address;
             sumPayDate.FormattedText = formattedPayDate;
             FormattedString formattedPay = new FormattedString();
             formattedPay.Spans.Add(new Span

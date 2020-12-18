@@ -65,7 +65,7 @@ namespace xamarinJKH.Counters
             }
         }
 
-        // private Entry Data = new Entry();
+        private Entry Data = new Entry();
         public AddMetersPage(MeterInfo meter, List<MeterInfo> meters, CountersPage countersPage, decimal counterThisMonth = 0, decimal counterPrevMonth = 0)
         {            
             InitializeComponent();
@@ -76,38 +76,38 @@ namespace xamarinJKH.Counters
             //{
             //    d1,d2,d3,d4,d41,d5,d6,d7,d8
             //};
-            SetMask();
             BindingContext = this;
             GetFocusCells();
             Analytics.TrackEvent("Передача показаний по счетчику №" + meter.UniqueNum);
             NavigationPage.SetHasNavigationBar(this, false);
             _countersPage = countersPage;
             _counterThisMonth = counterThisMonth;
-            // Data = new Entry
-            // {
-            //     Keyboard = Keyboard.Numeric,
-            //     VerticalOptions = LayoutOptions.CenterAndExpand,
-            //     HorizontalTextAlignment = TextAlignment.Center
-            // };
-            // FrameEntry.Content = Data;
+            
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
                     int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                     Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
-                   
+                    Data = new Entry
+                    {
+                        Keyboard = Keyboard.Numeric,
+                        VerticalOptions = LayoutOptions.CenterAndExpand,
+                        HorizontalTextAlignment = TextAlignment.Center
+                    };
+                    FrameEntry.Content = Data;
                     break;
                 default:
-                    // Data = new EntryWithCustomKeyboard
-                    // {
-                    //     VerticalOptions = LayoutOptions.CenterAndExpand,
-                    //     HorizontalTextAlignment = TextAlignment.Center,
-                    //     IntegerPoint = IntegerPoint,
-                    //     DecimalPoint = DecimalPoint
-                    // };
-                    // FrameEntry.Content = Data;
+                    Data = new EntryWithCustomKeyboard
+                    {
+                        VerticalOptions = LayoutOptions.CenterAndExpand,
+                        HorizontalTextAlignment = TextAlignment.Center,
+                        IntegerPoint = IntegerPoint,
+                        DecimalPoint = DecimalPoint
+                    };
+                    FrameEntry.Content = Data;
                     break;
             }
+            SetMask();
 
             switch (Device.RuntimePlatform)
             {
@@ -326,7 +326,7 @@ namespace xamarinJKH.Counters
                 }
                 Mask = result;
                 //Data.Behaviors.Add(new xamarinJKH.Mask.MaskedBehavior { Mask = this.Mask });
-                // if(Device.RuntimePlatform == Device.iOS)
+                if(Device.RuntimePlatform == Device.iOS)
                   Data.TextChanged += Data_TextChanged;
             
         }

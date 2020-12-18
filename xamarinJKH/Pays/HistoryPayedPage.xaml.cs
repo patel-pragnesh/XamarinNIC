@@ -64,9 +64,11 @@ namespace xamarinJKH.Pays
         {
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
-                Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
+                Device.BeginInvokeOnMainThread(async () =>
+                    await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
+
             ItemsList<AccountAccountingInfo> info = await _server.GetAccountingInfo();
             if (info.Error == null)
             {
@@ -80,9 +82,35 @@ namespace xamarinJKH.Pays
             }
         }
 
+        List<AccountAccountingInfo> GetIdent(List<AccountAccountingInfo> infos)
+        {
+            List<AccountAccountingInfo> result = new List<AccountAccountingInfo>();
+            var listStr = infos.Select(n => n.Ident.ToString()).ToHashSet();
+            foreach (var each in listStr)
+            {
+                AccountAccountingInfo res = new AccountAccountingInfo();
+                int i = 0;
+                foreach (var acc in infos.Where(x => x.Ident == each))
+                {
+                    if (i == 0)
+                        res = acc;
+                    else
+                    {
+                        res.Payments.AddRange(acc.Payments);
+                        res.PendingPayments.AddRange(acc.PendingPayments);
+                        res.MobilePayments.AddRange(acc.MobilePayments);
+                    }
+                    i++;
+                }
+                result.Add(res);
+            }
+
+            return result;
+        }
+
         public HistoryPayedPage(List<AccountAccountingInfo> accounts)
         {
-            this.Accounts = accounts;
+            this.Accounts = GetIdent(accounts);
             InitializeComponent();
             Analytics.TrackEvent("История платежей");
             switch (Device.RuntimePlatform)
@@ -108,12 +136,15 @@ namespace xamarinJKH.Pays
             IconViewProfile.GestureRecognizers.Add(profile);
 
             var backClick = new TapGestureRecognizer();
-            backClick.Tapped += async (s, e) => {
+            backClick.Tapped += async (s, e) =>
+            {
                 try
                 {
                     _ = await Navigation.PopAsync();
                 }
-                catch { }
+                catch
+                {
+                }
             };
             BackStackLayout.GestureRecognizers.Add(backClick);
             var call = new TapGestureRecognizer();
@@ -124,19 +155,15 @@ namespace xamarinJKH.Pays
                     IPhoneCallTask phoneDialer;
                     phoneDialer = CrossMessaging.Current.PhoneDialer;
                     if (phoneDialer.CanMakePhoneCall && !string.IsNullOrWhiteSpace(Settings.Person.companyPhone))
-                        phoneDialer.MakePhoneCall(System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
+                        phoneDialer.MakePhoneCall(
+                            System.Text.RegularExpressions.Regex.Replace(Settings.Person.companyPhone, "[^+0-9]", ""));
                 }
             };
             var techSend = new TapGestureRecognizer();
-            techSend.Tapped += async (s, e) => {await Navigation.PushAsync(new AppPage()); };
+            techSend.Tapped += async (s, e) => { await Navigation.PushAsync(new AppPage()); };
             LabelTech.GestureRecognizers.Add(techSend);
             var pickLs = new TapGestureRecognizer();
-            pickLs.Tapped += async (s, e) => {  
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    Picker.Focus();
-                });
-            };
+            pickLs.Tapped += async (s, e) => { Device.BeginInvokeOnMainThread(() => { Picker.Focus(); }); };
             StackLayoutLs.GestureRecognizers.Add(pickLs);
             SetText();
             Payments = setPays(Accounts[0]);
@@ -162,9 +189,9 @@ namespace xamarinJKH.Pays
                     Sum = each.Sum
                 });
             }
-            
+
             HistoryPayComparable comparable = new HistoryPayComparable();
-            
+
             paymentInfo.Sort(comparable);
             paymentInfo.Reverse();
             return paymentInfo;
@@ -183,8 +210,8 @@ namespace xamarinJKH.Pays
         void SetText()
         {
             UkName.Text = Settings.MobileSettings.main_name;
-           
-            
+
+
             Color hexColor = (Color) Application.Current.Resources["MainColor"];
             // IconViewLogin.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
             //IconViewTech.SetAppThemeColor(IconView.ForegroundProperty, hexColor, Color.White);
@@ -204,7 +231,6 @@ namespace xamarinJKH.Pays
             AccountAccountingInfo account = Accounts[Picker.SelectedIndex];
             additionalList.ItemsSource = setPays(account);
             Analytics.TrackEvent("Смена лс на " + account.Ident);
-
         }
 
         private void OnItemTapped(object sender, ItemTappedEventArgs e)

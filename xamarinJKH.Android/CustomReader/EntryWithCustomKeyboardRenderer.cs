@@ -206,7 +206,7 @@ namespace xamarinJKH.Droid.CustomReader
                 layoutParams.AddRule(LayoutRules.AlignParentBottom);
                 activityRootView.AddView(this.mKeyboardView, layoutParams);
             }
-
+            EditText.SetTextIsSelectable(true);
             this.HideKeyboardView();
 
             this.mKeyboard = new Keyboard(this.context, Resource.Xml.special_keyboard);
@@ -311,6 +311,12 @@ namespace xamarinJKH.Droid.CustomReader
                         {
                             return;
                         }
+
+                        if (this.entryWithCustomKeyboard.DecimalPoint == 0)
+                        {
+                            return;
+                        }
+                        
                     }
                     break;
                 case Keycode.Del:
@@ -339,7 +345,7 @@ namespace xamarinJKH.Droid.CustomReader
             }
     
             // Set the cursor at the end of the text
-            this.EditText.SetSelection(this.EditText.Text.Length);
+            // this.EditText.SetSelection(this.EditText.Text.Length);
 
             if (this.EditText.HasFocus)
             {
