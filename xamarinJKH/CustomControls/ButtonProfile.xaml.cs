@@ -12,6 +12,19 @@ namespace xamarinJKH
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ButtonProfile : Frame
     {
+        public static readonly BindableProperty IsBlackProperty = BindableProperty.Create(
+            nameof(IsBlack),
+            typeof(bool),
+            typeof(EntryWithCustomKeyboard),
+            false,
+            BindingMode.OneWay
+        ); 
+        
+        public bool IsBlack
+        {
+            get => (bool)GetValue(IsBlackProperty);
+            set => SetValue(IsBlackProperty, value);
+        } 
         public Color clr { get; set; }
         public ButtonProfile()
         {
@@ -27,7 +40,15 @@ namespace xamarinJKH
             }
             else
             {
-                Device.BeginInvokeOnMainThread(() => { btnSup.BorderColor = Color.Transparent; });
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    btnSup.BorderColor = Color.Transparent;
+                    if(IsBlack)
+                        IconViewProfile.ReplaceStringMap = new Dictionary<string, string>
+                        {
+                            { "#000000", "#000000"}
+                        };
+                });
             }
 
             MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) =>
@@ -41,7 +62,10 @@ namespace xamarinJKH
                 }
                 else
                 {
-                    colors.Add("#000000", "#FFFFFF");
+                    if(IsBlack)
+                        colors.Add("#000000", "#000000");
+                    else
+                        colors.Add("#000000", "#FFFFFF");
                     Device.BeginInvokeOnMainThread(() => { btnSup.BorderColor = Color.Transparent;  });
 
                 }
@@ -60,7 +84,10 @@ namespace xamarinJKH
                 }
                 else
                 {
-                    colors.Add("#000000", "#FFFFFF");
+                    if(IsBlack)
+                        colors.Add("#000000", "#000000");
+                    else
+                        colors.Add("#000000", "#FFFFFF");
                     Device.BeginInvokeOnMainThread(() => { btnSup.BorderColor = Color.Transparent; });
 
                 }
