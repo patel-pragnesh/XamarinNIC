@@ -213,28 +213,35 @@ namespace xamarinJKH.ViewModels.Shop
             Sort = new Command(() =>
             {
                 Goods.Clear();
-                if (Asending)
+                Device.BeginInvokeOnMainThread(() =>
                 {
-                    foreach (var good in AllGoods.OrderBy(_ => _.Price).ToList())
+                    if (Asending)
                     {
-                        if (good.Categories.Contains(SelectedCategory))
+                        foreach (var good in AllGoods.OrderBy(_ => _.Price).ToList())
                         {
-                            Device.BeginInvokeOnMainThread(() => Goods.Add(good));
+                            if (good.Categories.Contains(SelectedCategory))
+                            {
+                                good.IsLast = false;
+                               Goods.Add(good);
+                            }
                         }
                     }
-                }
-                else
-                {
-                    foreach (var good in AllGoods.OrderByDescending(_ => _.Price).ToList())
+                    else
                     {
-                        if (good.Categories.Contains(SelectedCategory))
+                        foreach (var good in AllGoods.OrderByDescending(_ => _.Price).ToList())
                         {
-                            Device.BeginInvokeOnMainThread(() => Goods.Add(good));
+                            if (good.Categories.Contains(SelectedCategory))
+                            {
+                                good.IsLast = false;
+                                Goods.Add(good);
+                            }
                         }
                     }
-                }
-                Asending = !Asending;
+                    Asending = !Asending;
+                    Goods.Last().IsLast = true;
+                });
             });
+                
 
             GoToBasket = new Command(async () =>
             {
