@@ -380,7 +380,7 @@ namespace xamarinJKH.Pays
                 if (sumPay > 0)
                 {
                     if (Navigation.NavigationStack.FirstOrDefault(x => x is PayServicePage) == null)
-                        await Navigation.PushAsync(new PayServicePage(account.Ident, sumPay, null, SwitchInsurance.IsToggled && SwitchInsurance.IsVisible));
+                        await Navigation.PushAsync(new PayServicePage(account.AccountID, sumPay, null, SwitchInsurance.IsToggled && SwitchInsurance.IsVisible));
                 }
                 else
                 {

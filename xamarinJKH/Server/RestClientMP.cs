@@ -19,7 +19,7 @@ namespace xamarinJKH.Server
     {
         // public const string SERVER_ADDR = "https://api.sm-center.ru/test_erc_udm"; // ОСС
         //public const string SERVER_ADDR = "https://api.sm-center.ru/komfortnew"; // Гранель
-        public const string SERVER_ADDR = "https://api.sm-center.ru/water"; // Тихая гавань water/ water2 - тихая гавань - 2 
+        public const string SERVER_ADDR = "https://api.sm-center.ru/tsg_sivtsev_vrazhek14"; // Тихая гавань water/ water2 - тихая гавань - 2 
         //public const string SERVER_ADDR = "https://api.sm-center.ru/newjkh"; // Еще одна тестовая база
         //public const string SERVER_ADDR = "https://api.sm-center.ru/dgservicnew"; // Домжил (дом24)
         // public const string SERVER_ADDR = "https://api.sm-center.ru/UKUpravdom"; //Управдом Чебоксары
@@ -2328,7 +2328,7 @@ namespace xamarinJKH.Server
             return response.Data;
         }
 
-        public async Task<PayService> GetPayLink(string Ident, decimal Sum, bool PayInsurance = false, List<int> Services = null)
+        public async Task<PayService> GetPayLink(string accountID, decimal Sum, bool PayInsurance = false, List<int> Services = null)
         {
             RestClient restClientMp = new RestClient(SERVER_ADDR);
             RestRequest restRequest = new RestRequest(PAY_ONLINE, Method.POST);
@@ -2338,7 +2338,7 @@ namespace xamarinJKH.Server
             restRequest.AddHeader("acx", Settings.Person.acx);
             restRequest.AddBody(new
             {
-                Ident,
+                accountID,
                 Sum,
                 Services,
                 PayInsurance
