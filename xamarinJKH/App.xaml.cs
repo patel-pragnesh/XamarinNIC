@@ -736,7 +736,12 @@ namespace xamarinJKH
         }
 
         protected override void OnResume()
-        {
+        {            
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                CrossBadge.Current.ClearBadge();
+                badgeCount = 0;                 
+            }
         }
         
         

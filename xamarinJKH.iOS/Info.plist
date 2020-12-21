@@ -21,7 +21,7 @@
 	<key>MinimumOSVersion</key>
 	<string>10.0</string>
 	<key>CFBundleIdentifier</key>
-	<string>rom.best.sweet.home</string>
+	<string>rom.best.tih-gavan</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
@@ -70,7 +70,7 @@
 		<false/>
 	</dict>
 	<key>CFBundleDisplayName</key>
-	<string>Свит хоум</string>
+	<string>Тихая гавань</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>whatsapp</string>
