@@ -49,17 +49,20 @@ namespace xamarinJKH.ViewModels.Shop
                         categ_list = AllGoods.OrderByDescending(_ => _.Price).Where(x => x.Categories != null || x.Categories.Count > 0).Where(y => y.Categories.Contains(value)).ToList();
                         
                     }
-                    var last = categ_list.LastOrDefault();
-                    if (last != null)
-                        last.IsLast = true;
 
-                    foreach (var good in categ_list)
+                    Device.BeginInvokeOnMainThread(() =>
                     {
-                        if (good.Categories.Contains(value))
+                        foreach (var good in categ_list)
                         {
-                            Device.BeginInvokeOnMainThread(() => Goods.Add(good));
+                            if (good.Categories.Contains(value))
+                            {
+                                good.IsLast = false;
+                                Goods.Add(good);
+                            }
                         }
-                    }
+                        Goods.Last().IsLast = true;
+                    });
+                    
                 }
                 selected = value;
                 OnPropertyChanged(nameof(SelectedCategory));
@@ -117,6 +120,7 @@ namespace xamarinJKH.ViewModels.Shop
         }
 
         public string ColumnAdditionWidth {get;set;}
+        public ObservableCollection<Goods> ChosenGoods { get; set; }
         public ShopViewModel(AdditionalService service, INavigation navigation)
         {
             
@@ -164,12 +168,16 @@ namespace xamarinJKH.ViewModels.Shop
                             Analytics.TrackEvent("начало добавления списка товаров категории 0");
                             var first_category = AllGoods.Where(x => x.Categories.Contains(categories[0])).ToList();
                             var last = first_category.LastOrDefault();
-                            if (last != null)
-                                last.IsLast = true;
-                            foreach (var good in first_category)
+                            Device.BeginInvokeOnMainThread(() =>
                             {
-                                Device.BeginInvokeOnMainThread(() => Goods.Add(good));
-                            }
+                                foreach (var good in first_category)
+                                {
+                                    good.IsLast = false;
+                                    Goods.Add(good);
+                                }
+                                Goods.Last().IsLast = true;
+                            });
+                            
                         }
                     }).ContinueWith((result) =>
                     {
@@ -202,12 +210,28 @@ namespace xamarinJKH.ViewModels.Shop
 
             Decrease = new Command<Goods>(item =>
             {
+                if (item.ColBusket == 0)
+                    return;
                 if (item.ColBusket > 0)
                 {
                     item.ColBusket--;
                 }
                 TotalPrice = AllGoods.Select(x => x.Price * x.ColBusket).Sum();
                 TotalWeight = AllGoods.Sum(x => x.Weight * x.ColBusket);
+                if (item.ColBusket == 0)
+                {
+                    ChosenGoods = new ObservableCollection<Goods>();
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        foreach (var item in AllGoods.Where(x => x.ColBusket > 0).ToList())
+                        {
+                            item.IsLast = false;
+                            ChosenGoods.Add(item);
+                        }
+                        if (ChosenGoods.Count > 0)
+                        ChosenGoods.Last().IsLast = true;
+                    });
+                }
             });
 
             Sort = new Command(() =>
@@ -245,6 +269,17 @@ namespace xamarinJKH.ViewModels.Shop
 
             GoToBasket = new Command(async () =>
             {
+                ChosenGoods = new ObservableCollection<Goods>();
+                var chosen = AllGoods.Where(x => x.ColBusket > 0).ToList();
+                foreach (var item in chosen)
+                {
+                    ChosenGoods.Add(item);
+                }
+                foreach (var good in ChosenGoods)
+                {
+                    good.IsLast = false;
+                }
+                ChosenGoods.Last().IsLast = true;
                 if (this.TotalPrice > 0)
                     await Navigation.PushAsync(new BasketPageNew(this));
                 else

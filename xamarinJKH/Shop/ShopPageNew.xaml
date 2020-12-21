@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -16,13 +17,13 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="yummy:PancakeView">
-                <Setter Property="BorderColor" Value="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=White}"/>
+                <Setter Property="BorderColor" Value="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=White}" />
             </Style>
-            <converters:WeightDisplayConverter x:Key="Weight"/>
-            <converters:ArrowIconConverter x:Key="Arrow"/>
-            <converters:TextDecorationsUnderline x:Key="Underline"/>
-            <converters:NumberIsGreaterThanZeroConverter x:Key="MoreThanZero"/>
-            <converters:InverseBoolConverter x:Key="Invert"/>
+            <converters:WeightDisplayConverter x:Key="Weight" />
+            <converters:ArrowIconConverter x:Key="Arrow" />
+            <converters:TextDecorationsUnderline x:Key="Underline" />
+            <converters:NumberIsGreaterThanZeroConverter x:Key="MoreThanZero" />
+            <converters:InverseBoolConverter x:Key="Invert" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -35,38 +36,38 @@
                        Aspect="{OnPlatform Android=Fill, iOS=AspectFill}"
                        HorizontalOptions="FillAndExpand" />
                 <StackLayout x:Name="Pancake" Margin="0,10,0,0" VerticalOptions="FillAndExpand">
-                    <StackLayout Orientation="Horizontal" 
+                    <StackLayout Orientation="Horizontal"
                                  Margin="10,0,10,0"
                                  HorizontalOptions="FillAndExpand">
                         <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="StartAndExpand"
-                                 Margin="0,0,0,0">
+                                     HorizontalOptions="StartAndExpand"
+                                     Margin="0,0,0,0">
 
                             <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
-                                             HeightRequest="25"
-                                             Margin="0,0"
-                                             ReplaceStringMap="{Binding ShopName,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
-                                             HorizontalOptions="Center" />
+                                                HeightRequest="25"
+                                                Margin="0,0"
+                                                ReplaceStringMap="{Binding ShopName,Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF'}"
+                                                HorizontalOptions="Center" />
 
                             <Label x:Name="ShopName"
-                           Text="{Binding ShopName}"
-                           FontAttributes="Bold"
-                           Margin="0,0,0,0"
-                           FontSize="18"
-                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
+                                   Text="{Binding ShopName}"
+                                   FontAttributes="Bold"
+                                   Margin="0,0,0,0"
+                                   FontSize="18"
+                                   TextColor="{AppThemeBinding Light=Black, Dark=White}" />
 
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Back"/>
+                                <TapGestureRecognizer Tapped="Back" />
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <StackLayout
-                        Orientation="Horizontal"
-                        HorizontalOptions="EndAndExpand"
-                        Margin="0,0,10,0"
-                        VerticalOptions="Center">
+                            Orientation="Horizontal"
+                            HorizontalOptions="EndAndExpand"
+                            Margin="0,0,10,0"
+                            VerticalOptions="Center">
                             <!--BackgroundColor="{AppThemeBinding Light=White, Dark=Transparent}"-->
-                            <xamarinJkh:ButtonSupport x:Name="LabelTech"></xamarinJkh:ButtonSupport>
-                            <xamarinJkh:ButtonProfile  x:Name="IconViewProfile" Margin="10,0,5,0"></xamarinJkh:ButtonProfile>
+                            <xamarinJkh:ButtonSupport x:Name="LabelTech" />
+                            <xamarinJkh:ButtonProfile x:Name="IconViewProfile" Margin="10,0,5,0" />
 
                             <!--<svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_tech.svg"
                                             HeightRequest="20"
@@ -90,10 +91,11 @@
                                                 VerticalOptions="Center"/>-->
                         </StackLayout>
                     </StackLayout>
-                    
-                    
+
+
                     <StackLayout VerticalOptions="FillAndExpand">
-                        <yummy:PancakeView CornerRadius="40,0,40,0" BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
+                        <yummy:PancakeView CornerRadius="40,0,40,0"
+                                           BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
                                            BorderColor="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=#494949}"
                                            Margin="15,10,0,-50"
                                            HasShadow="{AppThemeBinding Light=false, Dark=true}"
@@ -104,12 +106,13 @@
                                             SelectionMode="Single"
                                             HeightRequest="70"
                                             HorizontalScrollBarVisibility="Never"
-                                            
+
                                             VerticalScrollBarVisibility="Never"
                                             Scrolled="CollectionView_Scrolled"
                                             SelectedItem="{Binding SelectedCategory}">
                                 <CollectionView.ItemsLayout>
-                                    <LinearItemsLayout Orientation="Horizontal" SnapPointsAlignment="Start" SnapPointsType="MandatorySingle"/>
+                                    <LinearItemsLayout Orientation="Horizontal" SnapPointsAlignment="Start"
+                                                       SnapPointsType="MandatorySingle" />
                                 </CollectionView.ItemsLayout>
 
                                 <CollectionView.ItemTemplate>
@@ -122,21 +125,25 @@
                                                Margin="5,5,5,-5"
                                                FontSize="Medium"
                                                BackgroundColor="Transparent">
-                                                <VisualStateManager.VisualStateGroups>
-                                                    <VisualStateGroup x:Name="CommonStates">
-                                                        <VisualState x:Name="Normal">
-                                                            <VisualState.Setters>
-                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White}"/>
-                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#494949}"/>
-                                                                <Setter Property="TextDecorations" Value="None"/>
-                                                            </VisualState.Setters>
-                                                        </VisualState>
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="CommonStates">
+                                                    <VisualState x:Name="Normal">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="TextColor"
+                                                                    Value="{AppThemeBinding Light=Black, Dark=White}" />
+                                                            <Setter Property="BackgroundColor"
+                                                                    Value="{AppThemeBinding Light=White, Dark=#494949}" />
+                                                            <Setter Property="TextDecorations" Value="None" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
 
                                                     <VisualState x:Name="Selected">
                                                         <VisualState.Setters>
-                                                            <Setter Property="TextColor" Value="{x:DynamicResource MainColor}"/>
-                                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#494949}"/>
-                                                            <Setter Property="TextDecorations" Value="Underline"/>
+                                                            <Setter Property="TextColor"
+                                                                    Value="{x:DynamicResource MainColor}" />
+                                                            <Setter Property="BackgroundColor"
+                                                                    Value="{AppThemeBinding Light=White, Dark=#494949}" />
+                                                            <Setter Property="TextDecorations" Value="Underline" />
                                                         </VisualState.Setters>
                                                     </VisualState>
                                                 </VisualStateGroup>
@@ -148,42 +155,43 @@
                             </CollectionView>
                         </yummy:PancakeView>
                         <yummy:PancakeView x:Name="GoodsLayot" CornerRadius="30,30,30,30" BackgroundColor="White"
-                                               BorderThickness="1"
-                                               HasShadow="{AppThemeBinding Light=false, Dark=true}"
-                                               VerticalOptions="FillAndExpand" Margin="15,10,15,0" Padding="10,0" >
+                                           BorderThickness="1"
+                                           HasShadow="{AppThemeBinding Light=false, Dark=true}"
+                                           VerticalOptions="FillAndExpand" Margin="15,10,15,0" Padding="10,0">
                             <StackLayout>
                                 <Grid Margin="10,10,10,0">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="50" />
                                     </Grid.RowDefinitions>
 
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.5*"/>
-                                        <ColumnDefinition Width="0.5*"/>
+                                        <ColumnDefinition Width="0.5*" />
+                                        <ColumnDefinition Width="0.5*" />
                                     </Grid.ColumnDefinitions>
                                     <Label Text="{x:Static xamarinJkh:AppResources.Catalog}"
-                                       FontSize="16"
-                                       FontAttributes="Bold"
-                                       HorizontalOptions="FillAndExpand"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="FillAndExpand"
                                            VerticalOptions="Center"
-                                       TextColor="Black"/>
+                                           TextColor="Black" />
                                     <StackLayout Orientation="Horizontal"
                                                  Grid.Column="1"
                                                  HorizontalOptions="EndAndExpand"
                                                  VerticalOptions="Center"
                                                  Padding="0,8">
-                                        <svg:SvgCachedImage Source="{Binding Asending,Converter={x:StaticResource Arrow}}"
-                                                            HeightRequest="30"
-                                                            VerticalOptions="Center"
-                                                             ReplaceStringMap="{Binding Asending, Converter={x:StaticResource SvgColor}}"/>
-                                        <Label Text= "{x:Static xamarinJkh:AppResources.SortByPrice}"
+                                        <svg:SvgCachedImage
+                                            Source="{Binding Asending,Converter={x:StaticResource Arrow}}"
+                                            HeightRequest="30"
+                                            VerticalOptions="Center"
+                                            ReplaceStringMap="{Binding Asending, Converter={x:StaticResource SvgColor}}" />
+                                        <Label Text="{x:Static xamarinJkh:AppResources.SortByPrice}"
                                                TextColor="{x:DynamicResource MainColor}"
                                                Margin="0,0"
                                                HorizontalTextAlignment="Center"
                                                VerticalOptions="CenterAndExpand"
-                                               FontSize="12"/>
+                                               FontSize="12" />
                                         <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Sort}"/>
+                                            <TapGestureRecognizer Command="{Binding Sort}" />
                                         </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                 </Grid>
@@ -191,41 +199,41 @@
                                                 ItemSizingStrategy="MeasureAllItems"
                                                 SelectionMode="None">
                                     <CollectionView.ItemsLayout>
-                                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="0"/>
+                                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="0" />
                                     </CollectionView.ItemsLayout>
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>
                                             <Frame BackgroundColor="White"
-                                                  
+
                                                    HasShadow="False" Padding="5,20"
-                                               BorderColor="{AppThemeBinding Dark=White, Light={x:DynamicResource MainColor}}">
+                                                   BorderColor="{AppThemeBinding Dark=White, Light={x:DynamicResource MainColor}}">
                                                 <StackLayout>
                                                     <Grid ColumnSpacing="6" RowSpacing="15">
                                                         <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition  Width="Auto"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                            <ColumnDefinition Width="{Binding ColumnAdditionWidth}"/>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="{Binding ColumnAdditionWidth}" />
                                                             <!--<ColumnDefinition Width="0.4*"/>-->
                                                         </Grid.ColumnDefinitions>
                                                         <Grid.RowDefinitions>
-                                                            <RowDefinition Height="Auto"/>
-                                                            <RowDefinition Height="25"/>
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="25" />
                                                         </Grid.RowDefinitions>
                                                         <Frame CornerRadius="10"
-                                                           BackgroundColor="White"
-                                                           Padding="5"
-                                                           IsClippedToBounds="False"
-                                                           WidthRequest="50"
-                                                           IsVisible="{Binding HasImage}"
-                                                           Grid.RowSpan="2"
-                                                           HasShadow="False" 
-                                                           Grid.Column="0"
-                                                           Grid.Row="0">
+                                                               BackgroundColor="White"
+                                                               Padding="5"
+                                                               IsClippedToBounds="False"
+                                                               WidthRequest="50"
+                                                               IsVisible="{Binding HasImage}"
+                                                               Grid.RowSpan="2"
+                                                               HasShadow="False"
+                                                               Grid.Column="0"
+                                                               Grid.Row="0">
                                                             <ff:CachedImage Source="{Binding Image}"
-                                                                ErrorPlaceholder="ic_no_photo"/>
+                                                                            ErrorPlaceholder="ic_no_photo" />
                                                         </Frame>
-                                                        <Label 
-                                                           Grid.Column="1"
+                                                        <Label
+                                                            Grid.Column="1"
                                                             Grid.Row="0"
                                                             HorizontalOptions="FillAndExpand"
                                                             VerticalOptions="FillAndExpand">
@@ -233,55 +241,68 @@
                                                                 <FormattedString>
                                                                     <FormattedString.Spans>
                                                                         <Span Text="{Binding Name}"
-                                                                          FontSize="15"/>
-                                                                        <Span Text="{Binding Weight, Converter={x:StaticResource Weight}}"
-                                                                          FontSize="10"
-                                                                          FontAttributes="None"/>
-                                                                        <Span Text=" "/>
+                                                                              FontSize="15" />
+                                                                        <Span
+                                                                            Text="{Binding Weight, Converter={x:StaticResource Weight}}"
+                                                                            FontSize="10"
+                                                                            FontAttributes="None" />
+                                                                        <Span Text=" " />
                                                                         <Span Text="{Binding Units}"
                                                                               FontSize="10"
-                                                                              FontAttributes="None"/>
+                                                                              FontAttributes="None" />
                                                                     </FormattedString.Spans>
                                                                 </FormattedString>
                                                             </Label.FormattedText>
                                                         </Label>
 
-                                                        <Label Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="End" 
-                                                            HorizontalOptions="FillAndExpand"
-                                                            VerticalOptions="FillAndExpand">
+                                                        <Label Grid.Row="0" Grid.Column="2"
+                                                               HorizontalTextAlignment="End"
+                                                               HorizontalOptions="FillAndExpand"
+                                                               VerticalOptions="FillAndExpand">
                                                             <Label.FormattedText>
                                                                 <FormattedString>
                                                                     <FormattedString.Spans>
                                                                         <Span Text="{Binding Price}"
-                                                                          FontSize="15"
-                                                                          FontAttributes="Bold"/>
-                                                                        <Span Text="{x:Static xamarinJkh:AppResources.Currency}"
-                                                                          FontSize="10"
-                                                                          TextColor="Gray"/>
+                                                                              FontSize="15"
+                                                                              FontAttributes="Bold" />
+                                                                        <Span
+                                                                            Text="{x:Static xamarinJkh:AppResources.Currency}"
+                                                                            FontSize="10"
+                                                                            TextColor="Gray" />
                                                                     </FormattedString.Spans>
                                                                 </FormattedString>
                                                             </Label.FormattedText>
                                                         </Label>
 
                                                         <StackLayout Grid.Column="2" HorizontalOptions="End"
-                                                          Grid.Row="1" Orientation="Vertical" Margin="0, -5, 0, 0" >
-                                                            <StackLayout  HorizontalOptions="Center" Orientation="Horizontal">
-                                                                <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_shop_minus.svg" WidthRequest="25" HeightRequest="25"
-                                                                             ReplaceStringMap="{Binding ColBusket,Converter={x:StaticResource SvgColor}}">
+                                                                     Grid.Row="1" Orientation="Vertical"
+                                                                     Margin="0, -5, 0, 0">
+                                                            <StackLayout HorizontalOptions="Center"
+                                                                         Orientation="Horizontal">
+                                                                <svg:SvgCachedImage
+                                                                    Source="resource://xamarinJKH.Resources.ic_shop_minus.svg"
+                                                                    WidthRequest="25" HeightRequest="25"
+                                                                    ReplaceStringMap="{Binding ColBusket,Converter={x:StaticResource SvgColor}}">
                                                                     <svg:SvgCachedImage.GestureRecognizers>
-                                                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.Decrease, Source={x:Reference ShopPage}}"
-                                                                                          CommandParameter="{Binding .}"/>
+                                                                        <TapGestureRecognizer
+                                                                            Command="{Binding Path=BindingContext.Decrease, Source={x:Reference ShopPage}}"
+                                                                            CommandParameter="{Binding .}" />
                                                                     </svg:SvgCachedImage.GestureRecognizers>
                                                                 </svg:SvgCachedImage>
                                                                 <Label FontSize="15"
-                                                               TextColor="Gray"
-                                                               Text="{Binding ColBusket}"
-                                                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center"/>
-                                                                <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_shop_plus.svg" WidthRequest="25" HeightRequest="25"
-                                                                             ReplaceStringMap="{Binding ColBusket,Converter={x:StaticResource SvgColor}}">
+                                                                       TextColor="Gray"
+                                                                       Text="{Binding ColBusket}"
+                                                                       HorizontalTextAlignment="Center"
+                                                                       VerticalTextAlignment="Center"
+                                                                       VerticalOptions="Center" />
+                                                                <svg:SvgCachedImage
+                                                                    Source="resource://xamarinJKH.Resources.ic_shop_plus.svg"
+                                                                    WidthRequest="25" HeightRequest="25"
+                                                                    ReplaceStringMap="{Binding ColBusket,Converter={x:StaticResource SvgColor}}">
                                                                     <svg:SvgCachedImage.GestureRecognizers>
-                                                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.Increase, Source={x:Reference ShopPage}}"
-                                                                                          CommandParameter="{Binding .}"/>
+                                                                        <TapGestureRecognizer
+                                                                            Command="{Binding Path=BindingContext.Increase, Source={x:Reference ShopPage}}"
+                                                                            CommandParameter="{Binding .}" />
                                                                     </svg:SvgCachedImage.GestureRecognizers>
                                                                 </svg:SvgCachedImage>
                                                             </StackLayout>
@@ -332,86 +353,91 @@
                                                     <BoxView HeightRequest="2"
                                                              Margin="0,5,0,0"
                                                              IsVisible="{Binding IsLast, Converter={x:StaticResource Invert}}"
-                                                             BackgroundColor="#e7e7e7"/>
+                                                             BackgroundColor="#e7e7e7" />
                                                 </StackLayout>
-                                                
+
                                             </Frame>
                                         </DataTemplate>
                                     </CollectionView.ItemTemplate>
                                 </CollectionView>
                             </StackLayout>
-                            
+
                         </yummy:PancakeView>
                         <yummy:PancakeView
-                        x:Name="PancakeBot"
-                        BorderThickness="1"
-                        HasShadow="{AppThemeBinding Light=false, Dark=true}"
-                        Margin="0,0,0,0" VerticalOptions="EndAndExpand" Padding="0" CornerRadius="50,50,0,0"
-                        BorderColor="{AppThemeBinding Light={x:DynamicResource MainColor}, Dark=#e7e7e7}"
-                        BackgroundColor="{AppThemeBinding Light=White, Dark=#e7e7e7}">
-                        <yummy:PancakeView.Shadow>
-                            <yummy:DropShadow Opacity="0.7" Color="Gray" />
-                        </yummy:PancakeView.Shadow>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"
-                                     Padding="30,0">
+                            x:Name="PancakeBot"
+                            BorderThickness="1"
+                            HasShadow="{AppThemeBinding Light=false, Dark=true}"
+                            Margin="0,0,0,0" VerticalOptions="EndAndExpand" Padding="0" CornerRadius="50,50,0,0"
+                            BorderColor="{AppThemeBinding Light={x:DynamicResource MainColor}, Dark=Transparent}"
+                            BackgroundColor="{AppThemeBinding Light=White, Dark=#e7e7e7}">
+                            <yummy:PancakeView.Shadow>
+                                <yummy:DropShadow Opacity="0.7" Color="Gray" />
+                            </yummy:PancakeView.Shadow>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"
+                                         Padding="30,0">
                                 <!--<Grid Padding="0">                                    
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="0.4*"/>
                                         <ColumnDefinition Width="0.1*"/>
                                         <ColumnDefinition Width="0.5*"/>
                                     </Grid.ColumnDefinitions>-->
-                                    <StackLayout  Orientation="Horizontal" HorizontalOptions="Start"  VerticalOptions="Center"> 
-                                        <StackLayout HorizontalOptions="StartAndExpand" Margin="0,20" IsVisible="{Binding ShowWeight}">
-                                            <Label Text="{x:Static xamarinJkh:AppResources.Mass}"
-                                       TextColor="Black"
-                                       FontSize="12"
-                                       FontAttributes="Bold" />
-                                            <Label x:Name="LabelWeightBuscket">
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span Text="{Binding TotalWeight}" FontSize="18" FontAttributes="Bold"
-                                                  TextColor="Black" />
-                                                        <Span Text=" " FontSize="18" FontAttributes="Bold"
-                                                  TextColor="Black" />
-                                                        <Span Text="{x:Static xamarinJkh:AppResources.Gram}" FontSize="12" TextColor="#8a8a8a" />
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
-                                        </StackLayout>
-                                        <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,20">
-                                            <Label Text="{x:Static xamarinJkh:AppResources.TotalPrice}"
-                                       TextColor="Black"
-                                       FontSize="12"
-                                       FontAttributes="Bold" />
-                                            <Label x:Name="LabelPriceBuscket">
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span Text="{Binding TotalPrice}" FontSize="18" FontAttributes="Bold"
-                                                  TextColor="{Binding hex}" />
-                                                        <Span Text="{x:Static xamarinJkh:AppResources.Currency}" FontSize="12" TextColor="#8a8a8a" />
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
-                                        </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start"
+                                             VerticalOptions="Center">
+                                    <StackLayout HorizontalOptions="StartAndExpand" Margin="0,20"
+                                                 IsVisible="{Binding ShowWeight}">
+                                        <Label Text="{x:Static xamarinJkh:AppResources.Mass}"
+                                               TextColor="Black"
+                                               FontSize="12"
+                                               FontAttributes="Bold" />
+                                        <Label x:Name="LabelWeightBuscket">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding TotalWeight}" FontSize="18"
+                                                          FontAttributes="Bold"
+                                                          TextColor="Black" />
+                                                    <Span Text=" " FontSize="18" FontAttributes="Bold"
+                                                          TextColor="Black" />
+                                                    <Span Text="{x:Static xamarinJkh:AppResources.Gram}" FontSize="12"
+                                                          TextColor="#8a8a8a" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
                                     </StackLayout>
+                                    <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,20">
+                                        <Label Text="{x:Static xamarinJkh:AppResources.TotalPrice}"
+                                               TextColor="Black"
+                                               FontSize="12"
+                                               FontAttributes="Bold" />
+                                        <Label x:Name="LabelPriceBuscket">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding TotalPrice}" FontSize="18"
+                                                          FontAttributes="Bold"
+                                                          TextColor="{Binding hex}" />
+                                                    <Span Text="{x:Static xamarinJkh:AppResources.Currency}"
+                                                          FontSize="12" TextColor="#8a8a8a" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                </StackLayout>
 
-                                    <Button x:Name="BtnCheckOut" 
+                                <Button x:Name="BtnCheckOut"
                                         Margin="0,20"
                                         CornerRadius="10"
-                                        BackgroundColor="{x:DynamicResource MainColor}" 
+                                        BackgroundColor="{x:DynamicResource MainColor}"
                                         HorizontalOptions="EndAndExpand"
-                                        
+
                                         VerticalOptions="FillAndExpand"
                                         TextColor="White"
                                         FontAttributes="Bold"
                                         Padding="5,0"
                                         Text="{x:Static xamarinJkh:AppResources.ShopCheckout}"
-                                        Command="{Binding GoToBasket}"
-                                        />
+                                        Command="{Binding GoToBasket}" />
                                 <!--</Grid>-->
-                               
+
                             </StackLayout>
-                    </yummy:PancakeView>
+                        </yummy:PancakeView>
 
 
                     </StackLayout>

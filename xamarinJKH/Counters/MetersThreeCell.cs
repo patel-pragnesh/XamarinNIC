@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using AiForms.Dialogs;
 using AiForms.Dialogs.Abstractions;
 using Rg.Plugins.Popup.Services;
@@ -731,8 +732,11 @@ namespace xamarinJKH.Main
                 var editName = new TapGestureRecognizer();
                 editName.Tapped += async (s, e) =>
                 {
-                    await PopupNavigation.Instance.PushAsync(
-                        new EditCounterNameDialog((Color)Application.Current.Resources["MainColor"], UniqueNum));
+                    if (PopupNavigation.Instance.PopupStack.FirstOrDefault(x => x is EditCounterNameDialog) == null)
+                    {
+                        await PopupNavigation.Instance.PushAsync(
+                            new EditCounterNameDialog((Color) Application.Current.Resources["MainColor"], UniqueNum));
+                    }
                 };
                 if (Edit.GestureRecognizers.Count > 0)
                 {

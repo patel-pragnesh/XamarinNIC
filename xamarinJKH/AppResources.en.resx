@@ -343,7 +343,7 @@ A bot will call you on your number PHONE and tell an access code</value>
     <value>Info</value>
   </data>
   <data name="LastCheck" xml:space="preserve">
-    <value>Last check: </value>
+    <value>Next check: </value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>

@@ -156,7 +156,7 @@ namespace xamarinJKH.Monitor
                 IsPerformed = true
             };
             if (Navigation.NavigationStack.FirstOrDefault(x => x is AppConstPage) == null)
-                await Navigation.PushAsync(new AppConstPage(requestInfo, false));
+                await Navigation.PushAsync(new AppConstPage(requestInfo));
 
         }
         

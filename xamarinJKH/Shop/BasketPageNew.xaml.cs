@@ -1,6 +1,7 @@
 ﻿using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace xamarinJKH.Shop
     public partial class BasketPageNew : ContentPage
     {
         private Color hex;
-
+        
         public BasketPageNew(ShopViewModel vm)
         {
             InitializeComponent();
@@ -32,12 +33,12 @@ namespace xamarinJKH.Shop
                 int statusBarHeight = DependencyService.Get<IStatusBar>().GetHeight();
                 Pancake.Padding = new Thickness(0, statusBarHeight, 0, 0);
             }
-
+            
             //BorderColor = "{AppThemeBinding Light={x:DynamicResource MainColor}, Dark=#e7e7e7}"
             hex = (Color)Application.Current.Resources["MainColor"];
             Color hexColor = (Color)Application.Current.Resources["MainColor"];
             GoodsLayot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.White);
-
+            PancakeBot.SetAppThemeColor(PancakeView.BorderColorProperty, hexColor, Color.Transparent);
             var profile = new TapGestureRecognizer();
             profile.Tapped += async (s, e) =>
             {
@@ -57,6 +58,7 @@ namespace xamarinJKH.Shop
         {
             try
             {
+                (this.BindingContext as ShopViewModel).Sort.Execute(null);
                 _ = await Navigation.PopAsync();
             }
             catch { }

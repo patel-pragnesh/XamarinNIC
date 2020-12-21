@@ -20,6 +20,7 @@
             <converters:WeightDisplayConverter x:Key="Weight"/>
             <converters:ArrowIconConverter x:Key="Arrow"/>
             <converters:DisplayIfAmountConverter x:Key="Amount"/>
+            <converters:InverseBoolConverter x:Key="Invert"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -91,7 +92,8 @@
                         <ScrollView Orientation="Vertical"
                                     VerticalOptions="FillAndExpand"
                                     Margin="0, 10, 0, 20">
-                            <StackLayout BindableLayout.ItemsSource="{Binding AllGoods}">
+                            <StackLayout BindableLayout.ItemsSource="{Binding ChosenGoods}"
+                                         x:Name="Goods">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
                                         <Frame BackgroundColor="White"
@@ -176,7 +178,7 @@
                                                                 </svg:SvgCachedImage.GestureRecognizers>
                                                             </svg:SvgCachedImage>
                                                         </StackLayout>
-                                                        <BoxView Color="{x:DynamicResource MainColor}" HeightRequest="1" Margin="0, -2, 0, 0" HorizontalOptions="FillAndExpand"/>
+                                                        <BoxView Color="{x:DynamicResource MainColor}" HeightRequest="1" Margin="0, -2, 0, 0" HorizontalOptions="FillAndExpand" IsVisible="False"/>
                                                     </StackLayout>
 
                                                     <!--<Grid Grid.Column="2"
@@ -221,6 +223,7 @@
 
                                                 </Grid>
                                                 <BoxView HeightRequest="2"
+                                                         IsVisible="{Binding IsLast, Converter={x:StaticResource Invert}}"
                                                              Margin="0,5,0,0"
                                                              BackgroundColor="#e7e7e7"/>
                                             </StackLayout>
@@ -239,13 +242,18 @@
             <yummy:PancakeView
                 x:Name="PancakeBot"
                 BorderThickness="1"
-                Padding="0" CornerRadius="50,50,0,0" VerticalOptions="EndAndExpand" BackgroundColor="{AppThemeBinding Light=White, Dark=#e7e7e7}">
+                HasShadow="{AppThemeBinding Light=false, Dark=true}"
+                BorderColor="{AppThemeBinding Dark=Transparent, Light={x:DynamicResource MainColor}}"
+                Padding="0" CornerRadius="50,50,0,0" 
+                VerticalOptions="EndAndExpand" 
+                Margin="0,0,0,-10"
+                BackgroundColor="{AppThemeBinding Light=White, Dark=#e7e7e7}">
                 <yummy:PancakeView.Shadow>
                     <yummy:DropShadow Opacity="0.7" Color="Gray" />
                 </yummy:PancakeView.Shadow>
                 <!--<ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand"
                             Padding="30,0">-->
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="30,0">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"  Padding="30,0" >
                         <!--<StackLayout HorizontalOptions="StartAndExpand" Margin="0,20" IsVisible="{Binding ShowWeight}">
                             <Label Text="{x:Static xamarinJkh:AppResources.Mass}"
                                TextColor="Black"

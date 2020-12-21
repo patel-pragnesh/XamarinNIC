@@ -12,6 +12,8 @@ namespace xamarinJKH.Server.RequestModel
         public int? Mark { get; set; }
         public string Status { get; set; }
         public int id_Status { get; set; }
+        
+        public string Address { get; set; }
         public string Name { get; set; }
         public string Performer { get; set; }
         public string RequestNumber { get; set; }

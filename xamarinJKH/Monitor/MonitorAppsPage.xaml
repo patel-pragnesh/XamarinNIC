@@ -65,10 +65,11 @@
                         Orientation="Horizontal"
                         Margin="25, 0, 0, 0"
                         HorizontalOptions="Start">
-                        <xamarinJkh:IconView Source="ic_arrow_back"
-                               HeightRequest="15"
-                               Foreground="{AppThemeBinding Light=Black, Dark=White}"
-                               HorizontalOptions="Center" />
+                        <forms:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_back.svg"
+                                            HeightRequest="15"
+                                            WidthRequest="15"
+                                            ReplaceStringMap="{Binding RequestInfos, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}"
+                                            HorizontalOptions="Center" />
                         <Label
                             Text="Заявки"
                             FontSize="18"
@@ -93,9 +94,10 @@
 
                                 <DataTemplate>
                                     <appsConst:AppConstCell
-                                        Number="{Binding RequestNumber}"
+                                        Number="{Binding Number}"
                                         Status="{Binding Status}"
                                         DateApp="{Binding Added}"
+                                        AddressApp = "{Binding Address}"
                                         CheckCommand = "False"
                                         TextApp="{Binding Name}" />
                                 </DataTemplate>
