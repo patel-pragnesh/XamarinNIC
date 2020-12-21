@@ -994,14 +994,14 @@ namespace xamarinJKH.Counters
             FormattedString formattedCheckup = new FormattedString();
             formattedCheckup.Spans.Add(new Span
             {
-                Text = AppResources.LastCheck,
+                Text = AppResources.LastCheck + " ",
                 TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.LightGray,
                 FontAttributes = FontAttributes.None,
                 FontSize = 15
             });
             formattedCheckup.Spans.Add(new Span
             {
-                Text = meter.LastCheckupDate,
+                Text = meter.NextCheckupDate,
                 TextColor =  currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
                 FontAttributes = currentTheme.Equals(OSAppTheme.Light) ? FontAttributes.Bold : FontAttributes.None,
                 FontSize = 15
