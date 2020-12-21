@@ -116,7 +116,7 @@
                                                        x:Name="Frame"
                                                HasShadow="False"
                                                        Padding="10"
-                                                       CornerRadius="10">
+                                                       CornerRadius="5">
                                                     <StackLayout VerticalOptions="Start"
                                                         HeightRequest="60"
                                                        Spacing="0">
