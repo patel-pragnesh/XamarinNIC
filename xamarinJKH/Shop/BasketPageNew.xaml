@@ -92,7 +92,8 @@
                         <ScrollView Orientation="Vertical"
                                     VerticalOptions="FillAndExpand"
                                     Margin="0, 10, 0, 20">
-                            <StackLayout BindableLayout.ItemsSource="{Binding ChosenGoods}">
+                            <StackLayout BindableLayout.ItemsSource="{Binding ChosenGoods}"
+                                         x:Name="Goods">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
                                         <Frame BackgroundColor="White"
