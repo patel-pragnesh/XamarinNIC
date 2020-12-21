@@ -335,6 +335,9 @@ namespace xamarinJKH.Counters
         {
             var entry = sender as Entry;
 
+            if (e.NewTextValue == null)
+                return;
+
             if (e.NewTextValue == "," || e.NewTextValue == ".")
             {
                 entry.TextChanged -= Data_TextChanged; 
@@ -342,8 +345,8 @@ namespace xamarinJKH.Counters
                 entry.Text = e.OldTextValue;
                 entry.TextChanged += Data_TextChanged;
                 return;
-            }
-            
+            }            
+
             if (e.NewTextValue.Count(_=>_==',')>1 || e.NewTextValue.Count(_ => _ == '.') > 1)
             {
                 
@@ -994,14 +997,14 @@ namespace xamarinJKH.Counters
             FormattedString formattedCheckup = new FormattedString();
             formattedCheckup.Spans.Add(new Span
             {
-                Text = AppResources.LastCheck,
+                Text = AppResources.LastCheck + " ",
                 TextColor = currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.LightGray,
                 FontAttributes = FontAttributes.None,
                 FontSize = 15
             });
             formattedCheckup.Spans.Add(new Span
             {
-                Text = meter.LastCheckupDate,
+                Text = meter.NextCheckupDate,
                 TextColor =  currentTheme.Equals(OSAppTheme.Light) ? Color.Black : Color.White,
                 FontAttributes = currentTheme.Equals(OSAppTheme.Light) ? FontAttributes.Bold : FontAttributes.None,
                 FontSize = 15

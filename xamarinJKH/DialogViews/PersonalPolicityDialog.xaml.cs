@@ -20,13 +20,15 @@ namespace xamarinJKH.DialogViews
             var close = new TapGestureRecognizer();
             close.Tapped += async (s, e) => { await PopupNavigation.Instance.PopAsync(); };
             IconViewClose.GestureRecognizers.Add(close);
+                       
+
             GetText();
         }
 
         async void GetText()
         {
             string text = await server.MobilePersonalDataPolicy();
-            Text.Text = text;
+            Text.Text = text;            
         }
     }
 }

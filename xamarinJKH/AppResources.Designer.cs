@@ -2087,7 +2087,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Последняя поверка:.
+        ///   Looks up a localized string similar to Следующая поверка:.
         /// </summary>
         internal static string LastCheck {
             get {

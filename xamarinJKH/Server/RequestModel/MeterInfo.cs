@@ -10,6 +10,7 @@ namespace xamarinJKH.Server.RequestModel
         public int ID { get; set; }
         // Заводской номер
         public string FactoryNumber { get; set; }
+        public string NextCheckupDate { get; set; }
         public string CustomName  { get; set; }
         // Дата последней поверки
         public string LastCheckupDate { get; set; }
