@@ -57,6 +57,7 @@ namespace xamarinJKH.Shop
         {
             try
             {
+                (this.BindingContext as ShopViewModel).Sort.Execute(null);
                 _ = await Navigation.PopAsync();
             }
             catch { }

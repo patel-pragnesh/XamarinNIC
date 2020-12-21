@@ -31,6 +31,8 @@ using Xamarin.Essentials;
 using System.Text.RegularExpressions;
 //using dotMorten.Xamarin.Forms;
 using Microsoft.AppCenter.Analytics;
+using xamarinJKH.ViewModels;
+using xamarinJKH.AppsConst;
 
 namespace xamarinJKH.Apps
 {
@@ -573,7 +575,7 @@ _appModel = new AddAppModel()
             // }
         }
 
-        public class AddAppModel
+        public class AddAppModel:BaseViewModel
         {
             public List<AccountInfo> AllAcc { get; set; }
             public List<NamedValue> AllType { get; set; }
@@ -582,17 +584,91 @@ _appModel = new AddAppModel()
             public AccountInfo SelectedAcc { get; set; }
             public NamedValue SelectedType { get; set; }
             public ObservableCollection<AccountInfo> Accounts { get; set; }
+            AccountInfo selectedAccount;
+            public ObservableCollection<xamarinJKH.AppsConst.OptionModel> Types { get; set; }
+            OptionModel selectedTyp;
+            public OptionModel SelectedTyp
+            {
+                get => selectedTyp;
+                set
+                {
+                    selectedTyp = value;
+                    OnPropertyChanged("SelectedTyp");
+                }
+            }
+            public AccountInfo SelectedAccount
+            {
+                get => selectedAccount;
+                set
+                {
+                    selectedAccount = value;
+                    OnPropertyChanged("SelectedAccount");
+                }
+            }
 
             public ObservableCollection<FileData> Files { get; set; }
             public Color hex { get; set; }
+            public Command SelectTyp { get; set; }
             public AddAppModel()
             {
                 Accounts = new ObservableCollection<AccountInfo>();
                 AllAcc = Settings.Person.Accounts;
+                Types = new ObservableCollection<OptionModel>();
                 foreach (var account in AllAcc)
                 {
-                    Device.BeginInvokeOnMainThread(() => Accounts.Add(account));
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        Accounts.Add(account);
+                        SelectedAccount = Accounts[0];
+                    });
                 }
+
+                foreach (var type in Settings.TypeApp)
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        OptionModel type_ = new OptionModel();
+                        type_.Name = type.Name;
+                        switch (type.Name.ToLower())
+                        {
+                            case "бухгалтерия": type_.Image = "resource://xamarinJKH.Resources.app_accountaint.svg";
+                                break;
+                            case "паспортный стол": type_.Image = "resource://xamarinJKH.Resources.app_passport.svg"; //vector 3
+                                break;
+                            case "сантехник": type_.Image = "resource://xamarinJKH.Resources.app_plumber.svg"; //vector 1
+                                break;
+                            case "электрик": type_.Image = "resource://xamarinJKH.Resources.app_electritian.svg"; //vector 2
+                                break;
+                            case "другие вопросы": type_.Image = "resource://xamarinJKH.Resources.app_other.svg"; //vector 5
+                                break;
+                            case "домофон": type_.Image = "resource://xamarinJKH.Resources.app_domophone.svg";
+                                break;
+                            case "заявка на пропуск": type_.Image = "resource://xamarinJKH.Resources.app_pass.svg"; //vector 4
+                                break;
+                            
+                        }
+                        string replaceColor = Application.Current.RequestedTheme == OSAppTheme.Dark ? "#FFFFFF" : "#8D8D8D";
+                        type_.ReplaceMap = new Dictionary<string, string> { { "#000000", replaceColor } };
+                        Types.Add(type_);
+                        SelectedTyp = Types[0];
+                    });
+                }
+
+                SelectTyp = new Command<object>(name =>
+                {
+                    var selected = new OptionModel();
+                    selected = Types.FirstOrDefault(x => x.Name == (name as OptionModel).Name);
+                    if (selected != null)
+                    {
+                        foreach (var typ in Types)
+                        {
+                            string replaceColor = Application.Current.RequestedTheme == OSAppTheme.Dark ? "#FFFFFF" : "#8D8D8D";
+                            typ.ReplaceMap = new Dictionary<string, string> { { "#000000", replaceColor } };
+                        }
+
+                        selected.ReplaceMap = new Dictionary<string, string> { { "#000000", "#" + Settings.MobileSettings.color } };
+                    }
+                });
             }
         }
 
@@ -611,8 +687,11 @@ _appModel = new AddAppModel()
                         Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                         return;
                     }
-                    string ident = Settings.Person.Accounts[PickerLs.SelectedIndex].Ident;
-                    string typeId = Settings.TypeApp[PickerType.SelectedIndex].ID.ToString();
+                    var vm = (BindingContext as AddAppModel);
+                    var index = vm.Accounts.IndexOf(vm.SelectedAccount);
+                    var type_index = vm.Types.IndexOf(vm.SelectedTyp);
+                    string ident = Settings.Person.Accounts[index].Ident;
+                    string typeId = Settings.TypeApp[type_index].ID.ToString();
                     IDResult result = new IDResult();
                     if (isPassAPP)
                     {
@@ -970,6 +1049,11 @@ _appModel = new AddAppModel()
         private void TSBrand_Focused(object sender, FocusEventArgs e)
         {
             TSBrandList.IsVisible = true;
+        }
+
+        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -32,7 +32,7 @@ namespace xamarinJKH.Main
         public List<MeterInfo> _meterInfo { get; set; }
         public List<MeterInfo> _meterInfoAll { get; set; }
         private string account = "";
-        public ObservableCollection<string> Accounts { get; set; }
+        public ObservableCollection<AccountInfo> Accounts { get; set; }
         private RestClientMP _server = new RestClientMP();
         private bool _isRefreshing = false;
 
@@ -227,7 +227,7 @@ namespace xamarinJKH.Main
         {
             InitializeComponent();
             Analytics.TrackEvent("Показания");
-            Accounts = new ObservableCollection<string>();
+            Accounts = new ObservableCollection<AccountInfo>();
             Settings.mainPage = this;
             NavigationPage.SetHasNavigationBar(this, false);
             switch (Device.RuntimePlatform)
@@ -273,7 +273,7 @@ namespace xamarinJKH.Main
                     Picker.Focus();
                 });
             };
-            StackLayoutLs.GestureRecognizers.Add(pickLs);
+            //StackLayoutLs.GestureRecognizers.Add(pickLs);
             SetTextAndColor();
             getInfo();
             SetTitle();
@@ -301,15 +301,15 @@ namespace xamarinJKH.Main
             MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) => ChangeTheme.Execute(null));
             //MessagingCenter.Subscribe<Object>(this, "UpdateCounters", (sender) => RefreshCommand.Execute(null));
             MessagingCenter.Subscribe<Object>(this, "UpdateCounters", async (sender) => await RefreshCountersData());
-            MessagingCenter.Subscribe<Object, string>(this, "AddIdent", (sender, ident) =>
+            MessagingCenter.Subscribe<Object, AccountInfo>(this, "AddIdent", (sender, ident) =>
             { 
-                if (Accounts.Count == 0)
-                {
-                    Accounts.Add("Все");
-                }
                 Accounts.Add(ident); 
             });
-            MessagingCenter.Subscribe<Object, string>(this, "RemoveIdent", (sender, ident) => Accounts.Remove(ident));
+            MessagingCenter.Subscribe<Object, AccountInfo>(this, "RemoveIdent", (sender, ident) => Accounts.Remove(ident));
+            foreach (var account in Settings.Person.Accounts)
+            {
+                Device.BeginInvokeOnMainThread(() => Accounts.Add(account));
+            }
             Picker.ItemsSource = Accounts;
         }
 
@@ -330,7 +330,7 @@ namespace xamarinJKH.Main
             }
 
             //IconViewTech.ReplaceStringMap = colors;
-            Arrow.ReplaceStringMap = arrowcolor;
+            //Arrow.ReplaceStringMap = arrowcolor;
 
             
             //if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
@@ -496,52 +496,71 @@ namespace xamarinJKH.Main
         }
 
         private void picker_SelectedIndexChanged(object sender, EventArgs e)
+        { 
+        //{
+        //    try
+        //    {
+        //        var identLength = Settings.Person.Accounts[Picker.SelectedIndex - 1].Ident.Length;
+        //        if (identLength < 6)
+        //        {
+        //            Device.BeginInvokeOnMainThread(() =>
+        //            {
+        //                Picker.WidthRequest = identLength * 10;
+        //                //Picker.MinimumWidthRequest = identLength * 9;
+        //            });
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (Picker.SelectedIndex != -1 && Settings.Person.Accounts.Count != 0)
+        //        {
+        //            var account = Settings.Person.Accounts[Picker.SelectedIndex];
+        //            if (account != null)
+        //            {
+        //                if (!string.IsNullOrEmpty(account.Ident))
+        //                {
+        //                    var identLength = account.Ident.Length;
+        //                    if (identLength < 6)
+        //                    {
+        //                        Device.BeginInvokeOnMainThread(() =>
+        //                        {
+        //                            Picker.WidthRequest = identLength * 9;
+        //                            // Picker.MinimumWidthRequest = identLength * 9;
+        //                        });
+        //                    }
+        //                }
+                        
+        //            }
+                    
+        //        }
+            //}
+
+            //if (Accounts != null)
+            //{
+            //    if (Accounts.Count > 0)
+            //    {
+            //        account = Accounts[Picker.SelectedIndex];
+            //        SetIdents();
+            //    }
+            //}
+        }
+
+        protected void OnIdentChanged(object sender, SelectionChangedEventArgs args)
         {
+            var selected = args.CurrentSelection[0] as AccountInfo;
+
             try
             {
-                var identLength = Settings.Person.Accounts[Picker.SelectedIndex - 1].Ident.Length;
-                if (identLength < 6)
-                {
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        Picker.WidthRequest = identLength * 10;
-                        //Picker.MinimumWidthRequest = identLength * 9;
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                if (Picker.SelectedIndex != -1 && Settings.Person.Accounts.Count != 0)
-                {
-                    var account = Settings.Person.Accounts[Picker.SelectedIndex];
-                    if (account != null)
-                    {
-                        if (!string.IsNullOrEmpty(account.Ident))
-                        {
-                            var identLength = account.Ident.Length;
-                            if (identLength < 6)
-                            {
-                                Device.BeginInvokeOnMainThread(() =>
-                                {
-                                    Picker.WidthRequest = identLength * 9;
-                                    // Picker.MinimumWidthRequest = identLength * 9;
-                                });
-                            }
-                        }
-                        
-                    }
-                    
-                }
-            }
+                var newmeters = _meterInfoAll.Where(x => x.Ident == selected.Ident).ToList();
 
-            if (Accounts != null)
-            {
-                if (Accounts.Count > 0)
+                baseForCounters.Children.Clear();
+
+                foreach(var meter in newmeters)
                 {
-                    account = Accounts[Picker.SelectedIndex];
-                    SetIdents();
+                    baseForCounters.Children.Add(new MetersThreeCell(meter));
                 }
             }
+            catch { }
         }
 
         void SetIdents()
@@ -551,7 +570,7 @@ namespace xamarinJKH.Main
 
                 Picker.SetAppThemeColor(Xamarin.Forms.Picker.TextColorProperty, Color.Black, Color.White);
                 Picker.SetAppThemeColor(Xamarin.Forms.Picker.TitleColorProperty, Color.Black, Color.White);
-                Picker.Title = account;
+                //Picker.Title = account;
                 _meterInfo = null;
                 if (account == "Все")
                 {
@@ -614,29 +633,38 @@ namespace xamarinJKH.Main
                     _meterInfo = info.Data;
                     _meterInfoAll = info.Data;
                     this.BindingContext = this;
+                    var idents = _meterInfoAll.Select(x => x.Ident);
+                    foreach (var account in Accounts)
+                    {
+                        if (!idents.Contains(account.Ident))
+                        {
+                            Device.BeginInvokeOnMainThread(() => Accounts.Remove(account));
+                        }
+                    }
+
                     if (_meterInfo != null && _meterInfo.Count > 0)
                     {
                         account = "Все";
-                        Accounts.Add("Все");
-                        foreach (var meterInfo in _meterInfo)
-                        {
-                            Boolean k = false;
-                            foreach (var s in Accounts)
-                            {
-                                if (s == meterInfo.Ident)
-                                {
-                                    k = true;
-                                }
-                            }
+                        //Accounts.Add("Все");
+                        //foreach (var meterInfo in _meterInfo)
+                        //{
+                        //    Boolean k = false;
+                        //    foreach (var s in Accounts)
+                        //    {
+                        //        if (s == meterInfo.Ident)
+                        //        {
+                        //            k = true;
+                        //        }
+                        //    }
 
-                            if (k == false)
-                            {
-                                Accounts.Add(meterInfo.Ident);
-                            }
-                        }
+                        //    if (k == false)
+                        //    {
+                        //        Accounts.Add(meterInfo.Ident);
+                        //    }
+                        //}
 
                         Picker.ItemsSource = Accounts;
-                        Picker.SelectedIndex = 0;
+                        //Picker.SelectedIndex = 0;
                     }
                 }
             }
