@@ -20,6 +20,7 @@
             <converters:WeightDisplayConverter x:Key="Weight"/>
             <converters:ArrowIconConverter x:Key="Arrow"/>
             <converters:DisplayIfAmountConverter x:Key="Amount"/>
+            <converters:InverseBoolConverter x:Key="Invert"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -91,7 +92,7 @@
                         <ScrollView Orientation="Vertical"
                                     VerticalOptions="FillAndExpand"
                                     Margin="0, 10, 0, 20">
-                            <StackLayout BindableLayout.ItemsSource="{Binding AllGoods}">
+                            <StackLayout BindableLayout.ItemsSource="{Binding ChosenGoods}">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
                                         <Frame BackgroundColor="White"
@@ -176,7 +177,7 @@
                                                                 </svg:SvgCachedImage.GestureRecognizers>
                                                             </svg:SvgCachedImage>
                                                         </StackLayout>
-                                                        <BoxView Color="{x:DynamicResource MainColor}" HeightRequest="1" Margin="0, -2, 0, 0" HorizontalOptions="FillAndExpand"/>
+                                                        <BoxView Color="{x:DynamicResource MainColor}" HeightRequest="1" Margin="0, -2, 0, 0" HorizontalOptions="FillAndExpand" IsVisible="False"/>
                                                     </StackLayout>
 
                                                     <!--<Grid Grid.Column="2"
@@ -221,6 +222,7 @@
 
                                                 </Grid>
                                                 <BoxView HeightRequest="2"
+                                                         IsVisible="{Binding IsLast, Converter={x:StaticResource Invert}}"
                                                              Margin="0,5,0,0"
                                                              BackgroundColor="#e7e7e7"/>
                                             </StackLayout>

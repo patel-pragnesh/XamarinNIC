@@ -117,6 +117,7 @@ namespace xamarinJKH.ViewModels.Shop
         }
 
         public string ColumnAdditionWidth {get;set;}
+        public List<Goods> ChosenGoods { get; set; }
         public ShopViewModel(AdditionalService service, INavigation navigation)
         {
             
@@ -245,6 +246,13 @@ namespace xamarinJKH.ViewModels.Shop
 
             GoToBasket = new Command(async () =>
             {
+                ChosenGoods = new List<Goods>();
+                ChosenGoods = AllGoods.Where(x => x.ColBusket > 0).ToList();
+                foreach (var good in ChosenGoods)
+                {
+                    good.IsLast = false;
+                }
+                ChosenGoods.Last().IsLast = true;
                 if (this.TotalPrice > 0)
                     await Navigation.PushAsync(new BasketPageNew(this));
                 else
