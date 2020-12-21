@@ -27,7 +27,7 @@ namespace xamarinJKH.MainConst
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
             //if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
             //    currentTheme = OSAppTheme.Dark;
-            //Color unselect = hex.AddLuminosity(0.3);
+            Color unselect = hex.AddLuminosity(0.3);
             //switch (currentTheme)
             //{
             //    case OSAppTheme.Light: UnselectedTabColor = unselect;
