@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,39 @@ namespace xamarinJKH.MainConst
         private double IconViewNotCompliteHeightRequest = 11;
         private double IconViewPrHeightRequest = 11;
         private string street = "";
+        public ObservableCollection<NamedValue> Areas { get; set; }
+        NamedValue selectedArea;
+        public NamedValue SelectedArea
+        {
+            get => selectedArea;
+            set
+            {
+                selectedArea = value;
+                OnPropertyChanged("SelectedArea");
+            }
+        }
+        public ObservableCollection<HouseProfile> Streets { get; set; }
+        HouseProfile selectedStreet;
+        public HouseProfile SelectedStreet
+        {
+            get => selectedStreet;
+            set
+            {
+                selectedStreet = value;
+                OnPropertyChanged("SelectedStreet");
+            }
+        }
+
+        bool busy;
+        public bool IsBusy
+        {
+            get => busy;
+            set
+            {
+                busy = value;
+                OnPropertyChanged("IsBusy");
+            }
+        }
 
         private async void TechSend(object sender, EventArgs e)
         {
@@ -157,7 +191,16 @@ namespace xamarinJKH.MainConst
                 SetAdminName();
             });
             MessagingCenter.Subscribe<Object>(this, "ChangeAdminMonitor", (sender) => ChangeTheme.Execute(null));
+            Areas = new ObservableCollection<NamedValue>();
+            Streets = new ObservableCollection<HouseProfile>();
             BindingContext = this;
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            await StartStatistick();
         }
 
 
@@ -170,7 +213,9 @@ namespace xamarinJKH.MainConst
                 Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
+            IsBusy = true;
             ItemsList<RequestStats> result = await _server.RequestStats(id, houseID);
+            IsBusy = false;
             if (result.Error == null)
             {
                 if (result.Data.Count > 0)
@@ -739,11 +784,30 @@ namespace xamarinJKH.MainConst
                 Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
+            IsBusy = true;
             ItemsList<NamedValue> groups = await _server.GetHouseGroups();
+            IsBusy = false;
             if (groups.Error == null)
             {
                 string[] param = null;
-                setListGroups(groups, ref param);
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    foreach (var group in groups.Data)
+                    {
+                        Areas.Add(group);
+                    }
+                    SelectedArea = Areas[0];
+
+                    setListGroups(groups, ref param);
+                    LayoutContent.Children.Clear();
+                    MaterialFrameNotDoingContainer.IsVisible = false;
+                    //LabelGroup.Text = action;
+                    street = SelectedArea.Name;
+                    await getMonitorStandart(Int32.Parse(HousesGroup[SelectedArea.Name]));
+                });
+                
+                
+                return;
                 var action = await DisplayActionSheet(AppResources.AreaChoose, AppResources.Cancel, null, param);
                 if (action != null && !action.Equals(AppResources.Cancel))
                 {
@@ -756,7 +820,7 @@ namespace xamarinJKH.MainConst
             }
             else
             {
-                await DisplayAlert(AppResources.ErrorTitle, groups.Error, "OK");
+               await DisplayAlert(AppResources.ErrorTitle, groups.Error, "OK");
             }
         }
 
@@ -767,9 +831,34 @@ namespace xamarinJKH.MainConst
                 Device.BeginInvokeOnMainThread(async () => await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorNoInternet, "OK"));
                 return;
             }
+            IsBusy = true;
             ItemsList<HouseProfile> groups = await _server.GetHouse();
+            IsBusy = false;
+            
             if (groups.Error == null)
             {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    Streets.Clear();
+                    foreach (var group in groups.Data)
+                    {
+                        if (!string.IsNullOrEmpty(group.Address))
+                            Streets.Add(group);
+                    }
+                    SelectedStreet = Streets[0];
+                    StreetsCollection.ScrollTo(SelectedStreet);
+                    string[] param = null;
+                    setListHouse(groups, ref param);
+                    var action = SelectedStreet.Address;
+                    if (action != null && !action.Equals(AppResources.Cancel))
+                    {
+                        LayoutContent.Children.Clear();
+                        MaterialFrameNotDoingContainer.IsVisible = false;
+                        //LabelHouse.Text = action;
+                        await getMonitorStandart(-1, Int32.Parse(Houses[action]));
+                    }
+                });
+                return;
                 string[] param = null;
                 setListHouse(groups, ref param);
                 var action = await DisplayActionSheet(AppResources.HomeChoose, AppResources.Cancel, null, param);
@@ -1115,6 +1204,38 @@ namespace xamarinJKH.MainConst
             public IconView IconView { get; set; }
             public MaterialFrame _materialFrame { get; set; }
             public StackLayout _grid { get; set; }
+        }
+
+        private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var selection = e.CurrentSelection[0] as NamedValue;
+                (sender as CollectionView).ScrollTo(selection);
+                await getHouse();
+            }
+            catch { }
+            
+        }
+
+        private async void StreetCollectionSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                await Task.Delay(TimeSpan.FromMilliseconds(500));
+                var selection = e.CurrentSelection[0] as HouseProfile;
+                var action = selection.Address;
+                if (action != null && !action.Equals(AppResources.Cancel))
+                {
+                    LayoutContent.Children.Clear();
+                    MaterialFrameNotDoingContainer.IsVisible = false;
+                    //LabelHouse.Text = action;
+                    await getMonitorStandart(-1, Int32.Parse(Houses[action]));
+
+                }
+            }
+            catch { }
+            
         }
     }
 }
