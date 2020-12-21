@@ -57,7 +57,7 @@ namespace xamarinJKH.Main
             GetBrand();
             OSAppTheme currentTheme = Application.Current.RequestedTheme;
             
-            Color unselect = hex.WithLuminosity(0); //hex.AddLuminosity(0.3);
+            Color unselect = hex.AddLuminosity(0.3); //hex.AddLuminosity(0.3);
             
             switch (currentTheme)
             {
