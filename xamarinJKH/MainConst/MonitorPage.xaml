@@ -299,7 +299,8 @@
                             Padding="0,0,0,25">
                                     <StackLayout Spacing="0">
                                         <customRenderers:MaterialFrame
-                                    Elevation="20"
+                                            Elevation="{AppThemeBinding Light=0, Dark=20}"
+                                    HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                     CornerRadius="35"
                                     x:Name="MaterialFrameNotDoing"
                                     BackgroundColor="White"
