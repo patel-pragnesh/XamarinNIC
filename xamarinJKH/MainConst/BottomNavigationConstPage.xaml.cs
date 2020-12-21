@@ -39,7 +39,7 @@ namespace xamarinJKH.MainConst
             switch (currentTheme)
             {
                 case OSAppTheme.Light:
-                    //UnselectedTabColor = unselect;
+                    if(Device.RuntimePlatform == Device.Android) UnselectedTabColor = unselect;
                     if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
                     {
                         appNavBar.BarTextColor = Color.Black;
@@ -48,7 +48,7 @@ namespace xamarinJKH.MainConst
                     }
                     break;
                 case OSAppTheme.Dark:
-                    //UnselectedTabColor = Color.Gray;
+                    if(Device.RuntimePlatform == Device.Android) UnselectedTabColor = Color.Gray;
                     if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS)
                     {
                         appNavBar.BarTextColor = Color.White;
