@@ -210,6 +210,8 @@ namespace xamarinJKH.ViewModels.Shop
 
             Decrease = new Command<Goods>(item =>
             {
+                if (item.ColBusket == 0)
+                    return;
                 if (item.ColBusket > 0)
                 {
                     item.ColBusket--;
