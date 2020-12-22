@@ -107,6 +107,27 @@ namespace xamarinJKH.Main
                         _meterInfo = meters;
                     }
 
+                    if (info.Data.Count == 0)
+                    {
+                        Accounts.Clear();
+                    }
+                    else
+                    {
+                        Accounts.Clear();
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            var idents = _meterInfo.Select(x => x.Ident);
+                            foreach (var account in Settings.Person.Accounts)
+                            {
+                                if (idents.Contains(account.Ident))
+                                {
+                                    Accounts.Add(account);
+                                }
+                            }
+                            SelectedAccount = Accounts[0];
+                        });
+                    }
+
                     List<MeterInfo> meters_ = new List<MeterInfo>();
                     if (SelectedAccount != null)
                         meters_ = _meterInfo.Where(x => x.Ident == SelectedAccount.Ident).ToList();
@@ -321,6 +342,7 @@ namespace xamarinJKH.Main
                     Accounts.Remove(ident);
                 });
             });
+            
             foreach (var account in Settings.Person.Accounts)
             {
                 Device.BeginInvokeOnMainThread(() => Accounts.Add(account));
@@ -572,9 +594,14 @@ namespace xamarinJKH.Main
 
                     baseForCounters.Children.Clear();
 
-                    foreach (var meter in newmeters)
+                    foreach (var mi in newmeters)
                     {
-                        baseForCounters.Children.Add(new MetersThreeCell(meter));
+                        var mtc = new MetersThreeCell(mi);
+                        TapGestureRecognizer tap = new TapGestureRecognizer();
+                        tap.Tapped += Tap_Tapped;
+                        mtc.GestureRecognizers.Add(tap);
+
+                        baseForCounters.Children.Add(mtc);
                     }
                 }
                 catch { }
@@ -657,6 +684,10 @@ namespace xamarinJKH.Main
             ItemsList<MeterInfo> info = await _server.GetThreeMeters();
             if (info.Error == null)
             {
+                if (info.Data.Count == 0)
+                {
+                    Accounts.Clear();
+                }
                 if (info.Data.Count > 0)
                 {
                     _meterInfo = info.Data;
