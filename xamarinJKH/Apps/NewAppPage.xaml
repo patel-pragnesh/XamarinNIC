@@ -83,7 +83,7 @@
                            BackgroundColor="{AppThemeBinding Dark=#494949, Light=White}"
                            Padding="0,0,0,80"
                            BorderColor="{AppThemeBinding Dark=#494949, Light={x:StaticResource MainColor}}">
-                        <StackLayout Padding="20,10,0,10">
+                        <StackLayout Padding="20,12,0,10" Spacing="10">
                             <CollectionView ItemsSource="{Binding Accounts}"
                                             SelectedItem="{Binding SelectedAccount}"
                                                     IsVisible="True"
@@ -191,7 +191,7 @@
 
                     
 
-                    <ScrollView VerticalOptions="Start" Margin="0,-90,0,0">
+                    <ScrollView VerticalOptions="Start" Margin="0,-95,0,0">
                         <StackLayout>
                            
 
