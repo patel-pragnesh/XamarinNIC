@@ -109,13 +109,18 @@ namespace xamarinJKH.Main
 
                     if (info.Data.Count == 0)
                     {
-                        Accounts.Clear();
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            Accounts.Clear();
+                            addIdentLbl.IsVisible = true;
+                        });
                     }
                     else
                     {
-                        Accounts.Clear();
+                        
                         Device.BeginInvokeOnMainThread(() =>
                         {
+                            Accounts.Clear();
                             var idents = _meterInfo.Select(x => x.Ident);
                             foreach (var account in Settings.Person.Accounts)
                             {
@@ -125,6 +130,7 @@ namespace xamarinJKH.Main
                                 }
                             }
                             SelectedAccount = Accounts[0];
+                            addIdentLbl.IsVisible = false;
                         });
                     }
 
