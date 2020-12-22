@@ -156,10 +156,10 @@ namespace xamarinJKH.Pays
             if (eUrl.Contains("GetPayResult"))
             {
                 string url = eUrl.Replace(RestClientMP.SERVER_ADDR + "/", "");
+                
                 await StartProgressBar(url);
             }
-
-            Loading.Instance.Hide();
+            
         }
 
         public async Task StartProgressBar(string url)
@@ -188,8 +188,6 @@ namespace xamarinJKH.Pays
                 if (result.error != null && result.Equals(""))
                 {
                     await DisplayAlert(AppResources.ErrorTitle, result.error, "OK");
-
-
                     try
                     {
                         _ = await Navigation.PopAsync();

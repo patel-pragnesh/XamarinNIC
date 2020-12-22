@@ -207,6 +207,7 @@ namespace xamarinJKH.Droid.CustomReader
                 activityRootView.AddView(this.mKeyboardView, layoutParams);
             }
             EditText.SetTextIsSelectable(true);
+            // EditText.SetCursorVisible(true);
             this.HideKeyboardView();
 
             this.mKeyboard = new Keyboard(this.context, Resource.Xml.special_keyboard);
