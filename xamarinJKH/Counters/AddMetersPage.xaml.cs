@@ -340,9 +340,13 @@ namespace xamarinJKH.Counters
 
             if (e.NewTextValue == "," || e.NewTextValue == ".")
             {
-                entry.TextChanged -= Data_TextChanged; 
-                    
-                entry.Text = e.OldTextValue;
+                entry.TextChanged -= Data_TextChanged;
+
+                if (e.OldTextValue != null)
+                    entry.Text = e.OldTextValue;
+                else
+                    entry.Text = "";
+               // entry.Text = e.OldTextValue;
                 entry.TextChanged += Data_TextChanged;
                 return;
             }            
@@ -364,6 +368,7 @@ namespace xamarinJKH.Counters
             }
             else
             {
+                if(e.OldTextValue!=null)
                 if (e.OldTextValue.Length == IntegerPoint && e.NewTextValue.Length > e.OldTextValue.Length)
                 {
                     entry.Text = e.OldTextValue;
@@ -371,7 +376,10 @@ namespace xamarinJKH.Counters
             }
             if (e.NewTextValue.Equals("-"))
             {
-                entry.Text = e.OldTextValue;
+                if (e.OldTextValue != null)
+                    entry.Text = e.OldTextValue;
+                else
+                    entry.Text = "";
             }
             await Task.Delay(TimeSpan.FromMilliseconds(100));
             entry.Text = entry.Text.Replace(".", ",");
