@@ -74,19 +74,25 @@
                     </StackLayout>
                     <StackLayout
                         VerticalOptions="StartAndExpand">
-                        <Frame CornerRadius="1"
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Frame CornerRadius="1"
                                HasShadow="False"
                                Margin="0, 10, 0, -70"
                                VerticalOptions="Start"
                                x:Name="FrameTop"
                                BackgroundColor="{AppThemeBinding Light=White, Dark=#494949}"
-                               Padding="20,20,0,90">
-                            <StackLayout Orientation="Vertical"
+                               Padding="20,10,0,90">
+                                <StackLayout Orientation="Vertical"
                                          HorizontalOptions="CenterAndExpand">
-                                <StackLayout
+                                    <StackLayout
                                     x:Name="StackLayoutAddIdent"
                                     IsVisible="False">
-                                    <Label
+                                        <Label
                                         Text="{x:Static xamarinJkh:AppResources.AddIdent}"
                                         TextDecorations="Underline"
                                         FontAttributes="Bold"
@@ -94,63 +100,64 @@
                                         HorizontalOptions="CenterAndExpand"
                                         TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                         FontSize="15" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal"
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal"
                                              x:Name="StackLayoutPicker"
                                              HorizontalOptions="CenterAndExpand">
-                                    <CollectionView 
+                                        <CollectionView 
                                         x:Name="Picker"
                                         Margin="0,0,0,10"
-                                                    IsVisible="True"
+                                            HeightRequest="60"
+                                        SelectedItem="{Binding SelectedAccount}"
+                                        VerticalOptions="FillAndExpand"
                                         SelectionChanged="OnIdentChanged"
-                                            HeightRequest="100"
                                                     SelectionMode="Single">
-                                        <CollectionView.ItemsLayout>
-                                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
-                                        </CollectionView.ItemsLayout>
+                                            <CollectionView.ItemsLayout>
+                                                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                                            </CollectionView.ItemsLayout>
 
-                                        <CollectionView.ItemTemplate>
-                                            <DataTemplate>
-                                                <Frame BorderColor="{x:StaticResource MainColor}"
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Frame BorderColor="{x:StaticResource MainColor}"
                                                        BackgroundColor="{AppThemeBinding Dark=#8D8D8D, Light=White}"
                                                        x:Name="Frame"
                                                HasShadow="False"
                                                        Padding="10"
-                                                       CornerRadius="5">
-                                                    <StackLayout VerticalOptions="Start"
                                                         HeightRequest="60"
+                                                       CornerRadius="5">
+                                                        <StackLayout VerticalOptions="Start"
                                                        Spacing="0">
-                                                        <Label Text="{Binding Ident}"
+                                                            <Label Text="{Binding Ident}"
                                                                TextColor="{Binding Source={x:Reference Frame}, Path=BorderColor}"
                                                                FontAttributes="Bold"
                                                                FontSize="16"/>
-                                                        <Label Text="{Binding Address}"
+                                                            <Label Text="{Binding Address}"
                                                                TextColor="{Binding Source={x:Reference Frame}, Path=BorderColor}"
                                                                FontSize="14"/>
-                                                    </StackLayout>
+                                                        </StackLayout>
 
-                                                    <VisualStateManager.VisualStateGroups>
-                                                        <VisualStateGroup x:Name="CommonStates">
-                                                            <VisualState x:Name="Normal">
-                                                                <VisualState.Setters>
-                                                                    <Setter Property="BorderColor" Value="{AppThemeBinding Light=#8D8D8D, Dark=White}"/>
-                                                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
-                                                                </VisualState.Setters>
-                                                            </VisualState>
+                                                        <VisualStateManager.VisualStateGroups>
+                                                            <VisualStateGroup x:Name="CommonStates">
+                                                                <VisualState x:Name="Normal">
+                                                                    <VisualState.Setters>
+                                                                        <Setter Property="BorderColor" Value="{AppThemeBinding Light=#8D8D8D, Dark=White}"/>
+                                                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
+                                                                    </VisualState.Setters>
+                                                                </VisualState>
 
-                                                            <VisualState x:Name="Selected">
-                                                                <VisualState.Setters>
-                                                                    <Setter Property="BorderColor" Value="{x:StaticResource MainColor}"/>
-                                                                    <Setter Property="BackgroundColor" Value="White"/>
-                                                                </VisualState.Setters>
-                                                            </VisualState>
-                                                        </VisualStateGroup>
-                                                    </VisualStateManager.VisualStateGroups>
-                                                </Frame>
-                                            </DataTemplate>
-                                        </CollectionView.ItemTemplate>
-                                    </CollectionView>
-                                    <!--<Label
+                                                                <VisualState x:Name="Selected">
+                                                                    <VisualState.Setters>
+                                                                        <Setter Property="BorderColor" Value="{x:StaticResource MainColor}"/>
+                                                                        <Setter Property="BackgroundColor" Value="White"/>
+                                                                    </VisualState.Setters>
+                                                                </VisualState>
+                                                            </VisualStateGroup>
+                                                        </VisualStateManager.VisualStateGroups>
+                                                    </Frame>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+                                        <!--<Label
                                         Text="{x:Static xamarinJkh:AppResources.Ident}"
                                         HeightRequest="20"
                                         FontAttributes="Bold"
@@ -184,8 +191,8 @@
                                             BackgroundColor="White"
                                             HorizontalOptions="Fill" />
                                     </StackLayout>-->
-                                </StackLayout>
-                                <Label x:Name="PeriodSendLbl"
+                                    </StackLayout>
+                                    <Label x:Name="PeriodSendLbl"
                                        Text="Возможность передавать показания доступна с 15 по 25 число текущего месяца!"
                                        Margin="0,0,0,0"
                                        TextDecorations="Underline"
@@ -195,7 +202,7 @@
                                        HorizontalTextAlignment="Center"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontSize="12" />
-                                <Label x:Name="addIdentLbl"
+                                    <Label x:Name="addIdentLbl"
                                        Text="{x:Static xamarinJkh:AppResources.NoAccounts}"
                                        Margin="0,0,0,0"
                                        TextDecorations="Underline"
@@ -205,9 +212,28 @@
                                        HorizontalTextAlignment="Center"
                                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontSize="15" />
-                            </StackLayout>
+                                </StackLayout>
 
-                        </Frame>
+                            </Frame>
+
+                            <RefreshView Command="{Binding RefreshCommand}" Padding="10,0"
+                                     Grid.Row="1"
+                                     Margin="0,-25,0,0"
+                                     VerticalOptions="FillAndExpand"
+                                     IsRefreshing="{Binding IsRefreshing}">
+                                <ScrollView x:Name="scrollForCounters" VerticalScrollBarVisibility="Never"
+                                        VerticalOptions="FillAndExpand">
+                                    <StackLayout>
+                                        <ActivityIndicator x:Name="aIndicator" Color="{Binding hex}" Scale="2" Margin="20"
+                                                       IsRunning="True" IsEnabled="True" IsVisible="false"
+                                                       HorizontalOptions="CenterAndExpand"
+                                                       VerticalOptions="CenterAndExpand" />
+                                        <StackLayout x:Name="baseForCounters" VerticalOptions="FillAndExpand" />
+                                    </StackLayout>
+
+                                </ScrollView>
+                            </RefreshView>
+                        </Grid>
 
                         <!--<RefreshView Command="{Binding RefreshCommand}"
                           IsRefreshing="{Binding IsRefreshing}">
@@ -238,20 +264,7 @@
                             </CollectionView>
                         </RefreshView>-->
 
-                        <RefreshView Command="{Binding RefreshCommand}" Padding="10,0"
-                                     IsRefreshing="{Binding IsRefreshing}">
-                            <ScrollView x:Name="scrollForCounters" VerticalScrollBarVisibility="Never"
-                                        VerticalOptions="FillAndExpand">
-                                <StackLayout>
-                                    <ActivityIndicator x:Name="aIndicator" Color="{Binding hex}" Scale="2" Margin="20"
-                                                       IsRunning="True" IsEnabled="True" IsVisible="false"
-                                                       HorizontalOptions="CenterAndExpand"
-                                                       VerticalOptions="CenterAndExpand" />
-                                    <StackLayout x:Name="baseForCounters" VerticalOptions="FillAndExpand" />
-                                </StackLayout>
-
-                            </ScrollView>
-                        </RefreshView>
+                        
 
                         <!--<ListView x:Name="countersList"
                           HasUnevenRows="False"
