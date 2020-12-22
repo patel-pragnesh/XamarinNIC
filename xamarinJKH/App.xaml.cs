@@ -190,36 +190,36 @@ namespace xamarinJKH
                         bool displayAlert = false;
                         string o = string.Empty;
 
-                        if (p.Data.ContainsKey("title") && p.Data.ContainsKey("body"))
-                        {
-                            var current_page =
-                                (App.Current.MainPage.Navigation.ModalStack.ToList()[0] as Xamarin.Forms.TabbedPage)
-                                .CurrentPage;
-                            if (!(current_page is AppPage))
-                            {
-                                displayAlert = await MainPage.DisplayAlert(p.Data["title"].ToString(),
-                                    p.Data["body"].ToString(), "OK", "Отмена");
-                                if (p.Data.ContainsKey("type_push"))
-                                    o = p.Data["type_push"].ToString();
-                            }
-                        }
+                        // if (p.Data.ContainsKey("title") && p.Data.ContainsKey("body"))
+                        // {
+                        //     var current_page =
+                        //         (App.Current.MainPage.Navigation.ModalStack.ToList()[0] as Xamarin.Forms.TabbedPage)
+                        //         .CurrentPage;
+                        //     if (!(current_page is AppPage))
+                        //     {
+                        //         displayAlert = await MainPage.DisplayAlert(p.Data["title"].ToString(),
+                        //             p.Data["body"].ToString(), "OK", "Отмена");
+                        //         if (p.Data.ContainsKey("type_push"))
+                        //             o = p.Data["type_push"].ToString();
+                        //     }
+                        // }
 
                         //ios
-                        if (p.Data.ContainsKey("aps.alert.title") && p.Data.ContainsKey("aps.alert.body"))
-                        {
-                            var current_page =
-                                (App.Current.MainPage.Navigation.ModalStack.ToList()[0] as Xamarin.Forms.TabbedPage)
-                                .CurrentPage;
-                            if (!(current_page is AppPage))
-                            {
-                                displayAlert = await MainPage.DisplayAlert(p.Data["aps.alert.title"].ToString(),
-                                    p.Data["aps.alert.body"].ToString(), "OK", "Отмена");
-                                if (p.Data.ContainsKey("gcm.notification.type_push"))
-                                    o = p.Data["gcm.notification.type_push"].ToString();
-                            }
-                        }
+                        // if (p.Data.ContainsKey("aps.alert.title") && p.Data.ContainsKey("aps.alert.body"))
+                        // {
+                        //     var current_page =
+                        //         (App.Current.MainPage.Navigation.ModalStack.ToList()[0] as Xamarin.Forms.TabbedPage)
+                        //         .CurrentPage;
+                        //     if (!(current_page is AppPage))
+                        //     {
+                        //         displayAlert = await MainPage.DisplayAlert(p.Data["aps.alert.title"].ToString(),
+                        //             p.Data["aps.alert.body"].ToString(), "OK", "Отмена");
+                        //         if (p.Data.ContainsKey("gcm.notification.type_push"))
+                        //             o = p.Data["gcm.notification.type_push"].ToString();
+                        //     }
+                        // }
 
-                        if (displayAlert && o.ToLower().Equals("осс"))
+                        if ( o.ToLower().Equals("осс"))
                         {
                             await MainPage.Navigation.PushModalAsync(new OSSMain());
                         }
@@ -237,7 +237,7 @@ namespace xamarinJKH
                             }
                         }
                         
-                        if (displayAlert && o.ToLower().Equals("comment"))
+                        if (o.ToLower().Equals("comment"))
                         {
                             var tabbedpage = App.Current.MainPage.Navigation.ModalStack.ToList()[0];
                             if (tabbedpage is xamarinJKH.Main.BottomNavigationPage)
@@ -279,7 +279,7 @@ namespace xamarinJKH
                             }
                         }
 
-                        if (displayAlert && o.ToLower() == "announcement")
+                        if (o.ToLower() == "announcement")
                         {
                             var tabbedpage = App.Current.MainPage.Navigation.ModalStack.ToList()[0];
                             if (tabbedpage is xamarinJKH.Main.BottomNavigationPage)
