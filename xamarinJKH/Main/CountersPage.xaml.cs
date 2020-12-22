@@ -107,6 +107,9 @@ namespace xamarinJKH.Main
                         _meterInfo = meters;
                     }
 
+                    List<MeterInfo> meters_ = new List<MeterInfo>();
+                    if (SelectedAccount != null)
+                        meters_ = _meterInfo.Where(x => x.Ident == SelectedAccount.Ident).ToList();
                     baseForCounters.Children.Clear();
 
                     foreach (var mi in _meterInfo)
@@ -302,10 +305,22 @@ namespace xamarinJKH.Main
             //MessagingCenter.Subscribe<Object>(this, "UpdateCounters", (sender) => RefreshCommand.Execute(null));
             MessagingCenter.Subscribe<Object>(this, "UpdateCounters", async (sender) => await RefreshCountersData());
             MessagingCenter.Subscribe<Object, AccountInfo>(this, "AddIdent", (sender, ident) =>
-            { 
-                Accounts.Add(ident); 
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    if (ident != null)
+                        if (!string.IsNullOrEmpty(ident.Address))
+                            Accounts.Add(ident);
+                });
+                
             });
-            MessagingCenter.Subscribe<Object, AccountInfo>(this, "RemoveIdent", (sender, ident) => Accounts.Remove(ident));
+            MessagingCenter.Subscribe<Object, AccountInfo>(this, "RemoveIdent", (sender, ident) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Accounts.Remove(ident);
+                });
+            });
             foreach (var account in Settings.Person.Accounts)
             {
                 Device.BeginInvokeOnMainThread(() => Accounts.Add(account));
@@ -545,22 +560,26 @@ namespace xamarinJKH.Main
             //}
         }
 
-        protected void OnIdentChanged(object sender, SelectionChangedEventArgs args)
+        protected async void OnIdentChanged(object sender, SelectionChangedEventArgs args)
         {
             var selected = args.CurrentSelection[0] as AccountInfo;
-
-            try
+            await Task.Delay(TimeSpan.FromMilliseconds(100));
+            Device.BeginInvokeOnMainThread(() =>
             {
-                var newmeters = _meterInfoAll.Where(x => x.Ident == selected.Ident).ToList();
-
-                baseForCounters.Children.Clear();
-
-                foreach(var meter in newmeters)
+                try
                 {
-                    baseForCounters.Children.Add(new MetersThreeCell(meter));
+                    var newmeters = _meterInfoAll.Where(x => x.Ident == selected.Ident).ToList();
+
+                    baseForCounters.Children.Clear();
+
+                    foreach (var meter in newmeters)
+                    {
+                        baseForCounters.Children.Add(new MetersThreeCell(meter));
+                    }
                 }
-            }
-            catch { }
+                catch { }
+            });
+            
         }
 
         void SetIdents()
@@ -615,6 +634,16 @@ namespace xamarinJKH.Main
             UkName.Text = Settings.MobileSettings.main_name;
             
         }
+        AccountInfo selectedAccount;
+        public AccountInfo SelectedAccount
+        {
+            get => selectedAccount;
+            set
+            {
+                selectedAccount = value;
+                OnPropertyChanged("SelectedAccount");
+            }
+        }
 
         async void getInfo()
         {
@@ -664,6 +693,7 @@ namespace xamarinJKH.Main
                         //}
 
                         Picker.ItemsSource = Accounts;
+                        Device.BeginInvokeOnMainThread(() => SelectedAccount = Accounts[0]);
                         //Picker.SelectedIndex = 0;
                     }
                 }

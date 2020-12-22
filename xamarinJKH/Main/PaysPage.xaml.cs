@@ -394,7 +394,7 @@ namespace xamarinJKH.Main
                     IsRefreshing = false;
                 });
 
-                MessagingCenter.Send<Object, string>(this, "RemoveIdent", ident);
+                MessagingCenter.Send<Object, AccountInfo>(this, "RemoveIdent", Settings.Person.Accounts.Where(x => x.Ident == ident).FirstOrDefault());
             }
             else
             {
