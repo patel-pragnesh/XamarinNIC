@@ -370,9 +370,6 @@
                             Margin="0,0,0,0" VerticalOptions="EndAndExpand" Padding="0" CornerRadius="50,50,0,0"
                             BorderColor="{AppThemeBinding Light={x:DynamicResource MainColor}, Dark=Transparent}"
                             BackgroundColor="{AppThemeBinding Light=White, Dark=#e7e7e7}">
-                            <yummy:PancakeView.Shadow>
-                                <yummy:DropShadow Opacity="0.7" Color="Gray" />
-                            </yummy:PancakeView.Shadow>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"
                                          Padding="30,0">
                                 <!--<Grid Padding="0">                                    

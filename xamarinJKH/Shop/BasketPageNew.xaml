@@ -248,9 +248,6 @@
                 VerticalOptions="EndAndExpand" 
                 Margin="0,0,0,-10"
                 BackgroundColor="{AppThemeBinding Light=White, Dark=#e7e7e7}">
-                <yummy:PancakeView.Shadow>
-                    <yummy:DropShadow Opacity="0.7" Color="Gray" />
-                </yummy:PancakeView.Shadow>
                 <!--<ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Never" VerticalOptions="FillAndExpand"
                             Padding="30,0">-->
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"  Padding="30,0" >
