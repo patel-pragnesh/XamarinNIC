@@ -397,9 +397,9 @@ namespace xamarinJKH.Counters
             Data.Text = String.Format(format, currentCount);
             await Task.Delay(TimeSpan.FromSeconds(2)); 
             
-             Device.BeginInvokeOnMainThread(() => {
-                 
-                 Data.Focus(); });
+             // Device.BeginInvokeOnMainThread(() => {
+             //     
+             //     Data.Focus(); });
         }
         //private void Entry_Unfocused(object sender, FocusEventArgs e)
         //{
@@ -669,7 +669,7 @@ namespace xamarinJKH.Counters
             //    d1.Unfocus();
             //    d1.Focus();
             //});
-            Device.BeginInvokeOnMainThread(() => { Data.Focus(); });
+            // Device.BeginInvokeOnMainThread(() => { Data.Focus(); });
         }
 
         string value1 = "";
@@ -761,8 +761,8 @@ namespace xamarinJKH.Counters
                                     SetCurrentValue(Convert.ToDecimal(meter.Values[0].ValueT2));
                                 //d1.Unfocus();
                                 //d1.Focus();
-                                Data.Unfocus();
-                                Data.Focus();
+                                // Data.Unfocus();
+                                // Data.Focus();
                             }
 
                             //d1.Text = "";
@@ -848,8 +848,8 @@ namespace xamarinJKH.Counters
                                     SetCurrent(Convert.ToDecimal(meter.Values[0].ValueT3));
                                 //d1.Unfocus();
                                 //d1.Focus();
-                                Data.Unfocus();
-                                Data.Focus();
+                                // Data.Unfocus();
+                                // Data.Focus();
                             }
 
                             //d1.Text = "";
