@@ -194,13 +194,14 @@ namespace xamarinJKH.MainConst
             Areas = new ObservableCollection<NamedValue>();
             Streets = new ObservableCollection<HouseProfile>();
             BindingContext = this;
+            Device.BeginInvokeOnMainThread(async () => await StartStatistick());
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
 
-            await StartStatistick();
+            //await StartStatistick();
         }
 
 
