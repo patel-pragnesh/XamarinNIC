@@ -73,9 +73,117 @@
                             HorizontalOptions="Start" />
                 </StackLayout>
 
-                <StackLayout 
+                <StackLayout VerticalOptions="FillAndExpand">
+                    <Frame CornerRadius="1"
+                       HasShadow="{AppThemeBinding Light=false, Dark=true}"
+                       BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
+                           BorderColor="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=#8D8D8D}"
+                           Padding="0,0,0,80">
+                        <StackLayout Padding="20,10,0,10">
+                            <CollectionView ItemsSource="{Binding Areas}"
+                                            SelectedItem="{Binding SelectedArea}"
+                                            IsVisible="True"
+                                            HeightRequest="60"
+                                            SelectionChanged="CollectionView_SelectionChanged"
+                                            SelectionMode="Single">
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                                </CollectionView.ItemsLayout>
+
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame BorderColor="{x:StaticResource MainColor}"
+                                                       BackgroundColor="{AppThemeBinding Dark=#8D8D8D, Light=White}"
+                                                       x:Name="Frame"
+                                               HasShadow="False"
+                                                       Padding="10"
+                                                       CornerRadius="10">
+                                            <StackLayout VerticalOptions="Start"
+                                                       Spacing="0">
+                                                <Label Text="{Binding Name}"
+                                                               TextColor="{Binding Source={x:Reference Frame}, Path=BorderColor}"
+                                                               FontAttributes="Bold"
+                                                               FontSize="16"/>
+                                            </StackLayout>
+
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="CommonStates">
+                                                    <VisualState x:Name="Normal">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BorderColor" Value="{AppThemeBinding Light=#8D8D8D, Dark=White}"/>
+                                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                    <VisualState x:Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BorderColor" Value="{x:StaticResource MainColor}"/>
+                                                            <Setter Property="BackgroundColor" Value="White"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                            <CollectionView ItemsSource="{Binding Streets}"
+                                            SelectionChanged="StreetCollectionSelectionChanged"
+                                            SelectedItem="{Binding SelectedStreet}"
+                                            IsVisible="True"
+                                            HeightRequest="60"
+                                            x:Name="StreetsCollection"
+                                            SelectionMode="Single">
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                                </CollectionView.ItemsLayout>
+
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame BorderColor="{x:StaticResource MainColor}"
+                                                       BackgroundColor="{AppThemeBinding Dark=#8D8D8D, Light=White}"
+                                                       x:Name="Frame"
+                                               HasShadow="False"
+                                                       Padding="10"
+                                                       CornerRadius="5">
+                                            <StackLayout VerticalOptions="Start"
+                                                       Spacing="0">
+                                                <Label Text="{Binding Address}"
+                                                               TextColor="{Binding Source={x:Reference Frame}, Path=BorderColor}"
+                                                               FontAttributes="Bold"
+                                                               FontSize="16"/>
+                                            </StackLayout>
+
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="CommonStates">
+                                                    <VisualState x:Name="Normal">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BorderColor" Value="{AppThemeBinding Light=#8D8D8D, Dark=White}"/>
+                                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                    <VisualState x:Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BorderColor" Value="{x:StaticResource MainColor}"/>
+                                                            <Setter Property="BackgroundColor" Value="White"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout IsVisible="True"
                     VerticalOptions="FillAndExpand">
                     <Frame CornerRadius="40"
+                           IsVisible="False"
                        Margin="20, 10, 20, -70"
                        HasShadow="{AppThemeBinding Light=false, Dark=true}"
                        VerticalOptions="Start"
@@ -174,12 +282,13 @@
                     </Frame>
 
                 </StackLayout>
-                <StackLayout>
-                    <ScrollView 
+                <StackLayout Margin="0,-90,0,0">
+                    <Grid>
+                        <ScrollView 
                             Orientation="Vertical">
-                        <StackLayout Spacing="0">
-                            <StackLayout x:Name="LayoutContent" Spacing="0" />
-                            <customRenderers:MaterialFrame
+                            <StackLayout Spacing="0">
+                                <StackLayout x:Name="LayoutContent" Spacing="0" />
+                                <customRenderers:MaterialFrame
                             Elevation="{AppThemeBinding Light=0, Dark=20}"
                             HasShadow="{AppThemeBinding Light=false, Dark=true}"
                             x:Name="MaterialFrameNotDoingContainer"
@@ -188,24 +297,24 @@
                             CornerRadius="35"
                             BackgroundColor="White"
                             Padding="0,0,0,25">
-                                <StackLayout Spacing="0">
-                                    <customRenderers:MaterialFrame
-                                    Elevation="{AppThemeBinding Light=0, Dark=20}"
-                                    CornerRadius="35"
+                                    <StackLayout Spacing="0">
+                                        <customRenderers:MaterialFrame
+                                            Elevation="{AppThemeBinding Light=0, Dark=20}"
                                     HasShadow="{AppThemeBinding Light=false, Dark=true}"
+                                    CornerRadius="35"
                                     x:Name="MaterialFrameNotDoing"
                                     BackgroundColor="White"
                                     Padding="0, 25, 0, 25">
-                                        <StackLayout
+                                            <StackLayout
                                         Orientation="Horizontal">
-                                            <svg:SvgCachedImage
+                                                <svg:SvgCachedImage
                                             Source="resource://xamarinJKH.Resources.ic_dislike.svg"
                                             ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}}"
                                             HeightRequest="30"
                                             Margin="15, 0, 0, 0"
                                             HorizontalOptions="Start"
                                             VerticalOptions="Center" />
-                                            <Label
+                                                <Label
                                             x:Name="LabelNotDoingCount"
                                             Text="Невыполненные заявки: 440"
                                             FontSize="15"
@@ -214,7 +323,7 @@
                                             Margin="15, 0, 0, 0"
                                             HorizontalOptions="FillAndExpand"
                                             VerticalOptions="Center" />
-                                            <xamarinJkh:IconView
+                                                <xamarinJkh:IconView
                                                 x:Name="IconViewArrow"
                                                 Source="ic_arrow_down_monitor"
                                                 HeightRequest="25"
@@ -223,14 +332,22 @@
                                                 Margin="0,0,15,0"
                                                 HorizontalOptions="End"
                                                 VerticalOptions="Center" />
-                                        </StackLayout>
-                                    </customRenderers:MaterialFrame>
-                                    <StackLayout x:Name="LayoutGrid" Margin="20,15,20,0" />
-                                </StackLayout>
-                            </customRenderers:MaterialFrame>
+                                            </StackLayout>
+                                        </customRenderers:MaterialFrame>
+                                        <StackLayout x:Name="LayoutGrid" Margin="20,15,20,0" />
+                                    </StackLayout>
+                                </customRenderers:MaterialFrame>
 
-                        </StackLayout>
-                    </ScrollView>
+                            </StackLayout>
+                        </ScrollView>
+
+                        <ActivityIndicator Color="{x:StaticResource MainColor}"
+                                           Margin="120"
+                                           IsRunning="{Binding IsBusy}"
+                                           IsEnabled="{Binding IsBusy}"
+                                           IsVisible="{Binding IsBusy}"/>
+                    </Grid>
+                    
                 </StackLayout>
                 
 

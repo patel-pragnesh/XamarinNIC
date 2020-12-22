@@ -335,6 +335,9 @@ namespace xamarinJKH.Counters
         {
             var entry = sender as Entry;
 
+            if (e.NewTextValue == null)
+                return;
+
             if (e.NewTextValue == "," || e.NewTextValue == ".")
             {
                 entry.TextChanged -= Data_TextChanged; 
@@ -342,8 +345,8 @@ namespace xamarinJKH.Counters
                 entry.Text = e.OldTextValue;
                 entry.TextChanged += Data_TextChanged;
                 return;
-            }
-            
+            }            
+
             if (e.NewTextValue.Count(_=>_==',')>1 || e.NewTextValue.Count(_ => _ == '.') > 1)
             {
                 

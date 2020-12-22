@@ -33,7 +33,7 @@
                    Margin="5, 0, 0, 0"
                    TextColor="{x:DynamicResource MainColor}"
                    FontAttributes="Bold"
-                   HorizontalOptions="StartAndExpand" />
+                   HorizontalOptions="StartAndExpand" WidthRequest="250" />
             <xamarinJkh:IconView x:Name="IconViewClose"
                                  Source="ic_close"
                                  HeightRequest="15"
