@@ -618,7 +618,7 @@ namespace xamarinJKH.Main
             frame.Content = container;
 
             ext(mInfo, mInfo.Values, mInfo.NumberOfDecimalPlaces, mInfo.ID, mInfo.IsDisabled, mInfo.Resource, mInfo.Address,
-             mInfo.CustomName, mInfo.FactoryNumber, mInfo.UniqueNum, mInfo.Units, mInfo.LastCheckupDate, mInfo.RecheckInterval.ToString(),mInfo.Tariff1Name, mInfo.Tariff2Name, mInfo.Tariff3Name);
+             mInfo.CustomName, mInfo.FactoryNumber, mInfo.UniqueNum, mInfo.Units, mInfo.NextCheckupDate, mInfo.RecheckInterval.ToString(),mInfo.Tariff1Name, mInfo.Tariff2Name, mInfo.Tariff3Name);
 
            Children.Add(frame);
         }

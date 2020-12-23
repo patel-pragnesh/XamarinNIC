@@ -196,6 +196,8 @@ namespace xamarinJKH.Pays
                 }
                 else
                 {
+                    await Navigation.PopToRootAsync();
+
                     await DisplayAlert(AppResources.AlertSuccess, result.message, "OK");
                     if (rate)
                     {
@@ -205,7 +207,6 @@ namespace xamarinJKH.Pays
                     {
                         await GetCodePay();
                     }
-                    await Navigation.PopToRootAsync();
                 }
             });
         }

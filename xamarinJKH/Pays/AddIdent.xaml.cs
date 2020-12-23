@@ -141,13 +141,13 @@ namespace xamarinJKH.Pays
             Frame.SetAppThemeColor(Xamarin.Forms.Frame.BorderColorProperty, hexColor, Color.White);
         }
 
-        async void AddIdentToList(string ident)
+        async void AddIdentToList(AccountInfo ident)
         {
             string login = Preferences.Get("login", "");
             string pass = Preferences.Get("pass", "");
             LoginResult person = await _server.Login(login, pass);
             Settings.Person = person;
-            MessagingCenter.Send<Object, string>(this, "AddIdent", ident);
+            MessagingCenter.Send<Object, AccountInfo>(this, "AddIdent", ident);
 
             MessagingCenter.Send<Object>(this, "UpdateCounters");
             MessagingCenter.Send<Object>(this, "AutoUpdate");
@@ -258,7 +258,7 @@ namespace xamarinJKH.Pays
                     }
                     try
                     {
-                        AddIdentToList(ident);
+                        AddIdentToList(Settings.Person.Accounts.Where(x => x.Ident == ident).FirstOrDefault());
                         _ = await Navigation.PopAsync();
                     }
                     catch { }
