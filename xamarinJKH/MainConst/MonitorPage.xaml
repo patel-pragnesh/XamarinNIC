@@ -103,7 +103,6 @@
                                                 <Label Text="{Binding Name}"
                                                                TextColor="{Binding Source={x:Reference Frame}, Path=BorderColor}"
                                                                VerticalTextAlignment="Center"
-                                                       HorizontalTextAlignemt="Center"
                                                                FontAttributes="Bold"
                                                                FontSize="16"/>
                                             </StackLayout>

@@ -122,6 +122,7 @@ namespace xamarinJKH.Main
                         {
                             Accounts.Clear();
                             var idents = _meterInfo.Select(x => x.Ident);
+                            Accounts.Add(new AccountInfo { Ident = AppResources.All });
                             foreach (var account in Settings.Person.Accounts)
                             {
                                 if (idents.Contains(account.Ident))
@@ -129,6 +130,7 @@ namespace xamarinJKH.Main
                                     Accounts.Add(account);
                                 }
                             }
+
                             SelectedAccount = Accounts[0];
                             addIdentLbl.IsVisible = false;
                         });
@@ -348,11 +350,15 @@ namespace xamarinJKH.Main
                     Accounts.Remove(ident);
                 });
             });
-            
-            foreach (var account in Settings.Person.Accounts)
+            Device.BeginInvokeOnMainThread(() =>
             {
-                Device.BeginInvokeOnMainThread(() => Accounts.Add(account));
-            }
+                Accounts.Add(new AccountInfo() { Ident = AppResources.All });
+                foreach (var account in Settings.Person.Accounts)
+                {
+                    Accounts.Add(account);
+                }
+            });
+            
             Picker.ItemsSource = Accounts;
         }
 
@@ -591,12 +597,23 @@ namespace xamarinJKH.Main
         protected async void OnIdentChanged(object sender, SelectionChangedEventArgs args)
         {
             var selected = args.CurrentSelection[0] as AccountInfo;
+            //(sender as CollectionView).UpdateSelectedItems(new List<Object> { selected });
             await Task.Delay(TimeSpan.FromMilliseconds(100));
             Device.BeginInvokeOnMainThread(() =>
             {
                 try
-                {
+                { 
+                    foreach (var acc in Accounts)
+                    {
+                        acc.Selected = false;
+                    }
+                    selected.Selected = true;
                     var newmeters = _meterInfoAll.Where(x => x.Ident == selected.Ident).ToList();
+
+                    if (selected.Ident == AppResources.All)
+                    {
+                        newmeters = _meterInfoAll;
+                    }
 
                     baseForCounters.Children.Clear();
 
@@ -700,13 +717,21 @@ namespace xamarinJKH.Main
                     _meterInfoAll = info.Data;
                     this.BindingContext = this;
                     var idents = _meterInfoAll.Select(x => x.Ident);
-                    foreach (var account in Accounts)
+                    Device.BeginInvokeOnMainThread(() =>
                     {
-                        if (!idents.Contains(account.Ident))
+                        foreach (var account in Accounts)
                         {
-                            Device.BeginInvokeOnMainThread(() => Accounts.Remove(account));
+                            if (!idents.Contains(account.Ident) && account.Ident != AppResources.All)
+                            {
+                                Device.BeginInvokeOnMainThread(() =>
+                                {
+                                    Accounts.Remove(account);
+                                });
+                            }
                         }
-                    }
+                        Accounts.Insert(0, new AccountInfo { Ident = AppResources.All });
+                    });
+                    
 
                     if (_meterInfo != null && _meterInfo.Count > 0)
                     {
@@ -730,7 +755,11 @@ namespace xamarinJKH.Main
                         //}
 
                         Picker.ItemsSource = Accounts;
-                        Device.BeginInvokeOnMainThread(() => SelectedAccount = Accounts[0]);
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            SelectedAccount = Accounts[0];
+                            Accounts[0].IsFirst = true;
+                        });
                         //Picker.SelectedIndex = 0;
                     }
                 }
@@ -800,27 +829,42 @@ namespace xamarinJKH.Main
         StackLayout lastElementSelected2;
         private void FrameIdentGR_Tapped(object sender, EventArgs e)
         {
-            if (lastElementSelected2 != null)
-            {
-                VisualStateManager.GoToState(lastElementSelected2.Children[0], "Normal");
-            }
-
-            var el = sender as StackLayout;
-
-            VisualStateManager.GoToState(el.Children[0], "Selected");
-
-            var om = el.BindingContext as AccountInfo;
+            
             //var vm = (BindingContext as CountersPage);
 
             try
             {
-                var newmeters = _meterInfoAll.Where(x => x.Ident == om.Ident).ToList();
+                if (lastElementSelected2 != null)
+                {
+                    VisualStateManager.GoToState(lastElementSelected2.Children[0], "Normal");
+                }
 
+                var el = sender as StackLayout;
+
+                VisualStateManager.GoToState(el.Children[0], "Selected");
+
+                foreach (var account in Accounts)
+                {
+                    account.Selected = false;
+                }
+
+                var om = el.BindingContext as AccountInfo;
+                om.Selected = true;
+                var newmeters = _meterInfoAll.Where(x => x.Ident == om.Ident).ToList();
+                if (om.Ident == AppResources.All)
+                {
+                    newmeters = _meterInfoAll;
+                }
                 baseForCounters.Children.Clear();
 
-                foreach (var meter in newmeters)
+                foreach (var mi in newmeters)
                 {
-                    baseForCounters.Children.Add(new MetersThreeCell(meter));
+                    var mtc = new MetersThreeCell(mi);
+                    TapGestureRecognizer tap = new TapGestureRecognizer();
+                    tap.Tapped += Tap_Tapped;
+                    mtc.GestureRecognizers.Add(tap);
+
+                    baseForCounters.Children.Add(mtc);
                 }
             }
             catch { }

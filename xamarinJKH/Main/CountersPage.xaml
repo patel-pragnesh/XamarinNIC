@@ -6,8 +6,15 @@
              xmlns:main="clr-namespace:xamarinJKH.Main;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:converters="clr-namespace:xamarinJKH.Converters"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Main.CountersPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:AccountSelectedBorderConverter x:Key="Border"/>
+            <converters:AccountSelectedBackgroundConverter x:Key="Background"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <Grid>
@@ -106,8 +113,8 @@
                                              HorizontalOptions="CenterAndExpand">
                                         <CollectionView 
                                         x:Name="Picker"
-                                        Margin="0,0,0,10"
-                                            HeightRequest="60"
+                                        Margin="0,0,0,15"
+                                            HeightRequest="62"
                                         SelectedItem="{Binding SelectedAccount}"
                                         VerticalOptions="FillAndExpand"
                                         SelectionChanged="OnIdentChanged"
@@ -119,25 +126,25 @@
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackLayout Padding="2" VerticalOptions="FillAndExpand">
-                                                    <StackLayout.GestureRecognizers>
-                                                        <TapGestureRecognizer x:Name="FrameIdentGR2" Tapped="FrameIdentGR_Tapped" ></TapGestureRecognizer>
-                                                    </StackLayout.GestureRecognizers>
-                                                    <VisualStateManager.VisualStateGroups>
+                                                        <StackLayout.GestureRecognizers>
+                                                            <TapGestureRecognizer x:Name="FrameIdentGR2" Tapped="FrameIdentGR_Tapped" ></TapGestureRecognizer>
+                                                        </StackLayout.GestureRecognizers>
+                                                        <VisualStateManager.VisualStateGroups>
                                                         <VisualStateGroup x:Name="CommonStates">
                                                             <VisualState x:Name="Normal">
                                                                 <VisualState.Setters>
-                                                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
+                                                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#494949}"/>
                                                                 </VisualState.Setters>
                                                             </VisualState>
                                                             <VisualState x:Name="Selected">
-                                                                <VisualState.Setters>
-                                                                    <Setter Property="BackgroundColor" Value="White"/>
-                                                                </VisualState.Setters>
-                                                            </VisualState>
+                                                                    <VisualState.Setters>
+                                                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#494949}"/>
+                                                                    </VisualState.Setters>
+                                                                </VisualState>
                                                         </VisualStateGroup>
                                                     </VisualStateManager.VisualStateGroups>
-                                                    <Frame BorderColor="{x:StaticResource MainColor}"
-                                                       BackgroundColor="{AppThemeBinding Dark=#8D8D8D, Light=White}"
+                                                    <Frame BorderColor="{Binding Selected, Converter={x:StaticResource Border}}"
+                                                       BackgroundColor="{Binding Selected, Converter={x:StaticResource Background}}"
                                                        x:Name="Frame"
                                                HasShadow="False"
                                                        Padding="10"
@@ -154,7 +161,7 @@
                                                                FontSize="14"/>
                                                         </StackLayout>
 
-                                                        <VisualStateManager.VisualStateGroups>
+                                                        <!--<VisualStateManager.VisualStateGroups>
                                                             <VisualStateGroup x:Name="CommonStates">
                                                                 <VisualState x:Name="Normal">
                                                                     <VisualState.Setters>
@@ -170,7 +177,7 @@
                                                                     </VisualState.Setters>
                                                                 </VisualState>
                                                             </VisualStateGroup>
-                                                        </VisualStateManager.VisualStateGroups>
+                                                        </VisualStateManager.VisualStateGroups>-->
                                                     </Frame>
                                                 </StackLayout>
                                                 
