@@ -1716,4 +1716,7 @@ A bot will call you on your number PHONE and tell an access code</value>
   <data name="PersonalPolicity" xml:space="preserve">
     <value>Personal data processing policy</value>
   </data>
+  <data name="NoMetersIdent" xml:space="preserve">
+    <value>Connected accounts don't have meters</value>
+  </data>
 </root>

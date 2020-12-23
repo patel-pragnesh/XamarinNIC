@@ -113,7 +113,13 @@ namespace xamarinJKH.Main
                         {
                             Accounts.Clear();
                             addIdentLbl.IsVisible = true;
+                            addIdentLbl.Text = AppResources.NoAccounts;
                         });
+
+                        if (Settings.Person.Accounts.Count > 0)
+                        {
+                            Device.BeginInvokeOnMainThread(() => addIdentLbl.Text = AppResources.NoMetersIdent);
+                        }
                     }
                     else
                     {
@@ -709,6 +715,10 @@ namespace xamarinJKH.Main
             {
                 if (info.Data.Count == 0)
                 {
+                    if (Accounts.Count > 0)
+                    {
+                        Device.BeginInvokeOnMainThread(() => addIdentLbl.Text = AppResources.NoMetersIdent);
+                    }
                     Accounts.Clear();
                 }
                 if (info.Data.Count > 0)
