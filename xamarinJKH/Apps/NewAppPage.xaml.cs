@@ -58,7 +58,7 @@ namespace xamarinJKH.Apps
         {
             InitializeComponent();
             Analytics.TrackEvent("Создание заявки");
-
+            
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
@@ -151,7 +151,7 @@ _appModel = new AddAppModel()
                 Files = files
             };
 #endif
-
+            
 
             BindingContext = _appModel;
             ListViewFiles.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
@@ -168,6 +168,9 @@ _appModel = new AddAppModel()
             
         }
 
+        
+
+        
         private void SearchBar_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             PassTypesList.IsVisible = true;
@@ -1051,9 +1054,43 @@ _appModel = new AddAppModel()
             TSBrandList.IsVisible = true;
         }
 
-        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        StackLayout lastElementSelected;
+        
 
+        private void FrameIdentGR_Tapped_1(object sender, EventArgs e)
+        {
+            if (lastElementSelected != null)
+            {
+                VisualStateManager.GoToState(lastElementSelected.Children[0], "Normal");
+            }
+
+            var el = sender as StackLayout;
+
+            VisualStateManager.GoToState(el.Children[0], "Selected");          
+            
+            var acc = el.BindingContext as AccountInfo;
+            var vm = (BindingContext as AddAppModel);
+            vm.SelectedAccount = acc;
+            lastElementSelected = (StackLayout)sender;
+        }
+
+
+        StackLayout lastElementSelected2;
+        private void FrameIdentGR_Tapped(object sender, EventArgs e)
+        {
+            if (lastElementSelected2 != null)
+            {
+                VisualStateManager.GoToState(lastElementSelected2.Children[0], "Normal");
+            }
+
+            var el = sender as StackLayout;
+
+            VisualStateManager.GoToState(el.Children[0], "Selected");
+
+            var om = el.BindingContext as OptionModel;
+            var vm = (BindingContext as AddAppModel);
+            vm.SelectedTyp = om;
+            lastElementSelected2 = (StackLayout)sender;
         }
     }
 }
