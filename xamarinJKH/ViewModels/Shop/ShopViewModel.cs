@@ -279,7 +279,8 @@ namespace xamarinJKH.ViewModels.Shop
                 {
                     good.IsLast = false;
                 }
-                ChosenGoods.Last().IsLast = true;
+                if(ChosenGoods!=null && ChosenGoods.Count >0)
+                    ChosenGoods.Last().IsLast = true;
                 if (this.TotalPrice > 0)
                     await Navigation.PushAsync(new BasketPageNew(this));
                 else
