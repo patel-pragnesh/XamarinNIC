@@ -135,7 +135,7 @@
                                 </StackLayout>
                                 <StackLayout
                             Spacing="0"
-                            Margin="5, 5, 5, 5"
+                            Margin="10, 5, 10, 5"
                             HorizontalOptions="FillAndExpand"
                             IsVisible="{Binding Ident}"
                             Orientation="Horizontal">
@@ -178,7 +178,7 @@
                                 </StackLayout>
                                 <StackLayout
                             Spacing="0"
-                            Margin="5, 5, 5, 5"
+                            Margin="10, 5, 10, 5"
                             HorizontalOptions="FillAndExpand"
                             IsVisible="{Binding Ident, Converter={x:StaticResource Invert}}"
                             Orientation="Horizontal">
@@ -210,7 +210,7 @@
                                     </StackLayout.GestureRecognizers>
                                 </StackLayout>
                                 <StackLayout
-                            Margin="5, 5, 5, 5"
+                            Margin="10, 5, 10, 5"
                             Spacing="0"
                             HorizontalOptions="FillAndExpand"
                             Orientation="Horizontal">
@@ -282,12 +282,13 @@
                                BackgroundColor="White"
                                HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                BorderColor="{Binding hex}"
-                               Margin="5, 10, 5, 0"
+                               Margin="10, 10, 10, 0"
                                Padding="10,10,10,10">
                             <xamarinJkh:BordlessEditor x:Name="EntryMess"
                                                        FontSize="18"
                                                        VerticalOptions="FillAndExpand"
                                                        Text=""
+                                                       HeightRequest="60"
                                                        WidthRequest="100"
                                                        AutoSize="TextChanges"
                                                        Placeholder="{x:Static xamarinJkh:AppResources.NewAppDescription}"
@@ -364,7 +365,7 @@
                         <Frame CornerRadius="15"
                                HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                BackgroundColor="{Binding hex}"
-                               Margin="20, 10, 20, 20"
+                               Margin="10, 10, 10, 20"
                                x:Name="FrameBtnAdd"
                                Padding="0">
                             <Button x:Name="BtnAdd"
