@@ -796,5 +796,37 @@ namespace xamarinJKH.Main
             await RefreshCountersData();
             IsRefreshing = false;
         }
+
+        StackLayout lastElementSelected2;
+        private void FrameIdentGR_Tapped(object sender, EventArgs e)
+        {
+            if (lastElementSelected2 != null)
+            {
+                VisualStateManager.GoToState(lastElementSelected2.Children[0], "Normal");
+            }
+
+            var el = sender as StackLayout;
+
+            VisualStateManager.GoToState(el.Children[0], "Selected");
+
+            var om = el.BindingContext as AccountInfo;
+            //var vm = (BindingContext as CountersPage);
+
+            try
+            {
+                var newmeters = _meterInfoAll.Where(x => x.Ident == om.Ident).ToList();
+
+                baseForCounters.Children.Clear();
+
+                foreach (var meter in newmeters)
+                {
+                    baseForCounters.Children.Add(new MetersThreeCell(meter));
+                }
+            }
+            catch { }
+
+            //vm.SelectedTyp = om;
+            lastElementSelected2 = (StackLayout)sender;
+        }
     }
 }

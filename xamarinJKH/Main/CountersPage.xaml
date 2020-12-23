@@ -116,8 +116,26 @@
                                                 <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
                                             </CollectionView.ItemsLayout>
 
-                                            <CollectionView.ItemTemplate>
-                                                <DataTemplate>
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout Padding="2" VerticalOptions="FillAndExpand">
+                                                    <StackLayout.GestureRecognizers>
+                                                        <TapGestureRecognizer x:Name="FrameIdentGR2" Tapped="FrameIdentGR_Tapped" ></TapGestureRecognizer>
+                                                    </StackLayout.GestureRecognizers>
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="CommonStates">
+                                                            <VisualState x:Name="Normal">
+                                                                <VisualState.Setters>
+                                                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
+                                                                </VisualState.Setters>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Selected">
+                                                                <VisualState.Setters>
+                                                                    <Setter Property="BackgroundColor" Value="White"/>
+                                                                </VisualState.Setters>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
                                                     <Frame BorderColor="{x:StaticResource MainColor}"
                                                        BackgroundColor="{AppThemeBinding Dark=#8D8D8D, Light=White}"
                                                        x:Name="Frame"
@@ -154,10 +172,12 @@
                                                             </VisualStateGroup>
                                                         </VisualStateManager.VisualStateGroups>
                                                     </Frame>
-                                                </DataTemplate>
-                                            </CollectionView.ItemTemplate>
-                                        </CollectionView>
-                                        <!--<Label
+                                                </StackLayout>
+                                                
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                    <!--<Label
                                         Text="{x:Static xamarinJkh:AppResources.Ident}"
                                         HeightRequest="20"
                                         FontAttributes="Bold"

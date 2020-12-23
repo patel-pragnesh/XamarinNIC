@@ -335,9 +335,21 @@ namespace xamarinJKH.Droid.CustomReader
                             if (editTextText.Contains(","))
                             {
                                 var numbers = editTextText.Split(',', '.');
-                                if (numbers[1].Length == this.entryWithCustomKeyboard.DecimalPoint)
+                                int commaIndex = editTextText.IndexOf(",", StringComparison.Ordinal);
+                                int cursorIndex = EditText.SelectionStart;
+                                if (commaIndex < cursorIndex)
                                 {
-                                    return;
+                                    if (numbers[1].Length == this.entryWithCustomKeyboard.DecimalPoint)
+                                    {
+                                        return;
+                                    }
+                                }
+                                else
+                                {
+                                    if (numbers[0].Length == this.entryWithCustomKeyboard.IntegerPoint)
+                                    {
+                                        return;
+                                    }
                                 }
                             }
                         }
