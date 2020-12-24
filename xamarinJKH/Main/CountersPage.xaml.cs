@@ -109,33 +109,37 @@ namespace xamarinJKH.Main
 
                     if (info.Data.Count == 0)
                     {
-                        Device.BeginInvokeOnMainThread(() =>
+                        if  (Accounts.Count > 0)
                         {
-                            Accounts.Clear();
-                            addIdentLbl.IsVisible = true;
-                            addIdentLbl.Text = AppResources.NoAccounts;
-                        });
-                        baseForCounters.Children.Clear();
-
-                        if (Settings.Person.Accounts.Count > 0)
-                        {
-                            Device.BeginInvokeOnMainThread(() => addIdentLbl.Text = AppResources.NoMetersIdent);
+                            baseForCounters.Children.Clear();
+                            baseForCounters.Children.Add(new Label
+                            {
+                                VerticalTextAlignment = TextAlignment.Center,
+                                HorizontalTextAlignment = TextAlignment.Center,
+                                FontSize = 18,
+                                Text = AppResources.NoMetersIdent,
+                                VerticalOptions = LayoutOptions.FillAndExpand,
+                                HorizontalOptions = LayoutOptions.FillAndExpand,
+                                HeightRequest = 400
+                            });
                         }
+                        
                     }
                     else
                     {
                         
-                        Device.BeginInvokeOnMainThread(() =>
+                        Device.BeginInvokeOnMainThread(async () =>
                         {
-                            var idents = _meterInfo.Select(x => x.Ident);
-                            foreach (var account in Settings.Person.Accounts)
-                            {
+                            await Task.Delay(TimeSpan.FromMilliseconds(100));
+                            //var idents = _meterInfo.Select(x => x.Ident);
+                            //foreach (var account in Settings.Person.Accounts)
+                            //{
                                 
-                                if (idents.Contains(account.Ident) && !Accounts.Contains(Accounts.FirstOrDefault(x => x.Ident == account.Ident)))
-                                {
-                                    Accounts.Add(account);
-                                }
-                            }
+                            //    if (!Accounts.Contains(Accounts.FirstOrDefault(x => x.Ident == account.Ident)))
+                            //    {
+                            //        Accounts.Add(account);
+                            //    }
+                            //}
                             //var all = Accounts.Where(x => x.Ident == AppResources.All).ToList();
                             //if (all.Count > 1)
                             //{
@@ -149,12 +153,22 @@ namespace xamarinJKH.Main
                             if (SelectedAccount == null)
                             {
                                 //Accounts.Insert(0, new AccountInfo() { Ident = AppResources.All, Selected = true });
+                                if (Accounts.Count > 0)
                                 SelectedAccount = Accounts[0];
 
                             }
                             else if (SelectedAccount.Ident == AppResources.All)
                                 SelectedAccount = Accounts[0];
-                            addIdentLbl.IsVisible = false;
+                            else if (!Accounts.Contains(SelectedAccount))
+                            {
+                                SelectedAccount = Accounts[0];
+                                foreach (var account in Accounts)
+                                {
+                                    account.Selected = false;
+                                }
+                                SelectedAccount.Selected = true;
+                            }
+                            //addIdentLbl.IsVisible = false;
 
                             List<MeterInfo> meters_ = new List<MeterInfo>();
                             if (SelectedAccount != null && SelectedAccount.Ident != AppResources.All)
@@ -162,6 +176,20 @@ namespace xamarinJKH.Main
                             else
                                 meters_ = _meterInfo;
                             baseForCounters.Children.Clear();
+
+                            if (meters_.Count == 0 && Accounts.Count > 0)
+                            {
+                                baseForCounters.Children.Add(new Label
+                                {
+                                    VerticalTextAlignment = TextAlignment.Center,
+                                    HorizontalTextAlignment = TextAlignment.Center,
+                                    FontSize = 18,
+                                    Text = AppResources.NoMetersIdent,
+                                    VerticalOptions = LayoutOptions.FillAndExpand,
+                                    HorizontalOptions = LayoutOptions.FillAndExpand,
+                                    HeightRequest = 400
+                                });
+                            }
 
                             foreach (var mi in meters_)
                             {
@@ -359,38 +387,62 @@ namespace xamarinJKH.Main
             MessagingCenter.Subscribe<Object>(this, "ChangeThemeCounter", (sender) => ChangeTheme.Execute(null));
             //MessagingCenter.Subscribe<Object>(this, "UpdateCounters", (sender) => RefreshCommand.Execute(null));
             MessagingCenter.Subscribe<Object>(this, "UpdateCounters", async (sender) => await RefreshCountersData());
-            MessagingCenter.Subscribe<Object, AccountInfo>(this, "AddIdent", (sender, ident) =>
+            MessagingCenter.Subscribe<Object, AccountInfo>(this, "AddIdent", async (sender, ident) =>
             {
-                Device.BeginInvokeOnMainThread(() =>
+                await Task.Delay(TimeSpan.FromMilliseconds(500));
+                if (ident != null)
                 {
-                    if (ident != null)
-                        if (!string.IsNullOrEmpty(ident.Address))
-                            Accounts.Add(ident);
-                    var all = Accounts.FirstOrDefault(x => x.Ident == AppResources.All);
-                    if (all == null)
-                    {
-                        Accounts.Insert(0, new AccountInfo { Ident = AppResources.All, Selected = true });
-                    }
+                    var contain = Accounts.FirstOrDefault(x => x.Ident == ident.Ident);
+                    if (contain == null)
+                        Device.BeginInvokeOnMainThread(() => Accounts.Add(ident));
+
+                }
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    //
+                    
+                    //OnPropertyChanged("Accounts");
+                    //var all = Accounts.FirstOrDefault(x => x.Ident == AppResources.All);
+                    //if (all == null)
+                    //{
+                    //    Accounts.Insert(0, new AccountInfo { Ident = AppResources.All, Selected = true });
+                    //}
+                    //Accounts.Clear();
+                    //Accounts.Add(new AccountInfo { Ident = AppResources.All, Selected = true });
+                    //foreach (var account in Settings.Person.Accounts)
+                    //{
+                    //    Accounts.Add(account);
+                    //}
+                    //await RefreshCountersData();
                 });
                 
             });
-            MessagingCenter.Subscribe<Object, AccountInfo>(this, "RemoveIdent", (sender, ident) =>
+            MessagingCenter.Subscribe<Object, AccountInfo>(this, "RemoveIdent", async (sender, ident) =>
             {
+                await Task.Delay(TimeSpan.FromMilliseconds(500));
+                Device.BeginInvokeOnMainThread(() => 
+                {
+                    if (SelectedAccount.Ident == ident.Ident)
+                        SelectedAccount = null;
+                    Accounts.Remove(Accounts.First(x => x.Ident == ident.Ident));
+                });
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    Accounts.Remove(ident);
-                    var all = Accounts.FirstOrDefault(x => x.Ident == AppResources.All);
-                    if (all == null)
-                    {
-                        Accounts.Insert(0, new AccountInfo { Ident = AppResources.All, Selected = true });
-                    }
+                    
+                    
                     //await RefreshCountersData();
+                    //Accounts.Clear();
+                    //Accounts.Add(new AccountInfo { Ident = AppResources.All, Selected = true });
+                    //foreach (var account in Settings.Person.Accounts)
+                    //{
+                    //    Accounts.Add(account);
+                    //}
                 });
             });
             Device.BeginInvokeOnMainThread(() =>
             {
                 var all = Accounts.FirstOrDefault(x => x.Ident == AppResources.All);
-                if (all == null)
+                if (all == null && Settings.Person.Accounts.Count > 0)
                 {
                     Accounts.Insert(0, new AccountInfo { Ident = AppResources.All, Selected = true });
                 }
@@ -637,39 +689,58 @@ namespace xamarinJKH.Main
 
         protected async void OnIdentChanged(object sender, SelectionChangedEventArgs args)
         {
-            var selected = args.CurrentSelection[0] as AccountInfo;
-            //(sender as CollectionView).UpdateSelectedItems(new List<Object> { selected });
-            await Task.Delay(TimeSpan.FromMilliseconds(100));
-            Device.BeginInvokeOnMainThread(() =>
+            try
             {
-                try
-                { 
-                    foreach (var acc in Accounts)
+                var selected = args.CurrentSelection[0] as AccountInfo;
+                //(sender as CollectionView).UpdateSelectedItems(new List<Object> { selected });
+                await Task.Delay(TimeSpan.FromMilliseconds(100));
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    try
                     {
-                        acc.Selected = false;
+                        foreach (var acc in Accounts)
+                        {
+                            acc.Selected = false;
+                        }
+                        selected.Selected = true;
+                        var newmeters = _meterInfoAll.Where(x => x.Ident == selected.Ident).ToList();
+
+                        if (selected.Ident == AppResources.All)
+                        {
+                            newmeters = _meterInfoAll;
+                        }
+
+                        baseForCounters.Children.Clear();
+
+                        if (newmeters.Count == 0 && Accounts.Count > 0)
+                        {
+                            baseForCounters.Children.Add(new Label
+                            {
+                                VerticalTextAlignment = TextAlignment.Center,
+                                HorizontalTextAlignment = TextAlignment.Center,
+                                FontSize = 18,
+                                Text = AppResources.NoMetersIdent,
+                                VerticalOptions = LayoutOptions.FillAndExpand,
+                                HorizontalOptions = LayoutOptions.FillAndExpand,
+                                HeightRequest = 400
+                            });
+                        }
+
+                        foreach (var mi in newmeters)
+                        {
+                            var mtc = new MetersThreeCell(mi);
+                            TapGestureRecognizer tap = new TapGestureRecognizer();
+                            tap.Tapped += Tap_Tapped;
+                            mtc.GestureRecognizers.Add(tap);
+
+                            baseForCounters.Children.Add(mtc);
+                        }
                     }
-                    selected.Selected = true;
-                    var newmeters = _meterInfoAll.Where(x => x.Ident == selected.Ident).ToList();
-
-                    if (selected.Ident == AppResources.All)
-                    {
-                        newmeters = _meterInfoAll;
-                    }
-
-                    baseForCounters.Children.Clear();
-
-                    foreach (var mi in newmeters)
-                    {
-                        var mtc = new MetersThreeCell(mi);
-                        TapGestureRecognizer tap = new TapGestureRecognizer();
-                        tap.Tapped += Tap_Tapped;
-                        mtc.GestureRecognizers.Add(tap);
-
-                        baseForCounters.Children.Add(mtc);
-                    }
-                }
-                catch { }
-            });
+                    catch { }
+                });
+            }
+            catch { }
+            
             
         }
 
@@ -752,9 +823,27 @@ namespace xamarinJKH.Main
                 {
                     if (Accounts.Count > 0)
                     {
-                        Device.BeginInvokeOnMainThread(() => addIdentLbl.Text = AppResources.NoMetersIdent);
+                        baseForCounters.Children.Clear();
+
+                        baseForCounters.Children.Add(new Label
+                        {
+                            VerticalTextAlignment = TextAlignment.Center,
+                            HorizontalTextAlignment = TextAlignment.Center,
+                            FontSize = 18,
+                            Text = AppResources.NoMetersIdent,
+                            VerticalOptions = LayoutOptions.FillAndExpand,
+                            HorizontalOptions = LayoutOptions.FillAndExpand,
+                            HeightRequest = 400
+                        });
                     }
-                    Accounts.Clear();
+                    
+                }
+                if (Accounts.Count == 0)
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        addIdentLbl.IsVisible = true;
+                    });
                 }
                 if (info.Data.Count > 0)
                 {
@@ -764,16 +853,18 @@ namespace xamarinJKH.Main
                     var idents = _meterInfoAll.Select(x => x.Ident);
                     Device.BeginInvokeOnMainThread(() =>
                     {
-                        foreach (var account in Accounts)
-                        {
-                            if (!idents.Contains(account.Ident) && account.Ident != AppResources.All)
-                            {
-                                Device.BeginInvokeOnMainThread(() =>
-                                {
-                                    Accounts.Remove(account);
-                                });
-                            }
-                        }
+                        //foreach (var account in Accounts)
+                        //{
+                        //    if (!idents.Contains(account.Ident) && account.Ident != AppResources.All)
+                        //    {
+                        //        Device.BeginInvokeOnMainThread(() =>
+                        //        {
+                        //            Accounts.Remove(account);
+                        //        });
+                        //    }
+                        //}
+                        var all = Accounts.FirstOrDefault(x => x.Ident == AppResources.All);
+                        if (all == null)
                         Accounts.Insert(0, new AccountInfo { Ident = AppResources.All });
                     });
                     
@@ -813,6 +904,7 @@ namespace xamarinJKH.Main
             {
                 await DisplayAlert(AppResources.ErrorTitle, AppResources.ErrorCountersNoData, "OK");
             }
+
         }
 
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
@@ -903,15 +995,33 @@ namespace xamarinJKH.Main
                 }
                 baseForCounters.Children.Clear();
 
-                foreach (var mi in newmeters)
+                if (newmeters.Count == 0 && Accounts.Count > 0)
                 {
-                    var mtc = new MetersThreeCell(mi);
-                    TapGestureRecognizer tap = new TapGestureRecognizer();
-                    tap.Tapped += Tap_Tapped;
-                    mtc.GestureRecognizers.Add(tap);
-
-                    baseForCounters.Children.Add(mtc);
+                    baseForCounters.Children.Add(new Label
+                    {
+                        VerticalTextAlignment = TextAlignment.Center,
+                        HorizontalTextAlignment = TextAlignment.Center,
+                        FontSize = 18,
+                        Text = AppResources.NoMetersIdent,
+                        VerticalOptions = LayoutOptions.FillAndExpand,
+                        HorizontalOptions = LayoutOptions.FillAndExpand,
+                        HeightRequest = 400
+                    });
                 }
+                else
+                {
+                    foreach (var mi in newmeters)
+                    {
+                        var mtc = new MetersThreeCell(mi);
+                        TapGestureRecognizer tap = new TapGestureRecognizer();
+                        tap.Tapped += Tap_Tapped;
+                        mtc.GestureRecognizers.Add(tap);
+
+                        baseForCounters.Children.Add(mtc);
+                    }
+                }
+
+                
             }
             catch { }
 
