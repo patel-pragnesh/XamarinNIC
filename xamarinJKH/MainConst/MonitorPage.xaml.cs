@@ -1212,6 +1212,14 @@ namespace xamarinJKH.MainConst
             try
             {
                 var selection = e.CurrentSelection[0] as NamedValue;
+                if (selection != null)
+                {
+                    foreach (var area in Areas)
+                    {
+                        area.Selected = false;
+                    }
+                    selection.Selected = true;
+                }
                 (sender as CollectionView).ScrollTo(selection);
                 await getHouse();
             }
@@ -1228,6 +1236,14 @@ namespace xamarinJKH.MainConst
                 var action = selection.Address;
                 if (action != null && !action.Equals(AppResources.Cancel))
                 {
+                    if (selection != null)
+                    {
+                        foreach (var street in Streets)
+                        {
+                            street.Selected = false;
+                        }
+                        selection.Selected = true;
+                    }
                     LayoutContent.Children.Clear();
                     MaterialFrameNotDoingContainer.IsVisible = false;
                     //LabelHouse.Text = action;

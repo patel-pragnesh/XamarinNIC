@@ -6,8 +6,15 @@
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:converters="clr-namespace:xamarinJKH.Converters"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.MainConst.MonitorPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:AccountSelectedBorderConverter x:Key="Border"/>
+            <converters:AccountSelectedBackgroundConverter x:Key="Background"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -92,39 +99,56 @@
 
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
-                                        <Frame BorderColor="{x:StaticResource MainColor}"
-                                                       BackgroundColor="{AppThemeBinding Dark=#8D8D8D, Light=White}"
-                                                       x:Name="Frame"
-                                               HasShadow="False"
-                                                       Padding="10"
-                                                       CornerRadius="5">
-                                            <StackLayout VerticalOptions="Start"
-                                                       Spacing="0">
-                                                <Label Text="{Binding Name}"
-                                                               TextColor="{Binding Source={x:Reference Frame}, Path=BorderColor}"
-                                                               VerticalTextAlignment="Center"
-                                                               FontAttributes="Bold"
-                                                               FontSize="16"/>
-                                            </StackLayout>
-
+                                        <StackLayout Padding="2">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
                                                     <VisualState x:Name="Normal">
                                                         <VisualState.Setters>
-                                                            <Setter Property="BorderColor" Value="{AppThemeBinding Light=#8D8D8D, Dark=White}"/>
                                                             <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
                                                         </VisualState.Setters>
                                                     </VisualState>
-
                                                     <VisualState x:Name="Selected">
                                                         <VisualState.Setters>
-                                                            <Setter Property="BorderColor" Value="{x:StaticResource MainColor}"/>
-                                                            <Setter Property="BackgroundColor" Value="White"/>
+                                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
                                                         </VisualState.Setters>
                                                     </VisualState>
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
-                                        </Frame>
+                                            <Frame BorderColor="{Binding Selected, Converter={x:StaticResource Border}}"
+                                                       BackgroundColor="{Binding Selected, Converter={x:StaticResource Background}}"
+                                                       x:Name="Frame"
+                                               HasShadow="False"
+                                                       Padding="10"
+                                                       CornerRadius="5">
+                                                <StackLayout VerticalOptions="Start"
+                                                       Spacing="0">
+                                                    <Label Text="{Binding Name}"
+                                                               TextColor="{Binding Source={x:Reference Frame}, Path=BorderColor}"
+                                                               VerticalTextAlignment="Center"
+                                                               FontAttributes="Bold"
+                                                               FontSize="16"/>
+                                                </StackLayout>
+
+                                                <!--<VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BorderColor" Value="{AppThemeBinding Light=#8D8D8D, Dark=White}"/>
+                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+
+                                                        <VisualState x:Name="Selected">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BorderColor" Value="{x:StaticResource MainColor}"/>
+                                                                <Setter Property="BackgroundColor" Value="White"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>-->
+                                            </Frame>
+                                        </StackLayout>
+                                        
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
@@ -142,38 +166,54 @@
 
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
-                                        <Frame BorderColor="{x:StaticResource MainColor}"
-                                                       BackgroundColor="{AppThemeBinding Dark=#8D8D8D, Light=White}"
-                                                       x:Name="Frame"
-                                               HasShadow="False"
-                                                       Padding="10"
-                                                       CornerRadius="5">
-                                            <StackLayout VerticalOptions="Start"
-                                                       Spacing="0">
-                                                <Label Text="{Binding Address}"
-                                                               TextColor="{Binding Source={x:Reference Frame}, Path=BorderColor}"
-                                                               FontAttributes="Bold"
-                                                               FontSize="16"/>
-                                            </StackLayout>
-
+                                        <StackLayout Padding="2">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
                                                     <VisualState x:Name="Normal">
                                                         <VisualState.Setters>
-                                                            <Setter Property="BorderColor" Value="{AppThemeBinding Light=#8D8D8D, Dark=White}"/>
                                                             <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
                                                         </VisualState.Setters>
                                                     </VisualState>
-
                                                     <VisualState x:Name="Selected">
                                                         <VisualState.Setters>
-                                                            <Setter Property="BorderColor" Value="{x:StaticResource MainColor}"/>
-                                                            <Setter Property="BackgroundColor" Value="White"/>
+                                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
                                                         </VisualState.Setters>
                                                     </VisualState>
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
-                                        </Frame>
+                                            <Frame BorderColor="{Binding Selected, Converter={x:StaticResource Border}}"
+                                                       BackgroundColor="{Binding Selected, Converter={x:StaticResource Background}}"
+                                                       x:Name="Frame"
+                                               HasShadow="False"
+                                                       Padding="10"
+                                                       CornerRadius="5">
+                                                <StackLayout VerticalOptions="Start"
+                                                       Spacing="0">
+                                                    <Label Text="{Binding Address}"
+                                                               TextColor="{Binding Source={x:Reference Frame}, Path=BorderColor}"
+                                                               FontAttributes="Bold"
+                                                               FontSize="16"/>
+                                                </StackLayout>
+
+                                                <!--<VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BorderColor" Value="{AppThemeBinding Light=#8D8D8D, Dark=White}"/>
+                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+
+                                                        <VisualState x:Name="Selected">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BorderColor" Value="{x:StaticResource MainColor}"/>
+                                                                <Setter Property="BackgroundColor" Value="White"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>-->
+                                            </Frame>
+                                        </StackLayout>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
