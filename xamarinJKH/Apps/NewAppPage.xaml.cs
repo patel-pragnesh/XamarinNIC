@@ -165,7 +165,21 @@ _appModel = new AddAppModel()
                 }
             };
             PassType.GestureRecognizers.Add(call);
-            
+            MessagingCenter.Subscribe<Object, string>(this, "SetVisibleLayout", (sender,name) =>
+            {
+                if (name.Contains("пропуск"))
+                {
+                    SetPassApp();
+                    EntryMess.Text = AppResources.NamePassApp;
+                    isPassAPP = true;
+                }
+                else
+                {
+                    SetDefaultApp();
+                    EntryMess.Text = "";
+                    isPassAPP = false;
+                }
+            });
         }
 
         
@@ -676,6 +690,7 @@ _appModel = new AddAppModel()
 
                             selected.Selected = true;
                             selected.ReplaceMap = new Dictionary<string, string> { { "#000000", "#" + Settings.MobileSettings.color } };
+                            MessagingCenter.Send<Object, string>(this, "SetVisibleLayout", selected.Name);
                         }
                         
                     });
@@ -1125,6 +1140,16 @@ _appModel = new AddAppModel()
             var vm = (BindingContext as AddAppModel);
             vm.SelectedTyp = om;
             lastElementSelected2 = (StackLayout)sender;
+        }
+
+        private void EntryMess_Focused(object sender, FocusEventArgs e)
+        {
+            //Scroll.IsEnabled = false;
+        }
+
+        private void EntryMess_Unfocused(object sender, FocusEventArgs e)
+        {
+            //Scroll.IsEnabled = true;
         }
     }
 }
