@@ -13,6 +13,12 @@
              xmlns:converters="clr-namespace:xamarinJKH.Converters"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.Apps.NewAppPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:AccountSelectedBackgroundConverter x:Key="Background"/>
+            <converters:AccountSelectedBorderConverter x:Key="Border"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <Grid>
@@ -86,6 +92,8 @@
                         <StackLayout Padding="20,12,0,10" Spacing="10">
                             <CollectionView ItemsSource="{Binding Accounts}"
                                             SelectedItem="{Binding SelectedAccount}"
+                                            SelectionChangedCommand="{Binding SelectAccount}"
+                                            SelectionChangedCommandParameter="{Binding Ident}"
                                                     IsVisible="True"
                                             HeightRequest="60"
                                                     SelectionMode="Single" >
@@ -103,23 +111,25 @@
                                                 <VisualStateGroup x:Name="CommonStates">
                                                     <VisualState x:Name="Normal">
                                                         <VisualState.Setters>
-                                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
+                                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#494949}"/>
                                                         </VisualState.Setters>
                                                     </VisualState>
                                                     <VisualState x:Name="Selected">
                                                         <VisualState.Setters>
-                                                            <Setter Property="BackgroundColor" Value="White"/>
+                                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#494949}"/>
                                                         </VisualState.Setters>
                                                     </VisualState>
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
-                                            <Frame BorderColor="{x:StaticResource MainColor}"  VerticalOptions="FillAndExpand"
-                                                       BackgroundColor="{AppThemeBinding Dark=#8D8D8D, Light=White}" 
+                                            <Frame VerticalOptions="FillAndExpand"
+                                                       
+                                               BorderColor="{Binding Selected, Converter={x:StaticResource Border}}"
+                                                       BackgroundColor="{Binding Selected, Converter={x:StaticResource Background}}"
                                                        x:Name="FrameIdent"
                                                HasShadow="False"
                                                        Padding="10"
                                                        CornerRadius="5">
-                                                <VisualStateManager.VisualStateGroups>
+                                                <!--<VisualStateManager.VisualStateGroups>
                                                     <VisualStateGroup x:Name="CommonStates">
                                                         <VisualState x:Name="Normal">
                                                             <VisualState.Setters>
@@ -134,7 +144,7 @@
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                     </VisualStateGroup>
-                                                </VisualStateManager.VisualStateGroups>
+                                                </VisualStateManager.VisualStateGroups>-->
                                                 <StackLayout VerticalOptions="Start"
                                                        Spacing="0">
                                                     <Label Text="{Binding Ident}"
@@ -173,12 +183,12 @@
                                                 <VisualStateGroup x:Name="CommonStates">
                                                     <VisualState x:Name="Normal">
                                                         <VisualState.Setters>
-                                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
+                                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#494949}"/>
                                                         </VisualState.Setters>
                                                     </VisualState>
                                                     <VisualState x:Name="Selected">
                                                         <VisualState.Setters>
-                                                            <Setter Property="BackgroundColor" Value="White"/>
+                                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#494949}"/>
                                                         </VisualState.Setters>
                                                     </VisualState>
                                                 </VisualStateGroup>
@@ -187,8 +197,8 @@
                                                    VerticalOptions="FillAndExpand"
                                                Padding="10"
                                                HasShadow="False"
-                                               BorderColor="{x:StaticResource MainColor}"
-                                                       BackgroundColor="{AppThemeBinding Dark=#8D8D8D, Light=White}"
+                                               BorderColor="{Binding Selected, Converter={x:StaticResource Border}}"
+                                                       BackgroundColor="{Binding Selected, Converter={x:StaticResource Background}}"
                                                        x:Name="Frame">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
@@ -204,7 +214,7 @@
                                                    TextColor="{Binding Source={x:Reference Frame},Path=BorderColor}"
                                                    Grid.Column="1"/>
                                                 </Grid>
-                                                <VisualStateManager.VisualStateGroups>
+                                                <!--<VisualStateManager.VisualStateGroups>
                                                     <VisualStateGroup x:Name="CommonStates">
                                                         <VisualState x:Name="Normal">
                                                             <VisualState.Setters>
@@ -220,7 +230,7 @@
                                                             </VisualState.Setters>
                                                         </VisualState>
                                                     </VisualStateGroup>
-                                                </VisualStateManager.VisualStateGroups>
+                                                </VisualStateManager.VisualStateGroups>-->
                                             </Frame>
                                         </StackLayout>
                                         
