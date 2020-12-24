@@ -63,6 +63,20 @@
                         <Span Text=" {Binding _Request.Address}" FontSize="15" />
                     </FormattedString>
                 </Label.FormattedText>
+            </Label> 
+            <Label
+                x:Name="LabelFio"
+                TextColor="Black"
+                IsVisible="{Binding IsCons}"
+                HorizontalOptions="Start">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{x:Static xamarinJkh:AppResources.FIO}" TextColor="Black" FontAttributes="Bold"
+                              FontSize="15" />
+                        <Span Text=": " TextColor="Black" FontAttributes="Bold" FontSize="15" />
+                        <Span Text=" {Binding _Request.AuthorName}" FontSize="15" />
+                    </FormattedString>
+                </Label.FormattedText>
             </Label>
 
             <StackLayout

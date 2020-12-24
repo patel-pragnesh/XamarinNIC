@@ -942,7 +942,8 @@ namespace xamarinJKH.Apps
                             HexColor = this.hex,
                             SourceApp = Source,
                             isPass = IsPass,
-                            isManType = isMan
+                            isManType = isMan,
+                            IsCons = false
                         });
                     }
                     catch { }

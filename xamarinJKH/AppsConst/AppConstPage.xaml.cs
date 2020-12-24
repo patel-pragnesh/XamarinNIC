@@ -1138,7 +1138,8 @@ namespace xamarinJKH.AppsConst
                         SourceApp = Source,
                         Calling = Call,
                         isPass = IsPass,
-                        isManType = isMan
+                        isManType = isMan,
+                        IsCons = true
                     });
                 }
             }

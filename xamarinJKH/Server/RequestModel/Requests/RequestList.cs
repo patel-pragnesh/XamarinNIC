@@ -45,6 +45,7 @@ namespace xamarinJKH.Server.RequestModel
         public string Address { get; set; }
         public int TypeID { get; set; }
         public string TypeName { get; set; }
+        public string AuthorName { get; set; }
         public List<RequestMessage> Messages { get; set; }
         public List<RequestFile> Files { get; set; }
         public List<RequestsReceiptItem> ReceiptItems { get; set; }
