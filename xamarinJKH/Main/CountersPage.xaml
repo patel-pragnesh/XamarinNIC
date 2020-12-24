@@ -245,7 +245,7 @@
 
                             <RefreshView Command="{Binding RefreshCommand}" Padding="10,0"
                                      Grid.Row="1"
-                                     Margin="0,-25,0,0"
+                                     Margin="0,-30,0,0"
                                      VerticalOptions="FillAndExpand"
                                      IsRefreshing="{Binding IsRefreshing}">
                                 <ScrollView x:Name="scrollForCounters" VerticalScrollBarVisibility="Never"
