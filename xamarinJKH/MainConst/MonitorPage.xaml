@@ -6,8 +6,15 @@
              xmlns:customRenderers="clr-namespace:xamarinJKH.CustomRenderers;assembly=xamarinJKH"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:converters="clr-namespace:xamarinJKH.Converters"
              BackgroundColor="{AppThemeBinding Light=White, Dark=#F3F3F3}"
              x:Class="xamarinJKH.MainConst.MonitorPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:AccountSelectedBorderConverter x:Key="Border"/>
+            <converters:AccountSelectedBackgroundConverter x:Key="Background"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -72,118 +79,156 @@
                             FontAttributes="Bold"
                             HorizontalOptions="Start" />
                 </StackLayout>
-
-                <StackLayout VerticalOptions="FillAndExpand">
-                    <Frame CornerRadius="1"
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout VerticalOptions="FillAndExpand">
+                        <Frame CornerRadius="1"
                        HasShadow="{AppThemeBinding Light=false, Dark=true}"
                        BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
                            BorderColor="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=#8D8D8D}"
                            Padding="0,0,0,80">
-                        <StackLayout Padding="20,10,0,10" Spacing="5">
-                            <CollectionView ItemsSource="{Binding Areas}"
+                            <StackLayout Padding="20,10,0,10" Spacing="5">
+                                <CollectionView ItemsSource="{Binding Areas}"
                                             SelectedItem="{Binding SelectedArea}"
                                             IsVisible="True"
                                             HeightRequest="50"
                                             SelectionChanged="CollectionView_SelectionChanged"
                                             SelectionMode="Single">
-                                <CollectionView.ItemsLayout>
-                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"/>
-                                </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"/>
+                                    </CollectionView.ItemsLayout>
 
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Frame BorderColor="{x:StaticResource MainColor}"
-                                                       BackgroundColor="{AppThemeBinding Dark=#8D8D8D, Light=White}"
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout Padding="2">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Selected">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                                <Frame BorderColor="{Binding Selected, Converter={x:StaticResource Border}}"
+                                                       BackgroundColor="{Binding Selected, Converter={x:StaticResource Background}}"
                                                        x:Name="Frame"
                                                HasShadow="False"
                                                        Padding="10"
                                                        CornerRadius="5">
-                                            <StackLayout VerticalOptions="Start"
+                                                    <StackLayout VerticalOptions="Start"
                                                        Spacing="0">
-                                                <Label Text="{Binding Name}"
+                                                        <Label Text="{Binding Name}"
                                                                TextColor="{Binding Source={x:Reference Frame}, Path=BorderColor}"
                                                                VerticalTextAlignment="Center"
                                                                FontAttributes="Bold"
                                                                FontSize="16"/>
+                                                    </StackLayout>
+
+                                                    <!--<VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BorderColor" Value="{AppThemeBinding Light=#8D8D8D, Dark=White}"/>
+                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+
+                                                        <VisualState x:Name="Selected">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BorderColor" Value="{x:StaticResource MainColor}"/>
+                                                                <Setter Property="BackgroundColor" Value="White"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>-->
+                                                </Frame>
                                             </StackLayout>
 
-                                            <VisualStateManager.VisualStateGroups>
-                                                <VisualStateGroup x:Name="CommonStates">
-                                                    <VisualState x:Name="Normal">
-                                                        <VisualState.Setters>
-                                                            <Setter Property="BorderColor" Value="{AppThemeBinding Light=#8D8D8D, Dark=White}"/>
-                                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
-                                                        </VisualState.Setters>
-                                                    </VisualState>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
 
-                                                    <VisualState x:Name="Selected">
-                                                        <VisualState.Setters>
-                                                            <Setter Property="BorderColor" Value="{x:StaticResource MainColor}"/>
-                                                            <Setter Property="BackgroundColor" Value="White"/>
-                                                        </VisualState.Setters>
-                                                    </VisualState>
-                                                </VisualStateGroup>
-                                            </VisualStateManager.VisualStateGroups>
-                                        </Frame>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
-
-                            <CollectionView ItemsSource="{Binding Streets}"
+                                <CollectionView ItemsSource="{Binding Streets}"
                                             SelectionChanged="StreetCollectionSelectionChanged"
                                             SelectedItem="{Binding SelectedStreet}"
                                             IsVisible="True"
                                             HeightRequest="50"
                                             x:Name="StreetsCollection"
                                             SelectionMode="Single">
-                                <CollectionView.ItemsLayout>
-                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"/>
-                                </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"/>
+                                    </CollectionView.ItemsLayout>
 
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Frame BorderColor="{x:StaticResource MainColor}"
-                                                       BackgroundColor="{AppThemeBinding Dark=#8D8D8D, Light=White}"
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout Padding="2">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Selected">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                                <Frame BorderColor="{Binding Selected, Converter={x:StaticResource Border}}"
+                                                       BackgroundColor="{Binding Selected, Converter={x:StaticResource Background}}"
                                                        x:Name="Frame"
                                                HasShadow="False"
                                                        Padding="10"
                                                        CornerRadius="5">
-                                            <StackLayout VerticalOptions="Start"
+                                                    <StackLayout VerticalOptions="Start"
                                                        Spacing="0">
-                                                <Label Text="{Binding Address}"
+                                                        <Label Text="{Binding Address}"
                                                                TextColor="{Binding Source={x:Reference Frame}, Path=BorderColor}"
                                                                FontAttributes="Bold"
                                                                FontSize="16"/>
+                                                    </StackLayout>
+
+                                                    <!--<VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BorderColor" Value="{AppThemeBinding Light=#8D8D8D, Dark=White}"/>
+                                                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+
+                                                        <VisualState x:Name="Selected">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BorderColor" Value="{x:StaticResource MainColor}"/>
+                                                                <Setter Property="BackgroundColor" Value="White"/>
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>-->
+                                                </Frame>
                                             </StackLayout>
-
-                                            <VisualStateManager.VisualStateGroups>
-                                                <VisualStateGroup x:Name="CommonStates">
-                                                    <VisualState x:Name="Normal">
-                                                        <VisualState.Setters>
-                                                            <Setter Property="BorderColor" Value="{AppThemeBinding Light=#8D8D8D, Dark=White}"/>
-                                                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#8D8D8D}"/>
-                                                        </VisualState.Setters>
-                                                    </VisualState>
-
-                                                    <VisualState x:Name="Selected">
-                                                        <VisualState.Setters>
-                                                            <Setter Property="BorderColor" Value="{x:StaticResource MainColor}"/>
-                                                            <Setter Property="BackgroundColor" Value="White"/>
-                                                        </VisualState.Setters>
-                                                    </VisualState>
-                                                </VisualStateGroup>
-                                            </VisualStateManager.VisualStateGroups>
-                                        </Frame>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
-                        </StackLayout>
-                    </Frame>
-                </StackLayout>
-
-                <StackLayout IsVisible="True"
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout IsVisible="True"
+                                 Grid.Row="1"
                     VerticalOptions="FillAndExpand">
-                    <Frame CornerRadius="40"
+                        <Frame CornerRadius="40"
                            IsVisible="False"
                        Margin="20, 10, 20, -80"
                        HasShadow="{AppThemeBinding Light=false, Dark=true}"
@@ -191,16 +236,16 @@
                        x:Name="Frame"
                        BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
                        Padding="20,20,20,80">
-                        <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <StackLayout HorizontalOptions="CenterAndExpand"
+                            <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout HorizontalOptions="CenterAndExpand"
                                          Grid.Row="0"
                                          Grid.Column="0"
                                          Padding="0,0,0,10"
@@ -209,23 +254,23 @@
                                          VerticalOptions="CenterAndExpand"
                                          Margin="0,0,0,10"
                                          Spacing="-2">
-                                    <Grid VerticalOptions="FillAndExpand" >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
+                                        <Grid VerticalOptions="FillAndExpand" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
 
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="0.1*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Text="{x:Static xamarinJkh:AppResources.AreaChoose}"
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="0.1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{x:Static xamarinJkh:AppResources.AreaChoose}"
                                            x:Name="LabelGroup"
                                            FontSize="{Binding fontSize}"
                                            MaxLines="2"
                                                VerticalOptions="FillAndExpand"
                                            FontAttributes="Bold"
                                            TextColor="{AppThemeBinding Light=Black, Dark=White}" />
-                                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
+                                            <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
                                                          HeightRequest="12"
                                                          WidthRequest="12"
                                                          Rotation="90"
@@ -233,13 +278,13 @@
                                                          VerticalOptions="Center"
                                                             Grid.Column="1"
                                                          ReplaceStringMap="{Binding fontSize, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}" />
-                                    </Grid>
-                                    <Label
+                                        </Grid>
+                                        <Label
                                     HeightRequest="1"
                                     BackgroundColor="{AppThemeBinding Light=Black, Dark=White}"
                                     HorizontalOptions="Fill" />
-                                </StackLayout>
-                                <StackLayout Spacing="-2"
+                                    </StackLayout>
+                                    <StackLayout Spacing="-2"
                                          Grid.Row="0"
                                          Grid.Column="1"
                                          x:Name="StackLayoutHouse"
@@ -247,23 +292,23 @@
                                          Padding="0,0,0,10"
                                          HorizontalOptions="CenterAndExpand"
                                          VerticalOptions="Center">
-                                    <Grid VerticalOptions="FillAndExpand" >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
+                                        <Grid VerticalOptions="FillAndExpand" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
 
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="0.1*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Text="{x:Static xamarinJkh:AppResources.HomeChoose}"
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="0.1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{x:Static xamarinJkh:AppResources.HomeChoose}"
                                            x:Name="LabelHouse"
                                            FontSize="{Binding fontSize}"
                                            MaxLines="2"
                                            FontAttributes="Bold"
                                                VerticalOptions="FillAndExpand"
                                            TextColor="{AppThemeBinding Light=Black, Dark=White}" />
-                                        <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
+                                            <svg:SvgCachedImage Source="resource://xamarinJKH.Resources.ic_arrow_forward.svg"
                                                          HeightRequest="12"
                                                          WidthRequest="12"
                                                          Rotation="90"
@@ -271,25 +316,25 @@
                                                          VerticalOptions="Center"
                                                             Grid.Column="1"
                                                          ReplaceStringMap="{Binding fontSize, Converter={x:StaticResource SvgColor}, ConverterParameter='#FFFFFF|#000000'}" />
-                                    </Grid>
-                                    <Label
+                                        </Grid>
+                                        <Label
                                     HeightRequest="1"
                                     BackgroundColor="{AppThemeBinding Light=Black, Dark=White}"
                                     HorizontalOptions="Fill" />
-                                </StackLayout>
-                            </Grid>
+                                    </StackLayout>
+                                </Grid>
 
-                        </StackLayout>
-                    </Frame>
+                            </StackLayout>
+                        </Frame>
 
-                </StackLayout>
-                <StackLayout Margin="0,-95,0,0">
-                    <Grid>
-                        <ScrollView 
+                    </StackLayout>
+                    <StackLayout Margin="0,-95,0,0" VerticalOptions="StartAndExpand" Grid.Row="2">
+                        <Grid>
+                            <ScrollView 
                             Orientation="Vertical">
-                            <StackLayout Spacing="0">
-                                <StackLayout x:Name="LayoutContent" Spacing="0" />
-                                <customRenderers:MaterialFrame
+                                <StackLayout Spacing="0">
+                                    <StackLayout x:Name="LayoutContent" Spacing="0" />
+                                    <customRenderers:MaterialFrame
                             Elevation="{AppThemeBinding Light=0, Dark=20}"
                             HasShadow="{AppThemeBinding Light=false, Dark=true}"
                             x:Name="MaterialFrameNotDoingContainer"
@@ -298,24 +343,24 @@
                             CornerRadius="35"
                             BackgroundColor="White"
                             Padding="0,0,0,25">
-                                    <StackLayout Spacing="0">
-                                        <customRenderers:MaterialFrame
+                                        <StackLayout Spacing="0">
+                                            <customRenderers:MaterialFrame
                                             Elevation="{AppThemeBinding Light=0, Dark=20}"
                                     HasShadow="{AppThemeBinding Light=false, Dark=true}"
                                     CornerRadius="35"
                                     x:Name="MaterialFrameNotDoing"
                                     BackgroundColor="White"
                                     Padding="0, 25, 0, 25">
-                                            <StackLayout
+                                                <StackLayout
                                         Orientation="Horizontal">
-                                                <svg:SvgCachedImage
+                                                    <svg:SvgCachedImage
                                             Source="resource://xamarinJKH.Resources.ic_dislike.svg"
                                             ReplaceStringMap="{Binding hex, Converter={x:StaticResource SvgColor}}"
                                             HeightRequest="30"
                                             Margin="15, 0, 0, 0"
                                             HorizontalOptions="Start"
                                             VerticalOptions="Center" />
-                                                <Label
+                                                    <Label
                                             x:Name="LabelNotDoingCount"
                                             Text="Невыполненные заявки: 440"
                                             FontSize="15"
@@ -324,7 +369,7 @@
                                             Margin="15, 0, 0, 0"
                                             HorizontalOptions="FillAndExpand"
                                             VerticalOptions="Center" />
-                                                <xamarinJkh:IconView
+                                                    <xamarinJkh:IconView
                                                 x:Name="IconViewArrow"
                                                 Source="ic_arrow_down_monitor"
                                                 HeightRequest="25"
@@ -333,23 +378,29 @@
                                                 Margin="0,0,15,0"
                                                 HorizontalOptions="End"
                                                 VerticalOptions="Center" />
-                                            </StackLayout>
-                                        </customRenderers:MaterialFrame>
-                                        <StackLayout x:Name="LayoutGrid" Margin="20,15,20,0" />
-                                    </StackLayout>
-                                </customRenderers:MaterialFrame>
+                                                </StackLayout>
+                                            </customRenderers:MaterialFrame>
+                                            <StackLayout x:Name="LayoutGrid" Margin="20,15,20,0" />
+                                        </StackLayout>
+                                    </customRenderers:MaterialFrame>
 
-                            </StackLayout>
-                        </ScrollView>
+                                </StackLayout>
+                            </ScrollView>
 
-                        <ActivityIndicator Color="{x:StaticResource MainColor}"
+                            <ActivityIndicator Color="{x:StaticResource MainColor}"
                                            Margin="120"
                                            IsRunning="{Binding IsBusy}"
                                            IsEnabled="{Binding IsBusy}"
                                            IsVisible="{Binding IsBusy}"/>
-                    </Grid>
-                    
-                </StackLayout>
+                        </Grid>
+
+                    </StackLayout>
+                </Grid>
+
+                
+
+               
+                
                 
 
             </StackLayout>

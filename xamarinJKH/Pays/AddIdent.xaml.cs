@@ -252,16 +252,16 @@ namespace xamarinJKH.Pays
                                     Settings.Person = loginResult;
                                 }
                                 Settings.Person.acx = result.acx;
-                                
+                                try
+                                {
+                                    AddIdentToList(Settings.Person.Accounts.Where(x => x.Ident == ident).FirstOrDefault());
+                                    _ = await Navigation.PopAsync();
+                                }
+                                catch { }
                             }
                         });
                     }
-                    try
-                    {
-                        AddIdentToList(Settings.Person.Accounts.Where(x => x.Ident == ident).FirstOrDefault());
-                        _ = await Navigation.PopAsync();
-                    }
-                    catch { }
+                    
 
                     if (_paysPage != null) await _paysPage.RefreshPaysData();
                 }

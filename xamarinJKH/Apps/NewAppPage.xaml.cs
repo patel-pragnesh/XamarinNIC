@@ -165,7 +165,21 @@ _appModel = new AddAppModel()
                 }
             };
             PassType.GestureRecognizers.Add(call);
-            
+            MessagingCenter.Subscribe<Object, string>(this, "SetVisibleLayout", (sender,name) =>
+            {
+                if (name.Contains("пропуск"))
+                {
+                    SetPassApp();
+                    EntryMess.Text = AppResources.NamePassApp;
+                    isPassAPP = true;
+                }
+                else
+                {
+                    SetDefaultApp();
+                    EntryMess.Text = "";
+                    isPassAPP = false;
+                }
+            });
         }
 
         
@@ -612,6 +626,7 @@ _appModel = new AddAppModel()
             public ObservableCollection<FileData> Files { get; set; }
             public Color hex { get; set; }
             public Command SelectTyp { get; set; }
+            public Command SelectAccount { get; set; }
             public AddAppModel()
             {
                 Accounts = new ObservableCollection<AccountInfo>();
@@ -659,18 +674,42 @@ _appModel = new AddAppModel()
 
                 SelectTyp = new Command<object>(name =>
                 {
-                    var selected = new OptionModel();
-                    selected = Types.FirstOrDefault(x => x.Name == (name as OptionModel).Name);
-                    if (selected != null)
+                    
+                    Device.BeginInvokeOnMainThread(() =>
                     {
-                        foreach (var typ in Types)
+                        var selected = new OptionModel();
+                        selected = Types.FirstOrDefault(x => x.Name == (name as OptionModel).Name);
+                        if (selected != null)
                         {
-                            string replaceColor = Application.Current.RequestedTheme == OSAppTheme.Dark ? "#FFFFFF" : "#8D8D8D";
-                            typ.ReplaceMap = new Dictionary<string, string> { { "#000000", replaceColor } };
-                        }
+                            foreach (var typ in Types)
+                            {
+                                typ.Selected = false;
+                                string replaceColor = Application.Current.RequestedTheme == OSAppTheme.Dark ? "#FFFFFF" : "#8D8D8D";
+                                typ.ReplaceMap = new Dictionary<string, string> { { "#000000", replaceColor } };
+                            }
 
-                        selected.ReplaceMap = new Dictionary<string, string> { { "#000000", "#" + Settings.MobileSettings.color } };
-                    }
+                            selected.Selected = true;
+                            selected.ReplaceMap = new Dictionary<string, string> { { "#000000", "#" + Settings.MobileSettings.color } };
+                            MessagingCenter.Send<Object, string>(this, "SetVisibleLayout", selected.Name);
+                        }
+                        
+                    });
+                    
+                });
+
+                SelectAccount = new Command<string>((name) =>
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        if (SelectedAccount != null)
+                        {
+                            foreach (var account in Accounts)
+                            {
+                                account.Selected = false;
+                            }
+                            SelectedAccount.Selected = true;
+                        }
+                    });
                 });
             }
         }
@@ -1069,6 +1108,11 @@ _appModel = new AddAppModel()
             VisualStateManager.GoToState(el.Children[0], "Selected");          
             
             var acc = el.BindingContext as AccountInfo;
+            foreach (var account in (BindingContext as AddAppModel).Accounts)
+            {
+                account.Selected = false;
+            }
+            acc.Selected = true;
             var vm = (BindingContext as AddAppModel);
             vm.SelectedAccount = acc;
             lastElementSelected = (StackLayout)sender;
@@ -1088,9 +1132,24 @@ _appModel = new AddAppModel()
             VisualStateManager.GoToState(el.Children[0], "Selected");
 
             var om = el.BindingContext as OptionModel;
+            foreach (var option in (BindingContext as AddAppModel).Types)
+            {
+                option.Selected = false;
+            }
+            om.Selected = true;
             var vm = (BindingContext as AddAppModel);
             vm.SelectedTyp = om;
             lastElementSelected2 = (StackLayout)sender;
+        }
+
+        private void EntryMess_Focused(object sender, FocusEventArgs e)
+        {
+            //Scroll.IsEnabled = false;
+        }
+
+        private void EntryMess_Unfocused(object sender, FocusEventArgs e)
+        {
+            //Scroll.IsEnabled = true;
         }
     }
 }
