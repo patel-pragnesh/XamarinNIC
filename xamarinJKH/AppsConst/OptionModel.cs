@@ -10,6 +10,16 @@ namespace xamarinJKH.AppsConst
         public string Name { get; set; }
         public string Image { get; set; }
         public bool IsVisible { get; set; }
+        bool selected;
+        public bool Selected
+        {
+            get => selected;
+            set
+            {
+                selected = value;
+                OnPropertyChanged("Selected");
+            }
+        }
         public Command Command { get; set; }
         Dictionary<string, string> replace;
         public Dictionary<string, string> ReplaceMap
