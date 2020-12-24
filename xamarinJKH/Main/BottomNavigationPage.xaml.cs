@@ -40,7 +40,12 @@ namespace xamarinJKH.Main
             get => events_amount;
             set
             {
-                events_amount = value;
+                if(Settings.Person.Accounts.Count > 0)
+                    events_amount = value;
+                else
+                {
+                    events_amount = 0;
+                }
                 OnPropertyChanged(nameof(EventsAmount));
             }
         }

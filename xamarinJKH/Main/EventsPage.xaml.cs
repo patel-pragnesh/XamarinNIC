@@ -507,7 +507,12 @@ namespace xamarinJKH.Main
                 try
                 {
                     if (Settings.EventBlockData.News != null)
-                        NewsCount = Settings.EventBlockData.News.Where(x => !x.IsReaded).Count();
+                        if(Settings.Person.Accounts.Count > 0)
+                            NewsCount = Settings.EventBlockData.News.Where(x => !x.IsReaded).Count();
+                        else
+                        {
+                            NewsCount = 0;
+                        }
                     else
                         Analytics.TrackEvent($"News is null");
                 }

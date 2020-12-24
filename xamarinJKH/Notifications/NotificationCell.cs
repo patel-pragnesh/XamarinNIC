@@ -90,7 +90,9 @@ namespace xamarinJKH
                 BackgroundColor = Color.Red,
                 IsVisible = false
             };
+           
             ReadIndicator.SetBinding(View.IsVisibleProperty, "Read", BindingMode.TwoWay);
+         
             containerMain.Children.Add(ReadIndicator, 1, 0);
             frame.Content = containerMain;
             View = frame;
@@ -160,7 +162,12 @@ namespace xamarinJKH
                 text.Text = TextNotif;
                 date.Text = DateNotif;
                 title.Text = TitleNotif;
-                ReadIndicator.IsVisible = !Read;
+                if(Settings.Person.Accounts.Count > 0)
+                    ReadIndicator.IsVisible = !Read;
+                else
+                {
+                    ReadIndicator.IsVisible = false;
+                }
             }
         }
     }
