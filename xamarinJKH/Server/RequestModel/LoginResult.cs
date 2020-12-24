@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using xamarinJKH.ViewModels;
 
 namespace xamarinJKH.Server.RequestModel
 {
@@ -34,7 +35,7 @@ namespace xamarinJKH.Server.RequestModel
         public bool RightCreateAnnouncements { get; set; }
     }
 
-    public class AccountInfo
+    public class AccountInfo:BaseViewModel
     {
         public AccountInfo(string ident, int metersStartDay, int metersEndDay, int id, string fio, string address, string company, bool metersAccessFlag)
         {
@@ -62,7 +63,27 @@ namespace xamarinJKH.Server.RequestModel
         public bool MetersAccessFlag { get; set; }
         public bool MetersPeriodStartIsCurrent { get; set; }
         public bool MetersPeriodEndIsCurrent { get; set; }
+        bool isfirst;
+        public bool IsFirst
+        {
+            get => isfirst;
+            set
+            {
+                isfirst = value;
+                OnPropertyChanged("IsFirst");
+            }
+        }
 
+        bool selected;
+        public bool Selected
+        {
+            get => selected;
+            set
+            {
+                selected = value;
+                OnPropertyChanged("Selected");
+            }
+        }
         public override string ToString()
         {
             return Ident;

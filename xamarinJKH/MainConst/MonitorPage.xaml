@@ -79,15 +79,15 @@
                        BackgroundColor="{AppThemeBinding Light=White, Dark=#8D8D8D}"
                            BorderColor="{AppThemeBinding Light={x:StaticResource MainColor}, Dark=#8D8D8D}"
                            Padding="0,0,0,80">
-                        <StackLayout Padding="20,10,0,10">
+                        <StackLayout Padding="20,10,0,10" Spacing="5">
                             <CollectionView ItemsSource="{Binding Areas}"
                                             SelectedItem="{Binding SelectedArea}"
                                             IsVisible="True"
-                                            HeightRequest="60"
+                                            HeightRequest="50"
                                             SelectionChanged="CollectionView_SelectionChanged"
                                             SelectionMode="Single">
                                 <CollectionView.ItemsLayout>
-                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"/>
                                 </CollectionView.ItemsLayout>
 
                                 <CollectionView.ItemTemplate>
@@ -102,6 +102,7 @@
                                                        Spacing="0">
                                                 <Label Text="{Binding Name}"
                                                                TextColor="{Binding Source={x:Reference Frame}, Path=BorderColor}"
+                                                               VerticalTextAlignment="Center"
                                                                FontAttributes="Bold"
                                                                FontSize="16"/>
                                             </StackLayout>
@@ -132,11 +133,11 @@
                                             SelectionChanged="StreetCollectionSelectionChanged"
                                             SelectedItem="{Binding SelectedStreet}"
                                             IsVisible="True"
-                                            HeightRequest="60"
+                                            HeightRequest="50"
                                             x:Name="StreetsCollection"
                                             SelectionMode="Single">
                                 <CollectionView.ItemsLayout>
-                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"/>
                                 </CollectionView.ItemsLayout>
 
                                 <CollectionView.ItemTemplate>
@@ -184,7 +185,7 @@
                     VerticalOptions="FillAndExpand">
                     <Frame CornerRadius="40"
                            IsVisible="False"
-                       Margin="20, 10, 20, -70"
+                       Margin="20, 10, 20, -80"
                        HasShadow="{AppThemeBinding Light=false, Dark=true}"
                        VerticalOptions="Start"
                        x:Name="Frame"
@@ -282,7 +283,7 @@
                     </Frame>
 
                 </StackLayout>
-                <StackLayout Margin="0,-90,0,0">
+                <StackLayout Margin="0,-95,0,0">
                     <Grid>
                         <ScrollView 
                             Orientation="Vertical">
