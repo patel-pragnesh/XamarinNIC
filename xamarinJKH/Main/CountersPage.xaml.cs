@@ -126,36 +126,49 @@ namespace xamarinJKH.Main
                         
                         Device.BeginInvokeOnMainThread(() =>
                         {
-                            Accounts.Clear();
                             var idents = _meterInfo.Select(x => x.Ident);
-                            Accounts.Add(new AccountInfo { Ident = AppResources.All });
                             foreach (var account in Settings.Person.Accounts)
                             {
-                                if (idents.Contains(account.Ident))
+                                
+                                if (idents.Contains(account.Ident) && !Accounts.Contains(Accounts.FirstOrDefault(x => x.Ident == account.Ident)))
                                 {
                                     Accounts.Add(account);
                                 }
                             }
-
-                            SelectedAccount = Accounts[0];
+                            var all = Accounts.Where(x => x.Ident == AppResources.All).ToList();
+                            if (all.Count > 1)
+                            {
+                                foreach (var account in all)
+                                {
+                                    Accounts.Remove(account);
+                                }
+                                Accounts.Insert(0, new AccountInfo() { Ident = AppResources.All });
+                            }
+                            
+                            if (SelectedAccount.Ident == AppResources.All)
+                                SelectedAccount = Accounts[0];
                             addIdentLbl.IsVisible = false;
+
+                            List<MeterInfo> meters_ = new List<MeterInfo>();
+                            if (SelectedAccount != null && SelectedAccount.Ident != AppResources.All)
+                                meters_ = _meterInfo.Where(x => x.Ident == SelectedAccount.Ident).ToList();
+                            else
+                                meters_ = _meterInfo;
+                            baseForCounters.Children.Clear();
+
+                            foreach (var mi in meters_)
+                            {
+                                var mtc = new MetersThreeCell(mi);
+                                TapGestureRecognizer tap = new TapGestureRecognizer();
+                                tap.Tapped += Tap_Tapped;
+                                mtc.GestureRecognizers.Add(tap);
+
+                                baseForCounters.Children.Add(mtc);
+                            }
                         });
                     }
 
-                    List<MeterInfo> meters_ = new List<MeterInfo>();
-                    if (SelectedAccount != null)
-                        meters_ = _meterInfo.Where(x => x.Ident == SelectedAccount.Ident).ToList();
-                    baseForCounters.Children.Clear();
-
-                    foreach (var mi in _meterInfo)
-                    {
-                        var mtc = new MetersThreeCell(mi);
-                        TapGestureRecognizer tap = new TapGestureRecognizer();
-                        tap.Tapped += Tap_Tapped;
-                        mtc.GestureRecognizers.Add(tap);
-
-                        baseForCounters.Children.Add(mtc);
-                    }
+                    
                 }
                 OSAppTheme currentTheme = Application.Current.RequestedTheme;
                 SetHeader(currentTheme);
@@ -859,6 +872,7 @@ namespace xamarinJKH.Main
                 }
 
                 var om = el.BindingContext as AccountInfo;
+                SelectedAccount = om;
                 om.Selected = true;
                 var newmeters = _meterInfoAll.Where(x => x.Ident == om.Ident).ToList();
                 if (om.Ident == AppResources.All)
