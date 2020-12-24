@@ -115,6 +115,7 @@ namespace xamarinJKH.Main
                             addIdentLbl.IsVisible = true;
                             addIdentLbl.Text = AppResources.NoAccounts;
                         });
+                        baseForCounters.Children.Clear();
 
                         if (Settings.Person.Accounts.Count > 0)
                         {
@@ -135,17 +136,23 @@ namespace xamarinJKH.Main
                                     Accounts.Add(account);
                                 }
                             }
-                            var all = Accounts.Where(x => x.Ident == AppResources.All).ToList();
-                            if (all.Count > 1)
-                            {
-                                foreach (var account in all)
-                                {
-                                    Accounts.Remove(account);
-                                }
-                                Accounts.Insert(0, new AccountInfo() { Ident = AppResources.All });
-                            }
+                            //var all = Accounts.Where(x => x.Ident == AppResources.All).ToList();
+                            //if (all.Count > 1)
+                            //{
+                            //    foreach (var account in all)
+                            //    {
+                            //        Accounts.Remove(account);
+                            //    }
+                            //    //Accounts.Insert(0, new AccountInfo() { Ident = AppResources.All, Selected = true });
+                            //}
                             
-                            if (SelectedAccount.Ident == AppResources.All)
+                            if (SelectedAccount == null)
+                            {
+                                //Accounts.Insert(0, new AccountInfo() { Ident = AppResources.All, Selected = true });
+                                SelectedAccount = Accounts[0];
+
+                            }
+                            else if (SelectedAccount.Ident == AppResources.All)
                                 SelectedAccount = Accounts[0];
                             addIdentLbl.IsVisible = false;
 
@@ -359,19 +366,34 @@ namespace xamarinJKH.Main
                     if (ident != null)
                         if (!string.IsNullOrEmpty(ident.Address))
                             Accounts.Add(ident);
+                    var all = Accounts.FirstOrDefault(x => x.Ident == AppResources.All);
+                    if (all == null)
+                    {
+                        Accounts.Insert(0, new AccountInfo { Ident = AppResources.All, Selected = true });
+                    }
                 });
                 
             });
             MessagingCenter.Subscribe<Object, AccountInfo>(this, "RemoveIdent", (sender, ident) =>
             {
-                Device.BeginInvokeOnMainThread(() =>
+                Device.BeginInvokeOnMainThread(async () =>
                 {
                     Accounts.Remove(ident);
+                    var all = Accounts.FirstOrDefault(x => x.Ident == AppResources.All);
+                    if (all == null)
+                    {
+                        Accounts.Insert(0, new AccountInfo { Ident = AppResources.All, Selected = true });
+                    }
+                    //await RefreshCountersData();
                 });
             });
             Device.BeginInvokeOnMainThread(() =>
             {
-                Accounts.Add(new AccountInfo() { Ident = AppResources.All });
+                var all = Accounts.FirstOrDefault(x => x.Ident == AppResources.All);
+                if (all == null)
+                {
+                    Accounts.Insert(0, new AccountInfo { Ident = AppResources.All, Selected = true });
+                }
                 foreach (var account in Settings.Person.Accounts)
                 {
                     Accounts.Add(account);
