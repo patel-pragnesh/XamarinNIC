@@ -1710,6 +1710,6 @@
     <value>Политика обработки персональных данных</value>
   </data>
   <data name="NoMetersIdent" xml:space="preserve">
-    <value>По данным лицевым  счетам отсутствуют приборы учета</value>
+    <value>По данному лицевому счету отсутствуют приборы учета.</value>
   </data>
 </root>
