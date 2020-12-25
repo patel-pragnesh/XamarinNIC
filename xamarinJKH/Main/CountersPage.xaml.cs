@@ -434,6 +434,10 @@ namespace xamarinJKH.Main
                         SelectedAccount = null;
                     if (ident != null)
                     Accounts.Remove(Accounts.First(x => x.Ident == ident.Ident));
+                    if (Accounts.Count == 1)
+                    {
+                        Accounts.Clear();
+                    }
                 });
             });
             Device.BeginInvokeOnMainThread(() =>
