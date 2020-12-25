@@ -91,6 +91,8 @@ namespace xamarinJKH.MainConst
         {
             InitializeComponent();
             Analytics.TrackEvent("Мониторинг");
+            Areas = new ObservableCollection<NamedValue>();
+            Streets = new ObservableCollection<HouseProfile>();
             NavigationPage.SetHasNavigationBar(this, false);
             hex = (Color)Application.Current.Resources["MainColor"];
             fontSize = 13;
@@ -191,8 +193,6 @@ namespace xamarinJKH.MainConst
                 SetAdminName();
             });
             MessagingCenter.Subscribe<Object>(this, "ChangeAdminMonitor", (sender) => ChangeTheme.Execute(null));
-            Areas = new ObservableCollection<NamedValue>();
-            Streets = new ObservableCollection<HouseProfile>();
             BindingContext = this;
             Device.BeginInvokeOnMainThread(async () => await StartStatistick());
         }
@@ -1196,6 +1196,33 @@ namespace xamarinJKH.MainConst
                 TextColor = currentTheme.Equals(OSAppTheme.Dark) ? Color.White : Color.Black,
                 FontSize = 15
             });
+
+
+            var selectedArea = new NamedValue();
+            selectedArea = this.SelectedArea;
+
+            var selectedStreet = new HouseProfile();
+            selectedStreet = this.SelectedStreet;
+
+            if (this.Areas != null)
+            foreach (var area in this.Areas)
+            {
+                area.Selected = true;
+                area.Selected = false;
+            }
+            if (SelectedArea != null)
+            SelectedArea.Selected = true;
+
+            if (this.Streets != null)
+            {
+                foreach (var street in Streets)
+                {
+                    street.Selected = true;
+                    street.Selected = false;
+                }
+                if (SelectedStreet != null)
+                    SelectedStreet.Selected = true;
+            }
         }
 
         Dictionary<string, VisibleModel> _visibleModels = new Dictionary<string, VisibleModel>();
@@ -1211,17 +1238,21 @@ namespace xamarinJKH.MainConst
         {
             try
             {
-                var selection = e.CurrentSelection[0] as NamedValue;
-                if (selection != null)
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    foreach (var area in Areas)
+                    var selection = e.CurrentSelection[0] as NamedValue;
+                    if (selection != null)
                     {
-                        area.Selected = false;
+                        foreach (var area in Areas)
+                        {
+                            area.Selected = false;
+                        }
+                        selection.Selected = true;
                     }
-                    selection.Selected = true;
-                }
                 (sender as CollectionView).ScrollTo(selection);
-                await getHouse();
+                    await getHouse();
+                });
+                
             }
             catch { }
             
@@ -1231,25 +1262,29 @@ namespace xamarinJKH.MainConst
         {
             try
             {
-                await Task.Delay(TimeSpan.FromMilliseconds(500));
-                var selection = e.CurrentSelection[0] as HouseProfile;
-                var action = selection.Address;
-                if (action != null && !action.Equals(AppResources.Cancel))
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    if (selection != null)
+                    await Task.Delay(TimeSpan.FromMilliseconds(500));
+                    var selection = e.CurrentSelection[0] as HouseProfile;
+                    var action = selection.Address;
+                    if (action != null && !action.Equals(AppResources.Cancel))
                     {
-                        foreach (var street in Streets)
+                        if (selection != null)
                         {
-                            street.Selected = false;
+                            foreach (var street in Streets)
+                            {
+                                street.Selected = false;
+                            }
+                            selection.Selected = true;
                         }
-                        selection.Selected = true;
-                    }
-                    LayoutContent.Children.Clear();
-                    MaterialFrameNotDoingContainer.IsVisible = false;
-                    //LabelHouse.Text = action;
-                    await getMonitorStandart(-1, Int32.Parse(Houses[action]));
+                        LayoutContent.Children.Clear();
+                        MaterialFrameNotDoingContainer.IsVisible = false;
+                        //LabelHouse.Text = action;
+                        await getMonitorStandart(-1, Int32.Parse(Houses[action]));
 
-                }
+                    }
+                });
+                
             }
             catch { }
             
