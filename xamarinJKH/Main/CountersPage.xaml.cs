@@ -254,11 +254,11 @@ namespace xamarinJKH.Main
                             {
                                 if (select.Values!=null && select.Values.Count >= 1 )
                                 {
-                                    int monthCounter;
-                                    var parceMonthOk = int.TryParse(select.Values[0].Period.Split('.')[1], out monthCounter) ;
-                                    if(parceMonthOk)
-                                    {
-                                        if(monthCounter==DateTime.Now.Month)
+                                    // int monthCounter;
+                                    // var parceMonthOk = int.TryParse(select.Values[0].Period.Split('.')[1], out monthCounter) ;
+                                    // if(parceMonthOk)
+                                    // {
+                                        if(select.Values[0].IsCurrentPeriod)
                                         {
                                             var counterThisMonth = select.Values[0].Value;
                                             var counterThisMonth2 = select.Values.Count >= 2 ? select.Values[1].Value : 0;
@@ -274,14 +274,14 @@ namespace xamarinJKH.Main
                                                 await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
                                                 counterThisMonth));
                                         }                                        
-                                    }
-                                    else
-                                    {
-                                        var counterThisMonth = select.Values[0].Value;
-                                        if (Navigation.NavigationStack.FirstOrDefault(x => x is AddMetersPage) == null)
-                                            await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
-                                            counterThisMonth));
-                                    }
+                                    // }
+                                    // else
+                                    // {
+                                    //     var counterThisMonth = select.Values[0].Value;
+                                    //     if (Navigation.NavigationStack.FirstOrDefault(x => x is AddMetersPage) == null)
+                                    //         await Navigation.PushAsync(new AddMetersPage(select, _meterInfo, this, 0,
+                                    //         counterThisMonth));
+                                    // }
                                 }
                                 else
                                 {
@@ -922,7 +922,7 @@ namespace xamarinJKH.Main
                         if (select.ValuesCanAdd)
                         {
                             if (select.Values.Count >= 1 &&
-                                int.Parse(select.Values[0].Period.Split('.')[1]) == DateTime.Now.Month)
+                                select.Values[0].IsCurrentPeriod)
                             {
                                 var counterThisMonth = (select.Values.Count >= 1) ? select.Values[0].Value : 0;
                                 var counterThisMonth2 = (select.Values.Count >= 2) ? select.Values[1].Value : 0;
