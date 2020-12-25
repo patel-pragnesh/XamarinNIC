@@ -158,6 +158,7 @@ namespace xamarinJKH.Questions
            
             additionalList.BackgroundColor = Color.Transparent;
             additionalList.Effects.Add(Effect.Resolve("MyEffects.ListViewHighlightEffect"));
+            this.BindingContext = this;
         }
 
         protected override void OnAppearing()
