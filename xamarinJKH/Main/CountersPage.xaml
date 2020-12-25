@@ -117,15 +117,16 @@
                                             HeightRequest="62"
                                         SelectedItem="{Binding SelectedAccount}"
                                         VerticalOptions="FillAndExpand"
+                                            HorizontalScrollBarVisibility="Never"
                                         SelectionChanged="OnIdentChanged"
                                                     SelectionMode="Single">
                                             <CollectionView.ItemsLayout>
-                                                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                                                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="0"/>
                                             </CollectionView.ItemsLayout>
 
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <StackLayout Padding="2" VerticalOptions="FillAndExpand">
+                                                <StackLayout Padding="0,2,10,2" VerticalOptions="FillAndExpand">
                                                         <StackLayout.GestureRecognizers>
                                                             <TapGestureRecognizer x:Name="FrameIdentGR2" Tapped="FrameIdentGR_Tapped" ></TapGestureRecognizer>
                                                         </StackLayout.GestureRecognizers>

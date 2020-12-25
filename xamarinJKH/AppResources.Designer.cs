@@ -2483,7 +2483,7 @@ namespace xamarinJKH {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to По данным лицевым  счетам отсутствуют приборы учета.
+        ///   Looks up a localized string similar to По данному лицевому счету отсутствуют приборы учета..
         /// </summary>
         internal static string NoMetersIdent {
             get {

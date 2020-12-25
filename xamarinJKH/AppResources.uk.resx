@@ -1590,7 +1590,7 @@
     <value>Політика обробки персональних даних</value>
   </data>
   <data name="NoMetersIdent" xml:space="preserve">
-    <value>За даними особових рахунках відсутні прилади обліку</value>
+    <value>За даним особови рахунок відсутні прилади обліку</value>
   </data>
   <data name="EnterHeader" xml:space="preserve">
     <value>Введіть заголовок ...</value>
