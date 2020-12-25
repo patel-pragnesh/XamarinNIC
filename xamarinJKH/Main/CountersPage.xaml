@@ -126,7 +126,7 @@
 
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <StackLayout Padding="0,0,10,0" VerticalOptions="FillAndExpand">
+                                                <StackLayout Padding="0,2,10,2" VerticalOptions="FillAndExpand">
                                                         <StackLayout.GestureRecognizers>
                                                             <TapGestureRecognizer x:Name="FrameIdentGR2" Tapped="FrameIdentGR_Tapped" ></TapGestureRecognizer>
                                                         </StackLayout.GestureRecognizers>
