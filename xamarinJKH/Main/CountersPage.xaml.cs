@@ -109,9 +109,10 @@ namespace xamarinJKH.Main
 
                     if (info.Data.Count == 0)
                     {
-                        if  (Accounts.Count > 0)
+                        baseForCounters.Children.Clear();
+                        if  (Accounts.Count > 1)
                         {
-                            baseForCounters.Children.Clear();
+                            
                             baseForCounters.Children.Add(new Label
                             {
                                 VerticalTextAlignment = TextAlignment.Center,
@@ -396,6 +397,12 @@ namespace xamarinJKH.Main
                     if (contain == null)
                         Device.BeginInvokeOnMainThread(() => Accounts.Add(ident));
 
+                    var all = Accounts.FirstOrDefault(x => x.Ident == AppResources.All);
+                    if (all == null)
+                    {
+                        Device.BeginInvokeOnMainThread(() => Accounts.Insert(0, new AccountInfo { Ident = AppResources.All, Selected = true }));
+                    }
+
                 }
                 Device.BeginInvokeOnMainThread(async () =>
                 {
@@ -422,21 +429,11 @@ namespace xamarinJKH.Main
                 await Task.Delay(TimeSpan.FromMilliseconds(500));
                 Device.BeginInvokeOnMainThread(() => 
                 {
+                    if (SelectedAccount != null && ident != null)
                     if (SelectedAccount.Ident == ident.Ident)
                         SelectedAccount = null;
+                    if (ident != null)
                     Accounts.Remove(Accounts.First(x => x.Ident == ident.Ident));
-                });
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    
-                    
-                    //await RefreshCountersData();
-                    //Accounts.Clear();
-                    //Accounts.Add(new AccountInfo { Ident = AppResources.All, Selected = true });
-                    //foreach (var account in Settings.Person.Accounts)
-                    //{
-                    //    Accounts.Add(account);
-                    //}
                 });
             });
             Device.BeginInvokeOnMainThread(() =>
@@ -446,6 +443,7 @@ namespace xamarinJKH.Main
                 {
                     Accounts.Insert(0, new AccountInfo { Ident = AppResources.All, Selected = true });
                 }
+                
                 foreach (var account in Settings.Person.Accounts)
                 {
                     Accounts.Add(account);
